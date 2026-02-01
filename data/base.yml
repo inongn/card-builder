@@ -1,0 +1,370 @@
+id: base
+type: Folder
+tags:
+  - base
+children:
+  - name: ui.name
+    id: name
+    type: Input
+    subtype: text
+    default: ''
+  - name: ui.level
+    id: level
+    type: Input
+    subtype: number
+    default: 1
+    min: 1
+    max: 20
+  - name: allocated_str
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: allocated_dex
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: allocated_con
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: allocated_int
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: allocated_wis
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: allocated_cha
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: origin_str
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: origin_dex
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: origin_con
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: origin_int
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: origin_wis
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: origin_cha
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: asi_str
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: asi_dex
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: asi_con
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: asi_int
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: asi_wis
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: asi_cha
+    type: Input
+    subtype: number
+    default: 0
+    min: 0
+  - name: str
+    type: Stat
+    score: $(8 + meta.allocated_str + meta.origin_str + meta.asi_str)
+    mod: $(Math.floor((stats.str.score - 10) / 2))
+  - name: dex
+    type: Stat
+    score: $(8 + meta.allocated_dex + meta.origin_dex + meta.asi_dex)
+    mod: $(Math.floor((stats.dex.score - 10) / 2))
+  - name: con
+    type: Stat
+    score: $(8 + meta.allocated_con + meta.origin_con + meta.asi_con)
+    mod: $(Math.floor((stats.con.score - 10) / 2))
+  - name: int
+    type: Stat
+    score: $(8 + meta.allocated_int + meta.origin_int + meta.asi_int)
+    mod: $(Math.floor((stats.int.score - 10) / 2))
+  - name: wis
+    type: Stat
+    score: $(8 + meta.allocated_wis + meta.origin_wis + meta.asi_wis)
+    mod: $(Math.floor((stats.wis.score - 10) / 2))
+  - name: cha
+    type: Stat
+    score: $(8 + meta.allocated_cha + meta.origin_cha + meta.asi_cha)
+    mod: $(Math.floor((stats.cha.score - 10) / 2))
+  - name: pointBuyLimit
+    type: Attribute
+    value: 21
+  - name: pointBuyScoreLimit
+    type: Attribute
+    value: 7
+  - name: originPoolLimit
+    type: Attribute
+    value: 3
+  - name: originScoreLimit
+    type: Attribute
+    value: 2
+  - name: asiPoolLimit
+    type: Attribute
+    value: 0
+  - name: originEligible
+    type: Attribute
+    value: []
+  - name: hitDie
+    type: Attribute
+    value: 6
+  - name: hp
+    type: Attribute
+    value: $(attributes.hitDie + stats.con.mod + (meta.level - 1) * (Math.floor(attributes.hitDie / 2) + 1 + stats.con.mod))
+  - name: ac
+    type: Attribute
+    value: $(10 + stats.dex.mod)
+  - name: initiative
+    type: Attribute
+    value: $(stats.dex.mod)
+  - name: prof
+    type: Attribute
+    value: $(Math.floor(1 + (meta.level + 3) / 4))
+  - name: proficiencies
+    type: Attribute
+    value: []
+  - name: speed
+    type: Attribute
+    value: 30
+  - name: senses
+    type: Attribute
+    value: []
+  - name: resistances
+    type: Attribute
+    value: []
+  - name: immunities
+    type: Attribute
+    value: []
+  - name: advantages
+    type: Attribute
+    value: []
+  - name: innateSpells
+    type: Attribute
+    value: []
+  - name: spellcasting
+    type: Attribute
+    value:
+      attack: ''
+      save: ''
+  - name: melee
+    type: Attribute
+    value:
+      attack: $(attributes.prof + stats.str.mod)
+      bonus: $(stats.str.mod)
+  - name: ranged
+    type: Attribute
+    value:
+      attack: $(attributes.prof + stats.dex.mod)
+      bonus: $(stats.dex.mod)
+  - name: finesse
+    type: Attribute
+    value:
+      attack: $(attributes.prof + (Math.max(stats.dex.mod, stats.str.mod)))
+      bonus: $(Math.max(stats.dex.mod, stats.str.mod))
+  - name: thrown
+    type: Attribute
+    value:
+      attack: $(attributes.prof + stats.str.mod)
+      bonus: $(stats.str.mod)
+  - name: acrobatics
+    type: Skill
+    stat: dex
+    proficiency: 0
+    bonus: $(stats.dex.mod + attributes.prof * skills.acrobatics.proficiency)
+  - name: animal_handling
+    type: Skill
+    stat: wis
+    proficiency: 0
+    bonus: $(stats.wis.mod + attributes.prof * skills.animal_handling.proficiency)
+  - name: arcana
+    type: Skill
+    stat: int
+    bonus: $(stats.int.mod + attributes.prof * skills.arcana.proficiency)
+    proficiency: 0
+  - name: athletics
+    type: Skill
+    stat: str
+    bonus: $(stats.str.mod + attributes.prof * skills.athletics.proficiency)
+    proficiency: 0
+  - name: deception
+    type: Skill
+    stat: cha
+    bonus: $(stats.cha.mod + attributes.prof * skills.deception.proficiency)
+    proficiency: 0
+  - name: history
+    type: Skill
+    stat: int
+    bonus: $(stats.int.mod + attributes.prof * skills.history.proficiency)
+    proficiency: 0
+  - name: insight
+    type: Skill
+    stat: wis
+    bonus: $(stats.wis.mod + attributes.prof * skills.insight.proficiency)
+    proficiency: 0
+  - name: intimidation
+    type: Skill
+    stat: cha
+    bonus: $(stats.cha.mod + attributes.prof * skills.intimidation.proficiency)
+    proficiency: 0
+  - name: investigation
+    type: Skill
+    stat: int
+    bonus: $(stats.int.mod + attributes.prof * skills.investigation.proficiency)
+    proficiency: 0
+  - name: medicine
+    type: Skill
+    stat: wis
+    bonus: $(stats.wis.mod + attributes.prof * skills.medicine.proficiency)
+    proficiency: 0
+  - name: nature
+    type: Skill
+    stat: int
+    bonus: $(stats.int.mod + attributes.prof * skills.nature.proficiency)
+    proficiency: 0
+  - name: perception
+    type: Skill
+    stat: wis
+    bonus: $(stats.wis.mod + attributes.prof * skills.perception.proficiency)
+    proficiency: 0
+  - name: performance
+    type: Skill
+    stat: cha
+    bonus: $(stats.cha.mod + attributes.prof * skills.performance.proficiency)
+    proficiency: 0
+  - name: persuasion
+    type: Skill
+    stat: cha
+    bonus: $(stats.cha.mod + attributes.prof * skills.persuasion.proficiency)
+    proficiency: 0
+  - name: religion
+    type: Skill
+    stat: int
+    bonus: $(stats.int.mod + attributes.prof * skills.religion.proficiency)
+    proficiency: 0
+  - name: sleight_of_hand
+    type: Skill
+    stat: dex
+    bonus: $(stats.dex.mod + attributes.prof * skills.sleight_of_hand.proficiency)
+    proficiency: 0
+  - name: stealth
+    type: Skill
+    stat: dex
+    bonus: $(stats.dex.mod + attributes.prof * skills.stealth.proficiency)
+    proficiency: 0
+  - name: survival
+    type: Skill
+    stat: wis
+    bonus: $(stats.wis.mod + attributes.prof * skills.survival.proficiency)
+    proficiency: 0
+  - name: strength
+    type: Save
+    stat: str
+    bonus: $(stats.str.mod + attributes.prof * saves.strength.proficiency)
+    proficiency: 0
+  - name: dexterity
+    type: Save
+    stat: dex
+    bonus: $(stats.dex.mod + attributes.prof * saves.dexterity.proficiency)
+    proficiency: 0
+  - name: constitution
+    type: Save
+    stat: con
+    bonus: $(stats.con.mod + attributes.prof * saves.constitution.proficiency)
+    proficiency: 0
+  - name: intelligence
+    type: Save
+    stat: int
+    bonus: $(stats.int.mod + attributes.prof * saves.intelligence.proficiency)
+    proficiency: 0
+  - name: wisdom
+    type: Save
+    stat: wis
+    bonus: $(stats.wis.mod + attributes.prof * saves.wisdom.proficiency)
+    proficiency: 0
+  - name: charisma
+    type: Save
+    stat: cha
+    bonus: $(stats.cha.mod + attributes.prof * saves.charisma.proficiency)
+    proficiency: 0
+  - type: Reference
+    target:
+      - data.core.actions.coreActions
+      - data.core.actions.mainHandAttack
+      - data.core.actions.offHandAttack
+      - data.core.actions.shortRest
+      - data.core.actions.longRest
+  - type: Resource
+    id: hitDice
+    quantity: $(meta.level)
+    restore: Long Rest
+  - id: species
+    type: Slot
+    target: species
+    quantity: 1
+
+  - id: background
+    type: Slot
+    target: background
+    quantity: 1
+
+  - id: class
+    type: Slot
+    target: class
+    quantity: 1
+    
+  - id: armor
+    type: Slot
+    target: heavyArmor OR mediumArmor OR lightArmor OR unarmored
+  - id: mainHand
+    type: Slot
+    variables:
+      hand: mainHand
+    target: 'weapon AND $(attributes.proficiencies.includes(''martialWeapons'') ? ''martial OR simple'' : ''simple'')'
+  - id: offHand
+    type: Slot
+    condition: $(attributes.mainHand?.tag != 'twoHanded')
+    variables:
+      hand: offHand
+    target: '$( (attributes.mainHand?.tag == ''light'') ? (''shieldEquipment OR (weapon AND light AND '' + (attributes.proficiencies.includes(''martialWeapons'') ? ''(martial OR simple)'' : ''simple'') + '')'') : ''shieldEquipment'' )'

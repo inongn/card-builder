@@ -1,0 +1,7 @@
+tags:
+  - fightingStyle
+type: Effect
+target: attributes.twab
+operation: add
+value: 2
+id: data.feats.fightingStyles.thrownWeaponFighting

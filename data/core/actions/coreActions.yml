@@ -1,0 +1,6 @@
+type: Card
+id: data.core.actions.coreActions
+subtype: Actions
+time: action
+range: Self
+duration: Instantaneous

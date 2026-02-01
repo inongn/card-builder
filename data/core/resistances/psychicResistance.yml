@@ -1,0 +1,7 @@
+type: Effect
+tags:
+  - damageResistance
+operation: push
+value: psychic
+target: attributes.resistances
+id: data.core.arrays.resistances.psychicResistance

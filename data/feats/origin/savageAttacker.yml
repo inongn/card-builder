@@ -1,0 +1,9 @@
+tags:
+  - feat
+  - originFeat
+type: Folder
+children:
+  - type: Extra
+    target: mainHand
+    id: savageAttacker
+id: data.feats.origin.savageAttacker

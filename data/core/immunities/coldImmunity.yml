@@ -1,0 +1,5 @@
+type: Effect
+operation: push
+value: cold
+target: attributes.immunities
+id: data.core.arrays.immunities.coldImmunity

@@ -1,0 +1,14 @@
+tags:
+  - fightingStyle
+type: Folder
+children:
+  - type: Effect
+    target: cards[tags=unarmed].extra
+    operation: push
+    value: data.feats.fightingStyles.unarmedFighting.extraeffect.value
+  - type: Effect
+    condition: $(attributes.mainHand && attributes.mainHand.tags.includes('unarmed'))
+    target: attributes.mainHand.damage
+    operation: set
+    value: 1d8
+id: data.feats.fightingStyles.unarmedFighting

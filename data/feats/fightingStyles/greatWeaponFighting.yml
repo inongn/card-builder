@@ -1,0 +1,7 @@
+tags:
+  - fightingStyle
+type: Effect
+target: cards[twoHanded].extra
+operation: push
+value: data.feats.fightingStyles.greatWeaponFighting.datafeatsfightingstylesgreatweaponfightingname.value
+id: data.feats.fightingStyles.greatWeaponFighting

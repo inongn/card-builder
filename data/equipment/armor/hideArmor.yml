@@ -1,0 +1,9 @@
+type: Effect
+tags:
+  - armor
+  - mediumArmor
+condition: $(attributes.proficiencies.includes("mediumArmor"))
+operation: set
+target: attributes.ac
+value: $(12 + Math.min(2, stats.dex.mod))
+id: data.equipment.armor.hideArmor

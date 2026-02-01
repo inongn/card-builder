@@ -1,0 +1,5 @@
+type: Effect
+target: skills.acrobatics.dis
+operation: set
+value: true
+id: data.core.skills.skillDisadvantages.acrobaticsDisadvantage

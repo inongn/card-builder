@@ -1,0 +1,13 @@
+type: Folder
+tags:
+  - epicBoon
+children:
+  - type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Card
+    subtype: Epic Boon
+    range: 60 ft
+    resource: limited
+id: data.feats.epicBoons.boonOfFate

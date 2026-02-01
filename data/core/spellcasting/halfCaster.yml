@@ -1,0 +1,32 @@
+type: Folder
+children:
+  - type: Reference
+    reference: level1SpellSlot
+    variables:
+      quantity: $(progression(0, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4))
+  - type: Reference
+    reference: level2SpellSlot
+    condition: $(meta.level >= 5)
+    variables:
+      quantity: $(progression(0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
+  - type: Reference
+    reference: level3SpellSlot
+    condition: $(meta.level >= 9)
+    variables:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
+  - type: Reference
+    reference: level4SpellSlot
+    condition: $(meta.level >= 13)
+    variables:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 3))
+  - type: Reference
+    reference: level5SpellSlot
+    condition: $(meta.level >= 17)
+    variables:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2))
+  - type: Slot
+    variables:
+      maxLevel: '$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)'
+    target: 'spell AND $(meta.class) $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
+    quantity: $(progression(2, 3, 4, 5, 6, 6, 7, 7, 9, 9, 10, 10, 11, 11, 12, 12, 14, 15, 15, 15))
+id: data.core.spellcasting.caster types.halfCaster

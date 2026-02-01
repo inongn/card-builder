@@ -1,0 +1,6 @@
+type: Card
+id: data.core.actions.shortRest
+subtype: Core Feature
+range: self
+duration: 1 hour
+resource: hitDice

@@ -1,0 +1,7 @@
+type: Effect
+tags:
+  - damageResistance
+operation: push
+value: slashing
+target: attributes.resistances
+id: data.core.arrays.resistances.slashingResistance

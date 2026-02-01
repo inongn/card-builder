@@ -1,0 +1,6 @@
+type: Effect
+target: skills.performance.proficiency
+operation: set
+condition: $(skills.performance.proficiency < 0.5)
+value: 0.5
+id: data.core.skills.skillHalfProficiencies.performanceHalfProficiency

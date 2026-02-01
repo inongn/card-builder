@@ -1,0 +1,5 @@
+type: Effect
+target: saves.reflex.proficiency
+operation: set
+value: 1
+id: data.core.saves.saveProficiencies.dexSave

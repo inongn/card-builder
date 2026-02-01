@@ -1,0 +1,5 @@
+type: Effect
+operation: push
+value: blindsight
+target: attributes.senses
+id: data.core.arrays.senses.blindsight

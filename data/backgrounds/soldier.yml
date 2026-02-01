@@ -1,0 +1,14 @@
+id: data.backgrounds.soldier
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - data.core.proficiencies.athletics
+      - data.core.proficiencies.intimidation
+      - data.core.feats.origin.savageAttacker
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value: [str, dex, con]

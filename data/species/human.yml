@@ -1,0 +1,19 @@
+id: data.species.human
+type: Folder
+tags:
+  - species
+children:
+  - type: Effect
+    target: attributes.speed
+    operation: set
+    value: 30
+  - type: Extra
+    target: longRest
+    id: resourceful
+  - type: Slot
+    id: humanSkillProficiency
+    target: skillProficiency
+  - type: Slot
+    id: humanOriginFeat
+    target: originFeat
+    quantity: 1

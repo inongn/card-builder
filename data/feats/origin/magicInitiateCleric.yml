@@ -1,0 +1,17 @@
+tags:
+  - feat
+  - originFeat
+type: Folder
+children:
+  - type: Reference
+    target: data.core.spellcasting.chooseCaster
+    quantity: 1
+  - type: Slot
+    id: magicInitiateCantrips
+    quantity: 2
+    target: cleric AND cantrip
+  - type: Slot
+    id: magicInitiatePreparedSpell
+    target: spell AND cleric AND level1Spell
+    quantity: 1
+id: data.feats.origin.magicInitiateCleric

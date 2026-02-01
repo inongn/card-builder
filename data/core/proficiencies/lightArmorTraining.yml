@@ -1,0 +1,5 @@
+type: Effect
+operation: push
+value: lightArmor
+target: attributes.proficiencies
+id: data.core.arrays.proficiencies.lightArmorTraining

@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.acrobatics.proficiency
+operation: set
+condition: $(skills.acrobatics.proficiency > 0)
+value: 2
+id: data.core.skills.skillExpertise.acrobaticsExpertise

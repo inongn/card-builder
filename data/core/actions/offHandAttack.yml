@@ -1,0 +1,14 @@
+children:
+  - type: Card
+    subtype: Attack
+    tags:
+      - $(attributes.offHand.category)
+      - $(attributes.offHand.mastery)
+      - offHand
+      - $(attributes.offHand.tag)
+    id: offHandAttack
+    time: bonus action
+    condition: $(attributes.offHand != null)
+    range: $(attributes.offHand.range)
+    duration: Instantaneous
+id: data.core.actions.offHandAttack

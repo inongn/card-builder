@@ -1,0 +1,11 @@
+tags:
+  - feat
+  - originFeat
+type: Folder
+children:
+  - type: Slot
+    quantity: 3
+    id: skilledSkillProficiency
+    target: skillProficiency
+repeatable: true
+id: data.feats.origin.skilled

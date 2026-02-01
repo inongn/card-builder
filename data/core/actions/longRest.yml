@@ -1,0 +1,5 @@
+type: Card
+id: data.core.actions.longRest
+subtype: Core Feature
+range: self
+duration: 8 hours

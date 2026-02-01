@@ -1,0 +1,15 @@
+id: data.backgrounds.sage
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - data.core.proficiencies.arcana
+      - data.core.proficiencies.history
+      - data.core.tools.calligraphersTools
+      - data.feats.origin.magicInitiateWizard
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value: [int, wis, con]

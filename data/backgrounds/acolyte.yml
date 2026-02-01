@@ -1,0 +1,15 @@
+id: data.backgrounds.acolyte
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - data.core.proficiencies.insight
+      - data.core.proficiencies.religion
+      - data.core.tools.calligraphersTools
+      - data.feats.origin.magicInitiateCleric
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value: [int, wis, con]

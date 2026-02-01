@@ -1,0 +1,5 @@
+type: Effect
+target: skills.medicine.adv
+operation: set
+value: true
+id: data.core.skills.skillAdvantages.medicineAdvantage

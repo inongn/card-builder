@@ -1,0 +1,5 @@
+type: Effect
+operation: push
+value: tremorsense
+target: attributes.senses
+id: data.core.arrays.senses.tremorsense

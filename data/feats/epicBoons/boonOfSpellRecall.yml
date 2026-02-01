@@ -1,0 +1,13 @@
+type: Folder
+tags:
+  - epicBoon
+children:
+  - type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Effect
+    target: cards[level1Spell OR level2Spell OR level3Spell OR level4Spell].extra
+    operation: push
+    value: data.feats.epicBoons.boonOfSpellRecall.peerlessaim.value
+id: data.feats.epicBoons.boonOfSpellRecall

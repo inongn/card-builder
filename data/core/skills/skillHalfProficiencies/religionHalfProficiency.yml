@@ -1,0 +1,6 @@
+type: Effect
+target: skills.religion.proficiency
+operation: set
+condition: $(skills.religion.proficiency < 0.5)
+value: 0.5
+id: data.core.skills.skillHalfProficiencies.religionHalfProficiency

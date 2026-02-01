@@ -1,0 +1,12 @@
+tags:
+  - feat
+  - originFeat
+type: Folder
+children:
+  - type: Effect
+    target: attributes.initiative
+    operation: add
+    value: $(attributes.prof)
+  - id: initiativeSwap
+    type: Card
+id: data.feats.origin.alert

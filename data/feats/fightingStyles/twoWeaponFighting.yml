@@ -1,0 +1,7 @@
+tags:
+  - fightingStyle
+type: Effect
+target: cards[light AND offHand].extra
+operation: push
+value: data.feats.fightingStyles.twoWeaponFighting.datafeatsfightingstylestwoweaponfightingname.value
+id: data.feats.fightingStyles.twoWeaponFighting

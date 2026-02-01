@@ -1,0 +1,7 @@
+tags:
+  - skillProficiency
+type: Effect
+target: skills.animal_handling.proficiency
+operation: set
+value: 1
+id: data.core.skills.skillProficiencies.animalHandlingProficiency

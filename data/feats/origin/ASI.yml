@@ -1,0 +1,10 @@
+tags:
+  - feat
+type: Folder
+repeatable: true
+children:
+  - type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 2
+id: data.feats.origin.ASI

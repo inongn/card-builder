@@ -1,0 +1,5 @@
+type: Effect
+operation: push
+value: shields
+target: attributes.proficiencies
+id: data.core.arrays.proficiencies.shieldTraining

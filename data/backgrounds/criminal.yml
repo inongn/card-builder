@@ -1,0 +1,15 @@
+id: data.backgrounds.criminal
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - data.core.proficiencies.sleightOfHand
+      - data.core.proficiencies.stealth
+      - data.core.tools.thievesTools
+      - data.core.feats.origin.alert
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value: ["dex", "con", "int"]

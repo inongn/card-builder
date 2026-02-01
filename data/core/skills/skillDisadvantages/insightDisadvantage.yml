@@ -1,0 +1,5 @@
+type: Effect
+target: skills.insight.dis
+operation: set
+value: true
+id: data.core.skills.skillDisadvantages.insightDisadvantage

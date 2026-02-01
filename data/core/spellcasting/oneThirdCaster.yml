@@ -1,0 +1,24 @@
+type: Folder
+id: data.core.spellcasting.caster types.oneThirdCaster
+children:
+  - type: Reference
+    reference: level1SpellSlot
+    variables:
+      quantity: $(progression(0, 0, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4))
+  - type: Reference
+    reference: level2SpellSlot
+    condition: $(meta.level >= 7)
+    variables:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
+  - type: Reference
+    reference: level3SpellSlot
+    condition: $(meta.level >= 13)
+    variables:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 3, 3, 3, 3, 3))
+  - type: Reference
+    reference: level4SpellSlot
+    condition: $(meta.level >= 19)
+    variables:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1))
+  - type: Attribute
+    value: $(progression(0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4))

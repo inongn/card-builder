@@ -1,0 +1,8 @@
+tags:
+  - fightingStyle
+type: Feature
+subtype: Fighting Style Feature
+time: reaction
+range: 5 ft
+duration: Instantaneous
+id: data.feats.fightingStyles.interception

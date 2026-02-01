@@ -1,0 +1,24 @@
+id: data.core.masteryProperties
+type: Folder
+children:
+  - type: Extra
+    target: graze
+    id: graze
+  - type: Extra
+    target: slow
+    id: slow
+  - type: Extra
+    target: nick AND offHand
+    id: nick AND offHand
+  - type: Extra
+    target: cleave
+    id: cleave
+  - type: Extra
+    target: push
+    id: push
+  - type: Extra
+    target: topple
+    id: topple
+  - type: Extra
+    target: sap
+    id: sap

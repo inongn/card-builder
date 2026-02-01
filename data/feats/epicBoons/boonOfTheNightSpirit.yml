@@ -1,0 +1,13 @@
+type: Folder
+id: data.feats.epicBoons.boonOfTheNightSpirit
+tags:
+  - epicBoon
+children:
+  - type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Card
+    subtype: Epic Boon
+    range: self
+    time: bonus action

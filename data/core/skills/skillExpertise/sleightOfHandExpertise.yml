@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.sleight_of_hand.proficiency
+operation: set
+condition: $(skills.sleight_of_hand.proficiency > 0)
+value: 2
+id: data.core.skills.skillExpertise.sleightOfHandExpertise

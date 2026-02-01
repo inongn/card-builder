@@ -1,0 +1,5 @@
+type: Effect
+target: saves.might.adv
+operation: set
+value: true
+id: data.core.saves.saveAdvantages.strAdvantage
