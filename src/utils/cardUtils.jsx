@@ -1,5 +1,4 @@
 import React from 'react';
-import i18next from 'i18next';
 import 'mdui/components/icon.js';
 import 'mdui/components/chip.js';
 
@@ -8,29 +7,29 @@ import 'mdui/components/chip.js';
 // ============================================================================
 
 export const TERM_ICONS = {
-    'bonus action': { icon: 'change_history', color: 'bonus-action', shortName: 'ui.bonusAction' }, // Triangle
-    'free action': { icon: 'lens_blur', color: 'accent', shortName: 'ui.freeAction' }, // Dashed circle/loader
-    'null': { icon: 'lens_blur', color: 'accent', shortName: 'ui.freeAction' },
-    'action': { icon: 'circle', color: 'action', shortName: 'ui.action' },
-    'reaction': { icon: 'flare', color: 'reaction', shortName: 'ui.reaction' }, // Sparkle
-    'ritual': { icon: 'self_improvement', color: 'accent', shortName: 'ui.ritual' },
-    'bludgeoning': { icon: 'explosion', color: 'physical', shortName: 'ui.bludgeoning' },
-    'piercing': { icon: 'ads_click', color: 'physical', shortName: 'ui.piercing' }, // Target/arrow feel
-    'slashing': { icon: 'content_cut', color: 'physical', shortName: 'ui.slashing' }, // Nearest to sword/cut
-    'fire': { icon: 'local_fire_department', color: 'fire', shortName: 'ui.fire' },
-    'cold': { icon: 'ac_unit', color: 'cold', shortName: 'ui.cold' },
-    'acid': { icon: 'water_drop', color: 'acid', shortName: 'ui.acid' },
-    'lightning': { icon: 'bolt', color: 'lightning', shortName: 'ui.lightning' },
-    'poison': { icon: 'test_tube', color: 'poison', shortName: 'ui.poison' },
-    'necrotic': { icon: 'skull', color: 'necrotic', shortName: 'ui.necrotic' },
-    'radiant': { icon: 'light_mode', color: 'radiant', shortName: 'ui.radiant' },
-    'force': { icon: 'flare', color: 'force', shortName: 'ui.force' },
-    'thunder': { icon: 'graphic_eq', color: 'thunder', shortName: 'ui.thunder' }, // Waveform
-    'psychic': { icon: 'psychology', color: 'psychic', shortName: 'ui.psychic' },
-    'Instantaneous': { icon: 'bolt', color: 'accent', shortName: 'ui.instantaneous' },
-    'healing': { icon: 'favorite', color: 'healing', shortName: 'ui.healing' },
+    'bonus action': { icon: 'change_history', color: 'bonus-action', shortName: 'Bonus Action' }, // Triangle
+    'free action': { icon: 'lens_blur', color: 'accent', shortName: 'Free Action' }, // Dashed circle/loader
+    'null': { icon: 'lens_blur', color: 'accent', shortName: 'Free Action' },
+    'action': { icon: 'circle', color: 'action', shortName: 'Action' },
+    'reaction': { icon: 'flare', color: 'reaction', shortName: 'Reaction' }, // Sparkle
+    'ritual': { icon: 'self_improvement', color: 'accent', shortName: 'Ritual' },
+    'bludgeoning': { icon: 'explosion', color: 'physical', shortName: 'Bludgeoning' },
+    'piercing': { icon: 'ads_click', color: 'physical', shortName: 'Piercing' }, // Target/arrow feel
+    'slashing': { icon: 'content_cut', color: 'physical', shortName: 'Slashing' }, // Nearest to sword/cut
+    'fire': { icon: 'local_fire_department', color: 'fire', shortName: 'Fire' },
+    'cold': { icon: 'ac_unit', color: 'cold', shortName: 'Cold' },
+    'acid': { icon: 'water_drop', color: 'acid', shortName: 'Acid' },
+    'lightning': { icon: 'bolt', color: 'lightning', shortName: 'Lightning' },
+    'poison': { icon: 'test_tube', color: 'poison', shortName: 'Poison' },
+    'necrotic': { icon: 'skull', color: 'necrotic', shortName: 'Necrotic' },
+    'radiant': { icon: 'light_mode', color: 'radiant', shortName: 'Radiant' },
+    'force': { icon: 'flare', color: 'force', shortName: 'Force' },
+    'thunder': { icon: 'graphic_eq', color: 'thunder', shortName: 'Thunder' }, // Waveform
+    'psychic': { icon: 'psychology', color: 'psychic', shortName: 'Psychic' },
+    'Instantaneous': { icon: 'bolt', color: 'accent', shortName: 'Instantaneous' },
+    'healing': { icon: 'favorite', color: 'healing', shortName: 'Healing' },
 
-    'concentration': { icon: 'psychology', color: 'accent', shortName: 'ui.concentration' },
+    'concentration': { icon: 'psychology', color: 'accent', shortName: 'Concentration' },
     'level1SpellSlot': { icon: 'filter_1', color: 'spell-slot', shortName: 'Spell Slot' },
     'level2SpellSlot': { icon: 'filter_2', color: 'spell-slot', shortName: 'Spell Slot' },
     'level3SpellSlot': { icon: 'filter_3', color: 'spell-slot', shortName: 'Spell Slot' },
@@ -47,8 +46,8 @@ export const TERM_ICONS = {
     'clericChannelDivinity': { icon: 'auto_awesome', color: 'radiant', shortName: 'Channel Divinity' },
     'giantAncestry': { icon: 'terrain', color: 'accent', shortName: 'Giant Ancestry' },
     'stonecunning': { icon: 'diamond', color: 'accent', shortName: 'Stonecunning' },
-    'tireless': { icon: 'air', color: 'healing', shortName: 'Tire' },
-    'wholenessOfBody': { icon: 'self_improvement', color: 'healing', shortName: 'Whole' },
+    'tireless': { icon: 'air', color: 'healing', shortName: 'Tireless' },
+    'wholenessOfBody': { icon: 'self_improvement', color: 'healing', shortName: 'Wholeness' },
     'focusPoints': { icon: 'motion_photos_on', color: 'action', shortName: 'Focus' }, // Concentric circles
     'sneak': { icon: 'colorize', color: 'fire', shortName: 'Sneak' }, // Closest to dagger/pointy
     'rage': { icon: 'show_chart', color: 'fire', shortName: 'Rage' }, // Pulse alternative
@@ -66,9 +65,9 @@ export const TERM_ICONS = {
     'hitDice': { icon: 'casino', color: 'healing', shortName: 'Hit Die' },
     'draconicFlight': { icon: 'flutter_dash', color: 'action', shortName: 'Draconic Flight' },
     'largeForm': { icon: 'open_in_full', color: 'accent', shortName: 'Large Form' },
-    'self': { icon: 'person_pin_circle', color: 'accent', shortName: 'ui.self' },
-    'touch': { icon: 'back_hand', color: 'accent', shortName: 'ui.touch' },
-    'limited': { icon: 'replay', color: 'accent', shortName: 'ui.limited' },
+    'self': { icon: 'person_pin_circle', color: 'accent', shortName: 'Self' },
+    'touch': { icon: 'back_hand', color: 'accent', shortName: 'Touch' },
+    'limited': { icon: 'replay', color: 'accent', shortName: 'Limited' },
 };
 
 // Internal normalized map for lookups
@@ -109,26 +108,7 @@ export const sortDescription = (lines) => {
 
 const translateText = (text) => {
     if (!text) return '';
-    let result = text;
-
-    // Distance conversion (feet to meters) if not English
-    // Approximation: 5ft = 1.5m
-    const currentLang = i18next.language || 'en';
-    if (!currentLang.startsWith('en')) {
-        result = result.replace(/(\d+)\s*(ft|feet|foot)/gi, (match, p1) => {
-            const feet = parseInt(p1);
-            const meters = (feet / 5) * 1.5;
-            // Format to 1 decimal place if needed, or integer if round
-            const formattedMeters = Number.isInteger(meters) ? meters : meters.toFixed(1);
-            return `${formattedMeters} m`;
-        });
-    }
-
-    return result.replace(/\b(minutes?|hours?|rounds?|up to)\b/gi, (match) => {
-        const key = match.toLowerCase().replace(/\s+/g, '');
-        const normalizedKey = key === 'upto' ? 'upTo' : key;
-        return i18next.exists(`ui.${normalizedKey}`) ? i18next.t(`ui.${normalizedKey}`) : match;
-    });
+    return text;
 };
 
 export const renderGridValue = (text, type = 'range', showLabel = true) => {
@@ -183,7 +163,7 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
             if (i < parts.length - 1 && parts[i + 1].type === 'icon') {
                 content = content.replace(/[,.\s]+$/, '');
             }
-            return { ...p, content: translateText(content.trim()) };
+            return { ...p, content: content.trim() };
         }
         return p;
     }).filter(p => p.type !== 'text' || p.content !== '');
@@ -204,7 +184,7 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
         const content = processedParts.map((p, i) => {
             if (p.type === 'text') return p.content;
             if (p.type === 'icon' && processedParts.length === 1 && showLabel) {
-                return i18next.exists(p.info.shortName) ? i18next.t(p.info.shortName) : p.info.shortName;
+                return p.info.shortName;
             }
             return '';
         }).join(' ').trim();
@@ -226,7 +206,7 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
     }
 
     // No icon found case
-    const translatedStr = translateText(str);
+    const translatedStr = str;
     if (showLabel) {
         return (
             <mdui-chip variant="filled" className="grid-value-chip">

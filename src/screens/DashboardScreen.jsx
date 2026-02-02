@@ -1,15 +1,13 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved }) => {
-    const { t } = useTranslation();
     return (
         <div className="container">
             <div className="header-nav">
                 <div className="header-nav-group">
                 </div>
                 <div className="header-nav-group">
-                    <mdui-button variant="filled" icon="add" onClick={handleNewCharacter}>{t('ui.newCharacter')}</mdui-button>
+                    <mdui-button variant="filled" icon="add" onClick={handleNewCharacter}>New Character</mdui-button>
                 </div>
             </div>
             <div className="content dashboard-content">
@@ -21,8 +19,8 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                                 {charSaved.recipe.class || 'Unknown Class'} • Level {charSaved.recipe.level || 1}
                             </div>
                             <div className="hero-actions">
-                                <mdui-button variant="tonal" icon="play_arrow" onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}>{t('ui.play')}</mdui-button>
-                                <mdui-button variant="tonal" icon="edit" onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'builder')}>{t('ui.edit')}</mdui-button>
+                                <mdui-button variant="tonal" icon="play_arrow" onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}>Play</mdui-button>
+                                <mdui-button variant="tonal" icon="edit" onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'builder')}>Edit</mdui-button>
                                 <mdui-button-icon icon="print" onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'print')}></mdui-button-icon>
                                 <mdui-button-icon icon="delete" onClick={() => handleDeleteSaved(charSaved.id)}></mdui-button-icon>
                             </div>
@@ -32,8 +30,8 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                 {savedCharacters.length === 0 && (
                     <div className="empty-state">
                         <mdui-icon name="person_add" style={{ fontSize: '4rem' }}></mdui-icon>
-                        <p>{t('ui.emptyState')}</p>
-                        <mdui-button onClick={handleNewCharacter}>{t('ui.createFirst')}</mdui-button>
+                        <p>No characters found.</p>
+                        <mdui-button onClick={handleNewCharacter}>Create your first character</mdui-button>
                     </div>
                 )}
             </div>

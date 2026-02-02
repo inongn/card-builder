@@ -1,4 +1,4 @@
-type: Card
+type: Activity
 id: data.core.actions.shortRest
 subtype: Core Feature
 range: self

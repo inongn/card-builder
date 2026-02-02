@@ -1,5 +1,4 @@
 import jsyaml from 'js-yaml';
-import i18next from 'i18next';
 
 // ============================================================================
 // EXPRESSION CACHE - Avoid recompiling the same expressions
@@ -15,7 +14,7 @@ function getCachedFunction(expr) {
 
     try {
         const fn = new Function(
-            'stats', 'attributes', 'meta', 'skills', 'saves', 'cards', 'progression', 'local', 'formatBonus', 't',
+            'stats', 'attributes', 'meta', 'skills', 'saves', 'activities', 'progression', 'local', 'formatBonus',
             `return ${expr}`
         );
 
@@ -82,7 +81,7 @@ const PIPELINE_STAGES = [
     },
     {
         name: 'Content',
-        types: ['Resource', 'Card', 'Feature', 'Extra'],
+        types: ['Resource', 'Activity', 'Feature', 'Extra'],
         conditionTiming: 'apply',
         evaluateAfter: 'tags'        // Only evaluate 'tags' fields (so Effects can target by tag)
     },
@@ -287,29 +286,29 @@ export class ExpressionEvaluator {
 
         // Automatically resolve translation keys (e.g. data.fighter.name or ui.attack: ...)
         // Check for direct keys first (no spaces)
-        if (!expr.includes(' ') && !expr.includes('\n') && expr.includes('.') && i18next.exists(expr)) {
-            expr = i18next.t(expr);
-        }
+        // if (!expr.includes(' ') && !expr.includes('\n') && expr.includes('.') && i18next.exists(expr)) {
+        //     expr = i18next.t(expr);
+        // }
 
         // Check for "key: " prefixes (even if expressions follow)
-        const prefixMatch = expr.match(/^(ui\.|data\.)[\w\.]+: /);
-        if (prefixMatch) {
-            const key = prefixMatch[0].replace(': ', '');
-            if (i18next.exists(key)) {
-                expr = i18next.t(key) + ': ' + expr.substring(prefixMatch[0].length);
-            }
-        }
+        // const prefixMatch = expr.match(/^(ui\.|data\.)[\w\.]+: /);
+        // if (prefixMatch) {
+        //     const key = prefixMatch[0].replace(': ', '');
+        //     if (i18next.exists(key)) {
+        //         expr = i18next.t(key) + ': ' + expr.substring(prefixMatch[0].length);
+        //     }
+        // }
 
         // Extract and translate embedded localization paths
         // Matches patterns like: data.classes.fighter.name or ui.something.name
         // Even when surrounded by other text like **data.classes.fighter.name.**
-        const pathPattern = /\b(data\.|ui\.)[\w.]+\b/g;
-        expr = expr.replace(pathPattern, (match) => {
-            if (i18next.exists(match)) {
-                return i18next.t(match);
-            }
-            return match;
-        });
+        // const pathPattern = /\b(data\.|ui\.)[\w.]+\b/g;
+        // expr = expr.replace(pathPattern, (match) => {
+        //     if (i18next.exists(match)) {
+        //         return i18next.t(match);
+        //     }
+        //     return match;
+        // });
 
         if (!expr.includes('$')) return expr;
 
@@ -346,11 +345,10 @@ export class ExpressionEvaluator {
                     this.context.meta || {},
                     this.context.skills || {},
                     this.context.saves || {},
-                    this.context.cards || [],
+                    this.context.activities || [],
                     this.progression.bind(this),
                     scope,
-                    formatBonus,
-                    i18next.t.bind(i18next)
+                    formatBonus
                 );
 
                 if (val === undefined || (typeof val === 'number' && isNaN(val)) || (typeof val === 'string' && val.includes('$('))) {
@@ -498,10 +496,10 @@ export class PropertyLibrary {
             // Auto-generate name and description paths from id
             // If property has an id, its name and description should resolve to localization paths
             if (property.id && !property.name) {
-                property.name = property.id + '.name';
+                property.name = property.id;
             }
             if (property.id && !property.description) {
-                property.description = property.id + '.description';
+                property.description = ''; // Default to empty string instead of path
             }
 
             this.properties.set(id, property);
@@ -666,10 +664,10 @@ export class CharacterBuilder {
             if (child.id) {
                 const fullId = parentId ? `${parentId}.${child.id}` : child.id;
                 if (!child.name) {
-                    child.name = fullId + '.name';
+                    child.name = child.id;
                 }
                 if (!child.description) {
-                    child.description = fullId + '.description';
+                    child.description = '';
                 }
             }
 
@@ -826,7 +824,7 @@ export class CharacterBuilder {
             saves: {},
             resources: [],
             features: [],
-            cards: []
+            activities: []
         };
     }
 
@@ -1647,9 +1645,9 @@ export class CharacterBuilder {
                         const name = evaluator.evaluate(prop.name, scope);
                         const quantity = typeof evaluatedQuantity === 'number' ? evaluatedQuantity : '';
                         this.applyEffect({
-                            target: 'cards[shortRest].extra',
+                            target: 'activities[shortRest].extra',
                             operation: 'push',
-                            value: `**$(t('${prop.name}'))..** Restore ${quantity > 1 ? quantity : 'a'} $(t('${prop.name}')) charge${quantity > 1 ? 's' : ''}.`
+                            value: `**${prop.name}..** Restore ${quantity > 1 ? quantity : 'a'} ${prop.name} charge${quantity > 1 ? 's' : ''}.`
                         }, evaluator);
                     }
                 }
@@ -1657,7 +1655,7 @@ export class CharacterBuilder {
 
 
 
-            case 'Card':
+            case 'Activity':
                 {
                     // Merge inherited tree variables with the card's own variables
                     const cardVariables = { ...scope, ...(prop.variables || {}) };
@@ -1684,7 +1682,7 @@ export class CharacterBuilder {
                         variables: cardVariables // Store variables for dynamic evaluation
                     };
 
-                    this.characterData.cards.push(cardObj);
+                    this.characterData.activities.push(cardObj);
                 }
                 break;
 
@@ -1710,9 +1708,9 @@ export class CharacterBuilder {
                     // Determine target: if target is specified, use it; otherwise use the id
                     const targetQuery = evaluator.evaluate(prop.target, scope) || prop.id;
 
-                    // Apply as an Effect that pushes to cards[query].extra
+                    // Apply as an Effect that pushes to activities[query].extra
                     this.applyEffect({
-                        target: `cards[${targetQuery}].extra`,
+                        target: `activities[${targetQuery}].extra`,
                         operation: 'push',
                         value: extraString,
                         variables: scope

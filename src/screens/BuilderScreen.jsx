@@ -1,7 +1,6 @@
 import React from 'react';
 import PropertySelectionTree, { PropertySelectionDescription } from '../components/PropertySelectionTree';
 import { getAvailableCategories } from '../utils/builderUtils.js';
-import { useTranslation } from 'react-i18next';
 import 'mdui/components/segmented-button-group.js';
 import 'mdui/components/segmented-button.js';
 import 'mdui/components/button.js';
@@ -19,7 +18,6 @@ export const BuilderScreen = ({
     onNavigate,
     onGetProperty
 }) => {
-    const { t } = useTranslation();
     const availableCategories = React.useMemo(() =>
         getAvailableCategories(propertyTree, characterData),
         [propertyTree, characterData]
@@ -32,13 +30,13 @@ export const BuilderScreen = ({
     }, [availableCategories, selectedCategory, setSelectedCategory]);
 
     const orderedSteps = [
-        { key: 'origin', icon: 'person', label: t('ui.origin') },
-        { key: 'class', icon: 'school', label: t('ui.class') },
-        { key: 'feats', icon: 'emoji_events', label: t('ui.feats') },
-        { key: 'stats', icon: 'fitness_center', label: t('ui.abilities') },
-        { key: 'skills', icon: 'psychology', label: t('ui.skills') },
-        { key: 'spellcasting', icon: 'auto_fix_high', label: t('ui.spellcasting') },
-        { key: 'equipment', icon: 'shield', label: t('ui.equipment') },
+        { key: 'origin', icon: 'person', label: 'Origin' },
+        { key: 'class', icon: 'school', label: 'Class' },
+        { key: 'feats', icon: 'emoji_events', label: 'Feats' },
+        { key: 'stats', icon: 'fitness_center', label: 'Abilities' },
+        { key: 'skills', icon: 'psychology', label: 'Skills' },
+        { key: 'spellcasting', icon: 'auto_fix_high', label: 'Spells' },
+        { key: 'equipment', icon: 'shield', label: 'Equipment' },
     ].filter(step => availableCategories.includes(step.key));
 
     return (
@@ -59,8 +57,8 @@ export const BuilderScreen = ({
                     ))}
                 </div>
                 <div className="header-nav-group">
-                    <mdui-button variant="text" icon="print" onClick={() => onNavigate('print')}>{t('ui.print')}</mdui-button>
-                    <mdui-button variant="tonal" icon="play_arrow" onClick={() => onNavigate('play')}>{t('ui.playNow')}</mdui-button>
+                    <mdui-button variant="text" icon="print" onClick={() => onNavigate('print')}>Print</mdui-button>
+                    <mdui-button variant="tonal" icon="play_arrow" onClick={() => onNavigate('play')}>Play Now</mdui-button>
                 </div>
             </div>
 

@@ -1,6 +1,4 @@
 import React, { memo, useMemo } from 'react';
-import i18next from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { formatBonus } from '../../engine/RpgEngine';
 import { getIconInfo } from '../../utils/cardUtils';
 import { AdvantageIndicator } from './AdvantageIndicator';
@@ -10,7 +8,6 @@ import 'mdui/components/chip.js';
 import 'mdui/components/icon.js';
 
 export const CharacterSheet = memo(({ char }) => {
-    const { t } = useTranslation();
     const sortedResources = useMemo(() => {
         if (!char || !char.resources) return [];
 
@@ -54,7 +51,7 @@ export const CharacterSheet = memo(({ char }) => {
             </div>
             <div className="main-card-row">
                 <div className="text-primary card-title">
-                    Lv. {char.meta.level} {char.meta.species} {char.meta.class || t('ui.unknownClass')}
+                    Lv. {char.meta.level} {char.meta.species} {char.meta.class || 'Unknown Class'}
                 </div>
             </div>
 
@@ -62,7 +59,7 @@ export const CharacterSheet = memo(({ char }) => {
             <div className="main-card-row">
                 {Object.entries(char.stats).map(([key, value]) => (
                     <div className="main-card-box stat-box" key={key}>
-                        <div className="stat-label">{t(`ui.${key.toLowerCase()}`).toUpperCase()}</div>
+                        <div className="stat-label">{key.toUpperCase()}</div>
                         <div className="stat-value">{formatBonus(value.mod, true)}</div>
                         <div className="stat-score">{value.score}</div>
                     </div>
@@ -82,8 +79,8 @@ export const CharacterSheet = memo(({ char }) => {
                             return (
                                 <div className="list-item skill-list-item" key={key}>
                                     <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
-                                    <div className="text-secondary">{t(`ui.${skill.stat.toLowerCase()}`).toUpperCase()}</div>
-                                    <div className="text-primary">{t(`ui.${key.toLowerCase()}`)}</div>
+                                    <div className="text-secondary">{skill.stat.toUpperCase()}</div>
+                                    <div className="text-primary">{key.charAt(0).toUpperCase() + key.slice(1)}</div>
                                     <div className="text-secondary">
                                         {skill.adv && <AdvantageIndicator type="adv" />}
                                         {skill.dis && <AdvantageIndicator type="dis" />}
@@ -99,71 +96,54 @@ export const CharacterSheet = memo(({ char }) => {
                 <div className="main-card-column">
                     <div className="main-card-box main-card-box-hp">
                         <div className="main-card-box-hp-row">
-                            <div className="text-secondary">{t('ui.current')}</div>
-                            <div className="text-secondary">{t('ui.max')}</div>
-                            <div className="text-secondary">{t('ui.temp')}</div>
+                            <div className="text-secondary">Current</div>
+                            <div className="text-secondary">Max</div>
+                            <div className="text-secondary">Temp</div>
                         </div>
                         <div className="main-card-box-hp-row">
                             <div className="important-number"></div>
                             <div className="important-number">{char.attributes.hp}</div>
                             <div className="important-number"></div>
                         </div>
-                        <div className="text-secondary">{t('ui.hp')}</div>
+                        <div className="text-secondary">HP</div>
                     </div>
 
                     <div className="main-card-combat-row">
-                        {(() => {
-                            const currentLang = i18next.language || 'en';
-                            const isMetric = !currentLang.startsWith('en');
-
-                            let speedVal = char.attributes.speed;
-                            let speedSub = t('ui.feet');
-
-                            if (isMetric && typeof speedVal === 'number') {
-                                speedVal = (speedVal / 5) * 1.5;
-                                speedVal = Number.isInteger(speedVal) ? speedVal : speedVal.toFixed(1);
-                                speedSub = t('ui.meters');
-                            } else if (isMetric && typeof speedVal === 'string') {
-                                // Fallback for string speeds (e.g. "30 ft")
-                                speedVal = speedVal.replace(/(\d+)\s*(ft|feet|foot)/gi, (match, p1) => {
-                                    const meters = (parseInt(p1) / 5) * 1.5;
-                                    return Number.isInteger(meters) ? meters : meters.toFixed(1);
-                                });
-                                speedSub = t('ui.meters');
-                            }
-
-                            return [
-                                { label: t('ui.init'), val: formatBonus(char.attributes.initiative, true), sub: t('ui.mod'), adv: char.attributes.adv, dis: char.attributes.dis },
-                                { label: t('ui.armor'), val: char.attributes.ac, sub: t('ui.class_label') },
-                                { label: t('ui.speed'), val: speedVal, sub: speedSub },
-                            ].map((box, i) => (
-                                <div className="main-card-box" key={i}>
-                                    <div className="text-secondary">{box.label}</div>
-                                    <div className="important-number">
-                                        {box.val}
-                                        {box.adv && <AdvantageIndicator type="adv" />}
-                                        {box.dis && <AdvantageIndicator type="dis" />}
-                                    </div>
-                                    <div className="text-secondary">{box.sub}</div>
-                                </div>
-                            ));
-                        })()}
+                        <div className="main-card-box">
+                            <div className="text-secondary">Initiative</div>
+                            <div className="important-number">
+                                {formatBonus(char.attributes.initiative, true)}
+                                {char.attributes.adv && <AdvantageIndicator type="adv" />}
+                                {char.attributes.dis && <AdvantageIndicator type="dis" />}
+                            </div>
+                            <div className="text-secondary">Mod</div>
+                        </div>
+                        <div className="main-card-box">
+                            <div className="text-secondary">Armor</div>
+                            <div className="important-number">{char.attributes.ac}</div>
+                            <div className="text-secondary">Class</div>
+                        </div>
+                        <div className="main-card-box">
+                            <div className="text-secondary">Speed</div>
+                            <div className="important-number">{char.attributes.speed}</div>
+                            <div className="text-secondary">ft</div>
+                        </div>
                     </div>
 
                     {/* Passive Info List */}
                     <div className="main-card-list">
                         {[
-                            { label: t('ui.senses'), data: char.attributes.senses },
-                            { label: t('ui.resistances'), data: char.attributes.resistances },
-                            { label: t('ui.advantages'), data: char.attributes.advantages },
-                            { label: t('ui.immunities'), data: char.attributes.immunities }
+                            { label: 'Senses', data: char.attributes.senses },
+                            { label: 'Resistances', data: char.attributes.resistances },
+                            { label: 'Advantages', data: char.attributes.advantages },
+                            { label: 'Immunities', data: char.attributes.immunities }
                         ].map((info, idx) => (
                             <div className="list-item info-list-item" key={idx}>
                                 <span className="text-secondary">{info.label}</span>
                                 <span className="text-primary">
                                     {info.data?.length > 0 ? info.data.map((s, i) => (
                                         <React.Fragment key={i}>
-                                            {i18next.exists(`ui.${s.toLowerCase()}`) ? t(`ui.${s.toLowerCase()}`) : s}{i < info.data.length - 1 && ', '}
+                                            {s}{i < info.data.length - 1 && ', '}
                                         </React.Fragment>
                                     )) : <span className="text-muted">-</span>}
                                 </span>
@@ -181,8 +161,8 @@ export const CharacterSheet = memo(({ char }) => {
                             return (
                                 <div className="list-item skill-list-item" key={key}>
                                     <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
-                                    <div className="text-secondary">{t(`ui.${save.stat.toLowerCase()}`).toUpperCase()}</div>
-                                    <div className="text-primary">{t('ui.save_label')}</div>
+                                    <div className="text-secondary">{save.stat.toUpperCase()}</div>
+                                    <div className="text-primary">Save</div>
                                     <div className="text-secondary">
                                         {save.adv && <AdvantageIndicator type="adv" />}
                                         {save.dis && <AdvantageIndicator type="dis" />}
@@ -204,7 +184,7 @@ export const CharacterSheet = memo(({ char }) => {
                             return (
                                 <mdui-chip className="list-item resource-list-item" key={i}>
                                     <mdui-icon name={info?.icon || 'circle'} class={`icon-${info?.color} icon-small`}></mdui-icon>
-                                    <div className="text-primary">{info?.shortName && i18next.exists(info.shortName) ? i18next.t(info.shortName) : (res.name || res.id)}</div>
+                                    <div className="text-primary">{info?.shortName || res.name || res.id}</div>
                                     {Array(res.quantity).fill(0).map((_, j) => (
                                         <mdui-icon key={j} name="radio_button_unchecked" class="icon-small"></mdui-icon>
                                     ))}

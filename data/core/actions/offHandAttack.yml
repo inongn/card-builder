@@ -1,5 +1,5 @@
 children:
-  - type: Card
+  - type: Activity
     subtype: Attack
     tags:
       - $(attributes.offHand.category)

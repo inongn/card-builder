@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { PropertyLibrary, CharacterBuilder } from './engine/RpgEngine.js';
 import jsyaml from 'js-yaml';
 import 'mdui/mdui.css';
 import 'mdui';
 import { setColorScheme } from 'mdui/functions/setColorScheme.js';
-import { snackbar } from 'mdui/functions/snackbar.js';
 
 import 'mdui/components/navigation-rail.js';
 import 'mdui/components/navigation-rail-item.js';
@@ -29,6 +27,8 @@ import 'mdui/components/navigation-bar.js';
 import 'mdui/components/navigation-bar-item.js';
 import 'mdui/components/top-app-bar.js';
 import 'mdui/components/top-app-bar-title.js';
+import 'mdui/components/segmented-button-group.js';
+import 'mdui/components/segmented-button.js';
 
 import { DashboardScreen } from './screens/DashboardScreen';
 import { BuilderScreen } from './screens/BuilderScreen';
@@ -53,7 +53,6 @@ function debounce(fn, delay) {
 // ============================================================================
 
 export default function App() {
-    const { t } = useTranslation();
 
     const [library, setLibrary] = useState(null);
     const [builder, setBuilder] = useState(null);
@@ -68,6 +67,7 @@ export default function App() {
     const [savedCharacters, setSavedCharacters] = useState([]);
     const [loadedCharacterId, setLoadedCharacterId] = useState(null);
     const [isDebugOpen, setIsDebugOpen] = useState(false);
+    const [debugTab, setDebugTab] = useState('character');
 
     // Sync theme to document element
     useEffect(() => {
@@ -184,20 +184,6 @@ export default function App() {
         return () => clearTimeout(autoSave);
     }, [characterData, builder, loadedCharacterId]);
 
-    const { i18n } = useTranslation();
-    const toggleLanguage = useCallback(() => {
-        const newLang = i18n.language.startsWith('en') ? 'es' : 'en';
-        i18n.changeLanguage(newLang);
-    }, [i18n]);
-
-    // Re-sync state when language changes to update translated keys in game data
-    useEffect(() => {
-        if (builder) {
-            builder.rebuild();
-            syncState();
-        }
-    }, [i18n.language, builder, syncState]);
-
     const toggleTheme = useCallback(() => {
         setIsDarkMode(prev => !prev);
     }, []);
@@ -226,23 +212,41 @@ export default function App() {
         setActiveTab('builder');
     }, [builder, syncState]);
 
+    const getDebugContent = () => {
+        if (!builder) return 'No builder initialized';
+        try {
+            switch (debugTab) {
+                case 'character':
+                    return jsyaml.dump(characterData, { indent: 2, lineWidth: -1 });
+                case 'recipe':
+                    return jsyaml.dump(builder.getRecipe(), { indent: 2, lineWidth: -1 });
+                case 'tree':
+                    return jsyaml.dump(propertyTree, { indent: 2, lineWidth: -1 });
+                case 'library':
+                    return library ? `Loaded Properties: ${library.properties.size}\nRaw Files: ${library.rawStore.size}\n\nKeys:\n${Array.from(library.rawStore.keys()).join('\n')}` : 'No library loaded';
+                default:
+                    return 'Select a tab';
+            }
+        } catch (e) {
+            return `Error dumping yaml: ${e.message}`;
+        }
+    };
+
     if (loading) return null;
 
     return (
         <mdui-layout className="app-container">
             <mdui-top-app-bar className="desktop-hidden">
                 <mdui-button-icon icon="menu" onClick={() => setActiveTab('dashboard')}></mdui-button-icon>
-                <mdui-top-app-bar-title>{t('ui.name')}</mdui-top-app-bar-title>
+                <mdui-top-app-bar-title>Card Builder</mdui-top-app-bar-title>
                 <div style={{ flexGrow: 1 }}></div>
-                <mdui-button-icon icon="language" onClick={toggleLanguage}></mdui-button-icon>
                 <mdui-button-icon icon="bug_report" onClick={() => setIsDebugOpen(true)}></mdui-button-icon>
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
             </mdui-top-app-bar>
 
 
             <mdui-navigation-rail value={activeTab} className="app-nav-rail mobile-hidden">
-                <mdui-navigation-rail-item value="dashboard" icon="dashboard" onClick={() => setActiveTab('dashboard')}>{t('ui.characters')}</mdui-navigation-rail-item>
-                <mdui-button-icon icon="language" slot="bottom" onClick={toggleLanguage}></mdui-button-icon>
+                <mdui-navigation-rail-item value="dashboard" icon="dashboard" onClick={() => setActiveTab('dashboard')}>Characters</mdui-navigation-rail-item>
                 <mdui-button-icon icon="bug_report" slot="bottom" onClick={() => setIsDebugOpen(true)}></mdui-button-icon>
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} slot="bottom" onClick={toggleTheme}></mdui-button-icon>
             </mdui-navigation-rail>
@@ -250,11 +254,19 @@ export default function App() {
             <mdui-navigation-drawer placement="right" open={isDebugOpen} onClose={() => setIsDebugOpen(false)} style={{ width: '600px' }}>
                 <div className="debug-yaml-container">
                     <div className="debug-yaml-header">
-                        <span className="drawer-title">Debug: {activeTab === 'builder' ? 'Recipe' : 'Character Data'}</span>
+                        <span className="drawer-title">Debug Inspector</span>
                         <mdui-button-icon icon="close" onClick={() => setIsDebugOpen(false)}></mdui-button-icon>
                     </div>
+                    <div style={{ padding: '0 16px' }}>
+                        <mdui-segmented-button-group selects="single" value={debugTab}>
+                            <mdui-segmented-button value="character" onClick={() => setDebugTab('character')}>Character</mdui-segmented-button>
+                            <mdui-segmented-button value="recipe" onClick={() => setDebugTab('recipe')}>Recipe</mdui-segmented-button>
+                            <mdui-segmented-button value="tree" onClick={() => setDebugTab('tree')}>Tree</mdui-segmented-button>
+                            <mdui-segmented-button value="library" onClick={() => setDebugTab('library')}>Library</mdui-segmented-button>
+                        </mdui-segmented-button-group>
+                    </div>
                     <div className="debug-yaml-content">
-                        {builder ? jsyaml.dump(activeTab === 'builder' ? builder.getRecipe() : characterData, { indent: 2, lineWidth: -1 }) : 'No builder initialized'}
+                        {getDebugContent()}
                     </div>
                 </div>
             </mdui-navigation-drawer>

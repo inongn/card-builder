@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
 import 'mdui/components/collapse.js';
 import 'mdui/components/collapse-item.js';
@@ -21,10 +20,18 @@ import { CATEGORIES, MATCHING_ORDER, collectRenderableNodes, categorizeNode } fr
  * organized into categorized sections for the character builder.
  */
 export default function PropertySelectionTree({ tree, char, onUpdateInput, onFillSlot, onClearSlot, onGetSlotOptions, filterCategory }) {
-    const { t } = useTranslation();
     if (!tree) return null;
 
     const renderableNodes = collectRenderableNodes(tree, char);
+
+    const STAT_NAMES = {
+        str: 'Strength',
+        dex: 'Dexterity',
+        con: 'Constitution',
+        int: 'Intelligence',
+        wis: 'Wisdom',
+        cha: 'Charisma'
+    };
 
     const renderInput = (item) => {
         const { node, path } = item;
@@ -63,7 +70,8 @@ export default function PropertySelectionTree({ tree, char, onUpdateInput, onFil
         let label = node.displayName || node.name;
         if (isAbilityInput) {
             const [prefix, stat] = node.name.split('_');
-            label = `${t(`ui.${stat.toLowerCase()}`)} (${t(`ui.${prefix}`)})`;
+            const prefixLabel = prefix === 'allocated' ? 'Allocated' : prefix === 'origin' ? 'Origin' : 'ASI';
+            label = `${STAT_NAMES[stat.toLowerCase()] || stat.toUpperCase()} (${prefixLabel})`;
         }
 
         const handleInputChange = (e) => {
@@ -183,9 +191,9 @@ export default function PropertySelectionTree({ tree, char, onUpdateInput, onFil
 
         return (
             <div className="abilities-summary" key="abilities-summary">
-                <div className="summary-item"><div className="stat-label">{t('ui.allocated')}</div><div className="summary-value">{allocatedSum} / {attr.pointBuyLimit}</div></div>
-                <div className="summary-item"><div className="stat-label">{t('ui.origin')}</div><div className="summary-value">{originSum} / {attr.originPoolLimit}</div></div>
-                {attr.asiPoolLimit > 0 && <div className="summary-item"><div className="stat-label">{t('ui.asi')}</div><div className="summary-value">{asiSum} / {attr.asiPoolLimit}</div></div>}
+                <div className="summary-item"><div className="stat-label">Allocated</div><div className="summary-value">{allocatedSum} / {attr.pointBuyLimit}</div></div>
+                <div className="summary-item"><div className="stat-label">Origin</div><div className="summary-value">{originSum} / {attr.originPoolLimit}</div></div>
+                {attr.asiPoolLimit > 0 && <div className="summary-item"><div className="stat-label">ASI</div><div className="summary-value">{asiSum} / {attr.asiPoolLimit}</div></div>}
             </div>
         );
     };
@@ -236,20 +244,11 @@ export default function PropertySelectionTree({ tree, char, onUpdateInput, onFil
             }
         };
 
-        const STAT_NAMES = {
-            str: t('ui.strength'),
-            dex: t('ui.dexterity'),
-            con: t('ui.constitution'),
-            int: t('ui.intelligence'),
-            wis: t('ui.wisdom'),
-            cha: t('ui.charisma')
-        };
-
         return (
             <div className="ability-smart-row" key={stat}>
                 <div className="mdui-number-controls">
                     <mdui-text-field variant="outlined" label={STAT_NAMES[stat]} type="number" value={totalValue} min={8} max={dynamicMax} onInput={handleSmartChange} class="ability-value-field"
-                        helper={`${t('ui.base')} 8 + ${valAllocated} ${t('ui.allocated')} + ${valOrigin} ${t('ui.origin')} + ${valAsi} ${t('ui.asi')}`} />
+                        helper={`Base 8 + ${valAllocated} Allocated + ${valOrigin} Origin + ${valAsi} ASI`} />
                     <mdui-button-icon icon="remove" onClick={() => handleSmartChange({ target: { value: String(totalValue - 1) } })} disabled={totalValue <= 8 || undefined} />
                     <mdui-button-icon icon="add" onClick={() => handleSmartChange({ target: { value: String(totalValue + 1) } })} disabled={totalValue >= dynamicMax || undefined} />
                 </div>

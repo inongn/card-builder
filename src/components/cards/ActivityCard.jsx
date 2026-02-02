@@ -1,5 +1,4 @@
 import React, { memo, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { renderGridValue, sortDescription } from '../../utils/cardUtils';
@@ -9,62 +8,61 @@ import 'mdui/components/collapse-item.js';
 
 import { AutoFitContent } from '../AutoFitContent';
 
-export const ActionCard = memo(({ card, variant = 'collapsible' }) => {
-    const { t } = useTranslation();
-    if (!card) return null;
+export const ActivityCard = memo(({ activity, variant = 'collapsible' }) => {
+    if (!activity) return null;
 
     const isLongDescription = useMemo(() => {
-        const desc = Array.isArray(card.description) ? card.description.join('') : (card.description || '');
-        const extra = Array.isArray(card.extra) ? card.extra.join('') : (card.extra || '');
+        const desc = Array.isArray(activity.description) ? activity.description.join('') : (activity.description || '');
+        const extra = Array.isArray(activity.extra) ? activity.extra.join('') : (activity.extra || '');
         return desc.length + extra.length > 1000;
-    }, [card.description, card.extra]);
+    }, [activity.description, activity.extra]);
 
     const headerContent = (
         <div className="card-header" slot="header">
             <div className="card-meta">
                 <div>
-                    {card.resource ? renderGridValue(card.resource, 'resource', false) : renderGridValue('free action', 'time', false)}
+                    {activity.resource ? renderGridValue(activity.resource, 'resource', false) : renderGridValue('free action', 'time', false)}
                 </div>
             </div>
-            <span className="card-title">{card.name}</span>
+            <span className="card-title">{activity.name}</span>
         </div>
     );
 
     const bodyContent = (
         <>
             <div className="card-grid">
-                {card.range && renderGridValue(card.range, 'range')}
-                {card.duration && renderGridValue(card.duration, 'duration')}
-                {card.time && renderGridValue(card.time, 'time')}
+                {activity.range && renderGridValue(activity.range, 'range')}
+                {activity.duration && renderGridValue(activity.duration, 'duration')}
+                {activity.time && renderGridValue(activity.time, 'time')}
             </div>
             <div className="card-content">
                 {variant === 'static' ? (
                     <AutoFitContent>
-                        {card.description && (
+                        {activity.description && (
                             <div className={`card-description`}>
-                                {Array.isArray(card.description) ?
-                                    card.description.map((line, i) => (
+                                {Array.isArray(activity.description) ?
+                                    activity.description.map((line, i) => (
                                         <div key={i} className="card-description-paragraph">
                                             <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
                                         </div>
                                     )) :
                                     <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{card.description}</ReactMarkdown>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.description}</ReactMarkdown>
                                     </div>
                                 }
                             </div>
                         )}
 
-                        {card.extra && (
+                        {activity.extra && (
                             <div className={`card-description extra`}>
-                                {Array.isArray(card.extra) ?
-                                    sortDescription(card.extra).map((line, i) => (
+                                {Array.isArray(activity.extra) ?
+                                    sortDescription(activity.extra).map((line, i) => (
                                         <div key={i} className="card-description-paragraph">
                                             <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
                                         </div>
                                     )) :
                                     <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{card.extra}</ReactMarkdown>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.extra}</ReactMarkdown>
                                     </div>
                                 }
                             </div>
@@ -72,31 +70,31 @@ export const ActionCard = memo(({ card, variant = 'collapsible' }) => {
                     </AutoFitContent>
                 ) : (
                     <>
-                        {card.description && (
+                        {activity.description && (
                             <div className={`card-description`}>
-                                {Array.isArray(card.description) ?
-                                    card.description.map((line, i) => (
+                                {Array.isArray(activity.description) ?
+                                    activity.description.map((line, i) => (
                                         <div key={i} className="card-description-paragraph">
                                             <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
                                         </div>
                                     )) :
                                     <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{card.description}</ReactMarkdown>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.description}</ReactMarkdown>
                                     </div>
                                 }
                             </div>
                         )}
 
-                        {card.extra && (
+                        {activity.extra && (
                             <div className={`card-description extra`}>
-                                {Array.isArray(card.extra) ?
-                                    sortDescription(card.extra).map((line, i) => (
+                                {Array.isArray(activity.extra) ?
+                                    sortDescription(activity.extra).map((line, i) => (
                                         <div key={i} className="card-description-paragraph">
                                             <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
                                         </div>
                                     )) :
                                     <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{card.extra}</ReactMarkdown>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.extra}</ReactMarkdown>
                                     </div>
                                 }
                             </div>

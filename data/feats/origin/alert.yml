@@ -8,5 +8,5 @@ children:
     operation: add
     value: $(attributes.prof)
   - id: initiativeSwap
-    type: Card
+    type: Activity
 id: data.feats.origin.alert

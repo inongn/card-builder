@@ -1,4 +1,4 @@
-type: Card
+type: Activity
 subtype: Utilize Tool
 id: data.core.tools.thievesTools
 time: action

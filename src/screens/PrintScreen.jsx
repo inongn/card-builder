@@ -1,14 +1,14 @@
 import React from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
-import { ActionCard } from '../components/cards/ActionCard';
+import { ActivityCard } from '../components/cards/ActivityCard';
 import 'mdui/components/button.js';
 
 export const PrintScreen = ({ char, onNavigate }) => {
     if (!char) return null;
 
-    const actionCards = char.cards || [];
-    const page1Cards = actionCards.slice(0, 2);
-    const remainingCards = actionCards.slice(2);
+    const activities = char.activities || [];
+    const page1Cards = activities.slice(0, 2);
+    const remainingCards = activities.slice(2);
 
     const chunks = [];
     for (let i = 0; i < remainingCards.length; i += 6) {
@@ -34,7 +34,7 @@ export const PrintScreen = ({ char, onNavigate }) => {
                         </div>
                         {page1Cards.map((card, idx) => (
                             <div key={idx} className="action-card-print-slot">
-                                <ActionCard card={card} variant="static" />
+                                <ActivityCard activity={card} variant="static" />
                             </div>
                         ))}
                     </div>
@@ -45,7 +45,7 @@ export const PrintScreen = ({ char, onNavigate }) => {
                         <div className="print-grid">
                             {chunk.map((card, cardIdx) => (
                                 <div key={cardIdx} className="action-card-print-slot">
-                                    <ActionCard card={card} variant="static" />
+                                    <ActivityCard activity={card} variant="static" />
                                 </div>
                             ))}
                         </div>
