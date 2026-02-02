@@ -1,9 +1,0 @@
-type: Effect
-tags:
-  - armor
-  - lightArmor
-condition: $(attributes.proficiencies.includes("lightArmor"))
-operation: set
-target: attributes.ac
-value: $(11 + stats.dex.mod)
-id: data.equipment.armor.leatherArmor
