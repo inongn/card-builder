@@ -4,4 +4,5 @@ tags:
 operation: push
 value: acid
 target: attributes.resistances
-id: data.core.arrays.resistances.acidResistance
+id: acidResistance
+name: Acid Resistance

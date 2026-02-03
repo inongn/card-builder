@@ -13,4 +13,5 @@ children:
     target: attributes.spellcasting.mod
     operation: set
     value: $(stats.wis.mod)
-id: data.core.spellcasting.caster abilities.wisCaster
+id: wisCaster
+name: Wis Caster

@@ -4,4 +4,5 @@ type: Effect
 target: skills.perception.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.perceptionProficiency
+id: perceptionProficiency
+name: Perception Proficiency

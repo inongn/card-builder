@@ -4,4 +4,5 @@ type: Effect
 target: skills.investigation.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.investigationProficiency
+id: investigationProficiency
+name: Investigation Proficiency

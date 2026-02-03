@@ -2,4 +2,5 @@ type: Effect
 target: skills.sleight_of_hand.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.sleightOfHandDisadvantage
+id: sleightOfHandDisadvantage
+name: Sleight Of Hand Disadvantage

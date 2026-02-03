@@ -5,4 +5,5 @@ target: skills.perception.proficiency
 operation: set
 condition: $(skills.perception.proficiency > 0)
 value: 2
-id: data.core.skills.skillExpertise.perceptionExpertise
+id: perceptionExpertise
+name: Perception Expertise

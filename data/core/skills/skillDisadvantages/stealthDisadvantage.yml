@@ -2,4 +2,5 @@ type: Effect
 target: skills.stealth.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.stealthDisadvantage
+id: stealthDisadvantage
+name: Stealth Disadvantage

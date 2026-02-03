@@ -11,14 +11,9 @@ import { AutoFitContent } from '../AutoFitContent';
 export const ActivityCard = memo(({ activity, variant = 'collapsible' }) => {
     if (!activity) return null;
 
-    const isLongDescription = useMemo(() => {
-        const desc = Array.isArray(activity.description) ? activity.description.join('') : (activity.description || '');
-        const extra = Array.isArray(activity.extra) ? activity.extra.join('') : (activity.extra || '');
-        return desc.length + extra.length > 1000;
-    }, [activity.description, activity.extra]);
 
     const headerContent = (
-        <div className="card-header" slot="header">
+        <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
             <div className="card-meta">
                 <div>
                     {activity.resource ? renderGridValue(activity.resource, 'resource', false) : renderGridValue('free action', 'time', false)}
@@ -31,9 +26,9 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible' }) => {
     const bodyContent = (
         <>
             <div className="card-grid">
+                {activity.time && renderGridValue(activity.time, 'time')}
                 {activity.range && renderGridValue(activity.range, 'range')}
                 {activity.duration && renderGridValue(activity.duration, 'duration')}
-                {activity.time && renderGridValue(activity.time, 'time')}
             </div>
             <div className="card-content">
                 {variant === 'static' ? (

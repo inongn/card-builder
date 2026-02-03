@@ -2,4 +2,5 @@ type: Effect
 target: saves.acuity.adv
 operation: set
 value: true
-id: data.core.saves.saveAdvantages.intAdvantage
+id: intAdvantage
+name: Int Advantage

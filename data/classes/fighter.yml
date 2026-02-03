@@ -1,0 +1,238 @@
+id: fighter
+name: Fighter
+description: |
+  Fighters rule many battlefields. Questing knights, royal champions, elite soldiers, and hardened mercenaries - as Fighters, they all share an unparalleled prowess with weapons and armor. And they are well acquainted with death, both meting it out and defying it.
+tags:
+  - class
+type: Folder
+children:
+  - id: coreFighterTraits
+    name: Core Fighter Traits
+    type: Folder
+    description: |
+      **Primary Ability**: Strength or Dexterity
+
+      **Hit Point Die**: D10 per Fighter level
+
+      **Saving Throw Proficiencies**: Strength and Constitution
+
+      **Skill Proficiencies**: Choose 2: Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Persuasion, Perception, or Survival
+
+      **Weapon Proficiencies**: Simple and Martial weapons
+
+      **Armor Training**: Light, Medium and Heavy armor and Shields
+
+    children:
+      - id: hitDie
+        type: Attribute
+        value: 10
+      - id: className
+        type: Effect
+        target: meta.class
+        operation: set
+        value: Fighter
+      - type: Reference
+        value: [strSave, conSave]
+      - type: Reference
+        value: [martialWeapons, lightArmor, mediumArmor, heavyArmor, shields]
+      - id: fighterskillproficiencies
+        type: Slot
+        name: Fighter Skill Proficiencies
+        quantity: 2
+        target: acrobaticsProficiency OR animalHandlingProficiency OR athleticsProficiency OR historyProficiency OR insightProficiency OR intimidationProficiency OR persuasionProficiency OR perceptionProficiency OR survivalProficiency
+  - name: "Level 1: Weapon Mastery"
+    id: weaponMastery
+    type: Folder
+    description: Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish a Long Rest, you can practice weapon drills and change one of those weapon choices.
+    children:
+      - id: masteryProperties
+        type: Reference
+        target: masteryProperties
+  - id: fightingStyle
+    name: "Level 1: Fighting Style"
+    type: Folder
+    description: You gain a Fighting Style feat of your choice. Defense is recommended.
+    children:
+      - id: fightingStyle
+        name: Fighting Style
+        type: Slot
+        target: fightingStyle
+  - id: secondWind
+    name: "Level 1: Second Wind"
+    type: Folder
+    description: |
+      You have a limited well of physical and mental stamina that you can draw on. As a Bonus Action, you can use it to regain Hit Points equal to 1d10 plus your Fighter level.
+
+      You can use this feature twice. You regain one expended use when you finish a Short Rest, and you regain all expended uses when you finish a Long Rest.
+
+      When you reach certain Fighter levels, you gain more uses of this feature.
+    children:
+      - id: secondWind
+        name: Second Wind
+        description: You draw on a well of physical and mental stamina. Regain 1d10+$(meta.level) Hit Points.
+        type: Activity
+        resource: secondWind
+        time: bonus action
+        duration: Instantaneous
+        range: self
+      - id: secondWind
+        name: Second Wind
+        type: Resource
+        quantity: $(progression(2,2,2,3,3,3,3,3,3,4,4,4))
+        sr: 1
+  - id: actionSurge
+    type: Folder
+    condition: $(meta.level >= 2)
+    name: "Level 2: Action Surge"
+    description: | 
+      You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action, except the Magic action.
+
+      Once you use this feature, you can’t do so again until you finish a Short or Long Rest. Starting at level 17, you can use it twice before a rest but only once on a turn.
+    children:
+      - id: actionSurge
+        name: Action Surge
+        type: Activity
+        description: You push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
+        range: self
+        time: free action
+        duration: Instantaneous
+        resource: actionSurge
+      - id: actionSurge
+        type: Resource
+        name: Action Surge
+        quantity: $(progression(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2))
+        sr: all
+  - id: tacticalMind
+    type: Folder
+    condition: $(meta.level >= 2)
+    name: "Level 2: Tactical Mind"
+    description: |
+      You have a mind for tactics on and off the battlefield. When you fail an ability check, you can expend a use of your Second Wind to push yourself toward success. Rather than regaining Hit Points, you roll 1d10 and add the number rolled to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn’t expended.
+    children:
+      - id: tacticalMind
+        type: Activity
+        range: self
+        duration: Instantaneous
+        resource: secondWind
+        time: free action
+        name: Tactical Mind
+        description: When you fail an ability check, you push yourself toward success. Add 1d10 to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn’t expended.
+  - id: fighterSubclass
+    name: Fighter Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: fighterSubclass
+  - id: ASI
+    condition: $(meta.level >= 4)
+    type: Folder
+    name: "Level 4: Ability Score Improvement"
+    description: You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. You gain this feature again at Fighter levels 6, 8, 12, 14, and 16.
+  - id: feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - id: tacticalShift
+    name: "Level 5: Tactical Shift"
+    condition: $(meta.level >= 5)
+    type: Folder
+    description: Whenever you activate your Second Wind with a Bonus Action, you can move up to half your Speed without provoking Opportunity Attacks.
+    children:
+      - id: tacticalShift
+        type: Extra
+        target: secondWind
+        name: Tactical Shift
+        description: Move up to $(attributes.movement.walk/2) without provoking Opportunity Attacks.
+  - id: extraAttack
+    type: Folder
+    condition: $(meta.level >= 5)
+    name: "Level 5: Extra Attack"
+    description: You can attack twice, instead of once, whenever you take the Attack action on your turn. Your extra attacks increase to two at 11th level and three at 20th level.
+    children:
+      - id: extraAttack
+        type: Extra
+        target: weapon
+        name: Extra Attack
+        description: "You can attack $(meta.level > 20 ? 'four' : meta.level > 11 ? 'three' : meta.level > 5 ? 'two' : 'one') times instead of once."
+  - id: feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)
+  - id: tacticalMaster
+    type: Folder
+    name: "Level 9: Tactical Master"
+    condition: $(meta.level >= 9)
+    description: "When you attack with a weapon whose mastery property you can use, you can replace that property with the Push, Sap, or Slow property for that attack."
+    children:
+      - id: tacticalMaster
+        type: Extra
+        target: weapon
+        name: Tactical Master
+        description: "You can replace the weapon's mastery property with the Push, Sap, or Slow property for that attack."
+  - id: indomitable
+    type: Folder
+    condition: $(meta.level >= 9)
+    name: "Level 9: Indomitable"
+    description: |
+      If you fail a saving throw, you can reroll it with a bonus equal to your Fighter level. You must use the new roll, and you can’t use this feature again until you finish a Long Rest. 
+      You can use this feature twice before a Long Rest starting at level 13 and three times before a Long Rest starting at level 17.
+    children:
+      - id: indomitable
+        type: Activity
+        name: Indomitable
+        time: reaction
+        range: self
+        description: "When you fail a saving throw, reroll it with a $(formatBonus(meta.level)) bonus."
+        resource: indomitable
+      - id: indomitable
+        name: Indomitable
+        type: Resource
+        quantity: $(progression(0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3))
+  - id: studiedAttacks
+    type: Folder
+    name: "Level 13: Studied Attacks"
+    description: "You study your opponents and learn from each attack you make. If you make an attack roll against a creature and miss, you have Advantage on your next attack roll against that creature before the end of your next turn."
+    condition: $(meta.level >= 13)
+    children:
+      - id: studiedAttacks
+        type: Extra
+        target: weapon
+        name: Studied Attacks
+        description: "On a miss, you have Advantage on your next attack roll against that creature before the end of your next turn."
+  - id: feat
+    name: Level 12 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 12)
+  - id: feat
+    name: Level 14 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 14)
+  - id: feat
+    name: Level 16 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 16)
+  - id: feat
+    name: Level 18 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 18)
+  - id: epicBoon
+    type: Folder
+    name: "Level 19: Epic Boon"
+    condition: $(meta.level >= 19)
+    description: "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Combat Prowess is recommended."
+    children:
+      - id: epicBoon
+        type: Slot
+        name: Epic Boon
+        target: epicBoon

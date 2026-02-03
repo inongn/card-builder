@@ -8,10 +8,13 @@ children:
     quantity: 1
   - type: Slot
     id: magicInitiateCantrips
+    name: Magic Initiate Cantrips
     quantity: 2
     target: wizard AND cantrip
   - type: Slot
     id: magicInitiatePreparedSpell
+    name: Magic Initiate Prepared Spell
     target: spell AND wizard AND level1Spell
     quantity: 1
-id: data.feats.origin.magicInitiateWizard
+id: magicInitiateWizard
+name: Magic Initiate (Wizard)

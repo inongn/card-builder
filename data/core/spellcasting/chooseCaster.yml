@@ -9,4 +9,5 @@ children:
     target: attributes.spellcasting.attack
     operation: set
     value: $(attributes.prof + Math.max(stats.wis.mod, stats.cha.mod, stats.int.mod))
-id: data.core.spellcasting.chooseCaster
+id: chooseCaster
+name: Choose Caster

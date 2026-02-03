@@ -4,4 +4,5 @@ type: Effect
 target: skills.history.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.historyProficiency
+id: historyProficiency
+name: History Proficiency

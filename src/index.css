@@ -72,7 +72,7 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: var(--gap-xs);
-  align-items: center;
+  align-items: start;
   cursor: pointer;
   gap: var(--gap-md);
 }

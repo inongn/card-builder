@@ -9,4 +9,8 @@ children:
     value: $(attributes.prof)
   - id: initiativeSwap
     type: Activity
-id: data.feats.origin.alert
+    name: Initiative Swap
+    description: |
+      Immediately after you roll Initiative, you can swap your Initiative with the Initiative of one willing ally in the same combat. You can't make this swap if you or the ally has the Incapacitated condition.
+id: alert
+name: Alert

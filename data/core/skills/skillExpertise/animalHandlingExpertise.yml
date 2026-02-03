@@ -5,4 +5,5 @@ target: skills.animal_handling.proficiency
 operation: set
 condition: $(skills.animal_handling.proficiency > 0)
 value: 2
-id: data.core.skills.skillExpertise.animalHandlingExpertise
+id: animalHandlingExpertise
+name: Animal Handling Expertise

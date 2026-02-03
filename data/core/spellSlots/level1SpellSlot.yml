@@ -1,4 +1,5 @@
 type: Resource
 quantity: $(local.quantity || 1)
 restore: Long Rest
-id: data.core.spellcasting.spellSlots.level1SpellSlot
+id: level1SpellSlot
+name: Level1 Spell Slot

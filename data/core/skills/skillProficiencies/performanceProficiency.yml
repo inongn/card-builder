@@ -4,4 +4,5 @@ type: Effect
 target: skills.performance.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.performanceProficiency
+id: performanceProficiency
+name: Performance Proficiency

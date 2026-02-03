@@ -4,4 +4,5 @@ type: Effect
 target: skills.stealth.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.stealthProficiency
+id: stealthProficiency
+name: Stealth Proficiency

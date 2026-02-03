@@ -2,4 +2,5 @@ type: Effect
 target: skills.history.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.historyDisadvantage
+id: historyDisadvantage
+name: History Disadvantage

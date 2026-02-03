@@ -2,4 +2,5 @@ type: Effect
 target: skills.athletics.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.athleticsDisadvantage
+id: athleticsDisadvantage
+name: Athletics Disadvantage

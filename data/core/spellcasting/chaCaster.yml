@@ -13,4 +13,5 @@ children:
     target: attributes.spellcasting.mod
     operation: set
     value: $(stats.cha.mod)
-id: data.core.spellcasting.caster abilities.chaCaster
+id: chaCaster
+name: Cha Caster

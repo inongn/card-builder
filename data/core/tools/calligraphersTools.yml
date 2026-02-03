@@ -1,5 +1,0 @@
-type: Effect
-operation: push
-value: data.core.arrays.tools.calligraphersTools.datacorearraystoolscalligrapherstoolsname.value
-target: attributes.tools
-id: data.core.arrays.tools.calligraphersTools

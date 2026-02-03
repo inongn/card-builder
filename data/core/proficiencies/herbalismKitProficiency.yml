@@ -1,5 +1,0 @@
-type: Effect
-operation: push
-value: herbalismKit
-target: attributes.proficiencies
-id: data.core.arrays.proficiencies.herbalismKitProficiency

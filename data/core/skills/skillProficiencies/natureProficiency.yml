@@ -4,4 +4,5 @@ type: Effect
 target: skills.nature.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.natureProficiency
+id: natureProficiency
+name: Nature Proficiency

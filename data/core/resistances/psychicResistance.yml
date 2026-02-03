@@ -4,4 +4,5 @@ tags:
 operation: push
 value: psychic
 target: attributes.resistances
-id: data.core.arrays.resistances.psychicResistance
+id: psychicResistance
+name: Psychic Resistance

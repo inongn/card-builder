@@ -1,5 +1,6 @@
 type: Effect
-target: saves.fortitude.proficiency
+target: saves.constitution.proficiency
 operation: set
 value: 1
-id: data.core.saves.saveProficiencies.conSave
+id: conSave
+name: Con Save

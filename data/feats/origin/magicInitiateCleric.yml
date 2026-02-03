@@ -1,3 +1,5 @@
+id: magicInitiateCleric
+name: Magic Initiate (Cleric)
 tags:
   - feat
   - originFeat
@@ -8,10 +10,11 @@ children:
     quantity: 1
   - type: Slot
     id: magicInitiateCantrips
+    name: Magic Initiate Cantrips
     quantity: 2
     target: cleric AND cantrip
   - type: Slot
     id: magicInitiatePreparedSpell
+    name: Magic Initiate Prepared Spell
     target: spell AND cleric AND level1Spell
     quantity: 1
-id: data.feats.origin.magicInitiateCleric

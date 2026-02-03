@@ -4,4 +4,5 @@ type: Effect
 target: skills.persuasion.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.persuasionProficiency
+id: persuasionProficiency
+name: Persuasion Proficiency

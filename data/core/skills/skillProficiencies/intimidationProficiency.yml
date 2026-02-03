@@ -4,4 +4,5 @@ type: Effect
 target: skills.intimidation.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.intimidationProficiency
+id: intimidationProficiency
+name: Intimidation Proficiency

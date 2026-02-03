@@ -2,4 +2,5 @@ type: Effect
 target: skills.animal_handling.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.animalHandlingDisadvantage
+id: animalHandlingDisadvantage
+name: Animal Handling Disadvantage

@@ -5,4 +5,5 @@ target: skills.persuasion.proficiency
 operation: set
 condition: $(skills.persuasion.proficiency > 0)
 value: 2
-id: data.core.skills.skillExpertise.persuasionExpertise
+id: persuasionExpertise
+name: Persuasion Expertise

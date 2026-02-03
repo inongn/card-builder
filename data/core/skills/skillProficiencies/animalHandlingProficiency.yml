@@ -4,4 +4,5 @@ type: Effect
 target: skills.animal_handling.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.animalHandlingProficiency
+id: animalHandlingProficiency
+name: Animal Handling Proficiency

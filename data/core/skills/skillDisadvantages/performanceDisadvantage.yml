@@ -2,4 +2,5 @@ type: Effect
 target: skills.performance.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.performanceDisadvantage
+id: performanceDisadvantage
+name: Performance Disadvantage

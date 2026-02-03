@@ -4,4 +4,5 @@ tags:
 operation: push
 value: poison
 target: attributes.resistances
-id: data.core.arrays.resistances.poisonResistance
+id: poisonResistance
+name: Poison Resistance

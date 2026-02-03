@@ -4,4 +4,5 @@ type: Effect
 target: skills.sleight_of_hand.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.sleightOfHandProficiency
+id: sleightOfHandProficiency
+name: Sleight Of Hand Proficiency

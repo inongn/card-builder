@@ -1,5 +1,6 @@
 type: Effect
-target: saves.acuity.proficiency
+target: saves.intelligence.proficiency
 operation: set
 value: 1
-id: data.core.saves.saveProficiencies.intSave
+id: intSave
+name: Int Save

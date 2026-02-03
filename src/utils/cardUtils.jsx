@@ -173,7 +173,7 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
     // Choose primary icon for the chip
     let primaryIcon = 'straighten';
     if (type === 'duration') primaryIcon = 'schedule';
-    if (type === 'time') primaryIcon = 'bolt';
+    if (type === 'time') primaryIcon = 'hourglass_top';
     if (type === 'resource') primaryIcon = 'layers';
 
     if (hasIcon) {
@@ -206,18 +206,17 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
     }
 
     // No icon found case
-    const translatedStr = str;
     if (showLabel) {
         return (
             <mdui-chip variant="filled" className="grid-value-chip">
                 <mdui-icon slot="icon" name={primaryIcon} class="icon-accent"></mdui-icon>
-                <span className="text-primary">{translatedStr}</span>
+                <span className="text-primary">{str}</span>
             </mdui-chip>
         );
     }
 
     return (
-        <div className="grid-value-chip" title={translatedStr}>
+        <div className="grid-value-chip" title={str}>
             <mdui-icon name={primaryIcon} class="icon-accent"></mdui-icon>
         </div>
     );

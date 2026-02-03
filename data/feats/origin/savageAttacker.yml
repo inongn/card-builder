@@ -1,9 +1,8 @@
+id: savageAttacker
+name: Savage Attacker
 tags:
   - feat
   - originFeat
-type: Folder
-children:
-  - type: Extra
-    target: mainHand
-    id: savageAttacker
-id: data.feats.origin.savageAttacker
+type: Extra
+target: weapon
+description: On a hit, roll the weapon's damage dice twice and use either roll against the target.

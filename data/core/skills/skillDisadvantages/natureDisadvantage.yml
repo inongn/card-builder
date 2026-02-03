@@ -2,4 +2,5 @@ type: Effect
 target: skills.nature.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.natureDisadvantage
+id: natureDisadvantage
+name: Nature Disadvantage

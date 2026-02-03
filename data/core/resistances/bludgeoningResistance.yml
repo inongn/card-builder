@@ -4,4 +4,5 @@ tags:
 operation: push
 value: bludgeoning
 target: attributes.resistances
-id: data.core.arrays.resistances.bludgeoningResistance
+id: bludgeoningResistance
+name: Bludgeoning Resistance

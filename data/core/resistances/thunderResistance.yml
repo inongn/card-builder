@@ -4,4 +4,5 @@ tags:
 operation: push
 value: thunder
 target: attributes.resistances
-id: data.core.arrays.resistances.thunderResistance
+id: thunderResistance
+name: Thunder Resistance

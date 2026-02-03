@@ -2,4 +2,5 @@ type: Effect
 target: skills.persuasion.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.persuasionDisadvantage
+id: persuasionDisadvantage
+name: Persuasion Disadvantage

@@ -1,3 +1,5 @@
+id: skilled
+name: Skilled
 tags:
   - feat
   - originFeat
@@ -6,6 +8,7 @@ children:
   - type: Slot
     quantity: 3
     id: skilledSkillProficiency
+    name: Skilled
     target: skillProficiency
 repeatable: true
-id: data.feats.origin.skilled
+description: You gain proficiency in three skills of your choice.

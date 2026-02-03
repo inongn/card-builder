@@ -3,4 +3,5 @@ target: skills.deception.proficiency
 operation: set
 condition: $(skills.deception.proficiency < 0.5)
 value: 0.5
-id: data.core.skills.skillHalfProficiencies.deceptionHalfProficiency
+id: deceptionHalfProficiency
+name: Deception Half Proficiency

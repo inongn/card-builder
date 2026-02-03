@@ -2,4 +2,5 @@ type: Effect
 target: skills.intimidation.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.intimidationDisadvantage
+id: intimidationDisadvantage
+name: Intimidation Disadvantage

@@ -1,5 +1,6 @@
 type: Effect
-target: saves.reflex.proficiency
+target: saves.dexterity.proficiency
 operation: set
 value: 1
-id: data.core.saves.saveProficiencies.dexSave
+id: dexSave
+name: Dex Save

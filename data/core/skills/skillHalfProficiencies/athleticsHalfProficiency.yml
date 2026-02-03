@@ -3,4 +3,5 @@ target: skills.athletics.proficiency
 operation: set
 condition: $(skills.athletics.proficiency < 0.5)
 value: 0.5
-id: data.core.skills.skillHalfProficiencies.athleticsHalfProficiency
+id: athleticsHalfProficiency
+name: Athletics Half Proficiency

@@ -5,4 +5,5 @@ target: skills.arcana.proficiency
 operation: set
 condition: $(skills.arcana.proficiency > 0)
 value: 2
-id: data.core.skills.skillExpertise.arcanaExpertise
+id: arcanaExpertise
+name: Arcana Expertise

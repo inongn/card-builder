@@ -2,4 +2,5 @@ type: Effect
 target: skills.investigation.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.investigationDisadvantage
+id: investigationDisadvantage
+name: Investigation Disadvantage

@@ -1,3 +1,4 @@
 type: Resource
-id: data.core.spellcasting.spellSlots.pactMagicSpellSlot
+id: pactMagicSpellSlot
+name: Pact Magic Spell Slot
 shortRest: all

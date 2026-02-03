@@ -1,4 +1,5 @@
-id: data.core.masteryProperties
+id: masteryProperties
+name: Mastery Properties
 type: Folder
 children:
   - type: Extra

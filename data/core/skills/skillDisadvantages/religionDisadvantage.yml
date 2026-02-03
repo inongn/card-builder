@@ -2,4 +2,5 @@ type: Effect
 target: skills.religion.dis
 operation: set
 value: true
-id: data.core.skills.skillDisadvantages.religionDisadvantage
+id: religionDisadvantage
+name: Religion Disadvantage

@@ -2,4 +2,5 @@ type: Effect
 operation: push
 value: martialWeapons
 target: attributes.proficiencies
-id: data.core.arrays.proficiencies.martialWeaponProficiency
+id: martialWeaponProficiency
+name: Martial Weapon Proficiency

@@ -4,4 +4,5 @@ tags:
 operation: push
 value: piercing
 target: attributes.resistances
-id: data.core.arrays.resistances.piercingResistance
+id: piercingResistance
+name: Piercing Resistance

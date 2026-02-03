@@ -1,5 +1,6 @@
 type: Folder
-id: data.core.spellcasting.caster types.oneThirdCaster
+id: oneThirdCaster
+name: One Third Caster
 children:
   - type: Reference
     reference: level1SpellSlot

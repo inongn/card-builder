@@ -80,7 +80,7 @@ export const CharacterSheet = memo(({ char }) => {
                                 <div className="list-item skill-list-item" key={key}>
                                     <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                     <div className="text-secondary">{skill.stat.toUpperCase()}</div>
-                                    <div className="text-primary">{key.charAt(0).toUpperCase() + key.slice(1)}</div>
+                                    <div className="text-primary">{skill.name}</div>
                                     <div className="text-secondary">
                                         {skill.adv && <AdvantageIndicator type="adv" />}
                                         {skill.dis && <AdvantageIndicator type="dis" />}
@@ -125,7 +125,7 @@ export const CharacterSheet = memo(({ char }) => {
                         </div>
                         <div className="main-card-box">
                             <div className="text-secondary">Speed</div>
-                            <div className="important-number">{char.attributes.speed}</div>
+                            <div className="important-number">{char.attributes.movement.walk}</div>
                             <div className="text-secondary">ft</div>
                         </div>
                     </div>
@@ -134,21 +134,37 @@ export const CharacterSheet = memo(({ char }) => {
                     <div className="main-card-list">
                         {[
                             { label: 'Senses', data: char.attributes.senses },
+                            { label: 'Movement', data: char.attributes.movement },
                             { label: 'Resistances', data: char.attributes.resistances },
                             { label: 'Advantages', data: char.attributes.advantages },
                             { label: 'Immunities', data: char.attributes.immunities }
-                        ].map((info, idx) => (
-                            <div className="list-item info-list-item" key={idx}>
-                                <span className="text-secondary">{info.label}</span>
-                                <span className="text-primary">
-                                    {info.data?.length > 0 ? info.data.map((s, i) => (
-                                        <React.Fragment key={i}>
-                                            {s}{i < info.data.length - 1 && ', '}
-                                        </React.Fragment>
-                                    )) : <span className="text-muted">-</span>}
-                                </span>
-                            </div>
-                        ))}
+                        ].map((info, idx) => {
+                            let displayData = [];
+                            if (Array.isArray(info.data)) {
+                                displayData = info.data;
+                            } else if (info.data && typeof info.data === 'object') {
+                                displayData = Object.entries(info.data)
+                                    .filter(([k, v]) => v && !(info.label === 'Movement' && k === 'walk'))
+                                    .map(([k, v]) => {
+                                        const label = k.charAt(0).toUpperCase() + k.slice(1);
+                                        const unit = typeof v === 'number' ? ' ft' : '';
+                                        return `${label} (${v}${unit})`;
+                                    });
+                            }
+
+                            return (
+                                <div className="list-item info-list-item" key={idx}>
+                                    <span className="text-secondary">{info.label}</span>
+                                    <span className="text-primary">
+                                        {displayData.length > 0 ? displayData.map((s, i) => (
+                                            <React.Fragment key={i}>
+                                                {s}{i < displayData.length - 1 && ', '}
+                                            </React.Fragment>
+                                        )) : <span className="text-muted">-</span>}
+                                    </span>
+                                </div>
+                            );
+                        })}
                     </div>
 
                     {/* Saving Throws */}
@@ -184,7 +200,7 @@ export const CharacterSheet = memo(({ char }) => {
                             return (
                                 <mdui-chip className="list-item resource-list-item" key={i}>
                                     <mdui-icon name={info?.icon || 'circle'} class={`icon-${info?.color} icon-small`}></mdui-icon>
-                                    <div className="text-primary">{info?.shortName || res.name || res.id}</div>
+                                    <div className="text-primary">{res.name || res.id}</div>
                                     {Array(res.quantity).fill(0).map((_, j) => (
                                         <mdui-icon key={j} name="radio_button_unchecked" class="icon-small"></mdui-icon>
                                     ))}

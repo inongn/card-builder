@@ -4,4 +4,5 @@ tags:
 operation: push
 value: cold
 target: attributes.resistances
-id: data.core.arrays.resistances.coldResistance
+id: coldResistance
+name: Cold Resistance

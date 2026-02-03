@@ -1,5 +1,6 @@
 type: Effect
-target: saves.will.proficiency
+target: saves.wisdom.proficiency
 operation: set
 value: 1
-id: data.core.saves.saveProficiencies.wisSave
+id: wisSave
+name: Wis Save

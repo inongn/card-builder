@@ -1,5 +1,6 @@
 type: Effect
-target: saves.presence.proficiency
+target: saves.charisma.proficiency
 operation: set
 value: 1
-id: data.core.saves.saveProficiencies.chaSave
+id: chaSave
+name: Cha Save

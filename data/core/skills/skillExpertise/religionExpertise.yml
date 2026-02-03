@@ -5,4 +5,5 @@ target: skills.religion.proficiency
 operation: set
 condition: $(skills.religion.proficiency > 0)
 value: 2
-id: data.core.skills.skillExpertise.religionExpertise
+id: religionExpertise
+name: Religion Expertise

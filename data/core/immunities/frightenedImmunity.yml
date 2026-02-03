@@ -1,5 +1,0 @@
-type: Effect
-operation: push
-value: frightened
-target: attributes.immunities
-id: data.core.arrays.immunities.frightenedImmunity

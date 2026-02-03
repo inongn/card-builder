@@ -4,4 +4,5 @@ type: Effect
 target: skills.medicine.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.medicineProficiency
+id: medicineProficiency
+name: Medicine Proficiency

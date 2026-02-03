@@ -4,4 +4,5 @@ tags:
 operation: push
 value: necrotic
 target: attributes.resistances
-id: data.core.arrays.resistances.necroticResistance
+id: necroticResistance
+name: Necrotic Resistance

@@ -1,13 +1,16 @@
-id: data.backgrounds.soldier
+id: soldier
+name: Soldier
+description: |
+  You began training for war as soon as you reached adulthood and carry precious few memories of life before you took up arms. Battle is in your blood. Sometimes you catch yourself reflexively performing the basic fighting exercises you learned first. Eventually, you put that training to use on the battlefield, protecting the realm by waging war.
 tags:
   - background
 type: Folder
 children:
   - type: Reference
     target:
-      - data.core.proficiencies.athletics
-      - data.core.proficiencies.intimidation
-      - data.core.feats.origin.savageAttacker
+      - athleticsProficiency
+      - intimidationProficiency
+      - savageAttacker
   - type: Effect
     target: attributes.originEligible
     operation: push

@@ -2,4 +2,5 @@ type: Effect
 target: skills.arcana.adv
 operation: set
 value: true
-id: data.core.skills.skillAdvantages.arcanaAdvantage
+id: arcanaAdvantage
+name: Arcana Advantage

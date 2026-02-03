@@ -1,2 +1,3 @@
 type: Resource
-id: data.core.spellcasting.spellSlots.level4SpellSlot
+id: level4SpellSlot
+name: Level4 Spell Slot

@@ -4,4 +4,5 @@ type: Effect
 target: skills.arcana.proficiency
 operation: set
 value: 1
-id: data.core.skills.skillProficiencies.arcanaProficiency
+id: arcanaProficiency
+name: Arcana Proficiency

@@ -49,4 +49,5 @@ children:
       maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
     target: 'spell AND $(meta.class) $(local.maxLevel < 9 ? ''NOT level9Spell'' : '''') $(local.maxLevel < 8 ? ''NOT level8Spell'' : '''') $(local.maxLevel < 7 ? ''NOT level7Spell'' : '''') $(local.maxLevel < 6 ? ''NOT level6Spell'' : '''') $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
     quantity: $(progression(2, 4, 6, 7, 9, 10, 11, 12, 14, 15, 16, 16, 18, 19, 20, 20, 22, 22, 22, 22))
-id: data.core.spellcasting.caster types.fullCaster
+id: fullCaster
+name: Full Caster

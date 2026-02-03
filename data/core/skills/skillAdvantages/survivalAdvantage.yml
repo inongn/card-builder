@@ -2,4 +2,5 @@ type: Effect
 target: skills.survival.adv
 operation: set
 value: true
-id: data.core.skills.skillAdvantages.survivalAdvantage
+id: survivalAdvantage
+name: Survival Advantage

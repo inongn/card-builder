@@ -1,5 +1,0 @@
-type: Effect
-operation: push
-value: darkvision
-target: attributes.senses
-id: data.core.arrays.senses.darkvision

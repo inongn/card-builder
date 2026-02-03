@@ -1,5 +1,0 @@
-type: Effect
-operation: push
-value: acid
-target: attributes.immunities
-id: data.core.immunities.acid

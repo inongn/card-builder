@@ -1,19 +1,27 @@
-id: data.species.human
+id: human
+name: Human
+tags: [species]
+description: |
+  Found throughout the multiverse, humans are as varied as they are numerous, and they endeavor to achieve as much as they can in the years they are given. Their ambition and resourcefulness are commended, respected, and feared on many worlds.
 type: Folder
-tags:
-  - species
 children:
-  - type: Effect
-    target: attributes.speed
+  - id: species
+    type: Effect
+    target: meta.species
     operation: set
-    value: 30
-  - type: Extra
+    value: Human
+  - id: resourceful
+    type: Extra
     target: longRest
-    id: resourceful
-  - type: Slot
-    id: humanSkillProficiency
+    name: Resourceful
+    description: You gain Heroic Inspiration.
+  - id: skillful
+    name: Skillful
+    type: Slot
     target: skillProficiency
-  - type: Slot
-    id: humanOriginFeat
+    quantity: 1
+  - id: versatile
+    name: Versatile
+    type: Slot
     target: originFeat
     quantity: 1
