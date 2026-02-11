@@ -45,7 +45,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
 
 
             <mdui-top-app-bar variant="small">
-                <mdui-button-icon icon="menu" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
+                <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
                 <mdui-top-app-bar-title>{characterData?.meta?.name || 'Aspida'}</mdui-top-app-bar-title>
                 <mdui-button-icon icon="edit" onClick={() => onNavigate('builder')}></mdui-button-icon>
                 <mdui-button-icon icon="print" onClick={() => onNavigate('print')}></mdui-button-icon>

@@ -9,7 +9,7 @@ children:
   - id: improvedCritical
     name: Improved Critical
     type: Extra
-    target: weapon
+    target: attack
     condition: $(meta.level >= 3)
     description: "Your weapon attacks score a critical hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
   - type: Reference
@@ -18,7 +18,7 @@ children:
   - id: remarkableAthlete
     name: Remarkable Athlete
     type: Extra
-    target: weapon
+    target: attack
     condition: $(meta.level >= 3)
     description: "On a critical hit, move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
   - id: additionalFightingStyle

@@ -1,7 +1,7 @@
 id: greatsword
 name: Greatsword
 type: Reference
-tags: [item, weapon, martial]
+tags: [item, martial]
 variables:
   name: Greatsword
   mastery: graze

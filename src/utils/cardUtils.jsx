@@ -7,11 +7,11 @@ import 'mdui/components/chip.js';
 // ============================================================================
 
 export const TERM_ICONS = {
-    'bonus action': { icon: 'change_history', color: 'bonus-action', shortName: 'Bonus' }, // Triangle
+    'bonus action': { icon: 'play_arrow', color: 'bonus-action', shortName: 'Bonus' }, // Triangle
     'free action': { icon: 'lens_blur', color: 'accent', shortName: 'Free' }, // Dashed circle/loader
     'null': { icon: 'lens_blur', color: 'accent', shortName: 'Free' },
     'action': { icon: 'circle', color: 'action', shortName: 'Action' },
-    'reaction': { icon: 'flare', color: 'reaction', shortName: 'Reaction' }, // Sparkle
+    'reaction': { icon: 'reply', color: 'reaction', shortName: 'Reaction' }, // Sparkle
     'ritual': { icon: 'self_improvement', color: 'accent', shortName: 'Ritual' },
     'bludgeoning': { icon: 'explosion', color: 'physical', shortName: 'Bludgeoning' },
     'piercing': { icon: 'ads_click', color: 'physical', shortName: 'Piercing' }, // Target/arrow feel
@@ -29,7 +29,7 @@ export const TERM_ICONS = {
     'instantaneous': { icon: 'bolt', color: 'accent', shortName: 'Instant' },
     'healing': { icon: 'favorite', color: 'healing', shortName: 'Healing' },
 
-    'concentration': { icon: 'psychology', color: 'accent', shortName: 'Concentration' },
+    'concentration, up to ': { icon: 'psychology', color: 'accent', shortName: 'Concentration' },
     'spellSlot': { icon: 'filter_none', color: 'spell-slot', shortName: 'Spell Slot' },
     'level1SpellSlot': { icon: 'filter_1', color: 'spell-slot', shortName: 'Spell Slot' },
     'level2SpellSlot': { icon: 'filter_2', color: 'spell-slot', shortName: 'Spell Slot' },

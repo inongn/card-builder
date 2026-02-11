@@ -1,10 +1,11 @@
 import React from 'react';
 import PropertySelectionTree, { PropertySelectionDescription } from '../components/PropertySelectionTree';
-import { getAvailableCategories } from '../utils/builderUtils.js';
+import { getAvailableCategories, isBuilderComplete, getCategoryStats } from '../utils/builderUtils.js';
 import 'mdui/components/segmented-button-group.js';
 import 'mdui/components/segmented-button.js';
 import 'mdui/components/button.js';
 import 'mdui/components/icon.js';
+import 'mdui/components/badge.js';
 
 export const BuilderScreen = ({
     selectedCategory,
@@ -17,11 +18,23 @@ export const BuilderScreen = ({
     handleGetSlotOptions,
     onNavigate,
     onGetProperty,
+    onSave,
+    builderSource,
     toggleTheme,
     isDarkMode
 }) => {
     const availableCategories = React.useMemo(() =>
         getAvailableCategories(propertyTree, characterData),
+        [propertyTree, characterData]
+    );
+
+    const isComplete = React.useMemo(() =>
+        isBuilderComplete(propertyTree, characterData),
+        [propertyTree, characterData]
+    );
+
+    const categoryStats = React.useMemo(() =>
+        getCategoryStats(propertyTree, characterData),
         [propertyTree, characterData]
     );
 
@@ -45,26 +58,33 @@ export const BuilderScreen = ({
         <div className="container builder-screen">
 
             <mdui-top-app-bar variant="small">
-                <mdui-button-icon icon="menu" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
+                <mdui-button-icon icon="arrow_back" onClick={() => onNavigate(builderSource)}></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                <mdui-button variant="tonal" onClick={() => onNavigate('play')} icon="save">Save</mdui-button>
+                <mdui-button variant="tonal" onClick={onSave} icon="save" disabled={!isComplete || undefined}>Save</mdui-button>
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
             </mdui-top-app-bar>
 
 
             <div className="header-nav">
 
-                {orderedSteps.map(step => (
-                    <mdui-button
-                        key={step.key}
-                        variant={selectedCategory === step.key ? "filled" : "text"}
-                        onClick={() => setSelectedCategory(step.key)}
-                        icon={step.icon}
-                        className="nav-btn"
-                    >
-                        {step.label}
-                    </mdui-button>
-                ))}
+                {orderedSteps.map(step => {
+                    const stats = categoryStats[step.key] || { pending: 0, isComplete: false };
+                    return (
+                        <mdui-button
+                            key={step.key}
+                            variant={selectedCategory === step.key ? "tonal" : "text"}
+                            onClick={() => setSelectedCategory(step.key)}
+                            icon={step.icon}
+                            end-icon={stats.isComplete ? "check" : undefined}
+                            className="nav-btn"
+                        >
+                            {step.label}
+                            {stats.pending > 0 && (
+                                <mdui-badge style={{ marginLeft: '8px' }}>!</mdui-badge>
+                            )}
+                        </mdui-button>
+                    );
+                })}
             </div>
 
             <div className="content builder-content">

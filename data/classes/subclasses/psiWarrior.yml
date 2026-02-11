@@ -38,29 +38,20 @@ children:
     range: 30 feet
     duration: Instantaneous
     name: Telekinetic Movement
-    resource: [telekineticMovement, psionicEnergyDice]
+    tags: [innateSR]
+    resource: psionicEnergyDice
     description: |
       You move an object or creature with your mind. Choose one target you can see within range; the target must be a loose object that is Large or smaller, or one willing creature other than you. You transport the target up to 30 feet to an unoccupied space you can see. Alternatively, if the target is a Tiny object, you can transport it to or from your hand.
   - id: psiPoweredLeap
     type: Activity
     time: bonus action
+    tags: [innateSR]
     condition: $(meta.level >= 7)
     range: self
     duration: Instantaneous
     name: Psi Powered Leap
-    resource: [psiPoweredLeap, psionicEnergyDice]
+    resource: psionicEnergyDice
     description: You gain a Fly Speed equal to $(attributes.movement.walk * 2) until the end of the current turn.
-  - id: telekineticMovement
-    type: Resource
-    name: Telekinetic Movement
-    quantity: 1
-    sr: 1
-  - id: psiPoweredLeap
-    type: Resource
-    name: Psi Powered Leap
-    quantity: 1
-    sr: 1
-    condition: $(meta.level >= 7)
   - id: telekineticThrust
     type: Extra
     target: psionicStrike
@@ -87,28 +78,17 @@ children:
     range: 30 feet
     duration: Instantaneous
     name: Bulwark of Force
-    resource: [bulwarkOfForce, psionicEnergyDice]
+    resource: psionicEnergyDice
+    tags: [innateLR]
     description: You shield yourself and others with telekinetic force. Choose $(Math.max(1, stats.int.mod)) creatures within range. Each of the chosen creatures has Half Cover for 1 minute or until you have the incapacitated condition.
-
-  - id: bulwarkOfForce
-    type: Resource
-    name: Bulwark of Force
-    quantity: 1
-    condition: $(meta.level >= 15)
-
-
-  - id: telekineticMaster
-    type: Resource
-    name: Telekinesis
-    quantity: 1
-    condition: $(meta.level >= 18)
 
   - id: telekineticMaster
     type: Reference
     target: telekinesis
     condition: $(meta.level >= 18)
     overwrite:
-      resource: [telekineticMaster, psionicEnergyDice]
+      tags: [innateSR]
+      resource: psionicEnergyDice
   - id: telekineticMaster
     type: Effect
     target: attributes.spellcasting.save

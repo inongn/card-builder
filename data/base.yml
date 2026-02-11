@@ -357,16 +357,7 @@ children:
     reference: [longRest, shortRest, coreActions, weaponProperties, extraProperties]
 
     
-  - id: armor
-    type: Slot
-    name: Armor
-    target: item AND (heavyArmor OR mediumArmor OR lightArmor OR unarmored)
 
-  - type: Resource
-    id: hitDice
-    name: Hit Dice
-    quantity: $(meta.level)
-    restore: Long Rest
   - id: species
     type: Slot
     name: Species
@@ -379,16 +370,20 @@ children:
     target: background
     quantity: 1
 
+
+
+
+
+
   - id: class
     type: Slot
     name: Class
     target: class
     quantity: 1
 
-  - id: mainHand
+
+  - id: weapon
     type: Slot
-    name: Weapons
-    variables:
-      hand: mainHand
-    target: 'item AND $(attributes.proficiencies.includes(''martialWeapons'') ? ''martial OR simple'' : ''simple'')'
-    quantity: 4
+    name: Weapon
+    target: "item AND $(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple')"
+    quantity: 2

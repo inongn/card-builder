@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: shields
-target: attributes.proficiencies
-id: shieldTraining
-name: Shield Training

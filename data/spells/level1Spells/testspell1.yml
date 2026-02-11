@@ -1,0 +1,10 @@
+id: testSpell1
+type: Activity
+name: Test Spell 1
+tags: [level1Spell, druid]
+time: action
+range: self
+resource: level1SpellSlot
+duration: instantaneous
+description: |
+  Test Spell 1

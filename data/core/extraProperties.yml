@@ -12,3 +12,14 @@ children:
     id: innateLR
     name: Innate
     description: "You can take this action once per Long Rest without expending a resource."
+  - type: Extra
+    target: limitedLR
+    id: limitedLR
+    name: Limited
+    description: "You can take this action once per Long Rest."
+  - type: Extra
+    target: limitedSR
+    id: limitedSR
+    name: Limited
+    description: "You can take this action once per Short Rest."
+  

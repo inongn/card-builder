@@ -2,7 +2,7 @@
   /* Semantic Colors for Game Elements */
   --color-action: #4CAF50;
   --color-bonus: #FF9800;
-  --color-reaction: #9e9e9e;
+  --color-reaction: #bd239c;
   --color-healing: #26A69A;
   --color-fire: #EF5350;
   --color-cold: #29B6F6;
@@ -40,8 +40,16 @@ body {
 
 
 
+strong {
+  font-weight: bold;
+}
+
 p {
-  margin: var(--gap-xs);
+  margin: 0.25rem 0;
+}
+
+mdui-top-app-bar {
+  transition: none;
 }
 
 
@@ -320,6 +328,7 @@ mdui-chip {
 
 .icon-bonus-action {
   color: var(--color-bonus);
+  transform: rotate(-90deg) scale(1.5);
 }
 
 .icon-reaction {
@@ -438,6 +447,7 @@ mdui-chip {
   padding: 20px;
 }
 
+
 .print-mode .main-card {
   padding: var(--gap-md);
 }
@@ -498,6 +508,10 @@ mdui-chip {
   overflow: hidden !important;
 }
 
+.print-mode .inner-card {
+  height: min-content !important;
+}
+
 .print-mode .card-header {
   flex-shrink: 0 !important;
   display: grid !important;
@@ -552,6 +566,12 @@ mdui-chip {
 
 .print-mode .hide-on-print {
   display: none !important;
+}
+
+.print-mode .static-card,
+.print-mode .main-card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 /* ==========================================================================
@@ -656,7 +676,7 @@ mdui-chip {
    ========================================================================== */
 
 .container {
-  padding: 0 var(--gap-lg);
+  padding: 0 2.5vw;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -713,7 +733,8 @@ mdui-chip {
 .hero-actions {
   display: flex;
   gap: var(--gap-sm);
-  align-items: center;
+  align-items: end;
+  justify-content: end;
 }
 
 .empty-state {

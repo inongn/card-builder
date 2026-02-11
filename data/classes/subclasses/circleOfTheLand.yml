@@ -23,33 +23,21 @@ children:
 
   - id: naturalRecoveryRestore
     type: Activity
-    name: "Natural Recovery: Restore"
+    name: "Natural Recovery"
     time: free action
     duration: instantaneous
     range: self
     description: |
       When you finish a Short Rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal or less than $(meta.level / 2).
-    resource: naturalRecoveryRestore
-    condition: $(meta.level >= 6)
-
-  - id: naturalRecoveryRestore
-    type: Resource
-    name: "Natural Restore"
-    quantity: 1
-    condition: $(meta.level >= 6)
-    sr: 1
-
-  - id: naturalRecoveryCast
-    type: Resource
-    name: "Natural Cast"
-    quantity: 1
+    tags: [limitedSR]
     condition: $(meta.level >= 6)
 
   - id: naturalRecoveryCast
-    type: Effect
-    target: activities[circleSpell NOT cantrip].resource
-    operation: push
-    value: naturalRecoveryCast
+    type: Extra
+    target: circleSpell NOT cantrip
+    name: Natural Recovery
+    description: You can take this action by expending a Wild Shape charge instead.
+    condition: $(meta.level >= 6)
 
 
   - id: naturesSanctuary

@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: heavyArmor
-target: attributes.proficiencies
-id: heavyArmorTraining
-name: Heavy Armor Training

@@ -210,7 +210,9 @@ export class CharacterBuilder {
         return {
             meta: {},
             stats: {},
-            attributes: {},
+            attributes: {
+                proficiencies: []
+            },
             skills: {},
             saves: {},
             resources: [],
@@ -245,8 +247,7 @@ export class CharacterBuilder {
             tags: property.tags
         };
 
-        // If the property is a Folder or Reference, merge its resolved children into the slot
-        // Otherwise, include the property itself as a child (for Cards, Effects, etc.)
+        // Populate children immediately so the initial rebuild pass can find effects/properties
         let items = [];
         if (property.type === 'Folder' || property.type === 'Reference') {
             items = (property.type === 'Reference') ? [property] : (property.children || []);
@@ -254,7 +255,6 @@ export class CharacterBuilder {
             items = [property];
         }
 
-        // Apply slot-level overrides (overwrite) to the items filling the slot
         if (slot.overwrite) {
             items = items.map(item => ({
                 ...item,
@@ -307,19 +307,121 @@ export class CharacterBuilder {
             }
         }
 
-        // Extract filled slot data from current tree before rebuilding
-        const filledSlots = this.extractFilledSlots(this.propertyTree);
+        this.rebuild();
+    }
 
-        // Rebuild the processed tree with new quantity evaluations (for base slots)
+    /**
+     * Internal helper to rebuild the processed tree structure from base definitions,
+     * preserving current slot selections.
+     */
+    _reprocessTreeStructure() {
+        const state = this.extractTreeState(this.propertyTree);
         this.propertyTree = {
             ...this.basePropertyTree,
             children: this.processChildren(this.basePropertyTree.children, {}, 'base')
         };
+        this.reapplyTreeState(this.propertyTree, state);
+    }
 
-        // Reapply filled slot data (this will re-process children of filled props)
-        this.reapplyFilledSlots(this.propertyTree, filledSlots);
+    /**
+     * Extract current selections and UI state (like expansion) from property tree
+     */
+    extractTreeState(node, path = []) {
+        const state = { slots: [], expanded: [] };
+        if (!node || !node.children) return state;
 
-        this.rebuild();
+        node.children.forEach((child) => {
+            const step = { id: child.id, slotIndex: child.slotIndex };
+            const currentPath = [...path, step];
+
+            if (child.expanded) {
+                state.expanded.push(currentPath);
+            }
+
+            if (child.type === 'Slot' && child.filled) {
+                state.slots.push({
+                    path: currentPath,
+                    propertyId: child.filled.id
+                });
+            }
+
+            // Recurse into children
+            const childState = this.extractTreeState(child, currentPath);
+            state.slots.push(...childState.slots);
+            state.expanded.push(...childState.expanded);
+        });
+
+        return state;
+    }
+
+    /**
+     * Reapply selections and UI state to a newly built tree
+     */
+    reapplyTreeState(root, state) {
+        // Sort slots by path length so parents are filled before children
+        const sortedSlots = [...state.slots].sort((a, b) => a.path.length - b.path.length);
+
+        sortedSlots.forEach(slotData => {
+            let current = root;
+            let found = true;
+
+            for (let i = 0; i < slotData.path.length; i++) {
+                const step = slotData.path[i];
+                if (!current.children) {
+                    found = false;
+                    break;
+                }
+                const child = current.children.find(c => c.id === step.id && c.slotIndex === step.slotIndex);
+                if (!child) {
+                    found = false;
+                    break;
+                }
+                current = child;
+            }
+
+            if (found && current.type === 'Slot') {
+                const property = this.library.getProperty(slotData.propertyId);
+                if (property) {
+                    const evaluator = new ExpressionEvaluator(this.characterData);
+                    current.filled = {
+                        id: property.id,
+                        name: property.name,
+                        displayName: evaluator.evaluate(property.name, current.variables || {}),
+                        type: property.type,
+                        tags: property.tags
+                    };
+
+                    let items = (property.type === 'Reference' || property.type === 'Folder')
+                        ? (property.type === 'Reference' ? [property] : (property.children || []))
+                        : [property];
+
+                    if (current.overwrite) {
+                        items = items.map(item => ({
+                            ...item,
+                            overwrite: { ...(item.overwrite || {}), ...current.overwrite }
+                        }));
+                    }
+
+                    let newChildren = this.processChildren(items, current.variables || {}, property?.id || null);
+                    if (current.ignoreCondition) {
+                        newChildren = newChildren.map(child => ({ ...child, ignoreCondition: true }));
+                    }
+                    current.children = newChildren;
+                }
+            }
+        });
+
+        // Reapply expansion state
+        state.expanded.forEach(path => {
+            let current = root;
+            for (const step of path) {
+                if (!current.children) break;
+                const child = current.children.find(c => c.id === step.id && c.slotIndex === step.slotIndex);
+                if (!child) break;
+                current = child;
+            }
+            current.expanded = true;
+        });
     }
 
     /**
@@ -562,6 +664,11 @@ export class CharacterBuilder {
             }
         }
 
+        // Refresh target
+        if (node.target && typeof node.target === 'string') {
+            node.target = evaluator.evaluate(node.target, nodeVariables);
+        }
+
         // Refresh children
         if (node.children) {
             node.children.forEach(child => this.refreshTreeLabels(child));
@@ -575,22 +682,30 @@ export class CharacterBuilder {
         // Clear expression cache to ensure fresh translations and dependency resolution
         clearExpressionCache();
 
+        // 1. Initial pass to get all effects into characterData (including the new selection)
         this.runRebuildPasses();
 
-        // Refresh labels to catch language changes or updated expressions
+        // 2. Structural Refresh: Rebuild tree from symbols to restore and re-evaluate original expressions
+        // This ensures reactive targets (like Weapon proficiencies) are correctly baked.
+        this._reprocessTreeStructure();
+
+        // 3. Sync pass: update characterData with the final structural children
+        this.runRebuildPasses();
+
+        // 4. Update labels and descriptions
         this.refreshTreeLabels();
 
-        // Perform two-pass validation for slot selections
-        // Pass 1: Collect all 'inherent' property IDs (features from folders like Species/Background)
+        // 5. Perform two-pass validation for slot selections
         const inherentIds = new Set();
         this.collectInherentIds(this.propertyTree, inherentIds);
 
-        // Pass 2: Validate slot choices against inherent features and previous choices
         const alreadyChosenIds = new Set();
         const modified = this.validateAndPruneSlotsRecursive(this.propertyTree, inherentIds, alreadyChosenIds);
 
         if (modified) {
-            // Re-run the passes to update characterData with the pruned tree
+            // Re-run the structural passes to update characterData with the pruned tree
+            this.runRebuildPasses();
+            this._reprocessTreeStructure();
             this.runRebuildPasses();
         }
     }
@@ -1060,7 +1175,6 @@ export class CharacterBuilder {
 
                     // Split description into text and extras
                     const description = evaluator.bakeVariables(prop.description, scope);
-                    const { description: finalDescription, extra: newExtras } = splitDescription(description);
                     const existingExtras = Array.isArray(prop.extra) ? prop.extra : (prop.extra ? [prop.extra] : []);
 
                     const cardObj = {
@@ -1073,8 +1187,8 @@ export class CharacterBuilder {
                         resource: cardClone.resource || '',
                         tags: evaluator.bakeVariables(prop.tags, scope),
                         type: evaluator.bakeVariables(prop.subtype, scope),
-                        description: finalDescription,
-                        extra: [...existingExtras, ...newExtras],
+                        description: description,
+                        extra: existingExtras,
                         variables: cardVariables // Store variables for dynamic evaluation
                     };
 

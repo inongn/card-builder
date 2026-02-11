@@ -18,7 +18,7 @@ children:
   - type: Reference
     value: [strSave, conSave]
   - type: Reference
-    value: [martialWeaponProficiency, lightArmorTraining, mediumArmorTraining, heavyArmorTraining, shieldTraining, simpleWeaponProficiency]
+    value: [simpleWeaponProficiency, martialWeaponProficiency, lightArmorTraining, mediumArmorTraining, heavyArmorTraining, shieldTraining]
   - id: fighterskillproficiencies
     type: Slot
     name: Fighter Skill Proficiencies
@@ -48,17 +48,20 @@ children:
     name: Action Surge
     type: Activity
     description: You push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
+    condition: $(meta.level >= 2)
     range: self
     time: free action
     duration: Instantaneous
     resource: actionSurge
   - id: actionSurge
     type: Resource
+    condition: $(meta.level >= 2)
     name: Action Surge
     quantity: $(progression(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2))
     sr: all
   - id: tacticalMind
     type: Activity
+    condition: $(meta.level >= 2)
     range: self
     duration: Instantaneous
     resource: secondWind
@@ -147,3 +150,4 @@ children:
     type: Slot
     name: Epic Boon
     target: epicBoon
+    condition: $(meta.level >= 19)

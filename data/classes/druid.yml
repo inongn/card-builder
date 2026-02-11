@@ -102,7 +102,7 @@ children:
     target: findFamiliar
     condition: $(meta.level >=2)
     overwrite:
-      resource: level1SpellSlot / wildShape
+      extra: "**Wild Companion**. You can take this action by expending a Wild Shape charge instead."
   - id: druidSubclass 
     type: Slot
     name: Druid Subclass
@@ -136,23 +136,12 @@ children:
     type: Activity
     name: "Create Spell Slot"
     time: free action
+    tags: [limitedLR]
     range: self
     duration: instantaneous
-    description: Give yourself a level 1 spell slot.
-    resource: wildShape + wildResurgence
+    description: Give yourself a level 1 spell slot. 
+    resource: wildShape
     condition: $(meta.level >= 5)
-
-  - id: wildResurgence
-    type: Resource
-    name: Wild Resurgence
-    quantity: 1
-    condition: $(meta.level >= 5)
-
-  - id: natureMagician
-    type: Resource
-    name: Nature Magician
-    quantity: 1
-    condition: $(meta.level >= 20)
 
   - id: natureMagician
     type: Activity
@@ -161,7 +150,8 @@ children:
     range: self
     duration: instantaneous
     description: You can convert uses of Wild Shape into a spell slot. Choose a number of your unexpended uses of Wild Shape and convert them into a single spell slot, with each use contributing 2 spell levels. 
-    resource: wildShape + natureMagician
+    resource: wildShape
+    tags: [limitedLR]
     condition: $(meta.level >= 20)
 
   - id: evergreenWildShape 

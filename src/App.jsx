@@ -37,7 +37,7 @@ import { BuilderScreen } from './screens/BuilderScreen';
 import { PlayScreen } from './screens/PlayScreen';
 import { PrintScreen } from './screens/PrintScreen';
 
-setColorScheme('#4400ffff');
+setColorScheme('#ee0feeff');
 // ============================================================================
 // DEBOUNCE UTILITY
 // ============================================================================
@@ -70,6 +70,7 @@ export default function App() {
     const [loadedCharacterId, setLoadedCharacterId] = useState(null);
     const [isDebugOpen, setIsDebugOpen] = useState(false);
     const [debugTab, setDebugTab] = useState('character');
+    const [builderSource, setBuilderSource] = useState('dashboard');
 
     // Sync theme to document element
     useEffect(() => {
@@ -159,32 +160,43 @@ export default function App() {
         return library?.getProperty(id);
     }, [library]);
 
-    // Auto-save effect
-    useEffect(() => {
-        if (!builder || !characterData) return;
+    const handleNavigate = useCallback((tab) => {
+        if (tab === 'builder') {
+            setBuilderSource(activeTab);
+        }
+        setActiveTab(tab);
+    }, [activeTab]);
 
-        const autoSave = setTimeout(() => {
-            const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
-            const characterName = characterData.meta?.name || 'Unnamed Character';
-            const recipe = builder.getRecipe();
-            const timestamp = new Date().toISOString();
+    const handleSaveCharacter = useCallback(() => {
+        if (!builder || !characterData || !loadedCharacterId) return;
 
-            if (loadedCharacterId) {
-                const index = saved.findIndex(c => c.id === loadedCharacterId);
-                if (index !== -1) {
-                    saved[index] = { ...saved[index], name: characterName, recipe, timestamp };
-                } else {
-                    // Fallback
-                    saved.push({ id: loadedCharacterId, name: characterName, recipe, timestamp });
-                }
-                localStorage.setItem('saved_characters', JSON.stringify(saved));
-                setSavedCharacters(saved);
-                // console.log('Auto-saved character');
-            }
-        }, 2000);
+        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
+        const characterName = characterData.meta?.name || 'Unnamed Character';
+        const recipe = builder.getRecipe();
+        const timestamp = new Date().toISOString();
 
-        return () => clearTimeout(autoSave);
-    }, [characterData, builder, loadedCharacterId]);
+        const index = saved.findIndex(c => c.id === loadedCharacterId);
+        const charSummary = {
+            id: loadedCharacterId,
+            name: characterName,
+            class: characterData.meta?.class || 'Unknown Class',
+            species: characterData.meta?.species || '',
+            level: characterData.meta?.level || 1,
+            recipe,
+            timestamp
+        };
+
+        if (index !== -1) {
+            saved[index] = charSummary;
+        } else {
+            saved.push(charSummary);
+        }
+        localStorage.setItem('saved_characters', JSON.stringify(saved));
+        setSavedCharacters(saved);
+        setActiveTab('play');
+    }, [builder, characterData, loadedCharacterId]);
+
+
 
     const toggleTheme = useCallback(() => {
         setIsDarkMode(prev => !prev);
@@ -211,6 +223,7 @@ export default function App() {
         syncState();
         const newId = Date.now();
         setLoadedCharacterId(newId);
+        setBuilderSource('dashboard');
         setActiveTab('builder');
     }, [builder, syncState]);
 
@@ -268,7 +281,7 @@ export default function App() {
                         handleDeleteSaved={handleDeleteSaved}
                         toggleTheme={toggleTheme}
                         isDarkMode={isDarkMode}
-                        onNavigate={setActiveTab}
+                        onNavigate={handleNavigate}
                     />
                 )}
                 {activeTab === 'builder' && (
@@ -282,7 +295,9 @@ export default function App() {
                         handleClearSlot={handleClearSlot}
                         handleGetSlotOptions={handleGetSlotOptions}
                         onGetProperty={handleGetProperty}
-                        onNavigate={setActiveTab}
+                        onNavigate={handleNavigate}
+                        onSave={handleSaveCharacter}
+                        builderSource={builderSource}
                         toggleTheme={toggleTheme}
                         isDarkMode={isDarkMode}
                     />
@@ -290,7 +305,7 @@ export default function App() {
                 {activeTab === 'play' && (
                     <PlayScreen
                         characterData={characterData}
-                        onNavigate={setActiveTab}
+                        onNavigate={handleNavigate}
                         toggleTheme={toggleTheme}
                         isDarkMode={isDarkMode}
                     />
@@ -298,7 +313,7 @@ export default function App() {
                 {activeTab === 'print' && (
                     <PrintScreen
                         char={characterData}
-                        onNavigate={setActiveTab}
+                        onNavigate={handleNavigate}
                         toggleTheme={toggleTheme}
                         isDarkMode={isDarkMode}
                     />

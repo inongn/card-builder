@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: simpleWeapons
-target: attributes.proficiencies
-id: simpleWeaponProficiency
-name: Simple Weapon Proficiency
