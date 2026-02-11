@@ -2,7 +2,7 @@ type: Effect
 tags:
   - damageResistance
 operation: push
-value: psychic
+value: Psychic Damage
 target: attributes.resistances
 id: psychicResistance
 name: Psychic Resistance

@@ -1,0 +1,49 @@
+id: champion
+name: Champion
+description: |
+  A Champion focuses on the development of martial prowess in a relentless pursuit of victory. Champions combine rigorous training with physical excellence to deal devastating blows, withstand peril, and garner glory. Whether in athletic contests or bloody battle, Champions strive for the crown of the victor.
+tags:
+  - fighterSubclass
+type: Folder
+children:
+  - id: improvedCritical
+    name: Improved Critical
+    type: Extra
+    target: weapon
+    condition: $(meta.level >= 3)
+    description: "Your weapon attacks score a critical hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
+  - type: Reference
+    target: [initiativeAdvantage, athleticsAdvantage]
+    condition: $(meta.level >= 3)
+  - id: remarkableAthlete
+    name: Remarkable Athlete
+    type: Extra
+    target: weapon
+    condition: $(meta.level >= 3)
+    description: "On a critical hit, move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
+  - id: additionalFightingStyle
+    name: Additional Fighting Style
+    type: Slot
+    target: fightingStyle
+    condition: $(meta.level >= 7)
+    quantity: 1
+  - id: heroicWarrior
+    name: Heroic Warrior
+    type: Activity
+    condition: $(meta.level >= 10)
+    description: "The thrill of battle drives you toward victory. During combat, you can give yourself Heroic Inspiration whenever you start your turn without it."
+    time: free action
+    range: self
+    duration: Instantaneous
+  - id: defyDeath
+    condition: $(meta.level >= 18)
+    type: Reference
+    target: deathSaveAdvantage
+  - id: heroirRally
+    condition: $(meta.level >= 18)
+    type: Activity
+    name: Heroic Rally
+    range: self
+    time: free action
+    duration: instantaneous
+    description: "At the start of each of your turns, you regain $(5 + stats.con.mod) Hit Points if you are Bloodied and have at least 1 Hit Point."

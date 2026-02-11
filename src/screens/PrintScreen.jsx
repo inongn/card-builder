@@ -3,7 +3,7 @@ import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
 import 'mdui/components/button.js';
 
-export const PrintScreen = ({ char, onNavigate }) => {
+export const PrintScreen = ({ char, onNavigate, toggleTheme, isDarkMode }) => {
     if (!char) return null;
 
     const activities = char.activities || [];
@@ -17,20 +17,23 @@ export const PrintScreen = ({ char, onNavigate }) => {
 
     return (
         <div className="container print-screen">
+
+            <mdui-top-app-bar scroll-behavior="hide" variant="small">
+                <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
+                <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                <mdui-button variant="tonal" icon="print" onClick={() => window.print()}>Print</mdui-button>
+                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
+            </mdui-top-app-bar>
+
+
             <div className="header-nav">
-                <div className="header-nav-group">
-                </div>
-                <div className="header-nav-group">
-                    <mdui-button variant="text" icon="edit" onClick={() => onNavigate('builder')}>Edit</mdui-button>
-                    <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print Now</mdui-button>
-                </div>
             </div>
 
             <div className="content print-content print-mode">
                 <div className="print-page first-page">
                     <div className="print-grid">
                         <div className="main-card-print-slot">
-                            <CharacterSheet char={char} />
+                            <CharacterSheet char={char} onNavigate={onNavigate} />
                         </div>
                         {page1Cards.map((card, idx) => (
                             <div key={idx} className="action-card-print-slot">

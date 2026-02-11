@@ -857,6 +857,23 @@ export class CharacterBuilder {
 
                     const matches = node[collectionName].filter(item => {
                         return evaluateBoolean(query, (token) => {
+                            // Support key=value queries (e.g., resource=wildShape or resource="wild Shape")
+                            if (token.includes('=')) {
+                                const [key, rawValue] = token.split('=');
+                                const expectedValue = rawValue.replace(/^['"]|['"]$/g, '');
+                                let actualValue = item[key];
+
+                                // Resolve expressions in the property value
+                                if (evaluator && typeof actualValue === 'string' && actualValue.includes('$')) {
+                                    actualValue = evaluator.evaluate(actualValue, item.variables || {});
+                                }
+
+                                if (Array.isArray(actualValue)) {
+                                    return actualValue.some(val => String(val) === expectedValue);
+                                }
+                                return String(actualValue ?? '') === expectedValue;
+                            }
+
                             let id = item.id;
                             let tags = item.tags || [];
 
@@ -1014,19 +1031,6 @@ export class CharacterBuilder {
                 this.setFieldWithPriority(`saves.${prop.id}.dis`, prop.dis, priority, evaluator);
                 break;
 
-            case 'Feature':
-                {
-                    const name = evaluator.evaluate(prop.name);
-                    const description = evaluator.evaluate(prop.description);
-                    const id = prop.id;
-
-                    this.characterData.features.push({
-                        name: name || id,
-                        description: description || '',
-                    });
-                }
-                break;
-
             case 'Resource':
                 {
                     const evaluatedQuantity = evaluator.evaluate(prop.quantity, scope);
@@ -1177,7 +1181,16 @@ export class CharacterBuilder {
                     break;
                 case 'push':
                     {
-                        const existing = Array.isArray(current[finalKey]) ? current[finalKey] : [];
+                        // If the target is not an array, wrap the current value in an array
+                        let existing;
+                        if (Array.isArray(current[finalKey])) {
+                            existing = current[finalKey];
+                        } else if (current[finalKey] !== null && current[finalKey] !== undefined) {
+                            existing = [current[finalKey]];
+                        } else {
+                            existing = [];
+                        }
+
                         const itemsToPush = Array.isArray(evaluatedValue) ? evaluatedValue : [evaluatedValue];
 
                         // Add only items that don't already exist

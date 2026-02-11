@@ -1,0 +1,7 @@
+id: weaponAttack
+name: "Attack: $(local.name)"
+type: Activity
+tags: [$(local.category), $(local.classification), $(local.mastery), attack, mainHand]
+time: action
+range: $(local.range)
+description: "Make a $(formatBonus(attributes[local.classification].attack)) attack against a creature within range. On a hit, the target takes $(local.damageRoll)$(formatBonus(attributes[local.classification].bonus)) $(local.damageType) damage."

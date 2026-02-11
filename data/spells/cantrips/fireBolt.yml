@@ -1,0 +1,10 @@
+id: fireBolt
+type: Activity
+name: Fire Bolt
+tags: [cantrip, evocation, artificer, sorcerer, wizard, attackSpell, damageSpell]
+time: action
+range: 120 ft
+duration: instantaneous
+description: |
+  You hurl a mote of fire at a creature or an object within range. Make a ranged spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d10 Fire damage. A flammable object hit by this spell starts burning if it isn’t being worn or carried.
+

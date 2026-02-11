@@ -1,0 +1,19 @@
+type: Folder
+id: magician
+name: Magician
+tags: [primalOrder]
+children:
+  - id: magicianCantrip
+    type: Slot
+    name: Magician Cantrip
+    quantity: 1
+    target: cantrip AND druid
+  - type: Effect
+    target: skills.nature.bonus
+    operation: add
+    value: $(Math.max(1, stats.wis.mod))
+  - type: Effect
+    target: skills.arcana.bonus
+    operation: add
+    value: $(Math.max(1, stats.wis.mod))
+    

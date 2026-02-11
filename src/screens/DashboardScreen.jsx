@@ -1,8 +1,18 @@
 import React from 'react';
 
-export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved }) => {
+export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, toggleTheme, isDarkMode, onNavigate }) => {
     return (
+
+
         <div className="container">
+
+            <mdui-top-app-bar variant="small">
+                <mdui-button-icon icon="menu" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
+                <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
+            </mdui-top-app-bar>
+
+
             <div className="header-nav">
                 <div className="header-nav-group">
                 </div>

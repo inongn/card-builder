@@ -2,4 +2,4 @@ type: Resource
 quantity: $(local.quantity || 1)
 restore: Long Rest
 id: level1SpellSlot
-name: Level1 Spell Slot
+name: Lv. 1 Spell Slot

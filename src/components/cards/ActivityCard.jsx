@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { renderGridValue, sortDescription } from '../../utils/cardUtils';
+import { renderGridValue, renderIcon, sortDescription } from '../../utils/cardUtils';
 
 import 'mdui/components/card.js';
 import 'mdui/components/collapse-item.js';
@@ -15,8 +15,8 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible' }) => {
     const headerContent = (
         <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
             <div className="card-meta">
-                <div>
-                    {activity.resource ? renderGridValue(activity.resource, 'resource', false) : renderGridValue('free action', 'time', false)}
+                <div className="card-meta-resource">
+                    {activity.resource ? renderIcon(activity.resource, false) : renderIcon('free action', false)}
                 </div>
             </div>
             <span className="card-title">{activity.name}</span>
@@ -110,7 +110,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible' }) => {
     }
 
     return (
-        <mdui-collapse-item variant="filled" class="card-container">
+        <mdui-collapse-item mdui-card class="card-container pseudo-card">
             {headerContent}
             {bodyContent}
         </mdui-collapse-item>

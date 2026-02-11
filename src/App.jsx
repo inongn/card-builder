@@ -21,6 +21,8 @@ import 'mdui/components/chip.js';
 import 'mdui/components/text-field.js';
 import 'mdui/components/select.js';
 import 'mdui/components/menu-item.js';
+import 'mdui/components/menu.js';
+import 'mdui/components/dropdown.js';
 import 'mdui/components/layout.js';
 import 'mdui/components/layout-main.js';
 import 'mdui/components/navigation-bar.js';
@@ -236,25 +238,11 @@ export default function App() {
 
     return (
         <mdui-layout className="app-container">
-            <mdui-top-app-bar className="desktop-hidden">
-                <mdui-button-icon icon="menu" onClick={() => setActiveTab('dashboard')}></mdui-button-icon>
-                <mdui-top-app-bar-title>Card Builder</mdui-top-app-bar-title>
-                <div style={{ flexGrow: 1 }}></div>
-                <mdui-button-icon icon="bug_report" onClick={() => setIsDebugOpen(true)}></mdui-button-icon>
-                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
-            </mdui-top-app-bar>
-
-
-            <mdui-navigation-rail value={activeTab} className="app-nav-rail mobile-hidden">
-                <mdui-navigation-rail-item value="dashboard" icon="dashboard" onClick={() => setActiveTab('dashboard')}>Characters</mdui-navigation-rail-item>
-                <mdui-button-icon icon="bug_report" slot="bottom" onClick={() => setIsDebugOpen(true)}></mdui-button-icon>
-                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} slot="bottom" onClick={toggleTheme}></mdui-button-icon>
-            </mdui-navigation-rail>
 
             <mdui-navigation-drawer placement="right" open={isDebugOpen} onClose={() => setIsDebugOpen(false)} style={{ width: '600px' }}>
                 <div className="debug-yaml-container">
                     <div className="debug-yaml-header">
-                        <span className="drawer-title">Debug Inspector</span>
+                        <span className="drawer-title">Inspector</span>
                         <mdui-button-icon icon="close" onClick={() => setIsDebugOpen(false)}></mdui-button-icon>
                     </div>
                     <div style={{ padding: '0 16px' }}>
@@ -278,6 +266,9 @@ export default function App() {
                         handleNewCharacter={handleNewCharacter}
                         handleOpenSaved={handleOpenSaved}
                         handleDeleteSaved={handleDeleteSaved}
+                        toggleTheme={toggleTheme}
+                        isDarkMode={isDarkMode}
+                        onNavigate={setActiveTab}
                     />
                 )}
                 {activeTab === 'builder' && (
@@ -292,11 +283,25 @@ export default function App() {
                         handleGetSlotOptions={handleGetSlotOptions}
                         onGetProperty={handleGetProperty}
                         onNavigate={setActiveTab}
+                        toggleTheme={toggleTheme}
+                        isDarkMode={isDarkMode}
                     />
                 )}
-                {activeTab === 'play' && <PlayScreen characterData={characterData} onNavigate={setActiveTab} />}
+                {activeTab === 'play' && (
+                    <PlayScreen
+                        characterData={characterData}
+                        onNavigate={setActiveTab}
+                        toggleTheme={toggleTheme}
+                        isDarkMode={isDarkMode}
+                    />
+                )}
                 {activeTab === 'print' && (
-                    <PrintScreen char={characterData} onNavigate={setActiveTab} />
+                    <PrintScreen
+                        char={characterData}
+                        onNavigate={setActiveTab}
+                        toggleTheme={toggleTheme}
+                        isDarkMode={isDarkMode}
+                    />
                 )}
             </mdui-layout-main>
         </mdui-layout>

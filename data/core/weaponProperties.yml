@@ -1,0 +1,9 @@
+id: weaponProperties
+name: Weapon Properties
+type: Folder
+children:
+  - type: Extra
+    target: light
+    id: light
+    name: Light
+    description: "You can make one extra attack as a Bonus Action later on the same turn with a different Light weapon, and you don't add your ability modifier to the extra attack's damage."

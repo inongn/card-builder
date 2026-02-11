@@ -7,7 +7,8 @@ import 'mdui/components/card.js';
 import 'mdui/components/chip.js';
 import 'mdui/components/icon.js';
 
-export const CharacterSheet = memo(({ char }) => {
+
+export const CharacterSheet = memo(({ char, onNavigate, className }) => {
     const sortedResources = useMemo(() => {
         if (!char || !char.resources) return [];
 
@@ -42,27 +43,31 @@ export const CharacterSheet = memo(({ char }) => {
     if (!char) return null;
 
     return (
-        <mdui-card variant="filled" className="main-card">
+        <div className={`main-card ${className || ''}`}>
             {/* Header: Name and Level Info */}
-            <div className="main-card-row">
-                <div className="card-title main-card-title">
-                    {char.meta.name}
-                </div>
-            </div>
-            <div className="main-card-row">
-                <div className="text-primary card-title">
-                    Lv. {char.meta.level} {char.meta.species} {char.meta.class || 'Unknown Class'}
-                </div>
-            </div>
 
+
+            <div className="main-card-row">
+                <div className="main-card-column">
+                    <div className="card-title main-card-title show-on-print">
+                        {char.meta.name}
+                    </div>
+                    <div className="title-primary">
+                        Lv. {char.meta.level} {char.meta.species} {char.meta.class || 'Unknown Class'}
+                    </div>
+                </div>
+                <div className="main-card-column">
+
+                </div>
+            </div>
             {/* Ability Scores */}
             <div className="main-card-row">
                 {Object.entries(char.stats).map(([key, value]) => (
-                    <div className="main-card-box stat-box" key={key}>
-                        <div className="stat-label">{key.toUpperCase()}</div>
-                        <div className="stat-value">{formatBonus(value.mod, true)}</div>
-                        <div className="stat-score">{value.score}</div>
-                    </div>
+                    <mdui-card variant="filled" className="inner-card main-card-box stat-box" key={key}>
+                        <div className="text-secondary">{key.toUpperCase()}</div>
+                        <div className="important-number">{formatBonus(value.mod, true)}</div>
+                        <div className="text-secondary">{value.score}</div>
+                    </mdui-card>
                 ))}
             </div>
 
@@ -70,7 +75,7 @@ export const CharacterSheet = memo(({ char }) => {
             <div className="main-card-row">
                 {/* Skills Column */}
                 <div className="main-card-column">
-                    <div className="main-card-list">
+                    <mdui-card variant="filled" className="inner-card">
                         {Object.entries(char.skills).map(([key, skill]) => {
                             let profIcon = 'radio_button_unchecked';
                             if (skill.proficiency === 1) profIcon = 'circle';
@@ -78,23 +83,47 @@ export const CharacterSheet = memo(({ char }) => {
                             else if (skill.proficiency === 0.5) profIcon = 'brightness_2';
                             return (
                                 <div className="list-item skill-list-item" key={key}>
-                                    <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                     <div className="text-secondary">{skill.stat.toUpperCase()}</div>
-                                    <div className="text-primary">{skill.name}</div>
+                                    <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                     <div className="text-secondary">
-                                        {skill.adv && <AdvantageIndicator type="adv" />}
-                                        {skill.dis && <AdvantageIndicator type="dis" />}
                                         {formatBonus(skill.bonus, true)}
                                     </div>
+
+                                    <div className="text-primary">
+                                        {skill.adv && <AdvantageIndicator type="adv" />}
+                                        {skill.dis && <AdvantageIndicator type="dis" />}
+                                        {skill.name}</div>
                                 </div>
                             );
                         })}
-                    </div>
+                    </mdui-card>
+                    {/* Saving Throws */}
+                    <mdui-card variant="filled" className="inner-card">
+                        <div className="main-card-list saves-list">
+                            {Object.entries(char.saves).map(([key, save]) => {
+                                let profIcon = 'radio_button_unchecked';
+                                if (save.proficiency === 1) profIcon = 'circle';
+                                if (save.proficiency === 2) profIcon = 'adjust';
+                                else if (save.proficiency === 0.5) profIcon = 'circle_circle';
+                                return (
+                                    <div className="list-item saves-list-item" key={key}>
+                                        <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
+                                        <div className="text-secondary">
+                                            {save.adv && <AdvantageIndicator type="adv" />}
+                                            {save.dis && <AdvantageIndicator type="dis" />}
+                                            {formatBonus(save.bonus, true)}
+                                        </div>
+                                        <div className="text-secondary">{save.stat.toUpperCase() + " Save"}</div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </mdui-card>
                 </div>
 
                 {/* Vitals Column */}
                 <div className="main-card-column">
-                    <div className="main-card-box main-card-box-hp">
+                    <mdui-card variant="filled" className="main-card-box main-card-box-hp inner-card">
                         <div className="main-card-box-hp-row">
                             <div className="text-secondary">Current</div>
                             <div className="text-secondary">Max</div>
@@ -106,110 +135,94 @@ export const CharacterSheet = memo(({ char }) => {
                             <div className="important-number"></div>
                         </div>
                         <div className="text-secondary">HP</div>
-                    </div>
-
+                    </mdui-card>
                     <div className="main-card-combat-row">
-                        <div className="main-card-box">
+                        <mdui-card variant="filled" className="inner-card main-card-box">
                             <div className="text-secondary">Initiative</div>
                             <div className="important-number">
+                                {char.attributes.initiativeAdvantage && <AdvantageIndicator type="adv" />}
+                                {char.attributes.initiativeDisadvantage && <AdvantageIndicator type="dis" />}
                                 {formatBonus(char.attributes.initiative, true)}
-                                {char.attributes.adv && <AdvantageIndicator type="adv" />}
-                                {char.attributes.dis && <AdvantageIndicator type="dis" />}
                             </div>
                             <div className="text-secondary">Mod</div>
-                        </div>
-                        <div className="main-card-box">
+                        </mdui-card>
+                        <mdui-card variant="filled" className="inner-card main-card-box">
                             <div className="text-secondary">Armor</div>
                             <div className="important-number">{char.attributes.ac}</div>
                             <div className="text-secondary">Class</div>
-                        </div>
-                        <div className="main-card-box">
-                            <div className="text-secondary">Speed</div>
+                        </mdui-card>
+                        <mdui-card variant="filled" className="inner-card main-card-box">
+                            <div className="text-secondary">MOVEMENT</div>
                             <div className="important-number">{char.attributes.movement.walk}</div>
-                            <div className="text-secondary">ft</div>
-                        </div>
+                            <div className="text-secondary">SPEED</div>
+                        </mdui-card>
                     </div>
-
+                    {/* Resources List */}
+                    {sortedResources.length > 0 && (
+                        <mdui-card variant="filled" className="inner-card">
+                            <div className="main-card-list">
+                                {sortedResources.map((res, i) => {
+                                    const info = getIconInfo(res.id || res.name);
+                                    return (
+                                        <div className="list-item resource-list-item" key={i}>
+                                            <mdui-icon name={info?.icon || 'circle'} class={`icon-${info?.color} icon-small`}></mdui-icon>
+                                            <div className="text-primary">{res.name || res.id}</div>
+                                            <div className="resource-dots">
+                                                {Array(res.quantity).fill(0).map((_, j) => (
+                                                    <mdui-icon key={j} name="crop_square" style={{ transform: 'rotate(45deg)' }} class="icon-small"></mdui-icon>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </mdui-card>
+                    )}
                     {/* Passive Info List */}
-                    <div className="main-card-list">
-                        {[
-                            { label: 'Senses', data: char.attributes.senses },
-                            { label: 'Movement', data: char.attributes.movement },
-                            { label: 'Resistances', data: char.attributes.resistances },
-                            { label: 'Advantages', data: char.attributes.advantages },
-                            { label: 'Immunities', data: char.attributes.immunities }
-                        ].map((info, idx) => {
-                            let displayData = [];
-                            if (Array.isArray(info.data)) {
-                                displayData = info.data;
-                            } else if (info.data && typeof info.data === 'object') {
-                                displayData = Object.entries(info.data)
-                                    .filter(([k, v]) => v && !(info.label === 'Movement' && k === 'walk'))
-                                    .map(([k, v]) => {
-                                        const label = k.charAt(0).toUpperCase() + k.slice(1);
-                                        const unit = typeof v === 'number' ? ' ft' : '';
-                                        return `${label} (${v}${unit})`;
-                                    });
-                            }
+                    <mdui-card variant="filled" className="inner-card info-card">
+                        <div className="main-card-list">
+                            {[
+                                { label: 'Senses', data: char.attributes.senses },
+                                { label: 'Movement', data: char.attributes.movement },
+                                { label: 'Resistances', data: char.attributes.resistances },
+                                { label: 'Advantages', data: char.attributes.advantages },
+                                { label: 'Immunities', data: char.attributes.immunities }
+                            ].map((info, idx) => {
+                                let displayData = [];
+                                if (Array.isArray(info.data)) {
+                                    displayData = info.data;
+                                } else if (info.data && typeof info.data === 'object') {
+                                    displayData = Object.entries(info.data)
+                                        .filter(([k, v]) => v && !(info.label === 'Movement' && k === 'walk'))
+                                        .map(([k, v]) => {
+                                            const label = k.charAt(0).toUpperCase() + k.slice(1);
+                                            const unit = typeof v === 'number' ? ' ft' : '';
+                                            return `${label} (${v}${unit})`;
+                                        });
+                                }
 
-                            return (
-                                <div className="list-item info-list-item" key={idx}>
-                                    <span className="text-secondary">{info.label}</span>
-                                    <span className="text-primary">
-                                        {displayData.length > 0 ? displayData.map((s, i) => (
-                                            <React.Fragment key={i}>
-                                                {s}{i < displayData.length - 1 && ', '}
-                                            </React.Fragment>
-                                        )) : <span className="text-muted">-</span>}
-                                    </span>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                // Only render if there's actual content to display
+                                if (displayData.length === 0) return null;
 
-                    {/* Saving Throws */}
-                    <div className="main-card-list">
-                        {Object.entries(char.saves).map(([key, save]) => {
-                            let profIcon = 'radio_button_unchecked';
-                            if (save.proficiency === 1) profIcon = 'circle';
-                            if (save.proficiency === 2) profIcon = 'adjust';
-                            else if (save.proficiency === 0.5) profIcon = 'circle_circle';
-                            return (
-                                <div className="list-item skill-list-item" key={key}>
-                                    <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
-                                    <div className="text-secondary">{save.stat.toUpperCase()}</div>
-                                    <div className="text-primary">Save</div>
-                                    <div className="text-secondary">
-                                        {save.adv && <AdvantageIndicator type="adv" />}
-                                        {save.dis && <AdvantageIndicator type="dis" />}
-                                        {formatBonus(save.bonus, true)}
+                                return (
+                                    <div className="list-item info-list-item" key={idx}>
+                                        <span className="text-secondary">{info.label}</span>
+                                        <span className="text-primary">
+                                            {displayData.map((s, i) => (
+                                                <React.Fragment key={i}>
+                                                    {s}{i < displayData.length - 1 && ', '}
+                                                </React.Fragment>
+                                            ))}
+                                        </span>
                                     </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+                    </mdui-card>
                 </div>
             </div>
 
-            {/* Resources (Chips) */}
-            <div className="main-card-row">
-                {sortedResources.length > 0 && (
-                    <div className="main-card-list resource-list">
-                        {sortedResources.map((res, i) => {
-                            const info = getIconInfo(res.id || res.name);
-                            return (
-                                <mdui-chip className="list-item resource-list-item" key={i}>
-                                    <mdui-icon name={info?.icon || 'circle'} class={`icon-${info?.color} icon-small`}></mdui-icon>
-                                    <div className="text-primary">{res.name || res.id}</div>
-                                    {Array(res.quantity).fill(0).map((_, j) => (
-                                        <mdui-icon key={j} name="radio_button_unchecked" class="icon-small"></mdui-icon>
-                                    ))}
-                                </mdui-chip>
-                            );
-                        })}
-                    </div>
-                )}
-            </div>
-        </mdui-card>
+
+        </div>
     );
 });

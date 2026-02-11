@@ -2,7 +2,7 @@ import { ExpressionEvaluator } from '../engine/RpgEngine';
 
 export const CATEGORIES = {
     origin: { title: 'Origin', terms: ['name', 'species', 'lineage', 'background', 'ancestry', 'legacy'], icon: 'person', order: 1 },
-    class: { title: 'Class', terms: ['class', 'level', 'subclass', 'maneuver'], icon: 'person', order: 2 },
+    class: { title: 'Class', terms: ['class', 'level', 'subclass', 'maneuver', 'order', 'classOption'], icon: 'person', order: 2 },
     feats: { title: 'Feats', terms: ['feat', 'epicboon', 'fightingstyle'], icon: 'emoji_events', order: 3 },
     spellcasting: { title: 'Spellcasting', terms: ['cantrip', 'spell'], icon: 'auto_fix_high', order: 4 },
     skills: { title: 'Skills', terms: ['proficiency'], icon: 'psychology', order: 7 },

@@ -16,7 +16,9 @@ export const BuilderScreen = ({
     handleClearSlot,
     handleGetSlotOptions,
     onNavigate,
-    onGetProperty
+    onGetProperty,
+    toggleTheme,
+    isDarkMode
 }) => {
     const availableCategories = React.useMemo(() =>
         getAvailableCategories(propertyTree, characterData),
@@ -41,25 +43,28 @@ export const BuilderScreen = ({
 
     return (
         <div className="container builder-screen">
-            <div className="header-nav">
-                <div className="header-nav-group">
 
-                    {orderedSteps.map(step => (
-                        <mdui-button
-                            key={step.key}
-                            variant={selectedCategory === step.key ? "filled" : "text"}
-                            onClick={() => setSelectedCategory(step.key)}
-                            icon={step.icon}
-                            className="nav-btn"
-                        >
-                            {step.label}
-                        </mdui-button>
-                    ))}
-                </div>
-                <div className="header-nav-group">
-                    <mdui-button variant="text" icon="print" onClick={() => onNavigate('print')}>Print</mdui-button>
-                    <mdui-button variant="tonal" icon="play_arrow" onClick={() => onNavigate('play')}>Play Now</mdui-button>
-                </div>
+            <mdui-top-app-bar variant="small">
+                <mdui-button-icon icon="menu" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
+                <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                <mdui-button variant="tonal" onClick={() => onNavigate('play')} icon="save">Save</mdui-button>
+                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
+            </mdui-top-app-bar>
+
+
+            <div className="header-nav">
+
+                {orderedSteps.map(step => (
+                    <mdui-button
+                        key={step.key}
+                        variant={selectedCategory === step.key ? "filled" : "text"}
+                        onClick={() => setSelectedCategory(step.key)}
+                        icon={step.icon}
+                        className="nav-btn"
+                    >
+                        {step.label}
+                    </mdui-button>
+                ))}
             </div>
 
             <div className="content builder-content">

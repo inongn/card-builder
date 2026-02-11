@@ -1,0 +1,14 @@
+id: dagger
+name: Dagger
+type: Reference
+tags: [item, weapon, simple]
+variables:
+  name: Dagger
+  mastery: nick
+  damageRoll: 1d4
+  damageType: piercing
+  range: 30 feet
+  classification: finesse
+  category: simple
+  property: light
+target: weaponAttack

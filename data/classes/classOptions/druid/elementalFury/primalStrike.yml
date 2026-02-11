@@ -1,0 +1,7 @@
+id: primalStrike
+name: Primal Strike
+tags: [elementalFury]
+type: Extra
+target: weaponAttack
+description: |
+  On a hit, deal an additional $(meta.level >= 15 ? "2d8" : "1d8") Cold, Fire, Lightning, or Thunder damage.

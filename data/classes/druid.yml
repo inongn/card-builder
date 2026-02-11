@@ -1,0 +1,174 @@
+id: druid
+name: Druid
+description: |
+  Druids belong to ancient orders that call on the forces of nature. Harnessing the magic of animals, plants, and the four elements, Druids heal, transform into animals, and wield elemental destruction.
+
+  Revering nature above all, individual Druids gain their magic from nature, a nature deity, or both, and they typically unite with other Druids to perform rites that mark the passage of the seasons and other natural cycles.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 8
+  - id: className
+    type: Effect
+    target: meta.class
+    operation: set
+    value: Druid
+  - type: Reference
+    value: [intSave, wisSave]
+  - type: Reference
+    value: [lightArmorTraining, shieldTraining, simpleWeaponProficiency]
+  - id: druidSkillProficiencies
+    type: Slot
+    name: Druid Skill Proficiencies
+    quantity: 2
+    target: arcanaProficiency OR animalHandlingProficiency OR insightProficiency OR medicineProficiency OR natureProficiency OR perceptionProficiency OR religionProficiency OR survivalProficiency
+  - id: spellcasting
+    type: Reference
+    target: [fullCaster, wisCaster]
+  - id: druidCantrips
+    type: Slot
+    name: Druid Cantrips
+    quantity: $(progression(2,2,2,3,3,3,3,3,3,4))
+    target: cantrip AND druid
+  - id: druidSpells
+    type: Slot
+    name: Druid Spells
+    variables:
+      maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
+    target: 'spell AND druid $(local.maxLevel < 9 ? ''NOT level9Spell'' : '''') $(local.maxLevel < 8 ? ''NOT level8Spell'' : '''') $(local.maxLevel < 7 ? ''NOT level7Spell'' : '''') $(local.maxLevel < 6 ? ''NOT level6Spell'' : '''') $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
+    quantity: $(progression(2, 4, 6, 7, 9, 10, 11, 12, 14, 15, 16, 16, 18, 19, 20, 20, 22, 22, 22, 22))
+
+  - id: druidic
+    type: Effect
+    target: attributes.languages
+    operation: push
+    value: druidic
+  - id: speakWithAnimals
+    type: Reference
+    target: SpeakWithAnimals
+  - id: primalOrder
+    type: Slot
+    name: Primal Order
+    quantity: 1
+    target: primalOrder
+  - id: wildShape
+    type: Resource
+    name: Wild Shape
+    tags: wildShape
+    quantity: $(progression(0,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4))
+    condition: $(meta.level >= 2)
+    sr: 1
+  - id: wildShape
+    type: Activity
+    name: Wild Shape
+    condition: $(meta.level >= 2)
+    time: bonus action
+    range: self
+    duration: $(meta.level / 2) hours
+    resource: wildShape
+    description: |
+      The power of nature allows you to assume the form of an animal. 
+      
+      **Temporary Hit Points.** You gain $(meta.level) Temporary Hit Points.
+
+      **Armor Class.** Your AC becomes $(10+stats.wis.mod).
+      
+      **Keen Senses.** You gain advantage on Wisdom (Perception) checks.
+      
+      **Beast Speed.** You gain a Climb, Swim or Fly speed of 40 feet.
+
+      **Bestial Strike**. You gain the Bestial Strike action.
+
+      $(meta.level < 18 ? "**No Spellcasting.** You can't cast spells, but shape-shifting doesn't break your Concentration or otherwise interfere with a spell you've already cast." : "")
+
+  - id: bestialStrike
+    type: Activity
+    name: Bestial Strike
+    time: action
+    range: 5 feet
+    duration: instantaneous
+    condition: $(meta.level >= 2)
+    tags: [weaponAttack]
+    description: |
+      While in Beast Shape, make a$(formatBonus(attributes.spellcasting.attack)) melee attack against a creature within range. On a hit, the target takes 1d8$(formatBonus(stats.wis.mod)) Bludgeoning, Piercing or Slashing damage.
+
+      $(meta.level >= 5 ? "**Multiattack.** You can make two Bestial Strike attacks instead of one." : "")    
+
+  - id: wildCompanion
+    type: Reference
+    target: findFamiliar
+    condition: $(meta.level >=2)
+    overwrite:
+      resource: level1SpellSlot / wildShape
+  - id: druidSubclass 
+    type: Slot
+    name: Druid Subclass
+    quantity: 1
+    target: druidSubclass
+    condition: $(meta.level >=3)
+  - id: feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - id: elementalFury
+    type: Slot
+    name: Elemental Fury
+    target: classOption OR elementalFury
+    quantity: 1
+    condition: $(meta.level >= 7)
+
+  - id: wildResurgenceWildShape
+    type: Activity
+    name: "Create Wild Shape"
+    time: free action
+    range: self
+    duration: instantaneous
+    description: Once on each of your turns, if you have no uses of Wild Shape left, you can give yourself one.
+    resource: [level1SpellSlot]
+    condition: $(meta.level >= 5)
+
+  - id: wildResurgenceSpellSlot
+    type: Activity
+    name: "Create Spell Slot"
+    time: free action
+    range: self
+    duration: instantaneous
+    description: Give yourself a level 1 spell slot.
+    resource: wildShape + wildResurgence
+    condition: $(meta.level >= 5)
+
+  - id: wildResurgence
+    type: Resource
+    name: Wild Resurgence
+    quantity: 1
+    condition: $(meta.level >= 5)
+
+  - id: natureMagician
+    type: Resource
+    name: Nature Magician
+    quantity: 1
+    condition: $(meta.level >= 20)
+
+  - id: natureMagician
+    type: Activity
+    name: Nature Magician
+    time: free action
+    range: self
+    duration: instantaneous
+    description: You can convert uses of Wild Shape into a spell slot. Choose a number of your unexpended uses of Wild Shape and convert them into a single spell slot, with each use contributing 2 spell levels. 
+    resource: wildShape + natureMagician
+    condition: $(meta.level >= 20)
+
+  - id: evergreenWildShape 
+    type: Activity
+    name: Evergreen Wild Shape
+    time: free action
+    range: self
+    duration: instantaneous
+    description: Whenever you roll Initiative and have no uses of Wild Shape left, you regain one expended use of it.
+    condition: $(meta.level >= 20)

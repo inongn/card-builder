@@ -193,6 +193,7 @@ children:
     value:
       attack: ''
       save: ''
+      bonus: ''
   - id: melee
     type: Attribute
     value:
@@ -353,13 +354,17 @@ children:
     proficiency: 0
 
   - type: Reference
-    reference: [longRest, shortRest, coreActions]
+    reference: [longRest, shortRest, coreActions, weaponProperties, extraProperties]
 
-
+    
+  - id: armor
+    type: Slot
+    name: Armor
+    target: item AND (heavyArmor OR mediumArmor OR lightArmor OR unarmored)
 
   - type: Resource
     id: hitDice
-    name: Hit Point Dice
+    name: Hit Dice
     quantity: $(meta.level)
     restore: Long Rest
   - id: species
@@ -379,11 +384,7 @@ children:
     name: Class
     target: class
     quantity: 1
-    
-  - id: armor
-    type: Slot
-    name: Armor
-    target: item AND (heavyArmor OR mediumArmor OR lightArmor OR unarmored)
+
   - id: mainHand
     type: Slot
     name: Weapons

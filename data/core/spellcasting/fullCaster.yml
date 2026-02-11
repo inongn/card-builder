@@ -2,52 +2,47 @@ type: Folder
 children:
   - type: Reference
     reference: level1SpellSlot
-    variables:
+    overwrite:
       quantity: $(progression(2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4))
   - type: Reference
     reference: level2SpellSlot
     condition: $(meta.level >= 3)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
   - type: Reference
     reference: level3SpellSlot
     condition: $(meta.level >= 5)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
   - type: Reference
     reference: level4SpellSlot
     condition: $(meta.level >= 7)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
   - type: Reference
     reference: level5SpellSlot
     condition: $(meta.level >= 9)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
   - type: Reference
     reference: level6SpellSlot
     condition: $(meta.level >= 11)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2))
   - type: Reference
     reference: level7SpellSlot
     condition: $(meta.level >= 13)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2))
   - type: Reference
     reference: level8SpellSlot
     condition: $(meta.level >= 15)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1))
   - type: Reference
     reference: level9SpellSlot
     condition: $(meta.level >= 17)
-    variables:
+    overwrite:
       quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1))
-  - type: Slot
-    variables:
-      maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
-    target: 'spell AND $(meta.class) $(local.maxLevel < 9 ? ''NOT level9Spell'' : '''') $(local.maxLevel < 8 ? ''NOT level8Spell'' : '''') $(local.maxLevel < 7 ? ''NOT level7Spell'' : '''') $(local.maxLevel < 6 ? ''NOT level6Spell'' : '''') $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
-    quantity: $(progression(2, 4, 6, 7, 9, 10, 11, 12, 14, 15, 16, 16, 18, 19, 20, 20, 22, 22, 22, 22))
 id: fullCaster
 name: Full Caster

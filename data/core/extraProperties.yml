@@ -1,0 +1,14 @@
+id: extraProperties
+name: Extra Properties
+type: Folder
+children:
+  - type: Extra
+    target: innateSR
+    id: innateSR
+    name: Innate
+    description: "You can take this action once per Short Rest without expending a resource."
+  - type: Extra
+    target: innateLR
+    id: innateLR
+    name: Innate
+    description: "You can take this action once per Long Rest without expending a resource."

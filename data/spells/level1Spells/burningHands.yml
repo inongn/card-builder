@@ -1,0 +1,14 @@
+id: burningHands
+type: Activity
+name: Burning Hands
+tags: [level1Spell, evocation, sorcerer, wizard, saveSpell, damageSpell]
+time: action
+range: self
+resource: level1SpellSlot
+duration: instantaneous
+description: |
+  A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.
+
+  Flammable objects in the Cone that aren’t being worn or carried start burning.
+
+  **Using a Higher-Level Spell Slot.** The damage increases by 1d6 for each spell slot level above 1.

@@ -7,9 +7,9 @@ import 'mdui/components/chip.js';
 // ============================================================================
 
 export const TERM_ICONS = {
-    'bonus action': { icon: 'change_history', color: 'bonus-action', shortName: 'Bonus Action' }, // Triangle
-    'free action': { icon: 'lens_blur', color: 'accent', shortName: 'Free Action' }, // Dashed circle/loader
-    'null': { icon: 'lens_blur', color: 'accent', shortName: 'Free Action' },
+    'bonus action': { icon: 'change_history', color: 'bonus-action', shortName: 'Bonus' }, // Triangle
+    'free action': { icon: 'lens_blur', color: 'accent', shortName: 'Free' }, // Dashed circle/loader
+    'null': { icon: 'lens_blur', color: 'accent', shortName: 'Free' },
     'action': { icon: 'circle', color: 'action', shortName: 'Action' },
     'reaction': { icon: 'flare', color: 'reaction', shortName: 'Reaction' }, // Sparkle
     'ritual': { icon: 'self_improvement', color: 'accent', shortName: 'Ritual' },
@@ -26,10 +26,11 @@ export const TERM_ICONS = {
     'force': { icon: 'flare', color: 'force', shortName: 'Force' },
     'thunder': { icon: 'graphic_eq', color: 'thunder', shortName: 'Thunder' }, // Waveform
     'psychic': { icon: 'psychology', color: 'psychic', shortName: 'Psychic' },
-    'Instantaneous': { icon: 'bolt', color: 'accent', shortName: 'Instantaneous' },
+    'instantaneous': { icon: 'bolt', color: 'accent', shortName: 'Instant' },
     'healing': { icon: 'favorite', color: 'healing', shortName: 'Healing' },
 
     'concentration': { icon: 'psychology', color: 'accent', shortName: 'Concentration' },
+    'spellSlot': { icon: 'filter_none', color: 'spell-slot', shortName: 'Spell Slot' },
     'level1SpellSlot': { icon: 'filter_1', color: 'spell-slot', shortName: 'Spell Slot' },
     'level2SpellSlot': { icon: 'filter_2', color: 'spell-slot', shortName: 'Spell Slot' },
     'level3SpellSlot': { icon: 'filter_3', color: 'spell-slot', shortName: 'Spell Slot' },
@@ -52,12 +53,21 @@ export const TERM_ICONS = {
     'sneak': { icon: 'colorize', color: 'fire', shortName: 'Sneak' }, // Closest to dagger/pointy
     'rage': { icon: 'show_chart', color: 'fire', shortName: 'Rage' }, // Pulse alternative
     'bardicInspiration': { icon: 'music_note', color: 'healing', shortName: 'Bardic Inspiration' },
-    'wildShape': { icon: 'pets', color: 'healing', shortName: 'Wild Shape' },
+    'wildShape': { icon: 'pets', color: 'action', shortName: 'Wild Shape' },
+    'naturalRecoveryRestore': { icon: 'hive', color: 'healing', shortName: 'Natural Recovery: Restore' },
+    'naturalRecoveryCast': { icon: 'spa', color: 'healing', shortName: 'Natural Recovery: Cast' },
+    'wildResurgence': { icon: 'nature', color: 'fire', shortName: 'Wild Resurgence' },
+    'natureMagician': { icon: 'auto_awesome', color: 'fire', shortName: 'Nature Magician' },
     'innateSorcery': { icon: 'magic_button', color: 'radiant', shortName: 'Innate Sorcery' },
     'sorceryPoints': { icon: 'brightness_low', color: 'radiant', shortName: 'Sorcery Points' },
     'pactMagicSpellSlot': { icon: 'square', color: 'spell-slot', shortName: 'Spell Slots' },
     'darkOnesLuck': { icon: 'show_chart', color: 'fire', shortName: 'Dark One\'s Luck' },
     'psionicEnergyDice': { icon: 'casino', color: 'psychic', shortName: 'Psionic Die' }, // Geometric shape for dice
+    'telekineticMovement': { icon: 'control_camera', color: 'psychic', shortName: 'Telekinetic Movement' }, // Geometric shape for dice
+    'psiPoweredLeap': { icon: 'redo', color: 'psychic', shortName: 'Psi Powered Leap' },
+    'guardedMind': { icon: 'shield', color: 'psychic', shortName: 'Guarded Mind' },
+    'bulwarkOfForce': { icon: 'cyclone', color: 'psychic', shortName: 'Bulwark of Force' },
+    'telekineticMaster': { icon: 'front_hand', color: 'psychic', shortName: 'Telekinesis' },
     'superiorityDice': { icon: 'casino', color: 'fire', shortName: 'Superiority Die' },
     'breathWeapon': { icon: 'airwave', color: 'action', shortName: 'Breath Weapon' },
     'indomitable': { icon: 'emoji_events', color: 'radiant', shortName: 'Indomitable' },
@@ -82,11 +92,6 @@ export const TERM_PATTERN = new RegExp(`\\b(${TERM_KEYS.join('|')})\\b`, 'gi');
 // HELPER FUNCTIONS
 // ============================================================================
 
-export const getIconInfo = (text) => {
-    if (!text) return null;
-    const termKey = text.toLowerCase().replace(/\s+/g, '');
-    return NORM_ICONS[termKey] || null;
-};
 
 export const sortDescription = (lines) => {
     if (!Array.isArray(lines)) return lines;
@@ -106,15 +111,19 @@ export const sortDescription = (lines) => {
     });
 };
 
-const translateText = (text) => {
-    if (!text) return '';
-    return text;
+
+export const getIconInfo = (text) => {
+    if (!text) return null;
+    const termKey = text.toLowerCase().replace(/\s+/g, '');
+    return NORM_ICONS[termKey] || null;
 };
 
 export const renderGridValue = (text, type = 'range', showLabel = true) => {
     if (!text) return null;
 
+
     let str = String(text);
+
     const parts = [];
     let lastIndex = 0;
     const regex = new RegExp(TERM_PATTERN, 'gi');
@@ -197,12 +206,6 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
                 </mdui-chip>
             );
         }
-
-        return (
-            <div className="grid-value-chip" title={content}>
-                <mdui-icon name={firstIcon.icon} class={`icon-${iconColor}`}></mdui-icon>
-            </div>
-        );
     }
 
     // No icon found case
@@ -214,10 +217,83 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
             </mdui-chip>
         );
     }
+};
 
+export const renderIcon = (text, showText = true) => {
+    if (!text) return null;
+
+    let str = Array.isArray(text) ? text.join(' / ') : String(text);
+
+    const parts = [];
+    let lastIndex = 0;
+    const regex = new RegExp(TERM_PATTERN, 'gi');
+    let match;
+
+    while ((match = regex.exec(str)) !== null) {
+        // Add text before the match
+        if (match.index > lastIndex) {
+            parts.push({
+                type: 'text',
+                content: str.slice(lastIndex, match.index)
+            });
+        }
+
+        const info = getIconInfo(match[0]);
+        if (info) {
+            parts.push({
+                type: 'icon',
+                info: info,
+                originalText: match[0]
+            });
+        } else {
+            parts.push({
+                type: 'text',
+                content: match[0]
+            });
+        }
+
+        lastIndex = regex.lastIndex;
+    }
+
+    // Add remaining text after last match
+    if (lastIndex < str.length) {
+        parts.push({
+            type: 'text',
+            content: str.slice(lastIndex)
+        });
+    }
+
+    // Render the parts
     return (
-        <div className="grid-value-chip" title={str}>
-            <mdui-icon name={primaryIcon} class="icon-accent"></mdui-icon>
-        </div>
+        <>
+            {parts.map((part, index) => {
+                if (part.type === 'text') {
+                    return <span key={index}>{part.content}</span>;
+                } else if (part.type === 'icon') {
+                    const iconElement = (
+                        <mdui-icon
+                            key={`icon-${index}`}
+                            name={part.info.icon}
+                            class={`icon-${part.info.color}`}
+                            style={{ verticalAlign: 'middle' }}
+                        ></mdui-icon>
+                    );
+
+                    if (showText) {
+                        // Insert icon before the text
+                        return (
+                            <span key={index}>
+                                {iconElement}
+                                <span>{part.originalText}</span>
+                            </span>
+                        );
+                    } else {
+                        // Replace text with icon only
+                        return iconElement;
+                    }
+                }
+                return null;
+            })}
+        </>
     );
 };

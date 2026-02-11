@@ -35,16 +35,15 @@ body {
   background-color: var(--mdui-color-surface);
   color: var(--mdui-color-on-surface);
   font-family: Roboto, system-ui, sans-serif;
-  height: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
 
-.app-main-layout {
-  height: 100vh;
-  overflow: scroll;
-  scrollbar-width: none;
+
+p {
+  margin: var(--gap-xs);
 }
+
 
 /* ==========================================================================
    PLAY SCREEN
@@ -54,8 +53,35 @@ body {
 
 .play-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1.6fr 1fr;
+  overflow: hidden;
   gap: var(--gap-md);
+  align-items: start;
+}
+
+
+
+.aside-card {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.aside-card-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.inner-card {
+  padding: var(--gap-xs);
+  min-height: min-content;
+}
+
+.info-card {
+  flex: 1;
 }
 
 /* Action Cards*/
@@ -63,9 +89,14 @@ body {
 .card-container {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-sm);
   padding: var(--gap-md);
   overflow: visible !important;
+}
+
+.pseudo-card {
+  background: rgb(var(--mdui-color-surface-container-highest), 1);
+  border-radius: var(--mdui-shape-corner-medium);
+  margin-bottom: var(--gap-sm);
 }
 
 .card-header {
@@ -80,21 +111,32 @@ body {
 .card-title {
   grid-column: span 5;
   font-size: 1.25rem;
-  font-weight: 500;
   font-family: "Google Sans", sans-serif;
 }
 
 
+.title-primary {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: "Google Sans", sans-serif;
+  padding: var(--gap-sm);
+}
+
 .card-meta {
   grid-column: span 1;
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.card-meta-resource {
+  display: flex;
+  gap: var(--gap-xs);
+  align-items: center;
 }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-sm);
   text-align: center;
   margin: var(--gap-sm) 0;
 }
@@ -111,7 +153,12 @@ body {
 
 mdui-chip {
   margin: 2px;
+  padding: 0;
+  flex-grow: 1;
+  text-align: center;
 }
+
+
 
 .card-description {
   font-size: 0.95rem;
@@ -134,10 +181,12 @@ mdui-chip {
 }
 
 .main-card {
-  padding: var(--gap-md);
   display: flex;
   flex-direction: column;
-  gap: var(--gap-md);
+  gap: var(--gap-sm);
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .main-card-row {
@@ -145,6 +194,7 @@ mdui-chip {
   grid-template-columns: repeat(6, 1fr);
   gap: var(--gap-sm);
 }
+
 
 .main-card-column {
   grid-column: span 3;
@@ -154,9 +204,6 @@ mdui-chip {
 }
 
 .main-card-box {
-  border: 1px solid var(--mdui-color-outline-variant);
-  border-radius: 12px;
-  padding: var(--gap-sm);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,12 +228,6 @@ mdui-chip {
   opacity: 0.8;
 }
 
-.main-card-box-hp {
-  background-color: var(--mdui-color-primary-container);
-  color: var(--mdui-color-on-primary-container);
-  border: none;
-  flex: 1;
-}
 
 .main-card-box-hp-row {
   display: grid;
@@ -201,12 +242,6 @@ mdui-chip {
   gap: var(--gap-sm);
 }
 
-.main-card-list {
-  border: 1px solid var(--mdui-color-outline-variant);
-  border-radius: 12px;
-  overflow: hidden;
-
-}
 
 .main-card-list.resource-list {
   grid-column: span 6;
@@ -220,29 +255,41 @@ mdui-chip {
   display: grid;
   align-items: center;
   font-size: 0.9rem;
-}
-
-
-.list-item.skill-list-item {
-  grid-template-columns: auto 30px 1fr auto;
   gap: var(--gap-sm);
 }
 
-.list-item.resource-list-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding: 0;
+
+.saves-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.list-item.skill-list-item {
+  grid-template-columns: 30px 18px 20px auto;
+  gap: var(--gap-sm);
+}
+
+.list-item.saves-list-item {
+  grid-template-columns: 20px 20px auto;
+  gap: var(--gap-xs);
 }
 
 
-.list-item.resource-list-item>.text-primary {
-  padding: 0 var(--gap-sm);
+.list-item.resource-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.resource-dots {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: auto;
+  justify-content: flex-end;
 }
 
 .list-item.info-list-item {
   grid-template-columns: auto 1fr;
+  justify-items: end;
   gap: 12px;
 }
 
@@ -253,8 +300,11 @@ mdui-chip {
 
 .text-primary {
   color: var(--mdui-color-primary);
-  font-weight: 700;
+  font-weight: bold;
   width: max-content;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
 }
 
 .text-secondary {
@@ -341,7 +391,7 @@ mdui-chip {
   font-size: 0.7rem;
   font-weight: 800;
   border-radius: 4px;
-  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .adv-dis-indicator.adv {
@@ -367,8 +417,11 @@ mdui-chip {
 
 .important-number {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: bold;
   text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 /* ==========================================================================
@@ -376,10 +429,27 @@ mdui-chip {
    ========================================================================== */
 
 /* This class can be applied to a container to simulate print layout in browser */
+
+
+
 .print-mode .print-view {
   display: block;
   background: #f0f0f0;
   padding: 20px;
+}
+
+.print-mode .main-card {
+  padding: var(--gap-md);
+}
+
+.print-mode .main-card-column {
+  grid-column: span 3;
+}
+
+.print-content {
+  width: 100%;
+  scale: clamp(0.3, 95vw / 11in, 1);
+  transform-origin: top left;
 }
 
 .print-mode .print-page {
@@ -426,8 +496,6 @@ mdui-chip {
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
-  padding: var(--gap-sm) !important;
-  gap: 0;
 }
 
 .print-mode .card-header {
@@ -468,9 +536,31 @@ mdui-chip {
   border-style: solid !important;
 }
 
+.print-mode mdui-chip {
+  background-color: white !important;
+  color: black !important;
+  font-size: 0.8rem !important;
+}
+
+.print-mode .icon-accent {
+  color: black !important;
+}
+
+.print-mode .show-on-print {
+  display: block !important;
+}
+
+.print-mode .hide-on-print {
+  display: none !important;
+}
+
 /* ==========================================================================
    PRINT SPECIFIC OVERRIDES
    ========================================================================== */
+
+.show-on-print {
+  display: none !important;
+}
 
 @media print {
   @page {
@@ -502,8 +592,14 @@ mdui-chip {
   .preview-container,
   .saved-characters-view,
   .loading-screen,
-  mdui-fab {
+  .header-nav,
+  mdui-fab,
+  .hide-on-print {
     display: none !important;
+  }
+
+  .show-on-print {
+    display: block !important;
   }
 
   /* Clear inline paddings from wrappers */
@@ -534,6 +630,10 @@ mdui-chip {
     position: relative !important;
   }
 
+  .print-content {
+    scale: 1;
+  }
+
   .print-page:last-child {
     page-break-after: avoid !important;
     break-after: avoid !important;
@@ -545,9 +645,6 @@ mdui-chip {
   }
 
 
-  p {
-    margin: 0;
-  }
 }
 
 
@@ -559,7 +656,7 @@ mdui-chip {
    ========================================================================== */
 
 .container {
-  padding: var(--gap-lg);
+  padding: 0 var(--gap-lg);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -567,13 +664,16 @@ mdui-chip {
 .header-nav {
   display: flex;
   padding: var(--gap-lg) 0;
-  justify-content: space-between;
-}
-
-.header-nav-group {
-  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  overflow-y: hidden;
+  width: min-content;
+  max-width: 100%;
+  margin: auto;
   gap: var(--gap-sm);
 }
+
+
 
 
 /* ==========================================================================
@@ -653,8 +753,10 @@ mdui-chip {
 
 .builder-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--gap-md);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 
@@ -665,7 +767,6 @@ mdui-chip {
 
 .debug-yaml-container {
   padding: var(--gap-md);
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -703,7 +804,7 @@ mdui-select::part(menu) {
    RESPONSIVENESS
    ========================================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 890px) {
   .mobile-hidden {
     display: none !important;
   }
@@ -713,11 +814,20 @@ mdui-select::part(menu) {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--gap-md);
+    overflow: visible;
+  }
+
+  .main-card-column {
+    grid-column: span 6;
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 891px) {
   .desktop-hidden {
     display: none !important;
+  }
+
+  .aside-card {
+    height: calc(100vh - 64px);
   }
 }
