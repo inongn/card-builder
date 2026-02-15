@@ -1,0 +1,7 @@
+id: knowledgeReligion
+name: Religion Proficiency
+type: Folder
+tags: [knowledgeSkillProficiency]
+children:
+  - type: Reference
+    target: [religionProficiency, religionExpertise]

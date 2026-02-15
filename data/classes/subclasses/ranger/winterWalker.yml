@@ -1,0 +1,84 @@
+id: winterWalker
+name: Winter Walker
+description: |
+  Winter Walkers hone their craft in the bleak and frozen wilds of places like Icewind Dale. These ruthless, rimed Rangers hunt monsters that haunt arctic wastelands, eventually becoming frigid terrors themselves.
+tags:
+  - rangerSubclass
+type: Folder
+children:
+  # Level 3: Frigid Explorer
+  - id: frigidExplorerBitingCold
+    type: Extra
+    name: Biting Cold
+    target: (cantrip OR level1Spell OR level2Spell OR level3Spell OR level4Spell OR level5Spell OR level6Spell OR level7Spell OR level8Spell OR level9Spell) AND coldDamage
+    description: "This damage ignores Resistance to Cold damage."
+  - type: Reference
+    target: coldResistance
+  - id: polarStrikes
+    type: Extra
+    name: Polar Strikes
+    target: attack
+    description: "On a hit, once per turn, deal an extra $(meta.level >= 11 ? '1d6' : '1d4') Cold damage to the target. This damage ignores Resistances."
+
+  # Level 3: Hunter's Rime
+  - id: huntersRime
+    type: Extra
+    name: Hunter's Rime
+    target: huntersMark
+    description: "When you cast this spell, gain 1d10+$(meta.level) Temporary Hit Points. While a creature is marked by this spell, it can't take the Disengage action."
+
+  # Level 3: Winter Walker Spells
+  - type: Reference
+    target: iceKnife
+  - type: Reference
+    target: holdPerson
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: removeCurse
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target: iceStorm
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target: coneOfCold
+    condition: $(meta.level >= 17)
+
+  # Level 7: Fortifying Soul
+  - id: fortifyingSoul
+    type: Activity
+    name: Fortifying Soul
+    time: action
+    range: self
+    duration: 1 hour
+    condition: $(meta.level >= 7)
+    tags: [limitedLR]
+    description: "You choose $(Math.max(1, stats.wis.mod)) creatures you can see. Each chosen creature regains 1d10+$(meta.level) Hit Points and has Advantage on saving throws to avoid or end the Frightened condition for 1 hour."
+
+  # Level 11: Chilling Retribution
+  - id: chillingRetribution
+    type: Activity
+    name: Chilling Retribution
+    time: reaction
+    range: self
+    duration: 1 turn
+    condition: $(meta.level >= 11)
+    resource: chillingRetribution
+    description: "When a creature hits you with an attack roll, the creature makes a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failure, the target has the Stunned condition until the end of your next turn. While Stunned, its Speed is reduced to 0 feet."
+  - id: chillingRetribution
+    type: Resource
+    name: Chilling Retribution
+    quantity: $(Math.max(1, stats.wis.mod))
+
+  # Level 15: Frozen Haunt
+  - id: frozenHaunt
+    type: Activity
+    name: Frozen Haunt
+    condition: $(meta.level >= 15)
+    tags: [innateLR]
+    resource: level4SpellSlot
+    description: |
+      When you cast Hunter's Mark, you adopt a ghostly, snowy form. This form lasts until the spell ends. While you are in this form, you gain the following benefits:
+      
+      **Frozen Soul.** You have Immunity to Cold damage. When you first adopt this form and at the start of each of your subsequent turns, each creature of your choice in a 15-foot Emanation originating from you takes 2d4 Cold damage. 
+      
+      **Partially Incorporeal.** You have Immunity to the Grappled, Prone, and Restrained conditions. You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside a creature or an object."

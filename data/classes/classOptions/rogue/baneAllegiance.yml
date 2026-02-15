@@ -1,0 +1,10 @@
+id: baneAllegiance
+name: "Bane Allegiance"
+tags:
+  - dreadAllegiance
+type: Folder
+children:
+  - type: Reference
+    target: psychicResistance
+  - type: Reference
+    target: minorIllusion

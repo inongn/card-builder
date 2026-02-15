@@ -1,0 +1,10 @@
+id: shield
+name: Shield
+type: Folder
+condition: "$(attributes.proficiencies.includes('shieldTraining'))"
+tags: [offHand, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: add
+    value: 2

@@ -3,7 +3,7 @@ import React, { useState, useLayoutEffect, useRef } from 'react';
 /**
  * A component that scales its font size down until it fits its container.
  */
-export const AutoFitContent = ({ children, maxFontSize = 0.8, minFontSize = 0.45, step = 0.01, unit = 'rem' }) => {
+export const AutoFitContent = ({ children, maxFontSize = 1, minFontSize = 0.45, step = 0.005, unit = 'rem' }) => {
     const containerRef = useRef(null);
     const innerRef = useRef(null);
 
@@ -16,7 +16,7 @@ export const AutoFitContent = ({ children, maxFontSize = 0.8, minFontSize = 0.45
             const containerHeight = container.offsetHeight;
             if (containerHeight <= 0) {
                 // Wait for layout
-                setTimeout(fit, 100);
+                setTimeout(fit, 1);
                 return;
             }
 
@@ -37,7 +37,7 @@ export const AutoFitContent = ({ children, maxFontSize = 0.8, minFontSize = 0.45
         resizeObserver.observe(container);
 
         // Web components and flex layouts might take a moment to settle
-        const timer = setTimeout(fit, 100);
+        const timer = setTimeout(fit, 1);
 
         return () => {
             resizeObserver.disconnect();

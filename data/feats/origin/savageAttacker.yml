@@ -4,5 +4,5 @@ tags:
   - feat
   - originFeat
 type: Extra
-target: weapon
-description: On a hit, roll the weapon's damage dice twice and use either roll against the target.
+target: weaponAttack
+description: On a hit, roll the damage dice twice and use either roll against the target.

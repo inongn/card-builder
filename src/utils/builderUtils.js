@@ -2,16 +2,15 @@ import { ExpressionEvaluator } from '../engine/RpgEngine';
 
 export const CATEGORIES = {
     origin: { title: 'Origin', terms: ['name', 'species', 'lineage', 'background', 'ancestry', 'legacy'], icon: 'person', order: 1 },
-    class: { title: 'Class', terms: ['class', 'subclass', 'maneuver', 'order', 'classOption'], icon: 'person', order: 2 },
+    class: { title: 'Class', terms: ['class', 'level', 'subclass', 'maneuver', 'order', 'classOption'], icon: 'person', order: 2 },
     feats: { title: 'Feats', terms: ['feat', 'epicboon', 'fightingstyle'], icon: 'emoji_events', order: 3 },
     spellcasting: { title: 'Spellcasting', terms: ['cantrip', 'spell'], icon: 'auto_fix_high', order: 4 },
-    skills: { title: 'Skills', terms: ['proficiency'], icon: 'psychology', order: 7 },
-    expertise: { title: 'Expertise', terms: ['expertise'], icon: 'workspace_premium', order: 8 },
+    skills: { title: 'Skills', terms: ['proficiency', 'expertise'], icon: 'psychology', order: 7 },
     equipment: { title: 'Equipment', terms: ['armor', 'weapon', 'hand'], icon: 'shield', order: 9 },
     stats: { title: 'Abilities', terms: ['str', 'dex', 'con', 'int', 'wis', 'cha', 'allocated', 'origin_', 'asi_'], icon: 'fitness_center', order: 10 }
 };
 
-export const MATCHING_ORDER = ['spellcasting', 'class', 'origin', 'feats', 'expertise', 'skills', 'equipment', 'stats'];
+export const MATCHING_ORDER = ['spellcasting', 'feats', 'class', 'origin', 'skills', 'equipment', 'stats'];
 
 export const collectRenderableNodes = (node, char, path = []) => {
     const nodes = [];

@@ -1,0 +1,12 @@
+id: devouringBlade
+name: Devouring Blade
+tags:
+  - eldritchInvocation
+condition: $(attributes.pactOfTheBlade == true && meta.level >= 12)
+type: Folder
+children:
+  - id: extraAttack
+    type: Effect
+    target: activities[mainHand].description
+    operation: set
+    value: "You strike three times. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."

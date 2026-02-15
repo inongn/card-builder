@@ -1,0 +1,8 @@
+id: agonizingBlast
+name: Agonizing Blast
+tags:
+  - eldritchInvocation
+type: Extra
+target: eldritchBlast
+condition: $(meta.level >= 2 && active.eldritchBlast)
+description: "The target takes an additional $(stats.cha.mod) Force to damage."

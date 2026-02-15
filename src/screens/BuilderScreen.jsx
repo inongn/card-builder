@@ -60,7 +60,7 @@ export const BuilderScreen = ({
             <mdui-top-app-bar variant="small">
                 <mdui-button-icon icon="arrow_back" onClick={() => onNavigate(builderSource)}></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                <mdui-button variant="tonal" onClick={onSave} icon="save" disabled={!isComplete || undefined}>Save</mdui-button>
+                <mdui-button variant="filled" onClick={onSave} icon="save" disabled={undefined}>Save</mdui-button>
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
             </mdui-top-app-bar>
 

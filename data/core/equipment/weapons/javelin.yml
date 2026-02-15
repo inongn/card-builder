@@ -1,8 +1,10 @@
 id: javelin
 name: Javelin
-type: Reference
-tags: [item, weapon, simple]
-variables:
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [simple]
+value:
   name: Javelin
   mastery: slow
   damageRoll: 1d6
@@ -10,4 +12,4 @@ variables:
   range: 30 feet
   classification: thrown
   category: simple
-target: weaponAttack
+  property: ''

@@ -1,7 +1,8 @@
 tags:
   - fightingStyle
 type: Effect
-target: cards[light AND offHand].extra
-operation: push
-value: data.feats.fightingStyles.twoWeaponFighting.datafeatsfightingstylestwoweaponfightingname.value
-id: data.feats.fightingStyles.twoWeaponFighting
+target: activities[offHand].description
+operation: set
+value: "You strike with your secondary weapon. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against a creature within range. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+id: twoWeaponFighting
+name: Two Weapon Fighting

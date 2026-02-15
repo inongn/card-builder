@@ -1,0 +1,11 @@
+id: twinnedSpell
+name: Twinned Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - id: twinnedSpellActivity
+    type: Activity
+    name: Twinned Spell
+    resource: sorceryPoints
+    description: "When you cast a spell, such as Charm Person, that can be cast with a higher-level spell slot to target an additional creature, you increase the spell’s effective level by 1."

@@ -2,7 +2,7 @@ type: Effect
 tags:
   - damageResistance
 operation: push
-value: cold
+value: Cold Damage
 target: attributes.resistances
 id: coldResistance
 name: Cold Resistance

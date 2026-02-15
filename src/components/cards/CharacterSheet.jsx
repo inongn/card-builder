@@ -8,7 +8,9 @@ import 'mdui/components/chip.js';
 import 'mdui/components/icon.js';
 
 
-export const CharacterSheet = memo(({ char, onNavigate, className }) => {
+export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, className }, ref) => {
+    const RESOURCE_WRAP_THRESHOLD = 10;
+
     const sortedResources = useMemo(() => {
         if (!char || !char.resources) return [];
 
@@ -24,6 +26,13 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
             }
         });
 
+        const getSortValue = (res) => {
+            const q = res.quantity || 0;
+            if (q <= RESOURCE_WRAP_THRESHOLD) return q;
+            const rows = Math.ceil(q / RESOURCE_WRAP_THRESHOLD);
+            return Math.ceil(q / rows);
+        };
+
         spellSlots.sort((a, b) => {
             const levelA = parseInt((a.id || '').match(/\d+/)?.[0] || '0');
             const levelB = parseInt((b.id || '').match(/\d+/)?.[0] || '0');
@@ -31,9 +40,16 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
         });
 
         otherResources.sort((a, b) => {
+            const valA = getSortValue(a);
+            const valB = getSortValue(b);
+
+            if (valB !== valA) return valB - valA;
+
+            // If horizontal space is the same, sort by total quantity
             const qA = a.quantity || 0;
             const qB = b.quantity || 0;
             if (qB !== qA) return qB - qA;
+
             return (a.name || '').localeCompare(b.name || '');
         });
 
@@ -43,7 +59,7 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
     if (!char) return null;
 
     return (
-        <div className={`main-card ${className || ''}`}>
+        <div ref={ref} className={`main-card ${className || ''}`}>
             {/* Header: Name and Level Info */}
 
 
@@ -92,6 +108,7 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
                                     <div className="text-primary">
                                         {skill.adv && <AdvantageIndicator type="adv" />}
                                         {skill.dis && <AdvantageIndicator type="dis" />}
+                                        {skill.min && <AdvantageIndicator type="min" value={skill.min} />}
                                         {skill.name}</div>
                                 </div>
                             );
@@ -109,11 +126,14 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
                                     <div className="list-item saves-list-item" key={key}>
                                         <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                         <div className="text-secondary">
-                                            {save.adv && <AdvantageIndicator type="adv" />}
-                                            {save.dis && <AdvantageIndicator type="dis" />}
                                             {formatBonus(save.bonus, true)}
                                         </div>
-                                        <div className="text-secondary">{save.stat.toUpperCase() + " Save"}</div>
+                                        <div className="text-secondary">
+                                            {save.adv && <AdvantageIndicator type="adv" />}
+                                            {save.dis && <AdvantageIndicator type="dis" />}
+                                            {save.min && <AdvantageIndicator type="min" value={save.min} />}
+                                            {save.stat.toUpperCase() + " Save"}
+                                        </div>
                                     </div>
                                 );
                             })}
@@ -152,9 +172,9 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
                             <div className="text-secondary">Class</div>
                         </mdui-card>
                         <mdui-card variant="filled" className="inner-card main-card-box">
-                            <div className="text-secondary">MOVEMENT</div>
+                            <div className="text-secondary">Movement</div>
                             <div className="important-number">{char.attributes.movement.walk}</div>
-                            <div className="text-secondary">SPEED</div>
+                            <div className="text-secondary">Speed</div>
                         </mdui-card>
                     </div>
                     {/* Resources List */}
@@ -163,13 +183,26 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
                             <div className="main-card-list">
                                 {sortedResources.map((res, i) => {
                                     const info = getIconInfo(res.id || res.name);
+                                    const q = res.quantity || 0;
+                                    const rows = q > RESOURCE_WRAP_THRESHOLD ? Math.ceil(q / RESOURCE_WRAP_THRESHOLD) : 1;
+                                    const dotsPerRow = Math.max(1, Math.ceil(q / rows));
+
                                     return (
                                         <div className="list-item resource-list-item" key={i}>
                                             <mdui-icon name={info?.icon || 'circle'} class={`icon-${info?.color} icon-small`}></mdui-icon>
                                             <div className="text-primary">{res.name || res.id}</div>
-                                            <div className="resource-dots">
-                                                {Array(res.quantity).fill(0).map((_, j) => (
-                                                    <mdui-icon key={j} name="crop_square" style={{ transform: 'rotate(45deg)' }} class="icon-small"></mdui-icon>
+                                            <div
+                                                className="resource-dots"
+                                                style={{
+                                                    display: 'grid',
+                                                    gridTemplateColumns: `repeat(${dotsPerRow}, auto)`,
+                                                    justifyItems: 'end',
+                                                    direction: 'rtl',
+                                                    gap: '2px'
+                                                }}
+                                            >
+                                                {Array(q).fill(0).map((_, j) => (
+                                                    <mdui-icon key={j} name="crop_square" style={{ transform: 'rotate(45deg)', direction: 'ltr' }} class="icon-small"></mdui-icon>
                                                 ))}
                                             </div>
                                         </div>
@@ -225,4 +258,4 @@ export const CharacterSheet = memo(({ char, onNavigate, className }) => {
 
         </div>
     );
-});
+}));

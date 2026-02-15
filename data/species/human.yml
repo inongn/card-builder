@@ -16,7 +16,7 @@ children:
     name: Resourceful
     description: You gain Heroic Inspiration.
   - id: skillful
-    name: Skillful
+    name: Skillful Skill Proficiency
     type: Slot
     target: skillProficiency
     quantity: 1

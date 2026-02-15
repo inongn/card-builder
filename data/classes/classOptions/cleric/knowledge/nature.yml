@@ -1,0 +1,8 @@
+id: knowledgeNature
+name: Nature Proficiency
+type: Folder
+tags:
+  - knowledgeSkillProficiency
+children:
+  - type: Reference
+    target: [natureProficiency, natureExpertise]

@@ -1,0 +1,16 @@
+id: potentSpellcasting
+name: Potent Spellcasting
+type: Folder
+tags:
+  - blessedStrikes
+children:
+  - id: potentSpellcastingDamage
+    type: Extra
+    target: cantrip AND cleric AND damageSpell 
+    value: "The target takes an extra $(stats.wis.mod) damage."
+  - id: potentSpellcastingVitality
+    type: Extra
+    name: Potent Spellcasting
+    target: cantrip AND cleric AND damageSpell
+    condition: $(meta.level >= 14)
+    description: "When you deal damage to a creature with this spell, grant $(2 * stats.wis.mod) Temporary Hit Points to yourself or another creature within 60 feet."

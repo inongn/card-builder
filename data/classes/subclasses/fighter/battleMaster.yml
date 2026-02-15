@@ -1,0 +1,45 @@
+id: battleMaster
+name: Battle Master
+description: |
+  Battle Masters are students of the art of battle, learning martial techniques passed down through generations. The most accomplished Battle Masters are well-rounded figures who combine their carefully honed combat skills with academic study in the fields of history, theory, and the arts.
+tags:
+  - fighterSubclass
+type: Folder
+children:
+  - id: superiorityDie
+    type: Attribute
+    value: "$(meta.level >= 18 ? 12 : meta.level >= 10 ? 10 : 8)"
+  - id: superioritySave
+    type: Attribute
+    value: "$(8 + attributes.prof + Math.max(stats.str.mod, stats.dex.mod))"
+  - id: maneuvers
+    type: Slot
+    name: Maneuvers
+    target: classOption OR maneuver
+    quantity: "$(progression(0,0,3,3,3,3,5,5,5,7,7,7,7,7,9))"
+  - id: studentOfWar
+    name: Student of War Skill Proficiency
+    type: Slot
+    target: acrobaticsProficiency OR animalHandlingProficiency OR athleticsProficiency OR historyProficiency OR insightProficiency OR intimidationProficiency OR persuasionProficiency OR perceptionProficiency OR survivalProficiency
+    quantity: 1
+  - id: superiorityDice
+    name: Superiority Dice
+    type: Resource
+    quantity: "$(meta.level >= 15 ? 6 : meta.level >= 7 ? 5 : 4)"
+    sr: all
+  - id: knowYourEnemy
+    name: Know Your Enemy
+    type: Activity
+    time: bonus action
+    tags: [innateLR]
+    range: 30 feet
+    resource: superiorityDice
+    condition: $(meta.level >= 7)
+    description: "You discern certain strengths and weaknesses of a creature you can see within range. You know whether that creature has any Immunities, Resistances, or Vulnerabilities, and if the creature has any, you know what they are."
+  - id: relentless
+    name: Relentless
+    type: Extra
+    target: maneuver
+    description: "You can roll 1d8 and use the number rolled instead of expending a Superiority Die."
+    condition: $(meta.level >= 15)
+    

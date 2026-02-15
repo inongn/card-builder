@@ -2,8 +2,9 @@ id: weaponProperties
 name: Weapon Properties
 type: Folder
 children:
-  - type: Extra
-    target: light
-    id: light
-    name: Light
-    description: "You can make one extra attack as a Bonus Action later on the same turn with a different Light weapon, and you don't add your ability modifier to the extra attack's damage."
+  - id: unarmed
+    target: unarmed
+    type: Extra
+    name: Grapple or Shove
+    description: "You can replace one attack with a grapple or shove attempt. The target must succeed on a DC $(8+attributes.prof+Math.max(stats.str.mod, stats.dex.mod)) Dexterity saving throw or it has the Grappled or Prone condition."
+    

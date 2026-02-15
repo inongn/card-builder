@@ -5,6 +5,37 @@ import 'mdui/components/button.js';
 import 'mdui/components/icon.js';
 
 export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode }) => {
+    const mainCardRef = React.useRef(null);
+    const asideRef = React.useRef(null);
+
+    // Dynamically set padding-bottom on .play-content-aside based on .main-card height
+    React.useEffect(() => {
+        const mainCardEl = mainCardRef.current;
+        const asideEl = asideRef.current;
+        if (!mainCardEl || !asideEl) return;
+
+        const mql = window.matchMedia('(min-width: 891px)');
+
+        const updatePadding = () => {
+            if (mql.matches) {
+                const mainCardHeight = mainCardEl.getBoundingClientRect().height;
+                asideEl.style.paddingBottom = `calc(100vh - 64px - ${mainCardHeight}px)`;
+            } else {
+                asideEl.style.paddingBottom = '';
+            }
+        };
+
+        const observer = new ResizeObserver(updatePadding);
+        observer.observe(mainCardEl);
+        mql.addEventListener('change', updatePadding);
+        updatePadding();
+
+        return () => {
+            observer.disconnect();
+            mql.removeEventListener('change', updatePadding);
+        };
+    }, []);
+
     // Group activities by their 'time' property
     const groupedActivities = React.useMemo(() => {
         const groups = {
@@ -34,7 +65,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
         { key: 'action', label: 'Actions' },
         { key: 'bonus action', label: 'Bonus Actions' },
         { key: 'reaction', label: 'Reactions' },
-        { key: 'free action', label: 'Free Actions' },
+        { key: 'free action', label: 'Special' },
         { key: 'other', label: 'Other' }
     ];
 
@@ -54,8 +85,10 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
 
 
             <div className="content play-content">
-                <CharacterSheet char={characterData} className="main-card" onNavigate={onNavigate} />
-                <div className="aside-card">
+                <div className="play-content-main">
+                    <CharacterSheet char={characterData} ref={mainCardRef} className="main-card" onNavigate={onNavigate} />
+                </div>
+                <div className="play-content-aside" ref={asideRef}>
                     {categories.map(({ key, label }) => {
                         const activities = groupedActivities[key];
 

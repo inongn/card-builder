@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: Charmed
+target: attributes.advantages
+id: charmedAdvantage
+name: Charmed Advantage

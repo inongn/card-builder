@@ -47,7 +47,7 @@ children:
   - id: actionSurge
     name: Action Surge
     type: Activity
-    description: You push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
+    description: When you take an action, you push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
     condition: $(meta.level >= 2)
     range: self
     time: free action
@@ -73,7 +73,7 @@ children:
     condition: $(meta.level >= 3)
     type: Slot
     target: fighterSubclass
-  - id: feat
+  - id: level4feat
     name: Level 4 Feat
     type: Slot
     quantity: 1
@@ -84,14 +84,14 @@ children:
     target: secondWind
     condition: $(meta.level >= 5)
     name: Tactical Shift
-    description: Move up to $(attributes.movement.walk/2) without provoking Opportunity Attacks.
+    description: You can move up to $(attributes.movement.walk/2) without provoking Opportunity Attacks.
   - id: extraAttack
-    type: Extra
-    target: mainHand
+    type: Effect
+    target: activities[mainHand].description
+    operation: set
     condition: $(meta.level >= 5)
-    name: Extra Attack
-    description: "You can attack $(meta.level >= 20 ? 'four' : meta.level >= 11 ? 'three' : meta.level >= 5 ? 'two' : 'one') times instead of once."
-  - id: feat
+    value: "You strike $(meta.level >= 20 ? 'four' : meta.level >= 11 ? 'three' : 'two') times. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+  - id: level8feat
     name: Level 8 Feat
     type: Slot
     condition: $(meta.level >= 8)
@@ -102,7 +102,7 @@ children:
     target: attack
     condition: $(meta.level >= 9)
     name: Tactical Master
-    description: "On a hit, you can push the creature up to 10 feet straight away from yourself, give it Disadvantage on its next attack roll, or reduce its Speed by 10 feet until the start of your next turn."
+    description: "On a hit, you can push the target up to 10 feet straight away from yourself, give it Disadvantage on its next attack roll, or reduce its Speed by 10 feet until the start of your next turn."
   - id: indomitable
     type: Activity
     name: Indomitable
@@ -121,26 +121,26 @@ children:
     target: attack
     condition: $(meta.level >= 13)
     name: Studied Attacks
-    description: "On a miss, you have Advantage on your next attack roll against that creature before the end of your next turn."
-  - id: feat
+    description: "On a miss, you have Advantage on your next attack roll against the target before the end of your next turn."
+  - id: level12feat
     name: Level 12 Feat
     type: Slot
     quantity: 1
     target: feat
     condition: $(meta.level >= 12)
-  - id: feat
+  - id: level14feat
     name: Level 14 Feat
     type: Slot
     quantity: 1
     target: feat
     condition: $(meta.level >= 14)
-  - id: feat
+  - id: level16feat
     name: Level 16 Feat
     type: Slot
     quantity: 1
     target: feat
     condition: $(meta.level >= 16)
-  - id: feat
+  - id: level18feat
     name: Level 18 Feat
     type: Slot
     quantity: 1

@@ -1,6 +1,25 @@
 id: potentSpellcasting
 name: Potent Spellcasting
 tags: [elementalFury]
-type: Extra
-target: tags=cantrip AND tags=druid AND tags=damageSpell
-description: On a hit, deal an additional $(stats.wis.mod) damage.
+type: Folder
+children:
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d12"]
+    operation: replace
+    value: d12+$(stats.wis.mod)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d10"]
+    operation: replace
+    value: d10+$(stats.wis.mod)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d8"]
+    operation: replace
+    value: d8+$(stats.wis.mod)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d6"]
+    operation: replace
+    value: d6+$(stats.wis.mod)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d4"]
+    operation: replace
+    value: d4+$(stats.wis.mod)

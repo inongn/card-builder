@@ -1,0 +1,16 @@
+id: shortsword
+name: Shortsword
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [light, martial]
+value:
+  name: Shortsword
+  mastery: vex
+  damageRoll: 1d6
+  damageType: piercing
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: light
+repeatable: true

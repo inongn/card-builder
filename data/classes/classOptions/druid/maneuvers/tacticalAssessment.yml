@@ -1,0 +1,6 @@
+id: tacticalAssessment
+name: Tactical Assessment
+tags: [maneuver]
+type: Activity
+resource: superiorityDice
+description: When you make an Intelligence (History or Investigation) check or a Wisdom (Insight) check, you add 1d$(attributes.superiorityDie) to the ability check.

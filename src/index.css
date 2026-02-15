@@ -7,7 +7,7 @@
   --color-fire: #EF5350;
   --color-cold: #29B6F6;
   --color-lightning: #FFEE58;
-  --color-radiant: #FFCA28;
+  --color-radiant: #f8ab04;
   --color-poison: #66BB6A;
   --color-acid: #9CCC65;
   --color-necrotic: #7E57C2;
@@ -34,7 +34,7 @@ body {
   margin: 0;
   background-color: var(--mdui-color-surface);
   color: var(--mdui-color-on-surface);
-  font-family: Roboto, system-ui, sans-serif;
+  font-family: "Google Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -45,7 +45,8 @@ strong {
 }
 
 p {
-  margin: 0.25rem 0;
+  margin: 0;
+  margin-top: 0.25em;
 }
 
 mdui-top-app-bar {
@@ -61,21 +62,23 @@ mdui-top-app-bar {
 
 .play-content {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  overflow: hidden;
+  grid-template-columns: 1.8fr 1fr;
   gap: var(--gap-md);
-  align-items: start;
+  position: relative;
+  height: 100%;
 }
 
 
 
-.aside-card {
-  overflow-y: scroll;
-  scrollbar-width: none;
+.play-content-main,
+.play-content-aside {
   display: flex;
   flex-direction: column;
   gap: var(--gap-sm);
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
+
 
 .aside-card-group {
   display: flex;
@@ -104,7 +107,12 @@ mdui-top-app-bar {
 .pseudo-card {
   background: rgb(var(--mdui-color-surface-container-highest), 1);
   border-radius: var(--mdui-shape-corner-medium);
-  margin-bottom: var(--gap-sm);
+}
+
+mdui-collapse {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
 }
 
 .card-header {
@@ -130,10 +138,18 @@ mdui-top-app-bar {
   padding: var(--gap-sm);
 }
 
+.play-content-aside .title-primary {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgb(var(--mdui-color-surface), 1);
+}
+
 .card-meta {
   grid-column: span 1;
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .card-meta-resource {
@@ -151,7 +167,15 @@ mdui-top-app-bar {
 
 
 .grid-value-chip {
-  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-xs);
+  padding: var(--gap-xs);
+  border: .5px solid rgb(var(--mdui-color-outline), 1);
+  margin: var(--gap-xs);
+  border-radius: var(--mdui-shape-corner-small);
+  background-color: rgb(var(--mdui-color-surface), 1);
 }
 
 .card-content {
@@ -170,7 +194,6 @@ mdui-chip {
 
 .card-description {
   font-size: 0.95rem;
-  line-height: 1.4;
   opacity: 0.9;
   text-align: left;
 }
@@ -181,6 +204,11 @@ mdui-chip {
 
 /* Main Card */
 
+.main-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
 
 .main-card-title {
   grid-column: span 4;
@@ -188,14 +216,6 @@ mdui-chip {
   font-weight: 400;
 }
 
-.main-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-sm);
-  height: 100%;
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
 
 .main-card-row {
   display: grid;
@@ -289,10 +309,9 @@ mdui-chip {
 }
 
 .resource-dots {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   margin-left: auto;
-  justify-content: flex-end;
+  justify-items: end;
 }
 
 .list-item.info-list-item {
@@ -312,13 +331,11 @@ mdui-chip {
   width: max-content;
   display: flex;
   align-items: center;
-  padding: 0 4px;
 }
 
 .text-secondary {
   color: var(--mdui-color-on-surface-variant);
   font-size: 0.8rem;
-  text-transform: uppercase;
   text-align: center;
 }
 
@@ -395,7 +412,7 @@ mdui-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
+  padding: 0 2px;
   height: 16px;
   font-size: 0.7rem;
   font-weight: 800;
@@ -409,6 +426,10 @@ mdui-chip {
 
 .adv-dis-indicator.dis {
   background-color: var(--color-fire);
+}
+
+.adv-dis-indicator.min {
+  background-color: var(--color-bonus);
 }
 
 .loading-screen {
@@ -425,6 +446,7 @@ mdui-chip {
 }
 
 .important-number {
+  font-family: "Google Sans", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
@@ -508,6 +530,8 @@ mdui-chip {
   overflow: hidden !important;
 }
 
+
+
 .print-mode .inner-card {
   height: min-content !important;
 }
@@ -522,7 +546,6 @@ mdui-chip {
   flex: 1 !important;
   min-height: 0 !important;
   overflow: hidden !important;
-  font-size: 0.8rem !important;
   display: flex !important;
   flex-direction: column !important;
 }
@@ -534,7 +557,6 @@ mdui-chip {
 
 .print-mode .card-description {
   font-size: inherit !important;
-  line-height: 1.2 !important;
   font-family: "Roboto Condensed", sans-serif !important;
 }
 
@@ -550,7 +572,7 @@ mdui-chip {
   border-style: solid !important;
 }
 
-.print-mode mdui-chip {
+.print-mode .grid-value-chip {
   background-color: white !important;
   color: black !important;
   font-size: 0.8rem !important;
@@ -679,6 +701,7 @@ mdui-chip {
   padding: 0 2.5vw;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
 }
 
 .header-nav {
@@ -836,6 +859,7 @@ mdui-select::part(menu) {
     grid-template-columns: 1fr;
     gap: var(--gap-md);
     overflow: visible;
+    margin-bottom: var(--gap-md);
   }
 
   .main-card-column {
@@ -848,7 +872,14 @@ mdui-select::part(menu) {
     display: none !important;
   }
 
-  .aside-card {
+  .play-content {
     height: calc(100vh - 64px);
+    overflow: hidden;
   }
+
+  .play-content-aside {
+    padding-bottom: calc(100vh - 64px - 628px);
+  }
+
+
 }

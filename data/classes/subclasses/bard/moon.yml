@@ -1,0 +1,62 @@
+id: moon
+name: College of the Moon
+description: |
+  Inspire allies with primal tales. Bards of this college draw from the isles’ fey magic and the primal power of the moonwells to bolster their allies, protect the natural world, and inspire their bardic works.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  # Level 3: Moon's Inspiration
+  - id: inspiredEclipse
+    type: Extra
+    target: bardicInspiration
+    name: Inspired Eclipse
+    condition: $(meta.level >= 3)
+    description: "You become Invisible until the start of your next turn and can teleport up to 30 feet to an unoccupied space."
+
+  - id: lunarVitality
+    type: Activity
+    name: Lunar Vitality
+    condition: $(meta.level >= 3)
+    resource: bardicInspiration
+    description: "When you restore Hit Points to a creature with a spell, you increase the healing by 1d$(attributes.bardicDie). The creature’s Speed increases by 10 feet until the end of its next turn."
+
+  # Level 3: Primal Lore
+  # Druidic language (text description only or not modeled)
+  - type: Slot
+    name: Druid Cantrip
+    target: druid AND cantrip
+    quantity: 1
+    condition: $(meta.level >= 3)
+
+  - id: moonSkill
+    type: Slot
+    name: Primal Lore Skill Proficiencies
+    target: animalHandlingProficiency OR insightProficiency OR medicineProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
+    quantity: 1
+    condition: $(meta.level >= 3)
+
+  # Level 6: Blessing of Moonlight
+  - type: Reference
+    target: moonbeam
+    condition: $(meta.level >= 6)
+    
+  - id: blessingOfMoonlight
+    type: Activity
+    name: Blessing of Moonlight
+    tags: [limitedLR]
+    condition: $(meta.level >= 6)
+    description: "When you cast Moonbeam, you cause yourself to glow faintly. While glowing, you shed Dim Light out to 5 feet, and whenever a creature fails its saving throw against the effects of this Moonbeam, another creature of your choice that you can see within 60 feet of yourself regains 2d4 Hit Points."
+
+  # Level 14: Eventide's Splendor
+  - id: shadowOfTheNewMoon
+    type: Extra
+    target: bardicInspiration
+    condition: $(meta.level >= 14)
+    description: "**Shadow of the New Moon** When you use Inspired Eclipse, the creature receiving Inspiration also becomes Invisible and can use its Reaction to teleport up to 30 feet."
+    
+  - id: vibranceOfTheFullMoonDesc
+    type: Extra
+    target: lunarVitality
+    condition: $(meta.level >= 14)
+    description: "**Vibrance of the Full Moon** You can roll 1d6 instead of expending a Bardic Inspiration die."

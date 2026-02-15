@@ -1,0 +1,7 @@
+id: knowledgeArcana
+name: Arcana Proficiency
+type: Folder
+tags: [knowledgeSkillProficiency]
+children:
+  - type: Reference
+    target: [arcanaProficiency, arcanaExpertise]

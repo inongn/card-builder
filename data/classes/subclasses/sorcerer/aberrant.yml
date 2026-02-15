@@ -1,0 +1,77 @@
+id: aberrant
+name: Aberrant Sorcery
+description: |
+  An alien influence has wrapped its tendrils around your mind, giving you psionic power. You can now touch other minds with that power and alter the world around you. Will this power shine from you as a hopeful beacon to others? Or will you be a terror to those who feel the stab of your mind?
+type: Folder
+tags:
+  - sorcererSubclass
+children:
+  # Level 3: Psionic Spells
+  - type: Reference
+    target: [armsOfHadar, calmEmotions, detectThoughts, dissonantWhispers, mindSliver]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [hungerOfHadar, sending]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [evardsBlackTentacles, summonAberration]
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target: [rarysTelepathicBond, telekinesis]
+    condition: $(meta.level >= 9)
+
+  # Level 3: Telepathic Speech
+  - id: telepathicSpeech
+    type: Activity
+    name: Telepathic Speech
+    time: bonus action
+    range: 30 feet
+    duration: $(meta.level) minutes
+    condition: $(meta.level >= 3)
+    description: "You form a telepathic connection with one creature you can see. You can communicate while within $(Math.max(1, stats.cha.mod)) miles of each other."
+
+  # Level 6: Psionic Sorcery
+  - id: psionicSorcery
+    type: Extra
+    name: Psionic Sorcery
+    target: armsOfHadar OR calmEmotions OR detectThoughts OR dissonantWhispers OR mindSliver OR hungerOfHadar OR sending OR evardsBlackTentacles OR summonAberration OR rarysTelepathicBond OR telekinesis
+    condition: $(meta.level >= 6)
+    description: "You can cast this spell by spending Sorcery Points instead of Spell Slots. If you do, it requires no Verbal, Somatic, or unconsumed Material components."
+
+  # Level 6: Psychic Defenses
+  - id: pyschicDefenses
+    type: Reference
+    condition: $(meta.level >= 6)
+    target: [psychicResistance, charmedAdvantage, frightenedAdvantage]
+
+  # Level 14: Revelation in Flesh
+  - id: revelationInFlesh
+    type: Activity
+    name: Revelation in Flesh
+    time: bonus action
+    condition: $(meta.level >= 14)
+    resource: sorceryPoints
+    duration: 10 minutes
+    description: |
+      You unleash the aberrant truth hidden within yourself. For the duration and for each Sorcery Point you expend, you gain one of the following benefits of your choice:
+
+      **Aquatic Adaptation.** You gain a Swim Speed of $(attributes.movement.walk * 2) feet, and you can breathe underwater. Gills grow from your neck or flare behind your ears, and your fingers become webbed or you grow wriggling cilia.
+
+      **Glistening Flight.** You gain a Fly Speed of $(attributes.movement.walk) feet, and you can hover. As you fly, your skin glistens with mucus or otherworldly light.
+
+      **See the Invisible.** You can see any Invisible creature within 60 feet of yourself that isn’t behind Total Cover. Your eyes also turn black or become writhing sensory tendrils.
+
+      **Wormlike Movement.** Your body, along with any equipment you are wearing or carrying, becomes slimy and pliable. You can move through any space as narrow as 1 inch, and you can spend 5 feet of movement to escape from nonmagical restraints or the Grappled condition.
+
+
+  # Level 18: Warping Implosion
+  - id: warpingImplosion
+    type: Activity
+    name: Warping Implosion
+    time: action
+    range: 120 feet
+    condition: $(meta.level >= 18)
+    tags: [innateLR]
+    resource: 5 sorceryPoints
+    description: |
+      You unleash a space-warping anomaly. You teleport to an unoccupied space you can see within range. Each creature within 30 feet of your previous space makes a DC $(attributes.spellcasting.save) Strength saving throw.  On a failed save, a creature takes 3d10 Force damage and is pulled straight toward the space you left, ending in an unoccupied space as close to your former space as possible. On a successful save, the creature takes half as much damage only.

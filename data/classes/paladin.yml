@@ -1,0 +1,186 @@
+id: paladin
+name: Paladin
+description: |
+  Paladins are united by their oaths to stand against the forces of annihilation and corruption. Whether sworn before a god's altar, in a sacred glade before nature spirits, or in a moment of desperation and grief with the dead as the only witness, a Paladin's oath is a powerful bond. It is a source of power that turns a devout warrior into a blessed champion.
+tags:
+  - class
+type: Folder
+children:
+  # Core Paladin Traits
+  - id: hitDie
+    type: Attribute
+    value: 10
+  - id: className
+    type: Effect
+    target: meta.class
+    operation: set
+    value: Paladin
+  - type: Reference
+    value: [wisSave, chaSave]
+  - type: Reference
+    value: [simpleWeaponProficiency, martialWeaponProficiency]
+  - type: Reference
+    value: [lightArmorTraining, mediumArmorTraining, heavyArmorTraining, shieldTraining]
+  - id: paladinSkillProficiencies
+    type: Slot
+    name: Paladin Skill Proficiencies
+    quantity: 2
+    target: athleticsProficiency OR insightProficiency OR intimidationProficiency OR medicineProficiency OR persuasionProficiency OR religionProficiency
+
+  # Level 1: Lay On Hands
+  - id: layOnHands
+    type: Activity
+    name: Lay On Hands
+    time: bonus action
+    range: touch
+    duration: Instantaneous
+    resource: layOnHands
+    description: "You touch a creature (which could be yourself) and restore 5 Hit Points to it per charge expended. $(meta.level >= 14 ? 'You can also expend a charge to remove one or more of the following conditions from the creature: Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned.' : '')"
+  - id: layOnHands
+    type: Resource
+    name: Lay On Hands
+    quantity: $(meta.level)
+
+  # Level 1: Spellcasting
+  - type: Reference
+    target: [halfCaster, chaCaster]
+  - type: Slot
+    name: Paladin Spells
+    id: paladinSpells
+    target: "paladin NOT cantrip $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    variables:
+      maxLevel: "$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)"
+    quantity: $(progression(2,3,4,5,6,6,7,7,9,9,10,10,11,11,12,12,14,14,15,15))
+
+  # Level 2: Fighting Style
+  - id: fightingStyle
+    type: Slot
+    name: Fighting Style
+    quantity: 1
+    target: fightingStyle OR blessedWarrior
+    condition: $(meta.level >= 2)
+
+  # Level 2: Paladin's Smite
+  - type: Reference
+    target: divineSmite
+    condition: $(meta.level >= 2)
+    overwrite:
+      tags: [innateLR]
+
+  # Level 3: Channel Divinity
+  - id: channelDivinity
+    type: Resource
+    name: Channel Divinity
+    quantity: "$(meta.level >= 11 ? 3 : 2)"
+    sr: 1
+    condition: $(meta.level >= 3)
+  - id: divineSense
+    type: Activity
+    name: Divine Sense
+    time: bonus action
+    range: 60 feet
+    duration: 10 minutes
+    resource: channelDivinity
+    condition: $(meta.level >= 3)
+    description: "You open your awareness to detect Celestials, Fiends, and Undead. For the duration or until you have the Incapacitated condition, you know the location of any creature of those types within range, and you know its creature type. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow spell."
+
+  # Level 4: Ability Score Improvement
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+
+  # Level 5: Extra Attack
+  - id: extraAttack
+    type: Effect
+    target: activities[mainHand].description
+    operation: set
+    condition: $(meta.level >= 5)
+    value: "You strike twice. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+
+  # Level 5: Faithful Steed
+  - type: Reference
+    target: findSteed
+    condition: $(meta.level >= 5)
+    overwrite:
+      tags: [innateLR]
+
+  # Level 6: Aura of Protection
+  - id: auraOfProtection
+    type: Activity
+    name: Aura of Protection
+    range: "$(meta.level >= 18 ? 30 : 10) feet"
+    condition: $(meta.level >= 6)
+    description: "You radiate a protective, unseeable aura. The aura is inactive while you have the Incapacitated condition. You and your allies in the aura gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws."
+
+  # Level 8: Ability Score Improvement
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)
+
+  # Level 9: Abjure Foes
+  - id: abjureFoes
+    type: Activity
+    name: Abjure Foes
+    time: action
+    range: 60 feet
+    duration: 1 minute
+    resource: channelDivinity
+    condition: $(meta.level >= 9)
+    description: "You overwhelm foes with awe. As you present your Holy Symbol or weapon, target $(Math.max(1, stats.cha.mod)) creatures you can see within range. Each target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for 1 minute or until it takes any damage. While Frightened in this way, a target can only do one of the following on its turns: move, take an action, or take a Bonus Action."
+
+  # Level 10: Aura of Courage
+  - id: auraOfCourage
+    type: Extra
+    name: Aura of Courage
+    target: auraOfProtection
+    condition: $(meta.level >= 10)
+    description: "You and your allies have Immunity to the Frightened condition. If a Frightened ally enters the aura, that condition has no effect on that ally while there."
+
+  # Level 11: Radiant Strikes
+  - id: radiantStrikes
+    type: Extra
+    name: Radiant Strikes
+    target: attack
+    condition: $(meta.level >= 11)
+    description: "On a hit, the target takes an extra 1d8 Radiant damage."
+
+  # Level 12: Ability Score Improvement
+  - id: level12feat
+    name: Level 12 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 12)
+
+  # Level 16: Ability Score Improvement
+  - id: level16feat
+    name: Level 16 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 16)
+
+  # Level 19: Epic Boon
+  - id: epicBoon
+    type: Slot
+    name: Epic Boon
+    target: epicBoon
+    condition: $(meta.level >= 19)
+
+  # Level 3: Paladin Subclass
+  - id: paladinSubclass
+    name: Paladin Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: paladinSubclass
+
+  # Weapon Mastery
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties

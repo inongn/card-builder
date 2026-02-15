@@ -1,0 +1,15 @@
+id: shortbow
+name: Shortbow
+type: Effect
+target: attributes.mainHand
+tags: [simple]
+operation: set
+value:
+  name: Shortbow
+  mastery: vex
+  damageRoll: 1d6
+  damageType: piercing
+  range: 30 feet
+  classification: ranged
+  category: simple
+  property: twoHanded

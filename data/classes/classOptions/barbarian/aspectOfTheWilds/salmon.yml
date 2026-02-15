@@ -1,0 +1,6 @@
+name: Salmon Aspect
+tags: [aspectOfTheWilds]
+type: Effect
+target: attributes.movement.swim
+operation: set
+value: $(attributes.movement.walk)

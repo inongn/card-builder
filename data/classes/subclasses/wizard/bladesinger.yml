@@ -1,0 +1,77 @@
+id: bladesinger
+name: Bladesinger
+description: |
+  Bladesingers master a tradition of wizardry that incorporates swordplay and dance. In combat, a Bladesinger uses intricate, elegant maneuvers that fend off harm and allow the Bladesinger to channel magic into devastating attacks and a cunning defense.
+
+  Bladesinging is associated with the ancient elven societies that first mastered the art and coined the term. Even today, most Bladesingers still hail from old elven realms, such as Myth Drannor, or from non-elven societies that share land and history with elves, such as the Silver Marches.
+type: Folder
+tags:
+  - wizardSubclass
+children:
+  # Level 3: Bladesong
+  - id: bladesong
+    type: Activity
+    name: Bladesong
+    time: bonus action
+    duration: 1 minute
+    resource: bladesong
+    condition: $(meta.level >= 3)
+    description: |
+      You invoke an elven magic called the Bladesong. While the Bladesong is active, you gain the following benefits:
+      
+      **Agility.** You gain a +$(Math.max(1, stats.int.mod)) bonus to your AC, and your Speed increased by 10 feet. You also have Advantage on Acrobatics.
+      
+      **Bladework.** You make attack rolls with a $(formatBonus(stats.int.mod+attributes.prof)) modifier and a $(formatBonus(stats.int.mod)) damage bonus.
+      
+      **Focus.** When you make a Constitution saving throw to maintain Concentration, you can add $(formatBonus(stats.int.mod)) to the total.
+
+  - id: bladesong
+    type: Resource
+    name: Bladesong
+    quantity: $(Math.max(1, stats.int.mod))
+    condition: $(meta.level >= 3)
+
+  - id: bladesongArcaneRecovery
+    type: Extra
+    target: arcaneRecovery
+    name: Bladesong
+    condition: $(meta.level >= 3)
+    description: "You regain one charge of Bladesong."
+
+  # Level 3: Training in War and Song
+  - type: Reference
+    target: [lightArmorTraining, martialWeaponProficiency] # Simplified
+    condition: $(meta.level >= 3)
+  - id: trainingInWarAndSongSkill
+    type: Slot
+    name: Bladesinger Skill Proficiency
+    quantity: 1
+    target: acrobaticsProficiency OR athleticsProficiency OR performanceProficiency OR persuasionProficiency
+    condition: $(meta.level >= 3)
+
+  # Level 6: Extra Attack
+  - id: extraAttack
+    type: Effect
+    target: activities[mainHand].description
+    operation: set
+    condition: $(meta.level >= 6)
+    value: "You strike twice. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage. You can cast one of your Wizard cantrips that has a casting time of an action in place of one of those attacks."
+
+  # Level 10: Song of Defense
+  - id: songOfDefense
+    type: Activity
+    name: Song of Defense
+    time: reaction
+    resource: level1SpellSlot
+    condition: $(meta.level >= 10)
+    description: "When you take damage while your Bladesong is active, you reduce the damage taken by an amount equal to five times the spell slot’s level."
+
+  # Level 14: Song of Victory
+  - id: songOfVictory
+    condition: $(meta.level >= 14)
+    name: "Song of Victory: $(attributes.mainHand.name)"
+    type: Activity
+    tags: [$(attributes.mainHand.category), $(attributes.mainHand.classification), $(attributes.mainHand.mastery), $(attributes.mainHand.property), attack, mainHand, weaponAttack]
+    time: bonus action
+    range: $(attributes.mainHand.range)
+    description: "When you cast a spell that has a casting time of an action, you strike at a creature or object within range. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."

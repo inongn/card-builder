@@ -1,0 +1,9 @@
+type: Folder
+name: Dual Wielder
+tags: [feat]
+children:
+  - type: Effect
+    condition: $(attributes.mainHand.property != 'twoHanded')
+    target: attributes.mainHand.property
+    operation: set
+    value: light

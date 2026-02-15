@@ -1,0 +1,8 @@
+tags:
+  - fightingStyle
+type: Effect
+target: attributes.ac
+operation: add
+value: 1
+id: defense
+name: Defense

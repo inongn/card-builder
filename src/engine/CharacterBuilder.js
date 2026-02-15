@@ -736,7 +736,9 @@ export class CharacterBuilder {
                 // For 'apply' timing stages, check condition now (deferred from collection)
                 if (stage.conditionTiming === 'apply' && prop.condition && !prop.ignoreCondition) {
                     const result = evaluator.evaluate(prop.condition, prop.variables || {});
-                    if (!result) continue; // Skip this property
+
+                    // Strict truthiness: treat null, false, undefined, and unresolvable expressions as false
+                    if (!result || (typeof result === 'string' && result.includes('$('))) continue;
                 }
 
                 this.applyProperty(prop, evaluator);
@@ -753,11 +755,9 @@ export class CharacterBuilder {
                 this.evaluateSpecificField(this.characterData, stage.evaluateAfter, evaluator);
             }
 
-            // Sync visibility after Foundation stage (when meta.level is available)
-            // AND after Attributes stage (when derived stats like weapon hands are available)
-            if (stage.name === 'Foundation' || stage.name === 'Attributes') {
-                this.syncVisibility(this.propertyTree);
-            }
+            // Sync visibility after every stage to ensure the tree accurately reflects
+            // changes made by Foundation (level), Attributes (proficiencies), and Effects (weapons).
+            this.syncVisibility(this.propertyTree, evaluator);
         }
     }
 
@@ -769,9 +769,24 @@ export class CharacterBuilder {
         PIPELINE_STAGES.forEach(stage => byStage.set(stage.name, []));
 
         for (const prop of properties) {
-            const stage = TYPE_TO_STAGE.get(prop.type);
-            if (stage) {
-                byStage.get(stage.name).push(prop);
+            let stageName = null;
+            if (prop.type === 'Effect') {
+                // Smart Effect Routing:
+                // Move effects targeting core attributes to the 'Attributes' stage so they're 
+                // available when Activities in the 'Content' stage check their conditions.
+                const target = prop.target || '';
+                if (target.startsWith('attributes.') || target.startsWith('stats.') || target.startsWith('meta.')) {
+                    stageName = 'Attributes';
+                } else {
+                    stageName = 'Effects';
+                }
+            } else {
+                const stage = TYPE_TO_STAGE.get(prop.type);
+                if (stage) stageName = stage.name;
+            }
+
+            if (stageName) {
+                byStage.get(stageName).push(prop);
             }
         }
 
@@ -787,6 +802,10 @@ export class CharacterBuilder {
         const priority = node.priority !== undefined ? node.priority : inheritedPriority;
         const variables = node.variables ? { ...inheritedVariables, ...node.variables } : inheritedVariables;
         const ignoreCondition = node.ignoreCondition || inheritedIgnoreCondition;
+
+        // SMART PRUNING: Respect visibility calculated in previous passes
+        // Folders and Slots are always traversed (as they might have visible children even if they themselves aren't 'Applied' nodes)
+        if (node.visible === false && !node.earlyEval && node.type !== 'Folder' && node.type !== 'Slot') return;
 
         // Smart Condition Merging
         let mergedCondition = node.condition;
@@ -830,7 +849,9 @@ export class CharacterBuilder {
         if (!parentVisible) {
             node.visible = false;
         } else if (node.condition) {
-            node.visible = !!evaluator.evaluate(node.condition);
+            const result = evaluator.evaluate(node.condition);
+            // Strict truthiness for tree visibility
+            node.visible = !!result && !(typeof result === 'string' && result.includes('$('));
         } else {
             node.visible = true;
         }

@@ -1,0 +1,152 @@
+id: cleric
+name: Cleric
+description: |
+  Clerics draw power from the realms of the gods and harness it to work miracles. Blessed by a deity, a pantheon, or another immortal entity, a Cleric can reach out to the divine magic of the Outer Planes—where gods dwell—and channel it to bolster people and battle foes.
+
+  Because their power is a divine gift, Clerics typically associate themselves with temples dedicated to the deity or other immortal force that unlocked their magic. Harnessing divine magic doesn’t rely on specific training, yet Clerics might learn prayers and rites that help them draw on power from the Outer Planes.
+tags:
+  - class
+type: Folder
+children:
+  # Core Cleric Traits
+  - id: hitDie
+    type: Attribute
+    value: 8
+  - id: className
+    type: Effect
+    target: meta.class
+    operation: set
+    value: Cleric
+  - type: Reference
+    value: [wisSave, chaSave]
+  - type: Reference
+    value: [simpleWeaponProficiency, lightArmorTraining, mediumArmorTraining, shieldTraining]
+  - id: clericSkillProficiencies
+    type: Slot
+    name: Cleric Skill Proficiencies
+    quantity: 2
+    target: historyProficiency OR insightProficiency OR medicineProficiency OR persuasionProficiency OR religionProficiency
+
+  # Level 1: Spellcasting
+  - type: Reference
+    target: [fullCaster, wisCaster]
+  - type: Slot
+    name: Cleric Cantrips
+    id: clericCantrips
+    target: cantrip AND cleric
+    quantity: "$(meta.level >= 10 ? 5 : meta.level >= 4 ? 4 : 3)"
+  - type: Slot
+    name: Cleric Prepared Spells
+    id: clericPreparedSpells
+    target: "cleric NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    variables:
+      maxLevel: "$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)"
+    quantity: $(progression(4,5,6,7,9,10,11,12,14,15,16,16,17,17,18,18,19,20,21,22))
+
+
+  # Level 1: Divine Order
+  - id: divineOrder
+    type: Slot
+    name: Divine Order
+    quantity: 1
+    target: divineOrder # Will create files with this tag in classOptions/cleric
+
+  # Level 2: Channel Divinity
+  - id: channelDivinity
+    type: Resource
+    name: Channel Divinity
+    quantity: "$(meta.level >= 18 ? 4 : meta.level >= 6 ? 3 : 2)"
+    sr: 1
+    condition: $(meta.level >= 2)
+  - id: divineSpark
+    type: Activity
+    name: Divine Spark
+    time: action
+    range: 30 feet
+    duration: Instantaneous
+    resource: channelDivinity
+    condition: $(meta.level >= 2)
+    description: "You point your Holy Symbol at another creature you can see. Roll $(meta.level >= 18 ? '4d8' : meta.level >= 13 ? '3d8' : meta.level >= 7 ? '2d8' : '1d8')$(formatBonus(stats.wis.mod)). You either restore Hit Points to the creature equal to that total or force the creature to make a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the creature takes Necrotic or Radiant damage (your choice) equal to that total. On a successful save, the creature takes half as much damage (round down)."
+  - id: turnUndead
+    type: Activity
+    name: Turn Undead
+    time: action
+    range: 30 feet
+    duration: 1 minute
+    resource: channelDivinity
+    condition: $(meta.level >= 2)
+    description: "You present your Holy Symbol and censure Undead creatures. Each Undead of your choice within range must make a DC $(attributes.spellcasting.save) Wisdom saving throw. If the creature fails its save, it has the Frightened and Incapacitated conditions. It tries to move as far from you as it can on its turns. The effect ends early if it takes any damage, if you have the Incapacitated condition, or if you die."
+
+  # Level 4: Ability Score Improvement
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+
+  # Level 5: Sear Undead
+  - id: searUndead
+    type: Extra
+    name: Sear Undead
+    target: turnUndead
+    condition: $(meta.level >= 5)
+    description: "Each Undead that fails its saving throw takes $(Math.max(1, stats.wis.mod))d8 Radiant damage. This damage doesn't end the turn effect."
+
+  # Level 7: Blessed Strikes
+  - id: blessedStrikes
+    type: Slot
+    name: Blessed Strikes
+    quantity: 1
+    target: blessedStrikes OR classOption
+    condition: $(meta.level >= 7)
+
+  # Level 8: Ability Score Improvement
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)
+
+  # Level 10: Divine Intervention
+  - id: divineIntervention
+    type: Activity
+    name: Divine Intervention
+    time: action
+    duration: Instantaneous
+    condition: $(meta.level >= 10)
+    tags: [limitedLR]
+    description: |
+      Choose any Cleric spell of level 5 or lower that doesn't require a Reaction. You cast that spell without expending a spell slot or needing Material components.
+      $(meta.level >= 20 ? "You can also choose the Wish spell. If you do, you can't use this feature again until you finish 2d4 Long Rests." : "")
+
+  # Level 12: Ability Score Improvement
+  - id: level12feat
+    name: Level 12 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 12)
+
+  # Level 16: Ability Score Improvement
+  - id: level16feat
+    name: Level 16 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 16)
+
+  # Level 19: Epic Boon
+  - id: epicBoon
+    type: Slot
+    name: Epic Boon
+    target: epicBoon
+    condition: $(meta.level >= 19)
+
+  # Level 3: Cleric Subclass
+  - id: clericSubclass
+    name: Cleric Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: clericSubclass

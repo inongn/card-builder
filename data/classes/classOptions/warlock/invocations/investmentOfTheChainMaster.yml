@@ -1,0 +1,18 @@
+id: investmentOfTheChainMaster
+name: Investment of the Chain Master
+tags:
+  - eldritchInvocation
+condition: $(attributes.pactOfTheChain == true && meta.level >= 5)
+type: Folder
+children:
+  - id: investmentChainDesc
+    type: Extra
+    target: findFamiliar
+    name: Investment of the Chain Master
+    description: |
+      When you cast Find Familiar, you infuse it with power:
+      *   **Aerial or Aquatic.** Gains Fly or Swim Speed of 40 ft.
+      *   **Quick Attack.** You can use a Bonus Action to command it to Attack.
+      *   **Damage Type.** Its attacks can deal Necrotic or Radiant damage.
+      *   **Save DC.** It uses your Spell Save DC.
+      *   **Resistance.** Reaction when it takes damage to grant Resistance.

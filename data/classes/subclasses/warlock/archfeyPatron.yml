@@ -1,0 +1,74 @@
+id: archfeyPatron
+name: Archfey Patron
+description: |
+  Your pact draws on the power of the Feywild. When you choose this subclass, you might make a deal with an archfey, such as the Prince of Frost; the Queen of Air and Darkness, ruler of the Gloaming Court; Titania of the Summer Court; or an ancient hag.
+tags:
+  - warlockSubclass
+type: Folder
+children:
+  # Level 3: Archfey Spells
+  - type: Reference
+    target: [calmEmotions, faerieFire, phantasmalForce, sleep]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [blink, plantGrowth]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [dominateBeast, greaterInvisibility]
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target: [dominatePerson, seeming]
+    condition: $(meta.level >= 9)
+
+  # Level 3: Steps of the Fey
+  - id: stepsOfTheFey
+    type: Resource
+    name: Steps of the Fey
+    quantity: $(Math.max(1, stats.cha.mod))
+    condition: $(meta.level >= 3)
+  
+  - id: mistyStep
+    type: Reference
+    target: mistyStep
+    condition: $(meta.level >= 3)
+    overwrite:
+      resource: stepsOfTheFey
+      extra: |
+        $(meta.level >= 6 ? "" : "**Misty Escape** You can cast this spell as a Reaction in response to taking damage.")
+
+        In addition, you can choose one of the following additional effects:
+
+        **Refreshing Step.** You or a creature within 10 feet of yourself gains 1d10 Temporary Hit Points.
+        
+        **Taunting Step.** Creatures within 5 feet of the space you left must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have Disadvantage on attacks against creatures other than you until the start of your next turn.
+        
+        $(meta.level >= 6 ? "**Disappearing Step.** You have the invisible condition until the start of your next turn or until immediately after you attack or cast a spell." : "")
+        
+        $(meta.level >= 6 ? "**Dreadful Step.** Creatures within 5 feet of the space you left or the space you appear in must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or take 2d10 Psychic damage." : "")
+
+  # Level 10: Beguiling Defenses
+  - id: beguilingDefensesImmunity
+    type: Effect
+    target: attributes.immunities
+    operation: push
+    value: Charmed
+    condition: $(meta.level >= 10)
+  
+  - id: beguilingDefensesReaction
+    type: Activity
+    name: Beguiling Defenses
+    time: reaction
+    duration: instantaneous
+    tags: [innateLR]
+    resource: level1SpellSlot
+    condition: $(meta.level >= 10)
+    description: |
+      When a creature you can see hits you with an attack roll, reduce the damage you take by half (round down), and force the attacker to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the attacker takes Psychic damage equal to the damage you take.
+
+  # Level 14: Bewitching Magic
+  - id: bewitchingMagic
+    type: Extra
+    target: warlock AND level1Spell AND (enchantment OR illusion)
+    name: Bewitching Magic
+    description: "Immediately after you cast this spell, you can cast Misty Step as part of the same action without expending a slot."
+    condition: $(meta.level >= 14)

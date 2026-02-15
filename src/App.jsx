@@ -251,19 +251,14 @@ export default function App() {
 
     return (
         <mdui-layout className="app-container">
-
-            <mdui-navigation-drawer placement="right" open={isDebugOpen} onClose={() => setIsDebugOpen(false)} style={{ width: '600px' }}>
+            <mdui-button-icon icon="bug_report" onClick={() => setIsDebugOpen(!isDebugOpen)} style={{ backgroundColor: '--mdui-color-surface', position: 'fixed', bottom: '16px', right: '16px', zIndex: '1000' }}></mdui-button-icon>
+            <mdui-navigation-drawer placement="right" open={isDebugOpen} onClose={() => setIsDebugOpen(false)}>
                 <div className="debug-yaml-container">
-                    <div className="debug-yaml-header">
-                        <span className="drawer-title">Inspector</span>
-                        <mdui-button-icon icon="close" onClick={() => setIsDebugOpen(false)}></mdui-button-icon>
-                    </div>
                     <div style={{ padding: '0 16px' }}>
                         <mdui-segmented-button-group selects="single" value={debugTab}>
                             <mdui-segmented-button value="character" onClick={() => setDebugTab('character')}>Character</mdui-segmented-button>
                             <mdui-segmented-button value="recipe" onClick={() => setDebugTab('recipe')}>Recipe</mdui-segmented-button>
                             <mdui-segmented-button value="tree" onClick={() => setDebugTab('tree')}>Tree</mdui-segmented-button>
-                            <mdui-segmented-button value="library" onClick={() => setDebugTab('library')}>Library</mdui-segmented-button>
                         </mdui-segmented-button-group>
                     </div>
                     <div className="debug-yaml-content">

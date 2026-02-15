@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: mediumArmor
+target: attributes.proficiencies
+id: mediumArmorTraining
+name: Medium Armor Training

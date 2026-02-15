@@ -9,12 +9,12 @@ children:
     target: data.core.spellcasting.chooseCaster
     quantity: 1
   - type: Slot
-    id: magicInitiateCantrips
-    name: Magic Initiate Cantrips
+    id: magicInitiateClericCantrips
+    name: Magic Initiate (Cleric) Cantrips
     quantity: 2
     target: cleric AND cantrip
   - type: Slot
-    id: magicInitiatePreparedSpell
-    name: Magic Initiate Prepared Spell
-    target: spell AND cleric AND level1Spell
+    id: magicInitiateClericPreparedSpell
+    name: Magic Initiate (Cleric) Prepared Spell
+    target: cleric AND level1Spell
     quantity: 1

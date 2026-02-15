@@ -1,0 +1,10 @@
+id: otherworldlyLeap
+name: Otherworldly Leap
+tags:
+  - eldritchInvocation
+type: Folder
+children:
+  - type: Reference
+    target: jump
+    overwrite:
+      resource: null

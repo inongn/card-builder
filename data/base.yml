@@ -10,6 +10,7 @@ children:
     default: ''
   - id: level
     type: Input
+    name: Level
     subtype: number
     default: 1
     min: 1
@@ -353,10 +354,15 @@ children:
     bonus: $(stats.cha.mod + attributes.prof * saves.charisma.proficiency)
     proficiency: 0
 
+
+  
   - type: Reference
     reference: [longRest, shortRest, coreActions, weaponProperties, extraProperties]
 
-    
+  - type: Resource
+    id: hitDice
+    name: Hit Dice
+    quantity: $(meta.level)
 
   - id: species
     type: Slot
@@ -372,8 +378,29 @@ children:
 
 
 
+  - id: armor
+    type: Slot
+    name: Armor
+    target: "unarmored OR $(attributes.proficiencies.includes('heavyArmor') ? 'heavyArmor OR mediumArmor OR lightArmor' : attributes.proficiencies.includes('mediumArmor') ? 'mediumArmor OR lightArmor' : '$(attributes.proficiencies.includes('lightArmor') ? 'lightArmor' : '')')"
+    quantity: 1
 
 
+  - id: mainHandSlot
+    type: Slot
+    name: Main Hand
+    variables:
+      hand: mainHand
+    target: "unarmed OR $(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple') OR $(attributes.proficiencies.includes('lightWeapons') ? 'light' : '')"
+    quantity: 1
+
+  - id: offHandSlot
+    type: Slot
+    name: Off-Hand
+    condition: $(attributes.mainHand != null && attributes.mainHand.property != 'twoHanded')
+    variables:
+      hand: offHand
+    target: "offHand $(attributes.mainHand.property == 'light' ? 'OR (light AND ($(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple') OR $(attributes.proficiencies.includes('lightWeapons') ? 'light' : ''))) ' : '')"
+    quantity: 1
 
   - id: class
     type: Slot
@@ -381,9 +408,4 @@ children:
     target: class
     quantity: 1
 
-
-  - id: weapon
-    type: Slot
-    name: Weapon
-    target: "item AND $(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple')"
-    quantity: 2
+  

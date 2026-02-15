@@ -1,0 +1,46 @@
+id: banneret
+name: Banneret
+description: |
+  Bannerets are paragons of valor and leadership who protect the innocent and rally fellow adventurers to the causes of justice and freedom. Many are knights serving in Cormyr, the Silver Marches, Damara, Chessenta, or other lands across Faerûn. They wander the realms as knights errant, taking the fight against evil beyond their kingdom’s borders.
+
+  A Banneret relies on judgment, bravery, and fidelity to the code of chivalry to guide them in defeating evildoers. A lone Banneret is a skilled warrior, but when leading a band of allies one of these warriors can transform even a poorly equipped militia into a ferocious war band.
+tags:
+  - fighterSubclass
+type: Folder
+children:
+  - id: wellSpoken
+    name: Well-Spoken Skill Proficiency
+    type: Slot
+    target: insightProficiency OR intimidationProficiency OR persuasionProficiency OR performanceProficiency
+    condition: $(meta.level >= 3)
+    quantity: 1
+  - type: Reference
+    target: [comprehendLanguages]
+    condition: $(meta.level >= 3)
+  - type: Extra
+    id: groupRecovery
+    name: Group Recovery
+    condition: $(meta.level >= 3)
+    target: secondWind
+    description: "You can choose $(Math.max(1, stats.cha.mod)) allies within 30 feet of you. Each of those allies regains 1d4+$(meta.level) Hit Points$(meta.level >= 7 ? ' and has Advantage on D20 Tests until the start of your next turn' : '')."
+  - type: Extrap
+    id: rallyingSurge
+    target: actionSurge
+    name: Rallying Surge
+    condition: $(meta.level >= 10)
+    description: "You can choose $(Math.max(1, stats.cha.mod)) allies within 30 feet of you. Each of those allies can immediately take a Reaction to make one attack with a weapon or an Unarmed Strike, or move up to half its Speed without provoking opportunity attacks."
+  - type: Extra
+    id: sharedResilence
+    target: indomitable
+    name: Shared Resilience
+    condition: $(meta.level >= 15)
+    description: "When an ally you can see within 60 feet of yourself fails a saving throw, the ally can immediately reroll the saving throw with a +$(meta.level) bonus; the ally must use the new roll."
+  - type: Effect
+    target: activities[secondWind OR actionSurge].extra["30"]
+    operation: replace
+    value: 60
+    condition: $(meta.level >= 18)
+
+  - type: Reference
+    target: [charmedImmunity, frightenedImmunity]
+    condition: $(meta.level >= 18)

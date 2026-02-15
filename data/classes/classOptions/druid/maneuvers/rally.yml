@@ -1,0 +1,7 @@
+id: rally
+name: Rally
+tags: [maneuver]
+type: Activity
+time: bonus action
+resource: superiorityDice
+description: You bolster the resolve of a companion. Choose an ally of yours within 30 feet of yourself who can see or hear you. That creature gains 1d$(attributes.superiorityDie)+$(Math.floor(meta.level/2)) Temporary Hit Points.

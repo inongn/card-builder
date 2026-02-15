@@ -1,0 +1,59 @@
+id: dance
+name: College of Dance
+description: |
+  Bards of the College of Dance know that the Words of Creation can't be contained within speech or song; the words are uttered by the movements of celestial bodies and flow through the motions of the smallest creatures. These bards practice a way of being in harmony with the whirling cosmos that emphasizes agility, speed, and grace.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  # Level 3: Dazzling Footwork
+
+  - id: dazzlingFootworkDance
+    type: Reference
+    target: performanceAdvantage
+
+  - id: dazzlingFootworkAgileStrike
+    type: Extra
+    target: bardicInspiration or inspiringMovement
+    name: Agile Strikes
+    description: You can make one Unarmed Strike as part of this action.
+
+  - id: dazzlingFootworkBardicDamage
+    type: Effect
+    target: attributes.mainHand.classification
+    operation: set
+    value: finesse
+
+
+  - id: unarmoredDefenseDance
+    type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(10 + stats.dex.mod + stats.cha.mod)
+
+
+  # Level 6: Inspiring Movement
+  - id: inspiringMovement
+    type: Activity
+    name: Inspiring Movement
+    time: reaction
+    range: self
+    duration: instantaneous
+    resource: bardicInspiration
+    condition: $(meta.level >= 6)
+    description: "When an enemy ends its turn within 5 feet of you, you move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks. Then one ally within 30 feet can also move up to half their Speed using their Reaction."
+
+  # Level 6: Tandem Footwork
+  - id: tandemFootwork
+    type: Activity
+    name: Tandem Footwork
+    condition: $(meta.level >= 6)
+    resource: bardicInspiration
+    description: "When you roll Initiative, you and each ally within 30 feet gain a 1d$(attributes.bardicDie) bonus to Initiative."
+
+  # Level 14: Leading Evasion
+  - id: leadingEvasion
+    type: Activity
+    name: Leading Evasion
+    condition: $(meta.level >= 14)
+    description: "When subjected to a Dexterity save for half damage, you take no damage if you succeed and half if you fail. You can share this benefit with creatures within 5 feet making the same save."

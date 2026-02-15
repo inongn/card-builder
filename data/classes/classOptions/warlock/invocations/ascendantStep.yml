@@ -1,0 +1,11 @@
+id: ascendantStep
+name: Ascendant Step
+tags:
+  - eldritchInvocation
+condition: $(meta.level >= 5)
+type: Folder
+children:
+  - type: Reference
+    target: levitate
+    overwrite:
+      resource: null

@@ -1,0 +1,59 @@
+id: knowledgeDomain
+name: Knowledge Domain
+description: |
+  The Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship.
+
+  Gods of knowledge vary from masters of arcane magic to patrons of craft and invention. In Faerûn, Clerics of the Knowledge Domain worship deities of learning and ingenuity such as Oghma and Gond, among many others.
+type: Folder
+tags:
+  - clericSubclass
+children:
+  # Level 3: Blessings of Knowledge
+  - id: blessingsOfKnowledge
+    type: Slot
+    name: Blessings of Knowledge
+    quantity: 2
+    target: knowledgeSkillProficiency
+    condition: $(meta.level >= 3)
+
+  # Level 3: Knowledge Domain Spells
+  - type: Reference
+    target: [command, comprehendLanguages, detectMagic, detectThoughts, identify, mindSpike]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [dispelMagic, nondetection, tongues]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [arcaneEye, banishment, confusion]
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target: [legendLore, scrying, synapticStatic]
+    condition: $(meta.level >= 9)
+
+  # Level 3: Mind Magic
+  - id: mindMagic
+    type: Extra
+    name: Mind Magic
+    target: [comprehendLanguages, detectMagic, detectThoughts, identify, mindSpike, tonghes, arcaneEye, legendLore, scrying]
+    description: "You can cast this spell using a Channel Divinity charge instead."
+
+  # Level 6: Unfettered Mind
+  - id: unfetteredMindTelepathy
+    type: Reference
+    target: telepathyLanguage
+    condition: $(meta.level >= 6)
+  
+  - type: Reference
+    target: intSave
+    condition: $(meta.level >= 6)
+  
+  # Level 17: Divine Foreknowledge
+  - id: divineForeknowledge
+    type: Activity
+    name: Divine Foreknowledge
+    time: bonus action
+    duration: 1 hour
+    tags: [innateLR]
+    resource: level6SpellSlot
+    condition: $(meta.level >= 17)
+    description: "You have Advantage on d20 Tests."

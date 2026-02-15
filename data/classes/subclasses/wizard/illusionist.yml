@@ -1,0 +1,48 @@
+id: illusionist
+name: Illusionist
+description: |
+  You specialize in magic that dazzles the senses and tricks the mind, and the illusions you craft make the impossible seem real. Most Wizards believe that their counterparts in ancient civilizations knew secrets of magic that have been lost to the ages, and discovering those secrets could unlock the path to a power greater than any magic available in the present age.
+type: Folder
+tags:
+  - wizardSubclass
+children:
+  # Level 3: Improved Illusions
+  - type: Reference
+    target: minorIllusion
+    condition: $(meta.level >= 3)
+  - id: improvedIllusions
+    type: Extra
+    name: Improved Illusions
+    target: illusion
+    condition: $(meta.level >= 3)
+    description: "You can cast this spell without Verbal components. If the spell has a range of 10+ feet, the range increases by 60 feet."
+
+  # Level 6: Phantasmal Creatures
+  - type: Reference
+    target: [summonBeast, summonFey]
+    condition: $(meta.level >= 6)
+  - id: phantasmalCreatures
+    type: Extra
+    name: Phantasmal Creatures
+    target: [summonBeast, summonFey]
+    condition: $(meta.level >= 6)
+    description: "You can cast the Illusion version of each spell without expending a spell slot, but casting it without a slot halves the creature’s Hit Points. Once you cast either spell without a spell slot, you must finish a Long Rest before you can cast the spell in that way again."
+
+  # Level 10: Illusory Self
+  - id: illusorySelf
+    type: Activity
+    name: Illusory Self
+    time: reaction
+    condition: $(meta.level >= 10)
+    resource: level2SpellSlot
+    description: "When a creature hits you with an attack roll, you interpose an illusory duplicate of yourself between the attacker and yourself. The attack automatically misses, then the illusion dissipates."
+    tags: [innateLR]
+
+  # Level 14: Illusory Reality
+  - id: illusoryReality
+    type: Activity
+    name: Illusory Reality
+    time: bonus action
+    duration: 1 minute
+    condition: $(meta.level >= 14)
+    description: "You weave magic into illusions to give them a semi-reality. Choose one inanimate, nonmagical object that is part of an Illusion spell you cast. Make it real for the duration."

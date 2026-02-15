@@ -1,0 +1,8 @@
+id: eldritchSpear
+name: Eldritch Spear
+tags:
+  - eldritchInvocation
+type: Extra
+target: eldritchBlast
+condition: $(meta.level >= 2 && active.eldritchBlast)
+description: "The range of the spell increases by $(meta.level * 30) feet."

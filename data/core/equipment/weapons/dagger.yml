@@ -1,8 +1,10 @@
 id: dagger
 name: Dagger
-type: Reference
-tags: [item, weapon, simple]
-variables:
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [light, simple]
+value:
   name: Dagger
   mastery: nick
   damageRoll: 1d4
@@ -11,4 +13,4 @@ variables:
   classification: finesse
   category: simple
   property: light
-target: weaponAttack
+repeatable: true

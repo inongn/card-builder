@@ -1,0 +1,16 @@
+id: pactOfTheBladeFolder
+name: Pact of the Blade
+tags:
+  - eldritchInvocation
+type: Attribute
+children:
+  - id: pactOfTheBlade
+    type: Attribute
+    value: true
+  - type: Reference
+    target: [simpleWeaponProficiency, martialWeaponProficiency]
+  - id: pactWeaponSpellcasting
+    type: Effect
+    target: attributes.mainHand.classification
+    operation: set
+    value: spellcasting

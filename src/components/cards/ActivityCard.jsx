@@ -16,7 +16,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible' }) => {
         <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
             <div className="card-meta">
                 <div className="card-meta-resource">
-                    {activity.resource ? renderIcon(activity.resource, false) : renderIcon('free action', false)}
+                    {activity.resource ? renderIcon(activity.resource, false) : renderIcon('atWill', false)}
                 </div>
             </div>
             <span className="card-title">{activity.name}</span>

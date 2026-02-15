@@ -1,0 +1,46 @@
+id: berserker
+name: Path of the Berserker
+description: |
+  Barbarians who walk the Path of the Berserker direct their Rage primarily toward violence. Their path is one of untrammeled fury, and they thrill in the chaos of battle as they allow their Rage to seize and empower them.
+tags:
+  - barbarianSubclass
+type: Folder
+children:
+  # Level 3: Frenzy
+  - id: frenzy
+    type: Extra
+    name: Frenzy
+    target: rage
+    description: "If you use Reckless Attack while your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
+
+  # Level 6: Mindless Rage
+  - id: mindlessRageCharmed
+    type: Reference
+    target: charmedImmunity
+    condition: $(meta.level >= 6)
+  - id: mindlessRageFrightened
+    type: Reference
+    target: frightenedImmunity
+    condition: $(meta.level >= 6)
+
+  # Level 10: Retaliation
+  - id: retaliation
+    type: Activity
+    name: Retaliation
+    time: reaction
+    range: 5 feet
+    duration: Instantaneous
+    condition: $(meta.level >= 10)
+    description: "When you take damage from a creature within range, you make one melee attack against that creature."
+
+  # Level 14: Intimidating Presence
+  - id: intimidatingPresence
+    type: Activity
+    name: Intimidating Presence
+    time: bonus action
+    range: 30 feet
+    duration: 1 minute
+    condition: $(meta.level >= 14)
+    tags: [innateLR]
+    resource: rage
+    description: "Each creature of your choice within range makes a DC $(8 + stats.str.mod + attributes.prof) Wisdom saving throw. On a failed save, a creature has the Frightened condition for the duration. At the end of each of the Frightened creature's turns, the creature repeats the save, ending the effect on itself on a success."

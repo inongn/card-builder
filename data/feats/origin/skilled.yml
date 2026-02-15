@@ -8,7 +8,7 @@ children:
   - type: Slot
     quantity: 3
     id: skilledSkillProficiency
-    name: Skilled
+    name: Skilled Skill Proficiency
     target: skillProficiency
 repeatable: true
 description: You gain proficiency in three skills of your choice.

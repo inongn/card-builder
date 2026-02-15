@@ -3,6 +3,8 @@ tags:
 type: Feature
 subtype: Fighting Style Feature
 time: reaction
-range: 5 ft
+range: 5 feet
 duration: Instantaneous
-id: data.feats.fightingStyles.protection
+id: protection
+name: Protection
+description: When a creature you can see attacks a target other than you, you impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn.

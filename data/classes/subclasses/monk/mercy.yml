@@ -1,0 +1,52 @@
+id: mercy
+name: Warrior of Mercy
+description: |
+  Warriors of Mercy manipulate the life force of others. These Monks are wandering physicians, but they bring a swift end to their enemies. They often wear masks, presenting themselves as faceless bringers of life and death.
+tags:
+  - monkSubclass
+type: Folder
+children:
+  # Level 3: Implements of Mercy
+  - type: Reference
+    target: [insightProficiency, medicineProficiency]
+
+  # Level 3: Hand of Harm
+  - id: handOfHarm
+    type: Activity
+    name: Hand of Harm
+    resource: focusPoints
+    description: "Once per turn when you hit a creature with an Unarmed Strike and deal damage, you deal 1d$(attributes.martialArtsDie)+$(stats.wis.mod) extra Necrotic damage.$(meta.level >= 6 ? ' You can also give the target the Poisoned condition until the end of your next turn.' : '')"
+
+  # Level 3: Hand of Healing
+  - id: handOfHealing
+    type: Activity
+    name: Hand of Healing
+    time: action
+    range: touch
+    duration: Instantaneous
+    resource: focusPoints
+    description: "You touch a creature and restore 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points to it.$(meta.level >= 6 ? ' You can also end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned.' : '')"
+
+  # Level 11: Flurry of Healing and Harm
+  - id: flurryOfHealingAndHarm
+    type: Activity
+    name: Flurry of Healing and Harm
+    condition: $(meta.level >= 11)
+    resource: flurryOfHealingAndHarm
+    description: "When you use Flurry of Blows, you can replace each Unarmed Strike with Hand of Healing without expending Focus Points. When you make an Unarmed Strike with Flurry of Blows and deal damage, you can use Hand of Harm without expending a Focus Point."
+  - id: flurryOfHealingAndHarm
+    type: Resource
+    name: Flurry of Healing and Harm
+    quantity: $(Math.max(1, stats.wis.mod))
+
+  # Level 17: Hand of Ultimate Mercy
+  - id: handOfUltimateMercy
+    type: Activity
+    name: Hand of Ultimate Mercy
+    time: action
+    range: touch
+    duration: Instantaneous
+    condition: $(meta.level >= 17)
+    resource: 5 focusPoints
+    tags: [limitedLR]
+    description: "You touch the corpse of a creature that died within the past 24 hours. The creature returns to life with 4d10+$(stats.wis.mod) Hit Points, with the following conditions removed: Blinded, Deafened, Paralyzed, Poisoned, and Stunned."

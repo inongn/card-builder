@@ -8,10 +8,11 @@ import 'mdui/components/chip.js';
 
 export const TERM_ICONS = {
     'bonus action': { icon: 'play_arrow', color: 'bonus-action', shortName: 'Bonus' }, // Triangle
-    'free action': { icon: 'lens_blur', color: 'accent', shortName: 'Free' }, // Dashed circle/loader
+    'atWill': { icon: 'lens_blur', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
+    'free action': { icon: 'auto_awesome', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
     'null': { icon: 'lens_blur', color: 'accent', shortName: 'Free' },
     'action': { icon: 'circle', color: 'action', shortName: 'Action' },
-    'reaction': { icon: 'reply', color: 'reaction', shortName: 'Reaction' }, // Sparkle
+    'reaction': { icon: 'emergency', color: 'reaction', shortName: 'Reaction' }, // Sparkle
     'ritual': { icon: 'self_improvement', color: 'accent', shortName: 'Ritual' },
     'bludgeoning': { icon: 'explosion', color: 'physical', shortName: 'Bludgeoning' },
     'piercing': { icon: 'ads_click', color: 'physical', shortName: 'Piercing' }, // Target/arrow feel
@@ -42,14 +43,19 @@ export const TERM_ICONS = {
     'level9SpellSlot': { icon: 'filter_9', color: 'spell-slot', shortName: 'Spell Slot' },
     'adrenalineRush': { icon: 'air', color: 'action', shortName: 'Adrenaline Rush' },
     'secondWind': { icon: 'air', color: 'healing', shortName: 'Second Wind' },
-    'layOnHandsPool': { icon: 'front_hand', color: 'healing', shortName: 'Hands' }, // Or 'pan_tool_alt'
+    'layOnHands': { icon: 'front_hand', color: 'healing', shortName: 'Hands' }, // Or 'pan_tool_alt'
     'channelDivinity': { icon: 'auto_awesome', color: 'radiant', shortName: 'Channel Divinity' },
-    'clericChannelDivinity': { icon: 'auto_awesome', color: 'radiant', shortName: 'Channel Divinity' },
+    'clericChannelDivinity': { icon: 'blur_circular', color: 'radiant', shortName: 'Channel Divinity' },
     'giantAncestry': { icon: 'terrain', color: 'accent', shortName: 'Giant Ancestry' },
     'stonecunning': { icon: 'diamond', color: 'accent', shortName: 'Stonecunning' },
     'tireless': { icon: 'air', color: 'healing', shortName: 'Tireless' },
+    'dreadfulStrike': { icon: 'remove_red_eye', color: 'necrotic', shortName: 'Tireless' },
+    'chillingRetribution': { icon: 'ac_unit', color: 'cold', shortName: 'Chilling Retribution' },
+    'favoredEnemy': { icon: 'my_location', color: 'fire', shortName: 'Favored Enemy' },
+    'naturesVeil': { icon: 'forest', color: 'action', shortName: 'Nature\'s Veil' },
     'wholenessOfBody': { icon: 'self_improvement', color: 'healing', shortName: 'Wholeness' },
     'focusPoints': { icon: 'motion_photos_on', color: 'action', shortName: 'Focus' }, // Concentric circles
+    'flurryOfHealingAndHarm': { icon: 'back_hand', color: 'fire', shortName: 'Flurry of Healing and Harm' }, // Concentric circles
     'sneak': { icon: 'colorize', color: 'fire', shortName: 'Sneak' }, // Closest to dagger/pointy
     'rage': { icon: 'show_chart', color: 'fire', shortName: 'Rage' }, // Pulse alternative
     'bardicInspiration': { icon: 'music_note', color: 'healing', shortName: 'Bardic Inspiration' },
@@ -59,9 +65,8 @@ export const TERM_ICONS = {
     'wildResurgence': { icon: 'nature', color: 'fire', shortName: 'Wild Resurgence' },
     'natureMagician': { icon: 'auto_awesome', color: 'fire', shortName: 'Nature Magician' },
     'innateSorcery': { icon: 'magic_button', color: 'radiant', shortName: 'Innate Sorcery' },
-    'sorceryPoints': { icon: 'brightness_low', color: 'radiant', shortName: 'Sorcery Points' },
-    'pactMagicSpellSlot': { icon: 'square', color: 'spell-slot', shortName: 'Spell Slots' },
-    'darkOnesLuck': { icon: 'show_chart', color: 'fire', shortName: 'Dark One\'s Luck' },
+    'sorceryPoints': { icon: 'brightness_low', color: 'psychic', shortName: 'Sorcery Points' },
+    'pactMagicSpellSlot': { icon: 'filter_none', color: 'spell-slot', shortName: 'Spell Slots' },
     'psionicEnergyDice': { icon: 'casino', color: 'psychic', shortName: 'Psionic Die' }, // Geometric shape for dice
     'telekineticMovement': { icon: 'control_camera', color: 'psychic', shortName: 'Telekinetic Movement' }, // Geometric shape for dice
     'psiPoweredLeap': { icon: 'redo', color: 'psychic', shortName: 'Psi Powered Leap' },
@@ -78,6 +83,23 @@ export const TERM_ICONS = {
     'self': { icon: 'person_pin_circle', color: 'accent', shortName: 'Self' },
     'touch': { icon: 'back_hand', color: 'accent', shortName: 'Touch' },
     'limited': { icon: 'replay', color: 'accent', shortName: 'Limited' },
+    'bloodthirst': { icon: 'water_drop', color: 'fire', shortName: 'Bloodthirst' },
+    'warriorOfTheGods': { icon: 'storm', color: 'radiant', shortName: 'Warrior of the Gods' },
+    'gloriousDefense': { icon: 'shield', color: 'fire', shortName: 'Glorious Defense' },
+    'elementalRebuke': { icon: 'mode_standby', color: 'action', shortName: 'Elemental Rebuke' },
+    'mistyWanderer': { icon: 'dehaze', color: 'psychic', shortName: 'Misty Wanderer' },
+    'wardingFlare': { icon: 'flare', color: 'fire', shortName: 'Warding Flare' },
+    'coronaOfLight': { icon: 'wb_sunny', color: 'fire', shortName: 'Corona of Light' },
+    'warPriest': { icon: 'shield', color: 'radiant', shortName: 'War Priest' },
+    'bladesong': { icon: 'music_note', color: 'psychic', shortName: 'Bladesong' },
+    'innateSorcery': { icon: 'auto_mode', color: 'psychic', shortName: 'Innate Sorcery' },
+    'restoreBalance': { icon: 'settings', color: 'accent', shortName: 'Restore Balance' },
+    'moonlightStep': { icon: 'dark_mode', color: 'thunder', shortName: 'Moonlight Step' },
+    'cosmicOmen': { icon: 'auto_awesome', color: 'radiant', shortName: 'Cosmic Omen' },
+    'starMap': { icon: 'map', color: 'radiant', shortName: 'Star Map' },
+    'stepsOfTheFey': { icon: 'radio_button_checked', color: 'psychic', shortName: 'Steps of the Fey' },
+    'healingLight': { icon: 'flare', color: 'radiant', shortName: 'Healing Light' },
+    'darkOnesOwnLuck': { icon: 'water_drop', color: 'fire', shortName: 'Dark One\'s Luck' },
 };
 
 // Internal normalized map for lookups
@@ -100,7 +122,8 @@ export const sortDescription = (lines) => {
         const text = String(line).toLowerCase();
         if (text.includes('on a hit') || text.includes('when you hit')) return 80;
         if (text.includes('on a miss') || text.includes('when you miss')) return 70;
-        if (text.includes('you can replace')) return -1;
+        if (text.includes('resource')) return -100
+        if (text.includes('you can')) return 90;
         return 0;
     };
 
@@ -122,7 +145,7 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
     if (!text) return null;
 
 
-    let str = String(text);
+    let str = String(text).replace(/minutes/gi, 'mins');
 
     const parts = [];
     let lastIndex = 0;
@@ -200,10 +223,10 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
 
         if (showLabel) {
             return (
-                <mdui-chip variant="filled" className="grid-value-chip">
-                    <mdui-icon slot="icon" name={firstIcon.icon} class={`icon-${iconColor}`}></mdui-icon>
-                    <span className="text-primary">{content}</span>
-                </mdui-chip>
+                <div className="grid-value-chip">
+                    <mdui-icon slot="icon" name={firstIcon.icon} class={`icon-${iconColor} icon-small`}></mdui-icon>
+                    <span className="text-secondary">{content}</span>
+                </div>
             );
         }
     }
@@ -211,10 +234,10 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
     // No icon found case
     if (showLabel) {
         return (
-            <mdui-chip variant="filled" className="grid-value-chip">
-                <mdui-icon slot="icon" name={primaryIcon} class="icon-accent"></mdui-icon>
-                <span className="text-primary">{str}</span>
-            </mdui-chip>
+            <div className="grid-value-chip">
+                <mdui-icon slot="icon" name={primaryIcon} class="icon-accent icon-small"></mdui-icon>
+                <span className="text-secondary">{str}</span>
+            </div>
         );
     }
 };

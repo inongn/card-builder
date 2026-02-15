@@ -1,0 +1,126 @@
+id: wizard
+name: Wizard
+description: |
+  Wizards are defined by their exhaustive study of magic's inner workings. They cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. Their magic conjures monsters from other planes of existence, glimpses the future, or forms protective barriers. Their mightiest spells change one substance into another, call meteors from the sky, or open portals to other worlds.
+
+  Most Wizards share a scholarly approach to magic. They examine the theoretical underpinnings of magic, particularly the categorization of spells into schools of magic. Renowned Wizards such as Bigby, Tasha, Mordenkainen, and Yolande have built on their studies to invent iconic spells now used across the multiverse.
+tags:
+  - class
+type: Folder
+children:
+  # Core Wizard Traits
+  - id: hitDie
+    type: Attribute
+    value: 6
+  - id: className
+    type: Effect
+    target: meta.class
+    operation: set
+    value: Wizard
+  - type: Reference
+    value: [intSave, wisSave]
+  - type: Reference
+    value: [simpleWeaponProficiency]
+  - id: wizardSkillProficiencies
+    type: Slot
+    name: Wizard Skill Proficiencies
+    quantity: 2
+    target: arcanaProficiency OR historyProficiency OR insightProficiency OR investigationProficiency OR medicineProficiency OR natureProficiency OR religionProficiency
+
+  # Level 1: Spellcasting
+  - type: Reference
+    target: [fullCaster, intCaster]
+  - type: Slot
+    name: Wizard Cantrips
+    id: wizardCantrips
+    target: cantrip AND wizard
+    quantity: "$(meta.level >= 10 ? 5 : meta.level >= 4 ? 4 : 3)"
+  - type: Slot
+    name: Wizard Prepared Spells
+    id: wizardPreparedSpells
+    target: "wizard NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    variables:
+      maxLevel: "$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)"
+    quantity: $(progression(4,5,6,7,9,10,11,12,14,15,16,16,17,17,18,18,19,20,21,22))
+
+  # Level 1: Arcane Recovery
+  - id: arcaneRecovery
+    type: Activity
+    name: Arcane Recovery
+    tags: [limitedLR]
+    description: "When you finish a Short Rest, you can recover expended spell slots. The slots can have a combined level equal to no more than $(Math.ceil(meta.level / 2)) and none can be level 6 or higher."
+
+  # Level 2: Scholar
+  - id: scholar
+    type: Slot
+    name: Scholar Skill Expertise
+    quantity: 1
+    target: arcanaExpertise OR historyExpertise OR insightExpertise OR investigationExpertise OR medicineExpertise OR natureExpertise OR religionExpertise
+    condition: $(meta.level >= 2)
+
+  # Level 4: Ability Score Improvement
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+
+
+  # Level 8: Ability Score Improvement
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)
+
+  # Level 12: Ability Score Improvement
+  - id: level12feat
+    name: Level 12 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 12)
+
+  # Level 16: Ability Score Improvement
+  - id: level16feat
+    name: Level 16 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 16)
+
+  # Level 18: Spell Mastery
+  - id: spellMastery
+    type: Slot
+    name: Wizard Mastered Spells
+    quantity: 2
+    target: wizard AND (level1Spell OR level2Spell)
+    condition: $(meta.level >= 18)
+    overwrite:
+      extra: "**Spell Mastery.** You can cast this spell at will without expending a spell slot."
+
+  # Level 19: Epic Boon
+  - id: epicBoon
+    type: Slot
+    name: Epic Boon
+    target: epicBoon
+    condition: $(meta.level >= 19)
+
+  # Level 20: Signature Spells
+  - id: signatureSpells
+    type: Slot
+    name: Wizard Signature Spells
+    quantity: 2
+    target: wizard AND level3Spell
+    condition: $(meta.level >= 20)
+    overwrite:
+      extra: "**Signature Spell.** You can cast this spell without expending a spell slot once per Long Rest."
+
+  # Level 3: Wizard Subclass
+  - id: wizardSubclass
+    name: Wizard Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: wizardSubclass

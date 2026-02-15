@@ -1,0 +1,66 @@
+id: zealot
+name: Path of the Zealot
+description: |
+  Barbarians who walk the Path of the Zealot receive boons from a god or pantheon. These Barbarians experience their Rage as an ecstatic episode of divine union that infuses them with power. They are often allies to the priests and other followers of their god or pantheon.
+tags:
+  - barbarianSubclass
+type: Folder
+children:
+  # Level 3: Divine Fury
+  - id: divineFury
+    type: Activity
+    name: Divine Fury
+    description: "You channel divine power into your strikes. On each of your turns while your Rage is active, the first creature you hit with a weapon or an Unarmed Strike takes extra damage equal to 1d6+$(Math.floor(meta.level/2)). The extra damage is Necrotic or Radiant; you choose the type each time you deal the damage."
+
+  # Level 3: Warrior of the Gods
+  - id: warriorOfTheGods
+    type: Activity
+    name: Warrior of the Gods
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    resource: warriorOfTheGods
+    description: "A divine entity helps ensure you can continue the fight. You regain 1d12 Hit Points per charge expended."
+  - id: warriorOfTheGods
+    type: Resource
+    name: Warrior of the Gods
+    quantity: $(progression(0,0,4,4,4,5,5,5,5,5,5,6,6,6,6,6,7,7,7,7))
+    icon: d12
+
+  # Level 6: Fanatical Focus
+  - id: fanaticalFocus
+    type: Extra
+    name: Fanatical Focus
+    target: rage
+    condition: $(meta.level >= 6)
+    description: "Once per active Rage, if you fail a saving throw, you can reroll it with a $(formatBonus(attributes.rageDamage)) bonus. You must use the new roll."
+
+  # Level 10: Zealous Presence
+  - id: zealousPresence
+    type: Activity
+    name: Zealous Presence
+    time: bonus action
+    range: 60 feet
+    duration: 1 round
+    condition: $(meta.level >= 10)
+    tags: [innateLR]
+    resource: rage
+    description: "You unleash a battle cry infused with divine energy. Up to ten other creatures of your choice within range gain Advantage on attack rolls and saving throws until the start of your next turn."
+
+  # Level 14: Rage of the Gods
+  - id: rageOfTheGods
+    type: Activity
+    name: Rage of the Gods
+    condition: $(meta.level >= 14)
+    tags: [limitedLR]
+    duration: 1 minute
+    description: "When you activate your Rage, you assume the form of a divine warrior for the duration or until you drop to 0 Hit Points. While in this form, you have a Fly Speed equal to $(attributes.movement.walk) feet and can hover, and you have Resistance to Necrotic, Psychic, and Radiant damage."
+  - id: rageOfTheGodsRevivification
+    type: Activity
+    name: Revivification
+    time: reaction
+    range: 30 feet
+    duration: Instantaneous
+    condition: $(meta.level >= 14)
+    resource: rage
+    description: "When a creature within range would drop to 0 Hit Points, you change the target's Hit Points to $(meta.level) instead."

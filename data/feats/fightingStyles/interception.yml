@@ -3,6 +3,8 @@ tags:
 type: Feature
 subtype: Fighting Style Feature
 time: reaction
-range: 5 ft
+range: 5 feet
 duration: Instantaneous
-id: data.feats.fightingStyles.interception
+id: interception
+name: Interception
+description: When a creature you can see hits another creature with an attack roll, you reduce the damage dealt to the target by 1d10+$(attributes.prof).

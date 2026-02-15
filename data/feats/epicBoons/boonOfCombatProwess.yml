@@ -1,0 +1,14 @@
+name: Boon of Combat Prowess
+type: Folder
+id: boonOfCombatProwess
+tags: [epicBoon]
+children:
+  - name: Ability Point Bonus
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Peerless Aim
+    type: Extra
+    target: attack
+    description: "On a miss, you can hit instead."

@@ -1,7 +1,7 @@
 id: fireBolt
 type: Activity
 name: Fire Bolt
-tags: [cantrip, evocation, artificer, sorcerer, wizard, attackSpell, damageSpell]
+tags: [cantrip, evocation, artificer, sorcerer, wizard, attackSpell, damageSpell, fireDamage]
 time: action
 range: 120 ft
 duration: instantaneous

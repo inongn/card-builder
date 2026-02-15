@@ -7,14 +7,16 @@ children:
     target: data.core.spellcasting.chooseCaster
     quantity: 1
   - type: Slot
-    id: magicInitiateCantrips
-    name: Magic Initiate Cantrips
+    id: magicInitiateWizardCantrips
+    name: Magic Initiate (Wizard) Cantrips
     quantity: 2
     target: wizard AND cantrip
   - type: Slot
-    id: magicInitiatePreparedSpell
-    name: Magic Initiate Prepared Spell
-    target: spell AND wizard AND level1Spell
+    id: magicInitiateWizardPreparedSpell
+    name: Magic Initiate (Wizard) Prepared Spell
+    target: wizard AND level1Spell
     quantity: 1
+    overwrite:
+      extra: "**Magic Initiate.** You can cast this spell without expending a spell slot once per Long Rest."
 id: magicInitiateWizard
 name: Magic Initiate (Wizard)

@@ -1,7 +1,7 @@
 tags:
   - fightingStyle
-type: Effect
-target: cards[twoHanded].extra
-operation: push
-value: data.feats.fightingStyles.greatWeaponFighting.datafeatsfightingstylesgreatweaponfightingname.value
-id: data.feats.fightingStyles.greatWeaponFighting
+type: Extra
+name: Great Weapon Fighting
+target: twoHanded AND melee
+description: On a hit, you can treat any 1 or 2 on a damage die as a 3.
+id: greatWeaponFighting

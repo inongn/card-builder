@@ -1,0 +1,40 @@
+id: valor
+name: College of Valor
+description: |
+  Bards of the College of Valor are daring storytellers whose tales preserve the memory of the great heroes of the past. These bards sing the deeds of the mighty in vaulted halls or to crowds gathered around great bonfires.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  # Level 3: Combat Inspiration
+  - id: combatInspirationExtra
+    type: Extra
+    target: bardicInspiration
+    condition: $(meta.level >= 3)
+    description: |
+      **Defense** A creature that has a Bardic Inspiration die from you can use its Reaction to roll the die and add the number rolled to its AC when hit by an attack.
+      **Offense** A creature that has a Bardic Inspiration die from you can use its Reaction to roll the die and add the number rolled to its damage after hitting with an attack.
+
+  # Level 3: Martial Training
+  - type: Reference
+    condition: $(meta.level >= 3)
+    target: [martialWeaponProficiency, mediumArmorTraining, shieldTraining]
+
+  # Level 6: Extra Attack
+  - id: extraAttack
+    type: Effect
+    target: activities[mainHand].description
+    operation: set
+    condition: $(meta.level >= 6)
+    value: |
+      You strike twice. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage. 
+      
+      You can cast one of your cantrips in place of one of those attacks.
+
+  # Level 14: Battle Magic
+  - id: battleMagic
+    type: Activity
+    name: Battle Magic
+    time: bonus action
+    condition: $(meta.level >= 14)
+    description: "When you cast a spell using an action, make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack with you $(attributes.mainHand.name). On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."

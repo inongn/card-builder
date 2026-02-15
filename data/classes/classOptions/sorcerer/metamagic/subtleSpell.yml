@@ -1,0 +1,11 @@
+id: subtleSpell
+name: Subtle Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - id: subtleSpellActivity
+    type: Activity
+    name: Subtle Spell
+    resource: sorceryPoints
+    description: "When you cast a spell, you cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell."

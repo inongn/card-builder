@@ -1,0 +1,16 @@
+id: unarmed
+name: Unarmed
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [simple]
+value:
+  name: Unarmed Strike
+  mastery: ''
+  damageRoll: 1d4
+  damageType: bludgeoning
+  range: 5 feet
+  classification: melee
+  category: simple
+  property: unarmed
+repeatable: true

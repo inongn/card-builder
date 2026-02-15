@@ -1,0 +1,63 @@
+id: warDomain
+name: War Domain
+description: |
+  War has many manifestations. It can make heroes of ordinary people. It can be desperate and horrific, with acts of cruelty and cowardice eclipsing instances of excellence and courage. Clerics who tap into the magic of the War Domain excel in battle, inspiring others to fight the good fight or offering acts of violence as prayers.
+
+  Gods of the War Domain watch over warriors and reward them for their great deeds. They include champions of honor and chivalry as well as gods of destruction and pillage. Other war gods take a more neutral stance, promoting war in all its manifestations and supporting warriors in any circumstance.
+type: Folder
+tags:
+  - clericSubclass
+children:
+  # Level 3: War Domain Spells
+  - type: Reference
+    target: [guidingBolt, magicWeapon, shieldOfFaith, spiritualWeapon]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [crusadersMantle, spiritGuardians]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [fireShield, freedomOfMovement]
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target: [holdMonster, steelWindStrike]
+    condition: $(meta.level >= 9)
+
+  # Level 3: Guided Strike
+  - id: guidedStrike
+    type: Activity
+    name: Guided Strike
+    time: reaction
+    range: 30 feet
+    duration: Instantaneous
+    resource: channelDivinity
+    condition: $(meta.level >= 3)
+    description: "When you or a creature within range misses with an attack roll, you give that roll a +10 bonus, potentially causing it to hit."
+
+  # Level 3: War Priest
+  - id: warPriest
+    type: Activity
+    name: War Priest Attack
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    resource: warPriest
+    condition: $(meta.level >= 3)
+    description: "You strike at a creature or object within range with your $(attributes.mainHand.name). Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target. On a hit, the target takes $(attributes.mainHand.damageRoll) $(attributes.mainHand.damageType) damage."
+  - id: warPriest
+    type: Resource
+    name: War Priest
+    quantity: $(Math.max(1, stats.wis.mod))
+    sr: all
+    condition: $(meta.level >= 3)
+
+  # Level 6: War God's Blessing
+  - id: warGodsBlessing
+    type: Extra
+    target: [shieldOfFaith, spiritualWeapon]
+    name: War God's Blessing
+    description: "You cast this spell using a Channel Divinity charge without requiring Concentration."
+
+  # Level 17: Avatar of Battle
+  - type: Reference
+    target: [bludgeoningResistance, piercingResistance, slashingResistance]
+    condition: $(meta.level >= 17)

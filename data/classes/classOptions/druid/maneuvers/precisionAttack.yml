@@ -1,0 +1,6 @@
+id: precisionAttack
+name: Precision Attack
+tags: [maneuver]
+type: Activity
+resource: superiorityDice
+description: When you miss with an attack roll, you add 1d$(attributes.superiorityDie) to the attack roll, potentially causing the attack to hit.

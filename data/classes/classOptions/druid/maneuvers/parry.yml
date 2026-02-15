@@ -1,0 +1,7 @@
+id: parry
+name: Parry
+tags: [maneuver]
+type: Activity
+time: reaction
+resource: superiorityDice
+description: When another creature damages you with a melee attack roll, you reduce the damage by 1d$(attributes.superiorityDie)$(formatBonus(Math.max(1, stats.str.mod, stats.dex.mod))).
