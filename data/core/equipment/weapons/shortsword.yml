@@ -10,7 +10,7 @@ value:
   damageRoll: 1d6
   damageType: piercing
   range: 5 feet
-  classification: melee
+  classification: finesse
   category: martial
   property: light
 repeatable: true

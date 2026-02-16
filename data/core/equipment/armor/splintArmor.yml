@@ -1,0 +1,11 @@
+id: splintArmor
+name: Splint Armor
+type: Folder
+tags: [heavyArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: 17
+  - type: Reference
+    target: stealthDisadvantage

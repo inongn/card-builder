@@ -9,7 +9,7 @@ value:
   mastery: nick
   damageRoll: 1d4
   damageType: piercing
-  range: 30 feet
+  range: 20 feet
   classification: finesse
   category: simple
   property: light

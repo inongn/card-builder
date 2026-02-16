@@ -9,7 +9,7 @@ value:
   mastery: vex
   damageRoll: 1d6
   damageType: piercing
-  range: 30 feet
+  range: 80 feet
   classification: ranged
   category: simple
   property: twoHanded
