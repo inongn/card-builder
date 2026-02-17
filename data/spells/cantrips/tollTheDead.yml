@@ -1,0 +1,10 @@
+id: tollTheDead
+type: Activity
+name: Toll the Dead
+tags: [necromancy, cantrip, cleric, warlock, wizard, saveSpell, damageSpell, necroticDamage]
+time: action
+range: 60 feet
+duration: instantaneous
+description: |
+  You point at one creature you can see within range, and the single chime of a dolorous bell is audible within 10 feet of the target. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Necrotic damage. If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage.
+

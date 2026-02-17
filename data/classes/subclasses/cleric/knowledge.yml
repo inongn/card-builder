@@ -9,11 +9,18 @@ tags:
   - clericSubclass
 children:
   # Level 3: Blessings of Knowledge
-  - id: blessingsOfKnowledge
+  - id: blessingsOfKnowledgeSkill
     type: Slot
-    name: Blessings of Knowledge
+    name: Blessings of Knowledge Skill Proficiency
     quantity: 2
     target: knowledgeSkillProficiency
+    condition: $(meta.level >= 3)
+
+  - id: blessingOfKnowledgeTool
+    type: Slot
+    name: Blessing of Knowledge Tool Proficiency
+    quantity: 1
+    target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
     condition: $(meta.level >= 3)
 
   # Level 3: Knowledge Domain Spells
@@ -32,10 +39,12 @@ children:
 
   # Level 3: Mind Magic
   - id: mindMagic
-    type: Extra
+    type: Effect
     name: Mind Magic
-    target: [comprehendLanguages, detectMagic, detectThoughts, identify, mindSpike, tonghes, arcaneEye, legendLore, scrying]
-    description: "You can cast this spell using a Channel Divinity charge instead."
+    target: activities[comprehendLanguages, detectMagic, detectThoughts, identify, mindSpike, tonghes, arcaneEye, legendLore, scrying].resource
+    operation: push
+    value: channelDivinity
+    condition: $(meta.level >= 3)
 
   # Level 6: Unfettered Mind
   - id: unfetteredMindTelepathy

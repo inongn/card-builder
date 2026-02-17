@@ -1,0 +1,13 @@
+id: searingSmite
+type: Activity
+name: Searing Smite
+resource: level1SpellSlot
+tags: [level1Spell, evocation, paladin, saveSpell, damageSpell, fireDamage]
+time: bonus action
+range: self
+duration: 1 minute
+description: |
+  Immediately after hitting a target with a Melee weapon or an Unarmed Strike, it takes an extra 1d6 Fire damage from the attack. At the start of each of its turns until the spell ends, the target takes 1d6 Fire damage and then makes a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the spell continues. On a successful save, the spell ends.
+
+  **Using a Higher-Level Spell Slot.** All the damage increases by 1d6 for each spell slot level above 1.
+

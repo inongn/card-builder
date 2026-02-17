@@ -189,6 +189,9 @@ children:
   - id: advantages
     type: Attribute
     value: []
+  - id: tools
+    type: Attribute
+    value: []
   - id: spellcasting
     type: Attribute
     value:
@@ -215,6 +218,29 @@ children:
     value:
       attack: $(attributes.prof + stats.str.mod)
       bonus: $(stats.str.mod)
+  - id: mainHand
+    type: Attribute
+    value: 
+      name:
+      mastery:
+      damageRoll:
+      damageType:
+      range:
+      classification:
+      category:
+      property: 
+      attacks:
+  - id: offHand
+    type: Attribute
+    value: 
+      name:
+      mastery:
+      damageRoll:
+      damageType:
+      range:
+      classification:
+
+
   - id: acrobatics
     name: Acrobatics
     type: Skill
@@ -355,7 +381,6 @@ children:
     proficiency: 0
 
 
-  
   - type: Reference
     reference: [longRest, shortRest, coreActions, weaponProperties, extraProperties]
 
@@ -364,8 +389,7 @@ children:
     name: Hit Dice
     quantity: $(meta.level)
 
-  - id: species
-    type: Slot
+  - type: Slot
     name: Species
     target: species
     quantity: 1
@@ -377,6 +401,13 @@ children:
     quantity: 1
 
 
+  - id: class
+    type: Slot
+    name: Class
+    target: class
+    quantity: 1
+
+  
 
   - id: armor
     type: Slot
@@ -399,13 +430,6 @@ children:
     condition: $(attributes.mainHand != null && attributes.mainHand.property != 'twoHanded')
     variables:
       hand: offHand
-    target: "offHand $(attributes.mainHand.property == 'light' ? 'OR (light AND ($(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple') OR $(attributes.proficiencies.includes('lightWeapons') ? 'light' : ''))) ' : '')"
+    target: "offHand $(attributes.proficiencies.includes('shieldTraining') ? 'OR shieldEquipment' : '') $(attributes.mainHand.property == 'light' ? 'OR (light AND ($(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple') OR $(attributes.proficiencies.includes('lightWeapons') ? 'light' : ''))) ' : '')"
     quantity: 1
 
-  - id: class
-    type: Slot
-    name: Class
-    target: class
-    quantity: 1
-
-  

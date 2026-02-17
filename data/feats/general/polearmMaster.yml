@@ -1,0 +1,25 @@
+id: polearmMaster
+name: Polearm Master
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: "Pole Strike: $(attributes.mainHand.name)"
+    type: Activity
+    tags: [bludgeoningDamage]
+    time: bonus action
+    condition: $(attributes.mainHand.name == 'Quarterstaff' || attributes.mainHand.name == 'Spear' || attributes.mainHand.name == 'Halberd' || attributes.mainHand.name == 'Lance' || attributes.mainHand.name == 'Glaive' || attributes.mainHand.name == 'Pike')
+    target: attack AND quarterstaff OR spear OR (heavy AND reach)
+    description: "You strike at a creature or object within range with the opposite end of the weapon. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target. On a hit, the target takes 1d4$(formatBonus(attributes[attributes.mainHand.classification].bonus)) Bludgeoning damage."
+  - name: "Reactive Strike: $(attributes.mainHand.name)"
+    type: Activity
+    time: reaction
+    target: attack AND quarterstaff OR spear OR (heavy AND reach)
+    condition: $(attributes.mainHand.name == 'Quarterstaff' || attributes.mainHand.name == 'Spear' || attributes.mainHand.name == 'Halberd' || attributes.mainHand.name == 'Lance' || attributes.mainHand.name == 'Glaive' || attributes.mainHand.name == 'Pike')
+    description: "When a creature enters the reach of your weapon, you strike at it. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target. On a hit, the target takes 1d4$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."

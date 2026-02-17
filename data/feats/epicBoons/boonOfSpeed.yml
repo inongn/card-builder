@@ -1,0 +1,21 @@
+name: Boon of Speed
+type: Folder
+id: boonOfSpeed
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Escape Artist
+  type: Activity
+  time: bonus action
+  description: You take the Disengage action and also end the Grappled condition on
+    you.
+- name: Quickness
+  type: Effect
+  target: attributes.movement.walk
+  operation: add
+  value: 30

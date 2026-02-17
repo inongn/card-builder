@@ -62,7 +62,7 @@ children:
     duration: 1 hour
     resource: bardicInspiration
     description: |
-      Inspire another creature within range who can see or hear you. The creature gains one of your Bardic Inspiration dice (d$(attributes.bardicDie)).
+      You inspire another creature within range who can see or hear you. The creature gains one of your Bardic Inspiration dice (d$(attributes.bardicDie)).
       
       Once within the next hour when the creature fails a D20 Test, the creature can roll the die and add the number rolled to the d20, potentially turning the failure into a success. A creature can have only one Bardic Inspiration die at a time.
 
@@ -141,7 +141,7 @@ children:
     range: 30 feet
     condition: $(meta.level >= 7)
     description: |
-      When you or an ally within range fails a saving throw, against an effect that applies the Charmed or Frightened condition, use musical notes or words of power to disrupt its mind-influencing effect. Cause the save to be rerolled, and the new roll has Advantage.
+      When you or an ally within range fails a saving throw, against an effect that applies the Charmed or Frightened condition, you use musical notes or words of power to disrupt its mind-influencing effect. Cause the save to be rerolled, and the new roll has Advantage.
 
   # ==========================================
   # Level 8

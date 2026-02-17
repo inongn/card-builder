@@ -37,7 +37,7 @@ export const PrintScreen = ({ char, onNavigate, toggleTheme, isDarkMode }) => {
                         </div>
                         {page1Cards.map((card, idx) => (
                             <div key={idx} className="action-card-print-slot">
-                                <ActivityCard activity={card} variant="static" />
+                                <ActivityCard activity={card} variant="static" char={char} />
                             </div>
                         ))}
                     </div>
@@ -48,7 +48,7 @@ export const PrintScreen = ({ char, onNavigate, toggleTheme, isDarkMode }) => {
                         <div className="print-grid">
                             {chunk.map((card, cardIdx) => (
                                 <div key={cardIdx} className="action-card-print-slot">
-                                    <ActivityCard activity={card} variant="static" />
+                                    <ActivityCard activity={card} variant="static" char={char} />
                                 </div>
                             ))}
                         </div>

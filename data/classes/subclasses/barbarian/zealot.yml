@@ -8,9 +8,10 @@ type: Folder
 children:
   # Level 3: Divine Fury
   - id: divineFury
-    type: Activity
+    type: Extra
+    target: rage
     name: Divine Fury
-    description: "You channel divine power into your strikes. On each of your turns while your Rage is active, the first creature you hit with a weapon or an Unarmed Strike takes extra damage equal to 1d6+$(Math.floor(meta.level/2)). The extra damage is Necrotic or Radiant; you choose the type each time you deal the damage."
+    description: "You channel divine power into your strikes. On each of your turns while your Rage is active, the first creature you hit takes 1d6+$(Math.floor(meta.level/2)) extra damage. The extra damage is Necrotic or Radiant; you choose the type each time you deal the damage."
 
   # Level 3: Warrior of the Gods
   - id: warriorOfTheGods

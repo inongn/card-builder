@@ -2,7 +2,7 @@ type: Effect
 tags:
   - damageResistance
 operation: push
-value: acid
+value: Acid Damage
 target: attributes.resistances
 id: acidResistance
 name: Acid Resistance

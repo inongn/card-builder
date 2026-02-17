@@ -2,7 +2,7 @@ type: Effect
 tags:
   - damageResistance
 operation: push
-value: slashing
+value: Slashing Damage
 target: attributes.resistances
 id: slashingResistance
 name: Slashing Resistance

@@ -1,0 +1,15 @@
+id: dart
+name: Dart
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [simple]
+value:
+  name: Dart
+  mastery: vex
+  damageRoll: 1d4
+  damageType: piercing
+  range: 20 feet
+  classification: finesse
+  category: simple
+  property: ''

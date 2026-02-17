@@ -6,119 +6,85 @@ import jsyaml from 'js-yaml';
 export class PropertyLibrary {
     constructor() {
         this.properties = new Map(); // id -> parsed property
-        this.rawStore = new Map(); // id -> raw string
+        this.rawStore = new Map(); // id -> raw string (mostly used for hot updates)
         this.byTag = new Map(); // tag -> id[]
         this.paths = new Map(); // id -> full path
     }
 
     /**
-     * Load all YAML files from the data directory
+     * Load the pre-bundled JSON database
      */
     async loadFromData() {
-        // Remove eager:true to reduce initial bundle size and allow the browser to breathe during load.
-        // Vite will create separate chunks for the YAML content.
-        const context = import.meta.glob('/data/**/*.yml', { query: '?raw', import: 'default' });
+        try {
+            console.log('Fetching database...');
+            const response = await fetch('/db.json');
+            if (!response.ok) throw new Error('Failed to load db.json');
 
-        const loadPromises = Object.entries(context).map(async ([path, loader]) => {
-            try {
-                const content = await loader();
+            const db = await response.json();
+            console.log(`Loaded ${db.length} properties from database.`);
 
-                // Extract ID from YAML content (prioritize discrete id over filename)
-                // Match: id: someId or id: "someId" or id: 'someId'
-                const idMatch = content.match(/^id:\s*(['"]?)([^'"\n]+)\1/m);
-                const id = idMatch ? idMatch[2].trim() : path.split('/').pop().replace('.yml', '');
-
-                this.addRawProperty(id, content, path);
-            } catch (e) {
-                console.error('Error loading property:', path, e);
-            }
-        });
-
-        await Promise.all(loadPromises);
+            db.forEach(prop => {
+                if (prop.id) {
+                    this.addParsedProperty(prop);
+                }
+            });
+        } catch (e) {
+            console.error('Error loading property database:', e);
+            // Fallback to old behavior or empty state
+        }
     }
 
     /**
-     * Add a raw property to the library and index its tags
+     * Add a pre-parsed property to the library
      */
-    addRawProperty(id, content, path = null) {
-        this.rawStore.set(id, content);
+    addParsedProperty(property, path = null) {
+        const id = property.id;
+
+        // Auto-generate name and description if missing
+        if (!property.name) property.name = id;
+        if (!property.description) property.description = '';
+
+        this.properties.set(id, property);
         if (path) this.paths.set(id, path);
 
-        // Fast tag extraction using regex to avoid full YAML parsing during initial load
-        // Matches "tags: [tag1, tag2]", "tags: tag1", or multi-line "tags:\n  - tag1"
-        const inlineTagMatch = content.match(/^tags:\s*\[(.*?)\]/m);
-        const singleTagMatch = content.match(/^tags:\s*([^\[\s\n][^\n]*)$/m);
-        const multiLineTagMatch = content.match(/^tags:\s*\n((?:\s+-\s+.+\n?)+)/m);
-
-        let tags = [];
-        if (inlineTagMatch) {
-            tags = inlineTagMatch[1].split(',').map(t =>
-                t.trim().replace(/^['"]|['"]$/g, '')
-            ).filter(t => t !== "");
-        } else if (multiLineTagMatch) {
-            const matches = multiLineTagMatch[1].matchAll(/^\s+-\s+(.+)$/gm);
-            for (const m of matches) {
-                tags.push(m[1].trim().replace(/^['"]|['"]$/g, ''));
-            }
-        } else if (singleTagMatch) {
-            tags = [singleTagMatch[1].trim().replace(/^['"]|['"]$/g, '')];
+        if (property.tags) {
+            const tags = Array.isArray(property.tags) ? property.tags : [property.tags];
+            tags.forEach(tag => {
+                if (!this.byTag.has(tag)) this.byTag.set(tag, []);
+                if (!this.byTag.get(tag).includes(id)) {
+                    this.byTag.get(tag).push(id);
+                }
+            });
         }
-
-        tags.forEach(tag => {
-            if (!this.byTag.has(tag)) this.byTag.set(tag, []);
-            if (!this.byTag.get(tag).includes(id)) {
-                this.byTag.get(tag).push(id);
-            }
-        });
     }
 
     /**
-     * Reload or update a property from new raw content
+     * Reload or update a property from new raw content (Hot Module Replacement)
      */
     reloadProperty(id, content, path = null) {
-        // Clear parsed cache
-        this.properties.delete(id);
+        try {
+            const property = jsyaml.load(content);
+            property.id = property.id || id;
 
-        // Remove from byTag indexes first to avoid duplicates or orphaned entries
-        this.byTag.forEach((ids, tag) => {
-            const index = ids.indexOf(id);
-            if (index !== -1) ids.splice(index, 1);
-        });
+            // Clear old parsed cache and tags
+            this.properties.delete(id);
+            this.byTag.forEach((ids) => {
+                const index = ids.indexOf(id);
+                if (index !== -1) ids.splice(index, 1);
+            });
 
-        // Re-process
-        this.addRawProperty(id, content, path);
+            // Re-process
+            this.addParsedProperty(property, path);
+        } catch (e) {
+            console.error('Error hot-reloading property:', id, e);
+        }
     }
 
     /**
-     * Get property by ID, parsing it lazily if needed
+     * Get property by ID
      */
     getProperty(id) {
-        // Check if already parsed
-        if (this.properties.has(id)) return this.properties.get(id);
-
-        // Check if raw content exists
-        const content = this.rawStore.get(id);
-        if (!content) return null;
-
-        try {
-            const property = jsyaml.load(content);
-            property.id = id;
-
-            // Auto-generate name and description paths from id
-            // If property has an id, its name and description should resolve to localization paths
-            if (property.id && !property.name) {
-                property.name = property.id;
-            }
-            if (property.id && !property.description) {
-                property.description = ''; // Default to empty string instead of path
-            }
-
-            this.properties.set(id, property);
-            return property;
-        } catch (e) {
-            console.error('Error parsing YAML for', id, e);
-            return null;
-        }
+        return this.properties.get(id) || null;
     }
 
     /**
@@ -188,14 +154,14 @@ export class PropertyLibrary {
             if (token.toUpperCase() === 'NOT') {
                 pos++;
                 const right = parseFactor();
-                const all = new Set(this.rawStore.keys());
+                const all = new Set(this.properties.keys());
                 right.forEach(id => all.delete(id));
                 return all;
             }
 
             pos++;
             const matches = new Set(this.byTag.get(token) || []);
-            if (this.rawStore.has(token)) matches.add(token);
+            if (this.properties.has(token)) matches.add(token);
             return matches;
         };
 

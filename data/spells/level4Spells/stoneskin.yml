@@ -1,0 +1,11 @@
+id: stoneskin
+type: Activity
+name: Stoneskin
+resource: level4SpellSlot
+tags: [level4Spell, transmutation, artificer, druid, ranger, sorcerer, wizard]
+time: action
+range: touch
+duration: concentration, up to 1 hour
+description: |
+  Until the spell ends, one willing creature you touch has Resistance to Bludgeoning, Piercing, and Slashing damage.
+

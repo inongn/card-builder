@@ -1,17 +1,26 @@
 id: soldier
 name: Soldier
-description: |
-  You began training for war as soon as you reached adulthood and carry precious few memories of life before you took up arms. Battle is in your blood. Sometimes you catch yourself reflexively performing the basic fighting exercises you learned first. Eventually, you put that training to use on the battlefield, protecting the realm by waging war.
+description: 'You began training for war as soon as you reached adulthood and carry
+  precious few memories of life before you took up arms. Battle is in your blood.
+  Sometimes you catch yourself reflexively performing the basic fighting exercises
+  you learned first. Eventually, you put that training to use on the battlefield,
+  protecting the realm by waging war.
+
+  '
 tags:
-  - background
+- background
 type: Folder
 children:
-  - type: Reference
-    target:
-      - athleticsProficiency
-      - intimidationProficiency
-      - savageAttacker
-  - type: Effect
-    target: attributes.originEligible
-    operation: push
-    value: [str, dex, con]
+- type: Reference
+  target:
+  - athleticsProficiency
+  - intimidationProficiency
+  - savageAttacker
+  - gamingSet
+- type: Effect
+  target: attributes.originEligible
+  operation: push
+  value:
+  - str
+  - dex
+  - con

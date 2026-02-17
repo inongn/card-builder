@@ -11,6 +11,17 @@ import 'mdui/components/icon.js';
 export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, className }, ref) => {
     const RESOURCE_WRAP_THRESHOLD = 10;
 
+    const resourceCounts = useMemo(() => {
+        if (!char || !char.activities) return {};
+        const counts = {};
+        char.activities.forEach(activity => {
+            if (activity.resource) {
+                counts[activity.resource] = (counts[activity.resource] || 0) + 1;
+            }
+        });
+        return counts;
+    }, [char?.activities]);
+
     const sortedResources = useMemo(() => {
         if (!char || !char.resources) return [];
 
@@ -19,6 +30,13 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
         char.resources.forEach(res => {
             const id = res.id || '';
+            // If a resource only has one associated activity, it does not show up on the character sheet
+            // EXCEPT for spell slots which always show up
+            const count = resourceCounts[id] || 0;
+            const isSpellSlot = id.toLowerCase().includes('spellslot');
+            const isSorceryPoint = id.toLowerCase().includes('sorcerypoints');
+            if (count === 1 && !isSpellSlot && !isSorceryPoint) return;
+
             if (id.match(/^level\d+SpellSlot$/)) {
                 spellSlots.push(res);
             } else {
@@ -54,7 +72,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
         });
 
         return [...otherResources, ...spellSlots];
-    }, [char?.resources]);
+    }, [char?.resources, resourceCounts]);
 
     if (!char) return null;
 
@@ -219,7 +237,8 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 { label: 'Movement', data: char.attributes.movement },
                                 { label: 'Resistances', data: char.attributes.resistances },
                                 { label: 'Advantages', data: char.attributes.advantages },
-                                { label: 'Immunities', data: char.attributes.immunities }
+                                { label: 'Immunities', data: char.attributes.immunities },
+                                { label: 'Tools', data: char.attributes.tools }
                             ].map((info, idx) => {
                                 let displayData = [];
                                 if (Array.isArray(info.data)) {
@@ -240,7 +259,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 return (
                                     <div className="list-item info-list-item" key={idx}>
                                         <span className="text-secondary">{info.label}</span>
-                                        <span className="text-primary">
+                                        <span className="text-primary" style={{ textAlign: 'right' }}>
                                             {displayData.map((s, i) => (
                                                 <React.Fragment key={i}>
                                                     {s}{i < displayData.length - 1 && ', '}

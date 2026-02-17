@@ -1,0 +1,7 @@
+name: Faerun
+type: Folder
+id: faerun
+tags: [world]
+children:
+  - type: Remove
+    target: [minotaur, leonin, satyr, triton]

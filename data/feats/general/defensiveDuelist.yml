@@ -1,0 +1,16 @@
+id: defensiveDuelist
+name: Defensive Duelist
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Parry
+    type: Activity
+    time: reaction
+    description: 'When you are hit with an attack, you add $(attributes.prof) to your Armor Class, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn.'

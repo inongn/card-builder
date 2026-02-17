@@ -1,0 +1,15 @@
+id: rapier
+name: Rapier
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [martial]
+value:
+  name: Rapier
+  mastery: vex
+  damageRoll: 1d8
+  damageType: piercing
+  range: 5 feet
+  classification: finesse
+  category: martial
+  property: ''

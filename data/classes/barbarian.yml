@@ -101,10 +101,10 @@ children:
   # Level 5: Extra Attack
   - id: extraAttack
     type: Effect
-    target: activities[mainHand].description
+    target: attributes.mainHand.attacks
     operation: set
     condition: $(meta.level >= 5)
-    value: "You strike twice. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+    value: 2
 
   # Level 5: Fast Movement
   - id: fastMovement

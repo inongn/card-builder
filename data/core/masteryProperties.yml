@@ -20,6 +20,7 @@ children:
   - type: Extra
     target: cleave
     id: cleave
+    description: On a hit, you can make another attack against a second creature within 5 feet of the first that is also within your reach.
   - type: Extra
     target: push
     id: push
@@ -39,4 +40,4 @@ children:
     target: vex
     id: vex
     name: Vex
-    description: "On a hit, you have advantage on your next attack roll against the target before the end of your next turn."
+    description: "On a hit, you have Advantage on your next attack roll against the target before the end of your next turn."

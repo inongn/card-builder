@@ -1,0 +1,15 @@
+id: maul
+name: Maul
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [twoHanded, martial]
+value:
+  name: Maul
+  mastery: topple
+  damageRoll: 2d6
+  damageType: bludgeoning
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: twoHanded

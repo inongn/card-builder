@@ -1,0 +1,15 @@
+id: pike
+name: Pike
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [twoHanded, martial]
+value:
+  name: Pike
+  mastery: push
+  damageRoll: 1d10
+  damageType: piercing
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: twoHanded

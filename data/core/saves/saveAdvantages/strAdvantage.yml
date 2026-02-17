@@ -1,5 +1,5 @@
 type: Effect
-target: saves.might.adv
+target: saves.strength.adv
 operation: set
 value: true
 id: strAdvantage

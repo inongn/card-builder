@@ -1,0 +1,29 @@
+name: Boon of Energy Resistance
+type: Folder
+id: boonOfEnergyResistance
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Energy Resistances
+  type: Slot
+  id: energyResistances
+  target: acidResistance OR coldResistance OR fireResistance OR lightningResistance
+    OR necroticResistance OR poisonResistance OR psychicResistance OR radiantResistance
+    OR thunderResistance OR epicBoonResistance
+  quantity: 2
+- name: Energy Redirection
+  type: Activity
+  time: reaction
+  range: 60 feet
+  description: 'When you take damage of a type you have Resistance to, you can direct
+    damage of the same type toward another creature you can see within range that
+    isn''t behind Total Cover. That creature must succeed on a DC $(8 + stats.con.mod
+    + attributes.prof) Dexterity saving throw or take 2d12$(formatBonus(stats.con.mod))
+    damage.
+
+    '

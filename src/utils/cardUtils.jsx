@@ -8,9 +8,8 @@ import 'mdui/components/chip.js';
 
 export const TERM_ICONS = {
     'bonus action': { icon: 'play_arrow', color: 'bonus-action', shortName: 'Bonus' }, // Triangle
-    'atWill': { icon: 'lens_blur', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
+    'atWill': { icon: '', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
     'free action': { icon: 'auto_awesome', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
-    'null': { icon: 'lens_blur', color: 'accent', shortName: 'Free' },
     'action': { icon: 'circle', color: 'action', shortName: 'Action' },
     'reaction': { icon: 'emergency', color: 'reaction', shortName: 'Reaction' }, // Sparkle
     'ritual': { icon: 'self_improvement', color: 'accent', shortName: 'Ritual' },
@@ -54,7 +53,14 @@ export const TERM_ICONS = {
     'favoredEnemy': { icon: 'my_location', color: 'fire', shortName: 'Favored Enemy' },
     'naturesVeil': { icon: 'forest', color: 'action', shortName: 'Nature\'s Veil' },
     'wholenessOfBody': { icon: 'self_improvement', color: 'healing', shortName: 'Wholeness' },
-    'focusPoints': { icon: 'motion_photos_on', color: 'action', shortName: 'Focus' }, // Concentric circles
+    'focusPoints': { icon: 'filter_none', color: 'action', shortName: 'Focus' },
+    '1 focusPoints': { icon: 'filter_1', color: 'action', shortName: 'Focus' },
+    '2 focusPoints': { icon: 'filter_2', color: 'action', shortName: 'Focus' },
+    '3 focusPoints': { icon: 'filter_3', color: 'action', shortName: 'Focus' },
+    '4 focusPoints': { icon: 'filter_4', color: 'action', shortName: 'Focus' },
+    '5 focusPoints': { icon: 'filter_5', color: 'action', shortName: 'Focus' },
+    '6 focusPoints': { icon: 'filter_6', color: 'action', shortName: 'Focus' },
+    '7 focusPoints': { icon: 'filter_7', color: 'action', shortName: 'Focus' },
     'flurryOfHealingAndHarm': { icon: 'back_hand', color: 'fire', shortName: 'Flurry of Healing and Harm' }, // Concentric circles
     'sneak': { icon: 'colorize', color: 'fire', shortName: 'Sneak' }, // Closest to dagger/pointy
     'rage': { icon: 'show_chart', color: 'fire', shortName: 'Rage' }, // Pulse alternative
@@ -64,8 +70,14 @@ export const TERM_ICONS = {
     'naturalRecoveryCast': { icon: 'spa', color: 'healing', shortName: 'Natural Recovery: Cast' },
     'wildResurgence': { icon: 'nature', color: 'fire', shortName: 'Wild Resurgence' },
     'natureMagician': { icon: 'auto_awesome', color: 'fire', shortName: 'Nature Magician' },
-    'innateSorcery': { icon: 'magic_button', color: 'radiant', shortName: 'Innate Sorcery' },
-    'sorceryPoints': { icon: 'brightness_low', color: 'psychic', shortName: 'Sorcery Points' },
+    'sorceryPoints': { icon: 'filter_none', color: 'psychic', shortName: 'Sorcery Points' },
+    '1 sorceryPoints': { icon: 'filter_1', color: 'psychic', shortName: '1 Sorcery Point' },
+    '2 sorceryPoints': { icon: 'filter_2', color: 'psychic', shortName: '2 Sorcery Points' },
+    '3 sorceryPoints': { icon: 'filter_3', color: 'psychic', shortName: '3 Sorcery Points' },
+    '4 sorceryPoints': { icon: 'filter_4', color: 'psychic', shortName: '4 Sorcery Points' },
+    '5 sorceryPoints': { icon: 'filter_5', color: 'psychic', shortName: '5 Sorcery Points' },
+    '6 sorceryPoints': { icon: 'filter_6', color: 'psychic', shortName: '6 Sorcery Points' },
+    '7 sorceryPoints': { icon: 'filter_7', color: 'psychic', shortName: '7 Sorcery Points' },
     'pactMagicSpellSlot': { icon: 'filter_none', color: 'spell-slot', shortName: 'Spell Slots' },
     'psionicEnergyDice': { icon: 'casino', color: 'psychic', shortName: 'Psionic Die' }, // Geometric shape for dice
     'telekineticMovement': { icon: 'control_camera', color: 'psychic', shortName: 'Telekinetic Movement' }, // Geometric shape for dice
@@ -100,6 +112,10 @@ export const TERM_ICONS = {
     'stepsOfTheFey': { icon: 'radio_button_checked', color: 'psychic', shortName: 'Steps of the Fey' },
     'healingLight': { icon: 'flare', color: 'radiant', shortName: 'Healing Light' },
     'darkOnesOwnLuck': { icon: 'water_drop', color: 'fire', shortName: 'Dark One\'s Luck' },
+    'luckPoints': { icon: 'control_point', color: 'action', shortName: 'Luck Points' },
+    'recoverVitality': { icon: 'health_and_safety', color: 'healing', shortName: 'Recover Vitality' },
+    'dauntingRoar': { icon: 'graphic_eq', color: 'fire', shortName: 'DauntingRoar' },
+    'forestGnomeSpeakWithAnimalsUses': { icon: 'graphic_eq', color: 'action', shortName: 'Speak With Animals' }
 };
 
 // Internal normalized map for lookups

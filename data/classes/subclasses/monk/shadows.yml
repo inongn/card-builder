@@ -42,7 +42,7 @@ children:
     name: Improved Shadow Step
     target: shadowStep
     condition: $(meta.level >= 11)
-    resource: focusPoints
+    resource: 1 focusPoints
     description: "Expend 1 Focus Point to remove the Dim Light or Darkness requirement for this use. As part of this Bonus Action, make an Unarmed Strike immediately after you teleport."
 
   # Level 17: Cloak of Shadows

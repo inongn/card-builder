@@ -2,7 +2,8 @@ id: agonizingBlast
 name: Agonizing Blast
 tags:
   - eldritchInvocation
-type: Extra
-target: eldritchBlast
-condition: $(meta.level >= 2 && active.eldritchBlast)
-description: "The target takes an additional $(stats.cha.mod) Force to damage."
+type: Effect
+target: activities[eldritchBlast].description["1d10"]
+operation: replace
+condition: $(meta.level >= 2)
+value: "1d10$(formatBonus(stats.cha.mod))"

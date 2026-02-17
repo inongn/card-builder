@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: concentration
-target: attributes.advantages
-id: concentration
-name: Concentration

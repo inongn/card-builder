@@ -19,7 +19,13 @@ export const PIPELINE_STAGES = [
     },
     {
         name: 'Effects',
-        types: ['Effect', 'Extra'],
+        types: ['Effect'],
+        conditionTiming: 'apply',    // Check conditions when applying (deferred)
+        evaluateAfter: true          // Full evaluation after Effects
+    },
+    {
+        name: 'Extras',
+        types: ['Extra'],
         conditionTiming: 'apply',    // Check conditions when applying (deferred)
         evaluateAfter: true          // Full evaluation after Effects
     }

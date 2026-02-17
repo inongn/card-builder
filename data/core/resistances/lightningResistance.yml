@@ -2,7 +2,7 @@ type: Effect
 tags:
   - damageResistance
 operation: push
-value: lightning
+value: Lightning Damage
 target: attributes.resistances
 id: lightningResistance
 name: Lightning Resistance

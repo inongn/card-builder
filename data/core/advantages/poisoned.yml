@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: poisoned
-target: attributes.advantages
-id: poisoned
-name: Poisoned

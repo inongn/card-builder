@@ -1,0 +1,15 @@
+id: musket
+name: Musket
+type: Effect
+operation: set
+target: attributes.mainHand
+tags: [twoHanded, martial]
+value:
+  name: Musket
+  mastery: slow
+  damageRoll: 1d12
+  damageType: piercing
+  range: 40 feet
+  classification: ranged
+  category: martial
+  property: twoHanded

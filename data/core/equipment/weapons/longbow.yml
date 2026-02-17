@@ -1,0 +1,15 @@
+id: longbow
+name: Longbow
+type: Effect
+operation: set
+target: attributes.mainHand
+tags: [twoHanded, martial]
+value:
+  name: Longbow
+  mastery: slow
+  damageRoll: 1d8
+  damageType: piercing
+  range: 150 feet
+  classification: ranged
+  category: martial
+  property: twoHanded

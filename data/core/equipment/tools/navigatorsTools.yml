@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Navigator's Tools
+target: attributes.tools
+id: navigatorsTools
+name: Navigator's Tools

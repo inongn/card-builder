@@ -1,11 +1,11 @@
 id: fireball
 type: Activity
 name: Fireball
-tags: [level3Spell, evocation, sorcerer, wizard, saveSpell, damageSpell]
+resource: level3SpellSlot
+tags: [level3Spell, evocation, sorcerer, wizard, saveSpell, damageSpell, fireDamage]
 time: action
 range: 150 feet
 duration: instantaneous
-resource: level3SpellSlot
 description: |
   A bright streak flashes from you to a point you choose within range and then blossoms with a low roar into a fiery explosion. Each creature in a 20-foot-radius Sphere centered on that point makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 8d6 Fire damage on a failed save or half as much damage on a successful one.
 

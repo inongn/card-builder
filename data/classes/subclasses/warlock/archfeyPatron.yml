@@ -20,21 +20,15 @@ children:
     target: [dominatePerson, seeming]
     condition: $(meta.level >= 9)
 
-  # Level 3: Steps of the Fey
-  - id: stepsOfTheFey
-    type: Resource
-    name: Steps of the Fey
-    quantity: $(Math.max(1, stats.cha.mod))
-    condition: $(meta.level >= 3)
-  
+  # Level 3: Steps of the Fey  
   - id: mistyStep
     type: Reference
     target: mistyStep
     condition: $(meta.level >= 3)
     overwrite:
-      resource: stepsOfTheFey
+      uses: $(Math.max(1, stats.cha.mod))
       extra: |
-        $(meta.level >= 6 ? "" : "**Misty Escape** You can cast this spell as a Reaction in response to taking damage.")
+        $(meta.level >= 6 ? "**Misty Escape** You can cast this spell as a Reaction in response to taking damage." : "")
 
         In addition, you can choose one of the following additional effects:
 
@@ -68,7 +62,7 @@ children:
   # Level 14: Bewitching Magic
   - id: bewitchingMagic
     type: Extra
-    target: warlock AND level1Spell AND (enchantment OR illusion)
+    target: level1Spell AND (enchantment OR illusion)
     name: Bewitching Magic
     description: "Immediately after you cast this spell, you can cast Misty Step as part of the same action without expending a slot."
     condition: $(meta.level >= 14)

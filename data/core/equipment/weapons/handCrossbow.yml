@@ -1,0 +1,16 @@
+id: handCrossbow
+name: Hand Crossbow
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [light, martial]
+value:
+  name: Hand Crossbow
+  mastery: vex
+  damageRoll: 1d6
+  damageType: piercing
+  range: 30 feet
+  classification: ranged
+  category: martial
+  property: light
+repeatable: true

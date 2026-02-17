@@ -1,0 +1,39 @@
+id: satyr
+name: Satyr
+tags:
+- species
+description: "Originating in the Feywild\u2014a realm of pure emotion-satyrs thrive\
+  \ on the energy of merriment. They resemble elves but have goatlike legs, cloven\
+  \ hooves, and ram or goat horns. The magic of the fey realm has given them an innate\
+  \ ability to perform, to delight, and to resist magical intrusion. While they're\
+  \ usually found in the Feywild, satyrs do wander to other planes of existence, most\
+  \ often to the Material Plane. There they seek to bring a bit of their home plane's\
+  \ splendor to other worlds.\n"
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Satyr
+- type: Effect
+  target: attributes.movement.walk
+  operation: set
+  value: 35
+- type: Reference
+  target:
+  - persuasionProficiency
+  - friends
+  - chooseCaster
+- type: Reference
+  condition: $(meta.level >= 3)
+  target: charmPerson
+  overwrite:
+    tags:
+    - innateLR
+- type: Reference
+  condition: $(meta.level >= 5)
+  target: suggestion
+  overwrite:
+    tags:
+    - innateLR

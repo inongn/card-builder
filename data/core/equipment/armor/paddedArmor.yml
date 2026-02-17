@@ -1,0 +1,11 @@
+id: paddedArmor
+name: Padded Armor
+type: Folder
+tags: [lightArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(11 + stats.dex.mod)
+  - type: Reference
+    target: stealthDisadvantage

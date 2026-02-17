@@ -1,0 +1,13 @@
+id: falseLife
+type: Activity
+name: False Life
+resource: level1SpellSlot
+tags: [level1Spell, necromancy, artificer, sorcerer, wizard]
+time: action
+range: self
+duration: instantaneous
+description: |
+  You gain 2d4+4 Temporary Hit Points.
+
+  **Using a Higher-Level Spell Slot.** You gain 5 additional Temporary Hit Points for each spell slot level above 1.
+

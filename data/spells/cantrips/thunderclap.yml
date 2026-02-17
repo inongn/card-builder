@@ -1,0 +1,10 @@
+id: thunderclap
+type: Activity
+name: Thunderclap
+tags: [evocation, cantrip, artificer, bard, druid, sorcerer, warlock, wizard, saveSpell, damageSpell, thunderDamage]
+time: action
+range: self
+duration: instantaneous
+description: |
+  Each creature in a 5-foot Emanation originating from you must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Thunder damage. The spell’s thunderous sound can be heard up to 100 feet away.
+

@@ -20,7 +20,7 @@ children:
   - type: Reference
     value: [dexSave, intSave]
   - type: Reference
-    value: [simpleWeaponProficiency, lightWeaponProficiency, lightArmorTraining]
+    value: [simpleWeaponProficiency, lightWeaponProficiency, lightArmorTraining, thievesTools]
   - id: rogueSkillProficiencies
     type: Slot
     name: Rogue Skill Proficiencies
@@ -142,10 +142,11 @@ children:
 
   # Level 7: Reliable Talent
   - id: reliableTalent
-    type: Activity
-    name: Reliable Talent
+    type: Effect
+    target: skills[proficiency>=1].min
+    operation: set
+    value: 10
     condition: $(meta.level >= 7)
-    description: "When you make an ability check that uses one of your skill or tool proficiencies, you treat a d20 roll of 9 or lower as a 10."
 
   # Level 8: Ability Score Improvement
   - id: level8feat

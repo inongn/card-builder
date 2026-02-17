@@ -13,7 +13,7 @@ children:
     time: free action
     range: self
     duration: 10 minutes
-    resource: focusPoints
+    resource: 1 focusPoints
     description: |
       You imbue yourself with elemental energy. While active, gain the following benefits:
       **Reach** Your Unarmed Strike reach is 10 feet greater than normal, as elemental energy extends from you.

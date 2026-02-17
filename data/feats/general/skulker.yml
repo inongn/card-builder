@@ -1,0 +1,25 @@
+id: skulker
+name: Skulker
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Blindsight
+    type: Effect
+    target: attributes.senses.blindsight
+    operation: add
+    value: 10
+  - name: Fog of War
+    type: Reference
+    target: stealthAdvantage
+  - name: Sniper
+    type: Extra
+    id: sniper
+    target: attack OR spellAttack
+    description: On a miss, while hidden, making the attack roll doesn't reveal your location.

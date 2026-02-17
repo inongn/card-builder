@@ -119,7 +119,7 @@ mdui-collapse {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: var(--gap-xs);
-  align-items: start;
+  align-items: center;
   cursor: pointer;
   gap: var(--gap-md);
 }
@@ -328,7 +328,6 @@ mdui-chip {
 .text-primary {
   color: var(--mdui-color-primary);
   font-weight: bold;
-  width: max-content;
   display: flex;
   align-items: center;
 }

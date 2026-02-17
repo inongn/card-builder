@@ -1,0 +1,28 @@
+name: Boon of Recovery
+type: Folder
+id: boonOfRecovery
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Last Stand
+  type: Activity
+  description: When you would be reduced to 0 Hit Points, you can drop to 1 Hit Point
+    instead and regain $(Math.floor(attributes.hp / 2)) Hit Points.
+  tags:
+  - limitedLR
+- name: Recover Vitality
+  type: Activity
+  time: bonus action
+  range: self
+  resource: recoverVitality
+  description: Regain 1d10 Hit Points per charge expended.
+- id: recoverVitality
+  type: Resource
+  name: Recover Vitality
+  quantity: 10
+  sr: 0

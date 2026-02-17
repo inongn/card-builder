@@ -2,7 +2,7 @@ type: Effect
 tags:
   - damageResistance
 operation: push
-value: poison
+value: Poison Damage
 target: attributes.resistances
 id: poisonResistance
 name: Poison Resistance

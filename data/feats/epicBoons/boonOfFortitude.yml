@@ -1,0 +1,22 @@
+name: Boon of Fortitude
+type: Folder
+id: boonOfFortitude
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Fortified Health
+  type: Effect
+  target: attributes.hp
+  operation: add
+  value: 40
+- name: Fortified Health
+  type: Activity
+  tags:
+  - limitedSR
+  description: Whenever you regain Hit Points, you can regain additional $(stats.con.mod)
+    Hit Points.

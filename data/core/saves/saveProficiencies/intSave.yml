@@ -3,4 +3,4 @@ target: saves.intelligence.proficiency
 operation: set
 value: 1
 id: intSave
-name: Int Save
+name: Intelligence Saving Throw Proficiency

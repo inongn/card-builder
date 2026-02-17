@@ -32,11 +32,44 @@ children:
 
   # Level 6: Psionic Sorcery
   - id: psionicSorcery
-    type: Extra
+    type: Effect
     name: Psionic Sorcery
-    target: armsOfHadar OR calmEmotions OR detectThoughts OR dissonantWhispers OR mindSliver OR hungerOfHadar OR sending OR evardsBlackTentacles OR summonAberration OR rarysTelepathicBond OR telekinesis
+    target: activities[armsOfHadar OR dissonantWhispers].resource
+    operation: push
+    value: 1 sorceryPoints
     condition: $(meta.level >= 6)
-    description: "You can cast this spell by spending Sorcery Points instead of Spell Slots. If you do, it requires no Verbal, Somatic, or unconsumed Material components."
+
+  - id: psionicSorcery
+    type: Effect
+    name: Psionic Sorcery
+    target: activities[calmEmotions OR detectThoughts].resource
+    operation: push
+    value: 2 sorceryPoints
+    condition: $(meta.level >= 6)
+
+  - id: psionicSorcery
+    type: Effect
+    name: Psionic Sorcery
+    target: activities[hungerOfHadar OR sending].resource
+    operation: push
+    value: 3 sorceryPoints
+    condition: $(meta.level >= 6)
+
+  - id: psionicSorcery
+    type: Effect
+    name: Psionic Sorcery
+    target: activities[evardsBlackTentacles OR summonAberration].resource
+    operation: push
+    value: 4 sorceryPoints
+    condition: $(meta.level >= 6)
+
+  - id: psionicSorcery
+    type: Effect
+    name: Psionic Sorcery
+    target: activities[rarysTelepathicBond OR telekinesis].resource
+    operation: push
+    value: 5 sorceryPoints
+    condition: $(meta.level >= 6)
 
   # Level 6: Psychic Defenses
   - id: pyschicDefenses
@@ -50,7 +83,7 @@ children:
     name: Revelation in Flesh
     time: bonus action
     condition: $(meta.level >= 14)
-    resource: sorceryPoints
+    resource: 1 sorceryPoints
     duration: 10 minutes
     description: |
       You unleash the aberrant truth hidden within yourself. For the duration and for each Sorcery Point you expend, you gain one of the following benefits of your choice:

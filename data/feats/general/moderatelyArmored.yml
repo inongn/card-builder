@@ -1,0 +1,16 @@
+id: moderatelyArmored
+name: Moderately Armored
+tags:
+  - feat
+  - generalFeat
+condition: "$(attributes.proficiencies.includes('lightArmor'))"
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Armor Training
+    type: Reference
+    target: [mediumArmorProficiency, shieldProficiency]

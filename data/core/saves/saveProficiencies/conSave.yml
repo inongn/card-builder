@@ -3,4 +3,4 @@ target: saves.constitution.proficiency
 operation: set
 value: 1
 id: conSave
-name: Con Save
+name: Constitution Saving Throw Proficiency

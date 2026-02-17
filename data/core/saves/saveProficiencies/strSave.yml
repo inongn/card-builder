@@ -3,4 +3,4 @@ target: saves.strength.proficiency
 operation: set
 value: 1
 id: strSave
-name: Str Save
+name: Strength Saving Throw Proficiency

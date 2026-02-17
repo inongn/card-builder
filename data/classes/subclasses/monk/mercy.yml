@@ -8,13 +8,13 @@ type: Folder
 children:
   # Level 3: Implements of Mercy
   - type: Reference
-    target: [insightProficiency, medicineProficiency]
+    target: [insightProficiency, medicineProficiency, herbalismKit]
 
   # Level 3: Hand of Harm
   - id: handOfHarm
     type: Activity
     name: Hand of Harm
-    resource: focusPoints
+    resource: 1 focusPoints
     description: "Once per turn when you hit a creature with an Unarmed Strike and deal damage, you deal 1d$(attributes.martialArtsDie)+$(stats.wis.mod) extra Necrotic damage.$(meta.level >= 6 ? ' You can also give the target the Poisoned condition until the end of your next turn.' : '')"
 
   # Level 3: Hand of Healing
@@ -24,7 +24,7 @@ children:
     time: action
     range: touch
     duration: Instantaneous
-    resource: focusPoints
+    resource: 1 focusPoints
     description: "You touch a creature and restore 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points to it.$(meta.level >= 6 ? ' You can also end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned.' : '')"
 
   # Level 11: Flurry of Healing and Harm
@@ -48,5 +48,7 @@ children:
     duration: Instantaneous
     condition: $(meta.level >= 17)
     resource: 5 focusPoints
-    tags: [limitedLR]
-    description: "You touch the corpse of a creature that died within the past 24 hours. The creature returns to life with 4d10+$(stats.wis.mod) Hit Points, with the following conditions removed: Blinded, Deafened, Paralyzed, Poisoned, and Stunned."
+    description: |
+      You touch the corpse of a creature that died within the past 24 hours. The creature returns to life with 4d10+$(stats.wis.mod) Hit Points, with the following conditions removed: Blinded, Deafened, Paralyzed, Poisoned, and Stunned.
+    
+      Once you use this feature, you can't use it again until you finish a Long Rest.

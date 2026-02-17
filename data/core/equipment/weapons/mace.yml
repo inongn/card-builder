@@ -1,0 +1,15 @@
+id: mace
+name: Mace
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [simple]
+value:
+  name: Mace
+  mastery: sap
+  damageRoll: 1d6
+  damageType: bludgeoning
+  range: 5 feet
+  classification: melee
+  category: simple
+  property: ''

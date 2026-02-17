@@ -1,0 +1,11 @@
+id: halfPlateArmor
+name: Half Plate Armor
+type: Folder
+tags: [mediumArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(15 + Math.min(2, stats.dex.mod))
+  - type: Reference
+    target: stealthDisadvantage

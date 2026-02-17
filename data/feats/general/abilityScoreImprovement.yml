@@ -1,0 +1,12 @@
+id: abilityScoreImprovement
+name: Ability Score Improvement
+tags:
+  - feat
+  - generalFeat
+  - repeatable
+type: Folder
+children:
+  - type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 2

@@ -1,0 +1,13 @@
+id: detectEvilAndGood
+type: Activity
+name: Detect Evil and Good
+resource: level1SpellSlot
+tags: [level1Spell, divination, cleric, paladin]
+time: action
+range: self
+duration: concentration, up to 10 minutes
+description: |
+  For the duration, you sense the location of any Aberration, Celestial, Elemental, Fey, Fiend, or Undead within 30 feet of yourself. You also sense whether the Hallow spell is active there and, if so, where.
+
+  The spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.
+

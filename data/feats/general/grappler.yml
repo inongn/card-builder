@@ -1,21 +1,25 @@
 type: Folder
 name: Grappler
-tags: [feat]
+tags:
+- feat
 children:
-  - type: Effect
-    target: attributes.asiPoolLimit
-    operation: add
-    value: 1
-  - type: Extra
-    target: unarmed
-    name: Attack Advantage
-    description: You have Advantage on attack rolls against a creature Grappled by you.
-  - type: Extra
-    target: unarmed
-    name: Fast Wrestler
-    description: You don’t have to spend extra movement to move a creature Grappled by you if the creature is your size or smaller.
-  - type: Extra
-    target: unarmed
-    name: Grapple
-    description: When you hit a creature with an Unarmed Strike as part of the Attack action on your turn, you can use both the Damage and the Grapple option. You can use this benefit only once per turn.
+- type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- type: Extra
+  target: unarmed
+  name: Attack Advantage
+  description: You have Advantage on attack rolls against a creature Grappled by you.
+- type: Extra
+  target: unarmed
+  name: Fast Wrestler
+  description: "You don\u2019t have to spend extra movement to move a creature Grappled\
+    \ by you if the creature is your size or smaller."
+- type: Extra
+  target: unarmed
+  name: Grapple
+  description: When you hit a creature with an Unarmed Strike as part of the Attack
+    action on your turn, you can use both the Damage and the Grapple option. You can
+    use this benefit only once per turn.
 id: grappler

@@ -2,7 +2,7 @@ type: Effect
 tags:
   - damageResistance
 operation: push
-value: force
+value: Force Damage
 target: attributes.resistances
 id: forceResistance
 name: Force Resistance

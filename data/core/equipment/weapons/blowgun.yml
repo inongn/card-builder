@@ -1,0 +1,15 @@
+id: blowgun
+name: Blowgun
+type: Effect
+operation: set
+target: attributes.mainHand
+tags: [martial]
+value:
+  name: Blowgun
+  mastery: vex
+  damageRoll: 1
+  damageType: piercing
+  range: 25 feet
+  classification: ranged
+  category: martial
+  property: ''

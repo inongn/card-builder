@@ -1,0 +1,15 @@
+id: sling
+name: Sling
+type: Effect
+operation: set
+target: attributes.mainHand
+tags: [simple]
+value:
+  name: Sling
+  mastery: slow
+  damageRoll: 1d4
+  damageType: bludgeoning
+  range: 30 feet
+  classification: ranged
+  category: simple
+  property: ''

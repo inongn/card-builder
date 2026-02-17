@@ -1,0 +1,15 @@
+id: martialWeaponTraining
+name: Martial Weapon Training
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Weapon Proficiency
+    type: Reference
+    target: martialWeaponProficiency

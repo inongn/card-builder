@@ -1,0 +1,19 @@
+name: Boon of Fate
+type: Folder
+id: boonOfFate
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Improve Fate
+  type: Activity
+  tags:
+  - limitedSR
+  range: 60 feet
+  description: When you or another creature within range succeeds on or fails a D20
+    Test, you can roll 2d4 and apply the total rolled as a bonus or penalty to the
+    d20 roll.

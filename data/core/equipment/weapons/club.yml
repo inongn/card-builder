@@ -1,0 +1,16 @@
+id: club
+name: Club
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [light, simple]
+value:
+  name: Club
+  mastery: slow
+  damageRoll: 1d4
+  damageType: bludgeoning
+  range: 5 feet
+  classification: melee
+  category: simple
+  property: light
+repeatable: true

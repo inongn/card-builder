@@ -1,0 +1,10 @@
+id: sacredFlame
+type: Activity
+name: Sacred Flame
+tags: [evocation, cantrip, cleric, saveSpell, damageSpell, radiantDamage]
+time: action
+range: 60 feet
+duration: instantaneous
+description: |
+  Flame-like radiance descends on a creature that you can see within range. The target must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Radiant damage. The target gains no benefit from Half Cover or Three-Quarters Cover for this save.
+

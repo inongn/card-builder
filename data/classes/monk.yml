@@ -26,6 +26,11 @@ children:
     name: Monk Skill Proficiencies
     quantity: 2
     target: acrobaticsProficiency OR athleticsProficiency OR historyProficiency OR insightProficiency OR religionProficiency OR stealthProficiency
+  - id: monkToolProficiency
+    type: Slot
+    name: Monk Tool Proficiency
+    quantity: 1
+    target: tool NOT gamingSet NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
 
   # Level 1: Martial Arts
   - id: martialArtsDie
@@ -70,7 +75,7 @@ children:
     tags: [unarmed, attack]
     range: self
     duration: Instantaneous
-    resource: focusPoints
+    resource: 1 focusPoints
     condition: $(meta.level >= 2)
     description: "You make $(meta.level >= 10 ? 'three' : 'two') Unarmed Strikes. You can strike at one target within range or several. Make a $(formatBonus(stats.dex.mod + attributes.prof)) attack for each strike. On a hit, the target takes 1d$(attributes.martialArtsDie) Bludgeoning damage."
   - id: patientDefense
@@ -78,7 +83,7 @@ children:
     name: Patient Defense
     time: bonus action
     range: self
-    resource: focusPoints
+    resource: 1 focusPoints
     duration: Instantaneous
     condition: $(meta.level >= 2)
     description: "You take both the Disengage and Dodge actions$(meta.level >= 10 ? ' and gain ' + (2) + 'd' + attributes.martialArtsDie + ' Temporary Hit Points' : '')."
@@ -87,7 +92,7 @@ children:
     name: Step of the Wind
     time: bonus action
     range: self
-    resource: focusPoints
+    resource: 1 focusPoints
     duration: Instantaneous
     condition: $(meta.level >= 2)
     description: "You take both the Disengage and Dash actions, and your jump distance is doubled for the turn.$(meta.level >= 10 ? ' You can also move a willing creature (Large or smaller) within 5 feet with you until the end of your turn without provoking Opportunity Attacks.' : '')"
@@ -115,7 +120,7 @@ children:
     time: reaction
     range: self
     duration: Instantaneous
-    resource: focusPoints
+    resource: 1 focusPoints
     condition: $(meta.level >= 3)
     description: |
       When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). 
@@ -143,17 +148,17 @@ children:
   # Level 5: Extra Attack
   - id: extraAttack
     type: Effect
-    target: activities[mainHand].description
+    target: attributes.mainHand.attacks
     operation: set
     condition: $(meta.level >= 5)
-    value: "You strike twice. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+    value: 2
 
   # Level 5: Stunning Strike
   - id: stunningStrike
     type: Activity
     name: Stunning Strike
     condition: $(meta.level >= 5)
-    resource: focusPoints
+    resource: 1 focusPoints
     description: "Once per turn when you hit with an attack, the target must make a DC $(attributes.monkSaveDC) Constitution saving throw. On a failed save, the target has the Stunned condition until the start of your next turn. On a success, the target's Speed is halved and the next attack roll against it has Advantage."
 
   # Level 6: Empowered Strikes
@@ -209,7 +214,7 @@ children:
     type: Activity
     name: Disciplined Survivor
     condition: $(meta.level >= 14)
-    resource: focusPoints
+    resource: 1 focusPoints
     description: "When you make a saving throw and fail, you reroll it and use the new roll."
 
   # Level 15: Perfect Focus

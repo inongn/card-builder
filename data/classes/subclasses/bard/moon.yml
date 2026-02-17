@@ -53,10 +53,12 @@ children:
     type: Extra
     target: bardicInspiration
     condition: $(meta.level >= 14)
-    description: "**Shadow of the New Moon** When you use Inspired Eclipse, the creature receiving Inspiration also becomes Invisible and can use its Reaction to teleport up to 30 feet."
+    name: "Shadow of the New Moon"
+    description: "When you use Inspired Eclipse, the creature receiving Inspiration also becomes Invisible and can use its Reaction to teleport up to 30 feet."
     
   - id: vibranceOfTheFullMoonDesc
     type: Extra
     target: lunarVitality
     condition: $(meta.level >= 14)
-    description: "**Vibrance of the Full Moon** You can roll 1d6 instead of expending a Bardic Inspiration die."
+    name: "Vibrance of the Full Moon"
+    description: "You can roll 1d6 instead of expending a Bardic Inspiration die."

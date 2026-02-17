@@ -2,23 +2,18 @@ id: extraProperties
 name: Extra Properties
 type: Folder
 children:
-  - type: Extra
-    target: innateSR
+  - type: Effect
+    operation: set
     id: innateSR
-    name: Innate
-    description: "You can take this action once per Short Rest without expending a resource."
-  - type: Extra
-    target: innateLR
+    target: activities[innateSR OR limitedSR].uses
+    value: 1
+  - type: Effect
+    operation: set
     id: innateLR
-    name: Innate
-    description: "You can take this action once per Long Rest without expending a resource."
+    target: activities[innateLR or limitedLR].uses
+    value: 1
   - type: Extra
-    target: limitedLR
-    id: limitedLR
-    name: Limited
-    description: "You can take this action once per Long Rest."
-  - type: Extra
-    target: limitedSR
-    id: limitedSR
-    name: Limited
-    description: "You can take this action once per Short Rest."
+    target: ritual
+    id: ritual
+    name: Ritual
+    description: "You can cast this spell as a Ritual instead. The Ritual version of a spell takes 10 minutes longer to cast, and doesn't expend a Spell Slot."

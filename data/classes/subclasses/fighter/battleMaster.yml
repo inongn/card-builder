@@ -17,10 +17,15 @@ children:
     name: Maneuvers
     target: classOption OR maneuver
     quantity: "$(progression(0,0,3,3,3,3,5,5,5,7,7,7,7,7,9))"
-  - id: studentOfWar
+  - id: studentOfWarSkill
     name: Student of War Skill Proficiency
     type: Slot
     target: acrobaticsProficiency OR animalHandlingProficiency OR athleticsProficiency OR historyProficiency OR insightProficiency OR intimidationProficiency OR persuasionProficiency OR perceptionProficiency OR survivalProficiency
+    quantity: 1
+  - id: studentOfWarTool
+    name: Student of War Tool Proficiency
+    type: Slot
+    target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
     quantity: 1
   - id: superiorityDice
     name: Superiority Dice

@@ -1,0 +1,15 @@
+id: whip
+name: Whip
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [martial]
+value:
+  name: Whip
+  mastery: slow
+  damageRoll: 1d4
+  damageType: slashing
+  range: 5 feet
+  classification: finesse
+  category: martial
+  property: ''

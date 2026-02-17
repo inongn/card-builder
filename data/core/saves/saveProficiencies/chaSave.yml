@@ -3,4 +3,4 @@ target: saves.charisma.proficiency
 operation: set
 value: 1
 id: chaSave
-name: Cha Save
+name: Charisma Saving Throw Proficiency

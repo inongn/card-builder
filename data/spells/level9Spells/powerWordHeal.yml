@@ -1,0 +1,11 @@
+id: powerWordHeal
+type: Activity
+name: Power Word Heal
+resource: level9SpellSlot
+tags: [level9Spell, enchantment, bard, cleric, healingSpell]
+time: action
+range: 60 feet
+duration: instantaneous
+description: |
+  A wave of healing energy washes over one creature you can see within range. The target regains all its Hit Points. If the creature has the Charmed, Frightened, Paralyzed, Poisoned, or Stunned condition, the condition ends. If the creature has the Prone condition, it can use its Reaction to stand up.
+

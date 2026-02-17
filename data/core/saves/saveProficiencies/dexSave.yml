@@ -3,4 +3,4 @@ target: saves.dexterity.proficiency
 operation: set
 value: 1
 id: dexSave
-name: Dex Save
+name: Dexterity Saving Throw Proficiency

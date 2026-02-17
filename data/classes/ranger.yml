@@ -41,15 +41,11 @@ children:
     quantity: $(progression(2,3,4,5,6,6,7,7,9,9,10,10,11,11,12,12,14,14,15,15))
 
   # Level 1: Favored Enemy (Hunter's Mark)
-  - id: favoredEnemy
-    type: Resource
-    name: Favored Enemy
-    quantity: $(progression(2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6))
+
   - type: Reference
     target: huntersMark
     overwrite:
-      resource: favoredEnemy
-
+      uses: $(progression(2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6))
   # Level 2: Deft Explorer
   - id: deftExplorerExpertise
     type: Slot
@@ -77,10 +73,10 @@ children:
   # Level 5: Extra Attack
   - id: extraAttack
     type: Effect
-    target: activities[mainHand].description
+    target: attributes.mainHand.attacks
     operation: set
     condition: $(meta.level >= 5)
-    value: "You strike twice. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+    value: 2
 
   # Level 6: Roving
   - id: rovingSpeed
@@ -204,7 +200,7 @@ children:
   # Level 20: Foe Slayer
   - id: foeSlayer
     type: Effect
-    target: activities[huntersMark].extra["1d6"]
+    target: activities[huntersMark].description["1d6"]
     operation: replace
     condition: $(meta.level >= 20)
     value: "1d10"

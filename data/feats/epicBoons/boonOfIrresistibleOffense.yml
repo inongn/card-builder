@@ -1,0 +1,20 @@
+name: Boon of Irresistible Offense
+type: Folder
+id: boonOfIrresistibleOffense
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Overcome Defenses
+  type: Extra
+  target: bludgeoningDamage OR piercingDamage OR slashingDamage
+  description: This damage ignores Resistance.
+- name: Overwhelming Strike
+  type: Extra
+  target: attack
+  description: On a 20, the target takes an extra $(Math.max(stats.str.mod, stats.dex.mod))
+    damage.

@@ -1,0 +1,15 @@
+id: warPick
+name: War Pick
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [martial]
+value:
+  name: War Pick
+  mastery: sap
+  damageRoll: "$(!attributes.offHand ? '1d10' : '1d8')"
+  damageType: piercing
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: ''

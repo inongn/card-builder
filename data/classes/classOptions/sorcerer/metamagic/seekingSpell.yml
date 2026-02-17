@@ -7,7 +7,7 @@ children:
   - id: seekingSpellActivity
     type: Activity
     name: Seeking Spell
-    resource: sorceryPoints
+    resource: 1 sorceryPoints
     description: |
       If you make an attack roll for a spell and miss, you reroll the d20, and you must use the new roll.
 

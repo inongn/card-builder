@@ -1,0 +1,15 @@
+id: greataxe
+name: Greataxe
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [twoHanded, martial]
+value:
+  name: Greataxe
+  mastery: cleave
+  damageRoll: 1d12
+  damageType: slashing
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: twoHanded

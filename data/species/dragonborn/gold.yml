@@ -1,0 +1,10 @@
+id: draconicAncestryGold
+name: Gold Dragon
+tags: [draconicAncestry]
+type: Folder
+children:
+  - type: Reference
+    target: fireResistance
+  - type: Attribute
+    id: dragonicAncestryDamage
+    value: Fire

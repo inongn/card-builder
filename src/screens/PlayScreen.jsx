@@ -38,7 +38,9 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
 
     // Group activities by their 'time' property
     const groupedActivities = React.useMemo(() => {
+        const coreIds = ['dash', 'disengage', 'hide', 'dodge', 'influence', 'study', 'search'];
         const groups = {
+            'core': [],
             'action': [],
             'bonus action': [],
             'reaction': [],
@@ -47,6 +49,12 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
         };
 
         characterData.activities.forEach((activity) => {
+            const id = (activity.id || '').toLowerCase();
+            if (coreIds.includes(id)) {
+                groups['core'].push(activity);
+                return;
+            }
+
             const time = activity.time?.toLowerCase() || 'other';
 
             // Normalize the time value to match our categories
@@ -62,6 +70,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
 
     // Define the order and display names for categories
     const categories = [
+        { key: 'core', label: 'Core' },
         { key: 'action', label: 'Actions' },
         { key: 'bonus action', label: 'Bonus Actions' },
         { key: 'reaction', label: 'Reactions' },
@@ -102,7 +111,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
                                 </div>
                                 <mdui-collapse accordion>
                                     {activities.map((item, i) => (
-                                        <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} />
+                                        <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} char={characterData} />
                                     ))}
                                 </mdui-collapse>
                             </div>

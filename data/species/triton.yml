@@ -1,0 +1,43 @@
+id: triton
+name: Triton
+tags:
+- species
+description: 'Originally from the Elemental Plane of Water, many tritons entered the
+  Material Plane centuries ago in response to the growing threat of evil elementals.
+  Those tritons spread across the worlds'' oceans, protecting the surface from terrors
+  in the deep. Over time, triton have extended their stewardship over the sea floor
+  to the ocean''s surface.
+
+  '
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Triton
+- type: Effect
+  target: attributes.senses.darkvision
+  operation: set
+  value: 60
+- type: Effect
+  target: attributes.movement.swim
+  operation: set
+  value: 30
+- type: Reference
+  target:
+  - primordialLanguage
+  - guidance
+  - chooseCaster
+- type: Reference
+  condition: $(meta.level >= 3)
+  target: fogCloud
+  overwrite:
+    tags:
+    - innateLR
+- type: Reference
+  condition: $(meta.level >= 5)
+  target: gustOfWind
+  overwrite:
+    tags:
+    - innateLR

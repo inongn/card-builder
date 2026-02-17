@@ -1,0 +1,11 @@
+id: regenerate
+type: Activity
+name: Regenerate
+resource: level7SpellSlot
+tags: [level7Spell, transmutation, bard, cleric, druid, healingSpell]
+time: 1 minute
+range: touch
+duration: 1 hour
+description: |
+  A creature you touch regains 4d8 + 15 Hit Points. For the duration, the target regains 1 Hit Point at the start of each of its turns, and any severed body parts regrow after 2 minutes.
+

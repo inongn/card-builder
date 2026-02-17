@@ -1,0 +1,37 @@
+name: Boon of Skill
+type: Folder
+id: boonOfSkill
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: All-Around Adept
+  type: Reference
+  target:
+  - acrobaticsProficiency
+  - animalHandlingProficiency
+  - arcanaProficiency
+  - athleticsProficiency
+  - deceptionProficiency
+  - historyProficiency
+  - insightProficiency
+  - intimidationProficiency
+  - investigationProficiency
+  - medicineProficiency
+  - natureProficiency
+  - perceptionProficiency
+  - performanceProficiency
+  - persuasionProficiency
+  - religionProficiency
+  - sleightOfHandProficiency
+  - stealthProficiency
+  - survivalProficiency
+- name: Boon of Skill Expertise
+  type: Slot
+  id: boonOfSkillExpertise
+  target: skillExpertise
+  quantity: 1

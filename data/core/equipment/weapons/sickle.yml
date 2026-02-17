@@ -1,0 +1,16 @@
+id: sickle
+name: Sickle
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [light, simple]
+value:
+  name: Sickle
+  mastery: nick
+  damageRoll: 1d4
+  damageType: slashing
+  range: 5 feet
+  classification: melee
+  category: simple
+  property: light
+repeatable: true

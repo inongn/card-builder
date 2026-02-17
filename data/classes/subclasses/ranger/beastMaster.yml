@@ -17,7 +17,7 @@ children:
   - id: commandPrimalCompanion
     type: Activity
     time: bonus action
-    range: 60 ft
+    range: 60 feet
     name: Command Companion
     description: "You command your Primal Companion beast to take an action. The beast acts during your turn and can move and use its Reaction on its own, but only takes the Dodge action unless you command it."
 

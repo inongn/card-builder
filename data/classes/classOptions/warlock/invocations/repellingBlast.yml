@@ -4,5 +4,5 @@ tags:
   - eldritchInvocation
 type: Extra
 target: eldritchBlast
-condition: $(meta.level >= 2 && active.eldritchBlast)
+condition: $(meta.level >= 2)
 description: "When you hit a Large or smaller creature, you can push it up to 10 feet straight away from you."

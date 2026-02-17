@@ -1,0 +1,16 @@
+id: scimitar
+name: Scimitar
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [light, martial]
+value:
+  name: Scimitar
+  mastery: nick
+  damageRoll: 1d6
+  damageType: slashing
+  range: 5 feet
+  classification: finesse
+  category: martial
+  property: light
+repeatable: true

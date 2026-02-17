@@ -1,0 +1,11 @@
+id: lesserRestoration
+type: Activity
+name: Lesser Restoration
+resource: level2SpellSlot
+tags: [level2Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger]
+time: bonus action
+range: touch
+duration: instantaneous
+description: |
+  You touch a creature and end one condition on it: Blinded, Deafened, Paralyzed, or Poisoned.
+

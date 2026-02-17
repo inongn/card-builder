@@ -1,15 +1,16 @@
 tags:
-  - fightingStyle
+- fightingStyle
 type: Folder
 children:
-  - type: Extra
-    target: unarmed
-    name: Unarmed Fighting
-    description: "At the start of each of your turns, you can deal 1d4 Bludgeoning damage to one creature grappled by you."
-  - type: Effect
-    condition: $(attributes.mainHand && attributes.mainHand.property=='unarmed')
-    target: attributes.mainHand.damageRoll
-    operation: set
-    value: 1d8
+- type: Extra
+  target: unarmed
+  name: Unarmed Fighting
+  description: At the start of each of your turns, you can deal 1d4 Bludgeoning damage
+    to one creature grappled by you.
+- type: Effect
+  condition: $(attributes.mainHand && attributes.mainHand.property=='unarmed')
+  target: attributes.mainHand.damageRoll
+  operation: set
+  value: 1d8
 id: unarmedFighting
 name: Unarmed Fighting

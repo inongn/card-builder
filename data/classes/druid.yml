@@ -19,7 +19,7 @@ children:
   - type: Reference
     value: [intSave, wisSave]
   - type: Reference
-    value: [lightArmorTraining, shieldTraining, simpleWeaponProficiency]
+    value: [lightArmorTraining, shieldTraining, simpleWeaponProficiency, herbalismKit]
   - id: druidSkillProficiencies
     type: Slot
     name: Druid Skill Proficiencies
@@ -158,8 +158,7 @@ children:
     tags: [limitedLR]
     range: self
     duration: instantaneous
-    description: You give yourself a level 1 spell slot. 
-    resource: wildShape
+    description: You convert a Wild Shape charge into a level 1 spell slot. 
     condition: $(meta.level >= 5)
 
   - id: natureMagician
@@ -169,7 +168,6 @@ children:
     range: self
     duration: instantaneous
     description: You convert uses of Wild Shape into a spell slot. Choose a number of your unexpended uses of Wild Shape and convert them into a single spell slot, with each use contributing 2 spell levels. 
-    resource: wildShape
     tags: [limitedLR]
     condition: $(meta.level >= 20)
 

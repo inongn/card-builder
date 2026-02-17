@@ -1,0 +1,7 @@
+name: Theros
+type: Folder
+id: theros
+tags: [world]
+children:
+  - type: Remove
+    target: [aasimar, elf, gnome, halfling, tielfing, goliath, orc, dwarf, dragonborn]

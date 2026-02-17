@@ -1,0 +1,15 @@
+id: lance
+name: Lance
+type: Effect
+operation: set
+target: attributes.$(local.hand)
+tags: [twoHanded, martial]
+value:
+  name: Lance
+  mastery: topple
+  damageRoll: 1d10
+  damageType: piercing
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: twoHanded

@@ -1,0 +1,17 @@
+id: giantAncestryStone
+name: Stone Giant
+tags: [giantAncestry]
+type: Folder
+children:
+  - id: stonesEndurance
+    type: Activity
+    name: Stone's Endurance
+    time: reaction
+    range: self
+    resource: giantAncestry
+    description: When you take damage, reduce it by 1d12$(formatBonus(stats.con.mod)).
+  - id: giantAncestry
+    type: Resource
+    name: Giant Ancestry
+    quantity: $(attributes.prof)
+    sr: 0

@@ -1,0 +1,22 @@
+id: elvenLineageDrow
+name: Drow
+tags: [elvenLineage]
+type: Folder
+children:
+  - id: drowDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 120
+  - type: Reference
+    target: dancingLights
+  - type: Reference
+    target: faerieFire
+    condition: $(meta.level >= 3)
+    overwrite:
+      tags: [innateLR]
+  - type: Reference
+    target: darkness
+    condition: $(meta.level >= 5)
+    overwrite:
+      tags: [innateLR]

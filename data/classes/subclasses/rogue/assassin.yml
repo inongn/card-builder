@@ -8,7 +8,7 @@ type: Folder
 children:
   # Level 3: Assassinate — Initiative
   - type: Reference
-    target: initiativeAdvantage
+    target: [initiativeAdvantage, disguiseKit, poisonersKit]
 
   # Level 3: Assassinate — Surprising Strikes
   - id: surprisingStrikes

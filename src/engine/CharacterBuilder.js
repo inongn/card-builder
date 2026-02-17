@@ -93,6 +93,12 @@ export class CharacterBuilder {
                     }
                 }
                 effectiveNode = { ...child, ...appliedOverwrite };
+                // For tags, merge into existing array instead of replacing
+                if ('tags' in appliedOverwrite) {
+                    const existing = child.tags || [];
+                    const added = Array.isArray(appliedOverwrite.tags) ? appliedOverwrite.tags : (appliedOverwrite.tags != null ? [appliedOverwrite.tags] : []);
+                    effectiveNode.tags = [...existing, ...added];
+                }
             }
 
             // Determine the ID to pass to children for path building
@@ -134,6 +140,12 @@ export class CharacterBuilder {
                             ignoreCondition: false,
                             expanded: true
                         };
+                        // For tags, merge into existing array instead of replacing
+                        if (appliedOverwrite && 'tags' in appliedOverwrite) {
+                            const existing = prop.tags || [];
+                            const added = Array.isArray(appliedOverwrite.tags) ? appliedOverwrite.tags : (appliedOverwrite.tags != null ? [appliedOverwrite.tags] : []);
+                            contentNode.tags = [...existing, ...added];
+                        }
 
                         // Recurse to handle nested references or slots within the referenced item
                         processed.push(...this.processChildren([contentNode], nodeVariables, prop.id));
@@ -731,6 +743,9 @@ export class CharacterBuilder {
             const isFinalStage = i === numStages - 1;
             const properties = byStage.get(stage.name) || [];
 
+            // Sort by priority within stage to allow explicit ordering
+            properties.sort((a, b) => (a.priority || 0) - (b.priority || 0));
+
             const evaluator = new ExpressionEvaluator(this.characterData);
             for (const prop of properties) {
                 // For 'apply' timing stages, check condition now (deferred from collection)
@@ -774,8 +789,12 @@ export class CharacterBuilder {
                 // Smart Effect Routing:
                 // Move effects targeting core attributes to the 'Attributes' stage so they're 
                 // available when Activities in the 'Content' stage check their conditions.
+                // We only move direct paths; targets with queries ([]) stay in 'Effects'
+                // as they typically depend on the final state of the collection.
                 const target = prop.target || '';
-                if (target.startsWith('attributes.') || target.startsWith('stats.') || target.startsWith('meta.')) {
+                const isCorePath = /^(attributes|stats|meta|skills|saves)\./.test(target) && !target.includes('[');
+
+                if (isCorePath) {
                     stageName = 'Attributes';
                 } else {
                     stageName = 'Effects';
@@ -984,18 +1003,20 @@ export class CharacterBuilder {
                 const [_, collectionName, query] = match;
 
                 for (const node of currentNodes) {
-                    if (!node[collectionName]) {
+                    const collection = node[collectionName];
+                    if (!collection) {
                         if (createMissing) node[collectionName] = [];
                         else continue;
                     }
 
-                    if (!Array.isArray(node[collectionName])) continue;
+                    const items = Array.isArray(collection) ? collection : Object.values(collection);
 
-                    const matches = node[collectionName].filter(item => {
+                    const matches = items.filter(item => {
                         return evaluateBoolean(query, (token) => {
-                            // Support key=value queries (e.g., resource=wildShape or resource="wild Shape")
-                            if (token.includes('=')) {
-                                const [key, rawValue] = token.split('=');
+                            // Support query operators (e.g., proficiency>=1, resource=wildShape or resource="wild Shape")
+                            const operatorMatch = token.match(/^([^>=<!]+)(>=|<=|>|<|=)(.+)$/);
+                            if (operatorMatch) {
+                                const [_, key, operator, rawValue] = operatorMatch;
                                 const expectedValue = rawValue.replace(/^['"]|['"]$/g, '');
                                 let actualValue = item[key];
 
@@ -1004,10 +1025,20 @@ export class CharacterBuilder {
                                     actualValue = evaluator.evaluate(actualValue, item.variables || {});
                                 }
 
-                                if (Array.isArray(actualValue)) {
-                                    return actualValue.some(val => String(val) === expectedValue);
+                                const val1 = (isNaN(actualValue) || actualValue === "" || actualValue === null) ? actualValue : Number(actualValue);
+                                const val2 = (isNaN(expectedValue) || expectedValue === "" || expectedValue === null) ? expectedValue : Number(expectedValue);
+
+                                switch (operator) {
+                                    case '>=': return val1 >= val2;
+                                    case '<=': return val1 <= val2;
+                                    case '>': return val1 > val2;
+                                    case '<': return val1 < val2;
+                                    case '=':
+                                        if (Array.isArray(actualValue)) {
+                                            return actualValue.some(val => String(val) === expectedValue);
+                                        }
+                                        return String(actualValue ?? '') === expectedValue;
                                 }
-                                return String(actualValue ?? '') === expectedValue;
                             }
 
                             let id = item.id;
@@ -1051,19 +1082,47 @@ export class CharacterBuilder {
      * Set a field value in characterData if priority allows
      */
     setFieldWithPriority(path, value, priority = 0, evaluator = null) {
+        // 1. Basic priority check for the exact path
         const currentPriority = this.fieldPriorities.get(path);
         if (currentPriority !== undefined && priority < currentPriority) return false;
 
         const resolutions = this.resolvePaths(path, true, evaluator);
-        if (resolutions.length > 0) {
-            resolutions.forEach(resolved => {
-                resolved.parent[resolved.key] = value;
-            });
-            this.fieldPriorities.set(path, priority);
-            return true;
-        }
+        if (resolutions.length === 0) return false;
 
-        return false;
+        resolutions.forEach(resolved => {
+            const oldValue = resolved.parent[resolved.key];
+
+            // 2. Smart Merging for objects
+            // If we are setting an object into an existing object, merge the keys
+            // individually to avoid wiping out properties that were pinned by 
+            // more specific sub-path effects.
+            if (value && typeof value === 'object' && !Array.isArray(value) &&
+                oldValue && typeof oldValue === 'object' && !Array.isArray(oldValue)) {
+
+                for (const k in value) {
+                    const subPath = `${path}.${k}`;
+                    const subPriority = this.fieldPriorities.get(subPath);
+                    if (subPriority === undefined || priority >= subPriority) {
+                        oldValue[k] = value[k];
+                        this.fieldPriorities.set(subPath, priority);
+                    }
+                }
+            } else {
+                // 3. Fallback to standard replacement
+                resolved.parent[resolved.key] = value;
+                this.fieldPriorities.set(path, priority);
+
+                // If we've set a bulk object, record priorities for its known keys
+                // which helps subsequent smart-merges know they can overwrite.
+                if (value && typeof value === 'object' && !Array.isArray(value)) {
+                    for (const k in value) {
+                        this.fieldPriorities.set(`${path}.${k}`, priority);
+                    }
+                }
+            }
+        });
+
+        return true;
     }
 
     /**
@@ -1302,6 +1361,18 @@ export class CharacterBuilder {
                     if (typeof current[finalKey] === 'string' && current[finalKey].includes('$')) {
                         // Wrap with $() to ensure the math is evaluated in subsequent passes
                         current[finalKey] = `$(${current[finalKey]} + ${evaluatedValue})`;
+                    } else if (typeof current[finalKey] === 'string') {
+                        // Check if the string is in the format "<n> feet"
+                        const feetMatch = current[finalKey].match(/^(\d+)\s+feet$/i);
+                        if (feetMatch) {
+                            const currentFeet = Number(feetMatch[1]);
+                            const addVal = Number(evaluatedValue || 0);
+                            current[finalKey] = `${currentFeet + addVal} feet`;
+                        } else {
+                            // Not a recognized format, treat as 0 and convert to number
+                            const addVal = Number(evaluatedValue || 0);
+                            current[finalKey] = addVal;
+                        }
                     } else {
                         // Force numeric addition to prevent string concatenation
                         const currentVal = Number(current[finalKey] || 0);

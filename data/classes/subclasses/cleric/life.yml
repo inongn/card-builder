@@ -47,7 +47,7 @@ children:
     name: Blessed Healer
     target: healingSpell
     condition: $(meta.level >= 6)
-    description: "If you cast this on another creature, you regain 2 + spell evel Hit Points."
+    description: "If you cast this on another creature, you regain 2 + spell level Hit Points."
 
   # Level 17: Supreme Healing
   - id: supremeHealing
