@@ -92,12 +92,17 @@ export class CharacterBuilder {
                         appliedOverwrite[key] = val;
                     }
                 }
-                effectiveNode = { ...child, ...appliedOverwrite };
-                // For tags, merge into existing array instead of replacing
-                if ('tags' in appliedOverwrite) {
-                    const existing = child.tags || [];
-                    const added = Array.isArray(appliedOverwrite.tags) ? appliedOverwrite.tags : (appliedOverwrite.tags != null ? [appliedOverwrite.tags] : []);
-                    effectiveNode.tags = [...existing, ...added];
+
+                // For Slot and Reference nodes, overwrites are intended for the content that fills or is 
+                // resolved by them, not the node itself. Overwriting 'target' on a Slot would break its filter.
+                if (child.type !== 'Slot' && child.type !== 'Reference') {
+                    effectiveNode = { ...child, ...appliedOverwrite };
+                    // For tags, merge into existing array instead of replacing
+                    if ('tags' in appliedOverwrite) {
+                        const existing = child.tags || [];
+                        const added = Array.isArray(appliedOverwrite.tags) ? appliedOverwrite.tags : (appliedOverwrite.tags != null ? [appliedOverwrite.tags] : []);
+                        effectiveNode.tags = [...existing, ...added];
+                    }
                 }
             }
 
@@ -106,10 +111,13 @@ export class CharacterBuilder {
 
             // Handle References - flatten them directly into the tree
             if (effectiveNode.type === 'Reference') {
+                const evaluator = new ExpressionEvaluator(this.characterData);
                 const refKey = effectiveNode.reference || effectiveNode.target || effectiveNode.value;
-                const refIds = Array.isArray(refKey) ? refKey : [refKey];
+                const refIdsRaw = Array.isArray(refKey) ? refKey : [refKey];
+                const refIds = refIdsRaw.map(id => evaluator.evaluate(id, nodeVariables));
 
                 for (const refId of refIds) {
+                    if (!refId) continue;
                     const prop = this.library.getProperty(refId);
                     if (prop) {
                         // Smart Condition Merging
@@ -165,22 +173,10 @@ export class CharacterBuilder {
             const evaluator = new ExpressionEvaluator(this.characterData);
 
             let displayName = effectiveNode.name;
-            if (displayName) displayName = evaluator.evaluate(displayName, nodeVariables);
-
             let description = effectiveNode.description;
-            if (description) {
-                if (Array.isArray(description)) {
-                    description = description.map(line => evaluator.evaluate(line, nodeVariables));
-                } else if (typeof description === 'string') {
-                    description = evaluator.evaluate(description, nodeVariables);
-                }
-            }
 
             let subtype = effectiveNode.subtype;
-            if (subtype) subtype = evaluator.evaluate(subtype, nodeVariables);
-
             let target = effectiveNode.target;
-            if (target && typeof target === 'string') target = evaluator.evaluate(target, nodeVariables);
 
             // Check if this is a slot with quantity > 1
             if (effectiveNode.type === 'Slot' && quantity && quantity > 1) {
@@ -229,7 +225,8 @@ export class CharacterBuilder {
             saves: {},
             resources: [],
             features: [],
-            activities: []
+            activities: [],
+            statblocks: []
         };
     }
 
@@ -569,13 +566,26 @@ export class CharacterBuilder {
         // Apply inputs
         this.applyInputs(this.basePropertyTree, recipe.inputs);
 
-        // Process children to expand slots (this uses the NEW inputs like level)
+        // Process children to expand slots (this uses the NEW inputs like level).
+        // At this point characterData is empty, so dynamic slot quantities that depend
+        // on proficiencies (e.g. armamentSlot) will evaluate to their minimum value.
         this.propertyTree = {
             ...this.basePropertyTree,
             children: this.processChildren(this.basePropertyTree.children, {}, 'base')
         };
 
-        // Reapply filled slots
+        // Phase 1: Apply slots once so that class/species/background are filled,
+        // which populates proficiencies and other attributes into characterData.
+        this.reapplyFilledSlots(this.propertyTree, recipe.slots);
+
+        // Phase 2: Run a rebuild pass so characterData now has the correct proficiencies,
+        // then re-expand the tree structure. This ensures dynamic slot quantities
+        // (like armamentSlot whose count depends on proficiencies) are correctly computed.
+        this.runRebuildPasses();
+        this._reprocessTreeStructure();
+
+        // Phase 3: Re-apply ALL slots from the recipe now that the tree has the correct
+        // number of dynamic slot instances (e.g. armamentSlot #2, #3 now exist).
         this.reapplyFilledSlots(this.propertyTree, recipe.slots);
 
         // Final rebuild
@@ -1254,13 +1264,13 @@ export class CharacterBuilder {
                     const cardClone = structuredClone(prop);
 
                     // Split description into text and extras
-                    const description = evaluator.bakeVariables(prop.description, scope);
+                    const description = prop.description;
                     const existingExtras = Array.isArray(prop.extra) ? prop.extra : (prop.extra ? [prop.extra] : []);
 
                     const cardObj = {
                         ...cardClone,
                         id: evaluator.bakeVariables(prop.id, scope),
-                        name: evaluator.bakeVariables(prop.name, scope),
+                        name: prop.name,
                         time: cardClone.time || 'free action',
                         range: cardClone.range || 'self',
                         duration: cardClone.duration || 'instantaneous',
@@ -1307,6 +1317,24 @@ export class CharacterBuilder {
                     }, evaluator);
                 }
                 break;
+            case 'Statblock':
+                {
+                    const scope = prop.variables || {};
+                    const statblockClone = structuredClone(prop);
+
+                    // Statblock specific evaluation logic
+                    // We want to evaluate fields but preserve the structure
+                    const statblockObj = {
+                        ...statblockClone,
+                        id: evaluator.bakeVariables(prop.id, scope),
+                        name: prop.name,
+                        tags: evaluator.bakeVariables(prop.tags, scope),
+                        variables: { ...scope, ...(prop.variables || {}) }
+                    };
+
+                    this.characterData.statblocks.push(statblockObj);
+                }
+                break;
         }
     }
 
@@ -1319,18 +1347,23 @@ export class CharacterBuilder {
         const priority = effect.priority || 0;
         const scope = effect.variables || {};
 
-        // Target path is baked with local tree variable context but target object must be found in characterData
-        let evaluatedTarget = evaluator.evaluate(target, scope);
-
         // Handle substring targeting: path["substring"]
+        // IMPORTANT: Extract the raw substring from the target string BEFORE evaluating,
+        // so dynamic expressions like $(local.ac) inside ["..."] are preserved as literal
+        // text. Evaluating first would resolve them to their computed values, which would
+        // never match the unevaluated template text stored in the description.
         let substring = null;
-        if (typeof evaluatedTarget === 'string') {
-            const subMatch = evaluatedTarget.match(/(.+)\["([^"]+)"\]$/);
-            if (subMatch) {
-                evaluatedTarget = subMatch[1];
-                substring = subMatch[2];
+        let targetForEval = target;
+        if (typeof target === 'string') {
+            const rawSubMatch = target.match(/^([\s\S]+)\["([^"]+)"\]$/);
+            if (rawSubMatch) {
+                targetForEval = rawSubMatch[1]; // Only evaluate the path portion
+                substring = rawSubMatch[2];     // Keep substring verbatim (unexpanded)
             }
         }
+
+        // Target path is baked with local tree variable context but target object must be found in characterData
+        let evaluatedTarget = evaluator.evaluate(targetForEval, scope);
 
         // VALUE: Use bakeVariables instead of evaluate. 
         // This resolves local.treeVars but keeps $(characterVars) "LIVE" for final evaluation passes.

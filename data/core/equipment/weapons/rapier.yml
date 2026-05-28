@@ -1,10 +1,9 @@
 id: rapier
 name: Rapier
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [martial]
-value:
+variables:
   name: Rapier
   mastery: vex
   damageRoll: 1d8

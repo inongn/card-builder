@@ -36,13 +36,13 @@ children:
   # Level 3: War Priest
   - id: warPriest
     type: Activity
-    name: War Priest Attack
+    name: War Priest
     time: bonus action
     range: self
     duration: Instantaneous
     resource: warPriest
     condition: $(meta.level >= 3)
-    description: "You strike at a creature or object within range with your $(attributes.mainHand.name). Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target. On a hit, the target takes $(attributes.mainHand.damageRoll) $(attributes.mainHand.damageType) damage."
+    description: "You make one attack with a weapon or an Unarmed Strike."
   - id: warPriest
     type: Resource
     name: War Priest

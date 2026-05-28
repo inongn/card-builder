@@ -17,3 +17,9 @@ children:
     id: ritual
     name: Ritual
     description: "You can cast this spell as a Ritual instead. The Ritual version of a spell takes 10 minutes longer to cast, and doesn't expend a Spell Slot."
+  - type: Extra
+    target: weaponAttack and light
+    id: light
+    name: Light
+    description: "You can make an additional attack with a Light weapon as a Bonus Action. You do not add your Ability Modifier to the attack's damage roll."
+  

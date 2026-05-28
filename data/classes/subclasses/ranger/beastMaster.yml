@@ -13,6 +13,13 @@ children:
     quantity: 1
     target: classOption OR primalCompanion
 
+  - id: commandCompanionExtraAttack
+    type: Extra
+    name: Command Companion
+    target: weaponAttack
+    condition: $(meta.level >= 5)
+    description: "You can replace one attack with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
+
   # Command Primal Companion
   - id: commandPrimalCompanion
     type: Activity

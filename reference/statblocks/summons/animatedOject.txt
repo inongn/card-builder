@@ -1,0 +1,49 @@
+
+
+Animated Object
+
+
+Huge or Smaller Construct, Unaligned
+
+
+Armor Class: 15
+
+
+Hit Points: 10 (Medium or smaller), 20 (Large), 40 (Huge)
+
+
+Speed: 30 ft.
+
+
+STR (Mod/Save)
+DEX (Mod/Save)
+CON (Mod/Save)
+INT (Mod/Save)
+WIS (Mod/Save)
+CHA (Mod/Save)
+
+
+16 (+3/+3)
+10 (+0/+0)
+10 (+0/+0)
+3 (−4/-4)
+3 (-4/-4)
+1 (-1/-1)
+
+
+Immunities: Poison, Psychic, Charmed, Exhaustion, Frightened, Paralyzed, Poisoned
+
+
+Senses: Blindsight 30 ft., Passive Perception 6
+
+
+Languages: Understands the languages that you know
+
+
+Challenge Rating: None (XP 0; PB equals your Proficiency Bonus)
+
+
+Actions
+
+
+Slam. Melee Attack Roll: Bonus equals your spell attack modifier, reach 5 ft. Hit: Force damage equal to 1d4 + 3 (Medium or smaller), 2d6 + 3 + your spellcasting ability modifier (Large), or 2d12 + 3 + your spellcasting ability modifier (Huge).

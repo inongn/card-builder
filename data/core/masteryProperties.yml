@@ -6,17 +6,17 @@ children:
     target: graze
     id: graze
     name: Graze
-    description: "On a miss, deal $(attributes[attributes.mainHand.classification].bonus) $(attributes.mainHand.damageType) damage."
+    description: "On a miss, deal $(attributes[local.classification].bonus) $(local.damageType) damage."
   - type: Extra
     target: slow
     id: slow
     name: Slow
     description: "On a hit, the target's speed is reduced by 10 feet."
   - type: Extra
-    target: nick AND offHand
+    target: nick
     id: nick
     name: Nick
-    description: "You can make this attack as part of the Attack action instead of as a Bonus Action."
+    description: "You can make the additional attack of the Light property as part of the Attack action instead of as a Bonus Action."
   - type: Extra
     target: cleave
     id: cleave
@@ -30,7 +30,7 @@ children:
     target: topple
     id: topple
     name: Topple
-    description: "On a hit, the target must succeed a DC $(8 + attributes.prof + attributes[attributes.mainHand.classification].bonus) Constitution saving throw or have the Prone condition."
+    description: "On a hit, the target must succeed a DC $(8 + attributes.prof + attributes[local.classification].bonus) Constitution saving throw or have the Prone condition."
   - type: Extra
     target: sap
     id: sap

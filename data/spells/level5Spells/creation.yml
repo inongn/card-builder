@@ -13,57 +13,13 @@ description: |
 
   Materials
 
-
-
-
-
-  Material
-
-  Duration
-
-
-
-
-
-  Vegetable matter
-
-  24 hours
-
-
-
-
-
-  Stone or crystal
-
-  12 hours
-
-
-
-
-
-  Precious metals
-
-  1 hour
-
-
-
-
-
-  Gems
-
-  10 minutes
-
-
-
-
-
-  Adamantine or mithral
-
-  1 minute
-
-
-
-
+  | Material | Duration |
+  | :--- | :--- |
+  | Vegetable matter | 24 hours |
+  | Stone or crystal | 12 hours |
+  | Precious metals | 1 hour |
+  | Gems | 10 minutes |
+  | Adamantine or mithral | 1 minute |
 
   **Using a Higher-Level Spell Slot.** The Cube increases by 5 feet for each spell slot level above 5.
 

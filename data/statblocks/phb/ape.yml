@@ -1,0 +1,32 @@
+type: Reference
+name: Ape
+id: ape
+category: beast
+target: "$(local.target)"
+variables:
+  name: Ape
+  size: Medium
+  classification: Beast
+  ac: 12
+  hp: 19
+  movement:
+    walk: 30
+    climb: 30
+  stats:
+    str: 16
+    dex: 14
+    con: 14
+    int: 6
+    wis: 12
+    cha: 7
+  skills:
+    athletics: 5
+    perception: 3
+  cr: 0.5
+  actions:
+    - name: Multiattack
+      description: The ape makes two Fist attacks.
+    - name: Fist
+      description: _Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Bludgeoning damage.
+    - name: Rock {@recharge}
+      description: _Ranged Attack Roll:_ +5 to hit, range 25/50 ft. _Hit:_ 2d6 + 3 Bludgeoning damage.

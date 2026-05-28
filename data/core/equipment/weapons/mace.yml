@@ -1,10 +1,9 @@
 id: mace
 name: Mace
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [simple]
-value:
+variables:
   name: Mace
   mastery: sap
   damageRoll: 1d6

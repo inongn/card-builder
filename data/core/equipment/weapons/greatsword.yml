@@ -1,10 +1,9 @@
 id: greatsword
 name: Greatsword
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Greatsword
   mastery: graze
   damageRoll: 2d6

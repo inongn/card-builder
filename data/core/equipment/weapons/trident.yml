@@ -1,13 +1,12 @@
 id: trident
 name: Trident
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [martial]
-value:
+variables:
   name: Trident
   mastery: topple
-  damageRoll: "$(!attributes.offHand ? '1d10' : '1d8')"
+  damageRoll: "$(attributes.shieldEquipped == true ? '1d8' : '1d10')"
   damageType: piercing
   range: 20 feet
   classification: thrown

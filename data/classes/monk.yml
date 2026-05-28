@@ -37,20 +37,56 @@ children:
     type: Attribute
     value: $(progression(6,6,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
 
+  - id: martialArtsReplacementd4
+    type: Effect
+    target: activities[melee and weaponAttack].description["1d4"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+
+  - id: martialArtsReplacementd6
+    type: Effect
+    target: activities[melee and weaponAttack].description["1d6"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+
+  - id: martialArtsReplacementd8
+    type: Effect
+    target: activities[melee and weaponAttack].description["1d8"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+
+  - id: martialArtsReplacementd10
+    type: Effect
+    target: activities[melee and weaponAttack].description["1d10"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+
+  - id: martialArtsReplacementd12
+    type: Effect
+    target: activities[melee and weaponAttack].description["1d12"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+
+  - id: dexterousAttacksBonus
+    type: Effect
+    target: activities[weaponAttack].description["$(formatBonus(attributes.melee.bonus))"]
+    operation: replace
+    value: "$(formatBonus(attributes.finesse.bonus))"
+
+  - id: dexterousAttacksRoll
+    type: Effect
+    target: activities[weaponAttack].description["$(formatBonus(attributes.melee.attack))"]
+    operation: replace
+    value: "$(formatBonus(attributes.finesse.attack))"
+
   - id: bonusUnarmedStrike
     type: Activity
     name: Bonus Unarmed Strike
     time: bonus action
     range: 5 feet
-    tags: [unarmed, attack]
     duration: Instantaneous
-    description: "You strike at a creature or object within range. Make a $(formatBonus(stats.dex.mod + attributes.prof)) attack against the target. On a hit, the target takes 1d$(attributes.martialArtsDie) Bludgeoning damage."
+    description: "You make one Unarmed Strike."
 
-  - id: dexterousAttacks
-    type: Effect
-    target: attributes.mainHand.classification
-    operation: set
-    value: finesse
 
   # Level 1: Unarmored Defense
   - id: unarmoredDefense
@@ -72,12 +108,11 @@ children:
     type: Activity
     name: Flurry of Blows
     time: bonus action
-    tags: [unarmed, attack]
     range: self
     duration: Instantaneous
     resource: 1 focusPoints
     condition: $(meta.level >= 2)
-    description: "You make $(meta.level >= 10 ? 'three' : 'two') Unarmed Strikes. You can strike at one target within range or several. Make a $(formatBonus(stats.dex.mod + attributes.prof)) attack for each strike. On a hit, the target takes 1d$(attributes.martialArtsDie) Bludgeoning damage."
+    description: "You make $(meta.level >= 10 ? 'three' : 'two') Unarmed Strikes."
   - id: patientDefense
     type: Activity
     name: Patient Defense
@@ -147,11 +182,12 @@ children:
 
   # Level 5: Extra Attack
   - id: extraAttack
-    type: Effect
-    target: attributes.mainHand.attacks
-    operation: set
+    type: Extra
+    target: weaponAttack
     condition: $(meta.level >= 5)
-    value: 2
+    name: Extra Attack
+    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+
 
   # Level 5: Stunning Strike
   - id: stunningStrike
@@ -164,7 +200,7 @@ children:
   # Level 6: Empowered Strikes
   - id: empoweredStrikes
     type: Extra
-    target: attack
+    target: weaponAttack
     name: Empowered Strikes
     condition: $(meta.level >= 6)
     description: "You can deal your choice of Force damage or the normal damage type."
@@ -270,8 +306,3 @@ children:
     condition: $(meta.level >= 3)
     type: Slot
     target: monkSubclass
-
-  # Weapon Mastery
-  - id: masteryProperties
-    type: Reference
-    target: masteryProperties

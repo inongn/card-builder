@@ -1,14 +1,18 @@
 import React from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
+import { StatblockCard } from '../components/cards/StatblockCard';
 import 'mdui/components/button.js';
 
 export const PrintScreen = ({ char, onNavigate, toggleTheme, isDarkMode }) => {
     if (!char) return null;
 
     const activities = char.activities || [];
-    const page1Cards = activities.slice(0, 2);
-    const remainingCards = activities.slice(2);
+    const statblocks = (char.statblocks || []).map(sb => ({ ...sb, _isStatblock: true }));
+    const allCards = [...activities, ...statblocks];
+
+    const page1Cards = allCards.slice(0, 2);
+    const remainingCards = allCards.slice(2);
 
     const chunks = [];
     for (let i = 0; i < remainingCards.length; i += 6) {
@@ -37,7 +41,10 @@ export const PrintScreen = ({ char, onNavigate, toggleTheme, isDarkMode }) => {
                         </div>
                         {page1Cards.map((card, idx) => (
                             <div key={idx} className="action-card-print-slot">
-                                <ActivityCard activity={card} variant="static" char={char} />
+                                {card._isStatblock ?
+                                    <StatblockCard statblock={card} variant="static" /> :
+                                    <ActivityCard activity={card} variant="static" char={char} />
+                                }
                             </div>
                         ))}
                     </div>
@@ -48,7 +55,10 @@ export const PrintScreen = ({ char, onNavigate, toggleTheme, isDarkMode }) => {
                         <div className="print-grid">
                             {chunk.map((card, cardIdx) => (
                                 <div key={cardIdx} className="action-card-print-slot">
-                                    <ActivityCard activity={card} variant="static" char={char} />
+                                    {card._isStatblock ?
+                                        <StatblockCard statblock={card} variant="static" /> :
+                                        <ActivityCard activity={card} variant="static" char={char} />
+                                    }
                                 </div>
                             ))}
                         </div>

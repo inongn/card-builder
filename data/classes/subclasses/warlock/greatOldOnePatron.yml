@@ -34,15 +34,21 @@ children:
   # Level 3: Psychic Spells
   - id: psychicSpellsDamage
     type: Extra
-    target: warlock AND damageSpell
+    target: warlock AND damageSpell NOT (enchantment OR illusion)
     name: Psychic Spells
     description: "You can change the damage type to Psychic."
     condition: $(meta.level >= 3)
   - id: psychicSpellsComp
     type: Extra
-    target: warlock AND (enchantment OR illusion)
+    target: warlock AND (enchantment OR illusion) NOT (damageSpell)
     name: Psychic Spells
     description: "You can cast this spell without Verbal or Somatic components."
+    condition: $(meta.level >= 3)
+  - id: psychicSpellsCompDamage
+    type: Extra
+    target: warlock AND (enchantment OR illusion) AND damageSpell
+    name: Psychic Spells
+    description: "You can cast this spell without Verbal or Somatic components and change the damage type to Psychic."
     condition: $(meta.level >= 3)
 
   # Level 6: Clairvoyant Combatant
@@ -80,10 +86,10 @@ children:
   # Level 14: Create Thrall
   - id: createThrall
     type: Extra
-    target: summonAberration
+    target: summonAberrationActivity
     name: Create Thrall
     description: |
-      **Create Thrall.** You can modify this spell so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting, and when summoned, the Aberration has $(meta.level + stats.cha.mod) Temporary Hit Points.
+      You can modify this spell so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting, and when summoned, the Aberration has $(meta.level + stats.cha.mod) Temporary Hit Points.
       
       The first time each turn the Aberration hits a creature under the effect of your Hex, the Aberration deals extra Psychic damage to the target equal to the bonus damage of that spell.
     condition: $(meta.level >= 14)

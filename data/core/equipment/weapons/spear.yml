@@ -1,13 +1,12 @@
 id: spear
 name: Spear
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [simple]
-value:
+variables:
   name: Spear
   mastery: sap
-  damageRoll: "$(!attributes.offHand ? '1d8' : '1d6')"
+  damageRoll: "$(attributes.shieldEquipped == true ? '1d6' : '1d8')"
   damageType: piercing
   range: 20 feet
   classification: thrown

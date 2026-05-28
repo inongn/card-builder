@@ -3,6 +3,7 @@ name: Heavy Armor Master
 tags:
   - feat
   - generalFeat
+condition: "$(attributes.proficiencies.includes('heavyArmor'))"
 type: Folder
 children:
   - name: Ability Score Increase

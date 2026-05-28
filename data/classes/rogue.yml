@@ -20,7 +20,7 @@ children:
   - type: Reference
     value: [dexSave, intSave]
   - type: Reference
-    value: [simpleWeaponProficiency, lightWeaponProficiency, lightArmorTraining, thievesTools]
+    value: [simpleWeaponProficiency, lightWeaponProficiency, finesseWeaponProficiency, lightArmorTraining, thievesTools]
   - id: rogueSkillProficiencies
     type: Slot
     name: Rogue Skill Proficiencies

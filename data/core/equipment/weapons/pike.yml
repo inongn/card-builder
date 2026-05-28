@@ -1,10 +1,9 @@
 id: pike
 name: Pike
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Pike
   mastery: push
   damageRoll: 1d10

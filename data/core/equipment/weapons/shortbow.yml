@@ -1,10 +1,9 @@
 id: shortbow
 name: Shortbow
-type: Effect
-target: attributes.mainHand
-tags: [simple]
-operation: set
-value:
+type: Reference
+target: weaponAttack
+tags: [simple, twoHanded]
+variables:
   name: Shortbow
   mastery: vex
   damageRoll: 1d6

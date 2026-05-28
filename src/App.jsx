@@ -139,12 +139,15 @@ export default function App() {
 
     const handleFillSlot = useCallback((path, propertyId) => {
         builderRef.current.fillSlot(path, propertyId);
-        syncState();
+        // Defer sync by one tick so mdui web component dropdown-close animations
+        // can complete before React unmounts/remounts select elements, preventing
+        // null-reference errors in onDropdownClose / onValueChange.
+        setTimeout(syncState, 0);
     }, [syncState]);
 
     const handleClearSlot = useCallback((path) => {
         builderRef.current.clearSlot(path);
-        syncState();
+        setTimeout(syncState, 0);
     }, [syncState]);
 
     const handleUpdateInput = useCallback((path, value) => {

@@ -1,0 +1,8 @@
+id: weaponAttack
+name: "Attack: $(local.name)"
+type: Activity
+tags: [$(local.category), $(local.classification), $(local.mastery), $(local.property), weaponAttack, $(local.damageType)Damage, $(local.name)]
+time: action
+range: $(local.range)
+description: |
+  You strike with your weapon. Make a $(formatBonus(attributes[local.classification].attack)) attack against the target. On a hit, the target takes $(local.damageRoll)$(formatBonus(attributes[local.classification].bonus)) $(capitalize(local.damageType)) damage.

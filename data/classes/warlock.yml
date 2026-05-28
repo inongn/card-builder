@@ -109,7 +109,8 @@ children:
     quantity: 1
     condition: $(meta.level >= 11)
     overwrite:
-      tags: [limitedLR]
+      uses: 1
+      resource: null
 
   # Level 12: Ability Score Improvement
   - id: level12feat
@@ -127,7 +128,8 @@ children:
     quantity: 1
     condition: $(meta.level >= 13)
     overwrite:
-      tags: [limitedLR]
+      uses: 1
+      resource: null
     
   # Level 15: Mystic Arcanum (Level 8)
   - id: mysticArcanum8
@@ -137,7 +139,8 @@ children:
     quantity: 1
     condition: $(meta.level >= 15)
     overwrite:
-      tags: [limitedLR]
+      uses: 1
+      resource: null
 
   # Level 16: Ability Score Improvement
   - id: level16feat
@@ -155,7 +158,8 @@ children:
     quantity: 1
     condition: $(meta.level >= 17)
     overwrite:
-      tags: [limitedLR]
+      uses: 1
+      resource: null
 
   # Level 19: Epic Boon
   - id: epicBoon

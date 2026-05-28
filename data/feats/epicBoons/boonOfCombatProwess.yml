@@ -11,6 +11,6 @@ children:
   value: 1
 - name: Peerless Aim
   type: Extra
-  target: attack
+  target: weaponAttack
   description: On a miss, you can hit instead. Once you use this benefit, you can't
     use it again until the start of your next turn.

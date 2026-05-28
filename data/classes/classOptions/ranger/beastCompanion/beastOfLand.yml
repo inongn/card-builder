@@ -1,0 +1,29 @@
+type: Statblock
+name: Beast of the Land
+tags: [primalCompanion]
+id: beastOfTheLand
+size: Medium
+category: companion
+classification: Beast
+ac: $(13 + stats.wis.mod)
+hp: $(5 + 5 * meta.level) 
+movement:
+  walk: 40
+  climb: 40
+stats:
+  str: 14
+  dex: 14
+  con: 15
+  int: 8
+  wis: 14
+  cha: 11
+senses:
+  darkvision: 60
+challenge: 1/4
+cr: 0
+traits:
+  - name: Primal Bond
+    description: "Add $(attributes.prof) to any ability check or saving throw the beast makes."
+actions:
+  - name: Beast's Strike
+    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(stats.wis.mod)) Bludgeoning, Piercing or Slashing damage. If the beast moved at least 20 feet straight toward the target before the hit, the target takes an extra 1d6 damage of the samy type, and the target has the Prone condition if it is a Large or smaller creature."

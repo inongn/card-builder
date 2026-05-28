@@ -1,16 +1,13 @@
 id: dagger
 name: Dagger
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [light, simple]
-value:
+variables:
   name: Dagger
   mastery: nick
   damageRoll: 1d4
   damageType: piercing
   range: 20 feet
   classification: finesse
-  category: simple
   property: light
-repeatable: true

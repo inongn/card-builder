@@ -144,7 +144,26 @@ def process_file(source_dir, target_dir, filename):
     else:
         time = time_line.lower()
 
-    description_text = "\n\n".join(description_lines)
+    description_text = ""
+    for i, line in enumerate(description_lines):
+        if not line.strip():
+            continue
+        description_text += line
+        if i < len(description_lines) - 1:
+            # Look ahead for next non-empty line
+            next_idx = i + 1
+            while next_idx < len(description_lines) and not description_lines[next_idx].strip():
+                next_idx += 1
+            
+            if next_idx < len(description_lines):
+                next_line = description_lines[next_idx]
+                # If current or next non-empty line is part of a table, use single newline
+                if line.strip().startswith('|') and next_line.strip().startswith('|'):
+                    description_text += "\n"
+                else:
+                    description_text += "\n\n"
+
+
     
     if has_upgrade:
         upgrade_text = lines[8 + upgrade_line_index] if len(lines) > 8 + upgrade_line_index else ""

@@ -229,6 +229,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             </div>
                         </mdui-card>
                     )}
+
                     {/* Passive Info List */}
                     <mdui-card variant="filled" className="inner-card info-card">
                         <div className="main-card-list">

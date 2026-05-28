@@ -160,6 +160,45 @@ export class PropertyLibrary {
             }
 
             pos++;
+
+            // 1. Check if token is an operator check: key<=val
+            const operatorMatch = token.match(/^([^>=<!]+)(>=|<=|>|<|=)(.+)$/);
+            if (operatorMatch) {
+                const [_, key, operator, rawValue] = operatorMatch;
+                const expectedValue = rawValue.replace(/^['"]|['"]$/g, '');
+                const matches = new Set();
+
+                for (const [id, prop] of this.properties) {
+                    const actualValue = this._getPropertyValue(prop, key);
+
+                    const val1 = (isNaN(actualValue) || actualValue === "" || actualValue === null || actualValue === undefined) ? actualValue : Number(actualValue);
+                    const val2 = (isNaN(expectedValue) || expectedValue === "" || expectedValue === null) ? expectedValue : Number(expectedValue);
+
+                    let result = false;
+                    switch (operator) {
+                        case '>=': result = val1 >= val2; break;
+                        case '<=': result = val1 <= val2; break;
+                        case '>': result = val1 > val2; break;
+                        case '<': result = val1 < val2; break;
+                        case '=': result = String(val1 ?? '') === String(val2); break;
+                    }
+                    if (result) matches.add(id);
+                }
+                return matches;
+            }
+
+            // 2. Check if token is a property path (e.g. movement.fly)
+            if (token.includes('.')) {
+                const matches = new Set();
+                for (const [id, prop] of this.properties) {
+                    if (this._getPropertyValue(prop, token)) {
+                        matches.add(id);
+                    }
+                }
+                return matches;
+            }
+
+            // 3. Fallback to tags or ID
             const matches = new Set(this.byTag.get(token) || []);
             if (this.properties.has(token)) matches.add(token);
             return matches;
@@ -177,5 +216,19 @@ export class PropertyLibrary {
             console.error("Error parsing tag expression:", tagExpression, e);
             return [];
         }
+    }
+
+    /**
+     * Helper to get a property value from a nested path
+     */
+    _getPropertyValue(obj, path) {
+        if (!obj || !path) return undefined;
+        const parts = path.split('.');
+        let current = obj;
+        for (const part of parts) {
+            if (current === null || current === undefined) return undefined;
+            current = current[part];
+        }
+        return current;
     }
 }

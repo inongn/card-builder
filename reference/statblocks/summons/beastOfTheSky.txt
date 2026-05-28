@@ -1,0 +1,16 @@
+Beast of the Sky
+Beast of the Sky
+Small Beast, Neutral
+Armor Class: 13 plus your Wisdom modifier
+Hit Points: 4 + four times your ranger level (the beast has a number of hit dice [d6s] equal to your ranger level)
+Speed: 10 ft., Fly 60 ft
+STR (Mod/Save)	DEX (Mod/Save)	CON (Mod/Save)	INT (Mod/Save)	WIS (Mod/Save)	CHA (Mod/Save)
+6 (-2/-2)	16 (+3/+3)	13 (+1/+1)	8 (−1/-1)	14 (+2/+2)	11 (+0/+0)
+Senses: Darkvision 60 ft., Passive Perception 12
+Languages: Understands the languages that you know
+Challenge Rating: None (XP 0; PB equals your Proficiency Bonus)
+Traits
+Flyby. The beast doesn't provoke Opportunity Attacks when it flies out of an enemy's reach.
+Primal Bond. Add your Proficiency Bonus to any ability check or saving throw the beast makes.
+Actions
+Beast's Strike. Melee Attack Roll: Bonus equals your spell attack modifier, reach 5 ft. Hit: 1d4 + 3 plus your Wisdom modifier Slashing damage.

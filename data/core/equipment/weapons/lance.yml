@@ -1,10 +1,9 @@
 id: lance
 name: Lance
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Lance
   mastery: topple
   damageRoll: 1d10

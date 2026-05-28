@@ -4,8 +4,7 @@ tags:
 - feat
 children:
 - type: Effect
-  condition: $(attributes.mainHand.property != 'twoHanded')
-  target: attributes.mainHand.property
-  operation: set
-  value: light
+  target: activities[weaponAttack].extra["with a Light weapon"]
+  operation: replace
+  value: "with a weapon"
 id: dualWielder

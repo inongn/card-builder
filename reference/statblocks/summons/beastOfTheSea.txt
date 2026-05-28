@@ -1,0 +1,15 @@
+Beast of the Sea
+Medium Beast, Neutral
+Armor Class: 13 plus your Wisdom modifier
+Hit Points: 5 + five times your ranger level (the beast has a number of hit dice [d8s] equal to your ranger level)
+Speed: 5 ft., Swim 60 ft
+STR (Mod/Save)	DEX (Mod/Save)	CON (Mod/Save)	INT (Mod/Save)	WIS (Mod/Save)	CHA (Mod/Save)
+14 (+2/+2)	14 (+2/+2)	15 (+2/+2)	8 (−1/-1)	14 (+2/+2)	11 (+0/+0)
+Senses: Darkvision 90 ft., Passive Perception 12
+Languages: Understands the languages that you know
+Challenge Rating: None (XP 0; PB equals your Proficiency Bonus)
+Traits
+Amphibious. The beast can breathe air and water
+Primal Bond. Add your Proficiency Bonus to any ability check or saving throw the beast makes.
+Actions
+Beast's Strike. Melee Attack Roll: Bonus equals your spell attack modifier, reach 5 ft. Hit: 1d6 + 2 plus your Wisdom modifier Bludgeoning or Piercing damage (Your choice when you summon the beast), and the target has the Grappled condition (escape DC equals your spell save DC).

@@ -10,13 +10,11 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Guardian
-    type: Activity
-    time: reaction
-    range: 5 feet
-    id: guardian
-    description: "When a creature within range takes the Disengage action or hits a target other than you with an attack, you strike at it. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target. On a hit, the target takes 1d4$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
   - name: Halt
     type: Extra
     target: opportunityAttack
     description: On a hit, the target's Speed becomes 0 for the rest of the current turn.
+  - name: Guardian
+    type: Extra
+    target: opportunityAttack
+    description: You can make an Opportunity Attack when a creature takes the Disengage action or hits a target other than you with an attack. 

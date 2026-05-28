@@ -12,4 +12,4 @@ children:
     value: 1
   - name: Mastery Property
     type: Reference
-    target: [simpleWeaponMastery, martialWeaponMastery, masteryProperties]
+    target: masteryProperties

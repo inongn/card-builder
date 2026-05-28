@@ -52,7 +52,7 @@ export const BuilderScreen = ({
         { key: 'skills', icon: 'psychology', label: 'Skills' },
         { key: 'spellcasting', icon: 'auto_fix_high', label: 'Spells' },
         { key: 'equipment', icon: 'shield', label: 'Equipment' },
-    ].filter(step => availableCategories.includes(step.key));
+    ];
 
     return (
         <div className="container builder-screen">
@@ -60,7 +60,7 @@ export const BuilderScreen = ({
             <mdui-top-app-bar variant="small">
                 <mdui-button-icon icon="arrow_back" onClick={() => onNavigate(builderSource)}></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                <mdui-button variant="filled" onClick={onSave} icon="save" disabled={undefined}>Save</mdui-button>
+                <mdui-button variant="filled" onClick={onSave} icon="save" disabled={!isComplete}>Save</mdui-button>
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
             </mdui-top-app-bar>
 
@@ -68,19 +68,21 @@ export const BuilderScreen = ({
             <div className="header-nav">
 
                 {orderedSteps.map(step => {
+                    const isAvailable = availableCategories.includes(step.key);
                     const stats = categoryStats[step.key] || { pending: 0, isComplete: false };
                     return (
                         <mdui-button
                             key={step.key}
                             variant={selectedCategory === step.key ? "tonal" : "text"}
-                            onClick={() => setSelectedCategory(step.key)}
+                            onClick={isAvailable ? () => setSelectedCategory(step.key) : undefined}
                             icon={step.icon}
                             end-icon={stats.isComplete ? "check" : undefined}
-                            className="nav-btn"
+                            className={`nav-btn`}
+                            disabled={!isAvailable || undefined}
                         >
                             {step.label}
                             {stats.pending > 0 && (
-                                <mdui-badge style={{ marginLeft: '8px' }}>!</mdui-badge>
+                                <mdui-badge style={{ marginLeft: '8px', marginRight: '-6px' }}>!</mdui-badge>
                             )}
                         </mdui-button>
                     );

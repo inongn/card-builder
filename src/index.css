@@ -46,7 +46,6 @@ strong {
 
 p {
   margin: 0;
-  margin-top: 0.25em;
 }
 
 mdui-top-app-bar {
@@ -138,6 +137,7 @@ mdui-collapse {
   padding: var(--gap-sm);
 }
 
+
 .play-content-aside .title-primary {
   position: sticky;
   top: 0;
@@ -200,6 +200,14 @@ mdui-chip {
 
 .card-description.extra {
   color: var(--mdui-color-on-surface-variant);
+}
+
+/* Statblock Card */
+
+.statblock-stats-row {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
 }
 
 /* Main Card */
@@ -320,6 +328,9 @@ mdui-chip {
   gap: 12px;
 }
 
+.list-item.weapon-item {
+  grid-template-columns: 30px 20px auto auto;
+}
 
 /* ==========================================================================
    UTILITIES & ICONS
@@ -554,7 +565,8 @@ mdui-chip {
   margin: 4px 0 !important;
 }
 
-.print-mode .card-description {
+.print-mode .card-description,
+.print-mode .card-content {
   font-size: inherit !important;
   font-family: "Roboto Condensed", sans-serif !important;
 }
@@ -803,6 +815,7 @@ mdui-chip {
 }
 
 
+
 /* ==========================================================================
    DEBUGGER
    ========================================================================== */
@@ -841,6 +854,24 @@ mdui-chip {
 mdui-select::part(menu) {
   max-height: 400px;
   overflow-y: auto;
+}
+
+mdui-divider,
+hr {
+  background-color: rgb(var(--mdui-color-outline), 1);
+  margin: .2em 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+blockquote {
+  margin: var(--gap-xs);
+  border: 1px solid rgb(var(--mdui-color-outline-variant), 1);
+  border-radius: var(--mdui-shape-corner-medium);
+  padding: var(--gap-xs);
 }
 
 /* ==========================================================================

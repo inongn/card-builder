@@ -21,31 +21,39 @@ children:
     condition: $(meta.level >= 9)
 
   # Level 3: Circle Forms (Modifies Wild Shape)
-  - id: moonCircleFormsAC
+  - id: moonCircleMaxCR
     type: Effect
-    target: activities[wildShape].description["Your AC becomes $(10+stats.wis.mod)."]
-    operation: replace
-    value: "Your AC becomes $(13 + stats.wis.mod)."
+    target: meta.wildShapeMaxCR
+    operation: set
+    value: "$(Math.floor(meta.level / 3))"
+    priority: 1
     condition: $(meta.level >= 3)
   - id: moonCircleFormsTHP
     type: Effect
-    target: activities[wildShape].description["You gain $(meta.level) Temporary Hit Points."]
+    target: activities[wildShapeActivity].description["You gain $(meta.level) Temporary Hit Points"]
     operation: replace
-    value: "You gain $(meta.level * 3) Temporary Hit Points."
+    value: "You gain $(meta.level * 3) Temporary Hit Points"
+    condition: $(meta.level >= 3)
+
+  - id: moonCirclealtAC
+    type: Effect
+    target: activities[wildShapeActivity].variables.ac
+    operation: set
+    value: $(13 + stats.wis.mod)
     condition: $(meta.level >= 3)
 
   # Level 6: Improved Circle Forms
   - id: improvedCircleFormsRadiance
     type: Extra
-    target: bestialStrike
+    target: wildShapeActivity
     name: Lunar Radiance
     description: "You can deal Radiant damage instead of the normal type."
     condition: $(meta.level >= 6)
   - id: improvedCircleFormsToughness
     type: Extra
-    target: wildShape
+    target: wildShapeActivity
     name: Increased Toughness
-    description: "You can add your Wisdom modifier to your Constitution saving throws."
+    description: "You can add $(stats.wis.mod) to your Constitution saving throws."
     condition: $(meta.level >= 6)
 
   # Level 10: Moonlight Step
@@ -71,7 +79,7 @@ children:
   # Level 14: Lunar Form
   - id: lunarFormRadiance
     type: Extra
-    target: bestialStrike
+    target: wildShapeActivity
     name: Improved Lunar Radiance
-    description: "Once per turn, deal an extra 2d10 Radiant damage to the target."
+    description: "Once on each turn when you hit a creature with an attack, the target takes an additional 2d10 Radiant damage."
     condition: $(meta.level >= 14)

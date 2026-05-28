@@ -1,10 +1,9 @@
 id: handaxe
 name: Handaxe
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [light, simple]
-value:
+variables:
   name: Handaxe
   mastery: vex
   damageRoll: 1d6
@@ -13,4 +12,3 @@ value:
   classification: thrown
   category: simple
   property: light
-repeatable: true

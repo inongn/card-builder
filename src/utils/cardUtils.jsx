@@ -138,7 +138,8 @@ export const sortDescription = (lines) => {
         const text = String(line).toLowerCase();
         if (text.includes('on a hit') || text.includes('when you hit')) return 80;
         if (text.includes('on a miss') || text.includes('when you miss')) return 70;
-        if (text.includes('resource')) return -100
+        if (text.includes('resource')) return -100;
+        if (text.includes('you can attack')) return 100;
         if (text.includes('you can')) return 90;
         return 0;
     };

@@ -1,10 +1,9 @@
 id: handCrossbow
 name: Hand Crossbow
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [light, martial]
-value:
+variables:
   name: Hand Crossbow
   mastery: vex
   damageRoll: 1d6
@@ -13,4 +12,3 @@ value:
   classification: ranged
   category: martial
   property: light
-repeatable: true

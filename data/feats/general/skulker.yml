@@ -21,5 +21,5 @@ children:
   - name: Sniper
     type: Extra
     id: sniper
-    target: attack OR spellAttack
+    target: weaponAttack OR spellAttack
     description: On a miss, while hidden, making the attack roll doesn't reveal your location.

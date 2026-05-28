@@ -87,11 +87,11 @@ children:
     name: Tactical Shift
     description: You can move up to $(attributes.movement.walk/2) without provoking Opportunity Attacks.
   - id: extraAttack
-    type: Effect
-    target: attributes.mainHand.attacks
-    operation: set
+    type: Extra
+    target: weaponAttack
     condition: $(meta.level >= 5)
-    value: "$(meta.level >= 20 ? 4 : meta.level >= 11 ? 3 : 2)"
+    name: Extra Attack
+    description: "You can attack $(meta.level >= 20 ? 'four times' : meta.level >= 11 ? 'three times' : 'twice'), instead of once, whenever you take the Attack action on your turn."
   - id: level8feat
     name: Level 8 Feat
     type: Slot
@@ -99,11 +99,11 @@ children:
     quantity: 1
     target: feat
   - id: tacticalMaster
-    type: Effect
-    target: activities[mainHand].tags
-    operation: push
+    type: Extra
+    target: weaponAttack NOT unarmed
     condition: $(meta.level >= 9)
-    value: [push, slow, sap]
+    name: Tactical Master
+    description: "On a hit, you can replace the effect of $(local.mastery.charAt(0).toUpperCase() + local.mastery.slice(1)) with one of the following effects — push the target up to 10 feet straight away from yourself, reduce the target's speed by 10 feet until the start of your next turn, or impose disadvantage on the target's next attack roll."
   - id: indomitable
     type: Activity
     name: Indomitable
@@ -119,7 +119,7 @@ children:
     quantity: $(progression(0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3))
   - id: studiedAttacks
     type: Extra
-    target: attack OR attackSpell
+    target: weaponAttack OR attackSpell
     condition: $(meta.level >= 13)
     name: Studied Attacks
     description: "On a miss, you have Advantage on your next attack roll against the target before the end of your next turn."

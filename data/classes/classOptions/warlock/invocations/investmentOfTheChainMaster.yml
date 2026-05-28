@@ -7,12 +7,12 @@ type: Folder
 children:
   - id: investmentChainDesc
     type: Extra
-    target: findFamiliar
+    target: findFamiliarActivity
     name: Investment of the Chain Master
     description: |
-      When you cast Find Familiar, you infuse it with power:
-      *   **Aerial or Aquatic.** Gains Fly or Swim Speed of 40 ft.
-      *   **Quick Attack.** You can use a Bonus Action to command it to Attack.
-      *   **Damage Type.** Its attacks can deal Necrotic or Radiant damage.
-      *   **Save DC.** It uses your Spell Save DC.
-      *   **Resistance.** Reaction when it takes damage to grant Resistance.
+      You can use a Bonus Action to command the familiar to Attack, its attacks can deal Necrotic or Radiant damage, it uses your Spell Save DC and when it takes damage you can use a Reaction to grant it Resistance.
+  - id: investmentChainSpeed
+    type: Effect
+    target: activities[findFamiliarActivity].variables.movement.fly
+    operation: set
+    value: 40

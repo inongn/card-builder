@@ -6,7 +6,7 @@ export const CATEGORIES = {
     feats: { title: 'Feats', terms: ['feat', 'epicboon', 'fightingstyle'], icon: 'emoji_events', order: 3 },
     spellcasting: { title: 'Spellcasting', terms: ['cantrip', 'spell'], icon: 'auto_fix_high', order: 4 },
     skills: { title: 'Skills', terms: ['proficiency', 'expertise'], icon: 'psychology', order: 7 },
-    equipment: { title: 'Equipment', terms: ['armor', 'weapon', 'hand'], icon: 'shield', order: 9 },
+    equipment: { title: 'Equipment', terms: ['armor', 'weapon', 'armament', 'hand'], icon: 'shield', order: 9 },
     stats: { title: 'Abilities', terms: ['str', 'dex', 'con', 'int', 'wis', 'cha', 'allocated', 'origin_', 'asi_'], icon: 'fitness_center', order: 10 }
 };
 

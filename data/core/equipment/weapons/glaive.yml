@@ -1,10 +1,9 @@
 id: glaive
 name: Glaive
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Glaive
   mastery: graze
   damageRoll: 1d10

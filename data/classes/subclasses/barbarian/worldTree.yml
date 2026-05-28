@@ -35,20 +35,19 @@ children:
 
   # Level 10: Battering Roots
   - id: batteringRootsMastery
-    type: Effect
+    type: Extra
     name: Battering Roots
-    target: activities[mainHand].tags
-    operation: push
-    value: [push, topple]
+    target: weaponAttack
+    description: "On a hit, you can apply one of the following effects — push the target up to 10 feet straight away from you, or force it make a DC $(8 + stats.str.mod + attributes.prof) Strength saving throw or be knocked Prone."
     condition: $(meta.level >= 10)
 
 
   - id: batteredRootsRange
     type: Effect
     name: Battered Roots
-    target: activities[mainHand].range
-    operation: set
-    value: 15 feet
+    target: weaponAttack.range
+    operation: add
+    value: 10
     condition: $(meta.level >= 10)
 
   # Level 14: Travel along the Tree

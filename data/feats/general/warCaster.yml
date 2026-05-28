@@ -14,7 +14,6 @@ children:
     type: Reference
     target: concentrationAdvantage
   - name: Reactive Spell
-    type: Activity
-    time: reaction
-    range: $(attributes.mainHand.range)
-    description: When a creature leaves range, you cast a spell at the creature. The spell must have a casting time of one action and must target only that creature.
+    type: Extra
+    target: opportunityAttack
+    description: You can cast a spell rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature.

@@ -1,0 +1,27 @@
+type: Reference
+name: Hawk
+id: hawk
+category: beast
+target: "$(local.target)"
+variables:
+  name: Hawk
+  size: Tiny
+  classification: Beast
+  ac: 13
+  hp: 1
+  movement:
+    walk: 10
+    fly: 60
+  stats:
+    str: 5
+    dex: 16
+    con: 8
+    int: 2
+    wis: 14
+    cha: 6
+  skills:
+    perception: 6
+  cr: 0.0
+  actions:
+    - name: Talons
+      description: _Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1 Slashing damage.

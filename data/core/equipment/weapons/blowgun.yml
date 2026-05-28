@@ -1,10 +1,9 @@
 id: blowgun
 name: Blowgun
-type: Effect
-operation: set
-target: attributes.mainHand
+type: Reference
+target: weaponAttack
 tags: [martial]
-value:
+variables:
   name: Blowgun
   mastery: vex
   damageRoll: 1

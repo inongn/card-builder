@@ -13,5 +13,9 @@ children:
     target: attributes.spellcasting.mod
     operation: set
     value: $(stats.cha.mod)
+  - type: Effect
+    target: attributes.spellcasting.bonus
+    operation: set
+    value: $(stats.cha.mod)
 id: chaCaster
 name: Cha Caster

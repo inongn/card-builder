@@ -1,0 +1,38 @@
+type: Reference
+name: Pseudodragon
+id: pseudodragon
+category: dragon
+target: "$(local.target)"
+variables:
+  name: Pseudodragon
+  size: Tiny
+  classification: Dragon
+  ac: 14
+  hp: 10
+  movement:
+    walk: 15
+    fly: 60
+  stats:
+    str: 6
+    dex: 15
+    con: 13
+    int: 10
+    wis: 12
+    cha: 10
+  skills:
+    perception: 5
+    stealth: 4
+  senses:
+    blindsight: 10
+    darkvision: 60
+  cr: 0.25
+  traits:
+    - name: Magic Resistance
+      description: The pseudodragon has Advantage on saving throws against spells and other magical effects.
+  actions:
+    - name: Multiattack
+      description: The pseudodragon makes two Bite attacks.
+    - name: Bite
+      description: _Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4 + 2 Piercing damage.
+    - name: Sting
+      description: Constitution Saving Throw DC 12, one creature the pseudodragon can see within 5 feet. _Fail:_ 2d4 Poison damage, and the target has the Poisoned condition for 1 hour. While Poisoned, the target also has the Unconscious condition, which ends early if the target takes damage or a creature within 5 feet of it takes an action to wake it.

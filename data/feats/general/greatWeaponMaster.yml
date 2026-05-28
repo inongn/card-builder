@@ -11,10 +11,11 @@ children:
     operation: add
     value: 1
   - name: Heavy Weapon Mastery
-    type: Extra
-    target: twoHanded and melee
-    description: On a hit, the target takes an extra $(attributes.prof) damage.
+    type: Effect
+    target: activities[weaponAttack and melee and twoHanded].description["$(formatBonus(attributes.melee.bonus))"]
+    operation: replace
+    value: $(formatBonus(attributes.melee.bonus+attributes.prof))
   - name: Hew
     type: Extra
-    target: twoHanded and melee
-    description: On a hit or when you reduce the target to 0 Hit Points, you can make another attack as a Bonus Action.
+    target: weaponAttack and melee and twoHanded
+    description: On a Critical Hit or when you reduce the target to 0 Hit Points, you can make another attack as a Bonus Action.

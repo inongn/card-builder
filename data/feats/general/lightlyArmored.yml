@@ -12,4 +12,4 @@ children:
     value: 1
   - name: Armor Training
     type: Reference
-    target: [lightArmorProficiency, shieldProficiency]
+    target: [lightArmorTraining, shieldTraining]

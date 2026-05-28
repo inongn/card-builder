@@ -1,10 +1,9 @@
 id: whip
 name: Whip
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [martial]
-value:
+variables:
   name: Whip
   mastery: slow
   damageRoll: 1d4

@@ -1,10 +1,9 @@
 id: lightHammer
 name: Light Hammer
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [light, simple]
-value:
+variables:
   name: Light Hammer
   mastery: nick
   damageRoll: 1d4
@@ -13,4 +12,3 @@ value:
   classification: thrown
   category: simple
   property: light
-repeatable: true

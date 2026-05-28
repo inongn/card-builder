@@ -11,7 +11,12 @@ children:
     target: findFamiliar
     overwrite:
       resource: null
-      extra: |
-        **Pact of the Chain.** When you cast the spell, you choose one of the normal forms for your familiar or one of the following special forms: Imp, Pseudodragon, Quasit, Skeleton, Slaad Tadpole, Sphinx of Wonder, Sprite, or Venomous Snake.
-        
-        Additionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.
+  - type: Effect
+    target: activities[findFamiliarActivity].resource
+    operation: set
+    value: ''
+  - type: Extra
+    target: findFamiliarActivity
+    description: When you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.
+    name: Pact of the Chain
+    

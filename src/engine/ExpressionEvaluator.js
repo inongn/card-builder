@@ -14,7 +14,7 @@ function getCachedFunction(expr) {
 
     try {
         const fn = new Function(
-            'stats', 'attributes', 'meta', 'skills', 'saves', 'activities', 'progression', 'local', 'formatBonus',
+            'stats', 'attributes', 'meta', 'skills', 'saves', 'activities', 'progression', 'local', 'formatBonus', 'formatObject', 'capitalize',
             `return ${expr}`
         );
 
@@ -77,15 +77,74 @@ export class ExpressionEvaluator {
         // Base case: strings that might contain local variables
         if (typeof val !== 'string' || !val.includes('local.')) return val;
 
-        // Optimized replacement using a single pass over the string
-        return val.replace(/local\.(\w+)\b/g, (match, key) => {
-            if (Object.prototype.hasOwnProperty.call(scope, key)) {
-                const scopeVal = scope[key];
-                // If it's a string, wrap in quotes, otherwise use raw value
-                return (typeof scopeVal === 'string' && !scopeVal.includes('$')) ? `'${scopeVal}'` : scopeVal;
+        // Robust replacement handling nested paths (e.g. local.stats.str) 
+        // and avoiding baking objects which breaks JS expressions.
+        return val.replace(/local\.([\w.]+)\b/g, (match, path) => {
+            const parts = path.split('.');
+            let current = scope;
+            let i = 0;
+            for (; i < parts.length; i++) {
+                const part = parts[i];
+                if (current && typeof current === 'object' && Object.prototype.hasOwnProperty.call(current, part)) {
+                    current = current[part];
+                } else {
+                    break;
+                }
             }
+
+            // Only substitute if we matched segments
+            if (i > 0) {
+                // If it's an object/array, we MUST NOT bake it if there are more parts,
+                // and even as a leaf it's usually better to let the JS engine handle it.
+                if (typeof current === 'object' && current !== null) {
+                    return match;
+                }
+
+                // Prepare replacement for the matched segment
+                let replacement = current;
+                if (typeof current === 'string' && !current.includes('$')) {
+                    // Wrap strings in quotes for safety inside expressions
+                    replacement = `'${current}'`;
+                } else if (current === null) {
+                    replacement = "";
+                }
+
+                // If we didn't consume all matched parts (e.g. local.foo.charAt),
+                // only replace the consumed prefix and append the rest as-is.
+                if (i < parts.length) {
+                    return replacement + '.' + parts.slice(i).join('.');
+                }
+                return replacement;
+            }
+
+            // For unresolved paths, keep the original string
             return match;
         });
+    }
+
+    /**
+     * Helper to format an object into a string based on a template.
+     * Useful for skills, senses, and movement.
+     */
+    formatObject(obj, template, separator = ', ') {
+        if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return "";
+        return Object.entries(obj)
+            .map(([key, value]) => {
+                return template
+                    .replace(/\{key\}/g, key)
+                    .replace(/\{value\}/g, value)
+                    .replace(/\{bonus\}/g, formatBonus(value))
+                    .replace(/\{Title\}/g, key.charAt(0).toUpperCase() + key.slice(1));
+            })
+            .join(separator);
+    }
+
+    /**
+     * Helper to capitalize first letter
+     */
+    capitalize(str) {
+        if (!str || typeof str !== 'string') return str;
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     /**
@@ -94,7 +153,13 @@ export class ExpressionEvaluator {
     evaluate(expr, scope = {}) {
         if (typeof expr !== 'string') return expr;
 
-        if (!expr.includes('$')) return expr;
+        // Support local.key even without $() wrapper for simplicity
+        if (!expr.includes('$')) {
+            if (expr.includes('local.')) {
+                return this.bakeVariables(expr, scope);
+            }
+            return expr;
+        }
 
         // Bake local variables into the expression string so they persist even if deferred
         let result = this.bakeVariables(expr, scope);
@@ -132,7 +197,9 @@ export class ExpressionEvaluator {
                     this.context.activities || [],
                     this.progression.bind(this),
                     scope,
-                    formatBonus
+                    formatBonus,
+                    this.formatObject.bind(this),
+                    this.capitalize.bind(this)
                 );
 
                 if (val === undefined || (typeof val === 'number' && isNaN(val)) || (typeof val === 'string' && val.includes('$('))) {

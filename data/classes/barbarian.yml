@@ -100,11 +100,11 @@ children:
 
   # Level 5: Extra Attack
   - id: extraAttack
-    type: Effect
-    target: attributes.mainHand.attacks
-    operation: set
+    type: Extra
+    target: weaponAttack
     condition: $(meta.level >= 5)
-    value: 2
+    name: Extra Attack
+    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
 
   # Level 5: Fast Movement
   - id: fastMovement

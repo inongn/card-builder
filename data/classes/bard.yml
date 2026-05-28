@@ -79,9 +79,9 @@ children:
 
   - id: bardSpells
     type: Slot
-    name: Prepared Spells
+    name: Bard Prepared Spells
     # Magical Secrets (L10) adds Cleric, Druid, and Wizard to the selection pool
-    target: "$(meta.level >= 10 ? 'bard OR cleric OR druid OR wizard' : 'bard') NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    target: "$(meta.level >= 10 ? '(bard OR cleric OR druid OR wizard)' : 'bard')  $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '') NOT cantrip"
     quantity: "$(progression(4,5,6,7,9,10,11,12,14,15,16,16,17,17,18,18,19,20,21,22))"
     variables:
       # Ensures chosen spells match available slot levels

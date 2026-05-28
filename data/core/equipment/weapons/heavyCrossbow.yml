@@ -1,10 +1,9 @@
 id: heavyCrossbow
 name: Heavy Crossbow
-type: Effect
-operation: set
-target: attributes.mainHand
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Heavy Crossbow
   mastery: push
   damageRoll: 1d10

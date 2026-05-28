@@ -1,0 +1,30 @@
+type: Reference
+name: Raven
+id: raven
+category: beast
+target: "$(local.target)"
+variables:
+  name: Raven
+  size: Tiny
+  classification: Beast
+  ac: 12
+  hp: 2
+  movement:
+    walk: 10
+    fly: 50
+  stats:
+    str: 2
+    dex: 14
+    con: 10
+    int: 5
+    wis: 13
+    cha: 6
+  skills:
+    perception: 3
+  cr: 0.0
+  traits:
+    - name: Mimicry
+      description: The raven can mimic simple sounds it has heard, such as a whisper or chitter. A hearer can discern the sounds are imitations with a successful DC 10 Wisdom (Insight) check.
+  actions:
+    - name: Beak
+      description: _Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Piercing damage.

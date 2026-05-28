@@ -1,6 +1,7 @@
 import React from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
+import { StatblockCard } from '../components/cards/StatblockCard';
 import 'mdui/components/button.js';
 import 'mdui/components/icon.js';
 
@@ -38,7 +39,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
 
     // Group activities by their 'time' property
     const groupedActivities = React.useMemo(() => {
-        const coreIds = ['dash', 'disengage', 'hide', 'dodge', 'influence', 'study', 'search'];
+        const coreIds = ['dash', 'disengage', 'hide', 'dodge', 'help', 'ready', 'study', 'search', 'influence'];
         const groups = {
             'core': [],
             'action': [],
@@ -65,8 +66,11 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
             }
         });
 
+        // Add statblocks to a special group
+        groups['statblock'] = characterData.statblocks || [];
+
         return groups;
-    }, [characterData.activities]);
+    }, [characterData.activities, characterData.statblocks]);
 
     // Define the order and display names for categories
     const categories = [
@@ -75,6 +79,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
         { key: 'bonus action', label: 'Bonus Actions' },
         { key: 'reaction', label: 'Reactions' },
         { key: 'free action', label: 'Special' },
+        { key: 'statblock', label: 'Companions' },
         { key: 'other', label: 'Other' }
     ];
 
@@ -111,7 +116,9 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
                                 </div>
                                 <mdui-collapse accordion>
                                     {activities.map((item, i) => (
-                                        <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} char={characterData} />
+                                        key === 'statblock' ?
+                                            <StatblockCard key={`${item.id || 'statblock'}-${i}`} statblock={item} /> :
+                                            <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} char={characterData} />
                                     ))}
                                 </mdui-collapse>
                             </div>

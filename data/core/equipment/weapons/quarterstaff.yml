@@ -1,13 +1,12 @@
 id: quarterstaff
 name: Quarterstaff
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [simple]
-value:
+variables:
   name: Quarterstaff
   mastery: topple
-  damageRoll: "$(!attributes.offHand ? '1d8' : '1d6')"
+  damageRoll: "$(attributes.shieldEquipped == true ? '1d6' : '1d8')"
   damageType: bludgeoning
   range: 5 feet
   classification: melee

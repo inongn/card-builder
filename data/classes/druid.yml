@@ -54,6 +54,12 @@ children:
     name: Primal Order
     quantity: 1
     target: primalOrder
+  - id: wildShapeMaxCR
+    type: Effect
+    target: meta.wildShapeMaxCR
+    operation: set
+    value: "$(meta.level >= 8 ? 1 : meta.level >= 4 ? 0.5 : 0.25)"
+    condition: $(meta.level >= 2)
   - id: wildShape
     type: Resource
     name: Wild Shape
@@ -61,45 +67,19 @@ children:
     quantity: $(progression(0,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4))
     condition: $(meta.level >= 2)
     sr: 1
-  - id: wildShape
-    type: Activity
-    name: Wild Shape
-    condition: $(meta.level >= 2)
-    time: bonus action
-    range: self
-    duration: $(meta.level / 2) hours
-    resource: wildShape
-    description: |
-      The power of nature allows you to assume the form of an animal. 
-      
-      **Temporary Hit Points.** You gain $(meta.level) Temporary Hit Points.
 
-      **Armor Class.** Your AC becomes $(10+stats.wis.mod).
-      
-      **Keen Senses.** You gain advantage on Wisdom (Perception) checks.
-      
-      **Beast Speed.** You gain a Climb, Swim or Fly speed of 40 feet.
-
-      **Bestial Strike**. You gain the Bestial Strike action.
-
-      $(meta.level < 18 ? "**No Spellcasting.** You can't cast spells, but shape-shifting doesn't break your Concentration or otherwise interfere with a spell you've already cast." : "")
-
-  - id: bestialStrike
-    type: Activity
-    name: "Attack: Bestial Strike"
-    time: action
-    range: 5 feet
-    duration: instantaneous
-    condition: $(meta.level >= 2)
-    tags: [weaponAttack]
-    description: |
-      While in Beast Shape, you strike$(meta.level >= 5 ? ' two times' : '') with your natural weapon. Make a $(formatBonus(attributes.spellcasting.attack)) melee attack against a creature within range$(meta.level >= 5 ? ' for each strike' : ''). On a hit, the target takes 1d8$(formatBonus(stats.wis.mod)) Bludgeoning, Piercing or Slashing damage.
   - id: wildCompanion
     type: Reference
     target: findFamiliar
     condition: $(meta.level >=2)
-    overwrite:
-      extra: "**Wild Companion**. You can take this action by expending a Wild Shape charge instead."
+   
+  - id: wildCompanionResource
+    type: Effect
+    target: activities[findFamiliarActivity].resource
+    operation: push
+    value: wildShape
+
+
   - id: druidSubclass 
     type: Slot
     name: Druid Subclass
@@ -179,3 +159,12 @@ children:
     duration: instantaneous
     description: Whenever you roll Initiative and have no uses of Wild Shape left, you regain one expended use of it.
     condition: $(meta.level >= 20)
+
+  - id: wildShapeForms
+    type: Slot
+    name: Wild Shape Forms
+    quantity: "$(meta.level >= 8 ? 8 : meta.level >= 4 ? 4 : 4)"
+    target: "classOption OR (category=beast AND variables.cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT variables.movement.fly'))"
+    condition: $(meta.level >= 2)
+    variables:
+      target: wildShapeActivity

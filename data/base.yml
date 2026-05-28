@@ -218,29 +218,6 @@ children:
     value:
       attack: $(attributes.prof + stats.str.mod)
       bonus: $(stats.str.mod)
-  - id: mainHand
-    type: Attribute
-    value: 
-      name:
-      mastery:
-      damageRoll:
-      damageType:
-      range:
-      classification:
-      category:
-      property: 
-      attacks:
-  - id: offHand
-    type: Attribute
-    value: 
-      name:
-      mastery:
-      damageRoll:
-      damageType:
-      range:
-      classification:
-
-
   - id: acrobatics
     name: Acrobatics
     type: Skill
@@ -380,9 +357,22 @@ children:
     bonus: $(stats.cha.mod + attributes.prof * saves.charisma.proficiency)
     proficiency: 0
 
+  - id: armor
+    type: Slot
+    name: Armor
+    target: "unarmored OR $(attributes.proficiencies.includes('heavyArmor') ? 'heavyArmor OR mediumArmor OR lightArmor' : attributes.proficiencies.includes('mediumArmor') ? 'mediumArmor OR lightArmor' : '$(attributes.proficiencies.includes('lightArmor') ? 'lightArmor' : '')')"
+    quantity: 1
+
+
+  - id: armamentSlot
+    type: Slot
+    name: Armament
+    target: "simple $(attributes.proficiencies.includes('shieldTraining') ? 'OR shieldEquipment' : '') $(attributes.proficiencies.includes('martialWeapons') ? 'OR martial' : '') $(attributes.proficiencies.includes('lightWeapons') ? 'OR light' : '') $(attributes.proficiencies.includes('finesseWeapons') ? 'OR rapier OR whip' : '') $(attributes.shieldEquipped ? 'NOT twoHanded' : '')"
+    quantity: "$(1+(attributes.proficiencies.includes('shieldTraining') ? 1 : 0)+(attributes.proficiencies.includes('lightWeapons') ? 1 : 0)+(attributes.proficiencies.includes('martialWeapons') ? 1 : 0)+(attributes.proficiencies.includes('finesseWeapons') ? 1 : 0))"
+
 
   - type: Reference
-    reference: [longRest, shortRest, coreActions, weaponProperties, extraProperties]
+    reference: [longRest, shortRest, coreActions, weaponProperties, extraProperties, unarmed]
 
   - type: Resource
     id: hitDice
@@ -408,28 +398,4 @@ children:
     quantity: 1
 
   
-
-  - id: armor
-    type: Slot
-    name: Armor
-    target: "unarmored OR $(attributes.proficiencies.includes('heavyArmor') ? 'heavyArmor OR mediumArmor OR lightArmor' : attributes.proficiencies.includes('mediumArmor') ? 'mediumArmor OR lightArmor' : '$(attributes.proficiencies.includes('lightArmor') ? 'lightArmor' : '')')"
-    quantity: 1
-
-
-  - id: mainHandSlot
-    type: Slot
-    name: Main Hand
-    variables:
-      hand: mainHand
-    target: "unarmed OR $(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple') OR $(attributes.proficiencies.includes('lightWeapons') ? 'light' : '')"
-    quantity: 1
-
-  - id: offHandSlot
-    type: Slot
-    name: Off-Hand
-    condition: $(attributes.mainHand != null && attributes.mainHand.property != 'twoHanded')
-    variables:
-      hand: offHand
-    target: "offHand $(attributes.proficiencies.includes('shieldTraining') ? 'OR shieldEquipment' : '') $(attributes.mainHand.property == 'light' ? 'OR (light AND ($(attributes.proficiencies.includes('martialWeapons') ? 'martial OR simple' : 'simple') OR $(attributes.proficiencies.includes('lightWeapons') ? 'light' : ''))) ' : '')"
-    quantity: 1
 

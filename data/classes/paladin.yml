@@ -94,18 +94,21 @@ children:
 
   # Level 5: Extra Attack
   - id: extraAttack
-    type: Effect
-    target: activities[mainHand].description
-    operation: set
+    type: Extra
+    target: weaponAttack
     condition: $(meta.level >= 5)
-    value: "You strike twice. You can strike at one target within range or several. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack for each strike. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+    name: Extra Attack
+    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
 
   # Level 5: Faithful Steed
   - type: Reference
     target: findSteed
     condition: $(meta.level >= 5)
-    overwrite:
-      tags: [innateLR]
+
+  - type: Effect
+    target: activities[findSteedActivity].uses
+    operation: set
+    value: 1
 
   # Level 6: Aura of Protection
   - id: auraOfProtection
@@ -146,7 +149,7 @@ children:
   - id: radiantStrikes
     type: Extra
     name: Radiant Strikes
-    target: attack
+    target: weaponAttack
     condition: $(meta.level >= 11)
     description: "On a hit, the target takes an extra 1d8 Radiant damage."
 

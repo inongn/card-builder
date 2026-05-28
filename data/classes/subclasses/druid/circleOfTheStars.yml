@@ -35,20 +35,11 @@ children:
 
       Whenever you assume your starry form, choose which of the following constellations glimmers on your body; your choice gives you certain benefits while in the form.
 
-      **Archer.** You gain the Luminous Arrow action, and you can use that action as part of the Bonus Action you take to assume this form.
+      **Archer.** You hurl a mote of light at a creature or object within range. Make a $(formatBonus(attributes.spellcasting.attack)) attack against the target. On a hit, the target takes $(meta.level >= 10 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) Radiant damage. You can repeat this attack as a Bonus Action while the form lasts.
       
       **Chalice.** When you cast a healing spell with a slot, you or creature within 30 feet regains $(meta.level >= 10 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) HP.
       
       **Dragon.** When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain Concentration, you can treat a roll of 9 or lower on the d20 as a 10. $(meta.level >= 10 ? "You have a Fly Speed of 20 feet and can hover." : "")
-      
-  - id: luminousArrow
-    type: Activity
-    name: Luminous Arrow
-    time: bonus action
-    range: 60 feet
-    tags: [weaponAttack]
-    condition: $(meta.level >= 3)
-    description: "While in Archer form, you hurl a mote of light at a creature or object within range. Make a $(formatBonus(attributes.spellcasting.attack)) attack against the target. On a hit, the target takes $(meta.level >= 10 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) Radiant damage."
 
   # Level 6: Cosmic Omen
   - id: cosmicOmen

@@ -13,19 +13,19 @@ export const PIPELINE_STAGES = [
     },
     {
         name: 'Content',
-        types: ['Resource', 'Activity'],
+        types: ['Resource', 'Activity', 'Statblock'],
         conditionTiming: 'apply',
         evaluateAfter: 'tags'        // Only evaluate 'tags' fields (so Effects can target by tag)
     },
     {
-        name: 'Effects',
-        types: ['Effect'],
+        name: 'Extras',
+        types: ['Extra'],
         conditionTiming: 'apply',    // Check conditions when applying (deferred)
         evaluateAfter: true          // Full evaluation after Effects
     },
     {
-        name: 'Extras',
-        types: ['Extra'],
+        name: 'Effects',
+        types: ['Effect'],
         conditionTiming: 'apply',    // Check conditions when applying (deferred)
         evaluateAfter: true          // Full evaluation after Effects
     }

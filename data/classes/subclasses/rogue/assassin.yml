@@ -19,7 +19,7 @@ children:
 
   - id: surprisingStrikesAttack
     type: Extra
-    target: attack
+    target: weaponAttack
     name: Surprising Strike
     description: "During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn."
 

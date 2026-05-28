@@ -1,13 +1,12 @@
 id: warhammer
 name: Warhammer
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [martial]
-value:
+variables:
   name: Warhammer
   mastery: push
-  damageRoll: "$(!attributes.offHand ? '1d10' : '1d8')"
+  damageRoll: "$(attributes.shieldEquipped == true ? '1d8' : '1d10')"
   damageType: bludgeoning
   range: 5 feet
   classification: melee

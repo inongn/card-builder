@@ -1,10 +1,9 @@
 id: halberd
 name: Halberd
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Halberd
   mastery: cleave
   damageRoll: 1d10

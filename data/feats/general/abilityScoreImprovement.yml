@@ -10,3 +10,4 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 2
+repeatable: true

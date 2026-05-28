@@ -12,9 +12,9 @@ children:
     value: 1
   - name: Puncture
     type: Extra
-    target: attack AND piercingDamage
+    target: weaponAttack AND piercingDamage
     description: On a hit, you can reroll one of the attack's damage dice, and you must use the new roll.
   - name: Enhanced Critical
     type: Extra
-    target: attack AND piercingDamage
-    description: On a hit, you can roll one additional damage die when determining the extra Piercing damage the target takes.
+    target: weaponAttack AND piercingDamage
+    description: On a Critical Hit, you can roll one additional damage die.

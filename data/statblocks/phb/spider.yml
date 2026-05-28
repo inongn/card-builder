@@ -1,0 +1,34 @@
+type: Reference
+name: Spider
+id: spider
+category: beast
+target: "$(local.target)"
+variables:
+  name: Spider
+  size: Tiny
+  classification: Beast
+  ac: 12
+  hp: 1
+  movement:
+    walk: 20
+    climb: 20
+  stats:
+    str: 2
+    dex: 14
+    con: 8
+    int: 1
+    wis: 10
+    cha: 2
+  skills:
+    stealth: 4
+  senses:
+    darkvision: 30
+  cr: 0.0
+  traits:
+    - name: Spider Climb
+      description: The spider can climb difficult surfaces, including along ceilings, without needing to make an ability check.
+    - name: Web Walker
+      description: The spider ignores movement restrictions caused by webs, and the spider knows the location of any other creature in contact with the same web.
+  actions:
+    - name: Bite
+      description: _Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Piercing damage plus 1d4 Poison damage.

@@ -1,10 +1,9 @@
 id: pistol
 name: Pistol
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [martial]
-value:
+variables:
   name: Pistol
   mastery: vex
   damageRoll: 1d10

@@ -1,10 +1,9 @@
 id: greataxe
 name: Greataxe
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Greataxe
   mastery: cleave
   damageRoll: 1d12

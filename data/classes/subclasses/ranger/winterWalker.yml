@@ -17,7 +17,7 @@ children:
   - id: polarStrikes
     type: Extra
     name: Polar Strikes
-    target: attack
+    target: weaponAttack
     description: "On a hit, once per turn, deal an extra $(meta.level >= 11 ? '1d6' : '1d4') Cold damage to the target. This damage ignores Resistances."
 
   # Level 3: Hunter's Rime

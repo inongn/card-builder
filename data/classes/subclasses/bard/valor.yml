@@ -22,23 +22,16 @@ children:
 
   # Level 6: Extra Attack
   - id: extraAttack
-    type: Effect
-    target: attributes.mainHand.attacks
-    operation: set
-    condition: $(meta.level >= 6)
-    value: 2
-
-  - id: extraAttackCantrip
     type: Extra
-    target: mainHand
-    name: Extra Cantrip
-    condition: $(meta.level >= 6)
-    description: "You can replace one attack with a cantrip that has a casting time of an action."
+    target: weaponAttack
+    condition: $(meta.level >= 5)
+    name: Extra Attack
+    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action."
 
   # Level 14: Battle Magic
   - id: battleMagic
-    type: Activity
+    type: Extra
     name: Battle Magic
-    time: bonus action
     condition: $(meta.level >= 14)
-    description: "When you cast a spell using an action, make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack with you $(attributes.mainHand.name). On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+    target: (level1Spell OR level2Spell OR level3Spell OR level4Spell OR level5Spell OR level6Spell OR level7Spell OR level8Spell OR level9Spell) AND time=action
+    description: "Make one attack with a weapon."

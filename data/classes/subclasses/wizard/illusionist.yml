@@ -22,11 +22,11 @@ children:
     target: [summonBeast, summonFey]
     condition: $(meta.level >= 6)
   - id: phantasmalCreatures
-    type: Extra
-    name: Phantasmal Creatures
-    target: [summonBeast, summonFey]
+    type: Effect
+    target: activities[summonBeastActivity, summonFeyActivity].uses
     condition: $(meta.level >= 6)
-    description: "You can cast the Illusion version of each spell without expending a spell slot, but casting it without a slot halves the creature’s Hit Points. Once you cast either spell without a spell slot, you must finish a Long Rest before you can cast the spell in that way again."
+    operation: set
+    value: 1
 
   # Level 10: Illusory Self
   - id: illusorySelf

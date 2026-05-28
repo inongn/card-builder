@@ -39,33 +39,13 @@ children:
     description: |
       Any attack roll made against you has Disadvantage if you can see the attacker, and you make Dexterity saving throws with Advantage.
 
-  - id: offHand
-    name: "Off-Hand Attack: $(attributes.offHand.name)"
-    type: Activity
-    condition: $(attributes.offHand.name)
-    tags: [$(attributes.offHand.category), $(attributes.offHand.classification), $(attributes.offHand.mastery), $(attributes.offHand.property), attack, offHand, weaponAttack, $(attributes.offHand.damageType)Damage]
-    time: bonus action
-    range: $(attributes.offHand.range)
-    description: "You strike at a creature or object within range with your weapon. Make a $(formatBonus(attributes[attributes.offHand.classification].attack)) attack against the target. On a hit, the target takes $(attributes.offHand.damageRoll) $(attributes.offHand.damageType) damage."
-
-  - id: mainHand
-    name: "Attack: $(attributes.mainHand.name)"
-    condition: $(attributes.mainHand.name)
-    type: Activity
-    tags: [$(attributes.mainHand.category), $(attributes.mainHand.classification), $(attributes.mainHand.mastery), $(attributes.mainHand.property), attack, mainHand, weaponAttack, $(attributes.mainHand.damageType)Damage]
-    time: action
-    range: $(attributes.mainHand.range)
-    description: |
-      You strike $(attributes.mainHand.attacks == 4 ? 'four times' : attributes.mainHand.attacks == 3 ? 'three times' : attributes.mainHand.attacks == 2 ? 'twice' : 'at a creature or object within range') with $(attributes.mainHand.name == 'Unarmed Strike' ? 'a punch, kick, head-butt or similar forceful blow' : 'your weapon').$(attributes.mainHand.attacks > 1 ? ' You can strike at one target within range or several.' : '') Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack $(attributes.mainHand.attacks > 1 ? 'for each strike' : 'against the target'). On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage.
-
   - id: opportunityAttack
-    name: "Opportunity Attack: $(attributes.mainHand.name)"
+    name: Opportunity Attack
     type: Activity
-    condition: $(attributes.mainHand.name)
-    tags: [$(attributes.mainHand.category), $(attributes.mainHand.classification), $(attributes.mainHand.mastery), $(attributes.mainHand.property), attack, weaponAttack, $(attributes.mainHand.damageType)Damage]
     time: reaction
-    range: $(attributes.mainHand.range)
-    description: "When a creature leaves range, you strike at it with $(attributes.mainHand.name == 'Unarmed Strike' ? 'a punch, kick, head-butt or similar forceful blow' : 'your weapon'). Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target$(attributes.mainHand.attacks > 1 ? ' for each strike' : ''). On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+    range: self
+    description: |
+      When a creature leaves your reach, you make one melee attack with a weapon or an Unarmed Strike against the target. The attack occurs right before the creature leaves your reach.
 
   - id: study
     name: "Study"
@@ -121,3 +101,29 @@ children:
       **Persuasion ($(formatBonus(skills.persuasion.bonus))).** Persuade
 
       **Animal Handling ($(formatBonus(skills.animal_handling.bonus))).** Control or train a Beast
+
+  - id: help
+    name: "Help"
+    type: Activity
+    time: action
+    range: self
+    duration: instantaneous
+    description: |
+      You do one of the following.
+
+      **Assist an Ability Check.** Choose one of your skill or tool proficiencies and one ally who is near enough for you to assist verbally or physically when they make an ability check. That ally has Advantage on the next ability check they make with the chosen skill or tool. This benefit expires if the ally doesn't use it before the start of your next turn. The DM has final say on whether your assistance is possible.
+
+      **Assist an Attack Roll.** You momentarily distract an enemy within 5 feet of you, giving Advantage to the next attack roll by one of your allies against that enemy. This benefit expires at the start of your next turn.
+
+  - id: ready
+    name: "Ready"
+    type: Activity
+    time: action
+    range: self
+    duration: instantaneous
+    description: |
+      You take the Ready action to wait for a particular circumstance before you act. To do so, you take this action on your turn, which lets you act by taking a Reaction before the start of your next turn.
+
+      First, you decide what perceivable circumstance will trigger your Reaction. Then, you choose the action you will take in response to that trigger, or you choose to move up to your Speed in response to it. Examples include "If the cultist steps on the trapdoor, I'll pull the lever that opens it," and "If the zombie steps next to me, I move away."
+
+      When the trigger occurs, you can either take your Reaction right after the trigger finishes or ignore the trigger.

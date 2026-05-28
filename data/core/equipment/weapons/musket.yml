@@ -1,10 +1,9 @@
 id: musket
 name: Musket
-type: Effect
-operation: set
-target: attributes.mainHand
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Musket
   mastery: slow
   damageRoll: 1d12

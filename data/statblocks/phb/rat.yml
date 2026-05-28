@@ -1,0 +1,32 @@
+type: Reference
+name: Rat
+id: rat
+category: beast
+target: "$(local.target)"
+variables:
+  name: Rat
+  size: Tiny
+  classification: Beast
+  ac: 10
+  hp: 1
+  movement:
+    walk: 20
+    climb: 20
+  stats:
+    str: 2
+    dex: 11
+    con: 9
+    int: 2
+    wis: 10
+    cha: 4
+  skills:
+    perception: 2
+  senses:
+    darkvision: 30
+  cr: 0.0
+  traits:
+    - name: Agile
+      description: The rat doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} when it moves out of an enemy's reach.
+  actions:
+    - name: Bite
+      description: _Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Piercing damage.

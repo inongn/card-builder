@@ -51,18 +51,11 @@ children:
 
   # Level 6: Extra Attack
   - id: extraAttack
-    type: Effect
-    target: attributes.mainHand.attacks
-    operation: set
-    condition: $(meta.level >= 6)
-    value: 2
-
-  - id: extraAttackCantrip
     type: Extra
-    target: mainHand
-    name: Extra Cantrip
-    condition: $(meta.level >= 6)
-    description: "You can replace one attack with a cantrip that has a casting time of an action."
+    target: weaponAttack
+    condition: $(meta.level >= 5)
+    name: Extra Attack
+    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action."
 
   # Level 10: Song of Defense
   - id: songOfDefense
@@ -75,10 +68,8 @@ children:
 
   # Level 14: Song of Victory
   - id: songOfVictory
+    type: Extra
+    name: Song of Victory
     condition: $(meta.level >= 14)
-    name: "Song of Victory: $(attributes.mainHand.name)"
-    type: Activity
-    tags: [$(attributes.mainHand.category), $(attributes.mainHand.classification), $(attributes.mainHand.mastery), $(attributes.mainHand.property), attack, mainHand, weaponAttack]
-    time: bonus action
-    range: $(attributes.mainHand.range)
-    description: "When you cast a spell that has a casting time of an action, you strike at a creature or object within range. Make a $(formatBonus(attributes[attributes.mainHand.classification].attack)) attack against the target. On a hit, the target takes $(attributes.mainHand.damageRoll)$(formatBonus(attributes[attributes.mainHand.classification].bonus)) $(attributes.mainHand.damageType) damage."
+    target: (level1Spell OR level2Spell OR level3Spell OR level4Spell OR level5Spell OR level6Spell OR level7Spell OR level8Spell OR level9Spell) AND time=action
+    description: "Make one attack with a weapon."

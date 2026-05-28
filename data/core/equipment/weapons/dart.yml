@@ -1,10 +1,9 @@
 id: dart
 name: Dart
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [simple]
-value:
+variables:
   name: Dart
   mastery: vex
   damageRoll: 1d4

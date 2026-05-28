@@ -1,8 +1,8 @@
 tags:
 - fightingStyle
 type: Effect
-target: activities[offHand].description
-operation: set
-value: "You strike at a creature or object within range with your weapon. Make a $(formatBonus(attributes[attributes.offHand.classification].attack)) attack against the target. On a hit, the target takes $(attributes.offHand.damageRoll)$(formatBonus(attributes[attributes.offHand.classification].bonus)) $(attributes.offHand.damageType) damage."
-id: twoWeaponFighting
+target: activities[weaponAttack].extra["You do not add your Ability Modifier to the attack's damage roll."]
+operation: replace
+value: ""
 name: Two Weapon Fighting
+id: twoWeaponFighting

@@ -7,6 +7,6 @@ type: Folder
 children:
   - id: extraAttack
     type: Effect
-    target: attributes.mainHand.attacks
-    operation: set
-    value: 3
+    target: activities[weaponAttack].extra["twice"]
+    operation: replace
+    value: three times

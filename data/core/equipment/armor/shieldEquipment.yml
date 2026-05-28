@@ -7,3 +7,6 @@ children:
     target: attributes.ac
     operation: add
     value: 2
+  - type: Attribute
+    id: shieldEquipped
+    value: true

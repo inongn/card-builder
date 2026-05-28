@@ -1,10 +1,9 @@
 id: maul
 name: Maul
-type: Effect
-operation: set
-target: attributes.$(local.hand)
+type: Reference
+target: weaponAttack
 tags: [twoHanded, martial]
-value:
+variables:
   name: Maul
   mastery: topple
   damageRoll: 2d6
