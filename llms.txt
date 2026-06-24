@@ -1,0 +1,92 @@
+# mdui v2 Documentation
+
+mdui is an front-end component library based on Material Design 3, using Web Components, supporting dynamic colors, dark mode, and lightweight efficiency.
+
+## Getting Started
+
+- [Introduction](https://www.mdui.org/en/docs/2/index.md): Let's begin by incorporating mdui into a basic page template using a CDN.
+- [Installation](https://www.mdui.org/en/docs/2/getting-started/installation.md): mdui can be installed via npm or directly included from a CDN. The recommended method is npm.
+- [Usage](https://www.mdui.org/en/docs/2/getting-started/usage.md): mdui components, as standard Web Components, can be used like `<div>` elements. Each component's documentation provides a comprehensive API, including attributes, methods, events, slots, CSS parts, and CSS custom properties.
+- [TypeScript Support](https://www.mdui.org/en/docs/2/getting-started/typescript-support.md): mdui is developed with TypeScript, offering robust TypeScript support. All official mdui libraries include type declaration files for immediate use.
+- [IDE Support](https://www.mdui.org/en/docs/2/getting-started/ide-support.md): mdui is optimized for VS Code and WebStorm, offering features such as code autocompletion and hover hints.
+- [Localization](https://www.mdui.org/en/docs/2/getting-started/localization.md): mdui uses English by default. If you wish to use other languages, you'll need to do some localization configuration.
+- [Frequently Asked Questions](https://www.mdui.org/en/docs/2/getting-started/faq.md): Here are the frequently asked questions about mdui that you should look up before you ask in community or create new issue.
+
+## Build with AI
+
+- [LLMs.txt](https://www.mdui.org/en/docs/2/ai/llms.md): mdui provides two files: `llms.txt` and `llms-full.txt`. They give large language models (LLMs) accurate, citable context so the model can answer mdui questions more reliably.
+- [MCP Server](https://www.mdui.org/en/docs/2/ai/mcp.md): mdui provides a dedicated [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, `@mdui/mcp`, that lets AI agents query local knowledge about components, icons, CSS variables, and documentation.
+
+## Styles
+
+- [Dark Theme](https://www.mdui.org/en/docs/2/styles/dark-mode.md): All mdui components support dark mode and can automatically switch themes based on the operating system's settings.
+- [Dynamic Theme](https://www.mdui.org/en/docs/2/styles/dynamic-color.md): mdui supports dynamic theming. By providing a color value, mdui generates a comprehensive color scheme. It can also extract the dominant color from a wallpaper and create a color scheme based on it.
+- [Typography](https://www.mdui.org/en/docs/2/styles/prose.md): mdui offers the `mdui-prose` CSS class for enhancing the styling of articles and the `mdui-table` CSS class for improving table styles.
+- [Design Tokens](https://www.mdui.org/en/docs/2/styles/design-tokens.md): Design Tokens are a strategy employed in managing design systems.
+
+## Frameworks
+
+- [Integrate with React](https://www.mdui.org/en/docs/2/frameworks/react.md): To integrate mdui with React, start by following the steps on the [installation](/en/docs/2/getting-started/installation#npm) page.
+- [Integrate with Vue](https://www.mdui.org/en/docs/2/frameworks/vue.md): After completing the [installation](/en/docs/2/getting-started/installation#npm) of mdui in Vue, you'll need to perform some additional configurations.
+- [Integrate with Angular](https://www.mdui.org/en/docs/2/frameworks/angular.md): To utilize mdui in Angular, you must first complete the [installation](/en/docs/2/getting-started/installation#npm) of mdui. Following this, additional configuration is required.
+- [Integrate with Other Frameworks](https://www.mdui.org/en/docs/2/frameworks/others.md): mdui is built with browser-native Web Components, making it compatible with all web frameworks. Here are ways to use mdui with popular frameworks.
+
+## Components
+
+- [Avatar Component](https://www.mdui.org/en/docs/2/components/avatar.md): Avatars represent users or entities by displaying images, icons, or characters.
+- [Badge Component](https://www.mdui.org/en/docs/2/components/badge.md): Badges provide dynamic information, such as counts or status indications. They can contain labels or numbers.
+- [Bottom App Bar Component](https://www.mdui.org/en/docs/2/components/bottom-app-bar.md): The Bottom App Bar provides navigation and key actions at the bottom of a mobile page.
+- [Button Component](https://www.mdui.org/en/docs/2/components/button.md): Buttons are interactive components that enable users to execute actions such as sending emails, sharing documents, or expressing preferences.
+- [Icon Button Component](https://www.mdui.org/en/docs/2/components/button-icon.md): Icon buttons are used to execute minor actions with a single click.
+- [Card Component](https://www.mdui.org/en/docs/2/components/card.md): Cards are versatile components that serve as containers for content and actions about a single subject.
+- [Checkbox Component](https://www.mdui.org/en/docs/2/components/checkbox.md): Checkboxes allow users to select one or more options from a set. Each checkbox can toggle between checked and unchecked states.
+- [Chip Component](https://www.mdui.org/en/docs/2/components/chip.md): Chips are compact elements that represent an input, attribute, or action.
+- [Circular Progress Component](https://www.mdui.org/en/docs/2/components/circular-progress.md): Circular progress indicators are used to show the progress of ongoing tasks.
+- [Collapse Component](https://www.mdui.org/en/docs/2/components/collapse.md): Collapse panels are utilized to group and conceal complex content areas, enhancing page organization.
+- [Dialog Component](https://www.mdui.org/en/docs/2/components/dialog.md): Dialogs are used to display crucial information during a user's workflow.
+- [Divider Component](https://www.mdui.org/en/docs/2/components/divider.md): A divider is a thin line that groups content in lists and layouts.
+- [Dropdown Component](https://www.mdui.org/en/docs/2/components/dropdown.md): The Dropdown component displays specific content in a pop-up control. It is often used in conjunction with the Menu component.
+- [Fab Component](https://www.mdui.org/en/docs/2/components/fab.md): The Floating Action Button (FAB) is a primary component for key actions, offering easy access.
+- [Icon Component](https://www.mdui.org/en/docs/2/components/icon.md): The Icon component represents common actions and supports both Material Icons and SVG icons.
+- [Layout Component](https://www.mdui.org/en/docs/2/components/layout.md): Layout components provide a flexible system for page-level layout.
+- [Linear Progress Component](https://www.mdui.org/en/docs/2/components/linear-progress.md): Linear progress indicators are horizontal bars that display the status of ongoing operations, such as data loading or form submission.
+- [List Component](https://www.mdui.org/en/docs/2/components/list.md): A List is a vertical arrangement of items that can contain text or images.
+- [Menu Component](https://www.mdui.org/en/docs/2/components/menu.md): Menus display a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
+- [Navigation Bar Component](https://www.mdui.org/en/docs/2/components/navigation-bar.md): The navigation bar facilitates easy switching between main pages on mobile devices.
+- [Navigation Drawer Component](https://www.mdui.org/en/docs/2/components/navigation-drawer.md): The navigation drawer provides a side-access method to different pages on a webpage.
+- [Navigation Rail Component](https://www.mdui.org/en/docs/2/components/navigation-rail.md): The navigation rail provides a means to access different primary pages on tablets and desktop computers.
+- [Radio Component](https://www.mdui.org/en/docs/2/components/radio.md): The radio group component is designed for selecting a single option from a set of options.
+- [Range Slider Component](https://www.mdui.org/en/docs/2/components/range-slider.md): The Range Slider component allows users to select a range from a series of values.
+- [Select Component](https://www.mdui.org/en/docs/2/components/select.md): The Select component is designed to present a list of options in a dropdown menu.
+- [Segmented Button Component](https://www.mdui.org/en/docs/2/components/segmented-button.md): The segmented button group is a component that encapsulates a set of buttons. It is used to provide options, switch views, or sort elements.
+- [Slider Component](https://www.mdui.org/en/docs/2/components/slider.md): Sliders provide a way for users to select from a range of values.
+- [Snackbar Component](https://www.mdui.org/en/docs/2/components/snackbar.md): Snackbars provide brief updates about app processes at the bottom of the screen.
+- [Switch Component](https://www.mdui.org/en/docs/2/components/switch.md): The Switch component is utilized to toggle the state of a single setting between on and off.
+- [Tabs Component](https://www.mdui.org/en/docs/2/components/tabs.md): Tabs organize content across different screens and views.
+- [TextField Component](https://www.mdui.org/en/docs/2/components/text-field.md): Text fields, typically used in forms and dialogs, allow users to input text.
+- [Tooltip Component](https://www.mdui.org/en/docs/2/components/tooltip.md): Tooltips provide supplementary text information for a specific element, enhancing the comprehension of its function or purpose.
+- [Top App Bar Component](https://www.mdui.org/en/docs/2/components/top-app-bar.md): The Top App Bar provides information and actions related to the current screen, serving as a tool for branding, navigation, search, and actions.
+
+## Functions
+
+- [JavaScript Library](https://www.mdui.org/en/docs/2/functions/jq.md): mdui includes a lightweight JavaScript utility library that provides a jQuery-like API with chainable calls, but at only a fraction of jQuery's size.
+- [dialog Function](https://www.mdui.org/en/docs/2/functions/dialog.md): The `dialog` function, a wrapper for the [`<mdui-dialog>`](/en/docs/2/components/dialog) component. It offers a more convenient way to open a dialog without the need to write HTML code for the component.
+- [alert Function](https://www.mdui.org/en/docs/2/functions/alert.md): The `alert` function, a wrapper for the [`<mdui-dialog>`](/en/docs/2/components/dialog) component, supersedes the native `window.alert` function, enabling the creation of alert dialogs without HTML code.
+- [confirm Function](https://www.mdui.org/en/docs/2/functions/confirm.md): The `confirm` function is a wrapper for the [`<mdui-dialog>`](/en/docs/2/components/dialog) component and serves as a replacement for the native `window.confirm` function.
+- [prompt Function](https://www.mdui.org/en/docs/2/functions/prompt.md): The `prompt` function is a wrapper for the [`<mdui-dialog>`](/en/docs/2/components/dialog) component and serves as a replacement for the native `window.prompt` function.
+- [snackbar Function](https://www.mdui.org/en/docs/2/functions/snackbar.md): The `snackbar` function provides a simple method to utilize the [`<mdui-snackbar>`](/en/docs/2/components/snackbar) component without the need to write HTML code.
+- [getTheme Function](https://www.mdui.org/en/docs/2/functions/getTheme.md): The `getTheme` function is used to obtain the current theme applied to the page or a specific element.
+- [setTheme Function](https://www.mdui.org/en/docs/2/functions/setTheme.md): The `setTheme` function is used to apply a specific theme to the current page or a designated element.
+- [getColorFromImage Function](https://www.mdui.org/en/docs/2/functions/getColorFromImage.md): The `getColorFromImage` function is designed to extract the dominant color from an image.
+- [setColorScheme Function](https://www.mdui.org/en/docs/2/functions/setColorScheme.md): The `setColorScheme` function is used to set the color scheme for the current page or a specific element based on a provided hexadecimal color value.
+- [removeColorScheme Function](https://www.mdui.org/en/docs/2/functions/removeColorScheme.md): The `removeColorScheme` function is used to remove the color scheme from the current page or a specified element. For more details, see [Dynamic Color](/en/docs/2/styles/dynamic-color).
+- [loadLocale Function](https://www.mdui.org/en/docs/2/functions/loadLocale.md): The `loadLocale` function is used to load locale modules. For more details, refer to [Localization](/en/docs/2/getting-started/localization).
+- [setLocale Function](https://www.mdui.org/en/docs/2/functions/setLocale.md): The `setLocale` function sets the current locale code. For more details, refer to [Localization](/en/docs/2/getting-started/localization).
+- [getLocale Function](https://www.mdui.org/en/docs/2/functions/getLocale.md): The `getLocale` function is used to get the current locale code. For more details, refer to [Localization](/en/docs/2/getting-started/localization).
+- [throttle Function](https://www.mdui.org/en/docs/2/functions/throttle.md): The `throttle` function is used to create a throttled function that can be executed at most once within a specified time interval.
+- [observeResize Function](https://www.mdui.org/en/docs/2/functions/observeResize.md): The `observeResize` function allows you to monitor changes in an element's size and execute a callback when the size changes.
+- [breakpoint Function](https://www.mdui.org/en/docs/2/functions/breakpoint.md): The `breakpoint` function is designed to determine page breakpoints.
+
+## Libraries
+
+- [@mdui/icons](https://www.mdui.org/en/docs/2/libraries/icons.md): `@mdui/icons` is a standalone package that contains all the Material Icons, with each icon as an independent file.

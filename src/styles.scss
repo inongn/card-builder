@@ -1,0 +1,758 @@
+@use '@angular/material' as mat;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Roboto+Condensed:wght@400;700&family=Fira+Code&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+  /* Semantic Colors for Game Elements */
+  --color-action: #4CAF50;
+  --color-bonus: #FF9800;
+  --color-reaction: #bd239c;
+  --color-healing: #26A69A;
+  --color-fire: #EF5350;
+  --color-cold: #29B6F6;
+  --color-lightning: #FFEE58;
+  --color-radiant: #f8ab04;
+  --color-poison: #66BB6A;
+  --color-acid: #9CCC65;
+  --color-necrotic: #7E57C2;
+  --color-force: #AB47BC;
+  --color-psychic: #EC407A;
+  --color-thunder: #26C6DA;
+  --color-physical: #BDBDBD;
+  --color-spell: #00BCD4;
+
+  /* Spacing Utility Variables */
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+}
+
+$my-palette: (
+  0: #000000,
+  10: #3c003f,
+  20: #620067,
+  30: #890090,
+  40: #b100bb,
+  50: #cf00da,
+  60: #ee0fee,
+  70: #f142f1,
+  80: #f46df4,
+  90: #f89df8,
+  95: #fccdfc,
+  98: #fef1fe,
+  99: #fff6ff,
+  100: #ffffff
+);
+
+html {
+  height: 100%;
+  font-family: 'Outfit', 'Inter', 'Roboto', sans-serif;
+  
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: $my-palette,
+      tertiary: $my-palette,
+    ),
+    typography: Outfit,
+    density: 0,
+  ));
+
+  &.dark {
+    @include mat.theme((
+      color: (
+        theme-type: dark,
+        primary: $my-palette,
+        tertiary: $my-palette,
+      ),
+      typography: Outfit,
+      density: 0,
+    ));
+  }
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: var(--mat-sys-surface, #fcfcfc);
+  color: var(--mat-sys-on-surface, #1c1b1f);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+strong {
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+/* Common Layout Containers */
+.container {
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+/* ==========================================================================
+   PLAY SCREEN & CARD GRID STYLES
+   ========================================================================== */
+
+.play-content {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: var(--gap-md);
+  position: relative;
+  height: 100%;
+}
+
+.play-content-main,
+.play-content-aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  overflow-y: auto;
+  scrollbar-width: none; /* Hide scrollbars */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.aside-card-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.inner-card {
+  padding: var(--gap-xs);
+  min-height: min-content;
+}
+
+.info-card {
+  flex: 1;
+}
+
+/* Card layout structure */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--gap-md);
+  overflow: visible !important;
+}
+
+.pseudo-card {
+  background: var(--mat-sys-surface-container-highest, #e6e1e5);
+  border-radius: 12px;
+}
+
+.card-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--gap-md);
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-title {
+  grid-column: span 5;
+  font-size: 1.25rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+}
+
+.title-primary {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  padding: var(--gap-sm);
+}
+
+.play-content-aside .title-primary {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--mat-sys-surface);
+}
+
+.card-meta {
+  grid-column: span 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.card-meta-resource {
+  display: flex;
+  gap: var(--gap-xs);
+  align-items: center;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  margin: var(--gap-sm) 0;
+}
+
+.grid-value-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-xs);
+  padding: var(--gap-xs);
+  border: 0.5px solid var(--mat-sys-outline, #79747e);
+  margin: var(--gap-xs);
+  border-radius: 6px;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  text-align: left;
+  line-height: 1.45;
+}
+
+.card-description.extra {
+  color: var(--mat-sys-on-surface-variant);
+  margin-top: var(--gap-xs);
+}
+
+/* Statblock Card */
+.statblock-stats-row {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* Main Character Sheet Card */
+.main-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.main-card-title {
+  grid-column: span 4;
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+}
+
+.main-card-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--gap-sm);
+}
+
+.main-card-column {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.main-card-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--mat-sys-outline-variant, #cac4d0);
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--mat-sys-surface-container-low);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 2px 0;
+  color: var(--mat-sys-on-surface);
+}
+
+.stat-score {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.main-card-box-hp-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  text-align: center;
+}
+
+.main-card-combat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-sm);
+}
+
+.main-card-list.resource-list {
+  grid-column: span 6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.list-item {
+  padding: 4px 8px;
+  display: grid;
+  align-items: center;
+  font-size: 0.9rem;
+  gap: var(--gap-sm);
+}
+
+.saves-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.list-item.skill-list-item {
+  grid-template-columns: 32px 18px 24px auto;
+  gap: var(--gap-xs);
+  border-bottom: 1px solid var(--mat-sys-outline-variant, rgba(0,0,0,0.05));
+}
+
+.list-item.saves-list-item {
+  grid-template-columns: 20px 24px auto;
+  gap: var(--gap-xs);
+}
+
+.list-item.resource-list-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.resource-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  
+  .resource-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--mat-sys-primary);
+    
+    &.filled {
+      background-color: var(--mat-sys-primary);
+    }
+  }
+}
+
+.list-item.info-list-item {
+  grid-template-columns: auto 1fr;
+  justify-items: start;
+  gap: 12px;
+}
+
+.list-item.weapon-item {
+  grid-template-columns: 32px 24px auto auto;
+}
+
+/* UTILITIES & ICONS */
+.text-primary {
+  color: var(--mat-sys-primary);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.text-secondary {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.icon-action {
+  color: var(--color-action);
+}
+
+.icon-bonus-action {
+  color: var(--color-bonus);
+  transform: rotate(-90deg) scale(1.3);
+  display: inline-block;
+}
+
+.icon-reaction {
+  color: var(--color-reaction);
+}
+
+.icon-healing {
+  color: var(--color-healing);
+}
+
+.icon-fire {
+  color: var(--color-fire);
+}
+
+.icon-cold {
+  color: var(--color-cold);
+}
+
+.icon-lightning {
+  color: var(--color-lightning);
+}
+
+.icon-radiant {
+  color: var(--color-radiant);
+}
+
+.icon-poison {
+  color: var(--color-poison);
+}
+
+.icon-acid {
+  color: var(--color-acid);
+}
+
+.icon-necrotic {
+  color: var(--color-necrotic);
+}
+
+.icon-force {
+  color: var(--color-force);
+}
+
+.icon-psychic {
+  color: var(--color-psychic);
+}
+
+.icon-thunder {
+  color: var(--color-thunder);
+}
+
+.icon-physical {
+  color: var(--color-physical);
+}
+
+.icon-spell-slot {
+  color: var(--color-spell);
+}
+
+.icon-accent {
+  color: var(--mat-sys-primary);
+}
+
+.adv-dis-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  height: 18px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 4px;
+  margin-right: 4px;
+  color: #ffffff;
+}
+
+.adv-dis-indicator.adv {
+  background-color: var(--color-action);
+}
+
+.adv-dis-indicator.dis {
+  background-color: var(--color-fire);
+}
+
+.adv-dis-indicator.min {
+  background-color: var(--color-bonus);
+}
+
+.icon-small {
+  font-size: 1.1rem !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+}
+
+.important-number {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   PRINT & PREVIEW SHARED STYLES
+   ========================================================================== */
+
+.print-mode .print-view {
+  display: block;
+  background: #f0f0f0;
+  padding: 20px;
+}
+
+.print-mode .main-card {
+  padding: var(--gap-md);
+}
+
+.print-mode .main-card-column {
+  grid-column: span 3;
+}
+
+.print-content {
+  width: 100%;
+  scale: clamp(0.3, #{"95vw / 11in"}, 1);
+  transform-origin: top left;
+}
+
+.print-mode .print-page {
+  width: 11in;
+  height: 8.5in;
+  padding: 0.25in;
+  margin: 0 auto 20px auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  page-break-after: always;
+}
+
+.print-mode .print-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.print-mode .main-card-print-slot {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Force cards to look consistent on paper and preview */
+.print-mode .card-container,
+.print-mode .main-card,
+.print-mode mat-card {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  background: white !important;
+  color: black !important;
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.print-mode .inner-card {
+  height: min-content !important;
+}
+
+.print-mode .card-header {
+  flex-shrink: 0 !important;
+  display: grid !important;
+  text-align: left !important;
+}
+
+.print-mode .card-content {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.print-mode .card-grid {
+  flex-shrink: 0 !important;
+  margin: 4px 0 !important;
+}
+
+.print-mode .card-description,
+.print-mode .card-content {
+  font-size: inherit !important;
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+
+.print-mode .card-description-paragraph {
+  margin-bottom: 0.4em !important;
+}
+
+.print-mode .card-description-paragraph:last-child {
+  margin-bottom: 0 !important;
+}
+
+.print-mode .static-card {
+  border-style: solid !important;
+  border-width: 1px !important;
+}
+
+.print-mode .grid-value-chip {
+  background-color: white !important;
+  color: black !important;
+  font-size: 0.8rem !important;
+  border: 0.5px solid #ccc !important;
+}
+
+.print-mode .icon-accent {
+  color: black !important;
+}
+
+.print-mode .show-on-print {
+  display: block !important;
+}
+
+.print-mode .hide-on-print {
+  display: none !important;
+}
+
+.print-mode .static-card,
+.print-mode .main-card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.show-on-print {
+  display: none !important;
+}
+
+/* ==========================================================================
+   PRINT SPECIFIC MEDIA QUERY
+   ========================================================================== */
+
+@media print {
+  @page {
+    size: letter landscape;
+    margin: 0;
+  }
+
+  /* Reset layout constraints for printing */
+  html,
+  body,
+  .app-sidenav-container,
+  .app-content-content,
+  .main-page-wrapper,
+  .main-content {
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: white !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Hide UI elements */
+  mat-toolbar,
+  .debug-fab,
+  .debug-drawer,
+  .hide-on-print {
+    display: none !important;
+  }
+
+  .show-on-print {
+    display: block !important;
+  }
+
+  /* Clear inline paddings from wrappers */
+  .print-view,
+  .print-screen {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    transform: none !important;
+    border: none !important;
+    background: none !important;
+    overflow: visible !important;
+  }
+
+  .print-page {
+    margin: 0 !important;
+    padding: 0.25in !important; /* Safe printable area */
+    box-sizing: border-box !important;
+    width: 11in !important;
+    height: 8.5in !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    position: relative !important;
+    background: white !important;
+  }
+
+  .print-content {
+    scale: 1 !important;
+  }
+
+  .print-page:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVENESS AND LAYOUT
+   ========================================================================== */
+
+@media (max-width: 890px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+
+  .play-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-md);
+    overflow: auto;
+    margin-bottom: var(--gap-md);
+  }
+
+  .main-card-column {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 891px) {
+  .desktop-hidden {
+    display: none !important;
+  }
+
+  .play-content {
+    height: calc(100vh - 64px);
+    overflow: hidden;
+  }
+
+  .play-content-aside {
+    padding-bottom: calc(100vh - 64px - 628px);
+  }
+}

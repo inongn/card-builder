@@ -1895,6 +1895,16 @@
     "description": "You gain the service of a familiar, a spirit that takes an animal form.\n\n> **Armor Class** $(local.ac)\n>\n> **Hit Points** $(local.hp)\n>\n> **Speed** $(formatObject(local.movement, '{key} {value} ft.'))\n>\n>---\n>\n>| STR | DEX | CON | INT | WIS | CHA |\n>|-----|-----|-----|-----|-----|-----|\n>| local.stats.str | local.stats.dex | local.stats.con | local.stats.int | local.stats.wis | local.stats.cha |\n>\n>---\n>\n> **Skills** $(formatObject(local.skills, '{Title} {bonus}'))\n>\n> **Senses** $(formatObject(local.senses, '{Title} {value} ft.'))\n>\n> $(local.resistances ? local.resistances.map(resistance => `**Resistances** ${resistance}`).join('\\n') : '')\n>\n> $(local.traits ? local.traits.map(trait => `**${trait.name}.** ${trait.description}`).join('\\n') : '')\n>\n>---\n>\n> $(local.actions ? local.actions.map(action => `**${action.name}.** ${action.description}`).join('\\n') : '')\n"
   },
   {
+    "type": "Activity",
+    "name": "Find Steed: $(local.classification)",
+    "id": "findSteedActivity",
+    "time": "action",
+    "resource": "level2SpellSlot",
+    "range": "10 feet",
+    "duration": "1 hour",
+    "description": "You summon an otherworldly being that appears as a loyal steed.\n\n> **Otherworldly Steed** $(local.classification)\n>\n> **Armor Class** $(local.ac)\n>\n> **Hit Points** $(local.hp)\n>\n> **Speed** $(formatObject(local.movement, '{key} {value} ft.'))\n>\n>---\n>\n>| STR | DEX | CON | INT | WIS | CHA |\n>|-----|-----|-----|-----|-----|-----|\n>| local.stats.str | local.stats.dex | local.stats.con | local.stats.int | local.stats.wis | local.stats.cha |\n>\n>---\n>\n> **Skills** $(formatObject(local.skills, '{Title} {bonus}'))\n>\n> **Senses** $(formatObject(local.senses, '{Title} {value} ft.'))\n>\n> $(local.resistances ? local.resistances.map(resistance => `**Resistances** ${resistance}`).join('\\n') : '')\n>\n> $(local.traits ? local.traits.map(trait => `**${trait.name}.** ${trait.description}`).join('\\n') : '')\n>\n>---\n>\n> $(local.actions ? local.actions.map(action => `**${action.name}.** ${action.description}`).join('\\n') : '')\n"
+  },
+  {
     "id": "ambush",
     "name": "Ambush",
     "tags": [
@@ -3590,7 +3600,7 @@
         "id": "wildShapeForms",
         "type": "Slot",
         "name": "Wild Shape Forms",
-        "quantity": 1,
+        "quantity": "$(meta.level >= 8 ? 8 : meta.level >= 4 ? 4 : 4)",
         "target": "classOption OR (category=beast AND variables.cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT variables.movement.fly'))",
         "condition": "$(meta.level >= 2)",
         "variables": {
@@ -13386,6 +13396,11 @@
     ]
   },
   {
+    "id": "pactCaster",
+    "name": "Pact Caster",
+    "type": "Folder"
+  },
+  {
     "type": "Folder",
     "hidden": true,
     "children": [
@@ -14006,13 +14021,13 @@
         "name": "Replenishing Meal",
         "type": "Extra",
         "target": "shortRest",
-        "description": "You can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for $(4 + attributes.prof) creatures. Any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.\n"
+        "description": "You can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for $(4 + attributes.prof) creatures. Any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points."
       },
       {
         "name": "Bolstering Treats",
         "type": "Activity",
         "time": "1 hour",
-        "description": "With 1 hour of work or when you finish a Long Rest, you cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.\n"
+        "description": "With 1 hour of work or when you finish a Long Rest, you cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points."
       }
     ]
   },
@@ -14615,7 +14630,7 @@
         "name": "Brew Poison",
         "type": "Activity",
         "time": "1 hour",
-        "description": "You can craft poisons. With 1 hour of work using a Poisoner's Kit and expending 50 GP worth of materials, you can create $(attributes.prof) doses of poison. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you hit with the poisoned item, whichever comes first. When a creature takes damage from the poisoned item, that creature must succeed on a DC $(8 + stats.dex.mod + attributes.prof) Constitution saving throw or take 2d8 Poison damage and have the Poisoned condition until the end of your next turn.\n"
+        "description": "You can craft poisons. With 1 hour of work using a Poisoner's Kit and expending 50 GP worth of materials, you can create $(attributes.prof) doses of poison. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you hit with the poisoned item, whichever comes first. When a creature takes damage from the poisoned item, that creature must succeed on a DC $(8 + stats.dex.mod + attributes.prof) Constitution saving throw or take 2d8 Poison damage and have the Poisoned condition until the end of your next turn."
       }
     ]
   },
@@ -24456,45 +24471,49 @@
     "description": "Wish is the mightiest spell a mortal can cast. By simply speaking aloud, you can alter reality itself.\n\nThe basic use of this spell is to duplicate any other spell of level 8 or lower. If you use it this way, you don't need to meet any requirements to cast that spell, including costly components. The spell simply takes effect.\n\nAlternatively, you can create one of the following effects of your choice:\n\n**Object Creation.** You create one object of up to 25,000 GP in value that isn't a magic item. The object can be no more than 300 feet in any dimension, and it appears in an unoccupied space that you can see on the ground.\n\n**Instant Health.** You allow yourself and up to twenty creatures that you can see to regain all Hit Points, and you end all effects on them listed in the Greater Restoration spell.\n\n**Resistance.** You grant up to ten creatures that you can see Resistance to one damage type that you choose. This Resistance is permanent.\n\n**Spell Immunity.** You grant up to ten creatures you can see immunity to a single spell or other magical effect for 8 hours.\n\n**Sudden Learning.** You replace one of your feats with another feat for which you are eligible. You lose all the benefits of the old feat and gain the benefits of the new one. You can't replace a feat that is a prerequisite for any of your other feats or features.\n\n**Roll Redo.** You undo a single recent event by forcing a reroll of any die roll made within the last round (including your last turn). Reality reshapes itselfto accommodate the new result. For example, a Wish spell could undo an ally’s failed saving throw or a foe's Critical Hit. You can force the reroll to be made with Advantage or Disadvantage, and you choose whether to use the reroll or the original roll.\n\n**Reshape Reality.** You may wish for something not included in any of the other effects. To do so, state your wish to the DM as precisely as possible. The DM has great latitude in ruling what occurs in such an instance; the greater the wish, the greater the likelihood that something goes wrong. This spell might simply fail, the effect you desire might be achieved only in part, or you might suffer an unforeseen consequence as a result of how you worded the wish. For example, wishing that a villain were dead might propel you forward in time to a period when that villain is no longer alive, effectively removing you from the game. Similarly, wishing for a Legendary magic item or an Artifact might instantly transport you to the presence of the item’s current owner. If your wish is granted and its effects have consequences for a whole community, region, or world, you are likely to attract powerful foes. If your wish would affect a god, the god’s divine servants might instantly intervene to prevent it or to encourage you to craft the wish in a particular way. If your wish would undo the multiverse itself, threaten the City of Sigil, or affect the Lady of Pain in any way, you see an image of her in your mind for a moment; she shakes her head, and your wish fails.\n\nThe stress of casting Wish to produce any effect other than duplicating another spell weakens you. After enduring that stress, each time you cast a spell until you finish a Long Rest, you take 1d10 Necrotic damage per level of that spell. This damage can't be reduced or prevented in any way. In addition, your Strength score becomes 3 for 2d4 days. For each of those days that you spend resting and doing nothing more than light activity, your remaining recovery time decreases by 2 days. Finally, there is a 33 percent chance that you are unable to cast Wish ever again if you suffer this stress.\n"
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Ape",
     "id": "ape",
     "category": "beast",
-    "size": "Medium",
-    "classification": "Beast",
-    "ac": 12,
-    "hp": 19,
-    "movement": {
-      "walk": 30,
-      "climb": 30
-    },
-    "stats": {
-      "str": 16,
-      "dex": 14,
-      "con": 14,
-      "int": 6,
-      "wis": 12,
-      "cha": 7
-    },
-    "skills": {
-      "perception": 3,
-      "athletics": 5
-    },
-    "cr": 0.5,
-    "actions": [
-      {
-        "name": "Multiattack",
-        "description": "The makes two Fist attacks."
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Ape",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 19,
+      "movement": {
+        "walk": 30,
+        "climb": 30
       },
-      {
-        "name": "Fist",
-        "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4+3 Bludgeoning damage."
+      "stats": {
+        "str": 16,
+        "dex": 14,
+        "con": 14,
+        "int": 6,
+        "wis": 12,
+        "cha": 7
       },
-      {
-        "name": "Rock",
-        "description": "_Ranged Attack Roll:_ +5 to hit, range 25/50 ft. _Hit:_ 2d6+3 Bludgeoning damage."
-      }
-    ]
+      "skills": {
+        "athletics": 5,
+        "perception": 3
+      },
+      "cr": 0.5,
+      "actions": [
+        {
+          "name": "Multiattack",
+          "description": "The ape makes two Fist attacks."
+        },
+        {
+          "name": "Fist",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Bludgeoning damage."
+        },
+        {
+          "name": "Rock {@recharge}",
+          "description": "_Ranged Attack Roll:_ +5 to hit, range 25/50 ft. _Hit:_ 2d6 + 3 Bludgeoning damage."
+        }
+      ]
+    }
   },
   {
     "type": "Reference",
@@ -24539,354 +24558,1231 @@
     }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Bat",
     "id": "bat",
     "category": "beast",
-    "size": "Tiny",
-    "classification": "Beast",
-    "ac": 12,
-    "hp": 1,
-    "movement": {
-      "walk": 5,
-      "fly": 30
-    },
-    "stats": {
-      "str": 2,
-      "dex": 15,
-      "con": 8,
-      "int": 2,
-      "wis": 12,
-      "cha": 4
-    },
-    "senses": {
-      "blindsight": 60
-    },
-    "cr": 0,
-    "actions": [
-      {
-        "name": "Bite",
-        "description": "_Melee Attack Roll:_ +4 to hit to hit, reach 5 ft. _Hit:_ 1 Piercing damage."
-      }
-    ]
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Bat",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 1,
+      "movement": {
+        "walk": 5,
+        "fly": 30
+      },
+      "stats": {
+        "str": 2,
+        "dex": 15,
+        "con": 8,
+        "int": 2,
+        "wis": 12,
+        "cha": 4
+      },
+      "senses": {
+        "blindsight": 60
+      },
+      "cr": 0,
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit to hit, reach 5 ft. _Hit:_ 1 Piercing damage."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Black Bear",
     "id": "blackBear",
     "category": "beast",
-    "size": "Medium",
-    "classification": "Beast",
-    "ac": 11,
-    "hp": 19,
-    "movement": {
-      "walk": 30,
-      "climb": 30,
-      "swim": 30
-    },
-    "stats": {
-      "str": 15,
-      "dex": 12,
-      "con": 14,
-      "int": 2,
-      "wis": 12,
-      "cha": 7
-    },
-    "skills": {
-      "perception": 5
-    },
-    "senses": {
-      "darkvision": 60
-    },
-    "cr": 0.5,
-    "actions": [
-      {
-        "name": "Multiattack",
-        "description": "The bear makes two Rend attacks."
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Black Bear",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 19,
+      "movement": {
+        "walk": 30,
+        "climb": 30,
+        "swim": 30
       },
-      {
-        "name": "Rend",
-        "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d6+2 Slashing damage."
-      }
-    ]
+      "stats": {
+        "str": 15,
+        "dex": 12,
+        "con": 14,
+        "int": 2,
+        "wis": 12,
+        "cha": 7
+      },
+      "skills": {
+        "perception": 5
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.5,
+      "actions": [
+        {
+          "name": "Multiattack",
+          "description": "The bear makes two Rend attacks."
+        },
+        {
+          "name": "Rend",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d6 + 2 Slashing damage."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Boar",
     "id": "boar",
     "category": "beast",
-    "size": "Medium",
-    "classification": "Beast",
-    "ac": 11,
-    "hp": 13,
-    "movement": {
-      "walk": 40
-    },
-    "stats": {
-      "str": 13,
-      "dex": 11,
-      "con": 14,
-      "int": 2,
-      "wis": 9,
-      "cha": 5
-    },
-    "cr": 0.25,
-    "traits": [
-      {
-        "name": "Bloodied Fury",
-        "description": "While Bloodied, the boar has Advantage on attack rolls."
-      }
-    ],
-    "actions": [
-      {
-        "name": "Gore",
-        "description": "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1d6+1 Piercing damage. If the target is a Medium or smaller creature and the boar moved 20+ feet straight toward it immediately before the hit, the target takes an extra 3 (1d6) Piercing damage and has the Prone condition."
-      }
-    ]
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Boar",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 13,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 13,
+        "dex": 11,
+        "con": 14,
+        "int": 2,
+        "wis": 9,
+        "cha": 5
+      },
+      "cr": 0.25,
+      "traits": [
+        {
+          "name": "Bloodied Fury",
+          "description": "While {@status Bloodied|XPHB}, the boar has Advantage on attack rolls."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Gore",
+          "description": "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1d6 + 1 Piercing damage. If the target is a Medium or smaller creature and the boar moved 20+ feet straight toward it immediately before the hit, the target takes an extra 1d6 Piercing damage and has the Prone condition."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Brown Bear",
     "id": "brownBear",
     "category": "beast",
-    "size": "Large",
-    "classification": "Beast",
-    "ac": 11,
-    "hp": 22,
-    "movement": {
-      "walk": 40,
-      "climb": 30
-    },
-    "stats": {
-      "str": 17,
-      "dex": 12,
-      "con": 15,
-      "int": 2,
-      "wis": 13,
-      "cha": 7
-    },
-    "skills": {
-      "perception": 3
-    },
-    "senses": {
-      "darkvision": 60
-    },
-    "cr": 1,
-    "actions": [
-      {
-        "name": "Multiattack",
-        "description": "The bear makes one Bite attack and one Claw attack."
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Brown Bear",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 22,
+      "movement": {
+        "walk": 40,
+        "climb": 30
       },
-      {
-        "name": "Bite",
-        "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d8+3 Piercing damage."
+      "stats": {
+        "str": 17,
+        "dex": 12,
+        "con": 15,
+        "int": 2,
+        "wis": 13,
+        "cha": 7
       },
-      {
-        "name": "Claw",
-        "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4+3 Slashing damage. If the target is a Large or smaller creature, it has the Prone condition."
-      }
-    ]
+      "skills": {
+        "perception": 3
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 1,
+      "actions": [
+        {
+          "name": "Multiattack",
+          "description": "The bear makes one Bite attack and one Claw attack."
+        },
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d8 + 3 Piercing damage."
+        },
+        {
+          "name": "Claw",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Slashing damage. If the target is a Large or smaller creature, it has the Prone condition."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Camel",
     "id": "camel",
     "category": "beast",
-    "size": "Large",
-    "classification": "Beast",
-    "ac": 10,
-    "hp": 17,
-    "movement": {
-      "walk": 50
-    },
-    "stats": {
-      "str": 15,
-      "dex": 8,
-      "con": 17,
-      "int": 2,
-      "wis": 11,
-      "cha": 5
-    },
-    "savingThrows": {
-      "con": 5
-    },
-    "senses": {
-      "darkvision": 60
-    },
-    "cr": 0.125,
-    "actions": [
-      {
-        "name": "Bite",
-        "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4+2 Bludgeoning damage."
-      }
-    ]
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Camel",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 17,
+      "movement": {
+        "walk": 50
+      },
+      "stats": {
+        "str": 15,
+        "dex": 8,
+        "con": 17,
+        "int": 2,
+        "wis": 11,
+        "cha": 5
+      },
+      "saves": {
+        "con": 5
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.125,
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4 + 2 Bludgeoning damage."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Cat",
     "id": "cat",
     "category": "beast",
-    "size": "Tiny",
-    "classification": "Beast",
-    "ac": 12,
-    "hp": 2,
-    "movement": {
-      "walk": 40,
-      "climb": 40
-    },
-    "stats": {
-      "str": 3,
-      "dex": 15,
-      "con": 10,
-      "int": 3,
-      "wis": 12,
-      "cha": 7
-    },
-    "skills": {
-      "perception": 3,
-      "stealth": 4
-    },
-    "savingThrows": {
-      "dex": 4
-    },
-    "senses": {
-      "darkvision": 60
-    },
-    "cr": 0,
-    "traits": [
-      {
-        "name": "Jumper",
-        "description": "The cat's jump distance is determined using its Dexterity rather than its Strength."
-      }
-    ],
-    "actions": [
-      {
-        "name": "Scratch",
-        "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Slashing damage."
-      }
-    ]
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Cat",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 2,
+      "movement": {
+        "walk": 40,
+        "climb": 40
+      },
+      "stats": {
+        "str": 3,
+        "dex": 15,
+        "con": 10,
+        "int": 3,
+        "wis": 12,
+        "cha": 7
+      },
+      "skills": {
+        "perception": 3,
+        "stealth": 4
+      },
+      "saves": {
+        "dex": 4
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Jumper",
+          "description": "The cat's jump distance is determined using its Dexterity rather than its Strength."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Scratch",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Slashing damage."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Constrictor Snake",
     "id": "constrictorSnake",
     "category": "beast",
-    "size": "Large",
-    "classification": "Beast",
-    "ac": 13,
-    "hp": 13,
-    "movement": {
-      "walk": 30,
-      "swim": 30
-    },
-    "stats": {
-      "str": 15,
-      "dex": 14,
-      "con": 12,
-      "int": 1,
-      "wis": 10,
-      "cha": 3
-    },
-    "skills": {
-      "perception": 2,
-      "stealth": 4
-    },
-    "senses": {
-      "blindsight": 10
-    },
-    "cr": 0.25,
-    "actions": [
-      {
-        "name": "Bite",
-        "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d8+2 Piercing damage."
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Constrictor Snake",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 13,
+      "hp": 13,
+      "movement": {
+        "walk": 30,
+        "swim": 30
       },
-      {
-        "name": "Constrict",
-        "description": "_Strength Saving Throw:_ DC 12, one Medium or smaller creature the snake can see within 5 feet. _Failure:_ 7 3d4 Bludgeoning damage, and the target has the Grappled condition (escape DC 12)."
-      }
-    ]
+      "stats": {
+        "str": 15,
+        "dex": 14,
+        "con": 12,
+        "int": 1,
+        "wis": 10,
+        "cha": 3
+      },
+      "skills": {
+        "perception": 2,
+        "stealth": 4
+      },
+      "senses": {
+        "blindsight": 10
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d8 + 2 Piercing damage."
+        },
+        {
+          "name": "Constrict",
+          "description": "Strength Saving Throw DC 12, one Medium or smaller creature the snake can see within 5 feet. _Fail:_ 3d4 Bludgeoning damage, and the target has the Grappled condition (escape DC 12)."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Crab",
     "id": "crab",
     "category": "beast",
-    "size": "Tiny",
-    "classification": "Beast",
-    "ac": 11,
-    "hp": 3,
-    "movement": {
-      "walk": 20,
-      "swim": 20
-    },
-    "stats": {
-      "str": 6,
-      "dex": 11,
-      "con": 12,
-      "int": 1,
-      "wis": 8,
-      "cha": 2
-    },
-    "skills": {
-      "stealth": 2
-    },
-    "senses": {
-      "blindsight": 30
-    },
-    "cr": 0,
-    "traits": [
-      {
-        "name": "Amphibious",
-        "description": "The crab can breathe air and water."
-      }
-    ],
-    "actions": [
-      {
-        "name": "Claw",
-        "description": "_Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Bludgeoning damage."
-      }
-    ]
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Crab",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 3,
+      "movement": {
+        "walk": 20,
+        "swim": 20
+      },
+      "stats": {
+        "str": 6,
+        "dex": 11,
+        "con": 12,
+        "int": 1,
+        "wis": 8,
+        "cha": 2
+      },
+      "skills": {
+        "stealth": 2
+      },
+      "senses": {
+        "blindsight": 30
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Amphibious",
+          "description": "The crab can breathe air and water."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Claw",
+          "description": "_Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Bludgeoning damage."
+        }
+      ]
+    }
   },
   {
-    "type": "Statblock",
+    "type": "Reference",
     "name": "Crocodile",
     "id": "crocodile",
     "category": "beast",
-    "size": "Large",
-    "classification": "Beast",
-    "ac": 12,
-    "hp": 13,
-    "movement": {
-      "walk": 20,
-      "swim": 30
-    },
-    "stats": {
-      "str": 15,
-      "dex": 10,
-      "con": 13,
-      "int": 2,
-      "wis": 10,
-      "cha": 5
-    },
-    "skills": {
-      "stealth": 2
-    },
-    "savingThrows": {
-      "con": 3
-    },
-    "cr": 0.5,
-    "traits": [
-      {
-        "name": "Hold Breath",
-        "description": "The crocodile can hold its breath for 1 hour."
-      }
-    ],
-    "actions": [
-      {
-        "name": "Bite",
-        "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d8+2 Piercing damage. If the target is a Medium or smaller creature, it has the Grappled condition (escape DC 12). While Grappled, the target has the Restrained condition."
-      }
-    ]
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Crocodile",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 13,
+      "movement": {
+        "walk": 20,
+        "swim": 30
+      },
+      "stats": {
+        "str": 15,
+        "dex": 10,
+        "con": 13,
+        "int": 2,
+        "wis": 10,
+        "cha": 5
+      },
+      "skills": {
+        "stealth": 2
+      },
+      "saves": {
+        "con": 3
+      },
+      "cr": 0.5,
+      "traits": [
+        {
+          "name": "Hold Breath",
+          "description": "The crocodile can hold its breath for 1 hour."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d8 + 2 Piercing damage. If the target is a Medium or smaller creature, it has the Grappled condition (escape DC 12). While Grappled, the target has the Restrained condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Dire Wolf",
+    "id": "direWolf",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Dire Wolf",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 14,
+      "hp": 22,
+      "movement": {
+        "walk": 50
+      },
+      "stats": {
+        "str": 17,
+        "dex": 15,
+        "con": 15,
+        "int": 3,
+        "wis": 12,
+        "cha": 7
+      },
+      "skills": {
+        "perception": 5,
+        "stealth": 4
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 1,
+      "traits": [
+        {
+          "name": "Pack Tactics",
+          "description": "The wolf has Advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally doesn't have the Incapacitated condition."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d10 + 3 Piercing damage. If the target is a Large or smaller creature, it has the Prone condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Draft Horse",
+    "id": "draftHorse",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Draft Horse",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 15,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 18,
+        "dex": 10,
+        "con": 15,
+        "int": 2,
+        "wis": 11,
+        "cha": 7
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Hooves",
+          "description": "_Melee Attack Roll:_ +6 to hit, reach 5 ft. _Hit:_ 1d4 + 4 Bludgeoning damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Elephant",
+    "id": "elephant",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Elephant",
+      "size": "Huge",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 76,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 22,
+        "dex": 9,
+        "con": 17,
+        "int": 3,
+        "wis": 11,
+        "cha": 6
+      },
+      "cr": 4,
+      "actions": [
+        {
+          "name": "Multiattack",
+          "description": "The elephant makes two Gore attacks."
+        },
+        {
+          "name": "Gore",
+          "description": "_Melee Attack Roll:_ +8 to hit, reach 5 ft. _Hit:_ 2d8 + 6 Piercing damage. If the target is a Huge or smaller creature and the elephant moved 20+ feet straight toward it immediately before the hit, the target has the Prone condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Elk",
+    "id": "elk",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Elk",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 11,
+      "movement": {
+        "walk": 50
+      },
+      "stats": {
+        "str": 16,
+        "dex": 10,
+        "con": 11,
+        "int": 2,
+        "wis": 10,
+        "cha": 6
+      },
+      "skills": {
+        "perception": 2
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Ram",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d6 + 3 Bludgeoning damage. If the target is a Large or smaller creature and the elk moved 20+ feet straight toward it immediately before the hit, the target takes an extra 1d6 Bludgeoning damage and has the Prone condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Frog",
+    "id": "frog",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Frog",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 1,
+      "movement": {
+        "walk": 20,
+        "swim": 20
+      },
+      "stats": {
+        "str": 1,
+        "dex": 13,
+        "con": 8,
+        "int": 1,
+        "wis": 8,
+        "cha": 3
+      },
+      "skills": {
+        "perception": 1,
+        "stealth": 3
+      },
+      "senses": {
+        "darkvision": 30
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Amphibious",
+          "description": "The frog can breathe air and water."
+        },
+        {
+          "name": "Standing Leap",
+          "description": "The frog's Long Jump is up to 10 feet and its High Jump is up to 5 feet with or without a running start."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Giant Badger",
+    "id": "giantBadger",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Giant Badger",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 13,
+      "hp": 15,
+      "movement": {
+        "walk": 30,
+        "burrow": 10
+      },
+      "stats": {
+        "str": 13,
+        "dex": 10,
+        "con": 17,
+        "int": 2,
+        "wis": 12,
+        "cha": 5
+      },
+      "skills": {
+        "perception": 3
+      },
+      "resistances": [
+        "Poison"
+      ],
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 2d4 + 1 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Giant Crab",
+    "id": "giantCrab",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Giant Crab",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 15,
+      "hp": 13,
+      "movement": {
+        "walk": 30,
+        "swim": 30
+      },
+      "stats": {
+        "str": 13,
+        "dex": 13,
+        "con": 11,
+        "int": 1,
+        "wis": 9,
+        "cha": 3
+      },
+      "skills": {
+        "stealth": 3
+      },
+      "senses": {
+        "blindsight": 30
+      },
+      "cr": 0.125,
+      "traits": [
+        {
+          "name": "Amphibious",
+          "description": "The crab can breathe air and water."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Claw",
+          "description": "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1d6 + 1 Bludgeoning damage. If the target is a Medium or smaller creature, it has the Grappled condition (escape DC 11) from one of two claws."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Giant Goat",
+    "id": "giantGoat",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Giant Goat",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 19,
+      "movement": {
+        "walk": 40,
+        "climb": 30
+      },
+      "stats": {
+        "str": 17,
+        "dex": 13,
+        "con": 12,
+        "int": 3,
+        "wis": 12,
+        "cha": 6
+      },
+      "skills": {
+        "perception": 3
+      },
+      "saves": {
+        "str": 5
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.5,
+      "actions": [
+        {
+          "name": "Ram",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d6 + 3 Bludgeoning damage. If the target is a Large or smaller creature and the goat moved 20+ feet straight toward it immediately before the hit, the target takes an extra 2d4 Bludgeoning damage and has the Prone condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Giant Seahorse",
+    "id": "giantSeahorse",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Giant Seahorse",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 14,
+      "hp": 16,
+      "movement": {
+        "walk": 5,
+        "swim": 40
+      },
+      "stats": {
+        "str": 15,
+        "dex": 12,
+        "con": 11,
+        "int": 2,
+        "wis": 12,
+        "cha": 5
+      },
+      "cr": 0.5,
+      "traits": [
+        {
+          "name": "Water Breathing",
+          "description": "The seahorse can breathe only underwater."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Ram",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 2d6 + 2 Bludgeoning damage, or 2d8 + 2 Bludgeoning damage if the seahorse moved 20+ feet straight toward the target immediately before the hit."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Giant Spider",
+    "id": "giantSpider",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Giant Spider",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 14,
+      "hp": 26,
+      "movement": {
+        "walk": 30,
+        "climb": 30
+      },
+      "stats": {
+        "str": 14,
+        "dex": 16,
+        "con": 12,
+        "int": 2,
+        "wis": 11,
+        "cha": 4
+      },
+      "skills": {
+        "perception": 4,
+        "stealth": 7
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 1,
+      "traits": [
+        {
+          "name": "Spider Climb",
+          "description": "The spider can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+        },
+        {
+          "name": "Web Walker",
+          "description": "The spider ignores movement restrictions caused by webs, and it knows the location of any other creature in contact with the same web."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d8 + 3 Piercing damage plus 2d6 Poison damage."
+        },
+        {
+          "name": "Web (Recharge 5-6)",
+          "description": "Dexterity Saving Throw DC 13, one creature the spider can see within 60 feet. _Fail:_ The target has the Restrained condition until the web is destroyed (AC 10; HP 5; Vulnerability to Fire damage; Immunity to Poison and Psychic damage)."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Giant Weasel",
+    "id": "giantWeasel",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Giant Weasel",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 13,
+      "hp": 9,
+      "movement": {
+        "walk": 40,
+        "climb": 30
+      },
+      "stats": {
+        "str": 11,
+        "dex": 17,
+        "con": 10,
+        "int": 4,
+        "wis": 12,
+        "cha": 5
+      },
+      "skills": {
+        "acrobatics": 5,
+        "perception": 3,
+        "stealth": 5
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.125,
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Goat",
+    "id": "goat",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Goat",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 4,
+      "movement": {
+        "walk": 40,
+        "climb": 30
+      },
+      "stats": {
+        "str": 11,
+        "dex": 10,
+        "con": 11,
+        "int": 2,
+        "wis": 10,
+        "cha": 5
+      },
+      "skills": {
+        "perception": 2
+      },
+      "saves": {
+        "str": 2
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0,
+      "actions": [
+        {
+          "name": "Ram",
+          "description": "_Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Bludgeoning damage, or 1d4 Bludgeoning damage if the goat moved 20+ feet straight toward the target immediately before the hit."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Hawk",
+    "id": "hawk",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Hawk",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 13,
+      "hp": 1,
+      "movement": {
+        "walk": 10,
+        "fly": 60
+      },
+      "stats": {
+        "str": 5,
+        "dex": 16,
+        "con": 8,
+        "int": 2,
+        "wis": 14,
+        "cha": 6
+      },
+      "skills": {
+        "perception": 6
+      },
+      "cr": 0,
+      "actions": [
+        {
+          "name": "Talons",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1 Slashing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Imp",
+    "id": "imp",
+    "category": "fiend",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Imp",
+      "size": "Tiny",
+      "classification": "Fiend (Devil)",
+      "ac": 13,
+      "hp": 21,
+      "movement": {
+        "walk": 20,
+        "fly": 40
+      },
+      "stats": {
+        "str": 6,
+        "dex": 17,
+        "con": 13,
+        "int": 11,
+        "wis": 12,
+        "cha": 14
+      },
+      "skills": {
+        "deception": 4,
+        "insight": 3,
+        "stealth": 5
+      },
+      "resistances": [
+        "Cold"
+      ],
+      "immunities": [
+        "Fire",
+        "Poison"
+      ],
+      "conditionImmunities": [
+        "Poisoned"
+      ],
+      "senses": {
+        "darkvision": 120
+      },
+      "cr": 1,
+      "traits": [
+        {
+          "name": "Magic Resistance",
+          "description": "The imp has Advantage on saving throws against spells and other magical effects."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Sting",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d6 + 3 Piercing damage plus 2d6 Poison damage."
+        },
+        {
+          "name": "Shape-Shift",
+          "description": "The imp shape-shifts to resemble a rat (Speed 20 ft.), a raven (20 ft., Fly 60 ft.), or a spider (20 ft., Climb 20 ft.), or it returns to its true form. Its statistics are the same in each form, except for its Speed. Any equipment it is wearing or carrying isn't transformed."
+        },
+        {
+          "name": "Invisibility",
+          "description": "The imp casts Invisibility on itself, requiring no spell components and using Charisma as the spellcasting ability."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Lion",
+    "id": "lion",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Lion",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 22,
+      "movement": {
+        "walk": 50
+      },
+      "stats": {
+        "str": 17,
+        "dex": 15,
+        "con": 11,
+        "int": 3,
+        "wis": 12,
+        "cha": 8
+      },
+      "skills": {
+        "perception": 3,
+        "stealth": 4
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 1,
+      "traits": [
+        {
+          "name": "Pack Tactics",
+          "description": "The lion has Advantage on an attack roll against a creature if at least one of the lion's allies is within 5 feet of the creature and the ally doesn't have the Incapacitated condition."
+        },
+        {
+          "name": "Running Leap",
+          "description": "With a 10-foot running start, the lion can Long Jump up to 25 feet."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Multiattack",
+          "description": "The lion makes two Rend attacks. It can replace one attack with a use of Roar."
+        },
+        {
+          "name": "Rend",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d8 + 3 Slashing damage."
+        },
+        {
+          "name": "Roar",
+          "description": "Wisdom Saving Throw DC 11, one creature within 15 feet. _Fail:_ The target has the Frightened condition until the start of the lion's next turn."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Lizard",
+    "id": "lizard",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Lizard",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 2,
+      "movement": {
+        "walk": 20,
+        "climb": 20
+      },
+      "stats": {
+        "str": 2,
+        "dex": 11,
+        "con": 10,
+        "int": 1,
+        "wis": 8,
+        "cha": 3
+      },
+      "senses": {
+        "darkvision": 30
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Spider Climb",
+          "description": "The lizard can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Mastiff",
+    "id": "mastiff",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Mastiff",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 5,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 13,
+        "dex": 14,
+        "con": 12,
+        "int": 3,
+        "wis": 12,
+        "cha": 7
+      },
+      "skills": {
+        "perception": 5
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.125,
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1d6 + 1 Piercing damage. If the target is a Medium or smaller creature, it has the Prone condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Mule",
+    "id": "mule",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Mule",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 11,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 14,
+        "dex": 10,
+        "con": 13,
+        "int": 2,
+        "wis": 10,
+        "cha": 5
+      },
+      "saves": {
+        "str": 4
+      },
+      "cr": 0.125,
+      "traits": [
+        {
+          "name": "Beast of Burden",
+          "description": "The mule counts as one size larger for the purpose of determining its carrying capacity."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Hooves",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4 + 2 Bludgeoning damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Octopus",
+    "id": "octopus",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Octopus",
+      "size": "Small",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 3,
+      "movement": {
+        "walk": 5,
+        "swim": 30
+      },
+      "stats": {
+        "str": 4,
+        "dex": 15,
+        "con": 11,
+        "int": 3,
+        "wis": 10,
+        "cha": 4
+      },
+      "skills": {
+        "perception": 2,
+        "stealth": 6
+      },
+      "senses": {
+        "darkvision": 30
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Compression",
+          "description": "The octopus can move through a space as narrow as 1 inch without expending extra movement to do so."
+        },
+        {
+          "name": "Water Breathing",
+          "description": "The octopus can breathe only underwater."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Tentacles",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Bludgeoning damage."
+        }
+      ],
+      "reactions": [
+        {
+          "name": "Ink Cloud (1/Day)",
+          "description": "_Trigger:_ A creature ends its turn within 5 feet of the octopus while underwater. _Response:_ The octopus releases ink that fills a 5-foot Cube [Area of Effect] centered on itself, and the octopus moves up to its Swim Speed. The Cube [Area of Effect] is Heavily Obscured for 1 minute or until a strong current or similar effect disperses the ink."
+        }
+      ]
+    }
   },
   {
     "type": "Reference",
@@ -24923,7 +25819,7 @@
       "traits": [
         {
           "name": "Flyby",
-          "description": "The owl doesn't provoke Opportunity Attack when it flies out of an enemy's reach."
+          "description": "The owl doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} when it flies out of an enemy's reach."
         }
       ],
       "actions": [
@@ -24936,10 +25832,703 @@
   },
   {
     "type": "Reference",
-    "name": "Venomous Snake",
+    "name": "Panther",
+    "id": "panther",
+    "category": "beast",
     "target": "$(local.target)",
+    "variables": {
+      "name": "Panther",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 13,
+      "hp": 13,
+      "movement": {
+        "walk": 50,
+        "climb": 40
+      },
+      "stats": {
+        "str": 14,
+        "dex": 16,
+        "con": 10,
+        "int": 3,
+        "wis": 14,
+        "cha": 7
+      },
+      "skills": {
+        "perception": 4,
+        "stealth": 6
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Rend",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d6 + 3 Slashing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Pony",
+    "id": "pony",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Pony",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 11,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 15,
+        "dex": 10,
+        "con": 13,
+        "int": 2,
+        "wis": 11,
+        "cha": 7
+      },
+      "saves": {
+        "str": 4
+      },
+      "cr": 0.125,
+      "actions": [
+        {
+          "name": "Hooves",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4 + 2 Bludgeoning damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Pseudodragon",
+    "id": "pseudodragon",
+    "category": "dragon",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Pseudodragon",
+      "size": "Tiny",
+      "classification": "Dragon",
+      "ac": 14,
+      "hp": 10,
+      "movement": {
+        "walk": 15,
+        "fly": 60
+      },
+      "stats": {
+        "str": 6,
+        "dex": 15,
+        "con": 13,
+        "int": 10,
+        "wis": 12,
+        "cha": 10
+      },
+      "skills": {
+        "perception": 5,
+        "stealth": 4
+      },
+      "senses": {
+        "blindsight": 10,
+        "darkvision": 60
+      },
+      "cr": 0.25,
+      "traits": [
+        {
+          "name": "Magic Resistance",
+          "description": "The pseudodragon has Advantage on saving throws against spells and other magical effects."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Multiattack",
+          "description": "The pseudodragon makes two Bite attacks."
+        },
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4 + 2 Piercing damage."
+        },
+        {
+          "name": "Sting",
+          "description": "Constitution Saving Throw DC 12, one creature the pseudodragon can see within 5 feet. _Fail:_ 2d4 Poison damage, and the target has the Poisoned condition for 1 hour. While Poisoned, the target also has the Unconscious condition, which ends early if the target takes damage or a creature within 5 feet of it takes an action to wake it."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Quasit",
+    "id": "quasit",
+    "category": "fiend",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Quasit",
+      "size": "Tiny",
+      "classification": "Fiend (Demon)",
+      "ac": 13,
+      "hp": 25,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 5,
+        "dex": 17,
+        "con": 10,
+        "int": 7,
+        "wis": 10,
+        "cha": 10
+      },
+      "skills": {
+        "stealth": 5
+      },
+      "resistances": [
+        "Cold",
+        "Fire",
+        "Lightning"
+      ],
+      "immunities": [
+        "Poison"
+      ],
+      "conditionImmunities": [
+        "Poisoned"
+      ],
+      "senses": {
+        "darkvision": 120
+      },
+      "cr": 1,
+      "traits": [
+        {
+          "name": "Magic Resistance",
+          "description": "The quasit has Advantage on saving throws against spells and other magical effects."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Rend",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Slashing damage, and the target has the Poisoned condition until the start of the quasit's next turn."
+        },
+        {
+          "name": "Scare (1/Day)",
+          "description": "Wisdom Saving Throw DC 10, one creature within 20 feet. _Fail:_ The target has the Frightened condition. At the end of each of its turns, the target repeats the save, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+        },
+        {
+          "name": "Shape-Shift",
+          "description": "The quasit shape-shifts to resemble a bat (Speed 10 ft., Fly 40 ft.), a centipede (40 ft., Climb 40 ft.), or a toad (40 ft., Swim 40 ft.), or it returns to its true form. Its game statistics are the same in each form, except for its Speed. Any equipment it is wearing or carrying isn't transformed."
+        },
+        {
+          "name": "Invisibility",
+          "description": "The quasit casts Invisibility on itself, requiring no spell components and using Charisma as the spellcasting ability."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Rat",
+    "id": "rat",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Rat",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 10,
+      "hp": 1,
+      "movement": {
+        "walk": 20,
+        "climb": 20
+      },
+      "stats": {
+        "str": 2,
+        "dex": 11,
+        "con": 9,
+        "int": 2,
+        "wis": 10,
+        "cha": 4
+      },
+      "skills": {
+        "perception": 2
+      },
+      "senses": {
+        "darkvision": 30
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Agile",
+          "description": "The rat doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} when it moves out of an enemy's reach."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Raven",
+    "id": "raven",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Raven",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 2,
+      "movement": {
+        "walk": 10,
+        "fly": 50
+      },
+      "stats": {
+        "str": 2,
+        "dex": 14,
+        "con": 10,
+        "int": 5,
+        "wis": 13,
+        "cha": 6
+      },
+      "skills": {
+        "perception": 3
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Mimicry",
+          "description": "The raven can mimic simple sounds it has heard, such as a whisper or chitter. A hearer can discern the sounds are imitations with a successful DC 10 Wisdom (Insight) check."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Beak",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Reef Shark",
+    "id": "reefShark",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Reef Shark",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 22,
+      "movement": {
+        "walk": 5,
+        "swim": 30
+      },
+      "stats": {
+        "str": 14,
+        "dex": 15,
+        "con": 13,
+        "int": 1,
+        "wis": 10,
+        "cha": 4
+      },
+      "skills": {
+        "perception": 2
+      },
+      "senses": {
+        "blindsight": 30
+      },
+      "cr": 0.5,
+      "traits": [
+        {
+          "name": "Pack Tactics",
+          "description": "The shark has Advantage on an attack roll against a creature if at least one of the shark's allies is within 5 feet of the creature and the ally doesn't have the Incapacitated condition."
+        },
+        {
+          "name": "Water Breathing",
+          "description": "The shark can breathe only underwater."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 2d4 + 2 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Riding Horse",
+    "id": "ridingHorse",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Riding Horse",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 13,
+      "movement": {
+        "walk": 60
+      },
+      "stats": {
+        "str": 16,
+        "dex": 13,
+        "con": 12,
+        "int": 2,
+        "wis": 11,
+        "cha": 7
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Hooves",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d8 + 3 Bludgeoning damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Scorpion",
+    "id": "scorpion",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Scorpion",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 1,
+      "movement": {
+        "walk": 10
+      },
+      "stats": {
+        "str": 2,
+        "dex": 11,
+        "con": 8,
+        "int": 1,
+        "wis": 8,
+        "cha": 2
+      },
+      "senses": {
+        "blindsight": 10
+      },
+      "cr": 0,
+      "actions": [
+        {
+          "name": "Sting",
+          "description": "_Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Piercing damage plus 1d6 Poison damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Skeleton",
+    "id": "skeleton",
+    "category": "undead",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Skeleton",
+      "size": "Medium",
+      "classification": "Undead",
+      "ac": 14,
+      "hp": 13,
+      "movement": {
+        "walk": 30
+      },
+      "stats": {
+        "str": 10,
+        "dex": 16,
+        "con": 15,
+        "int": 6,
+        "wis": 8,
+        "cha": 5
+      },
+      "immunities": [
+        "Poison"
+      ],
+      "conditionImmunities": [
+        "Exhaustion",
+        "Poisoned"
+      ],
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Shortsword",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d6 + 3 Piercing damage."
+        },
+        {
+          "name": "Shortbow",
+          "description": "_Ranged Attack Roll:_ +5 to hit, range 80/320 ft. _Hit:_ 1d6 + 3 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Slaad Tadpole",
+    "id": "slaadTadpole",
+    "category": "aberration",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Slaad Tadpole",
+      "size": "Tiny",
+      "classification": "Aberration",
+      "ac": 12,
+      "hp": 7,
+      "movement": {
+        "walk": 30,
+        "burrow": 10
+      },
+      "stats": {
+        "str": 7,
+        "dex": 15,
+        "con": 10,
+        "int": 3,
+        "wis": 5,
+        "cha": 3
+      },
+      "skills": {
+        "stealth": 4
+      },
+      "resistances": [
+        "Acid",
+        "Cold",
+        "Fire",
+        "Lightning",
+        "Thunder"
+      ],
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.125,
+      "traits": [
+        {
+          "name": "Magic Resistance",
+          "description": "The slaad has Advantage on saving throws against spells and other magical effects."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d6 + 2 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Sphinx of Wonder",
+    "id": "sphinxOfWonder",
+    "category": "celestial",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Sphinx of Wonder",
+      "size": "Tiny",
+      "classification": "Celestial",
+      "ac": 13,
+      "hp": 24,
+      "movement": {
+        "walk": 20,
+        "fly": 40
+      },
+      "stats": {
+        "str": 6,
+        "dex": 17,
+        "con": 13,
+        "int": 15,
+        "wis": 12,
+        "cha": 11
+      },
+      "skills": {
+        "arcana": 4,
+        "religion": 4,
+        "stealth": 5
+      },
+      "resistances": [
+        "Necrotic",
+        "Psychic",
+        "Radiant"
+      ],
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 1,
+      "traits": [
+        {
+          "name": "Magic Resistance",
+          "description": "The sphinx has Advantage on saving throws against spells and other magical effects."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Rend",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Slashing damage plus 2d6 Radiant damage."
+        }
+      ],
+      "reactions": [
+        {
+          "name": "Burst of Ingenuity (2/Day)",
+          "description": "_Trigger:_ The sphinx or another creature within 30 feet makes an ability check or a saving throw. _Response:_ The sphinx adds 2 to the roll."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Spider",
+    "id": "spider",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Spider",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 1,
+      "movement": {
+        "walk": 20,
+        "climb": 20
+      },
+      "stats": {
+        "str": 2,
+        "dex": 14,
+        "con": 8,
+        "int": 1,
+        "wis": 10,
+        "cha": 2
+      },
+      "skills": {
+        "stealth": 4
+      },
+      "senses": {
+        "darkvision": 30
+      },
+      "cr": 0,
+      "traits": [
+        {
+          "name": "Spider Climb",
+          "description": "The spider can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+        },
+        {
+          "name": "Web Walker",
+          "description": "The spider ignores movement restrictions caused by webs, and the spider knows the location of any other creature in contact with the same web."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Piercing damage plus 1d4 Poison damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Sprite",
+    "id": "sprite",
+    "category": "fey",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Sprite",
+      "size": "Tiny",
+      "classification": "Fey",
+      "ac": 15,
+      "hp": 10,
+      "movement": {
+        "walk": 10,
+        "fly": 40
+      },
+      "stats": {
+        "str": 3,
+        "dex": 18,
+        "con": 10,
+        "int": 14,
+        "wis": 13,
+        "cha": 11
+      },
+      "skills": {
+        "perception": 3,
+        "stealth": 8
+      },
+      "cr": 0.25,
+      "actions": [
+        {
+          "name": "Needle Sword",
+          "description": "_Melee Attack Roll:_ +6 to hit, reach 5 ft. _Hit:_ 1d4 + 4 Piercing damage."
+        },
+        {
+          "name": "Enchanting Bow",
+          "description": "_Ranged Attack Roll:_ +6 to hit, range 40/160 ft. _Hit:_ 1 Piercing damage, and the target has the Charmed condition until the start of the sprite's next turn."
+        },
+        {
+          "name": "Heart Sight",
+          "description": "Charisma Saving Throw DC 10, one creature within 5 feet the sprite can see (Celestials, Fiends, and Undead automatically fail the save). _Fail:_ The sprite knows the target's emotions and alignment."
+        },
+        {
+          "name": "Invisibility",
+          "description": "The sprite casts Invisibility on itself, requiring no spell components and using Charisma as the spellcasting ability."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Tiger",
+    "id": "tiger",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Tiger",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 13,
+      "hp": 30,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 17,
+        "dex": 16,
+        "con": 14,
+        "int": 3,
+        "wis": 12,
+        "cha": 8
+      },
+      "skills": {
+        "perception": 3,
+        "stealth": 7
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 1,
+      "actions": [
+        {
+          "name": "Rend",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 2d6 + 3 Slashing damage. If the target is a Large or smaller creature, it has the Prone condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Venomous Snake",
     "id": "venomousSnake",
     "category": "beast",
+    "target": "$(local.target)",
     "variables": {
       "name": "Venomous Snake",
       "size": "Tiny",
@@ -24965,7 +26554,128 @@
       "actions": [
         {
           "name": "Bite",
-          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4+2 Piercing damage plus 1d6 Poison damage."
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4 + 2 Piercing damage plus 1d6 Poison damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Warhorse",
+    "id": "warhorse",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Warhorse",
+      "size": "Large",
+      "classification": "Beast",
+      "ac": 11,
+      "hp": 19,
+      "movement": {
+        "walk": 60
+      },
+      "stats": {
+        "str": 18,
+        "dex": 12,
+        "con": 13,
+        "int": 2,
+        "wis": 12,
+        "cha": 7
+      },
+      "saves": {
+        "wis": 3
+      },
+      "cr": 0.5,
+      "actions": [
+        {
+          "name": "Hooves",
+          "description": "_Melee Attack Roll:_ +6 to hit, reach 5 ft. _Hit:_ 2d4 + 4 Bludgeoning damage. If the target is a Large or smaller creature and the horse moved 20+ feet straight toward it immediately before the hit, the target takes an extra 2d4 Bludgeoning damage and has the Prone condition."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Weasel",
+    "id": "weasel",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Weasel",
+      "size": "Tiny",
+      "classification": "Beast",
+      "ac": 13,
+      "hp": 1,
+      "movement": {
+        "walk": 30,
+        "climb": 30
+      },
+      "stats": {
+        "str": 3,
+        "dex": 16,
+        "con": 8,
+        "int": 2,
+        "wis": 12,
+        "cha": 3
+      },
+      "skills": {
+        "acrobatics": 5,
+        "perception": 3,
+        "stealth": 5
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0,
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1 Piercing damage."
+        }
+      ]
+    }
+  },
+  {
+    "type": "Reference",
+    "name": "Wolf",
+    "id": "wolf",
+    "category": "beast",
+    "target": "$(local.target)",
+    "variables": {
+      "name": "Wolf",
+      "size": "Medium",
+      "classification": "Beast",
+      "ac": 12,
+      "hp": 11,
+      "movement": {
+        "walk": 40
+      },
+      "stats": {
+        "str": 14,
+        "dex": 15,
+        "con": 12,
+        "int": 3,
+        "wis": 12,
+        "cha": 6
+      },
+      "skills": {
+        "perception": 5,
+        "stealth": 4
+      },
+      "senses": {
+        "darkvision": 60
+      },
+      "cr": 0.25,
+      "traits": [
+        {
+          "name": "Pack Tactics",
+          "description": "The wolf has Advantage on attack rolls against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally doesn't have the Incapacitated condition."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Bite",
+          "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d6 + 2 Piercing damage. If the target is a Medium or smaller creature, it has the Prone condition."
         }
       ]
     }

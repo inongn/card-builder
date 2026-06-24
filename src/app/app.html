@@ -1,0 +1,66 @@
+<mat-sidenav-container class="app-sidenav-container" [hasBackdrop]="true">
+  
+  <!-- Main Content Area -->
+  <mat-sidenav-content class="app-content-content">
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" *ngIf="loading()">
+      <div class="loading-spinner-container">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Preparing RPG Builder Engine...</p>
+      </div>
+    </div>
+
+    <!-- Page Content (Router Outlet) -->
+    <div class="main-page-wrapper" *ngIf="!loading()">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Floating Debug Button -->
+    <button mat-fab class="debug-fab" (click)="drawer.toggle()" *ngIf="!loading()">
+      <mat-icon>bug_report</mat-icon>
+    </button>
+
+  </mat-sidenav-content>
+
+  <!-- Debug Sidebar Drawer -->
+  <mat-sidenav #drawer position="end" class="debug-drawer">
+    <div class="debug-drawer-header">
+      <div class="debug-title-row">
+        <mat-icon class="debug-title-icon">terminal</mat-icon>
+        <span class="debug-title">Engine Inspector</span>
+      </div>
+      <button mat-icon-button (click)="drawer.close()" class="debug-close-btn">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <!-- Debug Tabs -->
+    <div class="debug-tabs">
+      <button mat-button 
+        [class.active-debug-tab]="debugTab() === 'character'" 
+        (click)="setDebugTab('character')"
+        class="debug-tab-btn">
+        Character
+      </button>
+      <button mat-button 
+        [class.active-debug-tab]="debugTab() === 'recipe'" 
+        (click)="setDebugTab('recipe')"
+        class="debug-tab-btn">
+        Recipe
+      </button>
+      <button mat-button 
+        [class.active-debug-tab]="debugTab() === 'tree'" 
+        (click)="setDebugTab('tree')"
+        class="debug-tab-btn">
+        Tree
+      </button>
+    </div>
+
+    <!-- Debug Content -->
+    <div class="debug-content-area">
+      <pre class="debug-yaml-dump"><code>{{ getDebugContent() }}</code></pre>
+    </div>
+  </mat-sidenav>
+
+</mat-sidenav-container>
