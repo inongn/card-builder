@@ -10,8 +10,5 @@ children:
   operation: add
   value: 1
 - name: Blink Steps
-  type: Extra
-  target: weaponAttack OR cantrip OR level1Spell OR level2Spell OR level3Spell OR level4Spell
-    OR level5Spell OR level6Spell OR level7Spell OR level8Spell OR level9Spell OR
-    level9Spell
-  description: You can teleport up to 30 feet to an unoccupied space you can see.
+  type: Activity
+  description: "When you take the Attack action or the Magic action, you teleport up to 30 feet to an unoccupied space you can see."

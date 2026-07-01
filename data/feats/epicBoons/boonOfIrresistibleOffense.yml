@@ -10,11 +10,8 @@ children:
   operation: add
   value: 1
 - name: Overcome Defenses
-  type: Extra
-  target: bludgeoningDamage OR piercingDamage OR slashingDamage
-  description: This damage ignores Resistance.
+  type: Activity
+  description: When you deal Bludgeoning, Piercing, or Slashing damage, that damage ignores Resistance.
 - name: Overwhelming Strike
-  type: Extra
-  target: weaponAttack
-  description: On a Critical Hit, the target takes an extra $(Math.max(stats.str.mod, stats.dex.mod))
-    damage.
+  type: Activity
+  description: When you score a Critical Hit with a weapon attack, the target takes an extra $(Math.max(stats.str.mod, stats.dex.mod)) damage.

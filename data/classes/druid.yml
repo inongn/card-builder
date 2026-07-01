@@ -160,15 +160,24 @@ children:
     description: Whenever you roll Initiative and have no uses of Wild Shape left, you regain one expended use of it.
     condition: $(meta.level >= 20)
 
+  - type: Activity
+    name: "Wild Shape"
+    condition: $(meta.level >= 2)
+    id: wildShapeActivity
+    time: bonus action
+    range: self
+    duration: $(meta.level / 2) hours
+    resource: wildShape
+    repeatable: true
+    description: |
+      The power of nature allows you to assume the form of an animal. You gain $(meta.level) Temporary Hit Points, and your game statistics are replaced by Beast's stat block.
+
   - id: wildShapeForms
     type: Slot
     name: Wild Shape Forms
     quantity: "$(meta.level >= 8 ? 8 : meta.level >= 4 ? 4 : 4)"
-    target: "classOption OR (category=beast AND variables.cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT variables.movement.fly'))"
+    target: "classOption OR (category=beast AND cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT movement.fly'))"
     condition: $(meta.level >= 2)
-    variables:
-      target: wildShapeActivity
-
   # Level 19: Epic Boon
   - id: epicBoon
     type: Slot

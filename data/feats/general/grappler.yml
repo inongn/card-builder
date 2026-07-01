@@ -17,6 +17,6 @@ children:
   description: "You don't have to spend extra movement to move a creature Grappled by you if the creature is your size or smaller."
 - type: Extra
   target: unarmed
-  name: Grapple
-  description: When you hit a creature with an Unarmed Strike as part of the Attack action on your turn, you can use both the Damage and the Grapple option. You can use this benefit only once per turn.
+  name: Punch and Grab
+  description: Once per turn, you can use both the Damage and the Grapple option.
 id: grappler

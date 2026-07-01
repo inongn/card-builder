@@ -45,6 +45,8 @@ children:
       **Rage Damage.** When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage. 
       
       **Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.
+
+      $(meta.level >= 3 ? "**Primal Knowledge.** You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability." : "")
   - id: rage
     type: Resource
     name: Rage
@@ -74,8 +76,6 @@ children:
     
       When you make your first attack roll on your turn, you attack recklessly. You gain Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time.
 
-      $(meta.level >= 9 ? "You can forgo Advantage on one Strength-based attack roll on your turn. If the chosen attack hits, the target takes an extra $(meta.level >= 17 ? '2d10' : '1d10') damage and you can cause $(meta.level > 17 ? 'two effects of your choice:' : 'one effect of your choice:')" : "")
-
   # Level 3: Primal Knowledge
   - id: primalKnowledgeSkill
     type: Slot
@@ -83,12 +83,7 @@ children:
     condition: $(meta.level >= 3)
     quantity: 1
     target: animalHandlingProficiency OR athleticsProficiency OR intimidationProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
-  - id: primalKnowledge
-    type: Extra
-    name: Primal Knowledge
-    target: rage
-    condition: $(meta.level >= 3)
-    description: "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability."
+
 
   # Level 4: Ability Score Improvement
   - id: level4feat
@@ -100,11 +95,10 @@ children:
 
   # Level 5: Extra Attack
   - id: extraAttack
-    type: Extra
-    target: weaponAttack
+    type: Activity
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+    description: When you take the Attack action on your turn, you attack twice instead of once.
 
   # Level 5: Fast Movement
   - id: fastMovement
@@ -121,11 +115,11 @@ children:
 
   # Level 7: Instinctive Pounce
   - id: instinctivePounce
-    type: Extra
+    type: Activity
     name: Instinctive Pounce
     target: rage
     condition: $(meta.level >= 7)
-    description: "As part of the Bonus Action you take to enter your Rage, move up to $(attributes.movement.walk/2) feet."
+    description: "When you enter your Rage, move up to $(attributes.movement.walk/2) feet."
 
   # Level 8: Ability Score Improvement
   - id: level8feat
@@ -136,25 +130,29 @@ children:
     condition: $(meta.level >= 8)
 
   # Level 9: Brutal Strike
-  - id: brutalStrikeForcefulBlow
-    type: Extra
-    name: Forceful Blow
-    target: recklessAttack
+  - id: brutalStrike
+    type: Activity
+    name: Brutal Strike
     condition: $(meta.level >= 9)
-    description: "The target is pushed 15 feet straight away from you. You can then move up to $(attributes.movement.walk/2) feet straight toward the target without provoking Opportunity Attacks."
-  - id: brutalStrikeHamstringBlow
-    type: Extra
-    name: Hamstring Blow
-    target: recklessAttack
-    condition: $(meta.level >= 9)
-    description: "The target's Speed is reduced by 15 feet until the start of your next turn. A target can be affected by only one Hamstring Blow at a time."
+    description: |
+      When you use Reckless Attack, you forgo Advantage on one Strength-based attack roll on your turn. If the chosen attack hits, the target takes an extra $(meta.level >= 17 ? '2d10' : '1d10') damage and you can cause $(meta.level > 17 ? 'two effects of your choice:' : 'one effect of your choice:')
+
+      **Forceful Blow.** The target is pushed 15 feet straight away from you. You can then move up to $(attributes.movement.walk/2) feet straight toward the target without provoking Opportunity Attacks.
+
+      **Hamstring Blow.** The target's Speed is reduced by 15 feet until the start of your next turn. A target can be affected by only one Hamstring Blow at a time.
+
+      $(meta.level >= 13 ? "**Staggering Blow.** The target has Disadvantage on the next saving throw it makes, and it can't make Opportunity Attacks until the start of your next turn." : '')
+
+      $(meta.level >= 13 ? "**Sundering Blow.** Before the start of your next turn, the next attack roll made by another creature against the target gains a +5 bonus to the roll." : '')
+
+
 
   # Level 11: Relentless Rage
   - id: relentlessRage
     type: Activity
     name: Relentless Rage
     condition: $(meta.level >= 11)
-    description: "If you drop to 0 Hit Points while your Rage is active and don't die outright, you make a DC 10 Constitution saving throw. On a success, your Hit Points instead change to $(meta.level * 2). Each time you use this after the first, the DC increases by 5. The DC resets to 10 when you finish a Short or Long Rest."
+    description: "When you drop to 0 Hit Points while your Rage is active and don't die outright, you make a DC 10 Constitution saving throw. On a success, your Hit Points instead change to $(meta.level * 2). Each time you use this after the first, the DC increases by 5. The DC resets to 10 when you finish a Short or Long Rest."
 
   # Level 12: Ability Score Improvement
   - id: level12feat
@@ -163,20 +161,6 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 12)
-
-  # Level 13: Improved Brutal Strike
-  - id: brutalStrikeStaggeringBlow
-    type: Extra
-    name: Staggering Blow
-    target: recklessAttack
-    condition: $(meta.level >= 13)
-    description: "The target has Disadvantage on the next saving throw it makes, and it can't make Opportunity Attacks until the start of your next turn."
-  - id: brutalStrikeSunderingBlow
-    type: Extra
-    name: Sundering Blow
-    target: recklessAttack
-    condition: $(meta.level >= 13)
-    description: "Before the start of your next turn, the next attack roll made by another creature against the target gains a +5 bonus to the roll."
 
   # Level 15: Persistent Rage
   - id: persistentRageLR

@@ -47,7 +47,7 @@ children:
     type: Extra
     target: wildShapeActivity
     name: Lunar Radiance
-    description: "You can deal Radiant damage instead of the normal type."
+    description: "When you make an attack and deal damage, you can choose to deal Radiant damage instead of the normal type. $(meta.level >= 14 ? 'Additionally, the target takes an additional 2d10 Radiant damage.' : '')"
     condition: $(meta.level >= 6)
   - id: improvedCircleFormsToughness
     type: Extra
@@ -75,11 +75,3 @@ children:
     name: Moonlight Step
     quantity: $(Math.max(1, stats.wis.mod))
     condition: $(meta.level >= 10)
-
-  # Level 14: Lunar Form
-  - id: lunarFormRadiance
-    type: Extra
-    target: wildShapeActivity
-    name: Improved Lunar Radiance
-    description: "Once on each turn when you hit a creature with an attack, the target takes an additional 2d10 Radiant damage."
-    condition: $(meta.level >= 14)

@@ -60,22 +60,11 @@ children:
     condition: $(meta.level >= 20)
     tags: [innateLR]
     resource: level5SpellSlot
-    description: "You imbue your Aura of Protection with holy power, granting the benefits below for the duration or until you end them (no action required):"
-  - id: holyNimbusHolyWard
-    type: Extra
-    name: Holy Ward
-    target: holyNimbus
-    condition: $(meta.level >= 20)
-    description: "You have Advantage on any saving throw you are forced to make by a Fiend or an Undead."
-  - id: holyNimbusRadiantDamage
-    type: Extra
-    name: Radiant Damage
-    target: holyNimbus
-    condition: $(meta.level >= 20)
-    description: "Whenever an enemy starts its turn in the aura, that creature takes $(stats.cha.mod + attributes.prof) Radiant damage."
-  - id: holyNimbusSunlight
-    type: Extra
-    name: Sunlight
-    target: holyNimbus
-    condition: $(meta.level >= 20)
-    description: "The aura is filled with Bright Light that is sunlight."
+    description: |
+      You imbue your Aura of Protection with holy power, granting the benefits below for the duration or until you end them (no action required):
+      
+      **Holy Ward.** You have Advantage on any saving throw you are forced to make by a Fiend or an Undead.
+
+      **Radiant Damage.** Whenever an enemy starts its turn in the aura, that creature takes $(stats.cha.mod + attributes.prof) Radiant damage.
+
+      **Sunlight.** The aura is filled with Bright Light that is sunlight.

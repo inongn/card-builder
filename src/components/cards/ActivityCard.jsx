@@ -9,6 +9,14 @@ import 'mdui/components/divider.js';
 
 import { AutoFitContent } from '../AutoFitContent';
 
+const markdownComponents = {
+    p: ({ children }) => (
+        <div className="card-description-paragraph">
+            <p>{children}</p>
+        </div>
+    )
+};
+
 export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) => {
     if (!activity) return null;
 
@@ -130,41 +138,33 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                 {variant === 'static' ? (
                     <AutoFitContent>
                         {activity.description && (
-                            <div className={`card-description`}>
+                            <div className="card-description">
                                 {Array.isArray(activity.description) ?
                                     activity.description.map((line, i) => (
-                                        <div key={i} className="card-description-paragraph">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
-                                        </div>
+                                        <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>{line}</ReactMarkdown>
                                     )) :
-                                    <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.description}</ReactMarkdown>
-                                    </div>
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{activity.description}</ReactMarkdown>
                                 }
                             </div>
                         )}
 
 
                         {hasExtra && (
-                            <div className={`card-description extra`}>
+                            <div className="card-description extra">
                                 <mdui-divider></mdui-divider>
                                 {Array.isArray(activity.extra) ?
                                     sortDescription(activity.extra).map((line, i) => (
-                                        <div key={i} className="card-description-paragraph">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                                {typeof line === 'object' && line !== null
-                                                    ? `${line.name ? `**${line.name}.** ` : ''}${line.description || ''}`
-                                                    : String(line)}
-                                            </ReactMarkdown>
-                                        </div>
-                                    )) :
-                                    <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                            {typeof activity.extra === 'object' && activity.extra !== null
-                                                ? `${activity.extra.name ? `**${activity.extra.name}.** ` : ''}${activity.extra.description || ''}`
-                                                : String(activity.extra)}
+                                        <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                                            {typeof line === 'object' && line !== null
+                                                ? `${line.name ? `**${line.name}.** ` : ''}${line.description || ''}`
+                                                : String(line)}
                                         </ReactMarkdown>
-                                    </div>
+                                    )) :
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                                        {typeof activity.extra === 'object' && activity.extra !== null
+                                            ? `${activity.extra.name ? `**${activity.extra.name}.** ` : ''}${activity.extra.description || ''}`
+                                            : String(activity.extra)}
+                                    </ReactMarkdown>
                                 }
                             </div>
                         )}
@@ -172,41 +172,33 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                 ) : (
                     <>
                         {activity.description && (
-                            <div className={`card-description`}>
+                            <div className="card-description">
                                 {Array.isArray(activity.description) ?
                                     activity.description.map((line, i) => (
-                                        <div key={i} className="card-description-paragraph">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
-                                        </div>
+                                        <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>{line}</ReactMarkdown>
                                     )) :
-                                    <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.description}</ReactMarkdown>
-                                    </div>
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{activity.description}</ReactMarkdown>
                                 }
                             </div>
                         )}
 
                         {hasExtra && (
-                            <div className={`card-description extra`}>
+                            <div className="card-description extra">
                                 <mdui-divider></mdui-divider>
 
                                 {Array.isArray(activity.extra) ?
                                     sortDescription(activity.extra).map((line, i) => (
-                                        <div key={i} className="card-description-paragraph">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                                {typeof line === 'object' && line !== null
-                                                    ? `${line.name ? `**${line.name}.** ` : ''}${line.description || ''}`
-                                                    : String(line)}
-                                            </ReactMarkdown>
-                                        </div>
-                                    )) :
-                                    <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                            {typeof activity.extra === 'object' && activity.extra !== null
-                                                ? `${activity.extra.name ? `**${activity.extra.name}.** ` : ''}${activity.extra.description || ''}`
-                                                : String(activity.extra)}
+                                        <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                                            {typeof line === 'object' && line !== null
+                                                ? `${line.name ? `**${line.name}.** ` : ''}${line.description || ''}`
+                                                : String(line)}
                                         </ReactMarkdown>
-                                    </div>
+                                    )) :
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                                        {typeof activity.extra === 'object' && activity.extra !== null
+                                            ? `${activity.extra.name ? `**${activity.extra.name}.** ` : ''}${activity.extra.description || ''}`
+                                            : String(activity.extra)}
+                                    </ReactMarkdown>
                                 }
                             </div>
                         )}

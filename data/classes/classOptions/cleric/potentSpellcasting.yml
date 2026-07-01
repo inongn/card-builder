@@ -25,8 +25,8 @@ children:
     operation: replace
     value: d4$(formatBonus(stats.wis.mod))
   - id: potentSpellcastingVitality
-    type: Extra
+    type: Activity
     name: Potent Spellcasting
     target: cantrip AND cleric AND damageSpell
     condition: $(meta.level >= 14)
-    description: "On a hit, grant $(2 * stats.wis.mod) Temporary Hit Points to yourself or another creature within 60 feet."
+    description: "When you cast a Cleric cantrip and deal damage to a creature with it, you can give vitality to yourself or another creature within 60 feet of yourself, granting $(2 * stats.wis.mod) Temporary Hit Points."

@@ -744,7 +744,7 @@
         "range": "self",
         "duration": "10 minutes",
         "resource": "rage",
-        "description": "You imbue yourself with primal power. While active, you gain the following benefits:\n\n**Damage Resistance.** You have resistance to Bludgeoning, Piercing, and Slashing damage. \n\n**Rage Damage.** When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage. \n\n**Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.\n"
+        "description": "You imbue yourself with primal power. While active, you gain the following benefits:\n\n**Damage Resistance.** You have resistance to Bludgeoning, Piercing, and Slashing damage. \n\n**Rage Damage.** When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage. \n\n**Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.\n\n$(meta.level >= 3 ? \"**Primal Knowledge.** You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability.\" : \"\")\n"
       },
       {
         "id": "rage",
@@ -771,7 +771,7 @@
         "type": "Activity",
         "name": "Reckless Attack",
         "condition": "$(meta.level >= 2)",
-        "description": "\nWhen you make your first attack roll on your turn, you attack recklessly. You gain Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time.\n\n$(meta.level >= 9 ? \"You can forgo Advantage on one Strength-based attack roll on your turn. If the chosen attack hits, the target takes an extra $(meta.level >= 17 ? '2d10' : '1d10') damage and you can cause $(meta.level > 17 ? 'two effects of your choice:' : 'one effect of your choice:')\" : \"\")\n"
+        "description": "\nWhen you make your first attack roll on your turn, you attack recklessly. You gain Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time.\n"
       },
       {
         "id": "primalKnowledgeSkill",
@@ -780,14 +780,6 @@
         "condition": "$(meta.level >= 3)",
         "quantity": 1,
         "target": "animalHandlingProficiency OR athleticsProficiency OR intimidationProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency"
-      },
-      {
-        "id": "primalKnowledge",
-        "type": "Extra",
-        "name": "Primal Knowledge",
-        "target": "rage",
-        "condition": "$(meta.level >= 3)",
-        "description": "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability."
       },
       {
         "id": "level4feat",
@@ -799,11 +791,10 @@
       },
       {
         "id": "extraAttack",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
-        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        "description": "When you take the Attack action on your turn, you attack twice instead of once."
       },
       {
         "id": "fastMovement",
@@ -820,11 +811,11 @@
       },
       {
         "id": "instinctivePounce",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Instinctive Pounce",
         "target": "rage",
         "condition": "$(meta.level >= 7)",
-        "description": "As part of the Bonus Action you take to enter your Rage, move up to $(attributes.movement.walk/2) feet."
+        "description": "When you enter your Rage, move up to $(attributes.movement.walk/2) feet."
       },
       {
         "id": "level8feat",
@@ -835,27 +826,18 @@
         "condition": "$(meta.level >= 8)"
       },
       {
-        "id": "brutalStrikeForcefulBlow",
-        "type": "Extra",
-        "name": "Forceful Blow",
-        "target": "recklessAttack",
+        "id": "brutalStrike",
+        "type": "Activity",
+        "name": "Brutal Strike",
         "condition": "$(meta.level >= 9)",
-        "description": "The target is pushed 15 feet straight away from you. You can then move up to $(attributes.movement.walk/2) feet straight toward the target without provoking Opportunity Attacks."
-      },
-      {
-        "id": "brutalStrikeHamstringBlow",
-        "type": "Extra",
-        "name": "Hamstring Blow",
-        "target": "recklessAttack",
-        "condition": "$(meta.level >= 9)",
-        "description": "The target's Speed is reduced by 15 feet until the start of your next turn. A target can be affected by only one Hamstring Blow at a time."
+        "description": "When you use Reckless Attack, you forgo Advantage on one Strength-based attack roll on your turn. If the chosen attack hits, the target takes an extra $(meta.level >= 17 ? '2d10' : '1d10') damage and you can cause $(meta.level > 17 ? 'two effects of your choice:' : 'one effect of your choice:')\n\n**Forceful Blow.** The target is pushed 15 feet straight away from you. You can then move up to $(attributes.movement.walk/2) feet straight toward the target without provoking Opportunity Attacks.\n\n**Hamstring Blow.** The target's Speed is reduced by 15 feet until the start of your next turn. A target can be affected by only one Hamstring Blow at a time.\n\n$(meta.level >= 13 ? \"**Staggering Blow.** The target has Disadvantage on the next saving throw it makes, and it can't make Opportunity Attacks until the start of your next turn.\" : '')\n\n$(meta.level >= 13 ? \"**Sundering Blow.** Before the start of your next turn, the next attack roll made by another creature against the target gains a +5 bonus to the roll.\" : '')\n"
       },
       {
         "id": "relentlessRage",
         "type": "Activity",
         "name": "Relentless Rage",
         "condition": "$(meta.level >= 11)",
-        "description": "If you drop to 0 Hit Points while your Rage is active and don't die outright, you make a DC 10 Constitution saving throw. On a success, your Hit Points instead change to $(meta.level * 2). Each time you use this after the first, the DC increases by 5. The DC resets to 10 when you finish a Short or Long Rest."
+        "description": "When you drop to 0 Hit Points while your Rage is active and don't die outright, you make a DC 10 Constitution saving throw. On a success, your Hit Points instead change to $(meta.level * 2). Each time you use this after the first, the DC increases by 5. The DC resets to 10 when you finish a Short or Long Rest."
       },
       {
         "id": "level12feat",
@@ -864,22 +846,6 @@
         "quantity": 1,
         "target": "feat",
         "condition": "$(meta.level >= 12)"
-      },
-      {
-        "id": "brutalStrikeStaggeringBlow",
-        "type": "Extra",
-        "name": "Staggering Blow",
-        "target": "recklessAttack",
-        "condition": "$(meta.level >= 13)",
-        "description": "The target has Disadvantage on the next saving throw it makes, and it can't make Opportunity Attacks until the start of your next turn."
-      },
-      {
-        "id": "brutalStrikeSunderingBlow",
-        "type": "Extra",
-        "name": "Sundering Blow",
-        "target": "recklessAttack",
-        "condition": "$(meta.level >= 13)",
-        "description": "Before the start of your next turn, the next attack roll made by another creature against the target gains a +5 bonus to the roll."
       },
       {
         "id": "persistentRageLR",
@@ -1215,10 +1181,10 @@
     "children": [
       {
         "id": "divineStrikeExtra",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Divine Strike",
         "target": "weaponAttack",
-        "description": "Once per turn, the target takes an extra $(meta.level >= 14 ? '2d8' : '1d8') Necrotic or Radiant damage."
+        "description": "Once per turn, when you hit a creature with an attack roll using a weapon, the target takes an extra $(meta.level >= 14 ? '2d8' : '1d8') Necrotic or Radiant damage."
       }
     ]
   },
@@ -1330,11 +1296,11 @@
       },
       {
         "id": "potentSpellcastingVitality",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Potent Spellcasting",
         "target": "cantrip AND cleric AND damageSpell",
         "condition": "$(meta.level >= 14)",
-        "description": "On a hit, grant $(2 * stats.wis.mod) Temporary Hit Points to yourself or another creature within 60 feet."
+        "description": "When you cast a Cleric cantrip and deal damage to a creature with it, you can give vitality to yourself or another creature within 60 feet of yourself, granting $(2 * stats.wis.mod) Temporary Hit Points."
       }
     ]
   },
@@ -1434,7 +1400,7 @@
     ]
   },
   {
-    "id": "potentSpellcasting",
+    "id": "potentSpellcastingDruid",
     "name": "Potent Spellcasting",
     "tags": [
       "elementalFury"
@@ -1489,18 +1455,11 @@
     "type": "Folder",
     "children": [
       {
-        "id": "primalStrikeWeapon",
-        "type": "Extra",
-        "target": "weaponAttack",
-        "name": "Primal Strike",
-        "description": "On a hit, the target takes an additional $(meta.level >= 15 ? \"2d8\" : \"1d8\") Cold, Fire, Lightning, or Thunder damage.\n"
-      },
-      {
-        "id": "primalStrikeWildShape",
-        "type": "Extra",
+        "id": "primalStrikeActivity",
+        "type": "Activity",
         "target": "wildShapeActivity",
         "name": "Primal Strike",
-        "description": "Once on each turn when you hit a creature with an attack, the target takes an additional $(meta.level >= 15 ? '2d8' : '1d8') Cold, Fire, Lightning, or Thunder damage."
+        "description": "Once per turn when you hit a creature with an attack roll using a weapon or a Beast form’s attack in Wild Shape, the target takes an additional $(meta.level >= 15 ? '2d8' : '1d8') Cold, Fire, Lightning, or Thunder damage."
       }
     ]
   },
@@ -1522,16 +1481,6 @@
     "traits": "$(local.traits ? local.traits : [])",
     "actions": "$(local.actions ? local.actions : [])",
     "bonusActions": "$(local.bonusActions ? local.bonusActions : [])"
-  },
-  {
-    "type": "Activity",
-    "name": "Find Familiar: $(local.name)",
-    "id": "findFamiliarActivity",
-    "time": "1 hour",
-    "resource": "level1SpellSlot",
-    "range": "10 feet",
-    "duration": "1 hour",
-    "description": "You gain the service of a familiar, a spirit that takes an animal form.\n\n> **Armor Class** $(local.ac)\n>\n> **Hit Points** $(local.hp)\n>\n> **Speed** $(formatObject(local.movement, '{key} {value} ft.'))\n>\n>---\n>\n>| STR | DEX | CON | INT | WIS | CHA |\n>|-----|-----|-----|-----|-----|-----|\n>| local.stats.str | local.stats.dex | local.stats.con | local.stats.int | local.stats.wis | local.stats.cha |\n>\n>---\n>\n> **Skills** $(formatObject(local.skills, '{Title} {bonus}'))\n>\n> **Senses** $(formatObject(local.senses, '{Title} {value} ft.'))\n>\n> $(local.resistances ? local.resistances.map(resistance => `**Resistances** ${resistance}`).join('\\n') : '')\n>\n> $(local.traits ? local.traits.map(trait => `**${trait.name}.** ${trait.description}`).join('\\n') : '')\n>\n>---\n>\n> $(local.actions ? local.actions.map(action => `**${action.name}.** ${action.description}`).join('\\n') : '')\n"
   },
   {
     "type": "Activity",
@@ -1791,17 +1740,6 @@
     ]
   },
   {
-    "type": "Activity",
-    "name": "Wild Shape: $(local.name)",
-    "id": "wildShapeActivity",
-    "time": "bonus action",
-    "range": "self",
-    "duration": "$(meta.level / 2) hours",
-    "resource": "wildShape",
-    "repeatable": true,
-    "description": "The power of nature allows you to assume the form of an animal. You gain $(meta.level) Temporary Hit Points, and your game statistics are replaced by the ones below:\n\n\n> **Armor Class** $(local.ac)\n>\n> **Speed** $(formatObject(local.movement, '{key} {value} ft.'))\n>\n>---\n>\n>| STR | DEX | CON | INT | WIS | CHA |\n>|-----|-----|-----|-----|-----|-----|\n>| local.stats.str | local.stats.dex | local.stats.con | $(stats.int.score) | local.stats.wis | local.stats.cha |\n>\n>---\n>\n> **Skills** $(formatObject(local.skills, '{Title} {bonus}'))\n>\n> **Senses** $(formatObject(local.senses, '{Title} {value} ft.'))\n>\n> $(local.resistances ? local.resistances.map(resistance => `**Resistances** ${resistance}`).join('\\n') : '')\n>\n> $(local.traits ? local.traits.map(trait => `**${trait.name}.** ${trait.description}`).join('\\n') : '')\n>\n>---\n>\n> $(local.actions ? local.actions.map(action => `**${action.name}.** ${action.description}`).join('\\n') : '')\n"
-  },
-  {
     "id": "blessedWarrior",
     "name": "Blessed Warrior",
     "type": "Folder",
@@ -1987,9 +1925,8 @@
     "tags": [
       "huntersPrey"
     ],
-    "type": "Extra",
-    "target": "weaponAttack",
-    "description": "On a hit, once per turn, if the target is missing any of its Hit Points, the target takes an extra 1d8 damage."
+    "type": "Activity",
+    "description": "Once per turn when you hit a creature with a weapon attack, if the target is missing any of its Hit Points, the target takes an extra 1d8 damage."
   },
   {
     "id": "hordeBreaker",
@@ -1997,9 +1934,8 @@
     "tags": [
       "huntersPrey"
     ],
-    "type": "Extra",
-    "target": "weaponAttack",
-    "description": "Once per turn, you can make another attack against a different creature that is within 5 feet of the target, that is within the weapon's range, and that you haven't attacked this turn."
+    "type": "Activity",
+    "description": "Once per turn when you make a weapon attack, you can make another attack against a different creature that is within 5 feet of the target, that is within the weapon's range, and that you haven't attacked this turn."
   },
   {
     "id": "baneAllegiance",
@@ -2068,11 +2004,10 @@
         "target": "acidResistance"
       },
       {
-        "type": "Extra",
+        "type": "Activity",
         "id": "acidAffinityDamage",
-        "target": "damageSpell AND acidDamage",
         "name": "Elemental Affinity",
-        "description": "Add $(stats.cha.mod) modifier to one damage roll of the spell.\n"
+        "description": "When you cast a spell that deals Acid damage, you can add $(stats.cha.mod) to one damage roll of the spell."
       }
     ]
   },
@@ -2089,10 +2024,9 @@
         "target": "coldResistance"
       },
       {
-        "type": "Extra",
-        "target": "damageSpell AND coldDamage",
+        "type": "Activity",
         "name": "Elemental Affinity",
-        "description": "Add $(stats.cha.mod) modifier to one damage roll of the spell.\n"
+        "description": "When you cast a spell that deals Cold damage, you can add $(stats.cha.mod) to one damage roll of the spell."
       }
     ]
   },
@@ -2109,11 +2043,10 @@
         "target": "fireResistance"
       },
       {
-        "type": "Extra",
+        "type": "Activity",
         "id": "fireAffinityDamage",
-        "target": "damageSpell AND fireDamage",
         "name": "Elemental Affinity",
-        "description": "Add $(stats.cha.mod) modifier to one damage roll of the spell.\n"
+        "description": "When you cast a spell that deals Fire damage, you can add $(stats.cha.mod) to one damage roll of the spell."
       }
     ]
   },
@@ -2130,10 +2063,9 @@
         "target": "lightningResistance"
       },
       {
-        "type": "Extra",
-        "target": "damageSpell AND lightningDamage",
+        "type": "Activity",
         "name": "Elemental Affinity",
-        "description": "Add $(stats.cha.mod) modifier to one damage roll of the spell.\n"
+        "description": "When you cast a spell that deals Lightning damage, you can add $(stats.cha.mod) to one damage roll of the spell."
       }
     ]
   },
@@ -2150,10 +2082,9 @@
         "target": "poisonResistance"
       },
       {
-        "type": "Extra",
-        "target": "damageSpell AND poisonDamage",
+        "type": "Activity",
         "name": "Elemental Affinity",
-        "description": "Add $(stats.cha.mod) modifier to one damage roll of the spell.\n"
+        "description": "When you cast a spell that deals Poison damage, you can add $(stats.cha.mod) to one damage roll of the spell."
       }
     ]
   },
@@ -2568,10 +2499,9 @@
     "children": [
       {
         "id": "lifedrinkerDesc",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "name": "Lifedrinker",
-        "description": "Once per turn, on a hit, the target takes an extra 1d6 Necrotic, Psychic, or Radiant damage (your choice). You can also expend one of your Hit Point Dice to roll it and regain $(attributes.hitDie)$(formatBonus(stats.con.mod)) HP.\n"
+        "description": "Once per turn when you hit a creature with a weapon attack, the target takes an extra 1d6 Necrotic, Psychic, or Radiant damage (your choice). You can also expend one of your Hit Point Dice to roll it and regain $(attributes.hitDie)$(formatBonus(stats.con.mod)) HP."
       }
     ]
   },
@@ -2783,11 +2713,10 @@
     "children": [
       {
         "id": "extraAttack",
-        "type": "Extra",
-        "target": "weaponAttack NOT unarmed",
+        "type": "Activity",
         "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
-        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        "description": "When you take the Attack action on your turn, you can attack twice instead of once."
       }
     ]
   },
@@ -3236,15 +3165,24 @@
         "condition": "$(meta.level >= 20)"
       },
       {
+        "type": "Activity",
+        "name": "Wild Shape",
+        "condition": "$(meta.level >= 2)",
+        "id": "wildShapeActivity",
+        "time": "bonus action",
+        "range": "self",
+        "duration": "$(meta.level / 2) hours",
+        "resource": "wildShape",
+        "repeatable": true,
+        "description": "The power of nature allows you to assume the form of an animal. You gain $(meta.level) Temporary Hit Points, and your game statistics are replaced by Beast's stat block.\n"
+      },
+      {
         "id": "wildShapeForms",
         "type": "Slot",
         "name": "Wild Shape Forms",
         "quantity": "$(meta.level >= 8 ? 8 : meta.level >= 4 ? 4 : 4)",
-        "target": "classOption OR (category=beast AND variables.cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT variables.movement.fly'))",
-        "condition": "$(meta.level >= 2)",
-        "variables": {
-          "target": "wildShapeActivity"
-        }
+        "target": "classOption OR (category=beast AND cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT movement.fly'))",
+        "condition": "$(meta.level >= 2)"
       },
       {
         "id": "epicBoon",
@@ -3387,11 +3325,10 @@
       },
       {
         "id": "extraAttack",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
-        "description": "You can attack $(meta.level >= 20 ? 'four times' : meta.level >= 11 ? 'three times' : 'twice'), instead of once, whenever you take the Attack action on your turn."
+        "description": "When you take the Attack action on your turn, you attack $(meta.level >= 20 ? 'four times' : meta.level >= 11 ? 'three times' : 'twice') instead of once."
       },
       {
         "id": "level8feat",
@@ -3403,11 +3340,10 @@
       },
       {
         "id": "tacticalMaster",
-        "type": "Extra",
-        "target": "weaponAttack NOT unarmed",
+        "type": "Activity",
         "condition": "$(meta.level >= 9)",
         "name": "Tactical Master",
-        "description": "On a hit, you can replace the effect of $(local.mastery.charAt(0).toUpperCase() + local.mastery.slice(1)) with one of the following effects — push the target up to 10 feet straight away from yourself, reduce the target's speed by 10 feet until the start of your next turn, or impose disadvantage on the target's next attack roll."
+        "description": "\nWhen you hit a creature with a weapon attack, you replace the effect of its Mastery property with one of the following options:\n\n**Push**. On a hit, push the target up to 10 feet straight away from you.\n\n**Sap**. On a hit, the target has disadvantage on its next attack roll before the start of your next turn.\n\n**Slow**. On a hit, the target's speed is reduced by 10 feet.\n"
       },
       {
         "id": "indomitable",
@@ -3428,11 +3364,10 @@
       },
       {
         "id": "studiedAttacks",
-        "type": "Extra",
-        "target": "weaponAttack OR attackSpell",
+        "type": "Activity",
         "condition": "$(meta.level >= 13)",
         "name": "Studied Attacks",
-        "description": "On a miss, you have Advantage on your next attack roll against the target before the end of your next turn."
+        "description": "When you miss with an attack dexterousAttacksRoll, you have Advantage on your next attack roll against the target before the end of your next turn."
       },
       {
         "id": "level12feat",
@@ -3688,11 +3623,10 @@
       },
       {
         "id": "extraAttack",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
-        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        "description": "When you take the Attack action on your turn, you attack twice instead of once."
       },
       {
         "id": "stunningStrike",
@@ -3704,11 +3638,10 @@
       },
       {
         "id": "empoweredStrikes",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "name": "Empowered Strikes",
         "condition": "$(meta.level >= 6)",
-        "description": "You can deal your choice of Force damage or the normal damage type."
+        "description": "When you deal damage with a weapon attack, you can deal Force damage instead of the normal damage type."
       },
       {
         "id": "evasion",
@@ -3954,11 +3887,10 @@
       },
       {
         "id": "extraAttack",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
-        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        "description": "When you take the Attack action on your turn, you attack twice instead of once."
       },
       {
         "type": "Reference",
@@ -4008,11 +3940,10 @@
       },
       {
         "id": "radiantStrikes",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Radiant Strikes",
-        "target": "weaponAttack",
         "condition": "$(meta.level >= 11)",
-        "description": "On a hit, the target takes an extra 1d8 Radiant damage."
+        "description": "When you hit a creature with a weapon attack, the target takes an extra 1d8 Radiant damage."
       },
       {
         "id": "level12feat",
@@ -4151,11 +4082,10 @@
       },
       {
         "id": "extraAttack",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
-        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+        "description": "When you take the Attack action on your turn, you attack twice instead of once."
       },
       {
         "id": "rovingSpeed",
@@ -4766,10 +4696,9 @@
     "children": [
       {
         "id": "frenzy",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Frenzy",
-        "target": "rage",
-        "description": "If you use Reckless Attack while your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
+        "description": "When you use Reckless Attack while your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
       },
       {
         "id": "mindlessRageCharmed",
@@ -4867,11 +4796,11 @@
     "children": [
       {
         "id": "discipleOfLife",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Disciple of Life",
         "target": "healingSpell",
         "condition": "$(meta.level >= 3)",
-        "description": "The creature regains an additional 2 + spell level Hit Points."
+        "description": "When a spell you cast with a spell slot restores Hit Points to a creature, that creature regains additional Hit Points on the turn you cast the spell. The additional Hit Points equal 2 plus the spell slot’s level."
       },
       {
         "type": "Reference",
@@ -4922,17 +4851,17 @@
         "id": "blessedHealer",
         "type": "Extra",
         "name": "Blessed Healer",
-        "target": "healingSpell",
+        "target": "discipleOfLife",
         "condition": "$(meta.level >= 6)",
-        "description": "If you cast this on another creature, you regain 2 + spell level Hit Points."
+        "description": "You also regain Hit Points equal to 2 plus the spell slot’s level."
       },
       {
         "id": "supremeHealing",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Supreme Healing",
         "target": "healingSpell",
         "condition": "$(meta.level >= 17)",
-        "description": "Use the highest number possible for each die rolled to restore Hit Points."
+        "description": "When you would normally roll one or more dice to restore Hit Points to a creature with a spell or Channel Divinity, don’t roll those dice for the healing; instead use the highest number possible for each die."
       }
     ]
   },
@@ -5005,7 +4934,7 @@
         "type": "Extra",
         "target": "wildShapeActivity",
         "name": "Lunar Radiance",
-        "description": "You can deal Radiant damage instead of the normal type.",
+        "description": "When you make an attack and deal damage, you can choose to deal Radiant damage instead of the normal type. $(meta.level >= 14 ? 'Additionally, the target takes an additional 2d10 Radiant damage.' : '')",
         "condition": "$(meta.level >= 6)"
       },
       {
@@ -5032,14 +4961,6 @@
         "name": "Moonlight Step",
         "quantity": "$(Math.max(1, stats.wis.mod))",
         "condition": "$(meta.level >= 10)"
-      },
-      {
-        "id": "lunarFormRadiance",
-        "type": "Extra",
-        "target": "wildShapeActivity",
-        "name": "Improved Lunar Radiance",
-        "description": "Once on each turn when you hit a creature with an attack, the target takes an additional 2d10 Radiant damage.",
-        "condition": "$(meta.level >= 14)"
       }
     ]
   },
@@ -5055,10 +4976,9 @@
       {
         "id": "improvedCritical",
         "name": "Improved Critical",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "condition": "$(meta.level >= 3)",
-        "description": "You score a Critical Hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
+        "description": "When you make a weapon attack roll, you score a Critical Hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
       },
       {
         "type": "Reference",
@@ -5071,10 +4991,9 @@
       {
         "id": "remarkableAthlete",
         "name": "Remarkable Athlete",
-        "type": "Extra",
-        "target": "weaponAttack",
+        "type": "Activity",
         "condition": "$(meta.level >= 3)",
-        "description": "On a Critical Hit, you can move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
+        "description": "When you score a Critical Hit with a weapon attack, you move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
       },
       {
         "id": "additionalFightingStyle",
@@ -5089,7 +5008,7 @@
         "name": "Heroic Warrior",
         "type": "Activity",
         "condition": "$(meta.level >= 10)",
-        "description": "The thrill of battle drives you toward victory. During combat, you can give yourself Heroic Inspiration whenever you start your turn without it.",
+        "description": "The thrill of battle drives you toward victory. When you start your turn without Heroic Inspiration, you gain it.",
         "time": "free action",
         "range": "self",
         "duration": "Instantaneous"
@@ -5246,31 +5165,7 @@
           "innateLR"
         ],
         "resource": "level5SpellSlot",
-        "description": "You imbue your Aura of Protection with holy power, granting the benefits below for the duration or until you end them (no action required):"
-      },
-      {
-        "id": "holyNimbusHolyWard",
-        "type": "Extra",
-        "name": "Holy Ward",
-        "target": "holyNimbus",
-        "condition": "$(meta.level >= 20)",
-        "description": "You have Advantage on any saving throw you are forced to make by a Fiend or an Undead."
-      },
-      {
-        "id": "holyNimbusRadiantDamage",
-        "type": "Extra",
-        "name": "Radiant Damage",
-        "target": "holyNimbus",
-        "condition": "$(meta.level >= 20)",
-        "description": "Whenever an enemy starts its turn in the aura, that creature takes $(stats.cha.mod + attributes.prof) Radiant damage."
-      },
-      {
-        "id": "holyNimbusSunlight",
-        "type": "Extra",
-        "name": "Sunlight",
-        "target": "holyNimbus",
-        "condition": "$(meta.level >= 20)",
-        "description": "The aura is filled with Bright Light that is sunlight."
+        "description": "You imbue your Aura of Protection with holy power, granting the benefits below for the duration or until you end them (no action required):\n\n**Holy Ward.** You have Advantage on any saving throw you are forced to make by a Fiend or an Undead.\n\n**Radiant Damage.** Whenever an enemy starts its turn in the aura, that creature takes $(stats.cha.mod + attributes.prof) Radiant damage.\n\n**Sunlight.** The aura is filled with Bright Light that is sunlight.\n"
       }
     ]
   },
@@ -5560,27 +5455,24 @@
     "children": [
       {
         "id": "potentCantrip",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Potent Cantrip",
-        "target": "cantrip AND damageSpell",
         "condition": "$(meta.level >= 3)",
-        "description": "If the target succeeds on a saving throw against this cantrip, it takes half damage but suffers no additional effect."
+        "description": "When a creature succeeds on a saving throw against a cantrip you cast that deals damage, the creature takes half the cantrip's damage but suffers no additional effect."
       },
       {
         "id": "sculptSpells",
-        "type": "Extra",
-        "target": "evocation AND saveSpell",
+        "type": "Activity",
         "name": "Sculpt Spells",
         "condition": "$(meta.level >= 6)",
-        "description": "When you cast this spell, your allies automatically succeed on their saving throw and take no damage if they would normally take half."
+        "description": "When you cast an Evocation spell, your allies automatically succeed on their saving throws against it and take no damage if they would normally take half damage."
       },
       {
         "id": "empoweredEvocation",
-        "type": "Extra",
+        "type": "Activity",
         "name": "Empowered Evocation",
-        "target": "evocation AND damageSpell",
         "condition": "$(meta.level >= 10)",
-        "description": "Add $(formatBonus(stats.int.mod)) to one damage roll of the spell."
+        "description": "When you cast an Evocation spell and deal damage, you can add $(formatBonus(stats.int.mod)) to one damage roll of the spell."
       },
       {
         "id": "overchannel",
@@ -7444,7 +7336,7 @@
     ],
     "time": "action",
     "range": "5 feet",
-    "description": "You strike with a punch, kick, head-butt or similar forceful blow. Choose one of the following options:\n\n*Damage:* Make a $(formatBonus(attributes.melee.attack)) attack against the target. On a hit, the target takes 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage.\n\n*Grapple:*  The target must succeed on a DC $(8+attributes.prof+Math.max(stats.str.mod, stats.dex.mod)) Dexterity saving throw or it has the Grappled condition.\n\n*Shove:*  The target must succeed on a DC $(8+attributes.prof+Math.max(stats.str.mod, stats.dex.mod)) Dexterity saving throw or it has the Prone condition.\n"
+    "description": "You strike with a punch, kick, head-butt or similar forceful blow. Choose one of the following options:\n\n**Damage.** Make a $(formatBonus(attributes.melee.attack)) attack against the target. On a hit, the target takes 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage.\n\n**Grapple.**  The target must succeed on a DC $(8+attributes.prof+Math.max(stats.str.mod, stats.dex.mod)) Dexterity saving throw or it has the Grappled condition.\n\n**Shove.**  The target must succeed on a DC $(8+attributes.prof+Math.max(stats.str.mod, stats.dex.mod)) Dexterity saving throw or it has the Prone condition.\n"
   },
   {
     "id": "warPick",
@@ -9370,9 +9262,8 @@
       },
       {
         "name": "Peerless Aim",
-        "type": "Extra",
-        "target": "weaponAttack",
-        "description": "On a miss, you can hit instead. Once you use this benefit, you can't use it again until the start of your next turn."
+        "type": "Activity",
+        "description": "Once per turn when you miss with an attack roll, you hit instead."
       }
     ]
   },
@@ -9393,9 +9284,8 @@
       },
       {
         "name": "Blink Steps",
-        "type": "Extra",
-        "target": "weaponAttack OR cantrip OR level1Spell OR level2Spell OR level3Spell OR level4Spell OR level5Spell OR level6Spell OR level7Spell OR level8Spell OR level9Spell OR level9Spell",
-        "description": "You can teleport up to 30 feet to an unoccupied space you can see."
+        "type": "Activity",
+        "description": "When you take the Attack action or the Magic action, you teleport up to 30 feet to an unoccupied space you can see."
       }
     ]
   },
@@ -9442,15 +9332,13 @@
       },
       {
         "name": "Overcome Defenses",
-        "type": "Extra",
-        "target": "bludgeoningDamage OR piercingDamage OR slashingDamage",
-        "description": "This damage ignores Resistance."
+        "type": "Activity",
+        "description": "When you deal Bludgeoning, Piercing, or Slashing damage, that damage ignores Resistance."
       },
       {
         "name": "Overwhelming Strike",
-        "type": "Extra",
-        "target": "weaponAttack",
-        "description": "On a Critical Hit, the target takes an extra $(Math.max(stats.str.mod, stats.dex.mod)) damage."
+        "type": "Activity",
+        "description": "When you score a Critical Hit with a weapon attack, the target takes an extra $(Math.max(stats.str.mod, stats.dex.mod)) damage."
       }
     ]
   },
@@ -9471,9 +9359,8 @@
       },
       {
         "name": "Free Casting",
-        "type": "Extra",
-        "target": "level1Spell OR level2Spell OR level3Spell OR level4Spell",
-        "description": "Roll 1d4. If the number you roll is the same as the slot's level, the slot isn't expended."
+        "type": "Activity",
+        "description": "When you cast a spell of level 1 through 4 using a spell slot, roll 1d4. If the number you roll is the same as the slot's level, the slot isn't expended."
       }
     ]
   },
@@ -9550,10 +9437,9 @@
     "tags": [
       "fightingStyle"
     ],
-    "type": "Extra",
+    "type": "Activity",
     "name": "Great Weapon Fighting",
-    "target": "weaponAttack AND twoHanded AND melee",
-    "description": "On a hit, you can treat any 1 or 2 on a damage die as a 3.",
+    "description": "When you roll damage for an attack with a two-handed melee weapon, you can treat any 1 or 2 on a damage die as a 3.",
     "id": "greatWeaponFighting"
   },
   {
@@ -9614,8 +9500,8 @@
       {
         "type": "Extra",
         "target": "unarmed",
-        "name": "Grapple",
-        "description": "When you hit a creature with an Unarmed Strike as part of the Attack action on your turn, you can use both the Damage and the Grapple option. You can use this benefit only once per turn."
+        "name": "Punch and Grab",
+        "description": "Once per turn, you can use both the Damage and the Grapple option."
       }
     ],
     "id": "grappler"
@@ -9749,9 +9635,8 @@
       "feat",
       "originFeat"
     ],
-    "type": "Extra",
-    "target": "weaponAttack",
-    "description": "On a hit, roll the damage dice twice and use either roll against the target."
+    "type": "Activity",
+    "description": "Once per turn when you hit a target with a weapon, you roll the weapon's damage dice twice and use either roll against the target."
   },
   {
     "id": "skilled",
@@ -11396,7 +11281,7 @@
     "time": "action",
     "range": "self",
     "duration": "instantaneous",
-    "description": "Guided by a flash of magical insight, you make one attack with the weapon used in the spell’s casting. The attack uses your spellcasting ability for the attack and damage rolls instead of using Strength or Dexterity. If the attack deals damage, it can be Radiant damage or the weapon’s normal damage type (your choice).\n"
+    "description": "Guided by a flash of magical insight, you make one attack with a weapon. The attack uses $(formatBonus(attributes.spellcasting.attack)) for the attack roll and $(formatBonus(attributes.spellcasting.bonus)) for the damage bonus instead of using Strength or Dexterity. If the attack deals damage, it can be Radiant damage or the weapon’s normal damage type (your choice).\n"
   },
   {
     "id": "viciousMockery",
@@ -12048,10 +11933,17 @@
         "id": "familiarForm",
         "name": "Familiar Form",
         "quantity": 1,
-        "target": "findFamiliarSpell OR badger OR bat OR cat OR frog OR hawk OR lizard OR octopus OR owl OR rat OR raven OR spider OR weasel $(attributes.pactOfTheChain == true ? 'OR imp OR pseudodragon OR quasit OR skeleton OR slaadTadpole OR sphinxOfWonder OR sprite OR venomousSnake' : '')",
-        "variables": {
-          "target": "findFamiliarActivity"
-        }
+        "target": "findFamiliarSpell OR badger OR bat OR cat OR frog OR hawk OR lizard OR octopus OR owl OR rat OR raven OR spider OR weasel $(attributes.pactOfTheChain == true ? 'OR imp OR pseudodragon OR quasit OR skeleton OR slaadTadpole OR sphinxOfWonder OR sprite OR venomousSnake' : '')"
+      },
+      {
+        "type": "Activity",
+        "name": "Find Familiar",
+        "id": "findFamiliarActivity",
+        "time": "1 hour",
+        "resource": "level1SpellSlot",
+        "range": "10 feet",
+        "duration": "1 hour",
+        "description": "You gain the service of a familiar, a spirit that takes an animal form you choose. Your familiar acts independently of you, but it obeys your commands.\n\n**Telepathic Connection.** While your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as a Bonus Action, you can see through the familiar’s eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses it has.\n\n**Touch Delivery.** When you cast a spell with a range of touch, your familiar can deliver the touch. Your familiar must be within 100 feet of you, and it must take a Reaction to deliver the touch when you cast the spell.\n\n**Combat.** The familiar is an ally to you and your allies. It rolls its own Initiative and acts on its own turn. A familiar can’t attack, but it can take other actions as normal.\n\n**Disappearance of the Familiar.** When the familiar drops to 0 Hit Points, it disappears. It reappears after you cast this spell again. As a Magic action, you can temporarily dismiss the familiar to a pocket dimension. Alternatively, you can dismiss it forever. As a Magic action while it is temporarily dismissed, you can cause it to reappear in an unoccupied space within 30 feet of you. Whenever the familiar drops to 0 Hit Points or disappears into the pocket dimension, it leaves behind in its space anything it was wearing or carrying.\n\n**One Familiar Only.** You can’t have more than one familiar at a time. If you cast this spell while you have a familiar, you instead cause it to adopt a new eligible form.\n"
       }
     ]
   },
@@ -19370,49 +19262,45 @@
     "description": "Wish is the mightiest spell a mortal can cast. By simply speaking aloud, you can alter reality itself.\n\nThe basic use of this spell is to duplicate any other spell of level 8 or lower. If you use it this way, you don't need to meet any requirements to cast that spell, including costly components. The spell simply takes effect.\n\nAlternatively, you can create one of the following effects of your choice:\n\n**Object Creation.** You create one object of up to 25,000 GP in value that isn't a magic item. The object can be no more than 300 feet in any dimension, and it appears in an unoccupied space that you can see on the ground.\n\n**Instant Health.** You allow yourself and up to twenty creatures that you can see to regain all Hit Points, and you end all effects on them listed in the Greater Restoration spell.\n\n**Resistance.** You grant up to ten creatures that you can see Resistance to one damage type that you choose. This Resistance is permanent.\n\n**Spell Immunity.** You grant up to ten creatures you can see immunity to a single spell or other magical effect for 8 hours.\n\n**Sudden Learning.** You replace one of your feats with another feat for which you are eligible. You lose all the benefits of the old feat and gain the benefits of the new one. You can't replace a feat that is a prerequisite for any of your other feats or features.\n\n**Roll Redo.** You undo a single recent event by forcing a reroll of any die roll made within the last round (including your last turn). Reality reshapes itselfto accommodate the new result. For example, a Wish spell could undo an ally’s failed saving throw or a foe's Critical Hit. You can force the reroll to be made with Advantage or Disadvantage, and you choose whether to use the reroll or the original roll.\n\n**Reshape Reality.** You may wish for something not included in any of the other effects. To do so, state your wish to the DM as precisely as possible. The DM has great latitude in ruling what occurs in such an instance; the greater the wish, the greater the likelihood that something goes wrong. This spell might simply fail, the effect you desire might be achieved only in part, or you might suffer an unforeseen consequence as a result of how you worded the wish. For example, wishing that a villain were dead might propel you forward in time to a period when that villain is no longer alive, effectively removing you from the game. Similarly, wishing for a Legendary magic item or an Artifact might instantly transport you to the presence of the item’s current owner. If your wish is granted and its effects have consequences for a whole community, region, or world, you are likely to attract powerful foes. If your wish would affect a god, the god’s divine servants might instantly intervene to prevent it or to encourage you to craft the wish in a particular way. If your wish would undo the multiverse itself, threaten the City of Sigil, or affect the Lady of Pain in any way, you see an image of her in your mind for a moment; she shakes her head, and your wish fails.\n\nThe stress of casting Wish to produce any effect other than duplicating another spell weakens you. After enduring that stress, each time you cast a spell until you finish a Long Rest, you take 1d10 Necrotic damage per level of that spell. This damage can't be reduced or prevented in any way. In addition, your Strength score becomes 3 for 2d4 days. For each of those days that you spend resting and doing nothing more than light activity, your remaining recovery time decreases by 2 days. Finally, there is a 33 percent chance that you are unable to cast Wish ever again if you suffer this stress.\n"
   },
   {
-    "type": "Reference",
+    "type": "Statblock",
     "name": "Ape",
     "id": "ape",
     "category": "beast",
-    "target": "$(local.target)",
-    "variables": {
-      "name": "Ape",
-      "size": "Medium",
-      "classification": "Beast",
-      "ac": 12,
-      "hp": 19,
-      "movement": {
-        "walk": 30,
-        "climb": 30
+    "size": "Medium",
+    "classification": "Beast",
+    "ac": 12,
+    "hp": 19,
+    "movement": {
+      "walk": 30,
+      "climb": 30
+    },
+    "stats": {
+      "str": 16,
+      "dex": 14,
+      "con": 14,
+      "int": 6,
+      "wis": 12,
+      "cha": 7
+    },
+    "skills": {
+      "athletics": 5,
+      "perception": 3
+    },
+    "cr": 0.5,
+    "actions": [
+      {
+        "name": "Multiattack",
+        "description": "The ape makes two Fist attacks."
       },
-      "stats": {
-        "str": 16,
-        "dex": 14,
-        "con": 14,
-        "int": 6,
-        "wis": 12,
-        "cha": 7
+      {
+        "name": "Fist",
+        "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Bludgeoning damage."
       },
-      "skills": {
-        "athletics": 5,
-        "perception": 3
-      },
-      "cr": 0.5,
-      "actions": [
-        {
-          "name": "Multiattack",
-          "description": "The ape makes two Fist attacks."
-        },
-        {
-          "name": "Fist",
-          "description": "_Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Bludgeoning damage."
-        },
-        {
-          "name": "Rock {@recharge}",
-          "description": "_Ranged Attack Roll:_ +5 to hit, range 25/50 ft. _Hit:_ 2d6 + 3 Bludgeoning damage."
-        }
-      ]
-    }
+      {
+        "name": "Rock {@recharge}",
+        "description": "_Ranged Attack Roll:_ +5 to hit, range 25/50 ft. _Hit:_ 2d6 + 3 Bludgeoning damage."
+      }
+    ]
   },
   {
     "type": "Reference",

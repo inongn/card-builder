@@ -9,27 +9,24 @@ children:
 
   # Level 3: Potent Cantrip
   - id: potentCantrip
-    type: Extra
+    type: Activity
     name: Potent Cantrip
-    target: cantrip AND damageSpell
     condition: $(meta.level >= 3)
-    description: "If the target succeeds on a saving throw against this cantrip, it takes half damage but suffers no additional effect."
+    description: "When a creature succeeds on a saving throw against a cantrip you cast that deals damage, the creature takes half the cantrip's damage but suffers no additional effect."
 
   # Level 6: Sculpt Spells
   - id: sculptSpells
-    type: Extra
-    target: evocation AND saveSpell
+    type: Activity
     name: Sculpt Spells
     condition: $(meta.level >= 6)
-    description: "When you cast this spell, your allies automatically succeed on their saving throw and take no damage if they would normally take half."
+    description: "When you cast an Evocation spell, your allies automatically succeed on their saving throws against it and take no damage if they would normally take half damage."
 
   # Level 10: Empowered Evocation
   - id: empoweredEvocation
-    type: Extra
+    type: Activity
     name: Empowered Evocation
-    target: evocation AND damageSpell
     condition: $(meta.level >= 10)
-    description: "Add $(formatBonus(stats.int.mod)) to one damage roll of the spell."
+    description: "When you cast an Evocation spell and deal damage, you can add $(formatBonus(stats.int.mod)) to one damage roll of the spell."
 
   # Level 14: Overchannel
   - id: overchannel

@@ -8,19 +8,17 @@ type: Folder
 children:
   - id: improvedCritical
     name: Improved Critical
-    type: Extra
-    target: weaponAttack
+    type: Activity
     condition: $(meta.level >= 3)
-    description: "You score a Critical Hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
+    description: "When you make a weapon attack roll, you score a Critical Hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
   - type: Reference
     target: [initiativeAdvantage, athleticsAdvantage]
     condition: $(meta.level >= 3)
   - id: remarkableAthlete
     name: Remarkable Athlete
-    type: Extra
-    target: weaponAttack
+    type: Activity
     condition: $(meta.level >= 3)
-    description: "On a Critical Hit, you can move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
+    description: "When you score a Critical Hit with a weapon attack, you move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
   - id: additionalFightingStyle
     name: Additional Fighting Style
     type: Slot
@@ -31,7 +29,7 @@ children:
     name: Heroic Warrior
     type: Activity
     condition: $(meta.level >= 10)
-    description: "The thrill of battle drives you toward victory. During combat, you can give yourself Heroic Inspiration whenever you start your turn without it."
+    description: "The thrill of battle drives you toward victory. When you start your turn without Heroic Inspiration, you gain it."
     time: free action
     range: self
     duration: Instantaneous

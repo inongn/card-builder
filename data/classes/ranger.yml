@@ -72,11 +72,10 @@ children:
 
   # Level 5: Extra Attack
   - id: extraAttack
-    type: Extra
-    target: weaponAttack
+    type: Activity
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+    description: "When you take the Attack action on your turn, you attack twice instead of once."
 
   # Level 6: Roving
   - id: rovingSpeed

@@ -152,6 +152,8 @@ mdui-collapse {
   justify-content: flex-end;
 }
 
+
+
 .card-meta-resource {
   display: flex;
   gap: var(--gap-xs);
@@ -181,6 +183,16 @@ mdui-collapse {
 .card-content {
   display: flex;
   flex-direction: column;
+}
+
+.card-content ul {
+  margin: var(--gap-xs) 0;
+  padding-left: var(--gap-sm);
+}
+
+.card-content ul>li::marker {
+  content: " ○ ";
+  font-size: .7em;
 }
 
 mdui-chip {
@@ -341,12 +353,16 @@ mdui-chip {
   font-weight: bold;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .text-secondary {
   color: var(--mdui-color-on-surface-variant);
   font-size: 0.8rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
+
 }
 
 .icon-action {
@@ -571,9 +587,7 @@ mdui-chip {
   font-family: "Roboto Condensed", sans-serif !important;
 }
 
-.print-mode .card-description-paragraph {
-  margin-bottom: 0.4em !important;
-}
+.print-mode .card-description-paragraph {}
 
 .print-mode .card-description-paragraph:last-child {
   margin-bottom: 0 !important;

@@ -94,11 +94,10 @@ children:
 
   # Level 5: Extra Attack
   - id: extraAttack
-    type: Extra
-    target: weaponAttack
+    type: Activity
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+    description: "When you take the Attack action on your turn, you attack twice instead of once."
 
   # Level 5: Faithful Steed
   - type: Reference
@@ -147,11 +146,10 @@ children:
 
   # Level 11: Radiant Strikes
   - id: radiantStrikes
-    type: Extra
+    type: Activity
     name: Radiant Strikes
-    target: weaponAttack
     condition: $(meta.level >= 11)
-    description: "On a hit, the target takes an extra 1d8 Radiant damage."
+    description: "When you hit a creature with a weapon attack, the target takes an extra 1d8 Radiant damage."
 
   # Level 12: Ability Score Improvement
   - id: level12feat

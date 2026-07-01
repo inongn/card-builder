@@ -6,8 +6,7 @@ condition: $(attributes.pactOfTheBlade == true)
 type: Folder
 children:
   - id: extraAttack
-    type: Extra
-    target: weaponAttack NOT unarmed
+    type: Activity
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+    description: "When you take the Attack action on your turn, you can attack twice instead of once."

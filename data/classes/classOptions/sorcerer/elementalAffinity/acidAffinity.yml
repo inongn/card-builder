@@ -6,9 +6,7 @@ tags:
 children:
   - type: Reference
     target: acidResistance
-  - type: Extra
+  - type: Activity
     id: acidAffinityDamage
-    target: damageSpell AND acidDamage
     name: Elemental Affinity
-    description: |
-      Add $(stats.cha.mod) modifier to one damage roll of the spell.
+    description: "When you cast a spell that deals Acid damage, you can add $(stats.cha.mod) to one damage roll of the spell."

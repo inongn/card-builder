@@ -150,7 +150,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                             {save.adv && <AdvantageIndicator type="adv" />}
                                             {save.dis && <AdvantageIndicator type="dis" />}
                                             {save.min && <AdvantageIndicator type="min" value={save.min} />}
-                                            {save.stat.toUpperCase() + " Save"}
+                                            {save.stat.toUpperCase()}
                                         </div>
                                     </div>
                                 );
