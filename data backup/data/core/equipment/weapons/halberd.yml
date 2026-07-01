@@ -1,0 +1,14 @@
+id: halberd
+name: Halberd
+type: Reference
+target: weaponAttack
+tags: [twoHanded, martial]
+variables:
+  name: Halberd
+  mastery: cleave
+  damageRoll: 1d10
+  damageType: slashing
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: twoHanded

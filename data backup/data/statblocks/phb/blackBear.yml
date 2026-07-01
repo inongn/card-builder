@@ -1,0 +1,32 @@
+type: Reference
+name: Black Bear
+id: blackBear
+category: beast
+target: "$(local.target)"
+variables:
+  name: Black Bear
+  size: Medium
+  classification: Beast
+  ac: 11
+  hp: 19
+  movement:
+    walk: 30
+    climb: 30
+    swim: 30
+  stats:
+    str: 15
+    dex: 12
+    con: 14
+    int: 2
+    wis: 12
+    cha: 7
+  skills:
+    perception: 5
+  senses:
+    darkvision: 60
+  cr: 0.5
+  actions:
+    - name: Multiattack
+      description: The bear makes two Rend attacks.
+    - name: Rend
+      description: _Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d6 + 2 Slashing damage.

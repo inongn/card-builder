@@ -1,0 +1,26 @@
+type: Reference
+name: Warhorse
+id: warhorse
+category: beast
+target: "$(local.target)"
+variables:
+  name: Warhorse
+  size: Large
+  classification: Beast
+  ac: 11
+  hp: 19
+  movement:
+    walk: 60
+  stats:
+    str: 18
+    dex: 12
+    con: 13
+    int: 2
+    wis: 12
+    cha: 7
+  saves:
+    wis: 3
+  cr: 0.5
+  actions:
+    - name: Hooves
+      description: _Melee Attack Roll:_ +6 to hit, reach 5 ft. _Hit:_ 2d4 + 4 Bludgeoning damage. If the target is a Large or smaller creature and the horse moved 20+ feet straight toward it immediately before the hit, the target takes an extra 2d4 Bludgeoning damage and has the Prone condition.

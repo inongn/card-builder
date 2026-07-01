@@ -1,0 +1,13 @@
+id: fingerOfDeath
+type: Activity
+name: Finger of Death
+resource: level7SpellSlot
+tags: [level7Spell, necromancy, sorcerer, warlock, wizard, saveSpell, damageSpell, necroticDamage]
+time: action
+range: 60 feet
+duration: instantaneous
+description: |
+  You unleash negative energy toward a creature you can see within range. The target makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking 7d8 + 30 Necrotic damage on a failed save or half as much damage on a successful one.
+
+  A Humanoid killed by this spell rises at the start of your next turn as a Zombie (see appendix B) that follows your verbal orders.
+

@@ -1,0 +1,9 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.performance.proficiency
+operation: set
+condition: $(skills.performance.proficiency > 0)
+value: 2
+id: performanceExpertise
+name: Performance Expertise

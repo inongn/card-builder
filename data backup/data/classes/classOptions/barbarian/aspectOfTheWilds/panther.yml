@@ -1,0 +1,6 @@
+name: Panther Aspect
+tags: [aspectOfTheWilds]
+type: Effect
+target: attributes.movement.climb
+operation: set
+value: $(attributes.movement.walk)

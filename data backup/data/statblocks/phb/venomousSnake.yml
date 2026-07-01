@@ -1,0 +1,27 @@
+type: Reference
+name: Venomous Snake
+id: venomousSnake
+category: beast
+target: "$(local.target)"
+variables:
+  name: Venomous Snake
+  size: Tiny
+  classification: Beast
+  ac: 12
+  hp: 5
+  movement:
+    walk: 30
+    swim: 30
+  stats:
+    str: 2
+    dex: 15
+    con: 11
+    int: 1
+    wis: 10
+    cha: 3
+  senses:
+    blindsight: 10
+  cr: 0.125
+  actions:
+    - name: Bite
+      description: _Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d4 + 2 Piercing damage plus 1d6 Poison damage.

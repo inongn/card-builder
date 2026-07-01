@@ -36,6 +36,7 @@ import { DashboardScreen } from './screens/DashboardScreen';
 import { BuilderScreen } from './screens/BuilderScreen';
 import { PlayScreen } from './screens/PlayScreen';
 import { PrintScreen } from './screens/PrintScreen';
+import PropertyExplorer from './components/PropertyExplorer';
 
 setColorScheme('#ee0feeff');
 // ============================================================================
@@ -254,19 +255,37 @@ export default function App() {
 
     return (
         <mdui-layout className="app-container">
-            <mdui-button-icon icon="bug_report" onClick={() => setIsDebugOpen(!isDebugOpen)} style={{ backgroundColor: '--mdui-color-surface', position: 'fixed', bottom: '16px', right: '16px', zIndex: '1000' }}></mdui-button-icon>
-            <mdui-navigation-drawer placement="right" open={isDebugOpen} onClose={() => setIsDebugOpen(false)}>
-                <div className="debug-yaml-container">
+            <mdui-button-icon 
+                icon="bug_report" 
+                onClick={() => setIsDebugOpen(!isDebugOpen)} 
+                style={{ 
+                    position: 'fixed', 
+                    bottom: '16px', 
+                    right: '16px', 
+                    zIndex: '1000',
+                    boxShadow: 'var(--mdui-elevation-2)',
+                    backgroundColor: 'var(--mdui-color-surface)'
+                }}
+            ></mdui-button-icon>
+            <mdui-navigation-drawer placement="right" open={isDebugOpen} onClose={() => setIsDebugOpen(false)} style={{ width: '450px', maxWidth: '95vw' }}>
+                <div className="debug-yaml-container" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <div style={{ padding: '0 16px' }}>
                         <mdui-segmented-button-group selects="single" value={debugTab}>
                             <mdui-segmented-button value="character" onClick={() => setDebugTab('character')}>Character</mdui-segmented-button>
                             <mdui-segmented-button value="recipe" onClick={() => setDebugTab('recipe')}>Recipe</mdui-segmented-button>
                             <mdui-segmented-button value="tree" onClick={() => setDebugTab('tree')}>Tree</mdui-segmented-button>
+                            <mdui-segmented-button value="explorer" onClick={() => setDebugTab('explorer')}>Explorer</mdui-segmented-button>
                         </mdui-segmented-button-group>
                     </div>
-                    <div className="debug-yaml-content">
-                        {getDebugContent()}
-                    </div>
+                    {debugTab === 'explorer' ? (
+                        <div style={{ flex: 1, padding: '16px 16px 0 16px', overflow: 'hidden' }}>
+                            <PropertyExplorer library={library} />
+                        </div>
+                    ) : (
+                        <div className="debug-yaml-content" style={{ marginTop: '16px' }}>
+                            {getDebugContent()}
+                        </div>
+                    )}
                 </div>
             </mdui-navigation-drawer>
 

@@ -1,0 +1,45 @@
+id: thief
+name: Thief
+description: |
+  A mix of burglar, treasure hunter, and explorer, you are the epitome of an adventurer. In addition to improving your agility and stealth, you gain abilities useful for delving into ruins and getting maximum benefit from the magic items you find there.
+tags:
+  - rogueSubclass
+type: Folder
+children:
+  # Level 3: Fast Hands
+  - id: fastHands
+    type: Activity
+    name: Fast Hands
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    description: |
+      You do one of the following.
+
+      **Sleight of Hand.** Make a Dexterity (Sleight of Hand) check to pick a lock or disarm a trap with Thieves' Tools or to pick a pocket.
+
+      **Use an Object.** Take the Utilize action, or take the Magic action to use a magic item that requires an action.
+
+  # Level 3: Second Story Work — Climber
+  - id: secondStoryWorkClimber
+    type: Effect
+    name: Climber
+    target: attributes.movement.climb
+    operation: set
+    value: $(attributes.movement.walk)
+
+  # Level 9: Supreme Sneak — Stealth Attack
+  - id: cunningStrikeStealthAttack
+    type: Extra
+    name: "Stealth Attack (Cost: 1d6)"
+    target: cunningStrike
+    condition: $(meta.level >= 9)
+    description: "If you have the Hide action's Invisible condition, this attack doesn't end that condition on you if you end the turn behind Three-Quarters Cover or Total Cover."
+
+  # Level 17: Thief's Reflexes
+  - id: thiefsReflexes
+    type: Activity
+    name: Thief's Reflexes
+    range: self
+    duration: Instantaneous
+    description: "You take two turns during the first round of any combat. Take your first turn at your normal Initiative and your second turn at your Initiative minus 10."

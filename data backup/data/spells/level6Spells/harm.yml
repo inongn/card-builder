@@ -1,0 +1,11 @@
+id: harm
+type: Activity
+name: Harm
+resource: level6SpellSlot
+tags: [level6Spell, necromancy, cleric, saveSpell, damageSpell, necroticDamage]
+time: action
+range: 60 feet
+duration: instantaneous
+description: |
+  You unleash virulent magic on a creature you can see within range. The target makes a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, it takes 14d6 Necrotic damage, and its Hit Point maximum is reduced by an amount equal to the Necrotic damage it took. On a successful save, it takes half as much damage only. This spell can’t reduce a target’s Hit Point maximum below 1.
+

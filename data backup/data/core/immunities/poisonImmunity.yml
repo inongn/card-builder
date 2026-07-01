@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+target: attributes.immunities
+value: Poison Damage
+id: poisonImmunity
+name: Poison Immunity

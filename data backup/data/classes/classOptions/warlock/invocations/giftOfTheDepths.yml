@@ -1,0 +1,16 @@
+id: giftOfTheDepths
+name: Gift of the Depths
+tags:
+  - eldritchInvocation
+condition: $(meta.level >= 5)
+type: Folder
+children:
+  - type: Effect
+    target: attributes.movement.swim
+    operation: set
+    value: $(attributes.movement.walk)
+  - type: Reference
+    target: waterBreathing
+    overwrite:
+      resource: null
+      tags: [limitedLR]

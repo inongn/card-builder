@@ -1,0 +1,8 @@
+tags:
+  - skillProficiency
+type: Effect
+target: skills.nature.proficiency
+operation: set
+value: 1
+id: natureProficiency
+name: Nature Proficiency

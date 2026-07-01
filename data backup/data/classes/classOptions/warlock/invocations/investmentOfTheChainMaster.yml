@@ -1,0 +1,18 @@
+id: investmentOfTheChainMaster
+name: Investment of the Chain Master
+tags:
+  - eldritchInvocation
+condition: $(attributes.pactOfTheChain == true && meta.level >= 5)
+type: Folder
+children:
+  - id: investmentChainDesc
+    type: Extra
+    target: findFamiliarActivity
+    name: Investment of the Chain Master
+    description: |
+      You can use a Bonus Action to command the familiar to Attack, its attacks can deal Necrotic or Radiant damage, it uses your Spell Save DC and when it takes damage you can use a Reaction to grant it Resistance.
+  - id: investmentChainSpeed
+    type: Effect
+    target: activities[findFamiliarActivity].variables.movement.fly
+    operation: set
+    value: 40

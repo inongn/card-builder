@@ -1,0 +1,10 @@
+id: armorOfShadows
+name: Armor of Shadows
+tags:
+  - eldritchInvocation
+type: Folder
+children:
+  - type: Reference
+    target: mageArmor
+    overwrite:
+      resource: null

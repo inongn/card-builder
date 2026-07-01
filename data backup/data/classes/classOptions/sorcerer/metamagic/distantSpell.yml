@@ -1,0 +1,11 @@
+id: distantSpell
+name: Distant Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - id: distantSpellActivity
+    type: Activity
+    name: Distant Spell
+    resource: 1 sorceryPoints
+    description: "When you cast a spell that has a range of at least 5 feet, you double the spell’s range. Or when you cast a spell that has a range of Touch, you make the spell’s range 30 feet."

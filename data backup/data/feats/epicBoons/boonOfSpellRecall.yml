@@ -1,0 +1,16 @@
+name: Boon of Spell Recall
+type: Folder
+id: boonOfSpellRecall
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Free Casting
+  type: Extra
+  target: level1Spell OR level2Spell OR level3Spell OR level4Spell
+  description: Roll 1d4. If the number you roll is the same as the slot's level, the
+    slot isn't expended.

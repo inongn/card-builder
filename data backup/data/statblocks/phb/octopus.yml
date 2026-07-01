@@ -1,0 +1,38 @@
+type: Reference
+name: Octopus
+id: octopus
+category: beast
+target: "$(local.target)"
+variables:
+  name: Octopus
+  size: Small
+  classification: Beast
+  ac: 12
+  hp: 3
+  movement:
+    walk: 5
+    swim: 30
+  stats:
+    str: 4
+    dex: 15
+    con: 11
+    int: 3
+    wis: 10
+    cha: 4
+  skills:
+    perception: 2
+    stealth: 6
+  senses:
+    darkvision: 30
+  cr: 0.0
+  traits:
+    - name: Compression
+      description: The octopus can move through a space as narrow as 1 inch without expending extra movement to do so.
+    - name: Water Breathing
+      description: The octopus can breathe only underwater.
+  actions:
+    - name: Tentacles
+      description: _Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1 Bludgeoning damage.
+  reactions:
+    - name: Ink Cloud (1/Day)
+      description: _Trigger:_ A creature ends its turn within 5 feet of the octopus while underwater. _Response:_ The octopus releases ink that fills a 5-foot Cube [Area of Effect] centered on itself, and the octopus moves up to its Swim Speed. The Cube [Area of Effect] is Heavily Obscured for 1 minute or until a strong current or similar effect disperses the ink.

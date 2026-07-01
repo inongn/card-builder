@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+target: attributes.immunities
+value: Incapacitated
+id: incapacitatedImmunity
+name: Incapacitated Immunity

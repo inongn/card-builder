@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - damageResistance
+operation: push
+value: Bludgeoning Damage
+target: attributes.resistances
+id: bludgeoningResistance
+name: Bludgeoning Resistance

@@ -1,0 +1,8 @@
+id: protector
+name: Protector
+type: Folder
+tags:
+  - divineOrder
+children:
+  - type: Reference
+    value: [martialWeaponProficiency, heavyArmorTraining]

@@ -1,0 +1,32 @@
+type: Reference
+name: Giant Crab
+id: giantCrab
+category: beast
+target: "$(local.target)"
+variables:
+  name: Giant Crab
+  size: Medium
+  classification: Beast
+  ac: 15
+  hp: 13
+  movement:
+    walk: 30
+    swim: 30
+  stats:
+    str: 13
+    dex: 13
+    con: 11
+    int: 1
+    wis: 9
+    cha: 3
+  skills:
+    stealth: 3
+  senses:
+    blindsight: 30
+  cr: 0.125
+  traits:
+    - name: Amphibious
+      description: The crab can breathe air and water.
+  actions:
+    - name: Claw
+      description: _Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1d6 + 1 Bludgeoning damage. If the target is a Medium or smaller creature, it has the Grappled condition (escape DC 11) from one of two claws.

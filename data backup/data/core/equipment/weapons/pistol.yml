@@ -1,0 +1,14 @@
+id: pistol
+name: Pistol
+type: Reference
+target: weaponAttack
+tags: [martial]
+variables:
+  name: Pistol
+  mastery: vex
+  damageRoll: 1d10
+  damageType: piercing
+  range: 30 feet
+  classification: ranged
+  category: martial
+  property: ''

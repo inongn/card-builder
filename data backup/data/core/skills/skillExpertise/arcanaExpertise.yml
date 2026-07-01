@@ -1,0 +1,9 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.arcana.proficiency
+operation: set
+condition: $(skills.arcana.proficiency > 0)
+value: 2
+id: arcanaExpertise
+name: Arcana Expertise

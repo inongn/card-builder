@@ -1,0 +1,33 @@
+type: Reference
+name: Brown Bear
+id: brownBear
+category: beast
+target: "$(local.target)"
+variables:
+  name: Brown Bear
+  size: Large
+  classification: Beast
+  ac: 11
+  hp: 22
+  movement:
+    walk: 40
+    climb: 30
+  stats:
+    str: 17
+    dex: 12
+    con: 15
+    int: 2
+    wis: 13
+    cha: 7
+  skills:
+    perception: 3
+  senses:
+    darkvision: 60
+  cr: 1.0
+  actions:
+    - name: Multiattack
+      description: The bear makes one Bite attack and one Claw attack.
+    - name: Bite
+      description: _Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d8 + 3 Piercing damage.
+    - name: Claw
+      description: _Melee Attack Roll:_ +5 to hit, reach 5 ft. _Hit:_ 1d4 + 3 Slashing damage. If the target is a Large or smaller creature, it has the Prone condition.

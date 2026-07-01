@@ -1,0 +1,5 @@
+type: Effect
+operation: push
+target: attributes.immunities
+value: Frightened
+id: frightenedImmunity

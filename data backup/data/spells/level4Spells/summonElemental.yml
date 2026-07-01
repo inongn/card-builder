@@ -1,0 +1,156 @@
+id: summonElemental
+type: Folder
+name: Summon Elemental
+tags: [level4Spell, conjuration, druid, ranger, wizard]
+children:
+  - type: Activity
+    name: "Summon Elemental: Air"
+    id: summonElementalAir
+    tags: [summonElementalActivity]
+    time: action
+    range: 90 feet
+    resource: level4SpellSlot
+    duration: concentration, up to 1 hour
+    description: |
+      You call forth the spirit of an Air Elemental
+    
+      >**Armor Class** 11 + the spell’s level
+      >
+      >**Hit Points** 50 + 10 for each spell level above 4
+      >
+      >**Speed** 40 ft., fly 40 ft. (hover)
+      >
+      >---
+      >
+      >| STR | DEX | CON | INT | WIS | CHA |
+      >|-----|-----|-----|-----|-----|-----|
+      >| 18 (+4) | 15 (+2) | 17 (+3) | 4 (-3) | 10 (+0) | 16 (+3) |
+      >
+      >---
+      >
+      >**Resistances** Lightning; Thunder
+      >
+      >**Immunities** Poison; Exhaustion, Paralyzed, Petrified, Poisoned
+      >
+      >**Senses** darkvision 60 ft., passive Perception 10
+      >
+      >**Amorphous Form** The spirit can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain.
+      >
+      >---
+      >
+      >***Multiattack.*** The spirit makes a number of Slam attacks equal to half this spell’s level (round down).
+      >
+      >***Slam.*** _Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d10 + 4 + the spell’s level Lightning damage.
+
+  - type: Activity
+    name: "Summon Elemental: Earth"
+    id: summonElementalEarth
+    tags: [summonElementalActivity]
+    time: action
+    range: 90 feet
+    resource: level4SpellSlot
+    duration: concentration, up to 1 hour
+    description: |
+      You call forth the spirit of an Earth Elemental
+    
+      >**Armor Class** 11 + the spell’s level
+      >
+      >**Hit Points** 50 + 10 for each spell level above 4
+      >
+      >**Speed** 40 ft., burrow 40 ft.
+      >
+      >---
+      >
+      >| STR | DEX | CON | INT | WIS | CHA |
+      >|-----|-----|-----|-----|-----|-----|
+      >| 18 (+4) | 15 (+2) | 17 (+3) | 4 (-3) | 10 (+0) | 16 (+3) |
+      >
+      >---
+      >
+      >**Resistances** Piercing; Slashing
+      >
+      >**Immunities** Poison; Exhaustion, Paralyzed, Petrified, Poisoned
+      >
+      >**Senses** darkvision 60 ft., passive Perception 10
+      >
+      >---
+      >
+      >***Multiattack.*** The spirit makes a number of Slam attacks equal to half this spell’s level (round down).
+      >
+      >***Slam.*** _Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d10 + 4 + the spell’s level Bludgeoning damage.
+
+  - type: Activity
+    name: "Summon Elemental: Fire"
+    id: summonElementalFire
+    tags: [summonElementalActivity]
+    time: action
+    range: 90 feet
+    resource: level4SpellSlot
+    duration: concentration, up to 1 hour
+    description: |
+      You call forth the spirit of a Fire Elemental
+    
+      >**Armor Class** 11 + the spell’s level
+      >
+      >**Hit Points** 50 + 10 for each spell level above 4
+      >
+      >**Speed** 40 ft.
+      >
+      >---
+      >
+      >| STR | DEX | CON | INT | WIS | CHA |
+      >|-----|-----|-----|-----|-----|-----|
+      >| 18 (+4) | 15 (+2) | 17 (+3) | 4 (-3) | 10 (+0) | 16 (+3) |
+      >
+      >---
+      >
+      >**Immunities** Fire; Poison; Exhaustion, Paralyzed, Petrified, Poisoned
+      >
+      >**Senses** darkvision 60 ft., passive Perception 10
+      >
+      >**Amorphous Form** The spirit can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain.
+      >
+      >---
+      >
+      >***Multiattack.*** The spirit makes a number of Slam attacks equal to half this spell’s level (round down).
+      >
+      >***Slam.*** _Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d10 + 4 + the spell’s level Fire damage.
+
+  - type: Activity
+    name: "Summon Elemental: Water"
+    id: summonElementalWater
+    tags: [summonElementalActivity]
+    time: action
+    range: 90 feet
+    resource: level4SpellSlot
+    duration: concentration, up to 1 hour
+    description: |
+      You call forth the spirit of a Water Elemental
+    
+      >**Armor Class** 11 + the spell’s level
+      >
+      >**Hit Points** 50 + 10 for each spell level above 4
+      >
+      >**Speed** 40 ft., swim 40 ft.
+      >
+      >---
+      >
+      >| STR | DEX | CON | INT | WIS | CHA |
+      >|-----|-----|-----|-----|-----|-----|
+      >| 18 (+4) | 15 (+2) | 17 (+3) | 4 (-3) | 10 (+0) | 16 (+3) |
+      >
+      >---
+      >
+      >**Resistances** Acid
+      >
+      >**Immunities** Poison; Exhaustion, Paralyzed, Petrified, Poisoned
+      >
+      >**Senses** darkvision 60 ft., passive Perception 10
+      >
+      >**Amorphous Form** The spirit can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain.
+      >
+      >---
+      >
+      >***Multiattack.*** The spirit makes a number of Slam attacks equal to half this spell’s level (round down).
+      >
+      >***Slam.*** _Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d10 + 4 + the spell’s level Cold damage.

@@ -49,17 +49,37 @@ export class CharacterBuilder {
         if (!children) return [];
         const processed = [];
 
-        for (const child of children) {
-            // Auto-generate name and description paths from id
-            // If a child has an id, build its localization path from parent
-            if (child.id) {
-                const fullId = parentId ? `${parentId}.${child.id}` : child.id;
-                if (!child.name) {
-                    child.name = child.id;
+        const camelCase = (str) => {
+            if (!str) return '';
+            return String(str)
+                .replace(/[^a-zA-Z0-9\s-_]/g, '')
+                .trim()
+                .split(/[-_\s]+/)
+                .map((word, index) => 
+                    index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                )
+                .join('');
+        };
+
+        for (let i = 0; i < children.length; i++) {
+            // Clone the child object to avoid mutating shared library structures
+            const child = { ...children[i] };
+
+            // Auto-generate fallback id if missing
+            if (!child.id) {
+                if (child.name) {
+                    child.id = camelCase(child.name);
+                } else {
+                    child.id = `child_${i}`;
                 }
-                if (!child.description) {
-                    child.description = '';
-                }
+            }
+
+            const fullId = parentId ? `${parentId}.${child.id}` : child.id;
+            if (!child.name) {
+                child.name = child.id;
+            }
+            if (!child.description) {
+                child.description = '';
             }
 
             // Evaluate variables first so they can be used by both References and Slots
@@ -1247,7 +1267,10 @@ export class CharacterBuilder {
                         this.applyEffect({
                             target: 'activities[shortRest].extra',
                             operation: 'push',
-                            value: `**${prop.name}.** Restore ${quantity !== 1 ? quantity : 'a'} ${prop.name} charge${quantity !== 1 ? 's' : ''}.`
+                            value: {
+                                name: prop.name,
+                                description: `Restore ${quantity !== 1 ? quantity : 'a'} ${prop.name} charge${quantity !== 1 ? 's' : ''}.`
+                            }
                         }, evaluator);
                     }
                 }
@@ -1301,10 +1324,6 @@ export class CharacterBuilder {
                     const namePath = prop.name || (prop.id ? `${prop.id}.name` : '');
                     const descPath = prop.description || (prop.id ? `${prop.id}.description` : '');
 
-                    // Construct the string to push with expressions that will be evaluated
-                    // Use $() to trigger evaluation, which will auto-resolve translation keys
-                    const extraString = `**${namePath}.** ${descPath}`;
-
                     // Determine target: if target is specified, use it; otherwise use the id
                     const targetQuery = evaluator.evaluate(prop.target, scope) || prop.id;
 
@@ -1312,7 +1331,10 @@ export class CharacterBuilder {
                     this.applyEffect({
                         target: `activities[${targetQuery}].extra`,
                         operation: 'push',
-                        value: extraString,
+                        value: {
+                            name: namePath,
+                            description: descPath
+                        },
                         variables: scope
                     }, evaluator);
                 }
@@ -1432,8 +1454,19 @@ export class CharacterBuilder {
 
                         const itemsToPush = Array.isArray(evaluatedValue) ? evaluatedValue : [evaluatedValue];
 
+                        // Helper to get normalized representation for comparison
+                        const getNormalizedExtraString = (item) => {
+                            if (typeof item === 'object' && item !== null) {
+                                return `**${item.name || ''}.** ${item.description || ''}`.trim().toLowerCase();
+                            }
+                            return String(item).trim().toLowerCase();
+                        };
+
                         // Add only items that don't already exist
-                        const newItems = itemsToPush.filter(item => !existing.includes(item));
+                        const newItems = itemsToPush.filter(item => {
+                            const normalizedItem = getNormalizedExtraString(item);
+                            return !existing.some(existingItem => getNormalizedExtraString(existingItem) === normalizedItem);
+                        });
 
                         if (newItems.length > 0) {
                             current[finalKey] = [...existing, ...newItems];

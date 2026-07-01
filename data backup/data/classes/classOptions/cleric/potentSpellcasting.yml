@@ -1,0 +1,32 @@
+id: potentSpellcastingCleric
+name: Potent Spellcasting
+type: Folder
+tags:
+  - blessedStrikes
+children:
+  - type: Effect
+    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d12"]
+    operation: replace
+    value: d12$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d10"]
+    operation: replace
+    value: d10$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d8"]
+    operation: replace
+    value: d8$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d6"]
+    operation: replace
+    value: d6$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d4"]
+    operation: replace
+    value: d4$(formatBonus(stats.wis.mod))
+  - id: potentSpellcastingVitality
+    type: Extra
+    name: Potent Spellcasting
+    target: cantrip AND cleric AND damageSpell
+    condition: $(meta.level >= 14)
+    description: "On a hit, grant $(2 * stats.wis.mod) Temporary Hit Points to yourself or another creature within 60 feet."

@@ -1,0 +1,7 @@
+type: Effect
+target: skills.survival.proficiency
+operation: set
+condition: $(skills.survival.proficiency < 0.5)
+value: 0.5
+id: survivalHalfProficiency
+name: Survival Half Proficiency

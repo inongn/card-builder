@@ -1,0 +1,10 @@
+id: draconicAncestryBrass
+name: Brass Dragon
+tags: [draconicAncestry]
+type: Folder
+children:
+  - type: Reference
+    target: fireResistance
+  - type: Attribute
+    id: dragonicAncestryDamage
+    value: Fire

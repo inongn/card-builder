@@ -1,0 +1,8 @@
+id: unarmed
+name: "Unarmed Strike"
+type: Activity
+tags: [simple, melee, unarmed, weaponAttack, bludgeoningDamage]
+time: action
+range: 5 feet
+description: |
+  You strike with a punch, kick, head-butt or similar forceful blow. Make a $(formatBonus(attributes.melee.attack)) attack against the target. On a hit, the target takes 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage.

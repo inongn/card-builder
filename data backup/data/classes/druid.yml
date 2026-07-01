@@ -1,0 +1,170 @@
+id: druid
+name: Druid
+description: |
+  Druids belong to ancient orders that call on the forces of nature. Harnessing the magic of animals, plants, and the four elements, Druids heal, transform into animals, and wield elemental destruction.
+
+  Revering nature above all, individual Druids gain their magic from nature, a nature deity, or both, and they typically unite with other Druids to perform rites that mark the passage of the seasons and other natural cycles.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 8
+  - id: className
+    type: Effect
+    target: meta.class
+    operation: set
+    value: Druid
+  - type: Reference
+    value: [intSave, wisSave]
+  - type: Reference
+    value: [lightArmorTraining, shieldTraining, simpleWeaponProficiency, herbalismKit]
+  - id: druidSkillProficiencies
+    type: Slot
+    name: Druid Skill Proficiencies
+    quantity: 2
+    target: arcanaProficiency OR animalHandlingProficiency OR insightProficiency OR medicineProficiency OR natureProficiency OR perceptionProficiency OR religionProficiency OR survivalProficiency
+  - id: spellcasting
+    type: Reference
+    target: [fullCaster, wisCaster]
+  - id: druidCantrips
+    type: Slot
+    name: Druid Cantrips
+    quantity: $(progression(2,2,2,3,3,3,3,3,3,4))
+    target: cantrip AND druid
+  - id: druidSpells
+    type: Slot
+    name: Druid Spells
+    variables:
+      maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
+    target: "druid NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    quantity: $(progression(2, 4, 6, 7, 9, 10, 11, 12, 14, 15, 16, 16, 18, 19, 20, 20, 22, 22, 22, 10))
+
+  - id: druidic
+    type: Effect
+    target: attributes.languages
+    operation: push
+    value: druidic
+  - id: speakWithAnimals
+    type: Reference
+    target: SpeakWithAnimals
+  - id: primalOrder
+    type: Slot
+    name: Primal Order
+    quantity: 1
+    target: primalOrder
+  - id: wildShapeMaxCR
+    type: Effect
+    target: meta.wildShapeMaxCR
+    operation: set
+    value: "$(meta.level >= 8 ? 1 : meta.level >= 4 ? 0.5 : 0.25)"
+    condition: $(meta.level >= 2)
+  - id: wildShape
+    type: Resource
+    name: Wild Shape
+    tags: wildShape
+    quantity: $(progression(0,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4))
+    condition: $(meta.level >= 2)
+    sr: 1
+
+  - id: wildCompanion
+    type: Reference
+    target: findFamiliar
+    condition: $(meta.level >=2)
+   
+  - id: wildCompanionResource
+    type: Effect
+    target: activities[findFamiliarActivity].resource
+    operation: push
+    value: wildShape
+
+
+  - id: druidSubclass 
+    type: Slot
+    name: Druid Subclass
+    quantity: 1
+    target: druidSubclass
+    condition: $(meta.level >=3)
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)
+
+  - id: level12feat
+    name: Level 12 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 12)
+
+  - id: level16feat
+    name: Level 16 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 16)
+
+  - id: elementalFury
+    type: Slot
+    name: Elemental Fury
+    target: classOption OR elementalFury
+    quantity: 1
+    condition: $(meta.level >= 7)
+
+  - id: wildResurgenceWildShape
+    type: Activity
+    name: "Create Wild Shape"
+    time: free action
+    range: self
+    duration: instantaneous
+    description: Once on each of your turns, if you have no uses of Wild Shape left, you give yourself one.
+    resource: [level1SpellSlot]
+    condition: $(meta.level >= 5)
+
+  - id: wildResurgenceSpellSlot
+    type: Activity
+    name: "Create Spell Slot"
+    time: free action
+    tags: [limitedLR]
+    range: self
+    duration: instantaneous
+    description: You convert a Wild Shape charge into a level 1 spell slot. 
+    condition: $(meta.level >= 5)
+
+  - id: natureMagician
+    type: Activity
+    name: Nature Magician
+    time: free action
+    range: self
+    duration: instantaneous
+    description: You convert uses of Wild Shape into a spell slot. Choose a number of your unexpended uses of Wild Shape and convert them into a single spell slot, with each use contributing 2 spell levels. 
+    tags: [limitedLR]
+    condition: $(meta.level >= 20)
+
+  - id: evergreenWildShape 
+    type: Activity
+    name: Evergreen Wild Shape
+    time: free action
+    range: self
+    duration: instantaneous
+    description: Whenever you roll Initiative and have no uses of Wild Shape left, you regain one expended use of it.
+    condition: $(meta.level >= 20)
+
+  - id: wildShapeForms
+    type: Slot
+    name: Wild Shape Forms
+    quantity: "$(meta.level >= 8 ? 8 : meta.level >= 4 ? 4 : 4)"
+    target: "classOption OR (category=beast AND variables.cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT variables.movement.fly'))"
+    condition: $(meta.level >= 2)
+    variables:
+      target: wildShapeActivity

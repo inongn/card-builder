@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+target: attributes.immunities
+value: Slashing Damage
+id: slashingImmunity
+name: Slashing Immunity

@@ -1,0 +1,16 @@
+id: gnomishLineageForestGnome
+name: Forest Gnome
+tags: [gnomishLineage]
+type: Folder
+children:
+  - type: Reference
+    target: [minorIllusion, chooseCaster]
+  - type: Reference
+    target: speakWithAnimals
+    overwrite:
+      resource: forestGnomeSpeakWithAnimalsUses
+  - id: forestGnomeSpeakWithAnimalsUses
+    type: Resource
+    name: Speak with Animals
+    quantity: $(attributes.prof)
+    sr: 0

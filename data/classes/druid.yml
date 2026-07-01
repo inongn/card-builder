@@ -39,7 +39,7 @@ children:
     variables:
       maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
     target: "druid NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
-    quantity: $(progression(2, 4, 6, 7, 9, 10, 11, 12, 14, 15, 16, 16, 18, 19, 20, 20, 22, 22, 22, 10))
+    quantity: $(progression(4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16, 16, 17, 17, 18, 18, 19, 20, 21, 22))
 
   - id: druidic
     type: Effect
@@ -168,3 +168,10 @@ children:
     condition: $(meta.level >= 2)
     variables:
       target: wildShapeActivity
+
+  # Level 19: Epic Boon
+  - id: epicBoon
+    type: Slot
+    name: Epic Boon
+    target: epicBoon
+    condition: $(meta.level >= 19)

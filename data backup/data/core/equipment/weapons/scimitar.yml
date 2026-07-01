@@ -1,0 +1,14 @@
+id: scimitar
+name: Scimitar
+type: Reference
+target: weaponAttack
+tags: [light, martial]
+variables:
+  name: Scimitar
+  mastery: nick
+  damageRoll: 1d6
+  damageType: slashing
+  range: 5 feet
+  classification: finesse
+  category: martial
+  property: light

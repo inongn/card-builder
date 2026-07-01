@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+target: attributes.immunities
+value: Restrained
+id: restrainedImmunity
+name: Restrained Immunity

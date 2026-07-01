@@ -1,0 +1,13 @@
+id: detectPoisonAndDisease
+type: Activity
+name: Detect Poison and Disease
+resource: level1SpellSlot
+tags: [level1Spell, divination, cleric, druid, paladin, ranger, ritual]
+time: action
+range: self
+duration: concentration, up to 10 minutes
+description: |
+  For the duration, you sense the location of poisons, poisonous or venomous creatures, and magical contagions within 30 feet of yourself. You sense the kind of poison, creature, or contagion in each case.
+
+  The spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.
+

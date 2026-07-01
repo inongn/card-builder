@@ -1,0 +1,10 @@
+id: mistyVisions
+name: Misty Visions
+tags:
+  - eldritchInvocation
+type: Folder
+children:
+  - type: Reference
+    target: silentImage
+    overwrite:
+      resource: null

@@ -1,0 +1,7 @@
+id: disarmingAttack
+name: Disarming Attack
+tags: [maneuver]
+type: Activity
+resource: superiorityDice
+description: When you hit a creature with an attack roll, you attempt to disarm the target. Add 1d$(attributes.superiorityDie) to the attack’s damage roll. The target must succeed on a DC $(attributes.superioritySave) Strength saving throw or drop one object of your choice that it’s holding, with the object landing in its space.
+

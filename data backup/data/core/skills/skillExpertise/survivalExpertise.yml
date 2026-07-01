@@ -1,0 +1,9 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.survival.proficiency
+operation: set
+condition: $(skills.survival.proficiency > 0)
+value: 2
+id: survivalExpertise
+name: Survival Expertise

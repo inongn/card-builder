@@ -1,0 +1,13 @@
+id: skilled
+name: Skilled
+tags:
+- feat
+- originFeat
+type: Folder
+children:
+- type: Slot
+  quantity: 3
+  id: skilledSkillProficiency
+  name: Skilled Skill Proficiency
+  target: skillProficiency
+repeatable: true

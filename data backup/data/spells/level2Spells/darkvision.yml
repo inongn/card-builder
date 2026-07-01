@@ -1,0 +1,11 @@
+id: darkvision
+type: Activity
+name: Darkvision
+resource: level2SpellSlot
+tags: [level2Spell, transmutation, artificer, druid, ranger, sorcerer, wizard]
+time: action
+range: touch
+duration: 8 hours
+description: |
+  For the duration, a willing creature you touch has Darkvision with a range of 150 feet.
+

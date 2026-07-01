@@ -1,0 +1,10 @@
+id: fiendishVigor
+name: Fiendish Vigor
+tags:
+  - eldritchInvocation
+type: Folder
+children:
+  - type: Reference
+    target: falseLife
+    overwrite:
+      resource: null

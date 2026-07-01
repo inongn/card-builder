@@ -1,10 +1,11 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { renderGridValue, renderIcon, sortDescription } from '../../utils/cardUtils';
 
 import 'mdui/components/card.js';
 import 'mdui/components/collapse-item.js';
+import 'mdui/components/divider.js';
 
 import { AutoFitContent } from '../AutoFitContent';
 
@@ -68,6 +69,20 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
         return <React.Fragment key={resId}>{renderIcon(resId, false)}</React.Fragment>;
     };
 
+    const hasExtra = activity.extra && (
+        Array.isArray(activity.extra)
+            ? activity.extra.some(line => {
+                if (!line) return false;
+                if (typeof line === 'object') {
+                    return (line.name && String(line.name).trim() !== '') || (line.description && String(line.description).trim() !== '');
+                }
+                return String(line).trim() !== '';
+            })
+            : (typeof activity.extra === 'object'
+                ? (activity.extra.name && String(activity.extra.name).trim() !== '') || (activity.extra.description && String(activity.extra.description).trim() !== '')
+                : String(activity.extra).trim() !== '')
+    );
+
     const headerContent = (
         <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
             <span className="card-title">{activity.name}</span>
@@ -129,16 +144,26 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                             </div>
                         )}
 
-                        {activity.extra && (
+
+                        {hasExtra && (
                             <div className={`card-description extra`}>
+                                <mdui-divider></mdui-divider>
                                 {Array.isArray(activity.extra) ?
                                     sortDescription(activity.extra).map((line, i) => (
                                         <div key={i} className="card-description-paragraph">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
+                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                                {typeof line === 'object' && line !== null
+                                                    ? `${line.name ? `**${line.name}.** ` : ''}${line.description || ''}`
+                                                    : String(line)}
+                                            </ReactMarkdown>
                                         </div>
                                     )) :
                                     <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.extra}</ReactMarkdown>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                            {typeof activity.extra === 'object' && activity.extra !== null
+                                                ? `${activity.extra.name ? `**${activity.extra.name}.** ` : ''}${activity.extra.description || ''}`
+                                                : String(activity.extra)}
+                                        </ReactMarkdown>
                                     </div>
                                 }
                             </div>
@@ -161,16 +186,26 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                             </div>
                         )}
 
-                        {activity.extra && (
+                        {hasExtra && (
                             <div className={`card-description extra`}>
+                                <mdui-divider></mdui-divider>
+
                                 {Array.isArray(activity.extra) ?
                                     sortDescription(activity.extra).map((line, i) => (
                                         <div key={i} className="card-description-paragraph">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{line}</ReactMarkdown>
+                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                                {typeof line === 'object' && line !== null
+                                                    ? `${line.name ? `**${line.name}.** ` : ''}${line.description || ''}`
+                                                    : String(line)}
+                                            </ReactMarkdown>
                                         </div>
                                     )) :
                                     <div className="card-description-paragraph">
-                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{activity.extra}</ReactMarkdown>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                            {typeof activity.extra === 'object' && activity.extra !== null
+                                                ? `${activity.extra.name ? `**${activity.extra.name}.** ` : ''}${activity.extra.description || ''}`
+                                                : String(activity.extra)}
+                                        </ReactMarkdown>
                                     </div>
                                 }
                             </div>

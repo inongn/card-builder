@@ -1,0 +1,37 @@
+type: Statblock
+name: Aberrant Spirit
+id: aberrantSpirit
+category: summon
+tags: [summon]
+size: Medium
+classification: Aberration
+ac: 11 + the spell's level
+hp: 40 + 10 for each spell level above 4
+movement:
+  walk: 30
+  fly: (hover; Beholderkin only) 30
+stats:
+  str: 16
+  dex: 10
+  con: 15
+  int: 16
+  wis: 10
+  cha: 6
+senses:
+  darkvision: 60
+challenge: 0
+cr: 0
+traits:
+  - name: Regeneration (Slaad Only)
+    description: "The spirit regains 5 Hit Points at the start of its turn if it has at least 1 Hit Point."
+  - name: Whispering Aura (Mind Flayer Only)
+    description: "At the start of each of the spirit’s turns, the spirit emits psionic energy if it doesn’t have the Incapacitated condition. _Wisdom Saving Throw:_ DC $(attributes.spellcasting.save), each creature (other than you) within 5 feet of the spirit. _Failure:_ 2d6 Psychic damage."
+actions:
+  - name: Multiattack
+    description: "The spirit makes a number of attacks equal to half this spell’s level (round down)."
+  - name: Claw (Slaad Only)
+    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d10$(formatBonus(stats.str.mod)) + the spell's level Slashing damage, and the target can’t regain Hit Points until the start of the spirit’s next turn."
+  - name: Eye Ray (Beholderkin Only)
+    description: "_Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 150 ft. _Hit:_ 1d8$(formatBonus(stats.str.mod)) + the spell's level Psychic damage."
+  - name: Psychic Slam (Mind Flayer Only)
+    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(stats.str.mod)) + the spell's level Psychic damage."

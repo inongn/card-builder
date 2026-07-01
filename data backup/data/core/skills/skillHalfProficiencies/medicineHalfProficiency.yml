@@ -1,0 +1,7 @@
+type: Effect
+target: skills.medicine.proficiency
+operation: set
+condition: $(skills.medicine.proficiency < 0.5)
+value: 0.5
+id: medicineHalfProficiency
+name: Medicine Half Proficiency

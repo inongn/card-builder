@@ -2,9 +2,3 @@ id: weaponProperties
 name: Weapon Properties
 type: Folder
 children:
-  - id: unarmed
-    target: unarmed
-    type: Extra
-    name: Grapple or Shove
-    description: "You can replace one attack with a grapple or shove attempt. The target must succeed on a DC $(8+attributes.prof+Math.max(stats.str.mod, stats.dex.mod)) Dexterity saving throw or it has the Grappled or Prone condition."
-    

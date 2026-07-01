@@ -1,0 +1,32 @@
+type: Reference
+name: Crab
+id: crab
+category: beast
+target: "$(local.target)"
+variables:
+  name: Crab
+  size: Tiny
+  classification: Beast
+  ac: 11
+  hp: 3
+  movement:
+    walk: 20
+    swim: 20
+  stats:
+    str: 6
+    dex: 11
+    con: 12
+    int: 1
+    wis: 8
+    cha: 2
+  skills:
+    stealth: 2
+  senses:
+    blindsight: 30
+  cr: 0.0
+  traits:
+    - name: Amphibious
+      description: The crab can breathe air and water.
+  actions:
+    - name: Claw
+      description: _Melee Attack Roll:_ +2 to hit, reach 5 ft. _Hit:_ 1 Bludgeoning damage.

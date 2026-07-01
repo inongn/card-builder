@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Cartographer's Tools
+target: attributes.tools
+id: cartographersTools
+name: Cartographer's Tools

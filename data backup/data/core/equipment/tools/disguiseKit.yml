@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Disguise Kit
+target: attributes.tools
+id: disguiseKit
+name: Disguise Kit

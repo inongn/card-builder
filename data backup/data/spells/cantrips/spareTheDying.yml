@@ -1,0 +1,10 @@
+id: spareTheDying
+type: Activity
+name: Spare the Dying
+tags: [necromancy, cantrip, artificer, cleric, druid]
+time: action
+range: 15 feet
+duration: instantaneous
+description: |
+  Choose a creature within range that has 0 Hit Points and isn’t dead. The creature becomes Stable.
+

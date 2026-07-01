@@ -1,0 +1,110 @@
+id: giantInsect
+type: Folder
+tags: [level4Spell, conjuration, druid]
+name: Giant Insect
+children:
+  - type: Activity
+    id: giantInsectCentipede
+    name: "Giant Insect: Centipede"
+    time: action
+    range: 60 feet
+    resource: level4SpellSlot
+    duration: concentration, up to 10 minutes
+    description: |
+      You summon a giant centipede.
+
+      >**Armor Class** 11 + the spell’s level
+      >
+      >**Hit Points** 30 + 10 for each spell level above 4
+      >
+      >**Speed** 40 ft., climb 40 ft.
+      >
+      >---
+      >
+      >| STR | DEX | CON | INT | WIS | CHA |
+      >|-----|-----|-----|-----|-----|-----|
+      >| 17 (+3) | 13 (+1) | 15 (+2) | 4 (-3) | 14 (+2) | 3 (-4) |
+      >
+      >---
+      >
+      >**Senses** darkvision 60 ft., passive Perception 12
+      >
+      >***Spider Climb.*** The insect can climb difficult surfaces, including along ceilings, without needing to make an ability check.
+      >
+      >---
+      >
+      >***Multiattack.*** The insect makes a number of attacks equal to half this spell’s level (round down).
+      >
+      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell’s level Piercing damage plus 1d4 Poison damage.
+      >
+      >---
+      >
+      >***(Bonus Action) Venomous Spew.*** _Constitution Saving Throw:_ $(attributes.spellcasting.save) DC, one creature the insect can see within 10 feet. _Failure:_ The target has the Poisoned condition until the start of the insect’s next turn.
+  - type: Activity
+    name: "Giant Insect: Spider"
+    time: action
+    id: giantInsectSpider
+    range: 60 feet
+    resource: level4SpellSlot
+    duration: concentration, up to 10 minutes
+    description: |
+      You summon a giant spider.
+
+      >**Armor Class** 11 + the spell’s level
+      >
+      >**Hit Points** 30 + 10 for each spell level above 4
+      >
+      >**Speed** 40 ft., climb 40 ft.
+      >
+      >---
+      >
+      >| STR | DEX | CON | INT | WIS | CHA |
+      >|-----|-----|-----|-----|-----|-----|
+      >| 17 (+3) | 13 (+1) | 15 (+2) | 4 (-3) | 14 (+2) | 3 (-4) |
+      >
+      >---
+      >
+      >**Senses** darkvision 60 ft., passive Perception 12
+      >
+      >***Spider Climb.*** The insect can climb difficult surfaces, including along ceilings, without needing to make an ability check.
+      >
+      >---
+      >
+      >***Multiattack.*** The insect makes a number of attacks equal to half this spell’s level (round down).
+      >
+      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell’s level Piercing damage plus 1d4 Poison damage.
+      >
+      >***Web Bolt.*** _Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 60 ft. _Hit:_ 1d10$(formatBonus(stats.str.mod)) + the spell’s level Bludgeoning damage, and the target’s Speed is reduced to 0 until the start of the insect’s next turn.
+  - type: Activity
+    name: "Giant Insect: Wasp"
+    time: action
+    id: giantInsectWasp
+    range: 60 feet
+    resource: level4SpellSlot
+    duration: concentration, up to 10 minutes
+    description: |
+      You summon a giant wasp.
+
+      >**Armor Class** 11 + the spell’s level
+      >
+      >**Hit Points** 30 + 10 for each spell level above 4
+      >
+      >**Speed** 40 ft., climb 40 ft., fly 40 ft.
+      >
+      >---
+      >
+      >| STR | DEX | CON | INT | WIS | CHA |
+      >|-----|-----|-----|-----|-----|-----|
+      >| 17 (+3) | 13 (+1) | 15 (+2) | 4 (-3) | 14 (+2) | 3 (-4) |
+      >
+      >---
+      >
+      >**Senses** darkvision 60 ft., passive Perception 12
+      >
+      >***Spider Climb.*** The insect can climb difficult surfaces, including along ceilings, without needing to make an ability check.
+      >
+      >---
+      >
+      >***Multiattack.*** The insect makes a number of attacks equal to half this spell’s level (round down).
+      >
+      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell’s level Piercing damage plus 1d4 Poison damage.

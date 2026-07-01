@@ -1,0 +1,6 @@
+type: Effect
+target: skills.intimidation.adv
+operation: set
+value: true
+id: intimidationAdvantage
+name: Intimidation Advantage

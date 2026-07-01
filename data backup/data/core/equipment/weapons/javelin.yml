@@ -1,0 +1,14 @@
+id: javelin
+name: Javelin
+type: Reference
+target: weaponAttack
+tags: [simple]
+variables:
+  name: Javelin
+  mastery: slow
+  damageRoll: 1d6
+  damageType: piercing
+  range: 30 feet
+  classification: thrown
+  category: simple
+  property: ''

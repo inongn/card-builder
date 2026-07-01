@@ -1,0 +1,10 @@
+id: wordOfRadiance
+type: Activity
+name: Word of Radiance
+tags: [evocation, cantrip, cleric, saveSpell, damageSpell, radiantDamage]
+time: action
+range: self
+duration: instantaneous
+description: |
+  Burning radiance erupts from you in a 5-foot Emanation. Each creature of your choice that you can see in it must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Radiant damage.
+

@@ -1,0 +1,11 @@
+id: deathArmor
+type: Activity
+name: Death Armor
+resource: level2SpellSlot
+tags: [level2Spell, necromancy, sorcerer, wizard]
+time: action
+range: touch
+duration: 1 hour
+description: |
+  For the duration, an inky aura surrounds one creature you touch. The target has Advantage on Death Saving Throws, and once per turn, when a creature within 5 feet of the target hits it with a melee attack roll, the attacker takes 2d4 Necrotic damage.
+

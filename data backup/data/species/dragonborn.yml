@@ -1,0 +1,57 @@
+id: dragonborn
+name: Dragonborn
+tags:
+- species
+description: "The ancestors of dragonborn hatched from the eggs of chromatic and metallic\
+  \ dragons. Dragonborn look like wingless, bipedal dragons\u2014scaly, bright-eyed,\
+  \ and thick-boned with horns on their heads\u2014and their coloration and other\
+  \ features are reminiscent of their draconic ancestors.\n"
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Dragonborn
+- id: breathWeapon
+  type: Activity
+  name: Breath Weapon
+  time: action
+  range: self
+  duration: Instantaneous
+  resource: breathWeapon
+  description: 'You exhale magical energy in a 15-foot Cone or a 30-foot Line (5 feet
+    wide). Each creature in that area must make a DC $(8 + stats.con.mod + attributes.prof)
+    Dexterity saving throw. On a failed save, a creature takes $(meta.level >= 17
+    ? ''4'' : meta.level >= 11 ? ''3'' : meta.level >= 5 ? ''2'' : ''1'')d10 $(attributes.dragonicAncestryDamage)
+    damage. On a successful save, a creature takes half as much damage.
+
+    '
+- id: breathWeapon
+  type: Resource
+  name: Breath Weapon
+  quantity: $(attributes.prof)
+  sr: 0
+- id: dragonbornDarkvision
+  type: Effect
+  target: attributes.senses.darkvision
+  operation: set
+  value: 60
+- id: draconicFlight
+  type: Activity
+  name: Draconic Flight
+  time: bonus action
+  duration: 10 minutes
+  tags:
+  - limitedLR
+  condition: $(meta.level >= 5)
+  description: 'You sprout spectral wings on your back for 10 minutes or until you
+    retract them (no action required) or have the Incapacitated condition. During
+    that time, you have a Fly Speed equal to your Speed.
+
+    '
+- id: draconicAncestry
+  name: Draconic Ancestry
+  type: Slot
+  target: draconicAncestry
+  quantity: 1

@@ -1,0 +1,35 @@
+id: halfling
+name: Halfling
+tags:
+- species
+description: 'Cherished and guided by gods who value life, home, and hearth, halflings
+  gravitate toward bucolic havens where family and community help shape their lives.
+  Many halflings possess a brave and adventurous spirit. Their size helps them pass
+  through crowds unnoticed and slip through tight spaces.
+
+  '
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Halfling
+- type: Reference
+  target: frightenedAdvantage
+- id: halflingNimbleness
+  type: Activity
+  name: Halfling Nimbleness
+  description: You can move through the space of any creature that is a size larger
+    than you, but you can't stop in the same space.
+- id: luck
+  type: Activity
+  name: Luck
+  description: When you roll a 1 on the d20 of a D20 Test, you can reroll the die,
+    and you must use the new roll.
+- id: naturallyStealthy
+  type: Extra
+  target: hide
+  name: Naturally Stealthy
+  description: You can Hide even when you are obscured only by a creature
+    that is at least one size larger than you.

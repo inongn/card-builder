@@ -1,0 +1,32 @@
+id: animateObjects
+type: Activity
+name: Animate Objects
+resource: level5SpellSlot
+tags: [level5Spell, transmutation, artificer, bard, sorcerer, wizard]
+time: action
+range: 120 feet
+duration: concentration, up to 1 minute
+description: |
+  Objects animate at your command. Choose a number of nonmagical objects within range that aren’t being worn or carried, aren’t fixed to a surface, and aren’t Gargantuan. The maximum number of objects is equal to $(attributes.spellcasting.bonus); for this number, a Medium or smaller target counts as one object, a Large target counts as two, and a Huge target counts as three.
+
+  >**Armor Class** 15
+  >
+  >**Hit Points** 10 (Medium or smaller), 20 (Large), 40 (Huge)
+  >
+  >**Speed** 30 ft.
+  >
+  >---
+  >
+  >| STR | DEX | CON | INT | WIS | CHA |
+  >|-----|-----|-----|-----|-----|-----|
+  >| 16 (+3) | 10 (+0) | 10 (+0) | 3 (-4) | 3 (-4) | 1 (-5) |
+  >
+  >---
+  >
+  >**Senses** blindsight 30 ft., passive Perception 6
+  >
+  >**Immunities** Poison, Psychic, Charmed, Exhaustion, Frightened, Paralyzed, Poisoned
+  >
+  >---
+  >
+  >***Slam.*** _Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ Force damage equal to 1d4 + 3 (Medium or smaller), 2d6 + $(3+attributes.spellcasting.mod) (Large), or 2d12 + $(3+attributes.spellcasting.mod) (Huge).

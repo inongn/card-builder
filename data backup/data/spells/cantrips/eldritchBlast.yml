@@ -1,0 +1,10 @@
+id: eldritchBlast
+type: Activity
+name: Eldritch Blast
+tags: [evocation, cantrip, warlock, attackSpell, damageSpell, forceDamage]
+time: action
+range: 120 feet
+duration: instantaneous
+description: |
+  You hurl $(meta.level >= 5 ? (meta.level >= 17 ? 'four' : meta.level >= 11 ? 'three' : 'two') + ' beams' : 'a beam') of crackling energy. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack $(meta.level >= 5 ? 'for each beam' : 'against one creature or object in range'). On a hit, the target takes 1d10 Force damage.
+

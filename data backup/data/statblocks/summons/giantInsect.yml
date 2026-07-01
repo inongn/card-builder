@@ -1,0 +1,37 @@
+type: Statblock
+name: Giant Insect
+id: giantInsectSummon
+category: summon
+tags: [summon]
+size: Large
+classification: Beast
+ac: 11 + the spell's level
+hp: 30 + 10 for each spell level above 4
+movement:
+  walk: 40
+  climb: 40
+  fly: (Wasp only) 40
+stats:
+  str: 17
+  dex: 13
+  con: 15
+  int: 4
+  wis: 14
+  cha: 3
+senses:
+  darkvision: 60
+challenge: 0
+cr: 0
+traits:
+  - name: Spider Climb
+    description: "The insect can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+actions:
+  - name: Multiattack
+    description: "The insect makes a number of attacks equal to half this spell’s level (round down)."
+  - name: Poison Jab
+    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell’s level Piercing damage plus 1d4 Poison damage."
+  - name: Web Bolt (Spider Only)
+    description: "_Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 60 ft. _Hit:_ 1d10$(formatBonus(stats.str.mod)) + the spell’s level Bludgeoning damage, and the target’s Speed is reduced to 0 until the start of the insect’s next turn."
+bonusActions:
+  - name: Venomous Spew (Centipede Only)
+    description: "_Constitution Saving Throw:_ $(attributes.spellcasting.save) DC, one creature the insect can see within 10 feet. _Failure:_ The target has the Poisoned condition until the start of the insect’s next turn."

@@ -1,0 +1,10 @@
+id: poisonSpray
+type: Activity
+name: Poison Spray
+tags: [necromancy, cantrip, artificer, druid, sorcerer, warlock, wizard, attackSpell, damageSpell, poisonDamage]
+time: action
+range: 30 feet
+duration: instantaneous
+description: |
+  You spray toxic mist at a creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d12 Poison damage.
+

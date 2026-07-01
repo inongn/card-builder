@@ -1,0 +1,12 @@
+id: devouringBlade
+name: Devouring Blade
+tags:
+  - eldritchInvocation
+condition: $(attributes.pactOfTheBlade == true && meta.level >= 12)
+type: Folder
+children:
+  - id: extraAttack
+    type: Effect
+    target: activities[weaponAttack].extra["twice"]
+    operation: replace
+    value: three times

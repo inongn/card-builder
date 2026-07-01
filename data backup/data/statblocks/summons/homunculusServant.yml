@@ -1,0 +1,35 @@
+type: Statblock
+name: Homunculus Servant
+id: homunculusServant
+category: summon
+tags: [summon]
+size: Tiny
+classification: Construct
+ac: 13
+hp: 5 + 5 per spell level
+movement:
+  walk: 20
+  fly: 30
+stats:
+  str: 4
+  dex: 15
+  con: 12
+  int: 10
+  wis: 10
+  cha: 7
+immunities: [Poison, Exhaustion, Poisoned]
+senses:
+  darkvision: 60
+challenge: 0
+cr: 0
+traits:
+  - name: Evasion
+    description: "If the homunculus is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, the homunculus instead takes no damage if it succeeds on the save and only half damage if it fails. It can’t use this trait if it has the Incapacitated condition."
+  - name: Magic Bond
+    description: "Add the spell level to any ability check or saving throw the homunculus makes."
+actions:
+  - name: Force Strike
+    description: "_Melee or Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. or range 30 ft. _Hit:_ 1d6 + the spell's level Force damage."
+reactions:
+  - name: Channel Magic
+    description: "_Trigger:_ You cast a spell that has a range of touch while the homunculus is within 120 feet of you. _Response:_ The homunculus delivers the spell through its touch."

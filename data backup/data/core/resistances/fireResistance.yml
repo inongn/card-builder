@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - damageResistance
+operation: push
+value: Fire Damage
+target: attributes.resistances
+id: fireResistance
+name: Fire Resistance

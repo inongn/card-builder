@@ -1,0 +1,6 @@
+type: Effect
+target: skills.arcana.adv
+operation: set
+value: true
+id: arcanaAdvantage
+name: Arcana Advantage

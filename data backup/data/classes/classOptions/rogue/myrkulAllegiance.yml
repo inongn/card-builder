@@ -1,0 +1,10 @@
+id: myrkulAllegiance
+name: "Myrkul Allegiance"
+tags:
+  - dreadAllegiance
+type: Folder
+children:
+  - type: Reference
+    target: necroticResistance
+  - type: Reference
+    target: chillTouch
