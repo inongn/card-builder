@@ -8,9 +8,10 @@ type: Folder
 children:
   # Level 3: Frenzy
   - id: frenzy
-    type: Activity
+    type: Extra
     name: Frenzy
-    description: "When you use Reckless Attack while your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
+    target: rage
+    description: "If you use Reckless Attack while your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
 
   # Level 6: Mindless Rage
   - id: mindlessRageCharmed

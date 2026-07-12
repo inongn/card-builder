@@ -1,0 +1,14 @@
+name: Boon of Dimensional Travel
+type: Folder
+id: boonOfDimensionalTravel
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Blink Steps
+  type: Activity
+  description: "When you take the Attack action or the Magic action, you teleport up to 30 feet to an unoccupied space you can see."

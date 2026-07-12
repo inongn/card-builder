@@ -87,10 +87,11 @@ children:
     name: Tactical Shift
     description: You can move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks.
   - id: extraAttack
-    type: Activity
+    type: Extra
+    target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "When you take the Attack action on your turn, you attack $(meta.level >= 20 ? 'four times' : meta.level >= 11 ? 'three times' : 'twice') instead of once."
+    description: "You can attack $(meta.level >= 20 ? 'four times' : meta.level >= 11 ? 'three times' : 'twice'), instead of once, whenever you take the Attack action on your turn."
   - id: level8feat
     name: Level 8 Feat
     type: Slot
@@ -98,19 +99,11 @@ children:
     quantity: 1
     target: feat
   - id: tacticalMaster
-    type: Activity
+    type: Extra
+    target: weaponAttack NOT unarmed
     condition: $(meta.level >= 9)
     name: Tactical Master
-    description: |
-    
-      When you hit a creature with a weapon attack, you replace the effect of its Mastery property with one of the following options:
-
-      **Push**. On a hit, push the target up to 10 feet straight away from you.
-
-      **Sap**. On a hit, the target has disadvantage on its next attack roll before the start of your next turn.
-
-      **Slow**. On a hit, the target's speed is reduced by 10 feet.
-
+    description: "On a hit, you can replace the effect of $(local.mastery.charAt(0).toUpperCase() + local.mastery.slice(1)) with one of the following effects — push the target up to 10 feet straight away from yourself, reduce the target's speed by 10 feet until the start of your next turn, or impose disadvantage on the target's next attack roll."
   - id: indomitable
     type: Activity
     name: Indomitable
@@ -125,10 +118,11 @@ children:
     type: Resource
     quantity: $(progression(0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3))
   - id: studiedAttacks
-    type: Activity
+    type: Extra
+    target: weaponAttack OR attackSpell
     condition: $(meta.level >= 13)
     name: Studied Attacks
-    description: "When you miss with an attack dexterousAttacksRoll, you have Advantage on your next attack roll against the target before the end of your next turn."
+    description: "On a miss, you have Advantage on your next attack roll against the target before the end of your next turn."
   - id: level12feat
     name: Level 12 Feat
     type: Slot

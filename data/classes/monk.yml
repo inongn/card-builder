@@ -182,10 +182,11 @@ children:
 
   # Level 5: Extra Attack
   - id: extraAttack
-    type: Activity
+    type: Extra
+    target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "When you take the Attack action on your turn, you attack twice instead of once."
+    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
 
 
   # Level 5: Stunning Strike
@@ -198,10 +199,11 @@ children:
 
   # Level 6: Empowered Strikes
   - id: empoweredStrikes
-    type: Activity
+    type: Extra
+    target: weaponAttack
     name: Empowered Strikes
     condition: $(meta.level >= 6)
-    description: "When you deal damage with a weapon attack, you can deal Force damage instead of the normal damage type."
+    description: "You can deal your choice of Force damage or the normal damage type."
 
   # Level 7: Evasion
   - id: evasion

@@ -10,11 +10,11 @@ tags:
 children:
   # Level 3: Disciple of Life
   - id: discipleOfLife
-    type: Activity
+    type: Extra
     name: Disciple of Life
     target: healingSpell
     condition: $(meta.level >= 3)
-    description: "When a spell you cast with a spell slot restores Hit Points to a creature, that creature regains additional Hit Points on the turn you cast the spell. The additional Hit Points equal 2 plus the spell slot’s level."
+    description: "The creature regains an additional 2 + spell level Hit Points."
 
   # Level 3: Life Domain Spells
   - type: Reference
@@ -45,14 +45,14 @@ children:
   - id: blessedHealer
     type: Extra
     name: Blessed Healer
-    target: discipleOfLife
+    target: healingSpell
     condition: $(meta.level >= 6)
-    description: "You also regain Hit Points equal to 2 plus the spell slot’s level."
+    description: "If you cast this on another creature, you regain 2 + spell level Hit Points."
 
   # Level 17: Supreme Healing
   - id: supremeHealing
-    type: Activity
+    type: Extra
     name: Supreme Healing
     target: healingSpell
     condition: $(meta.level >= 17)
-    description: "When you would normally roll one or more dice to restore Hit Points to a creature with a spell or Channel Divinity, don’t roll those dice for the healing; instead use the highest number possible for each die."
+    description: "Use the highest number possible for each die rolled to restore Hit Points."

@@ -1,0 +1,5 @@
+id: colossusSlayer
+name: Colossus Slayer
+tags: [huntersPrey]
+type: Activity
+description: "Once per turn when you hit a creature with a weapon attack, if the target is missing any of its Hit Points, the target takes an extra 1d8 damage."

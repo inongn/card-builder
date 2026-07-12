@@ -1,0 +1,11 @@
+id: lightningAffinity
+name: Lightning Affinity
+type: Folder
+tags:
+  - elementalAffinity
+children:
+  - type: Reference
+    target: lightningResistance
+  - type: Activity
+    name: Elemental Affinity
+    description: "When you cast a spell that deals Lightning damage, you can add $(stats.cha.mod) to one damage roll of the spell."

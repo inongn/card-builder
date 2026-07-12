@@ -1,0 +1,70 @@
+id: oathOfDevotion
+name: Oath of Devotion
+description: |
+  The Oath of Devotion binds Paladins to the ideals of Justice and Order. These Paladins meet the archetype of the knight in shining armor.
+tags:
+  - paladinSubclass
+type: Folder
+children:
+  # Level 3: Oath of Devotion Spells
+  - type: Reference
+    target: [protectionFromEvilAndGood, shieldOfFaith]
+  - type: Reference
+    target: [aid, zoneOfTruth]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [beaconOfHope, dispelMagic]
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target: [freedomOfMovement, guardianOfFaith]
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target: [commune, flameStrike]
+    condition: $(meta.level >= 17)
+
+  # Level 3: Sacred Weapon
+  - id: sacredWeapon
+    type: Activity
+    name: Sacred Weapon
+    time: free action
+    duration: 10 minutes
+    resource: channelDivinity
+    description: |
+      When you take the Attack action, you imbue one Melee weapon that you are holding with positive energy. For the duration or until you use this feature again, you add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls you make with that weapon, and each time you hit with it, you cause it to deal its normal damage type or Radiant damage. 
+      
+      The weapon also emits Bright Light in a 20-foot radius and Dim Light 20 feet beyond that. You can end this effect early (no action required). This effect also ends if you aren't carrying the weapon.
+
+  # Level 7: Aura of Devotion
+  - id: auraOfDevotion
+    type: Extra
+    name: Aura of Devotion
+    target: auraOfProtection
+    condition: $(meta.level >= 7)
+    description: "You and your allies have Immunity to the Charmed condition. If a Charmed ally enters the aura, that condition has no effect on that ally while there."
+
+  # Level 15: Smite of Protection
+  - id: smiteOfProtection
+    type: Extra
+    name: Smite of Protection
+    target: divineSmite
+    condition: $(meta.level >= 15)
+    description: |
+      You and your allies have Half Cover while in your Aura of Protection. The aura has this benefit until the start of your next turn.
+
+  # Level 20: Holy Nimbus
+  - id: holyNimbus
+    type: Activity
+    name: Holy Nimbus
+    time: bonus action
+    duration: 10 minutes
+    condition: $(meta.level >= 20)
+    tags: [innateLR]
+    resource: level5SpellSlot
+    description: |
+      You imbue your Aura of Protection with holy power, granting the benefits below for the duration or until you end them (no action required):
+      
+      **Holy Ward.** You have Advantage on any saving throw you are forced to make by a Fiend or an Undead.
+
+      **Radiant Damage.** Whenever an enemy starts its turn in the aura, that creature takes $(stats.cha.mod + attributes.prof) Radiant damage.
+
+      **Sunlight.** The aura is filled with Bright Light that is sunlight.

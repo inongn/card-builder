@@ -1,0 +1,12 @@
+id: acidAffinity
+name: Acid Affinity
+type: Folder
+tags:
+  - elementalAffinity
+children:
+  - type: Reference
+    target: acidResistance
+  - type: Activity
+    id: acidAffinityDamage
+    name: Elemental Affinity
+    description: "When you cast a spell that deals Acid damage, you can add $(stats.cha.mod) to one damage roll of the spell."

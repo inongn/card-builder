@@ -1,0 +1,14 @@
+name: Boon of Combat Prowess
+type: Folder
+id: boonOfCombatProwess
+tags:
+- epicBoon
+children:
+- name: Ability Point Bonus
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Peerless Aim
+  type: Activity
+  description: Once per turn when you miss with an attack roll, you hit instead.

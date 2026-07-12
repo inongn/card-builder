@@ -6,6 +6,8 @@ tags:
 children:
   - type: Reference
     target: poisonResistance
-  - type: Activity
+  - type: Extra
+    target: damageSpell AND poisonDamage
     name: Elemental Affinity
-    description: "When you cast a spell that deals Poison damage, you can add $(stats.cha.mod) to one damage roll of the spell."
+    description: |
+      Add $(stats.cha.mod) modifier to one damage roll of the spell.

@@ -8,17 +8,24 @@ type: Folder
 children:
   # Level 3: Open Hand Technique
   - id: openHandTechnique
-    type: Extra
-    target: flurryOfBlows
+    type: Activity
     name: Open Hand Technique
-    description: |
-      When you hit a creature with an attack, you can impose one of the following effects on the target:
-
-      - _Addle_: The target can't make Opportunity Attacks until the start of its next turn.
-      
-      - _Push_: The target must succeed on a DC $(attributes.monkSaveDC) Strength saving throw or be pushed up to 15 feet away from you.
-      
-      - _Topple_: The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or have the Prone condition.
+    description: "When you hit a creature with an attack granted by your Flurry of Blows, you impose one of the following effects on the target."
+  - id: openHandAddle
+    type: Extra
+    name: Addle
+    target: openHandTechnique
+    description: "The target can't make Opportunity Attacks until the start of its next turn."
+  - id: openHandPush
+    type: Extra
+    name: Push
+    target: openHandTechnique
+    description: "The target must succeed on a DC $(attributes.monkSaveDC) Strength saving throw or be pushed up to 15 feet away from you."
+  - id: openHandTopple
+    type: Extra
+    name: Topple
+    target: openHandTechnique
+    description: "The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or have the Prone condition."
 
   # Level 6: Wholeness of Body
   - id: wholenessOfBody

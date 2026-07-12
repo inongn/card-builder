@@ -1,0 +1,10 @@
+id: primalStrike
+name: Primal Strike
+tags: [elementalFury]
+type: Folder
+children:
+  - id: primalStrikeActivity
+    type: Activity
+    target: wildShapeActivity
+    name: Primal Strike
+    description: "Once per turn when you hit a creature with an attack roll using a weapon or a Beast form’s attack in Wild Shape, the target takes an additional $(meta.level >= 15 ? '2d8' : '1d8') Cold, Fire, Lightning, or Thunder damage."

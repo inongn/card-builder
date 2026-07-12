@@ -1,0 +1,10 @@
+id: trueStrike
+type: Activity
+name: True Strike
+tags: [divination, cantrip, artificer, bard, sorcerer, warlock, wizard]
+time: action
+range: self
+duration: instantaneous
+description: |
+  Guided by a flash of magical insight, you make one attack with a weapon. The attack uses $(formatBonus(attributes.spellcasting.attack)) for the attack roll and $(formatBonus(attributes.spellcasting.bonus)) for the damage bonus instead of using Strength or Dexterity. If the attack deals damage, it can be Radiant damage or the weapon’s normal damage type (your choice).
+

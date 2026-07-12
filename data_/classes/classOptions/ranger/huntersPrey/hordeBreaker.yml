@@ -1,0 +1,5 @@
+id: hordeBreaker
+name: Horde Breaker
+tags: [huntersPrey]
+type: Activity
+description: "Once per turn when you make a weapon attack, you can make another attack against a different creature that is within 5 feet of the target, that is within the weapon's range, and that you haven't attacked this turn."

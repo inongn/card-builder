@@ -6,7 +6,9 @@ tags:
 children:
   - type: Reference
     target: fireResistance
-  - type: Activity
+  - type: Extra
     id: fireAffinityDamage
+    target: damageSpell AND fireDamage
     name: Elemental Affinity
-    description: "When you cast a spell that deals Fire damage, you can add $(stats.cha.mod) to one damage roll of the spell."
+    description: |
+      Add $(stats.cha.mod) modifier to one damage roll of the spell.

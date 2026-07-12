@@ -1,0 +1,17 @@
+name: Boon of Irresistible Offense
+type: Folder
+id: boonOfIrresistibleOffense
+tags:
+- epicBoon
+children:
+- name: Ability Score Increase
+  type: Effect
+  target: attributes.asiPoolLimit
+  operation: add
+  value: 1
+- name: Overcome Defenses
+  type: Activity
+  description: When you deal Bludgeoning, Piercing, or Slashing damage, that damage ignores Resistance.
+- name: Overwhelming Strike
+  type: Activity
+  description: When you score a Critical Hit with a weapon attack, the target takes an extra $(Math.max(stats.str.mod, stats.dex.mod)) damage.
