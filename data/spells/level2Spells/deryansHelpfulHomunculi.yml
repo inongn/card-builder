@@ -1,4 +1,5 @@
 id: deryansHelpfulHomunculi
+condition: $(meta.setting === 'faerun')
 type: Activity
 name: Deryan's Helpful Homunculi
 resource: level2SpellSlot

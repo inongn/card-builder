@@ -1,0 +1,10 @@
+id: ferocity
+name: Ferocity
+type: Folder
+tags:
+  - strangeModifications
+children:
+  - type: Effect
+    target: statblocks[reanimatedCompanion].actions[dreadfulSwipe].description["1d4"]
+    operation: replace
+    value: "1d6"

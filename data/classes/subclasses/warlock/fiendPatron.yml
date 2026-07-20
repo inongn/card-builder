@@ -6,6 +6,11 @@ tags:
   - warlockSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Fiend"
   # Level 3: Fiend Spells
   - type: Reference
     target: [burningHands, command, scorchingRay, suggestion]
@@ -48,7 +53,7 @@ children:
 
   # Level 10: Fiendish Resilience
   - id: fiendishResilience
-    type: Extra
+    type: Slot
     target: shortRest OR longRest
     name: Fiendish Resilience
     description: "Choose one damage type (other than Force). You have Resistance to it."

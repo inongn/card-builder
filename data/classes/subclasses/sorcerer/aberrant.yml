@@ -6,6 +6,11 @@ type: Folder
 tags:
   - sorcererSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Aberrant"
   # Level 3: Psionic Spells
   - type: Reference
     target: [armsOfHadar, calmEmotions, detectThoughts, dissonantWhispers, mindSliver]
@@ -19,16 +24,6 @@ children:
   - type: Reference
     target: [rarysTelepathicBond, telekinesis]
     condition: $(meta.level >= 9)
-
-  # Level 3: Telepathic Speech
-  - id: telepathicSpeech
-    type: Activity
-    name: Telepathic Speech
-    time: bonus action
-    range: 30 feet
-    duration: $(meta.level) minutes
-    condition: $(meta.level >= 3)
-    description: "You form a telepathic connection with one creature you can see. You can communicate while within $(Math.max(1, stats.cha.mod)) miles of each other."
 
   # Level 6: Psionic Sorcery
   - id: psionicSorcery

@@ -85,6 +85,19 @@ mdui-top-app-bar {
   gap: var(--gap-sm);
 }
 
+.section-title {
+  font-family: var(--mdui-font-family);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgb(var(--mdui-color-primary));
+  margin-top: var(--gap-sm);
+  margin-bottom: var(--gap-xs);
+  border-bottom: 2px solid rgb(var(--mdui-color-primary-container));
+  padding-bottom: 4px;
+}
+
 .inner-card {
   padding: var(--gap-xs);
   min-height: min-content;
@@ -309,7 +322,8 @@ mdui-chip {
 
 .saves-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
 }
 
 .list-item.skill-list-item {
@@ -462,7 +476,6 @@ mdui-chip {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   font-size: 1.5rem;
   color: var(--mdui-color-primary);
 }
@@ -726,7 +739,6 @@ mdui-chip {
   padding: 0 2.5vw;
   max-width: 1200px;
   margin: 0 auto;
-  height: 100%;
 }
 
 .header-nav {
@@ -835,30 +847,189 @@ mdui-chip {
    ========================================================================== */
 
 
+/* ==========================================================================
+   DEBUGGER REFACED
+   ========================================================================== */
+
 .debug-yaml-container {
-  padding: var(--gap-md);
+  height: 100%;
   display: flex;
   flex-direction: column;
+  background: var(--mdui-color-surface);
 }
 
-.debug-yaml-header {
-  margin-bottom: var(--gap-md);
+/* Code Viewer Wrapper */
+.debug-code-viewer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--mdui-color-outline-variant);
+  border-radius: 12px;
+  background: var(--mdui-color-surface-container-low);
+  overflow: hidden;
+}
+
+/* Action Toolbar */
+.debug-code-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--mdui-color-surface-container);
+  border-bottom: 1px solid var(--mdui-color-outline-variant);
+}
+
+.debug-code-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Code Content Area */
+.debug-code-content-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+  font-family: 'Fira Code', 'Roboto Mono', 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Gutter (Line Numbers) */
+.debug-code-gutter {
+  padding: 12px 8px 12px 12px;
+  background: var(--mdui-color-surface-container-low);
+  color: var(--mdui-color-outline);
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid var(--mdui-color-outline-variant);
+  min-width: 32px;
+}
+
+.debug-code-line-number {
+  display: block;
+}
+
+/* Pre block containing actual code */
+.debug-code-pre {
+  margin: 0;
+  padding: 12px 16px;
+  flex: 1;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--mdui-color-on-surface);
+}
+
+/* Search Highlights */
+.debug-search-match {
+  background-color: rgba(255, 235, 59, 0.4);
+  border-bottom: 2px solid #ffd700;
+  color: inherit;
+}
+
+.mdui-theme-dark .debug-search-match {
+  background-color: rgba(255, 235, 59, 0.2);
+  border-bottom: 2px solid #ffd700;
+}
+
+/* Syntax Highlighting */
+.yaml-key {
+  color: var(--mdui-color-primary);
+  font-weight: 600;
+}
+
+.yaml-string {
+  color: var(--mdui-color-tertiary);
+}
+
+.yaml-number {
+  color: var(--mdui-color-secondary);
+}
+
+.yaml-boolean {
+  color: var(--mdui-color-error);
+  font-weight: 500;
+}
+
+.yaml-null {
+  color: var(--mdui-color-outline);
+  font-style: italic;
+}
+
+.yaml-comment {
+  color: var(--mdui-color-outline);
+  font-style: italic;
+}
+
+/* Custom Scrollbar for Code Elements */
+.debug-code-content-wrapper::-webkit-scrollbar,
+.debug-code-pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.debug-code-content-wrapper::-webkit-scrollbar-track,
+.debug-code-pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.debug-code-content-wrapper::-webkit-scrollbar-thumb,
+.debug-code-pre::-webkit-scrollbar-thumb {
+  background: var(--mdui-color-outline-variant);
+  border-radius: 4px;
+}
+
+.debug-code-content-wrapper::-webkit-scrollbar-thumb:hover,
+.debug-code-pre::-webkit-scrollbar-thumb:hover {
+  background: var(--mdui-color-outline);
+}
+
+/* Property Explorer Styling */
+.property-explorer-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.property-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
 }
 
-.debug-yaml-content {
-  flex: 1;
-  background: var(--mdui-color-surface-container-high);
+.property-card-header:hover {
+  background: var(--mdui-color-surface-container-hover);
+}
+
+.property-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+
+.property-details-table th,
+.property-details-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--mdui-color-outline-variant);
+}
+
+.property-details-table th {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--mdui-color-on-surface-variant);
+  background: var(--mdui-color-surface-container-low);
+  width: 30%;
+}
+
+.property-details-table td {
+  font-size: 13px;
   color: var(--mdui-color-on-surface);
-  padding: var(--gap-sm);
-  border-radius: 8px;
-  overflow: auto;
-  font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
-  font-size: 0.85rem;
-  white-space: pre-wrap;
-  border: 1px solid var(--mdui-color-outline-variant);
 }
 
 /* ==========================================================================
@@ -908,6 +1079,59 @@ blockquote {
 
   .main-card-column {
     grid-column: span 6;
+  }
+
+  mdui-select {
+    max-width: 95vw !important;
+  }
+
+  mdui-select::part(text-field) {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  mdui-select::part(chips) {
+    padding: 0 .5em;
+    flex-wrap: nowrap !important;
+    overflow-x: scroll !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /* Scroll-driven mask animations */
+    animation: adjust-select-masks linear;
+    animation-timeline: scroll(self x);
+
+    /* Fallback static mask for older browsers */
+    mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+  }
+
+  mdui-select::part(chips)::-webkit-scrollbar {
+    display: none;
+  }
+
+  mdui-select::part(chip) {
+    flex-shrink: 0 !important;
+  }
+}
+
+@keyframes adjust-select-masks {
+  0% {
+    mask-image: linear-gradient(to right, transparent 0%, black 0px, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 0px, black calc(100% - 24px), transparent 100%);
+  }
+
+  15%,
+  85% {
+    mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+  }
+
+  100% {
+    mask-image: linear-gradient(to right, transparent 0%, black 24px, black 100%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 24px, black 100%, transparent 100%);
   }
 }
 

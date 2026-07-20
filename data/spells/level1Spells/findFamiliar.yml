@@ -1,13 +1,23 @@
 id: findFamiliar
 type: Folder
 name: Find Familiar
-resource: level1SpellSlot
 tags: [level1Spell, conjuration, wizard, ritual]
 children:
   - type: Slot
-    id: familiarForm
-    name: Familiar Form
+    id: familiarType
+    name: Familiar Type
     quantity: 1
-    target: "findFamiliarSpell OR badger OR bat OR cat OR frog OR hawk OR lizard OR octopus OR owl OR rat OR raven OR spider OR weasel $(attributes.pactOfTheChain == true ? 'OR imp OR pseudodragon OR quasit OR skeleton OR slaadTadpole OR sphinxOfWonder OR sprite OR venomousSnake' : '')"
-    variables:
-      target: findFamiliarActivity
+    target: familiarCelestial OR familiarFey OR familiarFiend
+  - type: Slot
+    id: familiarEnvironment
+    name: Familiar Environment
+    quantity: 1
+    target: familiarLand OR familiarAir OR familiarWater
+  - id: familiarName
+    type: Input
+    name: Familiar Name
+    inputType: text
+    label: Familiar Name
+
+  - type: Reference
+    target: "otherworldlyFamiliar$(meta.familiarEnvironment || 'Land')$(meta.familiarType || 'Celestial')"

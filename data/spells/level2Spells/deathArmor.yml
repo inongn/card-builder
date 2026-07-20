@@ -1,6 +1,7 @@
 id: deathArmor
 type: Activity
 name: Death Armor
+condition: $(meta.setting === 'faerun')
 resource: level2SpellSlot
 tags: [level2Spell, necromancy, sorcerer, wizard]
 time: action

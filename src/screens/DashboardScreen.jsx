@@ -1,9 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, toggleTheme, isDarkMode, onNavigate }) => {
+export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, toggleTheme, isDarkMode }) => {
+    useEffect(() => {
+        const savedScroll = sessionStorage.getItem('dashboard_scroll_position');
+        if (savedScroll) {
+            const scrollPos = parseInt(savedScroll, 10);
+            const restore = () => {
+                window.scrollTo(0, scrollPos);
+                const mainLayout = document.querySelector('.app-main-layout');
+                if (mainLayout) {
+                    mainLayout.scrollTop = scrollPos;
+                }
+            };
+            restore();
+            const timer = setTimeout(restore, 50);
+            return () => clearTimeout(timer);
+        }
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const mainLayout = document.querySelector('.app-main-layout');
+            const scrollTop = window.scrollY || (mainLayout ? mainLayout.scrollTop : 0);
+            sessionStorage.setItem('dashboard_scroll_position', scrollTop.toString());
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        const mainLayout = document.querySelector('.app-main-layout');
+        if (mainLayout) {
+            mainLayout.addEventListener('scroll', handleScroll, { passive: true });
+        }
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (mainLayout) {
+                mainLayout.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
     return (
-
-
         <div className="container">
 
             <mdui-top-app-bar variant="small">
@@ -26,7 +62,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         <div className="hero-card-content">
                             <div className="hero-name">{charSaved.name}</div>
                             <div className="hero-details">
-                                Lv. {charSaved.level || 1} {charSaved.species} {charSaved.class || 'Unknown Class'}
+                                Lv. {charSaved.level || 1} {charSaved.species} {charSaved.sub} {charSaved.class || 'Unknown Class'}
                             </div>
                             <div className="hero-actions">
                                 <mdui-button-icon icon="delete" onClick={(e) => {

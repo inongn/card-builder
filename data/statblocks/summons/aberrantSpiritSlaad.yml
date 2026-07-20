@@ -1,0 +1,28 @@
+type: Statblock
+name: Aberrant Spirit (Slaad)
+tags: [summon]
+id: aberrantSpiritSlaad
+size: Medium
+category: summon
+classification: Aberration
+ac: "$(11 + (local.maxLevel || 4))"
+hp: "$(40 + 10 * ((local.maxLevel || 4) - 4))"
+movement:
+  walk: 30
+stats:
+  str: 16
+  dex: 10
+  con: 15
+  int: 16
+  wis: 10
+  cha: 6
+senses:
+  darkvision: 60
+traits:
+  - name: Regeneration
+    description: "The spirit regains 5 Hit Points at the start of its turn if it has at least 1 Hit Point."
+actions:
+  - name: Multiattack
+    description: "The spirit makes $(Math.floor((local.maxLevel || 4) / 2)) Claw attacks."
+  - name: Claw
+    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d10$(formatBonus(stats.str.mod)) + $(local.maxLevel || 4) Slashing damage, and the target can’t regain Hit Points until the start of the spirit’s next turn."

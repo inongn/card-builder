@@ -6,6 +6,11 @@ tags:
   - paladinSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Glory"
   # Level 3: Inspiring Smite
   - id: inspiringSmite
     type: Activity
@@ -69,6 +74,7 @@ children:
     type: Resource
     name: Glorious Defense
     quantity: $(Math.max(1, stats.cha.mod))
+    condition: $(meta.level >= 15)
 
   # Level 20: Living Legend
   - id: livingLegend

@@ -6,6 +6,11 @@ tags:
   - fighterSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Eldritch Knight"
   - type: Reference
     target: [oneThirdCaster, intCaster]
   - type: Slot
@@ -26,11 +31,11 @@ children:
     condition: $(meta.level >= 3)
     id: warBond
     description: You summon your bonded weapon, causing it to teleport instantly to your hand. You can't be disarmed of that weapon unless you have the Incapacitated condition.
-  - type: Extra
-    target: weaponAttack
+  - type: Effect
+    target: activities[weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    operation: replace
     condition: $(meta.level >= 7)
-    name: War Magic
-    description: You can replace one of the attacks with a cantrip. 
+    value: "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a cantrip."
   - type: Extra
     target: weaponAttack
     condition: $(meta.level >= 10)
@@ -47,5 +52,4 @@ children:
     condition: $(meta.level >= 18)
     name: Improved War Magic
     description: You can replace two of the attacks with a level 1 or level 2 spell.
-    
     

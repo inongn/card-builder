@@ -8,6 +8,11 @@ type: Folder
 tags:
   - clericSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Life"
   # Level 3: Disciple of Life
   - id: discipleOfLife
     type: Extra

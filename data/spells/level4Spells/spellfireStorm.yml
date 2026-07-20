@@ -1,6 +1,7 @@
 id: spellfireStorm
 type: Activity
 name: Spellfire Storm
+condition: $(meta.setting === 'faerun')
 resource: level4SpellSlot
 tags: [level4Spell, evocation, sorcerer, wizard, saveSpell, damageSpell, radiantDamage]
 time: action

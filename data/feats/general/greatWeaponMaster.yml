@@ -15,7 +15,8 @@ children:
     target: activities[weaponAttack and melee and twoHanded].description["$(formatBonus(attributes.melee.bonus))"]
     operation: replace
     value: $(formatBonus(attributes.melee.bonus+attributes.prof))
-  - name: Hew
+  - id: hew
+    name: Hew
     type: Extra
     target: weaponAttack and melee and twoHanded
-    description: On a Critical Hit or when you reduce the target to 0 Hit Points, you can make another attack as a Bonus Action.
+    description: "On a Critical Hit, or when you reduce a creature to 0 Hit Points, make another attack."

@@ -6,12 +6,17 @@ type: Folder
 tags:
   - sorcererSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Wild Magic"
   # Level 3: Wild Magic Surge
   - id: wildMagicSurge
     type: Activity
     name: Wild Magic Surge
     condition: $(meta.level >= 3)
-    description: "Your spellcasting unleashes surges of untamed magic.Once per turn, roll 1d20 immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table."
+    description: "Your spellcasting unleashes surges of untamed magic. Once per turn, roll 1d20 immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table."
 
   # Level 3: Tides of Chaos
   - id: tidesOfChaos

@@ -1,4 +1,5 @@
 id: simbulsSynostodweomer
+condition: $(meta.setting === 'faerun')
 type: Activity
 name: Simbul's Synostodweomer
 resource: level7SpellSlot

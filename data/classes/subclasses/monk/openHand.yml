@@ -6,6 +6,11 @@ tags:
   - monkSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Open Hand"
   # Level 3: Open Hand Technique
   - id: openHandTechnique
     type: Activity

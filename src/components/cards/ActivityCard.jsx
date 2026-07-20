@@ -58,22 +58,6 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
             return <React.Fragment key={resId}>{renderIcon(resId, false)}</React.Fragment>;
         }
 
-        // Standard resource logic
-        const res = char?.resources?.find(r => r.id === resId || r.name === resId);
-
-        // If resource exists and it's used by only ONE activity, show dots
-        // UNLESS it's a spell slot (handled above)
-        if (res) {
-            const count = char.activities.filter(a => {
-                const aRes = a.resource;
-                return Array.isArray(aRes) ? aRes.includes(resId) : aRes === resId;
-            }).length;
-
-            if (count === 1) {
-                return <React.Fragment key={resId}>{renderDots(res.quantity)}</React.Fragment>;
-            }
-        }
-
         return <React.Fragment key={resId}>{renderIcon(resId, false)}</React.Fragment>;
     };
 
@@ -101,26 +85,31 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                         const resourceList = Array.isArray(rawResource) ? rawResource : (rawResource ? [rawResource] : []);
                         const options = resourceList.map(renderResourceOption).filter(Boolean);
 
-                        const elements = [];
-                        options.forEach((opt, i) => {
-                            elements.push(opt);
-                            if (i < options.length - 1) {
-                                elements.push(<span key={`sep-${i}`} style={{ fontSize: '0.8rem', opacity: 0.7, fontWeight: 'bold' }}>or</span>);
-                            }
-                        });
+                        const hasResourceIcon = options.length > 0;
 
-                        if (activity.uses) {
-                            if (elements.length > 0) {
-                                elements.push(<span key="sep-uses" style={{ fontSize: '0.8rem', opacity: 0.7, fontWeight: 'bold' }}>or</span>);
-                            }
-                            elements.push(renderDots(activity.uses));
+                        const tags = activity.tags || [];
+                        const isLimited = activity.uses === 1 || tags.includes('innateLR') || tags.includes('innateSR') || tags.includes('limitedLR') || tags.includes('limitedSR');
+
+                        if (hasResourceIcon) {
+                            const elements = [];
+                            options.forEach((opt, i) => {
+                                elements.push(opt);
+                                if (i < options.length - 1) {
+                                    elements.push(<span key={`sep-${i}`} style={{ fontSize: '0.8rem', opacity: 0.7, fontWeight: 'bold' }}>or</span>);
+                                }
+                            });
+                            return elements;
                         }
 
-                        if (elements.length === 0) {
-                            return renderIcon('atWill', false);
+                        if (isLimited) {
+                            return <mdui-icon name="replay" class="icon-accent" style={{ verticalAlign: 'middle' }}></mdui-icon>;
                         }
 
-                        return elements;
+                        if (activity.uses && activity.uses > 1) {
+                            return renderDots(activity.uses);
+                        }
+
+                        return renderIcon('atWill', false);
                     })()}
                 </div>
             </div>

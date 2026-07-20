@@ -1,6 +1,7 @@
 id: wardaway
 type: Activity
 name: Wardaway
+condition: $(meta.setting === 'faerun')
 resource: level1SpellSlot
 tags: [level1Spell, abjuration, bard, cleric, paladin, wizard, saveSpell, damageSpell, forceDamage]
 time: action

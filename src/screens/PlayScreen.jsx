@@ -50,6 +50,10 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
         };
 
         characterData.activities.forEach((activity) => {
+            if (activity.tags && activity.tags.includes('restActivity')) {
+                return;
+            }
+
             const id = (activity.id || '').toLowerCase();
             if (coreIds.includes(id)) {
                 groups['core'].push(activity);
@@ -66,29 +70,53 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
             }
         });
 
-        // Add statblocks to a special group
-        groups['statblock'] = characterData.statblocks || [];
+        return groups;
+    }, [characterData.activities]);
+
+    const groupedAllies = React.useMemo(() => {
+        const statblocks = characterData.statblocks || [];
+        const groups = {
+            companions: [],
+            wildshapes: [],
+            summons: []
+        };
+
+        statblocks.forEach(sb => {
+            const tags = sb.tags || [];
+            const hasTag = (tag) => tags.some(t => String(t).toLowerCase() === tag.toLowerCase());
+
+            if (hasTag('primalcompanion') || hasTag('steed') || hasTag('familiar')) {
+                groups.companions.push(sb);
+            } else if (hasTag('wildshape') || hasTag('wildShape')) {
+                groups.wildshapes.push(sb);
+            } else {
+                groups.summons.push(sb);
+            }
+        });
 
         return groups;
-    }, [characterData.activities, characterData.statblocks]);
+    }, [characterData.statblocks]);
 
     // Define the order and display names for categories
-    const categories = [
-        { key: 'core', label: 'Core' },
+    const activityCategories = [
+        { key: 'core', label: 'Core Actions' },
         { key: 'action', label: 'Actions' },
         { key: 'bonus action', label: 'Bonus Actions' },
         { key: 'reaction', label: 'Reactions' },
-        { key: 'free action', label: 'Special' },
-        { key: 'statblock', label: 'Companions' },
-        { key: 'other', label: 'Other' }
+        { key: 'free action', label: 'Special Actions' },
+        { key: 'other', label: 'Other Actions' }
     ];
 
+    const allyCategories = [
+        { key: 'companions', label: 'Companions' },
+        { key: 'wildshapes', label: 'Wild Shapes' },
+        { key: 'summons', label: 'Summons' }
+    ];
+
+    const hasStatblocks = (characterData.statblocks || []).length > 0;
+
     return (
-
-
         <div className="container play-screen">
-
-
             <mdui-top-app-bar variant="small">
                 <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
                 <mdui-top-app-bar-title>{characterData?.meta?.name || 'Aspida'}</mdui-top-app-bar-title>
@@ -97,33 +125,45 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
             </mdui-top-app-bar>
 
-
             <div className="content play-content">
                 <div className="play-content-main">
                     <CharacterSheet char={characterData} ref={mainCardRef} className="main-card" onNavigate={onNavigate} />
                 </div>
                 <div className="play-content-aside" ref={asideRef}>
-                    {categories.map(({ key, label }) => {
+                    {activityCategories.map(({ key, label }) => {
                         const activities = groupedActivities[key];
-
-                        // Only render the category if it has activities
                         if (activities.length === 0) return null;
-
                         return (
                             <div key={key} className="aside-card-group">
-                                <div className="title-primary">
-                                    {label}
-                                </div>
+                                <div className="title-primary">{label}</div>
                                 <mdui-collapse accordion>
                                     {activities.map((item, i) => (
-                                        key === 'statblock' ?
-                                            <StatblockCard key={`${item.id || 'statblock'}-${i}`} statblock={item} /> :
-                                            <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} char={characterData} />
+                                        <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} char={characterData} />
                                     ))}
                                 </mdui-collapse>
                             </div>
                         );
                     })}
+
+                    {hasStatblocks && (
+                        <>
+                            <div className="section-title" style={{ marginTop: '24px' }}>Allies & Forms</div>
+                            {allyCategories.map(({ key, label }) => {
+                                const allies = groupedAllies[key];
+                                if (allies.length === 0) return null;
+                                return (
+                                    <div key={key} className="aside-card-group">
+                                        <div className="title-primary">{label}</div>
+                                        <mdui-collapse accordion>
+                                            {allies.map((item, i) => (
+                                                <StatblockCard key={`${item.id || 'statblock'}-${i}`} statblock={item} />
+                                            ))}
+                                        </mdui-collapse>
+                                    </div>
+                                );
+                            })}
+                        </>
+                    )}
                 </div>
             </div>
         </div>

@@ -2,6 +2,20 @@ import { ExpressionEvaluator, clearExpressionCache } from './ExpressionEvaluator
 import { PIPELINE_STAGES, TYPE_TO_STAGE } from './pipeline.js';
 import { formatBonus, evaluateBoolean, splitDescription } from './helpers.js';
 
+const IGNORED_ACTIVITY_IDS = new Set([
+    'wildResurgenceWildShape',
+    'wildResurgenceSpellSlot',
+    'uncannyMetabolism',
+    'convertSlotToPoints',
+    'createSpellSlot',
+    'sorcerousRestoration',
+    'magicalCunning',
+    'arcaneRecovery',
+    'naturalRecoveryRestore',
+    'naturalRecoveryCast',
+    'fontOfInspiration'
+]);
+
 /**
  * Builds a character from property tree
  */
@@ -55,7 +69,7 @@ export class CharacterBuilder {
                 .replace(/[^a-zA-Z0-9\s-_]/g, '')
                 .trim()
                 .split(/[-_\s]+/)
-                .map((word, index) => 
+                .map((word, index) =>
                     index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
                 )
                 .join('');
@@ -116,7 +130,19 @@ export class CharacterBuilder {
                 // For Slot and Reference nodes, overwrites are intended for the content that fills or is 
                 // resolved by them, not the node itself. Overwriting 'target' on a Slot would break its filter.
                 if (child.type !== 'Slot' && child.type !== 'Reference') {
+                    const childVars = { ...(child.variables || {}) };
+                    let hasVarOverwrite = false;
+                    for (const [key, val] of Object.entries(appliedOverwrite)) {
+                        if (key.startsWith('variables.')) {
+                            const varName = key.substring('variables.'.length);
+                            childVars[varName] = val;
+                            hasVarOverwrite = true;
+                        }
+                    }
                     effectiveNode = { ...child, ...appliedOverwrite };
+                    if (hasVarOverwrite) {
+                        effectiveNode.variables = childVars;
+                    }
                     // For tags, merge into existing array instead of replacing
                     if ('tags' in appliedOverwrite) {
                         const existing = child.tags || [];
@@ -156,13 +182,23 @@ export class CharacterBuilder {
                             }
                         }
 
+                        const contentVars = { ...nodeVariables, ...(prop.variables || {}) };
+                        if (appliedOverwrite) {
+                            for (const [key, val] of Object.entries(appliedOverwrite)) {
+                                if (key.startsWith('variables.')) {
+                                    const varName = key.substring('variables.'.length);
+                                    contentVars[varName] = val;
+                                }
+                            }
+                        }
+
                         // Merge context from reference node into the content node
                         const contentNode = {
                             ...prop,
                             ...appliedOverwrite, // Apply overwrites to the resolved node
                             // Preserve metadata from the reference node (using evaluated variables)
                             priority: effectiveNode.priority !== undefined ? effectiveNode.priority : prop.priority,
-                            variables: { ...nodeVariables, ...(prop.variables || {}) },
+                            variables: contentVars,
                             condition: finalCondition,
                             // We consumed the ignore flag to decide the condition, now force check
                             ignoreCondition: false,
@@ -317,8 +353,8 @@ export class CharacterBuilder {
      * Update an input value
      */
     updateInput(inputPath, value) {
-        // Navigate to the input in the base tree to update its value persisted there
-        let current = this.basePropertyTree;
+        // Navigate to the input in the active tree to update its value persisted there
+        let current = this.propertyTree;
         for (let i = 0; i < inputPath.length - 1; i++) {
             current = current.children[inputPath[i]];
         }
@@ -345,11 +381,19 @@ export class CharacterBuilder {
      */
     _reprocessTreeStructure() {
         const state = this.extractTreeState(this.propertyTree);
+        const inputs = this.extractInputs(this.propertyTree);
+
         this.propertyTree = {
             ...this.basePropertyTree,
             children: this.processChildren(this.basePropertyTree.children, {}, 'base')
         };
+        // Restore static inputs so slots calculate correct constraints
+        this.applyInputs(this.propertyTree, inputs);
+
         this.reapplyTreeState(this.propertyTree, state);
+
+        // Restore all inputs again after references are expanded
+        this.applyInputs(this.propertyTree, inputs);
     }
 
     /**
@@ -563,9 +607,32 @@ export class CharacterBuilder {
      */
     getRecipe() {
         return {
-            inputs: this.extractInputs(this.basePropertyTree),
+            inputs: this.extractInputs(this.propertyTree),
             slots: this.extractFilledSlots(this.propertyTree)
         };
+    }
+
+    /**
+     * Find the display name of the active subclass by traversing the tree
+     * for a filled slot whose tags include a *Subclass tag.
+     */
+    getSubclassName() {
+        return this._findSubclassInNode(this.propertyTree);
+    }
+
+    _findSubclassInNode(node) {
+        if (!node || !node.children) return null;
+        for (const child of node.children) {
+            if (child.type === 'Slot' && child.filled) {
+                const tags = child.filled.tags || [];
+                if (tags.some(t => typeof t === 'string' && t.endsWith('Subclass'))) {
+                    return child.filled.displayName || child.filled.name || null;
+                }
+            }
+            const found = this._findSubclassInNode(child);
+            if (found) return found;
+        }
+        return null;
     }
 
     /**
@@ -597,6 +664,7 @@ export class CharacterBuilder {
         // Phase 1: Apply slots once so that class/species/background are filled,
         // which populates proficiencies and other attributes into characterData.
         this.reapplyFilledSlots(this.propertyTree, recipe.slots);
+        this.applyInputs(this.propertyTree, recipe.inputs);
 
         // Phase 2: Run a rebuild pass so characterData now has the correct proficiencies,
         // then re-expand the tree structure. This ensures dynamic slot quantities
@@ -607,6 +675,7 @@ export class CharacterBuilder {
         // Phase 3: Re-apply ALL slots from the recipe now that the tree has the correct
         // number of dynamic slot instances (e.g. armamentSlot #2, #3 now exist).
         this.reapplyFilledSlots(this.propertyTree, recipe.slots);
+        this.applyInputs(this.propertyTree, recipe.inputs);
 
         // Final rebuild
         this.rebuild();
@@ -750,6 +819,52 @@ export class CharacterBuilder {
             this._reprocessTreeStructure();
             this.runRebuildPasses();
         }
+
+        // Apply runtime distance rounding (nearest multiple of 5)
+        this.roundDistancesInObject(this.characterData);
+    }
+
+    /**
+     * Recursively traverses an object and rounds any distance strings or numeric speed/sense fields to the nearest multiple of 5.
+     */
+    roundDistancesInObject(obj) {
+        if (!obj) return obj;
+        if (typeof obj === 'string') {
+            let modified = obj;
+            // Round any 'N feet'
+            modified = modified.replace(/(\d+)\s*feet/gi, (match, p1) => {
+                const val = parseInt(p1, 10);
+                const rounded = Math.round(val / 5) * 5;
+                return `${rounded} feet`;
+            });
+            // Round any 'N-foot'
+            modified = modified.replace(/(\d+)\s*-\s*foot/gi, (match, p1) => {
+                const val = parseInt(p1, 10);
+                const rounded = Math.round(val / 5) * 5;
+                return `${rounded}-foot`;
+            });
+            return modified;
+        } else if (Array.isArray(obj)) {
+            for (let i = 0; i < obj.length; i++) {
+                if (typeof obj[i] === 'string') {
+                    obj[i] = this.roundDistancesInObject(obj[i]);
+                } else if (typeof obj[i] === 'object') {
+                    this.roundDistancesInObject(obj[i]);
+                }
+            }
+        } else if (typeof obj === 'object') {
+            for (const key of Object.keys(obj)) {
+                const val = obj[key];
+                if (typeof val === 'string') {
+                    obj[key] = this.roundDistancesInObject(val);
+                } else if (typeof val === 'number' && (key === 'walk' || key === 'fly' || key === 'swim' || key === 'burrow' || key === 'climb' || key === 'darkvision' || key === 'blindsight' || key === 'tremorsense' || key === 'truesight')) {
+                    obj[key] = Math.round(val / 5) * 5;
+                } else if (typeof val === 'object') {
+                    this.roundDistancesInObject(val);
+                }
+            }
+        }
+        return obj;
     }
 
     /**
@@ -914,24 +1029,29 @@ export class CharacterBuilder {
      * Pass 1: Collect IDs of properties that are inherent/static
      * (meaning they aren't themselves direct choices in a slot, but are provided by one)
      */
-    collectInherentIds(node, inherentIds) {
+    collectInherentIds(node, inherentIds, parentSlotFilledId = null) {
         if (!node || (node.visible === false && node.type !== 'Meta' && node.type !== 'Input' && !node.earlyEval)) return;
+
+        let currentSlotFilledId = parentSlotFilledId;
+        if (node.type === 'Slot' && node.filled) {
+            currentSlotFilledId = node.filled.id;
+        }
 
         if (node.type !== 'Slot') {
             // Static content (Folder structure or children of an inherent feature)
-            if (node.id) inherentIds.add(node.id);
+            if (node.id && node.id !== parentSlotFilledId) inherentIds.add(node.id);
             if (node.type === 'Reference') {
                 const refId = node.reference || node.target;
                 if (Array.isArray(refId)) {
-                    refId.forEach(id => inherentIds.add(id));
-                } else if (refId) {
+                    refId.forEach(id => { if (id !== parentSlotFilledId) inherentIds.add(id); });
+                } else if (refId && refId !== parentSlotFilledId) {
                     inherentIds.add(refId);
                 }
             }
 
             // Recurse into static children
             if (node.children) {
-                node.children.forEach(child => this.collectInherentIds(child, inherentIds));
+                node.children.forEach(child => this.collectInherentIds(child, inherentIds, currentSlotFilledId));
             }
         } else if (node.filled) {
             const prop = this.library.getProperty(node.filled.id);
@@ -939,7 +1059,7 @@ export class CharacterBuilder {
                 // Choice is a Folder (e.g. Background selection). Its internal children are inherent.
                 // We DON'T add the Choice ID itself to inherentIds yet (uniqueness is checked in Pass 2).
                 if (node.children) {
-                    node.children.forEach(child => this.collectInherentIds(child, inherentIds));
+                    node.children.forEach(child => this.collectInherentIds(child, inherentIds, currentSlotFilledId));
                 }
             }
             // Non-folder choices (Card, Effect, etc.) are skipped in Pass 1 as they are the 'selections'
@@ -1082,6 +1202,9 @@ export class CharacterBuilder {
                                 if (Array.isArray(tags)) {
                                     tags = tags.map(t => (typeof t === 'string' && t.includes('$')) ? evaluator.evaluate(t, item.variables || {}) : t);
                                 }
+                            }
+                            if (token === 'weaponMastery') {
+                                return this.characterData.attributes && (this.characterData.attributes.weaponMastery === true || this.characterData.attributes.weaponMastery === 1);
                             }
 
                             if (Array.isArray(id)) return id.includes(token) || (Array.isArray(tags) && tags.includes(token));
@@ -1280,6 +1403,15 @@ export class CharacterBuilder {
 
             case 'Activity':
                 {
+                    const cardId = evaluator.bakeVariables(prop.id, scope);
+                    if (IGNORED_ACTIVITY_IDS.has(cardId)) {
+                        break;
+                    }
+                    // Check for duplicate activity to avoid multiple card rendering
+                    if (this.characterData.activities.some(act => act.id === cardId) && !cardId.includes('weaponAttack')) {
+                        break;
+                    }
+
                     // Merge inherited tree variables with the card's own variables
                     const cardVariables = { ...scope, ...(prop.variables || {}) };
 
@@ -1292,7 +1424,7 @@ export class CharacterBuilder {
 
                     const cardObj = {
                         ...cardClone,
-                        id: evaluator.bakeVariables(prop.id, scope),
+                        id: cardId,
                         name: prop.name,
                         time: cardClone.time || 'free action',
                         range: cardClone.range || 'self',
@@ -1477,9 +1609,17 @@ export class CharacterBuilder {
                     if (substring) {
                         const targetValue = current[finalKey];
                         if (Array.isArray(targetValue)) {
-                            current[finalKey] = targetValue.map(item =>
-                                (typeof item === 'string') ? item.replace(substring, evaluatedValue) : item
-                            );
+                            current[finalKey] = targetValue.map(item => {
+                                if (typeof item === 'string') {
+                                    return item.replace(substring, evaluatedValue);
+                                } else if (item && typeof item === 'object' && typeof item.description === 'string') {
+                                    return {
+                                        ...item,
+                                        description: item.description.replace(substring, evaluatedValue)
+                                    };
+                                }
+                                return item;
+                            });
                         } else if (typeof targetValue === 'string') {
                             current[finalKey] = targetValue.replace(substring, evaluatedValue);
                         }

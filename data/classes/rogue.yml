@@ -17,6 +17,9 @@ children:
     target: meta.class
     operation: set
     value: Rogue
+  - id: weaponMastery
+    type: Attribute
+    value: true
   - type: Reference
     value: [dexSave, intSave]
   - type: Reference

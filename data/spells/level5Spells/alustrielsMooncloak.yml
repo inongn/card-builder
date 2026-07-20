@@ -1,4 +1,5 @@
 id: alustrielsMooncloak
+condition: $(meta.setting === 'faerun')
 type: Activity
 name: Alustriel's Mooncloak
 resource: level5SpellSlot

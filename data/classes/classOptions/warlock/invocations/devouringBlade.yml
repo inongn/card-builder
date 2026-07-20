@@ -7,6 +7,6 @@ type: Folder
 children:
   - id: extraAttack
     type: Effect
-    target: activities[weaponAttack].extra["twice"]
+    target: activities[weaponAttack AND pactWeapon].extra["twice"]
     operation: replace
     value: three times

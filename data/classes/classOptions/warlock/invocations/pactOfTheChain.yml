@@ -9,14 +9,8 @@ children:
     value: true
   - type: Reference
     target: findFamiliar
-    overwrite:
-      resource: null
-  - type: Effect
-    target: activities[findFamiliarActivity].resource
-    operation: set
-    value: ''
   - type: Extra
-    target: findFamiliarActivity
-    description: When you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.
+    target: weaponAttack
+    description: You can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.
     name: Pact of the Chain
     

@@ -10,7 +10,10 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Bolstering Performance
-    type: Extra
-    target: shortRest OR longRest
-    description: 'At the end of a Short Rest or Long Rest, you can give an inspiring performance — a speech, song, or dance. When you do so, choose up to $(5 + attributes.prof) allies who witnessed the performance. The chosen creatures each gain Temporary Hit Points equal to $(meta.level + stats.cha.mod).'
+  - id: bolsteringPerformance
+    name: Bolstering Performance
+    type: Activity
+    time: 10 minutes
+    range: 30 feet
+    duration: until next short or long rest
+    description: 'At the end of a Short Rest or Long Rest, you can give an inspiring performance — a speech, song, or dance. Choose up to $(5 + attributes.prof) allies who witnessed the performance. The chosen creatures each gain $(meta.level + stats.cha.mod) Temporary Hit Points.'

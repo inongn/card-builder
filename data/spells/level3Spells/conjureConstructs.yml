@@ -1,6 +1,7 @@
 id: conjureConstructs
 type: Activity
 name: Conjure Constructs
+condition: $(meta.setting === 'faerun')
 resource: level3SpellSlot
 tags: [level3Spell, conjuration, wizard, saveSpell, damageSpell, forceDamage]
 time: action

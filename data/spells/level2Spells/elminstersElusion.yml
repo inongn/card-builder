@@ -1,6 +1,7 @@
 id: elminstersElusion
 type: Activity
 name: Elminster's Elusion
+condition: $(meta.setting === 'faerun')
 resource: level2SpellSlot
 tags: [level2Spell, abjuration, wizard]
 time: bonus action

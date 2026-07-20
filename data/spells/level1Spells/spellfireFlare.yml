@@ -1,6 +1,7 @@
 id: spellfireFlare
 type: Activity
 name: Spellfire Flare
+condition: $(meta.setting === 'faerun')
 resource: level1SpellSlot
 tags: [level1Spell, evocation, sorcerer, wizard, attackSpell, damageSpell, fireDamage, radiantDamage]
 time: action

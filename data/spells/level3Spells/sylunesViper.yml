@@ -1,6 +1,7 @@
 id: sylunesViper
 type: Activity
 name: Sylune's Viper
+condition: $(meta.setting === 'faerun')
 resource: level3SpellSlot
 tags: [level3Spell, conjuration, druid, wizard, attackSpell, damageSpell, forceDamage]
 time: bonus action

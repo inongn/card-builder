@@ -15,6 +15,9 @@ children:
     target: meta.class
     operation: set
     value: Fighter
+  - id: weaponMastery
+    type: Attribute
+    value: true
   - type: Reference
     value: [strSave, conSave]
   - type: Reference

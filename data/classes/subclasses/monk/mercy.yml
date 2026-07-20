@@ -6,6 +6,11 @@ tags:
   - monkSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Mercy"
   # Level 3: Implements of Mercy
   - type: Reference
     target: [insightProficiency, medicineProficiency, herbalismKit]
@@ -35,6 +40,7 @@ children:
     resource: flurryOfHealingAndHarm
     description: "When you use Flurry of Blows, you can replace each Unarmed Strike with Hand of Healing without expending Focus Points. When you make an Unarmed Strike with Flurry of Blows and deal damage, you can use Hand of Harm without expending a Focus Point."
   - id: flurryOfHealingAndHarm
+    condition: $(meta.level >= 11)
     type: Resource
     name: Flurry of Healing and Harm
     quantity: $(Math.max(1, stats.wis.mod))

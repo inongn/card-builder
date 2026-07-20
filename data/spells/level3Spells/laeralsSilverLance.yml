@@ -1,5 +1,6 @@
 id: laeralsSilverLance
 type: Activity
+condition: $(meta.setting === 'faerun')
 name: Laeral's Silver Lance
 resource: level3SpellSlot
 tags: [level3Spell, evocation, cleric, sorcerer, wizard, saveSpell, damageSpell, forceDamage]

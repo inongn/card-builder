@@ -5,12 +5,13 @@ export const CATEGORIES = {
     class: { title: 'Class', terms: ['class', 'level', 'subclass', 'maneuver', 'order', 'classOption'], icon: 'person', order: 2 },
     feats: { title: 'Feats', terms: ['feat', 'epicboon', 'fightingstyle'], icon: 'emoji_events', order: 3 },
     spellcasting: { title: 'Spellcasting', terms: ['cantrip', 'spell'], icon: 'auto_fix_high', order: 4 },
+    companion: { title: 'Companion', terms: ['companion', 'familiar', 'steed'], icon: 'pets', order: 8 },
     skills: { title: 'Skills', terms: ['proficiency', 'expertise'], icon: 'psychology', order: 7 },
     equipment: { title: 'Equipment', terms: ['armor', 'weapon', 'armament', 'hand'], icon: 'shield', order: 9 },
     stats: { title: 'Abilities', terms: ['str', 'dex', 'con', 'int', 'wis', 'cha', 'allocated', 'origin_', 'asi_'], icon: 'fitness_center', order: 10 }
 };
 
-export const MATCHING_ORDER = ['spellcasting', 'feats', 'class', 'origin', 'skills', 'equipment', 'stats'];
+export const MATCHING_ORDER = ['spellcasting', 'feats', 'companion', 'class', 'origin', 'skills', 'equipment', 'stats'];
 
 export const collectRenderableNodes = (node, char, path = []) => {
     const nodes = [];

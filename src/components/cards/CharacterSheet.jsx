@@ -30,13 +30,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
         char.resources.forEach(res => {
             const id = res.id || '';
-            // If a resource only has one associated activity, it does not show up on the character sheet
-            // EXCEPT for spell slots which always show up
-            const count = resourceCounts[id] || 0;
-            const isSpellSlot = id.toLowerCase().includes('spellslot');
-            const isSorceryPoint = id.toLowerCase().includes('sorcerypoints');
-            if (count === 1 && !isSpellSlot && !isSorceryPoint) return;
-
+            if (id === 'hitDice') {
+                return;
+            }
             if (id.match(/^level\d+SpellSlot$/)) {
                 spellSlots.push(res);
             } else {
@@ -82,16 +78,13 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
 
             <div className="main-card-row">
-                <div className="main-card-column">
+                <div className="main-card-column" style={{ gridColumn: 'span 6' }}>
                     <div className="card-title main-card-title show-on-print">
                         {char.meta.name}
                     </div>
-                    <div className="title-primary">
-                        Lv. {char.meta.level} {char.meta.species} {char.meta.class || 'Unknown Class'}
+                    <div className="title-primary" style={{ padding: 0 }}>
+                        Lv. {char.meta.level} {char.meta.species} {char.meta.sub} {char.meta.class || 'Unknown Class'}
                     </div>
-                </div>
-                <div className="main-card-column">
-
                 </div>
             </div>
             {/* Ability Scores */}
@@ -114,7 +107,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             let profIcon = 'radio_button_unchecked';
                             if (skill.proficiency === 1) profIcon = 'circle';
                             if (skill.proficiency === 2) profIcon = 'add_circle';
-                            else if (skill.proficiency === 0.5) profIcon = 'brightness_2';
+                            else if (skill.proficiency === 0.5) profIcon = 'contrast';
                             return (
                                 <div className="list-item skill-list-item" key={key}>
                                     <div className="text-secondary">{skill.stat.toUpperCase()}</div>
@@ -124,8 +117,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     </div>
 
                                     <div className="text-primary">
-                                        {skill.adv && <AdvantageIndicator type="adv" />}
-                                        {skill.dis && <AdvantageIndicator type="dis" />}
+                                        {skill.adv && !skill.dis && <AdvantageIndicator type="adv" />}
+                                        {skill.dis && !skill.adv && <AdvantageIndicator type="dis" />}
+                                        {skill.adv && skill.dis && <></>}
                                         {skill.min && <AdvantageIndicator type="min" value={skill.min} />}
                                         {skill.name}</div>
                                 </div>
@@ -146,11 +140,11 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                         <div className="text-secondary">
                                             {formatBonus(save.bonus, true)}
                                         </div>
-                                        <div className="text-secondary">
+                                        <div className="text-primary">
                                             {save.adv && <AdvantageIndicator type="adv" />}
                                             {save.dis && <AdvantageIndicator type="dis" />}
                                             {save.min && <AdvantageIndicator type="min" value={save.min} />}
-                                            {save.stat.toUpperCase()}
+                                            {key.charAt(0).toUpperCase() + key.slice(1)}
                                         </div>
                                     </div>
                                 );
@@ -173,6 +167,14 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <div className="important-number"></div>
                         </div>
                         <div className="text-secondary">HP</div>
+                        <div className="main-card-list">
+                            <div className="list-item info-list-item">
+                                <span className="text-secondary">Hit Dice</span>
+                                <span className="text-primary">
+                                    {char.resources.find(r => r.id === 'hitDice' || r.name === 'Hit Dice')?.quantity || char.meta.level}d{char.attributes.hitDie}
+                                </span>
+                            </div>
+                        </div>
                     </mdui-card>
                     <div className="main-card-combat-row">
                         <mdui-card variant="filled" className="inner-card main-card-box">
@@ -274,8 +276,6 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                     </mdui-card>
                 </div>
             </div>
-
-
         </div>
     );
 }));

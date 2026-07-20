@@ -6,6 +6,11 @@ tags:
   - barbarianSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Zealot"
   # Level 3: Divine Fury
   - id: divineFury
     type: Extra

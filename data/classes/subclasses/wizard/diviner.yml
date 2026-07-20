@@ -6,6 +6,11 @@ type: Folder
 tags:
   - wizardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Diviner"
 
   # Level 3: Portent
   - id: portent
@@ -17,7 +22,7 @@ children:
   # Level 6: Expert Divination
   - id: expertDivination
     type: Extra
-    target: diviniation NOT cantrip NOT level1Spell
+    target: divination NOT cantrip NOT level1Spell
     name: Expert Divination
     condition: $(meta.level >= 6)
     description: "You regain an expended spell slot. The spell slot can be of a level lower than the slot you used, but no higher than 5th level."

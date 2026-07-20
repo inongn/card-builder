@@ -1,0 +1,30 @@
+type: Statblock
+name: Fey Steed
+tags: [steed]
+id: otherworldlySteedFey
+size: Large
+category: summon
+classification: Fey
+ac: "$(10 + (local.maxLevel || 2))"
+hp: "$(5 + 10 * (local.maxLevel || 2))"
+movement:
+  walk: 60
+  fly: "$( (local.maxLevel || 2) >= 4 ? 60 : 0 )"
+stats:
+  str: 18
+  dex: 12
+  con: 14
+  int: 6
+  wis: 12
+  cha: 8
+senses:
+  passivePerception: 11
+languages: Telepathy 1 mile (works only with you)
+traits:
+  - name: Life Bond
+    description: When you regain Hit Points from a level 1+ spell, the steed regains the same number of Hit Points if you're within 30 feet of it.
+actions:
+  - name: Otherworldly Slam
+    description: "_Melee Attack Roll:_ your Spell Attack Modifier to hit, reach 5 ft. _Hit:_ 1d8 + $(local.maxLevel || 2) Psychic damage."
+  - name: Fey Step (Recharges after a Long Rest)
+    description: "The steed teleports, along with its rider, to an unoccupied space of your choice up to 60 feet away from itself."

@@ -1,0 +1,9 @@
+id: familiarAir
+type: Feature
+name: Air (fly speed)
+tags: [familiarOption]
+children:
+  - type: Effect
+    target: meta.familiarEnvironment
+    operation: set
+    value: Air

@@ -6,6 +6,11 @@ type: Folder
 tags:
   - sorcererSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Draconic"
   # Level 3: Draconic Resilience
   - id: draconicResilienceHP
     type: Effect

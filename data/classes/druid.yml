@@ -71,7 +71,7 @@ children:
   - id: wildCompanion
     type: Reference
     target: findFamiliar
-    condition: $(meta.level >=2)
+    condition: $(meta.level >= 2)
    
   - id: wildCompanionResource
     type: Effect
@@ -79,6 +79,23 @@ children:
     operation: push
     value: wildShape
 
+  # Level 2: Wild Shape Activity
+  - id: wildShapeActivity
+    type: Activity
+    name: Wild Shape
+    time: "$(meta.sub == 'Circle of the Moon' ? 'bonus action' : 'action')"
+    range: self
+    duration: $(meta.level / 2) hours
+    resource: wildShape
+    condition: $(meta.level >= 2)
+    description: |
+      You transform into a beast form. You choose whether your equipment falls to the ground, merges into your new form, or is worn by it. While in a form, you retain your personality, memories, and ability to speak, and the following rules apply:
+
+      **Temporary Hit Points.** You gain $(meta.level * 2) Temporary Hit Points.
+
+      **Game Statistics.** Your game statistics are replaced by the Beast's stat block, but you retain your creature type; Hit Points; Hit Point Dice; Intelligence, Wisdom, and Charisma scores.
+
+      **No Spellcasting.** You can't cast spells, but shape-shifting doesn't break your Concentration or otherwise interfere with a spell you've already cast.
 
   - id: druidSubclass 
     type: Slot
@@ -164,7 +181,8 @@ children:
     type: Slot
     name: Wild Shape Forms
     quantity: "$(meta.level >= 8 ? 8 : meta.level >= 4 ? 4 : 4)"
-    target: "classOption OR (category=beast AND variables.cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT variables.movement.fly'))"
+    target: "classOption OR category=beast AND variables.cr<=$(meta.wildShapeMaxCR) $(meta.level >= 8 ? '' : 'NOT movement.fly'))"
     condition: $(meta.level >= 2)
     variables:
-      target: wildShapeActivity
+      target: wildShapeForm
+

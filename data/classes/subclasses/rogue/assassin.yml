@@ -6,6 +6,11 @@ tags:
   - rogueSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Assassin"
   # Level 3: Assassinate — Initiative
   - type: Reference
     target: [initiativeAdvantage, disguiseKit, poisonersKit]

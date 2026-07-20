@@ -8,13 +8,18 @@ type: Folder
 tags:
   - clericSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Trickery"
   # Level 3: Blessing of the Trickster
   - id: blessingOfTheTrickster
     type: Activity
     name: Blessing of the Trickster
     time: action
     range: 30 feet
-    duration: Until Long Rest
+    duration: 8 hours
     condition: $(meta.level >= 3)
     description: "You grant Advantage on Dexterity (Stealth) checks to yourself or a willing creature. The effect lasts until you finish a Long Rest or use this feature again."
 

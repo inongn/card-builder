@@ -14,7 +14,7 @@ children:
     subtype: number
     default: 1
     min: 1
-    max: 20
+    max: 8
   - id: allocated_str
     type: Input
     subtype: number
@@ -223,138 +223,138 @@ children:
     type: Skill
     stat: dex
     proficiency: 0
-    bonus: $(stats.dex.mod + attributes.prof * skills.acrobatics.proficiency)
+    bonus: $(Math.floor(stats.dex.mod + attributes.prof * skills.acrobatics.proficiency))
   - id: animal_handling
     name: Animal Handling
     type: Skill
     stat: wis
     proficiency: 0
-    bonus: $(stats.wis.mod + attributes.prof * skills.animal_handling.proficiency)
+    bonus: $(Math.floor(stats.wis.mod + attributes.prof * skills.animal_handling.proficiency))
   - id: arcana
     name: Arcana
     type: Skill
     stat: int
-    bonus: $(stats.int.mod + attributes.prof * skills.arcana.proficiency)
+    bonus: $(Math.floor(stats.int.mod + attributes.prof * skills.arcana.proficiency))
     proficiency: 0
   - id: athletics
     name: Athletics
     type: Skill
     stat: str
-    bonus: $(stats.str.mod + attributes.prof * skills.athletics.proficiency)
+    bonus: $(Math.floor(stats.str.mod + attributes.prof * skills.athletics.proficiency))
     proficiency: 0
   - id: deception
     name: Deception
     type: Skill
     stat: cha
-    bonus: $(stats.cha.mod + attributes.prof * skills.deception.proficiency)
+    bonus: $(Math.floor(stats.cha.mod + attributes.prof * skills.deception.proficiency))
     proficiency: 0
   - id: history
     name: History
     type: Skill
     stat: int
-    bonus: $(stats.int.mod + attributes.prof * skills.history.proficiency)
+    bonus: $(Math.floor(stats.int.mod + attributes.prof * skills.history.proficiency))
     proficiency: 0
   - id: insight
     name: Insight
     type: Skill
     stat: wis
-    bonus: $(stats.wis.mod + attributes.prof * skills.insight.proficiency)
+    bonus: $(Math.floor(stats.wis.mod + attributes.prof * skills.insight.proficiency))
     proficiency: 0
   - id: intimidation
     name: Intimidation
     type: Skill
     stat: cha
-    bonus: $(stats.cha.mod + attributes.prof * skills.intimidation.proficiency)
+    bonus: $(Math.floor(stats.cha.mod + attributes.prof * skills.intimidation.proficiency))
     proficiency: 0
   - id: investigation
     name: Investigation
     type: Skill
     stat: int
-    bonus: $(stats.int.mod + attributes.prof * skills.investigation.proficiency)
+    bonus: $(Math.floor(stats.int.mod + attributes.prof * skills.investigation.proficiency))
     proficiency: 0
   - id: medicine
     name: Medicine
     type: Skill
     stat: wis
-    bonus: $(stats.wis.mod + attributes.prof * skills.medicine.proficiency)
+    bonus: $(Math.floor(stats.wis.mod + attributes.prof * skills.medicine.proficiency))
     proficiency: 0
   - id: nature
     name: Nature
     type: Skill
     stat: int
-    bonus: $(stats.int.mod + attributes.prof * skills.nature.proficiency)
+    bonus: $(Math.floor(stats.int.mod + attributes.prof * skills.nature.proficiency))
     proficiency: 0
   - id: perception
     name: Perception
     type: Skill
     stat: wis
-    bonus: $(stats.wis.mod + attributes.prof * skills.perception.proficiency)
+    bonus: $(Math.floor(stats.wis.mod + attributes.prof * skills.perception.proficiency))
     proficiency: 0
   - id: performance
     name: Performance
     type: Skill
     stat: cha
-    bonus: $(stats.cha.mod + attributes.prof * skills.performance.proficiency)
+    bonus: $(Math.floor(stats.cha.mod + attributes.prof * skills.performance.proficiency))
     proficiency: 0
   - id: persuasion
     name: Persuasion
     type: Skill
     stat: cha
-    bonus: $(stats.cha.mod + attributes.prof * skills.persuasion.proficiency)
+    bonus: $(Math.floor(stats.cha.mod + attributes.prof * skills.persuasion.proficiency))
     proficiency: 0
   - id: religion
     name: Religion
     type: Skill
     stat: int
-    bonus: $(stats.int.mod + attributes.prof * skills.religion.proficiency)
+    bonus: $(Math.floor(stats.int.mod + attributes.prof * skills.religion.proficiency))
     proficiency: 0
   - id: sleight_of_hand
     name: Sleight of Hand
     type: Skill
     stat: dex
-    bonus: $(stats.dex.mod + attributes.prof * skills.sleight_of_hand.proficiency)
+    bonus: $(Math.floor(stats.dex.mod + attributes.prof * skills.sleight_of_hand.proficiency))
     proficiency: 0
   - id: stealth
     name: Stealth
     type: Skill
     stat: dex
-    bonus: $(stats.dex.mod + attributes.prof * skills.stealth.proficiency)
+    bonus: $(Math.floor(stats.dex.mod + attributes.prof * skills.stealth.proficiency))
     proficiency: 0
   - id: survival
     name: Survival
     type: Skill
     stat: wis
-    bonus: $(stats.wis.mod + attributes.prof * skills.survival.proficiency)
+    bonus: $(Math.floor(stats.wis.mod + attributes.prof * skills.survival.proficiency))
     proficiency: 0
   - id: strength
     type: Save
     stat: str
-    bonus: $(stats.str.mod + attributes.prof * saves.strength.proficiency)
+    bonus: $(Math.floor(stats.str.mod + attributes.prof * saves.strength.proficiency))
     proficiency: 0
   - id: dexterity
     type: Save
     stat: dex
-    bonus: $(stats.dex.mod + attributes.prof * saves.dexterity.proficiency)
+    bonus: $(Math.floor(stats.dex.mod + attributes.prof * saves.dexterity.proficiency))
     proficiency: 0
   - id: constitution
     type: Save
     stat: con
-    bonus: $(stats.con.mod + attributes.prof * saves.constitution.proficiency)
+    bonus: $(Math.floor(stats.con.mod + attributes.prof * saves.constitution.proficiency))
     proficiency: 0
   - id: intelligence
     type: Save
     stat: int
-    bonus: $(stats.int.mod + attributes.prof * saves.intelligence.proficiency)
+    bonus: $(Math.floor(stats.int.mod + attributes.prof * saves.intelligence.proficiency))
     proficiency: 0
   - id: wisdom
     type: Save
     stat: wis
-    bonus: $(stats.wis.mod + attributes.prof * saves.wisdom.proficiency)
+    bonus: $(Math.floor(stats.wis.mod + attributes.prof * saves.wisdom.proficiency))
     proficiency: 0
   - id: charisma
     type: Save
     stat: cha
-    bonus: $(stats.cha.mod + attributes.prof * saves.charisma.proficiency)
+    bonus: $(Math.floor(stats.cha.mod + attributes.prof * saves.charisma.proficiency))
     proficiency: 0
 
   - id: armor
@@ -397,5 +397,14 @@ children:
     target: class
     quantity: 1
 
-  
+  # Off-Hand Attack — available to all; Two-Weapon Fighting style removes the damage penalty
+  - id: offHandAttack
+    type: Activity
+    name: Off-Hand Attack
+    time: bonus action
+    range: self
+    condition: $(activities[id='weaponAttack'] != null)
+    duration: instantaneous
+    description: "When you take the Attack action and attack with a Light melee weapon held in one hand, you can make one extra attack as a Bonus Action later on the same turn. That extra attack must be made with a different Light melee weapon held in the other hand. You don't add your Ability Modifier to the damage of this extra attack unless that modifier is negative."
+
 

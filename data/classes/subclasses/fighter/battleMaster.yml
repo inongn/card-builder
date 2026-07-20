@@ -6,6 +6,11 @@ tags:
   - fighterSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Battle Master"
   - id: superiorityDie
     type: Attribute
     value: "$(meta.level >= 18 ? 12 : meta.level >= 10 ? 10 : 8)"
@@ -28,7 +33,7 @@ children:
     target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
     quantity: 1
   - id: superiorityDice
-    name: Superiority Dice
+    name: Combat Superiority
     type: Resource
     quantity: "$(meta.level >= 15 ? 6 : meta.level >= 7 ? 5 : 4)"
     sr: all

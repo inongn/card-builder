@@ -6,14 +6,23 @@ type: Folder
 tags:
   - bardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Valor"
   # Level 3: Combat Inspiration
   - id: combatInspirationExtra
     type: Extra
+    name: Combat Inspiration
     target: bardicInspiration
     condition: $(meta.level >= 3)
     description: |
-      **Defense** A creature that has a Bardic Inspiration die from you can use its Reaction to roll the die and add the number rolled to its AC when hit by an attack.
-      **Offense** A creature that has a Bardic Inspiration die from you can use its Reaction to roll the die and add the number rolled to its damage after hitting with an attack.
+      A creature with a Bardic Inspiration die from you can also use it in one of the following ways:
+
+      **Defense.** When hit by an attack roll, use a Reaction to roll the die and add the result to AC, potentially causing the attack to miss.
+
+      **Offense.** When hitting with an attack roll, use a Reaction to roll the die and add the result to the damage roll.
 
   # Level 3: Martial Training
   - type: Reference

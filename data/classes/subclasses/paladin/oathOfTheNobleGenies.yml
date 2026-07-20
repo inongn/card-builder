@@ -1,11 +1,17 @@
 id: oathOfTheNobleGenies
 name: Oath of the Noble Genies
+condition: $(meta.setting === 'faerun')
 description: |
   Paladins sworn to the Oath of the Noble Genies revere the forces of the Elemental Planes. Through taking this oath, Paladins draw power from the four different types of genies.
 tags:
   - paladinSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Noble Genies"
   # Level 3: Elemental Smite
   - id: elementalSmite
     type: Activity
@@ -84,6 +90,7 @@ children:
     type: Resource
     name: Elemental Rebuke
     quantity: $(Math.max(1, stats.cha.mod))
+    condition: $(meta.level >= 15)
 
   # Level 20: Noble Scion
   - id: nobleScion

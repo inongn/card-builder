@@ -6,6 +6,11 @@ tags:
   - paladinSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Devotion"
   # Level 3: Oath of Devotion Spells
   - type: Reference
     target: [protectionFromEvilAndGood, shieldOfFaith]

@@ -6,6 +6,11 @@ type: Folder
 tags:
   - druidSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Moon"
   # Level 3: Circle of the Moon Spells
   - type: Reference
     target: [cureWounds, moonbeam, starryWisp]
@@ -30,7 +35,7 @@ children:
     condition: $(meta.level >= 3)
   - id: moonCircleFormsTHP
     type: Effect
-    target: activities[wildShapeActivity].description["You gain $(meta.level) Temporary Hit Points"]
+    target: activities[wildShapeActivity].description["You gain $(meta.level * 2) Temporary Hit Points"]
     operation: replace
     value: "You gain $(meta.level * 3) Temporary Hit Points"
     condition: $(meta.level >= 3)

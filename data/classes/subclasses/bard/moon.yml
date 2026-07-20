@@ -1,4 +1,5 @@
 id: moon
+condition: $(meta.setting === 'faerun')
 name: College of the Moon
 description: |
   Inspire allies with primal tales. Bards of this college draw from the isles’ fey magic and the primal power of the moonwells to bolster their allies, protect the natural world, and inspire their bardic works.
@@ -6,6 +7,11 @@ type: Folder
 tags:
   - bardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Moon"
   # Level 3: Moon's Inspiration
   - id: inspiredEclipse
     type: Extra

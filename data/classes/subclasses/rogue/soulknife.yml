@@ -6,10 +6,15 @@ tags:
   - rogueSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Soulknife"
   # Level 3: Psionic Power — Resource
   - id: psionicEnergyDice
     type: Resource
-    name: Psionic Energy Dice
+    name: Psionic Energy
     sr: 1
     quantity: $(progression(0,0,4,4,6,6,6,6,8,8,8,8,10,10,10,10,12,12,12,12))
   - id: psiDice

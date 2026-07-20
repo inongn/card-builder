@@ -1,5 +1,6 @@
 id: knowledgeDomain
 name: Knowledge Domain
+condition: $(meta.setting === 'faerun')
 description: |
   The Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship.
 
@@ -8,6 +9,11 @@ type: Folder
 tags:
   - clericSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Knowledge"
   # Level 3: Blessings of Knowledge
   - id: blessingsOfKnowledgeSkill
     type: Slot

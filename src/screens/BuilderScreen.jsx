@@ -51,6 +51,7 @@ export const BuilderScreen = ({
         { key: 'stats', icon: 'fitness_center', label: 'Abilities' },
         { key: 'skills', icon: 'psychology', label: 'Skills' },
         { key: 'spellcasting', icon: 'auto_fix_high', label: 'Spells' },
+        { key: 'companion', icon: 'pets', label: 'Companion' },
         { key: 'equipment', icon: 'shield', label: 'Equipment' },
     ];
 

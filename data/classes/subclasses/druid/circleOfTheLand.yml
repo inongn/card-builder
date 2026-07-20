@@ -7,6 +7,11 @@ tags:
   - druidSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Land"
   - id: circleOfTheLandSpells
     type: Slot
     name: Circle of the Land Spells

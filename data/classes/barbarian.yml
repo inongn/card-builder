@@ -17,6 +17,9 @@ children:
     target: meta.class
     operation: set
     value: Barbarian
+  - id: weaponMastery
+    type: Attribute
+    value: true
   - type: Reference
     value: [strSave, conSave]
   - type: Reference

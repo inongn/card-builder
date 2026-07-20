@@ -7,7 +7,7 @@ import 'mdui/components/button.js';
 export const PrintScreen = ({ char, onNavigate, toggleTheme, isDarkMode }) => {
     if (!char) return null;
 
-    const activities = char.activities || [];
+    const activities = (char.activities || []).filter(act => !act.tags || !act.tags.includes('restActivity'));
     const statblocks = (char.statblocks || []).map(sb => ({ ...sb, _isStatblock: true }));
     const allCards = [...activities, ...statblocks];
 

@@ -8,6 +8,11 @@ type: Folder
 tags:
   - clericSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "War"
   # Level 3: War Domain Spells
   - type: Reference
     target: [guidingBolt, magicWeapon, shieldOfFaith, spiritualWeapon]
@@ -51,11 +56,18 @@ children:
     condition: $(meta.level >= 3)
 
   # Level 6: War God's Blessing
-  - id: warGodsBlessing
-    type: Extra
-    target: [shieldOfFaith, spiritualWeapon]
-    name: War God's Blessing
-    description: "You cast this spell using a Channel Divinity charge without requiring Concentration."
+  - id: warGodsBlessingShield
+    type: Effect
+    target: activities[shieldOfFaith].resource
+    operation: push
+    value: channelDivinity
+    condition: $(meta.level >= 6)
+  - id: warGodsBlessingSpirit
+    type: Effect
+    target: activities[spiritualWeapon].resource
+    operation: push
+    value: channelDivinity
+    condition: $(meta.level >= 6)
 
   # Level 17: Avatar of Battle
   - type: Reference

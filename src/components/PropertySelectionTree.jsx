@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
 import 'mdui/components/collapse.js';
 import 'mdui/components/collapse-item.js';
@@ -13,12 +13,80 @@ import remarkGfm from 'remark-gfm';
 
 import { CATEGORIES, MATCHING_ORDER, collectRenderableNodes, categorizeNode } from '../utils/builderUtils.js';
 
-/**
- * PropertySelectionTree Component
- * 
- * Renders INPUT and SLOT type properties from the propertyTree
- * organized into categorized sections for the character builder.
- */
+// Separate component for grouped slots to manage local state and prevent select flickering
+function GroupedSlotsSelect({ baseName, items, onFillSlot, onClearSlot, onGetSlotOptions }) {
+    const { node } = items[0];
+
+    const propSelectedValues = useMemo(() => {
+        return items.map(item => item.node.filled?.id).filter(id => !!id);
+    }, [items]);
+
+    const [localValue, setLocalValue] = useState(propSelectedValues);
+
+    useEffect(() => {
+        setLocalValue(propSelectedValues);
+    }, [propSelectedValues]);
+
+    const options = useMemo(() => {
+        let opts = onGetSlotOptions ? onGetSlotOptions(node) : [];
+        items.forEach(item => {
+            if (item.node.filled && !opts.some(opt => opt.id === item.node.filled.id)) {
+                opts.push({ id: item.node.filled.id, displayName: item.node.filled.displayName || item.node.filled.name });
+            }
+        });
+        return [...opts].sort((a, b) => (a.displayName || a.name).localeCompare(b.displayName || b.name));
+    }, [node, items, onGetSlotOptions]);
+
+    const handleMultiChange = (e) => {
+        let newValues = Array.isArray(e.target.value) ? e.target.value : [e.target.value].filter(v => v !== "");
+        const limit = items.length;
+        if (newValues.length > limit) newValues = newValues.slice(0, limit);
+
+        // Compute exactly how selectedValues will look in props after the slots are updated:
+        const finalValues = [];
+        let addIdx = 0;
+        const currentFilledIds = items.map(item => item.node.filled?.id).filter(id => !!id);
+        const valuesToAdd = newValues.filter(val => !currentFilledIds.includes(val));
+
+        items.forEach(item => {
+            const currentId = item.node.filled?.id;
+            if (currentId && newValues.includes(currentId)) {
+                finalValues.push(currentId);
+            } else if (!currentId && addIdx < valuesToAdd.length) {
+                finalValues.push(valuesToAdd[addIdx]);
+                addIdx++;
+            }
+        });
+
+        // Instantly update local state to avoid flicker!
+        setLocalValue(finalValues);
+
+        // Fire calls to fill/clear slots in background
+        items.forEach(item => {
+            const currentId = item.node.filled?.id;
+            if (currentId && !newValues.includes(currentId)) onClearSlot(item.path);
+        });
+
+        let parentAddIdx = 0;
+        items.forEach(item => {
+            if (!item.node.filled && parentAddIdx < valuesToAdd.length) {
+                onFillSlot(item.path, valuesToAdd[parentAddIdx]);
+                parentAddIdx++;
+            }
+        });
+    };
+
+    return (
+        <mdui-select variant="outlined" label={baseName} multiple value={localValue} onChange={handleMultiChange} placement="bottom-start">
+            {options.map((option) => (
+                <mdui-menu-item key={option.id} value={option.id} disabled={(localValue.length >= items.length && !localValue.includes(option.id)) || undefined}>
+                    {option.displayName || option.name}
+                </mdui-menu-item>
+            ))}
+        </mdui-select>
+    );
+}
+
 export default function PropertySelectionTree({ tree, char, onUpdateInput, onFillSlot, onClearSlot, onGetSlotOptions, filterCategory }) {
     if (!tree) return null;
 
@@ -115,51 +183,6 @@ export default function PropertySelectionTree({ tree, char, onUpdateInput, onFil
 
                 {options.map((option) => (
                     <mdui-menu-item key={option.id} value={option.id}>{option.displayName || option.name}</mdui-menu-item>
-                ))}
-            </mdui-select>
-        );
-    };
-
-    const renderGroupedSlots = (baseName, items) => {
-        const { node } = items[0];
-        const selectedValues = items.map(item => item.node.filled?.id).filter(id => !!id);
-        let options = onGetSlotOptions ? onGetSlotOptions(node) : [];
-
-        items.forEach(item => {
-            if (item.node.filled && !options.some(opt => opt.id === item.node.filled.id)) {
-                options.push({ id: item.node.filled.id, displayName: item.node.filled.displayName || item.node.filled.name });
-            }
-        });
-        options.sort((a, b) => (a.displayName || a.name).localeCompare(b.displayName || b.name));
-
-        const handleMultiChange = (e) => {
-            let newValues = Array.isArray(e.target.value) ? e.target.value : [e.target.value].filter(v => v !== "");
-            const limit = items.length;
-            if (newValues.length > limit) newValues = newValues.slice(0, limit);
-
-            items.forEach(item => {
-                const currentId = item.node.filled?.id;
-                if (currentId && !newValues.includes(currentId)) onClearSlot(item.path);
-            });
-
-            const currentFilledIds = items.map(item => item.node.filled?.id).filter(id => !!id);
-            const valuesToAdd = newValues.filter(val => !currentFilledIds.includes(val));
-
-            let addIdx = 0;
-            items.forEach(item => {
-                if (!item.node.filled && addIdx < valuesToAdd.length) {
-                    onFillSlot(item.path, valuesToAdd[addIdx]);
-                    addIdx++;
-                }
-            });
-        };
-
-        return (
-            <mdui-select variant="outlined" key={`group-${baseName}`} label={baseName} multiple value={selectedValues} onChange={handleMultiChange} placement="bottom-start">
-                {options.map((option) => (
-                    <mdui-menu-item key={option.id} value={option.id} disabled={(selectedValues.length >= items.length && !selectedValues.includes(option.id)) || undefined}>
-                        {option.displayName || option.name}
-                    </mdui-menu-item>
                 ))}
             </mdui-select>
         );
@@ -279,7 +302,7 @@ export default function PropertySelectionTree({ tree, char, onUpdateInput, onFil
 
     return (
         <div className="category-creator">
-            {Object.entries(CATEGORIES).sort(([, a], [, b]) => a.order - b.order).map(([key, category]) => {
+            {Object.entries(CATEGORIES).sort(([, a], [, b]) => a.order - b.order).map(([key]) => {
                 if (filterCategory && filterCategory !== key) return null;
                 const groups = groupedCategorizedNodes[key] || {};
                 if (key !== 'stats' && Object.keys(groups).length === 0) return null;
@@ -288,7 +311,18 @@ export default function PropertySelectionTree({ tree, char, onUpdateInput, onFil
                     <div key={key} className="category-section">
                         {key === 'stats' && renderAbilitiesSummary()}
                         {key === 'stats' && statsList.map(stat => renderSmartAbilityInput(stat, abilityNodesMap))}
-                        {Object.entries(groups).map(([groupName, groupItems]) => groupItems.length > 1 ? renderGroupedSlots(groupName, groupItems) : (groupItems[0].type === 'Input' ? renderInput(groupItems[0]) : renderSlot(groupItems[0])))}
+                        {Object.entries(groups).map(([groupName, groupItems]) => groupItems.length > 1 ? (
+                            <GroupedSlotsSelect
+                                key={`group-${groupName}`}
+                                baseName={groupName}
+                                items={groupItems}
+                                onFillSlot={onFillSlot}
+                                onClearSlot={onClearSlot}
+                                onGetSlotOptions={onGetSlotOptions}
+                            />
+                        ) : (
+                            groupItems[0].type === 'Input' ? renderInput(groupItems[0]) : renderSlot(groupItems[0])
+                        ))}
                     </div>
                 );
             })}

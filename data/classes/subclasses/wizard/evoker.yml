@@ -6,6 +6,11 @@ type: Folder
 tags:
   - wizardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Evoker"
 
   # Level 3: Potent Cantrip
   - id: potentCantrip

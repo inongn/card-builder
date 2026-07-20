@@ -14,7 +14,10 @@ children:
     type: Extra
     target: opportunityAttack
     description: You can make an Opportunity Attack when a creature enters your reach.
-  - name: Pole Strike
-    type: Extra
-    target: weaponAttack and (Quarterstaff or Spear or Glaive or Halberd or Lance or Pike)
-    description: You can make an additional attack with the opposite end of the weapon as a Bonus Action. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a d4.
+  - id: poleStrike
+    name: Pole Strike
+    type: Activity
+    time: bonus action
+    range: self
+    duration: instantaneous
+    description: "When you make an attack with a Quarterstaff, Spear, Glaive, Halberd, Lance, or Pike, make a $(formatBonus(attributes.melee.bonus)) attack with the opposite end of it. On a hit, deal 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage."

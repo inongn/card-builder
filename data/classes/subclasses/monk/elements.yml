@@ -6,6 +6,11 @@ tags:
   - monkSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Elements"
   # Level 3: Elemental Attunement
   - id: elementalAttunement
     type: Activity
@@ -16,9 +21,10 @@ children:
     resource: 1 focusPoints
     description: |
       You imbue yourself with elemental energy. While active, gain the following benefits:
-      **Reach** Your Unarmed Strike reach is 10 feet greater than normal, as elemental energy extends from you.
       
-      **Elemental Strikes** You can cause Unarmed Strikes to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage. When you deal one of these types, force the target to make a DC $(attributes.monkSaveDC) Strength saving throw. On a failure, move the target up to 10 feet toward or away from you."
+      **Reach** Your Unarmed Strike reach is 5 feet greater than normal, as elemental energy extends from you.
+      
+      **Elemental Strikes** You can cause Unarmed Strikes to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage. When you deal one of these types, force the target to make a DC $(attributes.monkSaveDC) Strength saving throw. On a failure, move the target up to 5 feet toward or away from you.
 
   # Level 3: Manipulate Elements
   - type: Reference

@@ -10,6 +10,5 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Actor
-    type: Activity
-    description: While you're disguised as a real or fictional person, you have Advantage on Charisma (Deception or Performance) checks to convince others that you are that person. Additionally, you can mimic the sounds of other creatures, including speech. A creature that hears the mimicry must succeed on a DC $(8 + stats.cha.mod + attributes.prof) Wisdom (Insight) check to determine the effect is faked.
+  - type: Reference
+    target: [deceptionAdvantage, performanceAdvantage]

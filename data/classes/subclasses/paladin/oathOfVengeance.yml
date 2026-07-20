@@ -6,6 +6,11 @@ tags:
   - paladinSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Vengeance"
   # Level 3: Oath of Vengeance Spells
   - type: Reference
     target: [bane, huntersMark]
@@ -34,10 +39,11 @@ children:
 
   # Level 7: Relentless Avenger
   - id: relentlessAvenger
-    type: Activity
+    type: Extra
+    target: opportunityAttack
     name: Relentless Avenger
     condition: $(meta.level >= 7)
-    description: "Your supernatural focus helps you close off a foe's retreat. When you hit a creature with an Opportunity Attack, you can reduce the creature's Speed to 0 until the end of the current turn. You can then move up to half your Speed as part of the same Reaction. This movement doesn't provoke Opportunity Attacks."
+    description: "On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks."
 
   # Level 15: Soul of Vengeance
   - id: soulOfVengeance

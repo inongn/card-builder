@@ -28,7 +28,10 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
 
     const headerContent = (
         <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
-            <span className="card-title">{category.charAt(0).toUpperCase() + category.slice(1)}: {name}</span>
+            <span className="card-title">
+                {name
+                }
+            </span>
             <div className="card-meta">
                 <span className="text-secondary">{size} {classification}</span>
             </div>
@@ -51,9 +54,18 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
 
     const renderMovement = () => {
         if (!movement) return null;
+
+        // Filter out entries where the speed is 0
+        const activeMovements = Object.entries(movement)
+            .filter(([_, speed]) => speed !== 0)
+            .map(([type, speed]) => `${type} ${speed} ft.`);
+
+        // If all speeds were 0 and the array is empty, don't render anything
+        if (activeMovements.length === 0) return null;
+
         return (
             <div>
-                <strong>Speed</strong> {Object.entries(movement).map(([type, speed]) => `${type} ${speed} ft.`).join(', ')}
+                <strong>Speed</strong> {activeMovements.join(', ')}
             </div>
         );
     };
@@ -70,11 +82,21 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                 {renderMovement()}
             </div>
             <div>
-                {senses && (
-                    <div>
-                        <strong>Senses</strong> {Object.entries(senses).map(([type, range]) => `${type} ${range} ft.`).join(', ')}
-                    </div>
-                )}
+                {senses && (() => {
+                    // Filter out entries where the range is 0
+                    const activeSenses = Object.entries(senses)
+                        .filter(([_, range]) => range !== 0)
+                        .map(([type, range]) => `${type} ${range} ft.`);
+
+                    // Only render the block if there's at least one active sense
+                    if (activeSenses.length === 0) return null;
+
+                    return (
+                        <div>
+                            <strong>Senses</strong> {activeSenses.join(', ')}
+                        </div>
+                    );
+                })()}
             </div>
             <mdui-divider></mdui-divider>
 

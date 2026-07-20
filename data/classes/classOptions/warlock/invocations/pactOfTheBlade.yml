@@ -2,20 +2,18 @@ id: pactOfTheBladeFolder
 name: Pact of the Blade
 tags:
   - eldritchInvocation
-type: Attribute
+type: Folder
 children:
   - id: pactOfTheBlade
     type: Attribute
     value: true
+  - id: pactOfTheBladeSlot
+    type: Slot
+    name: Pact Weapon
+    target: simple OR martial
+    quantity: 1
+    overwrite:
+      variables.classification: spellcasting
+      tags: [pactWeapon]
   - type: Reference
-    target: [simpleWeaponProficiency, martialWeaponProficiency]
-  - id: pactOfTheBladeBonus
-    type: Effect
-    target: activities[weaponAttack].description["$(formatBonus(attributes.melee.bonus))"]
-    operation: replace
-    value: "$(formatBonus(attributes.spellcasting.bonus))"
-  - id: pactOfTheBladeRoll
-    type: Effect
-    target: activities[weaponAttack].description["$(formatBonus(attributes.melee.attack))"]
-    operation: replace
-    value: "$(formatBonus(attributes.spellcasting.attack))"
+    target: masteryProperties

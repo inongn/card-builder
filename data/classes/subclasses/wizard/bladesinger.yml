@@ -1,5 +1,6 @@
 id: bladesinger
 name: Bladesinger
+condition: $(meta.setting === 'faerun')
 description: |
   Bladesingers master a tradition of wizardry that incorporates swordplay and dance. In combat, a Bladesinger uses intricate, elegant maneuvers that fend off harm and allow the Bladesinger to channel magic into devastating attacks and a cunning defense.
 
@@ -8,6 +9,11 @@ type: Folder
 tags:
   - wizardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Bladesinger"
   # Level 3: Bladesong
   - id: bladesong
     type: Activity

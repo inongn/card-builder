@@ -1,6 +1,7 @@
 id: backlash
 type: Activity
 name: Backlash
+condition: $(meta.setting === 'faerun')
 resource: level4SpellSlot
 tags: [level4Spell, abjuration, bard, sorcerer, warlock, wizard, saveSpell, damageSpell, forceDamage]
 time: reaction

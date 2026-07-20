@@ -1,6 +1,7 @@
 id: cacophonicShield
 type: Activity
 name: Cacophonic Shield
+condition: $(meta.setting === 'faerun')
 resource: level3SpellSlot
 tags: [level3Spell, evocation, bard, sorcerer, wizard, saveSpell, damageSpell, thunderDamage]
 time: action

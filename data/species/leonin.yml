@@ -24,7 +24,7 @@ children:
   name: Daunting Roar
   description: You let out a terrifying roar. Each creature of your choice within
     range must succeed on a DC $(attributes.prof + 8 + stats.con.mod) Wisdom saving
-    throw or have the Frightened condition until the end of your next turn.
+    throw or have Disadvantage on attack rolls and saving throws until the end of your next turn.
   resource: dauntingRoar
   id: dauntingRoar
 - type: Resource

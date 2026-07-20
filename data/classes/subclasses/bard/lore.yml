@@ -6,6 +6,11 @@ type: Folder
 tags:
   - bardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Lore"
   # Level 3: Bonus Proficiencies
   - id: bonusProficiencies
     name: Bonus Proficiencies

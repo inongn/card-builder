@@ -1,0 +1,32 @@
+type: Statblock
+name: "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+tags: [familiar]
+id: otherworldlyFamiliarWaterCelestial
+size: Tiny
+category: summon
+classification: Celestial
+ac: "$(10 + (attributes.spellcasting.maxLevel || 1))"
+hp: "$(2 + 2 * (attributes.spellcasting.maxLevel || 1))"
+movement:
+  walk: 30
+  swim: 30
+stats:
+  str: 3
+  dex: 14
+  con: 10
+  int: 10
+  wis: 14
+  cha: 8
+senses:
+  darkvision: 60
+languages: Telepathy 120 ft. (only between you and the familiar)
+traits:
+  - name: Amphibious
+    description: The familiar can breathe air and water.
+  - name: Extradimensional Escape (Recharges after a Long Rest)
+    description: When the familiar would drop to 0 Hit Points, it instead drops to 1 Hit Point and vanishes into an extradimensional space, leaving behind anything it was wearing or carrying. It remains there for 1 hour or until you summon it as a Magic action, and then it reappears in your space.
+  - name: Deliver Spell
+    description: When you cast a spell with a range of touch, the familiar can deliver the spell with its touch. To do so, the familiar must be within 120 feet of you.
+actions:
+  - name: Otherworldly Scratch
+    description: "_Melee Spell Attack:_ your Spell Attack Modifier to hit, reach 5 ft., one target. _Hit:_ 1 + $(attributes.spellcasting.maxLevel || 1) Radiant damage."

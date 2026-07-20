@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { PropertyLibrary, CharacterBuilder } from './engine/RpgEngine.js';
 import jsyaml from 'js-yaml';
+import { SAMPLE_CHARACTERS, SAMPLE_ID_PREFIX } from './data/sampleCharacters.js';
 import 'mdui/mdui.css';
 import 'mdui';
 import { setColorScheme } from 'mdui/functions/setColorScheme.js';
@@ -29,14 +30,11 @@ import 'mdui/components/navigation-bar.js';
 import 'mdui/components/navigation-bar-item.js';
 import 'mdui/components/top-app-bar.js';
 import 'mdui/components/top-app-bar-title.js';
-import 'mdui/components/segmented-button-group.js';
-import 'mdui/components/segmented-button.js';
-
 import { DashboardScreen } from './screens/DashboardScreen';
 import { BuilderScreen } from './screens/BuilderScreen';
 import { PlayScreen } from './screens/PlayScreen';
 import { PrintScreen } from './screens/PrintScreen';
-import PropertyExplorer from './components/PropertyExplorer';
+import DebugDrawer from './components/DebugDrawer';
 
 setColorScheme('#ee0feeff');
 // ============================================================================
@@ -67,11 +65,30 @@ export default function App() {
     const [isDarkMode, setIsDarkMode] = useState(() =>
         window.matchMedia('(prefers-color-scheme: dark)').matches
     );
-    const [savedCharacters, setSavedCharacters] = useState([]);
+    const [savedCharacters, setSavedCharacters] = useState(() => {
+        const savedRaw = localStorage.getItem('saved_characters');
+        if (savedRaw === null) {
+            const toAdd = SAMPLE_CHARACTERS.map(sc => ({
+                id: sc.id,
+                name: sc.name,
+                class: sc.class,
+                sub: sc.sub || '',
+                species: sc.species,
+                level: sc.level,
+                recipe: sc.recipe,
+                timestamp: new Date().toISOString()
+            }));
+            localStorage.setItem('saved_characters', JSON.stringify(toAdd));
+            return toAdd;
+        }
+        return JSON.parse(savedRaw || '[]');
+    });
     const [loadedCharacterId, setLoadedCharacterId] = useState(null);
-    const [isDebugOpen, setIsDebugOpen] = useState(false);
-    const [debugTab, setDebugTab] = useState('character');
     const [builderSource, setBuilderSource] = useState('dashboard');
+    const [sampleCharactersEnabled, setSampleCharactersEnabled] = useState(() => {
+        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
+        return saved.some(c => String(c.id).startsWith(SAMPLE_ID_PREFIX));
+    });
 
     // Sync theme to document element
     useEffect(() => {
@@ -184,6 +201,7 @@ export default function App() {
             id: loadedCharacterId,
             name: characterName,
             class: characterData.meta?.class || 'Unknown Class',
+            sub: characterData.meta?.sub || '',
             species: characterData.meta?.species || '',
             level: characterData.meta?.level || 1,
             recipe,
@@ -231,63 +249,54 @@ export default function App() {
         setActiveTab('builder');
     }, [builder, syncState]);
 
-    const getDebugContent = () => {
-        if (!builder) return 'No builder initialized';
-        try {
-            switch (debugTab) {
-                case 'character':
-                    return jsyaml.dump(characterData, { indent: 2, lineWidth: -1 });
-                case 'recipe':
-                    return jsyaml.dump(builder.getRecipe(), { indent: 2, lineWidth: -1 });
-                case 'tree':
-                    return jsyaml.dump(propertyTree, { indent: 2, lineWidth: -1 });
-                case 'library':
-                    return library ? `Loaded Properties: ${library.properties.size}\nRaw Files: ${library.rawStore.size}\n\nKeys:\n${Array.from(library.rawStore.keys()).join('\n')}` : 'No library loaded';
-                default:
-                    return 'Select a tab';
-            }
-        } catch (e) {
-            return `Error dumping yaml: ${e.message}`;
+    const handleToggleSampleCharacters = useCallback(() => {
+        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
+        if (sampleCharactersEnabled) {
+            // Remove all sample characters
+            const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
+            localStorage.setItem('saved_characters', JSON.stringify(filtered));
+            setSavedCharacters(filtered);
+            setSampleCharactersEnabled(false);
+        } else {
+            // Add sample characters (skip if id already exists)
+            const existingIds = new Set(saved.map(c => c.id));
+            const toAdd = SAMPLE_CHARACTERS
+                .filter(sc => !existingIds.has(sc.id))
+                .map(sc => ({
+                    id: sc.id,
+                    name: sc.name,
+                    class: sc.class,
+                    sub: sc.sub || '',
+                    species: sc.species,
+                    level: sc.level,
+                    recipe: sc.recipe,
+                    timestamp: new Date().toISOString()
+                }));
+            const updated = [...saved, ...toAdd];
+            localStorage.setItem('saved_characters', JSON.stringify(updated));
+            setSavedCharacters(updated);
+            setSampleCharactersEnabled(true);
         }
-    };
+    }, [sampleCharactersEnabled]);
+
+    const [isDebugOpen, setIsDebugOpen] = useState(false);
 
     if (loading) return null;
 
     return (
         <mdui-layout className="app-container">
-            <mdui-button-icon 
-                icon="bug_report" 
-                onClick={() => setIsDebugOpen(!isDebugOpen)} 
-                style={{ 
-                    position: 'fixed', 
-                    bottom: '16px', 
-                    right: '16px', 
-                    zIndex: '1000',
-                    boxShadow: 'var(--mdui-elevation-2)',
-                    backgroundColor: 'var(--mdui-color-surface)'
-                }}
-            ></mdui-button-icon>
-            <mdui-navigation-drawer placement="right" open={isDebugOpen} onClose={() => setIsDebugOpen(false)} style={{ width: '450px', maxWidth: '95vw' }}>
-                <div className="debug-yaml-container" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ padding: '0 16px' }}>
-                        <mdui-segmented-button-group selects="single" value={debugTab}>
-                            <mdui-segmented-button value="character" onClick={() => setDebugTab('character')}>Character</mdui-segmented-button>
-                            <mdui-segmented-button value="recipe" onClick={() => setDebugTab('recipe')}>Recipe</mdui-segmented-button>
-                            <mdui-segmented-button value="tree" onClick={() => setDebugTab('tree')}>Tree</mdui-segmented-button>
-                            <mdui-segmented-button value="explorer" onClick={() => setDebugTab('explorer')}>Explorer</mdui-segmented-button>
-                        </mdui-segmented-button-group>
-                    </div>
-                    {debugTab === 'explorer' ? (
-                        <div style={{ flex: 1, padding: '16px 16px 0 16px', overflow: 'hidden' }}>
-                            <PropertyExplorer library={library} />
-                        </div>
-                    ) : (
-                        <div className="debug-yaml-content" style={{ marginTop: '16px' }}>
-                            {getDebugContent()}
-                        </div>
-                    )}
-                </div>
-            </mdui-navigation-drawer>
+            <DebugDrawer
+                open={isDebugOpen}
+                onClose={() => setIsDebugOpen(false)}
+                characterData={characterData}
+                builder={builder}
+                propertyTree={propertyTree}
+                library={library}
+                sampleCharactersEnabled={sampleCharactersEnabled}
+                handleToggleSampleCharacters={handleToggleSampleCharacters}
+                savedCharacters={savedCharacters}
+                setSavedCharacters={setSavedCharacters}
+            />
 
             <mdui-layout-main className="app-main-layout">
                 {activeTab === 'dashboard' && (

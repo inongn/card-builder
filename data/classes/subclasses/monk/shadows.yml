@@ -6,6 +6,11 @@ tags:
   - monkSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Shadow"
   # Level 3: Shadow Arts — Darkness
   - id: shadowArtsDarkness
     type: Reference

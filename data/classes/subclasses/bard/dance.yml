@@ -6,6 +6,11 @@ type: Folder
 tags:
   - bardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Dance"
   # Level 3: Dazzling Footwork
 
   - id: dazzlingFootworkDance

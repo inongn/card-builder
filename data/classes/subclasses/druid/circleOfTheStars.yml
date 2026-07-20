@@ -6,6 +6,11 @@ type: Folder
 tags:
   - druidSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Stars"
   # Level 3: Star Map
   - type: Reference
     target: [guidance]

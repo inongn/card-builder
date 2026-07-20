@@ -8,6 +8,11 @@ type: Folder
 tags:
   - clericSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Light"
   # Level 3: Light Domain Spells
   - type: Reference
     target: [burningHands, faerieFire, scorchingRay, seeInvisibility]

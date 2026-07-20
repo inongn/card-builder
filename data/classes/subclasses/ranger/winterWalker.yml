@@ -1,11 +1,17 @@
 id: winterWalker
 name: Winter Walker
+condition: $(meta.setting === 'faerun')
 description: |
   Winter Walkers hone their craft in the bleak and frozen wilds of places like Icewind Dale. These ruthless, rimed Rangers hunt monsters that haunt arctic wastelands, eventually becoming frigid terrors themselves.
 tags:
   - rangerSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Winter Walker"
   # Level 3: Frigid Explorer
   - id: frigidExplorerBitingCold
     type: Extra

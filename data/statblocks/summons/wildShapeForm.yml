@@ -1,0 +1,26 @@
+type: Statblock
+name: "$(meta.beastcompanionname || local.name || 'Wild Shape Form')"
+id: wildShapeForm
+category: wildshape
+tags: [wildshape]
+size: "$(local.size || 'Medium')"
+classification: "$(local.classification || 'Beast')"
+ac: "$(local.ac || 10)"
+hp: "$(local.hp || 1)"
+movement:
+  walk: "$(local.movement?.walk || 30)"
+  swim: "$(local.movement?.swim || 0)"
+  fly: "$(local.movement?.fly || 0)"
+  climb: "$(local.movement?.climb || 0)"
+stats:
+  str: "$(local.stats?.str || 10)"
+  dex: "$(local.stats?.dex || 10)"
+  con: "$(local.stats?.con || 10)"
+  int: "$(local.stats?.int || 10)"
+  wis: "$(local.stats?.wis || 10)"
+  cha: "$(local.stats?.cha || 10)"
+senses:
+  darkvision: "$(local.senses?.darkvision || 0)"
+  blindsight: "$(local.senses?.blindsight || 0)"
+traits: "$(local.traits || [])"
+actions: "$(local.actions || [])"

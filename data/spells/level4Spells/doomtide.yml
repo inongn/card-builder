@@ -1,6 +1,7 @@
 id: doomtide
 type: Activity
 name: Doomtide
+condition: $(meta.setting === 'faerun')
 resource: level4SpellSlot
 tags: [level4Spell, conjuration, bard, cleric, warlock, saveSpell, damageSpell, psychicDamage]
 time: action

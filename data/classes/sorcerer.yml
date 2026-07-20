@@ -56,15 +56,20 @@ children:
       *   You have Advantage on the attack rolls of Sorcerer spells you cast.
       $(meta.level >= 7 ? "*   You can use up to two Metamagic options on each spell you cast." : "")
       $(meta.level >= 20 ? "*   You can use one Metamagic option on each turn without expending Sorcery Points." : "")
-
-      $(meta.level >= 7 ? "**Sorcery Incarnate.** If you have no uses left, you can spend 2 Sorcery Points to take this action." : "")
     resource: innateSorcery
   - id: innateSorcery
     type: Resource
     name: Innate Sorcery
     quantity: 2
     condition: $(meta.level >= 1)
-    
+
+  # Level 7: Sorcery Incarnate — allows spending 2 SP as alternative resource
+  - id: sorceryIncarnate
+    type: Effect
+    target: activities[innateSorcery].resource
+    operation: push
+    value: 2 sorceryPoints
+    condition: $(meta.level >= 7)
   # Level 2: Font of Magic
   - id: sorceryPoints
     type: Resource

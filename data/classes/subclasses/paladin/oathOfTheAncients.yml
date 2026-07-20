@@ -6,6 +6,11 @@ tags:
   - paladinSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Ancients"
   # Level 3: Nature's Wrath
   - id: naturesWrath
     type: Activity

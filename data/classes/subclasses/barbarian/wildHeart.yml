@@ -6,6 +6,11 @@ tags:
   - barbarianSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Wild Heart"
   # Level 3: Animal Speaker
   - type: Reference
     target: [beastSense, speakWithAnimals, wisCaster]

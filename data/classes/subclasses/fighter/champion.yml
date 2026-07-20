@@ -6,6 +6,11 @@ tags:
   - fighterSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Champion"
   - id: improvedCritical
     name: Improved Critical
     type: Extra

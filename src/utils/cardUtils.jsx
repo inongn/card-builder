@@ -79,13 +79,13 @@ export const TERM_ICONS = {
     '6 sorceryPoints': { icon: 'filter_6', color: 'psychic', shortName: '6 Sorcery Points' },
     '7 sorceryPoints': { icon: 'filter_7', color: 'psychic', shortName: '7 Sorcery Points' },
     'pactMagicSpellSlot': { icon: 'filter_none', color: 'spell-slot', shortName: 'Spell Slots' },
-    'psionicEnergyDice': { icon: 'casino', color: 'psychic', shortName: 'Psionic Die' }, // Geometric shape for dice
+    'psionicEnergyDice': { icon: 'stream', color: 'psychic', shortName: 'Psionic Die' }, // Geometric shape for dice
     'telekineticMovement': { icon: 'control_camera', color: 'psychic', shortName: 'Telekinetic Movement' }, // Geometric shape for dice
     'psiPoweredLeap': { icon: 'redo', color: 'psychic', shortName: 'Psi Powered Leap' },
     'guardedMind': { icon: 'shield', color: 'psychic', shortName: 'Guarded Mind' },
     'bulwarkOfForce': { icon: 'cyclone', color: 'psychic', shortName: 'Bulwark of Force' },
     'telekineticMaster': { icon: 'front_hand', color: 'psychic', shortName: 'Telekinesis' },
-    'superiorityDice': { icon: 'casino', color: 'fire', shortName: 'Superiority Die' },
+    'superiorityDice': { icon: 'military_tech', color: 'fire', shortName: 'Superiority Die' },
     'breathWeapon': { icon: 'airwave', color: 'action', shortName: 'Breath Weapon' },
     'indomitable': { icon: 'emoji_events', color: 'radiant', shortName: 'Indomitable' },
     'actionSurge': { icon: 'show_chart', color: 'fire', shortName: 'Action Surge' },
@@ -115,7 +115,12 @@ export const TERM_ICONS = {
     'luckPoints': { icon: 'control_point', color: 'action', shortName: 'Luck Points' },
     'recoverVitality': { icon: 'health_and_safety', color: 'healing', shortName: 'Recover Vitality' },
     'dauntingRoar': { icon: 'graphic_eq', color: 'fire', shortName: 'DauntingRoar' },
-    'forestGnomeSpeakWithAnimalsUses': { icon: 'graphic_eq', color: 'action', shortName: 'Speak With Animals' }
+    'forestGnomeSpeakWithAnimalsUses': { icon: 'graphic_eq', color: 'action', shortName: 'Speak With Animals' },
+    'flashOfGeniusResource': { icon: 'lightbulb', color: 'radiant', shortName: 'Flash of Genius' },
+    'experimentalElixirResource': { icon: 'local_pharmacy', color: 'healing', shortName: 'Experimental Elixir' },
+    'illuminatedCartography': { icon: 'map', color: 'fire', shortName: 'Illuminated Cartography' },
+    'giantStatureResource': { icon: 'expand', color: 'bonus', shortName: 'Giant Stature Uses' },
+    'joltToLifeResource': { icon: 'flash_on', color: 'necrotic', shortName: 'Jolt to Life' }
 };
 
 // Internal normalized map for lookups
@@ -139,7 +144,7 @@ export const sortDescription = (lines) => {
             ? (line.description || '')
             : String(line);
         const text = description.toLowerCase();
-        
+
         if (text.includes('on a critical hit')) return 90;
         if (text.includes('on a hit') || text.includes('when you hit')) return 100;
         if (text.includes('on a miss') || text.includes('when you miss')) return 80;

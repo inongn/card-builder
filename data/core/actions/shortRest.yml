@@ -3,6 +3,7 @@ id: shortRest
 range: self
 time: 1 hour
 resource: hitDice
+tags: [restActivity]
 name: Short Rest
 description: |
   A Short Rest is a 1-hour period of downtime, during which a creature does nothing more strenuous than reading, talking, eating, or standing watch. To start a Short Rest, you must have at least 1 Hit Point.

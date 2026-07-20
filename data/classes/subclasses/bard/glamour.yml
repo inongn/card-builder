@@ -6,6 +6,11 @@ type: Folder
 tags:
   - bardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Glamour"
   # Level 3: Beguiling Magic
   - type: Reference
     target: [charmPerson, mirrorImage]
@@ -15,8 +20,9 @@ children:
     name: Beguiling Magic
     condition: $(meta.level >= 3)
     resource: bardicInspiration
+    duration: 1 minute
     tags: [innateLR]
-    description: "After casting an Enchantment or Illusion spell using a spell slot, you force a creature within 60 feet to make a Wisdom save. On a failure, it has the Charmed or Frightened condition (your choice) for 1 minute."
+    description: "After casting an Enchantment or Illusion spell using a spell slot, you force a creature within 60 feet to make a Wisdom save. On a failure, it has the Charmed or Frightened condition (your choice)."
 
   # Level 3: Mantle of Inspiration
   - id: mantleOfInspiration

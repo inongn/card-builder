@@ -6,7 +6,24 @@ children:
   - type: Slot
     id: steedType
     name: Otherworldly Steed
-    target: findSteedSpell OR otherworldlySteed
+    target: otherworldlySteedCelestial OR otherworldlySteedFey OR otherworldlySteedFiend OR classOption
     variables:
       maxLevel: "$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)"
       target: findSteedActivity
+  - id: steedName
+    type: Input
+    name: Steed Name
+    inputType: text
+    label: Steed Name
+  - type: Effect
+    target: statblocks[otherworldlySteedCelestial].name
+    operation: set
+    value: "$(meta.steedname ? meta.steedname + ' (Celestial Steed)' : 'Celestial Steed')"
+  - type: Effect
+    target: statblocks[otherworldlySteedFey].name
+    operation: set
+    value: "$(meta.steedname ? meta.steedname + ' (Fey Steed)' : 'Fey Steed')"
+  - type: Effect
+    target: statblocks[otherworldlySteedFiend].name
+    operation: set
+    value: "$(meta.steedname ? meta.steedname + ' (Fiend Steed)' : 'Fiend Steed')"

@@ -6,6 +6,11 @@ tags:
   - rogueSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Thief"
   # Level 3: Fast Hands
   - id: fastHands
     type: Activity

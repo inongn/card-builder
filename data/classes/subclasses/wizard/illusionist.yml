@@ -6,16 +6,33 @@ type: Folder
 tags:
   - wizardSubclass
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Illusionist"
   # Level 3: Improved Illusions
   - type: Reference
     target: minorIllusion
     condition: $(meta.level >= 3)
-  - id: improvedIllusions
+  - id: improvedIllusionsRange
+    type: Effect
+    target: activities[tags=illusion AND NOT range=self AND NOT range=touch].range
+    operation: add
+    value: 60
+    condition: $(meta.level >= 3)
+  - id: improvedIllusionsMinorIllusionTime
+    type: Effect
+    target: activities[minorIllusion].time
+    operation: set
+    value: "bonus action"
+    condition: $(meta.level >= 3)
+  - id: improvedIllusionsExtra
     type: Extra
     name: Improved Illusions
     target: illusion
     condition: $(meta.level >= 3)
-    description: "You can cast this spell without Verbal components. If the spell has a range of 10+ feet, the range increases by 60 feet."
+    description: "You can cast this spell without Verbal components."
 
   # Level 6: Phantasmal Creatures
   - type: Reference

@@ -6,6 +6,11 @@ tags:
   - warlockSubclass
 type: Folder
 children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Celestial"
   # Level 3: Celestial Spells
   - type: Reference
     target: [aid, cureWounds, guidingBolt, lesserRestoration, light, sacredFlame]
@@ -41,11 +46,35 @@ children:
     type: Reference
     target: radiantResistance
     condition: $(meta.level >= 6)
-  - id: radiantSoulDmg
-    type: Extra
-    target: spell AND damageSpell AND (radiantDamage OR fireDamage)
-    name: Radiant Soul
-    description: "Once per turn, add $(stats.cha.mod) to one damage roll."
+  - id: radiantSoulD12
+    type: Effect
+    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d12"]
+    operation: replace
+    value: "d12$(formatBonus(stats.cha.mod))"
+    condition: $(meta.level >= 6)
+  - id: radiantSoulD10
+    type: Effect
+    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d10"]
+    operation: replace
+    value: "d10$(formatBonus(stats.cha.mod))"
+    condition: $(meta.level >= 6)
+  - id: radiantSoulD8
+    type: Effect
+    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d8"]
+    operation: replace
+    value: "d8$(formatBonus(stats.cha.mod))"
+    condition: $(meta.level >= 6)
+  - id: radiantSoulD6
+    type: Effect
+    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d6"]
+    operation: replace
+    value: "d6$(formatBonus(stats.cha.mod))"
+    condition: $(meta.level >= 6)
+  - id: radiantSoulD4
+    type: Effect
+    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d4"]
+    operation: replace
+    value: "d4$(formatBonus(stats.cha.mod))"
     condition: $(meta.level >= 6)
 
   # Level 10: Celestial Resilience
