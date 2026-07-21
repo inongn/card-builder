@@ -1,0 +1,13 @@
+id: animalFriendship
+type: Activity
+name: Animal Friendship
+resource: level1SpellSlot
+tags: [level1Spell, enchantment, bard, druid, ranger, saveSpell, damageSpell]
+time: action
+range: 30 feet
+duration: 24 hours
+description: |
+  Target a Beast that you can see within range. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. If you or one of your allies deals damage to the target, the spells ends.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: You can target one additional Beast for each spell slot level above 1.

@@ -1,0 +1,13 @@
+id: temperateLand
+name: Temperate Land
+tags: [circleSpells]
+type: Folder
+children:
+  - type: Reference
+    target: [mistyStep, shockingGrasp, sleep]
+  - type: Reference
+    condition: meta.level >= 5
+    target: lightningBolt
+  - type: Reference
+    condition: meta.level >= 7
+    target: freedomOfMovement

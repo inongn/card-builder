@@ -10,13 +10,13 @@ children:
   quantity: 1
 - type: Slot
   id: magicInitiateClericCantrips
-  name: Magic Initiate (Cleric) Cantrips
+  name: Cleric Initiate Cantrips
   quantity: 2
   target: cleric AND cantrip
 - type: Slot
   id: magicInitiateClericPreparedSpell
-  name: Magic Initiate (Cleric) Prepared Spell
+  name: Cleric Initiate Spell
   target: cleric AND level1Spell
   quantity: 1
   overwrite:
-    uses: 1
+    resource: limited

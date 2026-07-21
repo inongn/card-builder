@@ -1,0 +1,14 @@
+id: warhammer
+name: Warhammer
+type: Reference
+target: weaponAttack
+tags: [martial]
+variables:
+  name: Warhammer
+  mastery: push
+  damageRoll: "$(attributes.shieldEquipped == true ? '1d8' : '1d10')"
+  damageType: bludgeoning
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: ''

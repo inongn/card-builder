@@ -1,0 +1,14 @@
+id: longbow
+name: Longbow
+type: Reference
+target: weaponAttack
+tags: [twoHanded, martial]
+variables:
+  name: Longbow
+  mastery: slow
+  damageRoll: 1d8
+  damageType: piercing
+  range: 150 feet
+  classification: ranged
+  category: martial
+  property: twoHanded

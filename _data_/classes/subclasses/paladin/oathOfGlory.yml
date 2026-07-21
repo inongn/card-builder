@@ -1,0 +1,106 @@
+id: oathOfGlory
+name: Oath of Glory
+description: |
+  Paladins who take the Oath of Glory believe they and their companions are destined to achieve glory through deeds of heroism.
+tags:
+  - paladinSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Glory"
+  # Level 3: Inspiring Smite
+  - id: inspiringSmite
+    type: Activity
+    name: Inspiring Smite
+    time: free action
+    range: 30 feet
+    duration: Instantaneous
+    resource: channelDivinity
+    description: "Immediately after you cast Divine Smite, you distribute Temporary Hit Points to creatures of your choice within range, which can include you. The total number of Temporary Hit Points equals 2d8$(formatBonus(meta.level)), divided among the chosen creatures however you like."
+
+  # Level 3: Oath of Glory Spells
+  - type: Reference
+    target: [guidingBolt, heroism]
+  - type: Reference
+    target: [enhanceAbility, magicWeapon]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [haste, protectionFromEnergy]
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target: [compulsion, freedomOfMovement]
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target: [legendLore, yolandesRegalPresence]
+    condition: $(meta.level >= 17)
+
+  # Level 3: Peerless Athlete
+  - id: peerlessAthlete
+    type: Activity
+    name: Peerless Athlete
+    time: bonus action
+    duration: 1 hour
+    resource: channelDivinity
+    description: "You augment your athleticism. For the duration, you have Advantage on Strength (Athletics) and Dexterity (Acrobatics) checks, and the distance of your Long and High Jumps increases by 10 feet (this extra distance costs movement as normal)."
+
+  # Level 7: Aura of Alacrity
+  - id: auraOfAlacrity
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    condition: $(meta.level >= 7)
+    value: 10
+  - id: auraOfAlacrity
+    type: Extra
+    name: Aura of Alacrity
+    target: auraOfProtection
+    condition: $(meta.level >= 7)
+    description: "Whenever an ally enters the aura for the first time on a turn or starts their turn there, the ally's Speed increases by 10 feet until the end of their next turn."
+
+  # Level 15: Glorious Defense
+  - id: gloriousDefense
+    type: Activity
+    name: Glorious Defense
+    time: reaction
+    range: 10 feet
+    duration: Instantaneous
+    condition: $(meta.level >= 15)
+    resource: gloriousDefense
+    description: "When you or another creature you can see within 10 feet of you is hit by an attack roll, you turn defense into a sudden strike. Grant a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to the target's AC against that attack, potentially causing it to miss. If the attack misses, you can make one attack with a weapon against the attacker as part of this Reaction if the attacker is within your weapon's range."
+  - id: gloriousDefense
+    type: Resource
+    name: Glorious Defense
+    quantity: $(Math.max(1, stats.cha.mod))
+    condition: $(meta.level >= 15)
+
+  # Level 20: Living Legend
+  - id: livingLegend
+    type: Activity
+    name: Living Legend
+    time: bonus action
+    duration: 10 minutes
+    condition: $(meta.level >= 20)
+    tags: [innateLR]
+    resource: level5SpellSlot
+    description: "You empower yourself with the legends of your great deeds. Gain the benefits below for the duration:"
+  - id: livingLegendCharismatic
+    type: Extra
+    name: Charismatic
+    target: livingLegend
+    condition: $(meta.level >= 20)
+    description: "You are blessed with an otherworldly presence and have Advantage on all Charisma checks."
+  - id: livingLegendSavingThrowReroll
+    type: Extra
+    name: Saving Throw Reroll
+    target: livingLegend
+    condition: $(meta.level >= 20)
+    description: "If you fail a saving throw, you can take a Reaction to reroll it. You must use this new roll."
+  - id: livingLegendUnerringStrike
+    type: Extra
+    name: Unerring Strike
+    target: livingLegend
+    condition: $(meta.level >= 20)
+    description: "Once on each of your turns when you make an attack roll with a weapon and miss, you can cause that attack to hit instead."

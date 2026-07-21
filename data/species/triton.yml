@@ -33,11 +33,9 @@ children:
   condition: $(meta.level >= 3)
   target: fogCloud
   overwrite:
-    tags:
-    - innateLR
+      resource: limited
 - type: Reference
   condition: $(meta.level >= 5)
   target: gustOfWind
   overwrite:
-    tags:
-    - innateLR
+      resource: limited

@@ -59,61 +59,27 @@ children:
       **6. Choice.** Choose one of the above.
   # Level 5: Alchemical Savant
   - type: Effect
-    target: activities[(damageSpell AND (acidDamage OR fireDamage OR poisonDamage)) OR healingSpell].description["d12"]
+    target: activities[(tags=damageSpell AND (tags=acidDamage OR tags=fireDamage OR tags=poisonDamage)) OR tags=healingSpell].description["d12"]
     operation: replace
     value: "d12$(formatBonus(stats.int.mod))"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[(damageSpell AND (acidDamage OR fireDamage OR poisonDamage)) OR healingSpell].description["d10"]
+    target: activities[(tags=damageSpell AND (tags=acidDamage OR tags=fireDamage OR tags=poisonDamage)) OR tags=healingSpell].description["d10"]
     operation: replace
     value: "d10$(formatBonus(stats.int.mod))"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[(damageSpell AND (acidDamage OR fireDamage OR poisonDamage)) OR healingSpell].description["d8"]
+    target: activities[(tags=damageSpell AND (tags=acidDamage OR tags=fireDamage OR tags=poisonDamage)) OR tags=healingSpell].description["d8"]
     operation: replace
     value: "d8$(formatBonus(stats.int.mod))"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[(damageSpell AND (acidDamage OR fireDamage OR poisonDamage)) OR healingSpell].description["d6"]
+    target: activities[(tags=damageSpell AND (tags=acidDamage OR tags=fireDamage OR tags=poisonDamage)) OR tags=healingSpell].description["d6"]
     operation: replace
     value: "d6$(formatBonus(stats.int.mod))"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[(damageSpell AND (acidDamage OR fireDamage OR poisonDamage)) OR healingSpell].description["d4"]
+    target: activities[(tags=damageSpell AND (tags=acidDamage OR tags=fireDamage OR tags=poisonDamage)) OR tags=healingSpell].description["d4"]
     operation: replace
     value: "d4$(formatBonus(stats.int.mod))"
     condition: $(meta.level >= 5)
-
-  # Level 9: Restorative Reagents
-  - id: restorativeReagentsResource
-    type: Resource
-    name: Restorative Reagents
-    quantity: "$(Math.max(1, stats.int.mod))"
-    condition: $(meta.level >= 9)
-  - id: restorativeReagents
-    type: Activity
-    name: Restorative Reagents
-    time: action
-    resource: restorativeReagentsResource
-    condition: $(meta.level >= 9)
-    description: |
-      You can cast Lesser Restoration without expending a spell slot and without preparing the spell, provided you use Alchemist’s Supplies as the Spellcasting Focus.
-
-  # Level 15: Chemical Mastery
-  - id: chemicalMastery
-    type: Extra
-    name: Chemical Mastery
-    condition: $(meta.level >= 15)
-    description: |
-      **Alchemical Eruption.** When you cast an Artificer spell that deals Acid, Fire, or Poison damage to a target, you can also deal 2d8 Force damage to that target. You can use this benefit only once on each of your turns.
-  - type: Reference
-    target: [acidResistance, poisonResistance, poisonedImmunity]
-    condition: $(meta.level >= 15)
-  - id: conjuredCauldron
-    type: Activity
-    name: Conjured Cauldron
-    time: action
-    tags: [innateLR]
-    condition: $(meta.level >= 15)
-    description: |
-      You can cast Tasha’s Bubbling Cauldron without expending a spell slot, without preparing the spell, and without Material components, provided you use Alchemist’s Supplies as the Spellcasting Focus.

@@ -1,0 +1,12 @@
+id: elminstersElusion
+type: Activity
+name: Elminster's Elusion
+condition: $(meta.setting === 'faerun')
+resource: level2SpellSlot
+tags: [level2Spell, abjuration, wizard]
+time: bonus action
+range: self
+duration: concentration, up to 10 minutes
+description: |
+  Arcane wards protect you against magic for the duration. You have Advantage on saving throws against spells and magical effects. Additionally, if you succeed on a saving throw against a spell or magical effect and would normally take half as much damage, you instead take no damage.
+

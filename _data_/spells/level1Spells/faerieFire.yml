@@ -1,0 +1,13 @@
+id: faerieFire
+type: Activity
+name: Faerie Fire
+resource: level1SpellSlot
+tags: [level1Spell, evocation, artificer, bard, druid, saveSpell]
+time: action
+range: 60 feet
+duration: concentration, up to 1 minute
+description: |
+  Objects in a 20-foot Cube within range are outlined in blue, green, or violet light (your choice). Each creature in the Cube is also outlined if it fails a DC $(attributes.spellcasting.save) Dexterity saving throw. For the duration, objects and affected creatures shed Dim Light in a 10-foot radius and can’t benefit from the Invisible condition.
+
+  Attack rolls against an affected creature or object have Advantage if the attacker can see it.
+

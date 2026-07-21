@@ -1,0 +1,9 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.religion.proficiency
+operation: set
+condition: $(skills.religion.proficiency > 0)
+value: 2
+id: religionExpertise
+name: Religion Expertise

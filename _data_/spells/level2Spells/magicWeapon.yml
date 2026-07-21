@@ -1,0 +1,13 @@
+id: magicWeapon
+type: Activity
+name: Magic Weapon
+resource: level2SpellSlot
+tags: [level2Spell, transmutation, artificer, paladin, ranger, sorcerer, wizard]
+time: bonus action
+range: touch
+duration: 1 hour
+description: |
+  You touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls. The spell ends early if you cast it again.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: The bonus increases to +2 with a level 3–5 spell slot. The bonus increases to +3 with a level 6+ spell slot.

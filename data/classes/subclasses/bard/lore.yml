@@ -37,11 +37,3 @@ children:
       maxLevel: "$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)"
     quantity: 2
     condition: $(meta.level >= 6)
-
-  # Level 14: Peerless Skill
-  - id: peerlessSkill
-    type: Activity
-    name: Peerless Skill
-    condition: $(meta.level >= 14)
-    resource: bardicInspiration
-    description: "When you fail an ability check or attack roll, you add 1d$(attributes.bardicDie) to the roll, potentially turning the failure into a success. On a failure, the Inspiration is not expended."

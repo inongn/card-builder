@@ -3,7 +3,7 @@ tags:
   - skillExpertise
 target: skills.investigation.proficiency
 operation: set
-condition: $(skills.investigation.proficiency > 0)
+condition: $(skills.investigation.proficiency > .5)
 value: 2
 id: investigationExpertise
 name: Investigation Expertise

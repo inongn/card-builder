@@ -1,0 +1,55 @@
+id: circleOfTheSea
+name: Circle of the Sea
+description: |
+  Druids of the Circle of the Sea draw on the tempestuous forces of oceans and storms. Some view themselves as embodiments of nature's wrath, seeking vengeance against those who despoil nature. Others seek mystical unity with nature by attuning themselves to the ebb and flow of the tides.
+type: Folder
+tags:
+  - druidSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Sea"
+  # Level 3: Circle of the Sea Spells
+  - type: Reference
+    target: [fogCloud, gustOfWind, rayOfFrost, thunderwave]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [lightningBolt, waterBreathing]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [controlWater, iceStorm]
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target: [conjureElemental, holdMonster]
+    condition: $(meta.level >= 9)
+
+  # Level 3: Wrath of the Sea (Activation)
+  - id: wrathOfTheSea
+    type: Activity
+    name: Wrath of the Sea
+    time: bonus action
+    duration: 10 minutes
+    resource: wildShape
+    condition: $(meta.level >= 3)
+    description: |
+      You manifest a $(meta.level >= 6 ? 10 : 5)-foot Emanation of ocean spray around you$(meta.level >= 14 ? " or a willing creature within 60 feet. You can manifest it around both the other creature and yourself if you expend two uses of your Wild Shape instead of one" : "").
+      
+      When you manifest it, and as a Bonus Action on your subsequent turns, you can choose a creature you can see in the Emanation. The target must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take $(Math.max(1, stats.wis.mod))d6 Cold damage$(meta.level >= 6 ? " and be pushed up to 15 feet away (if Large or smaller)" : "").
+
+  # Level 10: Stormborn — as Extra targeting wrathOfTheSea
+  - id: stormborn
+    type: Extra
+    target: wrathOfTheSea
+    name: Stormborn
+    condition: $(meta.level >= 10)
+    description: "You gain a Fly Speed equal to your Speed and Resistance to Cold, Lightning, and Thunder damage for the duration."
+
+  # Level 6: Aquatic Affinity
+  - id: aquaticAffinity
+    type: Effect
+    target: attributes.movement.swim
+    operation: set
+    value: $(attributes.movement.walk)
+    condition: $(meta.level >= 6)

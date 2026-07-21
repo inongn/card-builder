@@ -1,6 +1,6 @@
 type: Effect
-operation: push
-value: finesseWeapons
-target: attributes.proficiencies
+operation: set
+value: true
+target: attributes.proficiencies.finesseWeapons
 id: finesseWeaponProficiency
 name: Finesse Weapon Proficiency

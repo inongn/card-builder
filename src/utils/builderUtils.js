@@ -13,20 +13,28 @@ export const CATEGORIES = {
 
 export const MATCHING_ORDER = ['spellcasting', 'feats', 'companion', 'class', 'origin', 'skills', 'equipment', 'stats'];
 
-export const collectRenderableNodes = (node, char, path = []) => {
+export const collectRenderableNodes = (node, char, path = [], logicalPath = []) => {
     const nodes = [];
     if (node.condition) {
         const evaluator = new ExpressionEvaluator(char);
         if (!evaluator.evaluate(node.condition)) return nodes;
     }
 
+    const step = { id: node.id || node.name, slotIndex: node.slotIndex };
+    const currentLogicalPath = [...logicalPath, step];
+
     if (node.type === 'Input' || node.type === 'Slot') {
-        nodes.push({ type: node.type, node: node, path: [...path] });
+        nodes.push({
+            type: node.type,
+            node: node,
+            path: [...path],
+            logicalPath: currentLogicalPath
+        });
     }
 
     if (node.children && Array.isArray(node.children)) {
         node.children.forEach((child, index) => {
-            nodes.push(...collectRenderableNodes(child, char, [...path, index]));
+            nodes.push(...collectRenderableNodes(child, char, [...path, index], currentLogicalPath));
         });
     }
     return nodes;

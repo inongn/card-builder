@@ -41,15 +41,7 @@ children:
     name: Know Your Enemy
     type: Activity
     time: bonus action
-    tags: [innateLR]
     range: 30 feet
     resource: superiorityDice
     condition: $(meta.level >= 7)
     description: "You discern certain strengths and weaknesses of a creature you can see within range. You know whether that creature has any Immunities, Resistances, or Vulnerabilities, and if the creature has any, you know what they are."
-  - id: relentless
-    name: Relentless
-    type: Extra
-    target: maneuver
-    description: "You can roll 1d8 and use the number rolled instead of expending a Superiority Die."
-    condition: $(meta.level >= 15)
-    

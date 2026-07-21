@@ -28,8 +28,7 @@ children:
   name: Large Form
   time: bonus action
   duration: 10 minutes
-  tags:
-  - limitedLR
+  resource: limited
   condition: $(meta.level >= 5)
   description: 'You change your size to Large if you''re in a big enough space. This
     transformation lasts for 10 minutes or until you end it (no action required).

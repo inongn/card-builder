@@ -1,0 +1,9 @@
+id: eldritchSpear
+name: Eldritch Spear
+tags:
+  - eldritchInvocation
+type: Effect
+target: activities[eldritchBlast].range
+operation: set
+condition: $(meta.level >= 2)
+value: "$((meta.level * 30)+120) feet"

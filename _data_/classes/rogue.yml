@@ -1,0 +1,242 @@
+id: rogue
+name: Rogue
+description: |
+  Rogues rely on cunning, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem. A few even learn magical tricks to supplement their other abilities. Many Rogues focus on stealth and deception, while others refine skills that help them in a dungeon environment, such as climbing, finding and disarming traps and opening locks.
+
+  In combat, Rogues prioritize subtle strikes over brute strength. They would rather make one precise strike than wear an opponent down with a barrage of blows.
+tags:
+  - class
+type: Folder
+children:
+  # Core Rogue Traits
+  - id: hitDie
+    type: Attribute
+    value: 8
+  - id: className
+    type: Effect
+    target: meta.class
+    operation: set
+    value: Rogue
+  - id: weaponMastery
+    type: Attribute
+    value: true
+  - type: Reference
+    value: [dexSave, intSave]
+  - type: Reference
+    value: [simpleWeaponProficiency, lightWeaponProficiency, finesseWeaponProficiency, lightArmorTraining, thievesTools]
+  - id: rogueSkillProficiencies
+    type: Slot
+    name: Rogue Skill Proficiencies
+    quantity: 4
+    target: acrobaticsProficiency OR athleticsProficiency OR deceptionProficiency OR insightProficiency OR intimidationProficiency OR investigationProficiency OR perceptionProficiency OR persuasionProficiency OR sleightOfHandProficiency OR stealthProficiency
+
+  # Level 1: Expertise (choose 2 expertise)
+  - id: rogueExpertise1
+    type: Slot
+    name: Expertise
+    quantity: 2
+    target: skillExpertise
+
+  # Level 1: Sneak Attack
+  - id: sneakAttackDice
+    type: Attribute
+    value: $(progression(1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10))
+  - id: sneakAttack
+    type: Activity
+    name: Sneak Attack
+    description: |
+      Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one creature you hit with an attack roll if you have Advantage on the roll or at least one of your allies is within 5 feet of the target.
+  # Level 1: Thieves' Cant
+  - id: thievesCant
+    type: Effect
+    target: attributes.languages
+    operation: push
+    value: "Thieves' Cant"
+
+  # Level 1: Weapon Mastery
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties
+
+  # Level 2: Cunning Action
+  - id: cunningAction
+    type: Activity
+    name: Cunning Action
+    condition: $(meta.level >= 2)
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    description: "You take the Dash, Disengage, or Hide action."
+
+
+  # Level 3: Steady Aim
+  - id: steadyAim
+    type: Activity
+    name: Steady Aim
+    condition: $(meta.level >= 3)
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    description: "You give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved during this turn, and after you use it, your Speed is 0 until the end of the current turn."
+
+  # Level 4: Ability Score Improvement
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+
+
+  # Level 5: Cunning Strike
+  - id: cunningStrike
+    type: Activity
+    name: Cunning Strike
+    condition: $(meta.level >= 5)
+    description: "When you deal Sneak Attack damage to a creature, you can choose to spend dice from the Sneak Attack to create one of the following effects:"
+  - id: cunningStrikeSave
+    type: Attribute
+    condition: $(meta.level >= 5)
+    value: $(8 + stats.dex.mod + attributes.prof)
+  - id: cunningStrikePoison
+    type: Extra
+    name: "Poison (Cost: 1d6)"
+    target: cunningStrike
+    condition: $(meta.level >= 5)
+    description: "The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw or have the Poisoned condition for 1 minute. At the end of each of its turns, the poisoned target repeats the save, ending the effect on a success."
+  - id: cunningStrikeTrip
+    type: Extra
+    name: "Trip (Cost: 1d6)"
+    target: cunningStrike
+    condition: $(meta.level >= 5)
+    description: "If the target is Large or smaller, it must succeed on a DC $(attributes.cunningStrikeSave) Dexterity saving throw or have the Prone condition."
+  - id: cunningStrikeWithdraw
+    type: Extra
+    name: "Withdraw (Cost: 1d6)"
+    target: cunningStrike
+    condition: $(meta.level >= 5)
+    description: "Immediately after the attack, move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
+
+  # Level 5: Uncanny Dodge
+  - id: uncannyDodge
+    type: Activity
+    name: Uncanny Dodge
+    condition: $(meta.level >= 5)
+    time: reaction
+    range: self
+    duration: Instantaneous
+    description: "When an attacker that you can see hits you with an attack roll, you halve the attack's damage against you (round down)."
+
+  # Level 6: Expertise (choose 2 more)
+  - id: rogueExpertise2
+    type: Slot
+    name: Expertise
+    quantity: 2
+    target: skillExpertise
+    condition: $(meta.level >= 6)
+
+  # Level 7: Evasion
+  - id: evasion
+    type: Extra
+    name: Evasion
+    target: dexSave
+    condition: $(meta.level >= 7)
+    description: "When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed and only half damage if you fail. You can't use this if you have the Incapacitated condition."
+
+  # Level 7: Reliable Talent
+  - id: reliableTalent
+    type: Effect
+    target: skills[proficiency>=1].min
+    operation: set
+    value: 10
+    condition: $(meta.level >= 7)
+
+  # Level 8: Ability Score Improvement
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)
+
+  # Level 10: Ability Score Improvement
+  - id: level10feat
+    name: Level 10 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 10)
+
+
+  # Level 12: Ability Score Improvement
+  - id: level12feat
+    name: Level 12 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 12)
+
+  # Level 14: Devious Strikes
+  - id: deviousStrikesDaze
+    type: Extra
+    name: "Daze (Cost: 2d6)"
+    target: cunningStrike
+    condition: $(meta.level >= 14)
+    description: "The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw, or on its next turn, it can do only one of the following: move or take an action or a Bonus Action."
+  - id: deviousStrikesKnockOut
+    type: Extra
+    name: "Knock Out (Cost: 6d6)"
+    target: cunningStrike
+    condition: $(meta.level >= 14)
+    description: "The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw, or it has the Unconscious condition for 1 minute or until it takes any damage. The Unconscious target repeats the save at the end of its turns, ending the effect on itself on a success."
+  - id: deviousStrikesObscure
+    type: Extra
+    name: "Obscure (Cost: 3d6)"
+    target: cunningStrike
+    condition: $(meta.level >= 14)
+    description: "The target must succeed on a DC $(attributes.cunningStrikeSave) Dexterity saving throw, or it has the Blinded condition until the end of its next turn."
+
+  # Level 15: Slippery Mind
+  - id: slipperyMind
+    type: Reference
+    target: [wisSave, chaSave]
+    condition: $(meta.level >= 15)
+
+  # Level 16: Ability Score Improvement
+  - id: level16feat
+    name: Level 16 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 16)
+
+  # Level 18: Elusive
+  - id: elusive
+    type: Activity
+    name: Elusive
+    condition: $(meta.level >= 18)
+    description: "No attack roll can have Advantage against you unless you have the Incapacitated condition."
+
+  # Level 19: Epic Boon
+  - id: epicBoon
+    type: Slot
+    name: Epic Boon
+    target: epicBoon
+    condition: $(meta.level >= 19)
+
+  # Level 20: Stroke of Luck
+  - id: strokeOfLuck
+    type: Activity
+    name: Stroke of Luck
+    condition: $(meta.level >= 20)
+    time: free action
+    range: self
+    duration: Instantaneous
+    description: "When you fail a d20 Test, you turn the roll into a 20."
+    tags: [limitedSR]
+  # Level 3: Rogue Subclass
+  - id: rogueSubclass
+    name: Rogue Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: rogueSubclass

@@ -25,32 +25,3 @@ children:
     resource: wildShape
     description: |
       Vitality-giving flowers and life-draining thorns appear in a point you choose within range. Each creature in a 10-foot-radius Sphere centered on that point makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking $(meta.level >= 14 ? '4d6' : meta.level >= 10 ? '3d6' : '2d6') Necrotic damage on a failed save or half as much damage on a successful one. One creature of your choice in that area regains $(meta.level >= 14 ? '4d6' : meta.level >= 10 ? '3d6' : '2d6') Hit Points.
-
-  - id: naturalRecoveryRestore
-    type: Activity
-    name: "Natural Recovery"
-    time: free action
-    duration: instantaneous
-    range: self
-    description: |
-      When you finish a Short Rest, you recover expended spell slots. The spell slots can have a combined level that is equal or less than $(meta.level / 2).
-    tags: [limitedSR]
-    condition: $(meta.level >= 6)
-
-  - id: naturalRecoveryCast
-    type: Extra
-    target: circleSpell NOT cantrip
-    name: Natural Recovery
-    description: You can take this action by expending a Wild Shape charge instead.
-    condition: $(meta.level >= 6)
-
-
-  - id: naturesSanctuary
-    type: Activity
-    name: Nature's Sanctuary
-    time: action
-    range: 120 feet
-    duration: 1 minute
-    resource: wildShape
-    description: |
-      Spectral trees and vines appear in a 15-foot Cube on the ground within range. You and your allies have Half Cover while in the area. Until the effect ends, you can take a Bonus Action to move the Cube up to 60 feet to ground within 120 feet of yourself.

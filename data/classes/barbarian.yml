@@ -2,8 +2,6 @@ id: barbarian
 name: Barbarian
 description: |
   Barbarians are mighty warriors who are powered by primal forces of the multiverse that manifest as a Rage. More than a mere emotion—and not limited to anger—this Rage is an incarnation of a predator's ferocity, a storm's fury, and a sea's turmoil.
-
-  Some Barbarians personify their Rage as a fierce spirit or revered forebear. Others see it as a connection to the pain and anguish of the world, as an impersonal tangle of wild magic, or as an expression of their own deepest self. For every Barbarian, their Rage is a power that fuels not just battle prowess, but also uncanny reflexes and heightened senses.
 tags:
   - class
 type: Folder
@@ -61,6 +59,10 @@ children:
     operation: set
     value: $(10 + stats.dex.mod + stats.con.mod)
 
+  # Level 1: Weapon Mastery
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties
 
   # Level 2: Danger Sense
   - id: dangerSense
@@ -92,6 +94,13 @@ children:
     target: rage
     condition: $(meta.level >= 3)
     description: "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability."
+  
+  # Level 3: Barbarian Subclass
+  - id: barbarianSubclass
+    name: Barbarian Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: barbarianSubclass
 
   # Level 4: Ability Score Improvement
   - id: level4feat
@@ -137,110 +146,3 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 8)
-
-  # Level 9: Brutal Strike
-  - id: brutalStrikeForcefulBlow
-    type: Extra
-    name: Forceful Blow
-    target: recklessAttack
-    condition: $(meta.level >= 9)
-    description: "The target is pushed 15 feet straight away from you. You can then move up to $(attributes.movement.walk/2) feet straight toward the target without provoking Opportunity Attacks."
-  - id: brutalStrikeHamstringBlow
-    type: Extra
-    name: Hamstring Blow
-    target: recklessAttack
-    condition: $(meta.level >= 9)
-    description: "The target's Speed is reduced by 15 feet until the start of your next turn. A target can be affected by only one Hamstring Blow at a time."
-
-  # Level 11: Relentless Rage
-  - id: relentlessRage
-    type: Activity
-    name: Relentless Rage
-    condition: $(meta.level >= 11)
-    description: "If you drop to 0 Hit Points while your Rage is active and don't die outright, you make a DC 10 Constitution saving throw. On a success, your Hit Points instead change to $(meta.level * 2). Each time you use this after the first, the DC increases by 5. The DC resets to 10 when you finish a Short or Long Rest."
-
-  # Level 12: Ability Score Improvement
-  - id: level12feat
-    name: Level 12 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 12)
-
-  # Level 13: Improved Brutal Strike
-  - id: brutalStrikeStaggeringBlow
-    type: Extra
-    name: Staggering Blow
-    target: recklessAttack
-    condition: $(meta.level >= 13)
-    description: "The target has Disadvantage on the next saving throw it makes, and it can't make Opportunity Attacks until the start of your next turn."
-  - id: brutalStrikeSunderingBlow
-    type: Extra
-    name: Sundering Blow
-    target: recklessAttack
-    condition: $(meta.level >= 13)
-    description: "Before the start of your next turn, the next attack roll made by another creature against the target gains a +5 bonus to the roll."
-
-  # Level 15: Persistent Rage
-  - id: persistentRageLR
-    type: Activity
-    name: Persistent Rage
-    tags: [limitedLR]
-    condition: $(meta.level >= 15)
-    description: "When you roll Initiative, you regain all expended uses of Rage."
-
-  # Level 16: Ability Score Improvement
-  - id: level16feat
-    name: Level 16 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 16)
-
-  # Level 18: Indomitable Might
-  - id: indomitableMightSave
-    type: Effect
-    condition: $(meta.level >= 18)
-    target: saves.strength.min
-    operation: set
-    value: $(stats.str.score)
-  - id: indomitableMightSkill
-    type: Effect
-    condition: $(meta.level >= 18)
-    target: skills.athletics.min
-    operation: set
-    value: $(stats.str.score)
-
-  # Level 19: Epic Boon
-  - id: epicBoon
-    type: Slot
-    name: Epic Boon
-    target: epicBoon
-    condition: $(meta.level >= 19)
-
-  # Level 20: Primal Champion
-  - id: primalChampionStr
-    type: Effect
-    target: stats.str.score
-    operation: add
-    condition: $(meta.level >= 20)
-    value: 4
-  - id: primalChampionCon
-    type: Effect
-    target: stats.con.score
-    operation: add
-    condition: $(meta.level >= 20)
-    value: 4
-
-  # Level 3: Barbarian Subclass
-  - id: barbarianSubclass
-    name: Barbarian Subclass
-    condition: $(meta.level >= 3)
-    type: Slot
-    target: barbarianSubclass
-
-
-  # Level 1: Weapon Mastery
-  - id: masteryProperties
-    type: Reference
-    target: masteryProperties

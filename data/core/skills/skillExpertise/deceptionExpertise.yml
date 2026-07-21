@@ -3,7 +3,7 @@ tags:
   - skillExpertise
 target: skills.deception.proficiency
 operation: set
-condition: $(skills.deception.proficiency > 0)
+condition: $(skills.deception.proficiency > .5)
 value: 2
 id: deceptionExpertise
 name: Deception Expertise

@@ -1,0 +1,20 @@
+id: fiendishLegacyChthonic
+name: Chthonic
+tags: [fiendishLegacy]
+type: Folder
+children:
+  - type: Reference
+    target: necroticResistance
+  - type: Reference
+    target: chillTouch
+  - type: Reference
+    target: falseLife
+    condition: $(meta.level >= 3)
+    overwrite:
+      tags: [innateLR]
+  - type: Reference
+    target: rayOfEnfeeblement
+    condition: $(meta.level >= 5)
+    overwrite:
+      resource: null
+      tags: [innateLR]

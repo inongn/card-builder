@@ -16,10 +16,8 @@ children:
     type: Reference
     target: darkness
     overwrite:
-      resource: focusPoints
-      extra: |
-        **Shadow Arts** You can see within the spell's area. While the spell persists, you can move its area of Darkness to a space within 60 feet of yourself at the start of each of your turns.
-
+      resource: 2 focusPoints
+      
   # Level 3: Shadow Arts — Darkvision
   - id: shadowArtsDarkvision
     type: Effect
@@ -40,41 +38,3 @@ children:
     duration: Instantaneous
     condition: $(meta.level >= 6)
     description: "While entirely within Dim Light or Darkness, you teleport up to 60 feet to an unoccupied space you can see that is also in Dim Light or Darkness. You then have Advantage on the next melee attack you make before the end of the current turn."
-
-  # Level 11: Improved Shadow Step
-  - id: improvedShadowStep
-    type: Extra
-    name: Improved Shadow Step
-    target: shadowStep
-    condition: $(meta.level >= 11)
-    resource: 1 focusPoints
-    description: "Expend 1 Focus Point to remove the Dim Light or Darkness requirement for this use. As part of this Bonus Action, make an Unarmed Strike immediately after you teleport."
-
-  # Level 17: Cloak of Shadows
-  - id: cloakOfShadows
-    type: Activity
-    name: Cloak of Shadows
-    time: action
-    range: self
-    duration: 1 minute
-    condition: $(meta.level >= 17)
-    resource: 3 focusPoints
-    description: "While entirely within Dim Light or Darkness, you shroud yourself with shadows for 1 minute, until you have the Incapacitated condition, or until you end your turn in Bright Light."
-  - id: cloakInvisibility
-    type: Extra
-    name: Invisibility
-    target: cloakOfShadows
-    condition: $(meta.level >= 17)
-    description: "You have the Invisible condition."
-  - id: cloakIncorporeal
-    type: Extra
-    name: Partially Incorporeal
-    target: cloakOfShadows
-    condition: $(meta.level >= 17)
-    description: "You can move through occupied spaces as if they were Difficult Terrain. If you end your turn in such a space, you are shunted to the last unoccupied space you were in."
-  - id: cloakFlurry
-    type: Extra
-    name: Shadow Flurry
-    target: cloakOfShadows
-    condition: $(meta.level >= 17)
-    description: "You can use your Flurry of Blows without expending any Focus Points."

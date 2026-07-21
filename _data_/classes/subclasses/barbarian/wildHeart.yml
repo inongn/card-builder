@@ -1,0 +1,74 @@
+id: wildHeart
+name: Path of the Wild Heart
+description: |
+  Barbarians who follow the Path of the Wild Heart view themselves as kin to animals. These Barbarians learn magical means to communicate with animals, and their Rage heightens their connection to animals as it fills them with supernatural might.
+tags:
+  - barbarianSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Wild Heart"
+  # Level 3: Animal Speaker
+  - type: Reference
+    target: [beastSense, speakWithAnimals, wisCaster]
+
+  # Level 3: Rage of the Wilds
+  - id: rageOfTheWilds
+    type: Activity
+    name: Rage of the Wilds
+    description: "Your Rage taps into the primal power of animals. When you activate your Rage, you gain one of the following options of your choice:"
+  - id: rageOfTheWildsBear
+    type: Extra
+    name: Bear
+    target: rageOfTheWilds
+    description: "While your Rage is active, you have Resistance to every damage type except Force, Necrotic, Psychic, and Radiant."
+  - id: rageOfTheWildsEagle
+    type: Extra
+    name: Eagle
+    target: rageOfTheWilds
+    description: "When you activate your Rage, take the Disengage and Dash actions as part of that Bonus Action. While your Rage is active, you can take a Bonus Action to take both of those actions."
+  - id: rageOfTheWildsWolf
+    type: Extra
+    name: Wolf
+    target: rageOfTheWilds
+    description: "While your Rage is active, your allies have Advantage on attack rolls against any enemy of yours within 5 feet of you."
+
+  # Level 6: Aspect of the Wilds
+  - id: aspectOfTheWilds
+    type: Slot
+    target: classOption OR aspectOfTheWilds
+    name: Aspect of the Wilds
+    condition: $(meta.level >= 6)
+
+  # Level 10: Nature Speaker
+  - type: Reference
+    target: communeWithNature
+    condition: $(meta.level >= 10)
+
+  # Level 14: Power of the Wilds
+  - id: powerOfTheWilds
+    type: Activity
+    name: Power of the Wilds
+    condition: $(meta.level >= 14)
+    description: "When you activate your Rage, you gain one of the following options of your choice:"
+  - id: powerOfTheWildsFalcon
+    type: Extra
+    name: Falcon
+    target: powerOfTheWilds
+    condition: $(meta.level >= 14)
+    description: "While your Rage is active, you have a Fly Speed equal to your Speed if you aren't wearing any armor."
+  - id: powerOfTheWildsLion
+    type: Extra
+    name: Lion
+    target: powerOfTheWilds
+    condition: $(meta.level >= 14)
+    description: "While your Rage is active, any of your enemies within 5 feet of you have Disadvantage on attack rolls against targets other than you or another Barbarian who has this option active."
+  - id: powerOfTheWildsRam
+    type: Extra
+    name: Ram
+    target: powerOfTheWilds
+    condition: $(meta.level >= 14)
+    description: "While your Rage is active, you can cause a Large or smaller creature to have the Prone condition when you hit it with a melee attack."

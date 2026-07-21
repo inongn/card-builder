@@ -32,24 +32,7 @@ children:
     id: warBond
     description: You summon your bonded weapon, causing it to teleport instantly to your hand. You can't be disarmed of that weapon unless you have the Incapacitated condition.
   - type: Effect
-    target: activities[weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
     operation: replace
     condition: $(meta.level >= 7)
     value: "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a cantrip."
-  - type: Extra
-    target: weaponAttack
-    condition: $(meta.level >= 10)
-    name: Eldritch Strike
-    id: eldritchStrike
-    description: On a hit, the target has Disadvantage on the next saving throw it makes against a spell you cast before the end of your next turn.
-  - type: Extra
-    target: actionSurge
-    condition: $(meta.level >= 15)
-    name: Arcane Charge
-    description: You can teleport up to 30 feet to an unoccupied space you can see.
-  - type: Extra
-    target: weaponAttack
-    condition: $(meta.level >= 18)
-    name: Improved War Magic
-    description: You can replace two of the attacks with a level 1 or level 2 spell.
-    

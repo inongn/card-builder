@@ -3,8 +3,13 @@ name: Dual Wielder
 tags:
 - feat
 children:
-- type: Effect
-  target: activities[weaponAttack].extra["with a Light weapon"]
-  operation: replace
-  value: "with a weapon"
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Effect
+    target: activities[tags=weaponAttack].extra["with a Light weapon"]
+    operation: replace
+    value: "with a weapon"
 id: dualWielder

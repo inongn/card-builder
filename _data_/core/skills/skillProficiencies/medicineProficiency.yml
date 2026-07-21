@@ -1,0 +1,8 @@
+tags:
+  - skillProficiency
+type: Effect
+target: skills.medicine.proficiency
+operation: set
+value: 1
+id: medicineProficiency
+name: Medicine Proficiency

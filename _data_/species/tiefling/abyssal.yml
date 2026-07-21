@@ -1,0 +1,19 @@
+id: fiendishLegacyAbyssal
+name: Abyssal
+tags: [fiendishLegacy]
+type: Folder
+children:
+  - type: Reference
+    target: poisonResistance
+  - type: Reference
+    target: poisonSpray
+  - type: Reference
+    target: rayOfSickness
+    condition: $(meta.level >= 3)
+    overwrite:
+      tags: [innateLR]
+  - type: Reference
+    target: holdPerson
+    condition: $(meta.level >= 5)
+    overwrite:
+      tags: [innateLR]

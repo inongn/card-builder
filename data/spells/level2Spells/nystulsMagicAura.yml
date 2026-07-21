@@ -1,6 +1,6 @@
 id: nystulsMagicAura
 type: Activity
-name: Nystul's Magic Aura
+name: Magic Aura
 resource: level2SpellSlot
 tags: [level2Spell, illusion, wizard]
 time: action

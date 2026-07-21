@@ -1,0 +1,44 @@
+id: diviner
+name: Diviner
+description: |
+  The counsel of a Diviner is sought by those who want a clearer understanding of the past, present, and future. As a Diviner, you strive to part the veils of space, time, and consciousness. You work to master spells of discernment, remote viewing, supernatural knowledge, and foresight.
+type: Folder
+tags:
+  - wizardSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Diviner"
+
+  # Level 3: Portent
+  - id: portent
+    type: Activity
+    name: Portent
+    condition: $(meta.level >= 3)
+    description: "Whenever you finish a Long Rest, glimpses on the future press on your awareness. Roll $(meta.level >= 14 ? '3' : '2')d20s and record the numbers rolled. You can replace any D20 Test made by you or a creature that you can see with one of these foretelling rolls. You must choose to do so before the roll, and you can replace a roll in this way only once per turn."
+
+  # Level 6: Expert Divination
+  - id: expertDivination
+    type: Extra
+    target: divination NOT cantrip NOT level1Spell
+    name: Expert Divination
+    condition: $(meta.level >= 6)
+    description: "You regain an expended spell slot. The spell slot can be of a level lower than the slot you used, but no higher than 5th level."
+
+  # Level 10: The Third Eye
+  - id: theThirdEye
+    type: Activity
+    name: The Third Eye
+    time: bonus action
+    condition: $(meta.level >= 10)
+    tags: [limitedSR]
+    description: |
+      You increase your powers of perception. Choose one of the following benefits, which lasts until you start a Short or Long Rest.
+
+      **Darkvision.** You gain Darkvision with a range of 120 feet.
+
+      **Greater Comprehension.** You can read any language.
+
+      **See Invisibility.** You can cast See Invisibility without expending a spell slot.

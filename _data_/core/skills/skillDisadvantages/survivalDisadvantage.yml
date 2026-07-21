@@ -1,0 +1,6 @@
+type: Effect
+target: skills.survival.dis
+operation: set
+value: true
+id: survivalDisadvantage
+name: Survival Disadvantage

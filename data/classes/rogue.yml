@@ -2,8 +2,6 @@ id: rogue
 name: Rogue
 description: |
   Rogues rely on cunning, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem. A few even learn magical tricks to supplement their other abilities. Many Rogues focus on stealth and deception, while others refine skills that help them in a dungeon environment, such as climbing, finding and disarming traps and opening locks.
-
-  In combat, Rogues prioritize subtle strikes over brute strength. They would rather make one precise strike than wear an opponent down with a barrage of blows.
 tags:
   - class
 type: Folder
@@ -46,12 +44,6 @@ children:
     name: Sneak Attack
     description: |
       Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one creature you hit with an attack roll if you have Advantage on the roll or at least one of your allies is within 5 feet of the target.
-  # Level 1: Thieves' Cant
-  - id: thievesCant
-    type: Effect
-    target: attributes.languages
-    operation: push
-    value: "Thieves' Cant"
 
   # Level 1: Weapon Mastery
   - id: masteryProperties
@@ -78,6 +70,15 @@ children:
     range: self
     duration: Instantaneous
     description: "You give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved during this turn, and after you use it, your Speed is 0 until the end of the current turn."
+
+
+  # Level 3: Rogue Subclass
+  - id: rogueSubclass
+    name: Rogue Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: rogueSubclass
+
 
   # Level 4: Ability Score Improvement
   - id: level4feat
@@ -116,6 +117,8 @@ children:
     target: cunningStrike
     condition: $(meta.level >= 5)
     description: "Immediately after the attack, move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
+
+
 
   # Level 5: Uncanny Dodge
   - id: uncannyDodge
@@ -158,85 +161,3 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 8)
-
-  # Level 10: Ability Score Improvement
-  - id: level10feat
-    name: Level 10 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 10)
-
-
-  # Level 12: Ability Score Improvement
-  - id: level12feat
-    name: Level 12 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 12)
-
-  # Level 14: Devious Strikes
-  - id: deviousStrikesDaze
-    type: Extra
-    name: "Daze (Cost: 2d6)"
-    target: cunningStrike
-    condition: $(meta.level >= 14)
-    description: "The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw, or on its next turn, it can do only one of the following: move or take an action or a Bonus Action."
-  - id: deviousStrikesKnockOut
-    type: Extra
-    name: "Knock Out (Cost: 6d6)"
-    target: cunningStrike
-    condition: $(meta.level >= 14)
-    description: "The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw, or it has the Unconscious condition for 1 minute or until it takes any damage. The Unconscious target repeats the save at the end of its turns, ending the effect on itself on a success."
-  - id: deviousStrikesObscure
-    type: Extra
-    name: "Obscure (Cost: 3d6)"
-    target: cunningStrike
-    condition: $(meta.level >= 14)
-    description: "The target must succeed on a DC $(attributes.cunningStrikeSave) Dexterity saving throw, or it has the Blinded condition until the end of its next turn."
-
-  # Level 15: Slippery Mind
-  - id: slipperyMind
-    type: Reference
-    target: [wisSave, chaSave]
-    condition: $(meta.level >= 15)
-
-  # Level 16: Ability Score Improvement
-  - id: level16feat
-    name: Level 16 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 16)
-
-  # Level 18: Elusive
-  - id: elusive
-    type: Activity
-    name: Elusive
-    condition: $(meta.level >= 18)
-    description: "No attack roll can have Advantage against you unless you have the Incapacitated condition."
-
-  # Level 19: Epic Boon
-  - id: epicBoon
-    type: Slot
-    name: Epic Boon
-    target: epicBoon
-    condition: $(meta.level >= 19)
-
-  # Level 20: Stroke of Luck
-  - id: strokeOfLuck
-    type: Activity
-    name: Stroke of Luck
-    condition: $(meta.level >= 20)
-    time: free action
-    range: self
-    duration: Instantaneous
-    description: "When you fail a d20 Test, you turn the roll into a 20."
-    tags: [limitedSR]
-  # Level 3: Rogue Subclass
-  - id: rogueSubclass
-    name: Rogue Subclass
-    condition: $(meta.level >= 3)
-    type: Slot
-    target: rogueSubclass

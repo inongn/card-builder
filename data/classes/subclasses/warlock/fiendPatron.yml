@@ -65,7 +65,6 @@ children:
     name: Hurl Through Hell
     time: free action
     resource: level1SpellSlot
-    tags: [innateLR]
     condition: $(meta.level >= 14)
     description: |
       Once per turn when you hit a creature with an attack roll, you try to instantly transport the target through the Lower Planes. The target must succeed on DC $(attributes.spellcasting.save) Charisma saving throw, or the target disappears and hurtles through a nightmare landscape. 

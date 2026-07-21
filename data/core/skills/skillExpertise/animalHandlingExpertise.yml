@@ -3,7 +3,7 @@ tags:
   - skillExpertise
 target: skills.animal_handling.proficiency
 operation: set
-condition: $(skills.animal_handling.proficiency > 0)
+condition: $(skills.animal_handling.proficiency > .5)
 value: 2
 id: animalHandlingExpertise
 name: Animal Handling Expertise

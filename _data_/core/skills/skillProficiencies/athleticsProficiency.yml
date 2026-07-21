@@ -1,0 +1,8 @@
+tags:
+  - skillProficiency
+type: Effect
+target: skills.athletics.proficiency
+operation: set
+value: 1
+id: athleticsProficiency
+name: Athletics Proficiency

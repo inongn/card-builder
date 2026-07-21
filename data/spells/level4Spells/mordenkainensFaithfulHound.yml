@@ -1,6 +1,6 @@
 id: mordenkainensFaithfulHound
 type: Activity
-name: Mordenkainen's Faithful Hound
+name: Faithful Hound
 resource: level4SpellSlot
 tags: [level4Spell, conjuration, wizard, saveSpell, damageSpell, forceDamage]
 time: action

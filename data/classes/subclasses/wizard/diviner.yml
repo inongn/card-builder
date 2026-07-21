@@ -26,19 +26,3 @@ children:
     name: Expert Divination
     condition: $(meta.level >= 6)
     description: "You regain an expended spell slot. The spell slot can be of a level lower than the slot you used, but no higher than 5th level."
-
-  # Level 10: The Third Eye
-  - id: theThirdEye
-    type: Activity
-    name: The Third Eye
-    time: bonus action
-    condition: $(meta.level >= 10)
-    tags: [limitedSR]
-    description: |
-      You increase your powers of perception. Choose one of the following benefits, which lasts until you start a Short or Long Rest.
-
-      **Darkvision.** You gain Darkvision with a range of 120 feet.
-
-      **Greater Comprehension.** You can read any language.
-
-      **See Invisibility.** You can cast See Invisibility without expending a spell slot.

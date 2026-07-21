@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: Blinded
+target: attributes.advantages
+id: blindedAdvantage
+name: Blinded Advantage

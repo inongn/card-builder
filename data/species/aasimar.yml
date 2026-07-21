@@ -32,8 +32,7 @@ children:
   time: action
   range: touch
   duration: Instantaneous
-  tags:
-  - limitedLR
+  resource: limited
   description: 'You touch a creature and roll $(attributes.prof)d4. The creature regains
     Hit Points equal to the total rolled.
 
@@ -45,8 +44,7 @@ children:
   name: Celestial Revelation
   time: bonus action
   duration: 1 minute
-  tags:
-  - limitedLR
+  resource: limited
   condition: $(meta.level >= 3)
   description: 'You transform. The transformation lasts for the duration or until
     you end it (no action required). Once on each of your turns before it ends, you

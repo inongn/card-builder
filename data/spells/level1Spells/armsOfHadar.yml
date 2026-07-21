@@ -1,6 +1,6 @@
 id: armsOfHadar
 type: Activity
-name: Arms of Hadar
+name: Eldritch Arms
 resource: level1SpellSlot
 tags: [level1Spell, conjuration, warlock, saveSpell, damageSpell, necroticDamage]
 time: action

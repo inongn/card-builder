@@ -48,53 +48,31 @@ children:
     condition: $(meta.level >= 6)
   - id: radiantSoulD12
     type: Effect
-    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d12"]
+    target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d12"]
     operation: replace
     value: "d12$(formatBonus(stats.cha.mod))"
     condition: $(meta.level >= 6)
   - id: radiantSoulD10
     type: Effect
-    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d10"]
+    target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d10"]
     operation: replace
     value: "d10$(formatBonus(stats.cha.mod))"
     condition: $(meta.level >= 6)
   - id: radiantSoulD8
     type: Effect
-    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d8"]
+    target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d8"]
     operation: replace
     value: "d8$(formatBonus(stats.cha.mod))"
     condition: $(meta.level >= 6)
   - id: radiantSoulD6
     type: Effect
-    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d6"]
+    target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d6"]
     operation: replace
     value: "d6$(formatBonus(stats.cha.mod))"
     condition: $(meta.level >= 6)
   - id: radiantSoulD4
     type: Effect
-    target: activities[damageSpell AND (radiantDamage OR fireDamage)].description["d4"]
+    target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d4"]
     operation: replace
     value: "d4$(formatBonus(stats.cha.mod))"
     condition: $(meta.level >= 6)
-
-  # Level 10: Celestial Resilience
-  - id: celestialResilience
-    type: Extra
-    target: shortRest OR magicalCunning
-    name: Celestial Resilience
-    description: |
-      You gain $(meta.level + stats.cha.mod) Temporary Hit Points. Choose up to 5 creatures. They gain $(Math.floor(meta.level / 2) + stats.cha.mod) Temporary Hit Points.
-    condition: $(meta.level >= 10)
-
-  # Level 14: Searing Vengeance
-  - id: searingVengeance
-    type: Activity
-    name: Searing Vengeance
-    time: reaction
-    range: 60 feet
-    tags: [limitedLR]
-    condition: $(meta.level >= 14)
-    description: |
-      When you or an ally within range of you is about to make a Death Saving Throw, you unleash radiant energy to save the creature. The creature regains Hit Points equal to half its Hit Point maximum and can end the Prone condition on itself. 
-      
-      Each creature of your choice that is within 30 feet of the creature takes Radiant damage equal to 2d8$(formatBonus(stats.cha.mod)) and has the Blinded condition until the end of the current turn.

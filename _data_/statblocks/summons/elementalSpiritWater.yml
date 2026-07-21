@@ -1,0 +1,31 @@
+type: Statblock
+name: Elemental Spirit (Water)
+tags: [summon]
+id: elementalSpiritWater
+size: Medium
+category: summon
+classification: Elemental
+ac: "$(11 + (local.maxLevel || 4))"
+hp: "$(50 + 10 * ((local.maxLevel || 4) - 4))"
+movement:
+  walk: 40
+  swim: 40
+stats:
+  str: 18
+  dex: 15
+  con: 17
+  int: 4
+  wis: 10
+  cha: 16
+resistances: [Acid]
+immunities: [Poison, Exhaustion, Paralyzed, Petrified, Poisoned]
+senses:
+  darkvision: 60
+traits:
+  - name: Amorphous Form
+    description: "The spirit can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain."
+actions:
+  - name: Multiattack
+    description: "The spirit makes $(Math.floor((local.maxLevel || 4) / 2)) Slam attacks."
+  - name: Slam
+    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d10$(formatBonus(stats.str.mod)) + $(local.maxLevel || 4) Cold damage."

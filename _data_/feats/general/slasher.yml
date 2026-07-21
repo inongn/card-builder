@@ -1,0 +1,20 @@
+id: slasher
+name: Slasher
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Hamstring
+    type: Extra
+    target: weaponAttack and slashingDamage
+    description: On a hit, the target's Speed is reduced by 10 feet until the start of your next turn.
+  - name: Enhanced Critical
+    type: Extra
+    target: weaponAttack and slashingDamage
+    description: On a Critical Hit, the target has Disadvantage on all attack rolls until the start of the next turn.

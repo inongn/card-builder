@@ -1,0 +1,6 @@
+type: Effect
+target: saves.charisma.proficiency
+operation: set
+value: 1
+id: chaSave
+name: Charisma Saving Throw Proficiency

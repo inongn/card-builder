@@ -56,20 +56,3 @@ children:
     quantity: $(Math.max(1, stats.wis.mod))
     sr: "$(meta.level >= 6 ? 'all' : 0)"
     condition: $(meta.level >= 3)
-
-  # Level 17: Corona of Light
-  - id: coronaOfLight
-    type: Activity
-    name: Corona of Light
-    time: action
-    range: self
-    duration: 1 minute
-    resource: coronaOfLight
-    condition: $(meta.level >= 17)
-    description: "You emit an aura of sunlight for the duration. You emit Bright Light in a 60-foot radius and Dim Light for an additional 30 feet. Your enemies in the Bright Light have Disadvantage on saving throws against your Radiance of the Dawn and any spell that deals Fire or Radiant damage."
-  - id: coronaOfLight
-    type: Resource
-    name: Corona of Light
-    quantity: $(Math.max(1, stats.wis.mod))
-    sr: 1
-    condition: $(meta.level >= 17)

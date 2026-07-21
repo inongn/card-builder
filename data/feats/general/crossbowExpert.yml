@@ -11,6 +11,6 @@ children:
     operation: add
     value: 1
   - type: Effect
-    target: activities[weaponAttack].extra["You do not add your Ability Modifier to the attack's damage roll"].description
+    target: activities[tags=weaponAttack].extra["You do not add your Ability Modifier to the attack's damage roll"].description
     operation: replace
     value: ""

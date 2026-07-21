@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, toggleTheme, isDarkMode }) => {
+export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved }) => {
     useEffect(() => {
         const savedScroll = sessionStorage.getItem('dashboard_scroll_position');
         if (savedScroll) {
@@ -42,11 +42,11 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
     return (
         <div className="container">
 
-            <mdui-top-app-bar variant="small">
+            <mdui-top-app-bar variant="small"
+                scroll-behavior='hide'>
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                <mdui-button variant="filled" icon="add" onClick={handleNewCharacter}>New Character</mdui-button>
-                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
+                <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">New Character</mdui-button>
             </mdui-top-app-bar>
 
 
@@ -58,29 +58,33 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
             </div>
             <div className="content dashboard-content">
                 {savedCharacters.map((charSaved) => (
-                    <mdui-card key={charSaved.id} className="hero-card" variant="outlined" onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}>
-                        <div className="hero-card-content">
-                            <div className="hero-name">{charSaved.name}</div>
-                            <div className="hero-details">
+                    <mdui-card key={charSaved.id} className="surface-card hero-card" variant="outlined" clickable onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}>
+                        <div className="surface-card__header">
+                            <div className="hero-card__name">{charSaved.name}</div>
+                        </div>
+                        <div className="surface-card__body">
+                            <div className="surface-card__label">
                                 Lv. {charSaved.level || 1} {charSaved.species} {charSaved.sub} {charSaved.class || 'Unknown Class'}
                             </div>
-                            <div className="hero-actions">
-                                <mdui-button-icon icon="delete" onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteSaved(charSaved.id);
-                                }}></mdui-button-icon>
-                            </div>
+                            <mdui-button-icon icon="delete" onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteSaved(charSaved.id);
+                            }}></mdui-button-icon>
                         </div>
                     </mdui-card>
                 ))}
                 {savedCharacters.length === 0 && (
                     <div className="empty-state">
-                        <mdui-icon name="person_add" style={{ fontSize: '4rem' }}></mdui-icon>
+                        <mdui-icon name="person_add" class="icon-large"></mdui-icon>
                         <p>No characters found.</p>
                         <mdui-button onClick={handleNewCharacter}>Create your first character</mdui-button>
                     </div>
                 )}
             </div>
+
+            <mdui-fab extended icon="add" onClick={handleNewCharacter} className="desktop-hidden dashboard-fab">
+                New Character
+            </mdui-fab>
         </div>
     );
 };

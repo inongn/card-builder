@@ -36,11 +36,3 @@ children:
     condition: $(meta.level >= 5)
     name: Extra Attack
     description: "You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action."
-
-  # Level 14: Battle Magic
-  - id: battleMagic
-    type: Extra
-    name: Battle Magic
-    condition: $(meta.level >= 14)
-    target: (level1Spell OR level2Spell OR level3Spell OR level4Spell OR level5Spell OR level6Spell OR level7Spell OR level8Spell OR level9Spell) AND time=action
-    description: "Make one attack with a weapon."

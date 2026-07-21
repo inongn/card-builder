@@ -40,33 +40,3 @@ children:
     target: rage
     condition: $(meta.level >= 6)
     description: "Once per active Rage, if you fail a saving throw, you can reroll it with a $(formatBonus(attributes.rageDamage)) bonus. You must use the new roll."
-
-  # Level 10: Zealous Presence
-  - id: zealousPresence
-    type: Activity
-    name: Zealous Presence
-    time: bonus action
-    range: 60 feet
-    duration: 1 round
-    condition: $(meta.level >= 10)
-    tags: [innateLR]
-    resource: rage
-    description: "You unleash a battle cry infused with divine energy. Up to ten other creatures of your choice within range gain Advantage on attack rolls and saving throws until the start of your next turn."
-
-  # Level 14: Rage of the Gods
-  - id: rageOfTheGods
-    type: Activity
-    name: Rage of the Gods
-    condition: $(meta.level >= 14)
-    tags: [limitedLR]
-    duration: 1 minute
-    description: "When you activate your Rage, you assume the form of a divine warrior for the duration or until you drop to 0 Hit Points. While in this form, you have a Fly Speed equal to $(attributes.movement.walk) feet and can hover, and you have Resistance to Necrotic, Psychic, and Radiant damage."
-  - id: rageOfTheGodsRevivification
-    type: Activity
-    name: Revivification
-    time: reaction
-    range: 30 feet
-    duration: Instantaneous
-    condition: $(meta.level >= 14)
-    resource: rage
-    description: "When a creature within range would drop to 0 Hit Points, you change the target's Hit Points to $(meta.level) instead."

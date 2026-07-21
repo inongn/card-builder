@@ -1,0 +1,14 @@
+id: trident
+name: Trident
+type: Reference
+target: weaponAttack
+tags: [martial]
+variables:
+  name: Trident
+  mastery: topple
+  damageRoll: "$(attributes.shieldEquipped == true ? '1d8' : '1d10')"
+  damageType: piercing
+  range: 20 feet
+  classification: thrown
+  category: martial
+  property: ''

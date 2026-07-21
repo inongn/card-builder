@@ -1,0 +1,13 @@
+id: tropicalLand
+name: Tropical Land
+tags: [circleSpells]
+type: Folder
+children:
+  - type: Reference
+    target: [acidSpash, rayOfSickness, web]
+  - type: Reference
+    condition: meta.level >= 5
+    target: stinkingCloud
+  - type: Reference
+    condition: meta.level >= 7
+    target: polymorph

@@ -1,0 +1,90 @@
+id: circleOfTheMoon
+name: Circle of the Moon
+description: |
+  Druids of the Circle of the Moon draw on lunar magic to transform themselves. Their order gathers under the moon to share news and perform rituals. Changeable as the moon, a Druid of this circle might prowl as a great cat one night, soar over the treetops as an eagle the next day, and then crash through undergrowth as a bear to drive off a trespassing monster.
+type: Folder
+tags:
+  - druidSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Moon"
+  # Level 3: Circle of the Moon Spells
+  - type: Reference
+    target: [cureWounds, moonbeam, starryWisp]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [conjureAnimals]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [fountOfMoonlight]
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target: [massCureWounds]
+    condition: $(meta.level >= 9)
+
+  # Level 3: Circle Forms (Modifies Wild Shape)
+  - id: moonCircleMaxCR
+    type: Effect
+    target: meta.wildShapeMaxCR
+    operation: set
+    value: "$(Math.floor(meta.level / 3))"
+    priority: 1
+    condition: $(meta.level >= 3)
+  - id: moonCircleFormsTHP
+    type: Effect
+    target: activities[wildShapeActivity].description["You gain $(meta.level * 2) Temporary Hit Points"]
+    operation: replace
+    value: "You gain $(meta.level * 3) Temporary Hit Points"
+    condition: $(meta.level >= 3)
+
+  - id: moonCirclealtAC
+    type: Effect
+    target: activities[wildShapeActivity].variables.ac
+    operation: set
+    value: $(13 + stats.wis.mod)
+    condition: $(meta.level >= 3)
+
+  # Level 6: Improved Circle Forms
+  - id: improvedCircleFormsRadiance
+    type: Extra
+    target: wildShapeActivity
+    name: Lunar Radiance
+    description: "You can deal Radiant damage instead of the normal type."
+    condition: $(meta.level >= 6)
+  - id: improvedCircleFormsToughness
+    type: Extra
+    target: wildShapeActivity
+    name: Increased Toughness
+    description: "You can add $(stats.wis.mod) to your Constitution saving throws."
+    condition: $(meta.level >= 6)
+
+  # Level 10: Moonlight Step
+  - id: moonlightStep
+    type: Activity
+    name: Moonlight Step
+    time: bonus action
+    range: 30 feet
+    condition: $(meta.level >= 10)
+    resource: moonlightStep
+    description: |
+      You magically transport yourself, reappearing amid a burst of moonlight. Teleport to an unoccupied space you can see within range. You have Advantage on the next attack roll you make before the end of this turn.
+      
+      $(meta.level >= 14 ? "**Shared Moonlight.** You can also teleport one willing creature within 10 feet of you to a space within 10 feet of your destination." : "")
+      
+      You can take this action by expending a level 2 Spell Slot instead.
+  - id: moonlightStep
+    type: Resource
+    name: Moonlight Step
+    quantity: $(Math.max(1, stats.wis.mod))
+    condition: $(meta.level >= 10)
+
+  # Level 14: Lunar Form
+  - id: lunarFormRadiance
+    type: Extra
+    target: wildShapeActivity
+    name: Improved Lunar Radiance
+    description: "Once on each turn when you hit a creature with an attack, the target takes an additional 2d10 Radiant damage."
+    condition: $(meta.level >= 14)

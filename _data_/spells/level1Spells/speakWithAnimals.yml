@@ -1,0 +1,13 @@
+id: speakWithAnimals
+type: Activity
+name: Speak with Animals
+resource: level1SpellSlot
+tags: [level1Spell, divination, bard, druid, ranger, warlock, ritual]
+time: action
+range: self
+duration: 10 minutes
+description: |
+  For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action’s skill options with them.
+
+  Most Beasts have little to say about topics that don’t pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.
+

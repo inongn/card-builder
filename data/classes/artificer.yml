@@ -6,7 +6,7 @@ tags:
   - class
 type: Folder
 children:
-  # Core Paladin Traits
+  # Core Artificer Traits
   - id: hitDie
     type: Attribute
     value: 8
@@ -30,7 +30,6 @@ children:
     target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
     id: artisansTools
     name: Artisan's Tools Proficiency
-  # Level 1: Lay On Hands
 
   # Level 1: Spellcasting
   - type: Reference
@@ -60,6 +59,16 @@ children:
     target: "createFoodAndWater OR leomundsSecretChest OR waterBreathing OR darkvision OR fabricate OR spiritualWeapon OR ropeTrick OR sending OR shield OR detectMagic OR findTraps OR bless OR magicWeapon $(meta.level >= 6 ? 'OR mageArmor OR passWithoutTrace OR enhanceAbility OR foresight OR seeInvisibility OR fear OR thunderwave OR waterWalk' : '')"
     overwrite:
       resource: null
+  
+  
+  # Level 3: Artificer Subclass
+  - id: artificerSubclass
+    name: Artificer Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: artificerSubclass
+
+      
   # Level 4: Ability Score Improvement
   - id: level4feat
     name: Level 4 Feat
@@ -92,10 +101,3 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 8)
-
-  # Level 3: Artificer Subclass
-  - id: artificerSubclass
-    name: Artificer Subclass
-    condition: $(meta.level >= 3)
-    type: Slot
-    target: artificerSubclass

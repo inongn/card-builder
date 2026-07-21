@@ -1,0 +1,84 @@
+name: Wild Shape Templates
+id: wildShapeTemplate
+children:
+  - type: Statblock
+    name: Beast of Land
+    tags: [wildShapeTemplate]
+    size: Medium
+    category: wildShape
+    classification: Beast
+    ac: $(10 + stats.wis.mod)
+    hp: $(4 * meta.level)
+    movement:
+      walk: 40
+      climb: 40
+    stats:
+      str: $(stats.wis.score)
+      dex: $(stats.wis.score)
+      con: $(stats.con.score)
+      int: $(stats.int.score)
+      wis: $(stats.wis.score)
+      cha: $(stats.cha.score)
+    senses:
+      darkvision: 60
+    traits:
+      - name: Keen Senses
+        description: "The beast has advantage on Wisdom (Perception) checks."
+    actions:
+      - name: Bestial Strike
+        description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(stats.wis.mod)) Bludgeoning, Piercing or Slashing damage."
+
+  - type: Statblock
+    name: Beast of the Sea
+    tags: [wildShapeTemplate]
+    size: Medium
+    category: wildShape
+    classification: Beast
+    ac: $(10 + stats.wis.mod)
+    hp: $(4 * meta.level)    
+    movement:
+      walk: 20
+      swim: 40
+    stats:
+      str: $(stats.wis.score)
+      dex: $(stats.wis.score)
+      con: $(stats.con.score)
+      int: $(stats.int.score)
+      wis: $(stats.wis.score)
+      cha: $(stats.cha.score)
+    senses:
+      blindsight: 30
+      darkvision: 60
+    traits:
+      - name: Amphibious
+        description: "The beast can breathe air and water."
+    actions:
+      - name: Bestial Strike
+        description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d6$(formatBonus(stats.wis.mod)) Bludgeoning, Slashing or Piercing damage."
+
+  - type: Statblock
+    name: Beast of the Sky
+    tags: [wildShapeTemplate]
+    size: Medium
+    category: wildShape
+    classification: Beast
+    ac: $(8 + stats.wis.mod)
+    hp: $(4 * meta.level)
+    movement:
+      walk: 20
+      fly: 50
+    stats:
+      str: $(stats.wis.score)
+      dex: $(stats.wis.score)
+      con: $(stats.con.score)
+      int: $(stats.int.score)
+      wis: $(stats.wis.score)
+      cha: $(stats.cha.score)
+    senses:
+      darkvision: 120
+    traits:
+      - name: Flyby
+        description: "The beast doesn't provoke Opportunity Attacks when it flies out of an enemy's reach."
+    actions:
+      - name: Bestial Strike
+        description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d4$(formatBonus(stats.wis.mod)) Bludgeoning, Piercing or Slashing damage."

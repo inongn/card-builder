@@ -1,6 +1,6 @@
 id: otilukesResilientSphere
 type: Activity
-name: Otiluke's Resilient Sphere
+name: Resilient Sphere
 resource: level4SpellSlot
 tags: [level4Spell, abjuration, artificer, wizard, saveSpell, damageSpell]
 time: action

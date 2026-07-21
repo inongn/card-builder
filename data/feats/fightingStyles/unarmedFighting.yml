@@ -8,7 +8,7 @@ children:
   description: At the start of each of your turns, you can deal 1d4 Bludgeoning damage
     to one creature grappled by you.
 - type: Effect
-  target: activities[unarmed].description["1d4"]
+  target: activities[tags=unarmed].description["1d4"]
   operation: replace
   value: "$(attributes.shieldEquipped == true ? '1d6' : '1d8')"
 id: unarmedFighting

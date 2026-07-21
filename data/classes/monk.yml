@@ -2,8 +2,6 @@ id: monk
 name: Monk
 description: |
   Monks use rigorous combat training and mental discipline to align themselves with the multiverse and focus their internal reservoirs of power. Different Monks conceptualize this power in various ways: as breath, energy, life force, essence, or self, for example. Whether channeled as a striking display of martial prowess or as a subtler manifestation of defense and speed, this power infuses all that a Monk does.
-
-  Monks focus their internal power to create extraordinary, even supernatural, effects. They channel uncanny speed and strength into their attacks, with or without the use of weapons. In a Monk's hands, even the most basic weapons can become sophisticated implements of combat mastery.
 tags:
   - class
 type: Folder
@@ -39,43 +37,43 @@ children:
 
   - id: martialArtsReplacementd4
     type: Effect
-    target: activities[melee and weaponAttack].description["1d4"]
+    target: activities[tags=melee and tags=weaponAttack].description["1d4"]
     operation: replace
     value: 1d$(attributes.martialArtsDie)
 
   - id: martialArtsReplacementd6
     type: Effect
-    target: activities[melee and weaponAttack].description["1d6"]
+    target: activities[tags=melee and tags=weaponAttack].description["1d6"]
     operation: replace
     value: 1d$(attributes.martialArtsDie)
 
   - id: martialArtsReplacementd8
     type: Effect
-    target: activities[melee and weaponAttack].description["1d8"]
+    target: activities[tags=melee and tags=weaponAttack].description["1d8"]
     operation: replace
     value: 1d$(attributes.martialArtsDie)
 
   - id: martialArtsReplacementd10
     type: Effect
-    target: activities[melee and weaponAttack].description["1d10"]
+    target: activities[tags=melee and tags=weaponAttack].description["1d10"]
     operation: replace
     value: 1d$(attributes.martialArtsDie)
 
   - id: martialArtsReplacementd12
     type: Effect
-    target: activities[melee and weaponAttack].description["1d12"]
+    target: activities[tags=melee and tags=weaponAttack].description["1d12"]
     operation: replace
     value: 1d$(attributes.martialArtsDie)
 
   - id: dexterousAttacksBonus
     type: Effect
-    target: activities[weaponAttack].description["$(formatBonus(attributes.melee.bonus))"]
+    target: activities[tags=weaponAttack].description["$(formatBonus(attributes.melee.bonus))"]
     operation: replace
     value: "$(formatBonus(attributes.finesse.bonus))"
 
   - id: dexterousAttacksRoll
     type: Effect
-    target: activities[weaponAttack].description["$(formatBonus(attributes.melee.attack))"]
+    target: activities[tags=weaponAttack].description["$(formatBonus(attributes.melee.attack))"]
     operation: replace
     value: "$(formatBonus(attributes.finesse.attack))"
 
@@ -140,14 +138,6 @@ children:
     condition: $(meta.level >= 2)
     value: $(progression(0,10,10,10,10,15,15,15,15,20,20,20,20,25,25,25,25,30,30,30))
 
-  # Level 2: Uncanny Metabolism
-  - id: uncannyMetabolism
-    type: Activity
-    name: Uncanny Metabolism
-    condition: $(meta.level >= 2)
-    tags: [limitedLR]
-    description: "When you roll Initiative, you regain all expended Focus Points and regain 1d$(attributes.martialArtsDie)+$(meta.level) Hit Points."
-
   # Level 3: Deflect Attacks
   - id: deflectAttacks
     type: Activity
@@ -161,6 +151,14 @@ children:
       When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). 
       
       If you reduce the damage to 0, the Focus Point is expended and you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.
+
+  # Level 3: Monk Subclass
+  - id: monkSubclass
+    name: Monk Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: monkSubclass
+
 
   # Level 4: Ability Score Improvement
   - id: level4feat
@@ -220,89 +218,3 @@ children:
     target: feat
     condition: $(meta.level >= 8)
 
-  # Level 9: Acrobatic Movement
-  - id: acrobaticMovement
-    type: Activity
-    name: Acrobatic Movement
-    condition: $(meta.level >= 9)
-    description: "You move along vertical surfaces and across liquids on your turn without falling during the movement."
-
-  # Level 10: Self-Restoration
-  - id: selfRestoration
-    type: Activity
-    name: Self-Restoration
-    condition: $(meta.level >= 10)
-    description: "At the end of each of your turns, you remove one of the following conditions from yourself: Charmed, Frightened, or Poisoned. Forgoing food and drink doesn't give you levels of Exhaustion."
-
-  # Level 12: Ability Score Improvement
-  - id: level12feat
-    name: Level 12 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 12)
-
-  # Level 14: Disciplined Survivor
-  - type: Reference
-    target: [conSave, intSave, wisSave, chaSave]
-    condition: $(meta.level >= 14)
-  - id: disciplinedSurvivor
-    type: Activity
-    name: Disciplined Survivor
-    condition: $(meta.level >= 14)
-    resource: 1 focusPoints
-    description: "When you make a saving throw and fail, you reroll it and use the new roll."
-
-  # Level 15: Perfect Focus
-  - id: perfectFocus
-    type: Activity
-    name: Perfect Focus
-    condition: $(meta.level >= 15)
-    description: "When you roll Initiative and don't use Uncanny Metabolism, you regain expended Focus Points until you have 4."
-
-  # Level 16: Ability Score Improvement
-  - id: level16feat
-    name: Level 16 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 16)
-
-  # Level 18: Superior Defense
-  - id: superiorDefense
-    type: Activity
-    name: Superior Defense
-    time: free action
-    range: self
-    duration: 1 minute
-    condition: $(meta.level >= 18)
-    resource: 3 focusPoints
-    description: "You bolster yourself against harm. During the duration, you have Resistance to all damage except Force damage."
-
-  # Level 19: Epic Boon
-  - id: epicBoon
-    type: Slot
-    name: Epic Boon
-    target: epicBoon
-    condition: $(meta.level >= 19)
-
-  # Level 20: Body and Mind
-  - id: bodyAndMindDex
-    type: Effect
-    target: stats.dex.score
-    operation: add
-    condition: $(meta.level >= 20)
-    value: 4
-  - id: bodyAndMindWis
-    type: Effect
-    target: stats.wis.score
-    operation: add
-    condition: $(meta.level >= 20)
-    value: 4
-
-  # Level 3: Monk Subclass
-  - id: monkSubclass
-    name: Monk Subclass
-    condition: $(meta.level >= 3)
-    type: Slot
-    target: monkSubclass

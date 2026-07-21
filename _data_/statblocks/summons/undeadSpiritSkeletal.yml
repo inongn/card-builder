@@ -1,0 +1,26 @@
+type: Statblock
+name: Undead Spirit (Skeletal)
+tags: [summon]
+id: undeadSpiritSkeletal
+size: Medium
+category: summon
+classification: Undead
+ac: "$(11 + (local.maxLevel || 3))"
+hp: "$(20 + 10 * ((local.maxLevel || 3) - 3))"
+movement:
+  walk: 30
+stats:
+  str: 12
+  dex: 16
+  con: 15
+  int: 4
+  wis: 10
+  cha: 9
+immunities: [Necrotic, Poison, Exhaustion, Frightened, Paralyzed, Poisoned]
+senses:
+  darkvision: 60
+actions:
+  - name: Multiattack
+    description: "The spirit makes $(Math.floor((local.maxLevel || 3) / 2)) Grave Bolt attacks."
+  - name: Grave Bolt
+    description: "_Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 150 ft. _Hit:_ 2d4$(formatBonus(stats.dex.mod)) + $(local.maxLevel || 3) Necrotic damage."

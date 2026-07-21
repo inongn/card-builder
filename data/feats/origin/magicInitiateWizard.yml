@@ -8,15 +8,15 @@ children:
   quantity: 1
 - type: Slot
   id: magicInitiateWizardCantrips
-  name: Magic Initiate (Wizard) Cantrips
+  name: Wizard Initiate Cantrips
   quantity: 2
   target: wizard AND cantrip
 - type: Slot
   id: magicInitiateWizardPreparedSpell
-  name: Magic Initiate (Wizard) Prepared Spell
+  name: Wizard Initiate Spell
   target: wizard AND level1Spell
   quantity: 1
   overwrite:
-    uses: 1
+    resource: limited
 id: magicInitiateWizard
 name: Magic Initiate (Wizard)

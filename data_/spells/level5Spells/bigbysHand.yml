@@ -1,6 +1,6 @@
 id: bigbysHand
 type: Activity
-name: Bigby's Hand
+name: Arcane Hand
 resource: level5SpellSlot
 tags: [level5Spell, evocation, artificer, sorcerer, wizard, saveSpell, damageSpell, bludgeoningDamage, forceDamage]
 time: action

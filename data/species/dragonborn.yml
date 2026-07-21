@@ -42,8 +42,7 @@ children:
   name: Draconic Flight
   time: bonus action
   duration: 10 minutes
-  tags:
-  - limitedLR
+  resource: limited
   condition: $(meta.level >= 5)
   description: 'You sprout spectral wings on your back for 10 minutes or until you
     retract them (no action required) or have the Incapacitated condition. During

@@ -1,0 +1,48 @@
+id: dwarf
+name: Dwarf
+tags:
+- species
+description: 'Dwarves were raised from the earth in the elder days by a deity of the
+  forge. That god gave dwarves an affinity for stone and metal and for living underground,
+  and made them resilient like the mountains, with a life span of about 350 years.
+
+  '
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Dwarf
+- id: dwarfDarkvision
+  type: Effect
+  target: attributes.senses.darkvision
+  operation: set
+  value: 120
+- type: Reference
+  target: poisonResistance
+- type: Reference
+  target: poisonedAdvantage
+- id: dwarvenToughness
+  type: Effect
+  target: attributes.hp
+  name: Dwarven Toughness
+  operation: add
+  value: 1
+- id: stonecunning
+  type: Activity
+  name: Stonecunning
+  time: bonus action
+  range: self
+  duration: 10 minutes
+  resource: stonecunning
+  description: 'You gain Tremorsense with a range of 60 feet for 10 minutes. You must
+    be on a stone surface or touching a stone surface to use this Tremorsense. The
+    stone can be natural or worked.
+
+    '
+- id: stonecunning
+  type: Resource
+  name: Stonecunning
+  quantity: $(attributes.prof)
+  sr: 0

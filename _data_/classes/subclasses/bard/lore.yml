@@ -1,0 +1,47 @@
+id: lore
+name: College of Lore
+description: |
+  Bards of the College of Lore collect spells and secrets from diverse sources, such as scholarly tomes, mystical rites, and peasant tales.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Lore"
+  # Level 3: Bonus Proficiencies
+  - id: bonusProficiencies
+    name: Bonus Proficiencies
+    type: Slot
+    target: skillProficiency
+    quantity: 3
+
+  # Level 3: Cutting Words
+  - id: cuttingWords
+    type: Activity
+    name: Cutting Words
+    time: reaction
+    range: 60 feet
+    resource: bardicInspiration
+    condition: $(meta.level >= 3)
+    description: "When a creature that you can see makes a damage roll, ability check, or attack roll, you use your wit to suppernaturally distract, confuse or otherwise sap its confidence and competence. The target substracts 1d$(attributes.bardicDie) from the roll."
+
+  # Level 6: Magical Discoveries
+  - id: magicalDiscoveries
+    name: Magical Discoveries
+    type: Slot
+    target: "(cleric OR druid OR wizard) NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    variables:
+      maxLevel: "$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)"
+    quantity: 2
+    condition: $(meta.level >= 6)
+
+  # Level 14: Peerless Skill
+  - id: peerlessSkill
+    type: Activity
+    name: Peerless Skill
+    condition: $(meta.level >= 14)
+    resource: bardicInspiration
+    description: "When you fail an ability check or attack roll, you add 1d$(attributes.bardicDie) to the roll, potentially turning the failure into a success. On a failure, the Inspiration is not expended."

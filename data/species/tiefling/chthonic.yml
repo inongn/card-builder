@@ -11,10 +11,9 @@ children:
     target: falseLife
     condition: $(meta.level >= 3)
     overwrite:
-      tags: [innateLR]
+      resource: limited
   - type: Reference
     target: rayOfEnfeeblement
     condition: $(meta.level >= 5)
     overwrite:
-      resource: null
-      tags: [innateLR]
+      resource: limited

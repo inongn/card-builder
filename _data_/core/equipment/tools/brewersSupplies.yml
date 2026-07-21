@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Brewer's Supplies
+target: attributes.tools
+id: brewersSupplies
+name: Brewer's Supplies

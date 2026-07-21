@@ -1,0 +1,39 @@
+id: guardianModel
+name: Guardian
+type: Folder
+tags:
+  - armorModel
+children:
+  - id: thunderPulse
+    type: Activity
+    name: "Thunder Pulse"
+    time: action
+    range: 5 feet
+    tags: [weaponAttack, attack]
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))) attack. On a hit, the target takes $(meta.level >= 15 ? '1d10' : '1d8')$(formatBonus(stats.int.mod + (meta.level >= 9 ? 1 : 0))) Thunder damage.
+      
+      A creature hit by the pulse has Disadvantage on attack rolls against targets other than you until the start of your next turn.
+
+  - id: defensiveField
+    type: Activity
+    name: Defensive Field
+    time: bonus action
+    description: |
+      While Bloodied, you can gain ($(meta.level)) Temporary Hit Points. You lose these Temporary Hit Points if you doff the armor.
+
+  - id: perfectedGuardianReactionResource
+    type: Resource
+    name: Perfected Guardian Reaction Uses
+    quantity: "$(Math.max(1, stats.int.mod))"
+    condition: $(meta.level >= 15)
+
+  - id: perfectedGuardianReaction
+    type: Activity
+    name: Perfected Guardian Reaction
+    time: reaction
+    range: 30 feet
+    resource: perfectedGuardianReactionResource
+    condition: $(meta.level >= 15)
+    description: |
+      When a Huge or smaller creature you can see ends its turn within range, you can magically force that creature to make a Strength saving throw against your spell save DC. On a failed save, you pull the creature up to 25 feet directly toward you to an unoccupied space. If you pull the target to a space within 5 feet of yourself, you can make a melee weapon attack against it as part of this Reaction.

@@ -2,16 +2,6 @@ id: extraProperties
 name: Extra Properties
 type: Folder
 children:
-  - type: Effect
-    operation: set
-    id: innateSR
-    target: activities[innateSR OR limitedSR].uses
-    value: 1
-  - type: Effect
-    operation: set
-    id: innateLR
-    target: activities[innateLR or limitedLR].uses
-    value: 1
   - type: Extra
     target: ritual
     id: ritual
@@ -22,4 +12,10 @@ children:
     id: light
     name: Light
     description: "You can make an additional attack with a Light weapon as a Bonus Action. You do not add your Ability Modifier to the attack's damage roll."
+  - id: unarmed
+    target: unarmed
+    type: Extra
+    name: Grapple or Shove
+    description: "You can replace one attack with a grapple or shove attempt. The target must succeed on a DC $(8+attributes.prof+Math.max(stats.str.mod, stats.dex.mod)) Dexterity saving throw or it has the Grappled or Prone condition."
+    
   

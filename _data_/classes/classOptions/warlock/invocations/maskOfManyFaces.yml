@@ -1,0 +1,10 @@
+id: maskOfManyFaces
+name: Mask of Many Faces
+tags:
+  - eldritchInvocation
+type: Folder
+children:
+  - type: Reference
+    target: disguiseSelf
+    overwrite:
+      resource: null

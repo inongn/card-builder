@@ -31,30 +31,3 @@ children:
     duration: Instantaneous
     resource: 1 focusPoints
     description: "You touch a creature and restore 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points to it.$(meta.level >= 6 ? ' You can also end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned.' : '')"
-
-  # Level 11: Flurry of Healing and Harm
-  - id: flurryOfHealingAndHarm
-    type: Activity
-    name: Flurry of Healing and Harm
-    condition: $(meta.level >= 11)
-    resource: flurryOfHealingAndHarm
-    description: "When you use Flurry of Blows, you can replace each Unarmed Strike with Hand of Healing without expending Focus Points. When you make an Unarmed Strike with Flurry of Blows and deal damage, you can use Hand of Harm without expending a Focus Point."
-  - id: flurryOfHealingAndHarm
-    condition: $(meta.level >= 11)
-    type: Resource
-    name: Flurry of Healing and Harm
-    quantity: $(Math.max(1, stats.wis.mod))
-
-  # Level 17: Hand of Ultimate Mercy
-  - id: handOfUltimateMercy
-    type: Activity
-    name: Hand of Ultimate Mercy
-    time: action
-    range: touch
-    duration: Instantaneous
-    condition: $(meta.level >= 17)
-    resource: 5 focusPoints
-    description: |
-      You touch the corpse of a creature that died within the past 24 hours. The creature returns to life with 4d10+$(stats.wis.mod) Hit Points, with the following conditions removed: Blinded, Deafened, Paralyzed, Poisoned, and Stunned.
-    
-      Once you use this feature, you can't use it again until you finish a Long Rest.

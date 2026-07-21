@@ -1,0 +1,25 @@
+id: spellSniper
+name: Spell Sniper
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Bypass Cover
+    type: Extra
+    target: attackSpell
+    description: This attack ignores Half Cover and Three-Quarters Cover.
+  - name: Casting in Melee
+    type: Extra
+    target: attackSpell
+    description: Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.
+  - name: Increased Range
+    type: Effect
+    target: activities[attackSpell].range
+    operation: add
+    value: 60

@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Painter's Supplies
+target: attributes.tools
+id: paintersSupplies
+name: Painter's Supplies

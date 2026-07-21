@@ -1,6 +1,6 @@
 id: mordenkainensPrivateSanctum
 type: Activity
-name: Mordenkainen's Private Sanctum
+name: Private Sanctum
 resource: level4SpellSlot
 tags: [level4Spell, abjuration, artificer, wizard]
 time: 10 minutes

@@ -1,6 +1,6 @@
 id: tashasHideousLaughter
 type: Activity
-name: Tasha's Hideous Laughter
+name: Hideous Laughter
 resource: level1SpellSlot
 tags: [level1Spell, enchantment, bard, warlock, wizard, saveSpell, damageSpell]
 time: action

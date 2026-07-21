@@ -10,4 +10,3 @@ children:
   id: skilledSkillProficiency
   name: Skilled Skill Proficiency
   target: skillProficiency
-repeatable: true

@@ -119,7 +119,7 @@ const EnhancedCodeViewer = ({ code, filename }) => {
                     value={search}
                     onInput={(e) => setSearch(e.target.value)}
                     clearable
-                    style={{ flex: 1, maxWidth: '280px', height: '36px' }}
+                    class="debug-search-field"
                 >
                     <mdui-icon slot="icon" name="search"></mdui-icon>
                 </mdui-text-field>
@@ -128,7 +128,7 @@ const EnhancedCodeViewer = ({ code, filename }) => {
                         icon={copied ? "check" : "content_copy"}
                         onClick={handleCopy}
                         title={copied ? "Copied!" : "Copy to Clipboard"}
-                        style={{ color: copied ? 'var(--mdui-color-primary)' : 'inherit' }}
+                        class={copied ? 'debug-copy-icon--copied' : ''}
                     ></mdui-button-icon>
                     <mdui-button-icon
                         icon="download"
@@ -251,19 +251,14 @@ export default function DebugDrawer({
         <mdui-navigation-drawer
             ref={drawerRef}
             placement="right"
-            style={{ width: '600px', maxWidth: '100vw', height: '100vh', zIndex: 10000 }}
+            class="debug-drawer-panel"
         >
             <div className="debug-yaml-container">
                 {/* Header */}
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '16px 24px 8px 24px'
-                }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <mdui-icon name="bug_report" style={{ color: 'var(--mdui-color-primary)' }}></mdui-icon>
-                        <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 600 }}>Developer Console</h2>
+                <div className="debug-drawer__header spread">
+                    <div className="cluster">
+                        <mdui-icon name="bug_report" class="icon-accent"></mdui-icon>
+                        <h2 className="debug-drawer__title">Developer Console</h2>
                     </div>
                     <mdui-button-icon icon="close" onClick={onClose}></mdui-button-icon>
                 </div>
@@ -271,16 +266,16 @@ export default function DebugDrawer({
                 <mdui-divider></mdui-divider>
 
                 {/* Tabs */}
-                <mdui-tabs value={activeTab} style={{ padding: '0 8px' }}>
+                <mdui-tabs value={activeTab} class="debug-tabs">
                     <mdui-tab value="character" onClick={() => setActiveTab('character')}>Character</mdui-tab>
                     <mdui-tab value="recipe" onClick={() => setActiveTab('recipe')}>Recipe</mdui-tab>
                     <mdui-tab value="tree" onClick={() => setActiveTab('tree')}>Tree</mdui-tab>
                     <mdui-tab value="explorer" onClick={() => setActiveTab('explorer')}>Explorer</mdui-tab>
-                    <mdui-tab value="tools" onClick={() => setActiveTab('tools')}>Stats & Tools</mdui-tab>
+                    <mdui-tab value="tools" onClick={() => setActiveTab('tools')}>Stats &amp; Tools</mdui-tab>
                 </mdui-tabs>
 
                 {/* Content Area */}
-                <div style={{ flex: 1, padding: '16px 24px 24px 24px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                <div className="debug-drawer__content">
 
                     {activeTab === 'character' && (
                         <EnhancedCodeViewer code={charYaml} filename="character.yml" />
@@ -299,30 +294,29 @@ export default function DebugDrawer({
                     )}
 
                     {activeTab === 'tools' && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', overflowY: 'auto', flex: 1, paddingRight: '4px' }}>
+                        <div className="debug-settings-list">
                             {/* Samples Control */}
-                            <mdui-card variant="outlined" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                <div style={{ fontWeight: 600, fontSize: '1rem' }}>Sample Characters</div>
-                                <div style={{ fontSize: '0.85rem', color: 'var(--mdui-color-on-surface-variant)' }}>
+                            <mdui-card variant="outlined" class="debug-section-card">
+                                <div className="debug-section-title">Sample Characters</div>
+                                <div className="debug-section-desc">
                                     Load sample Spellcasters, Fighters, and Druids into your dashboard database for testing and building references.
                                 </div>
                                 <mdui-button
                                     variant={sampleCharactersEnabled ? 'tonal' : 'filled'}
                                     icon={sampleCharactersEnabled ? 'group_remove' : 'group_add'}
                                     onClick={handleToggleSampleCharacters}
-                                    style={{ alignSelf: 'flex-start' }}
                                 >
                                     {sampleCharactersEnabled ? 'Remove Samples' : 'Load Samples'} ({SAMPLE_CHARACTERS.length})
                                 </mdui-button>
                             </mdui-card>
 
                             {/* Database Operations */}
-                            <mdui-card variant="outlined" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                <div style={{ fontWeight: 600, fontSize: '1rem' }}>Database Management</div>
-                                <div style={{ fontSize: '0.85rem', color: 'var(--mdui-color-on-surface-variant)' }}>
+                            <mdui-card variant="outlined" class="debug-section-card">
+                                <div className="debug-section-title">Database Management</div>
+                                <div className="debug-section-desc">
                                     Manage character profiles stored in the local browser database.
                                 </div>
-                                <div style={{ display: 'flex', gap: '12px' }}>
+                                <div className="debug-action-row">
                                     <mdui-button
                                         variant="tonal"
                                         icon="download"
@@ -335,7 +329,7 @@ export default function DebugDrawer({
                                         variant="outlined"
                                         icon="delete_forever"
                                         onClick={() => setConfirmClearOpen(true)}
-                                        style={{ color: 'var(--mdui-color-error)' }}
+                                        class="btn-error"
                                     >
                                         Clear Database
                                     </mdui-button>
@@ -344,31 +338,21 @@ export default function DebugDrawer({
 
                             {/* Engine Metrics */}
                             {stats && (
-                                <mdui-card variant="outlined" style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                    <div style={{ fontWeight: 600, fontSize: '1rem' }}>Property Library Stats</div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                                        <div style={{ display: 'flex', flexDirection: 'column', background: 'var(--mdui-color-surface-container)', padding: '12px', borderRadius: '8px' }}>
-                                            <span style={{ fontSize: '0.85rem', color: 'var(--mdui-color-on-surface-variant)' }}>Loaded Properties</span>
-                                            <span style={{ fontSize: '1.6rem', fontWeight: 600, color: 'var(--mdui-color-primary)' }}>{stats.propertiesCount}</span>
+                                <mdui-card variant="outlined" class="debug-section-card">
+                                    <div className="debug-section-title">Property Library Stats</div>
+                                    <div className="debug-stat-grid">
+                                        <div className="debug-stat-cell">
+                                            <span className="debug-stat-cell__label">Loaded Properties</span>
+                                            <span className="debug-stat-cell__value debug-stat-cell__value--primary">{stats.propertiesCount}</span>
                                         </div>
-                                        <div style={{ display: 'flex', flexDirection: 'column', background: 'var(--mdui-color-surface-container)', padding: '12px', borderRadius: '8px' }}>
-                                            <span style={{ fontSize: '0.85rem', color: 'var(--mdui-color-on-surface-variant)' }}>Raw YAML Source Files</span>
-                                            <span style={{ fontSize: '1.6rem', fontWeight: 600, color: 'var(--mdui-color-secondary)' }}>{stats.rawFilesCount}</span>
+                                        <div className="debug-stat-cell">
+                                            <span className="debug-stat-cell__label">Raw YAML Source Files</span>
+                                            <span className="debug-stat-cell__value debug-stat-cell__value--secondary">{stats.rawFilesCount}</span>
                                         </div>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '4px' }}>
-                                        <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Active Property File Paths:</span>
-                                        <div style={{
-                                            maxHeight: '180px',
-                                            overflowY: 'auto',
-                                            background: 'var(--mdui-color-surface-container-high)',
-                                            padding: '8px 12px',
-                                            borderRadius: '6px',
-                                            fontFamily: 'monospace',
-                                            fontSize: '0.75rem',
-                                            lineHeight: 1.5,
-                                            border: '1px solid var(--mdui-color-outline-variant)'
-                                        }}>
+                                    <div className="stack-sm">
+                                        <span className="debug-paths-heading">Active Property File Paths:</span>
+                                        <div className="debug-paths-list">
                                             {stats.keys.map((k, idx) => (
                                                 <div key={k}>{idx + 1}. {k}</div>
                                             ))}
@@ -393,7 +377,7 @@ export default function DebugDrawer({
                 description="Are you absolutely sure you want to delete all saved characters? This action is permanent and cannot be undone."
             >
                 <mdui-button slot="action" variant="text" onClick={() => setConfirmClearOpen(false)}>Cancel</mdui-button>
-                <mdui-button slot="action" variant="filled" onClick={handleClearAllCharacters} style={{ backgroundColor: 'var(--mdui-color-error)' }}>
+                <mdui-button slot="action" variant="filled" onClick={handleClearAllCharacters} class="btn-error">
                     Reset Database
                 </mdui-button>
             </mdui-dialog>

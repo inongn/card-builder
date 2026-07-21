@@ -67,8 +67,17 @@ export default function App() {
     );
     const [savedCharacters, setSavedCharacters] = useState(() => {
         const savedRaw = localStorage.getItem('saved_characters');
-        if (savedRaw === null) {
-            const toAdd = SAMPLE_CHARACTERS.map(sc => ({
+        const saved = JSON.parse(savedRaw || '[]');
+        
+        // Remove all previous sample characters to ensure fresh reload
+        const userCharacters = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
+        
+        const enabledRaw = localStorage.getItem('sample_characters_enabled');
+        const isEnabled = enabledRaw !== 'false';
+
+        if (isEnabled) {
+            // Load fresh sample characters
+            const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
                 id: sc.id,
                 name: sc.name,
                 class: sc.class,
@@ -78,16 +87,21 @@ export default function App() {
                 recipe: sc.recipe,
                 timestamp: new Date().toISOString()
             }));
-            localStorage.setItem('saved_characters', JSON.stringify(toAdd));
-            return toAdd;
+
+            const merged = [...userCharacters, ...freshSamples];
+            localStorage.setItem('saved_characters', JSON.stringify(merged));
+            return merged;
+        } else {
+            localStorage.setItem('saved_characters', JSON.stringify(userCharacters));
+            return userCharacters;
         }
-        return JSON.parse(savedRaw || '[]');
     });
     const [loadedCharacterId, setLoadedCharacterId] = useState(null);
     const [builderSource, setBuilderSource] = useState('dashboard');
+    const [isNewCharacterCreation, setIsNewCharacterCreation] = useState(false);
     const [sampleCharactersEnabled, setSampleCharactersEnabled] = useState(() => {
-        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
-        return saved.some(c => String(c.id).startsWith(SAMPLE_ID_PREFIX));
+        const enabledRaw = localStorage.getItem('sample_characters_enabled');
+        return enabledRaw !== 'false';
     });
 
     // Sync theme to document element
@@ -112,7 +126,7 @@ export default function App() {
     const syncState = useCallback(() => {
         if (builderRef.current) {
             setPropertyTree({ ...builderRef.current.getPropertyTree() });
-            setCharacterData(builderRef.current.getCharacterData());
+            setCharacterData({ ...builderRef.current.getCharacterData() });
         }
     }, []);
 
@@ -196,9 +210,15 @@ export default function App() {
         const recipe = builder.getRecipe();
         const timestamp = new Date().toISOString();
 
-        const index = saved.findIndex(c => c.id === loadedCharacterId);
+        let targetId = loadedCharacterId;
+        if (String(loadedCharacterId).startsWith(SAMPLE_ID_PREFIX)) {
+            targetId = Date.now();
+            setLoadedCharacterId(targetId);
+        }
+
+        const index = saved.findIndex(c => c.id === targetId);
         const charSummary = {
-            id: loadedCharacterId,
+            id: targetId,
             name: characterName,
             class: characterData.meta?.class || 'Unknown Class',
             sub: characterData.meta?.sub || '',
@@ -229,6 +249,7 @@ export default function App() {
         builder.applyRecipe(recipe);
         syncState();
         setLoadedCharacterId(id);
+        setIsNewCharacterCreation(false);
         setActiveTab(targetTab);
     }, [builder, syncState]);
 
@@ -246,6 +267,7 @@ export default function App() {
         const newId = Date.now();
         setLoadedCharacterId(newId);
         setBuilderSource('dashboard');
+        setIsNewCharacterCreation(true);
         setActiveTab('builder');
     }, [builder, syncState]);
 
@@ -255,26 +277,26 @@ export default function App() {
             // Remove all sample characters
             const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
             localStorage.setItem('saved_characters', JSON.stringify(filtered));
+            localStorage.setItem('sample_characters_enabled', 'false');
             setSavedCharacters(filtered);
             setSampleCharactersEnabled(false);
         } else {
-            // Add sample characters (skip if id already exists)
-            const existingIds = new Set(saved.map(c => c.id));
-            const toAdd = SAMPLE_CHARACTERS
-                .filter(sc => !existingIds.has(sc.id))
-                .map(sc => ({
-                    id: sc.id,
-                    name: sc.name,
-                    class: sc.class,
-                    sub: sc.sub || '',
-                    species: sc.species,
-                    level: sc.level,
-                    recipe: sc.recipe,
-                    timestamp: new Date().toISOString()
-                }));
-            const updated = [...saved, ...toAdd];
-            localStorage.setItem('saved_characters', JSON.stringify(updated));
-            setSavedCharacters(updated);
+            // Add sample characters
+            const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
+                id: sc.id,
+                name: sc.name,
+                class: sc.class,
+                sub: sc.sub || '',
+                species: sc.species,
+                level: sc.level,
+                recipe: sc.recipe,
+                timestamp: new Date().toISOString()
+            }));
+            const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
+            const merged = [...filtered, ...freshSamples];
+            localStorage.setItem('saved_characters', JSON.stringify(merged));
+            localStorage.setItem('sample_characters_enabled', 'true');
+            setSavedCharacters(merged);
             setSampleCharactersEnabled(true);
         }
     }, [sampleCharactersEnabled]);
@@ -305,8 +327,6 @@ export default function App() {
                         handleNewCharacter={handleNewCharacter}
                         handleOpenSaved={handleOpenSaved}
                         handleDeleteSaved={handleDeleteSaved}
-                        toggleTheme={toggleTheme}
-                        isDarkMode={isDarkMode}
                         onNavigate={handleNavigate}
                     />
                 )}
@@ -324,8 +344,8 @@ export default function App() {
                         onNavigate={handleNavigate}
                         onSave={handleSaveCharacter}
                         builderSource={builderSource}
-                        toggleTheme={toggleTheme}
-                        isDarkMode={isDarkMode}
+                        isNewCharacterCreation={isNewCharacterCreation}
+                        setIsNewCharacterCreation={setIsNewCharacterCreation}
                     />
                 )}
                 {activeTab === 'play' && (
@@ -340,8 +360,6 @@ export default function App() {
                     <PrintScreen
                         char={characterData}
                         onNavigate={handleNavigate}
-                        toggleTheme={toggleTheme}
-                        isDarkMode={isDarkMode}
                     />
                 )}
             </mdui-layout-main>

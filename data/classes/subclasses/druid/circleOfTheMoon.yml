@@ -21,30 +21,13 @@ children:
   - type: Reference
     target: [fountOfMoonlight]
     condition: $(meta.level >= 7)
-  - type: Reference
-    target: [massCureWounds]
-    condition: $(meta.level >= 9)
 
   # Level 3: Circle Forms (Modifies Wild Shape)
-  - id: moonCircleMaxCR
-    type: Effect
-    target: meta.wildShapeMaxCR
-    operation: set
-    value: "$(Math.floor(meta.level / 3))"
-    priority: 1
-    condition: $(meta.level >= 3)
   - id: moonCircleFormsTHP
     type: Effect
-    target: activities[wildShapeActivity].description["You gain $(meta.level * 2) Temporary Hit Points"]
+    target: activities[id=wildShapeActivity].description["You gain $(meta.level * 2) Temporary Hit Points"]
     operation: replace
     value: "You gain $(meta.level * 3) Temporary Hit Points"
-    condition: $(meta.level >= 3)
-
-  - id: moonCirclealtAC
-    type: Effect
-    target: activities[wildShapeActivity].variables.ac
-    operation: set
-    value: $(13 + stats.wis.mod)
     condition: $(meta.level >= 3)
 
   # Level 6: Improved Circle Forms
@@ -60,31 +43,10 @@ children:
     name: Increased Toughness
     description: "You can add $(stats.wis.mod) to your Constitution saving throws."
     condition: $(meta.level >= 6)
-
-  # Level 10: Moonlight Step
-  - id: moonlightStep
-    type: Activity
-    name: Moonlight Step
-    time: bonus action
-    range: 30 feet
-    condition: $(meta.level >= 10)
-    resource: moonlightStep
-    description: |
-      You magically transport yourself, reappearing amid a burst of moonlight. Teleport to an unoccupied space you can see within range. You have Advantage on the next attack roll you make before the end of this turn.
-      
-      $(meta.level >= 14 ? "**Shared Moonlight.** You can also teleport one willing creature within 10 feet of you to a space within 10 feet of your destination." : "")
-      
-      You can take this action by expending a level 2 Spell Slot instead.
-  - id: moonlightStep
-    type: Resource
-    name: Moonlight Step
-    quantity: $(Math.max(1, stats.wis.mod))
-    condition: $(meta.level >= 10)
-
-  # Level 14: Lunar Form
-  - id: lunarFormRadiance
-    type: Extra
-    target: wildShapeActivity
-    name: Improved Lunar Radiance
-    description: "Once on each turn when you hit a creature with an attack, the target takes an additional 2d10 Radiant damage."
-    condition: $(meta.level >= 14)
+  - id: primalStrikeWildShape
+    type: Effect
+    target: statblocks[tags=wildShapeTemplate].actions
+    operation: push
+    value: 
+      name: Multiattack
+      description: The beast makes two Bestial Strike attacks.

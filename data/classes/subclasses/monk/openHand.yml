@@ -46,18 +46,3 @@ children:
     type: Resource
     name: Wholeness of Body
     quantity: $(Math.max(1, stats.wis.mod))
-
-  # Level 11: Fleet Step
-  - id: fleetStep
-    type: Activity
-    name: Fleet Step
-    condition: $(meta.level >= 11)
-    description: "When you take a Bonus Action other than Step of the Wind, you can also use Step of the Wind immediately after that Bonus Action."
-
-  # Level 17: Quivering Palm
-  - id: quiveringPalm
-    type: Activity
-    name: Quivering Palm
-    condition: $(meta.level >= 17)
-    resource: 4 focusPoints
-    description: "When you hit a creature with an Unarmed Strike, you start imperceptible vibrations lasting $(meta.level) days. As an action or by forgoing one Attack action strike, end the vibrations: the target must make a DC $(attributes.monkSaveDC) Constitution saving throw, taking 10d12 Force damage on a failed save or half as much on a success. You can have only one creature under this effect at a time."

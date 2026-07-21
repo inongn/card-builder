@@ -1,0 +1,6 @@
+type: Effect
+target: saves.wisdom.proficiency
+operation: set
+value: 1
+id: wisSave
+name: Wisdom Saving Throw Proficiency

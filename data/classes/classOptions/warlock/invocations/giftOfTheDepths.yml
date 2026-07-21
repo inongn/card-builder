@@ -12,5 +12,4 @@ children:
   - type: Reference
     target: waterBreathing
     overwrite:
-      resource: null
-      tags: [limitedLR]
+      resource: limited

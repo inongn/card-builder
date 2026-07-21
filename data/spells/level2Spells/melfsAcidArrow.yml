@@ -1,6 +1,6 @@
 id: melfsAcidArrow
 type: Activity
-name: Melf's Acid Arrow
+name: Acid Arrow
 resource: level2SpellSlot
 tags: [level2Spell, evocation, wizard, attackSpell, damageSpell, acidDamage]
 time: action

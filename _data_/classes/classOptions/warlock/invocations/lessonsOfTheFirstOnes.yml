@@ -1,0 +1,8 @@
+id: lessonsOfTheFirstOnes
+name: Lessons of the First Ones
+tags:
+  - eldritchInvocation
+type: Slot
+target: feat
+quantity: 1
+condition: $(meta.level >= 2)

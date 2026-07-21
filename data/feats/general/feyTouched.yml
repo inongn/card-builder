@@ -15,9 +15,9 @@ children:
     id: feyMagicSpell
     target: level1Spell AND (divination OR enchantment)
     overwrite:
-      uses: 1
+      resource: limited
   - name: Misty Step
     type: Reference
     target: mistyStep
     overwrite:
-      uses: 1
+      resource: limited

@@ -1,0 +1,14 @@
+id: actor
+name: Actor
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Reference
+    target: [deceptionAdvantage, performanceAdvantage]

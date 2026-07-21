@@ -203,41 +203,34 @@ export default function PropertyExplorer({ library }) {
     };
 
     // Styling helpers for type-specific chips
-    const getTypeChipStyle = (type) => {
+    const getTypeBadgeClass = (type) => {
         switch (type) {
-            case 'Activity':
-                return { backgroundColor: 'rgba(76, 175, 80, 0.15)', color: '#2e7d32', fontWeight: 600 };
-            case 'Input':
-                return { backgroundColor: 'rgba(33, 150, 243, 0.15)', color: '#1565c0', fontWeight: 600 };
-            case 'Meta':
-                return { backgroundColor: 'rgba(156, 39, 176, 0.15)', color: '#6a1b9a', fontWeight: 600 };
-            case 'Extra':
-                return { backgroundColor: 'rgba(255, 152, 0, 0.15)', color: '#e65100', fontWeight: 600 };
-            case 'Slot':
-                return { backgroundColor: 'rgba(233, 30, 99, 0.15)', color: '#c2185b', fontWeight: 600 };
-            default:
-                return { backgroundColor: 'rgba(158, 158, 158, 0.15)', color: '#424242', fontWeight: 600 };
+            case 'Activity': return 'prop-type-badge prop-type-badge--activity';
+            case 'Input':    return 'prop-type-badge prop-type-badge--input';
+            case 'Meta':     return 'prop-type-badge prop-type-badge--meta';
+            case 'Extra':    return 'prop-type-badge prop-type-badge--extra';
+            case 'Slot':     return 'prop-type-badge prop-type-badge--slot';
+            default:         return 'prop-type-badge';
         }
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '16px' }}>
+        <div className="prop-explorer-panel">
             {/* Filters Row */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', background: 'var(--mdui-color-surface-container)', padding: '16px', borderRadius: '12px' }}>
+            <div className="prop-filter-bar">
                 <mdui-text-field
                     label="Filter by name, ID or details..."
                     value={searchTerm}
                     onInput={(e) => setSearchTerm(e.target.value)}
                     clearable
-                    style={{ width: '100%' }}
                 >
                     <mdui-icon slot="icon" name="search"></mdui-icon>
                 </mdui-text-field>
-                <div style={{ display: 'flex', gap: '12px' }}>
+                <div className="prop-filter-row">
                     <mdui-select
                         label="Filter Type"
                         value={selectedType}
-                        style={{ flex: 1 }}
+                        class="flex-1"
                     >
                         <mdui-menu-item value="all" onClick={() => setSelectedType('all')}>All Types</mdui-menu-item>
                         {uniqueTypes.map(t => (
@@ -247,7 +240,7 @@ export default function PropertyExplorer({ library }) {
                     <mdui-select
                         label="Filter Tag"
                         value={selectedTag}
-                        style={{ flex: 1 }}
+                        class="flex-1"
                     >
                         <mdui-menu-item value="all" onClick={() => setSelectedTag('all')}>All Tags</mdui-menu-item>
                         {uniqueTags.map(t => (
@@ -258,11 +251,11 @@ export default function PropertyExplorer({ library }) {
             </div>
 
             {/* Found Properties Count */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', color: 'var(--mdui-color-on-surface-variant)', fontWeight: 500, padding: '0 4px' }}>
+            <div className="prop-results-meta">
                 <span>Found {filteredProperties.length} Properties</span>
                 {(selectedType !== 'all' || selectedTag !== 'all' || searchTerm) && (
-                    <span 
-                        style={{ color: 'var(--mdui-color-primary)', cursor: 'pointer' }}
+                    <span
+                        className="prop-results-clear"
                         onClick={() => {
                             setSearchTerm('');
                             setSelectedType('all');
@@ -277,7 +270,7 @@ export default function PropertyExplorer({ library }) {
             {/* Property Cards List */}
             <div className="property-explorer-scrollable">
                 {filteredProperties.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '36px 12px', opacity: 0.6, fontSize: '0.9rem' }}>
+                    <div className="prop-empty-state">
                         No property items found matching your filters.
                     </div>
                 ) : (
@@ -289,45 +282,33 @@ export default function PropertyExplorer({ library }) {
                             <mdui-card
                                 key={propId}
                                 variant="outlined"
-                                style={{
-                                    marginBottom: '10px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    transition: 'all 0.2s ease',
-                                    border: isExpanded ? '1px solid var(--mdui-color-primary)' : '1px solid var(--mdui-color-outline-variant)',
-                                    background: isExpanded ? 'var(--mdui-color-surface-container-low)' : 'var(--mdui-color-surface)'
-                                }}
+                                className={`prop-list-item surface-card ${isExpanded ? 'selected' : ''}`}
                             >
                                 {/* Header Toggle Area */}
                                 <div 
-                                    className="property-card-header"
+                                    className="prop-list-item__inner property-card-header"
                                     onClick={() => setExpandedPropertyId(isExpanded ? null : propId)}
                                 >
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1, minWidth: 0, paddingRight: '12px' }}>
-                                        <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--mdui-color-on-surface)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    <div className="prop-list-item__info">
+                                        <div className="prop-list-item__name">
                                             {p.name || p.id}
                                         </div>
-                                        <div style={{ fontFamily: 'monospace', fontSize: '0.75rem', color: 'var(--mdui-color-on-surface-variant)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        <div className="prop-list-item__id">
                                             ID: {propId}
                                         </div>
                                         {p.parentId && (
-                                            <div style={{ fontSize: '0.7rem', color: 'var(--mdui-color-secondary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                            <div className="prop-list-item__tags">
                                                 Parent Scope: {p.parentId}
                                             </div>
                                         )}
                                     </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                        <span style={{ 
-                                            padding: '2px 8px', 
-                                            borderRadius: '12px', 
-                                            fontSize: '0.7rem', 
-                                            ...getTypeChipStyle(p.type) 
-                                        }}>
+                                    <div className="prop-list-item__actions">
+                                        <span className={getTypeBadgeClass(p.type)}>
                                             {p.type}
                                         </span>
                                         <mdui-button-icon
                                             icon={isExpanded ? "expand_less" : "expand_more"}
-                                            style={{ pointerEvents: 'none' }}
+                                            class="prop-list-item__expand-pointer"
                                         ></mdui-button-icon>
                                     </div>
                                 </div>
@@ -335,10 +316,10 @@ export default function PropertyExplorer({ library }) {
                                 {/* Expanded Detail Panel */}
                                 {isExpanded && (
                                     <div 
-                                        style={{ padding: '0 16px 16px 16px', display: 'flex', flexDirection: 'column', gap: '12px' }}
+                                        className="prop-detail-panel"
                                         onClick={(e) => e.stopPropagation()}
                                     >
-                                        <mdui-divider style={{ marginBottom: '8px' }}></mdui-divider>
+                                        <mdui-divider></mdui-divider>
 
                                         {/* Structured Details Table */}
                                         <table className="property-details-table">
@@ -397,15 +378,9 @@ export default function PropertyExplorer({ library }) {
                                                     <tr>
                                                         <th>Tags</th>
                                                         <td>
-                                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                                                            <div className="option-card-chips">
                                                                 {(Array.isArray(p.tags) ? p.tags : [p.tags]).map(t => (
-                                                                    <span key={t} style={{
-                                                                        fontSize: '0.65rem',
-                                                                        padding: '2px 6px',
-                                                                        borderRadius: '4px',
-                                                                        backgroundColor: 'var(--mdui-color-surface-container-high)',
-                                                                        border: '1px solid var(--mdui-color-outline-variant)'
-                                                                    }}>{t}</span>
+                                                                    <span key={t} className="context-chip">{t}</span>
                                                                 ))}
                                                             </div>
                                                         </td>
@@ -415,12 +390,11 @@ export default function PropertyExplorer({ library }) {
                                         </table>
 
                                         {/* Bottom Action buttons */}
-                                        <div style={{ display: 'flex', gap: '8px' }}>
+                                        <div className="debug-action-row">
                                             <mdui-button
                                                 variant="tonal"
                                                 icon="content_copy"
                                                 onClick={(e) => handleCopyYAML(p, e)}
-                                                style={{ height: '32px', fontSize: '0.8rem' }}
                                             >
                                                 {copiedId === propId ? "Copied!" : "Copy YAML"}
                                             </mdui-button>
@@ -428,7 +402,6 @@ export default function PropertyExplorer({ library }) {
                                                 variant="outlined"
                                                 icon={showRawYAML[propId] ? "visibility_off" : "visibility"}
                                                 onClick={(e) => toggleRawYAML(propId, e)}
-                                                style={{ height: '32px', fontSize: '0.8rem' }}
                                             >
                                                 {showRawYAML[propId] ? "Hide Source" : "View Source"}
                                             </mdui-button>
@@ -436,19 +409,9 @@ export default function PropertyExplorer({ library }) {
 
                                         {/* Raw Source Collapsible Code Block */}
                                         {showRawYAML[propId] && (
-                                            <div style={{ marginTop: '8px', border: '1px solid var(--mdui-color-outline-variant)', borderRadius: '8px', overflow: 'hidden' }}>
+                                            <div className="debug-code-viewer">
                                                 <pre 
-                                                    style={{
-                                                        margin: 0,
-                                                        padding: '12px',
-                                                        background: 'var(--mdui-color-surface-container-high)',
-                                                        fontFamily: "'Fira Code', 'Roboto Mono', monospace",
-                                                        fontSize: '12px',
-                                                        lineHeight: 1.5,
-                                                        overflowX: 'auto',
-                                                        whiteSpace: 'pre-wrap',
-                                                        color: 'var(--mdui-color-on-surface)'
-                                                    }}
+                                                    className="debug-code-pre"
                                                     dangerouslySetInnerHTML={{
                                                         __html: highlightYAML(jsyaml.dump((() => {
                                                             const clean = { ...p };

@@ -1,0 +1,71 @@
+id: aasimar
+name: Aasimar
+tags:
+- species
+description: 'Aasimar (pronounced AH-sih-mar) are mortals who carry a spark of the
+  Upper Planes within their souls. Whether descended from an angelic being or infused
+  with celestial power, they can fan that spark to bring light, healing, and heavenly
+  fury. Aasimar can arise among any population of mortals. They resemble their parents,
+  but they live for up to 160 years and have features that hint at their celestial
+  heritage.
+
+  '
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Aasimar
+- type: Reference
+  target:
+  - necroticResistance
+  - radiantResistance
+- id: aasimarDarkvision
+  type: Effect
+  target: attributes.senses.darkvision
+  operation: set
+  value: 60
+- id: healingHands
+  type: Activity
+  name: Healing Hands
+  time: action
+  range: touch
+  duration: Instantaneous
+  tags:
+  - limitedLR
+  description: 'You touch a creature and roll $(attributes.prof)d4. The creature regains
+    Hit Points equal to the total rolled.
+
+    '
+- type: Reference
+  target: light
+- id: celestialRevelation
+  type: Activity
+  name: Celestial Revelation
+  time: bonus action
+  duration: 1 minute
+  tags:
+  - limitedLR
+  condition: $(meta.level >= 3)
+  description: 'You transform. The transformation lasts for the duration or until
+    you end it (no action required). Once on each of your turns before it ends, you
+    can deal $(attributes.prof) extra damage to one target when you deal damage to
+    it with an attack or a spell; the damage is Necrotic for Necrotic Shroud or Radiant
+    for Heavenly Wings and Inner Radiance.
+
+
+    **Heavenly Wings.** You have a Fly Speed of $(attributes.movement.walk) until
+    the transformation ends.
+
+
+    **Inner Radiance.** You shed Bright Light in a 10-foot radius and Dim Light for
+    an additional 10 feet. At the end of each of your turns, each creature within
+    10 feet of you takes $(attributes.prof) Radiant damage.
+
+
+    **Necrotic Shroud.** Creatures other than your allies within 10 feet of you must
+    succeed on a DC $(attributes.prof + 8 + stats.cha.mod) Charisma saving throw or
+    have the Frightened condition until the end of your next turn.
+
+    '

@@ -1,0 +1,60 @@
+id: assassin
+name: Assassin
+description: |
+  An Assassin's training focuses on using stealth, poison, and disguise to eliminate foes with deadly efficiency. While some Rogues who follow this path are hired killers, spies, or bounty hunters, the capabilities of this subclass are equally useful for adventurers facing a variety of monstrous enemies.
+tags:
+  - rogueSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Assassin"
+  # Level 3: Assassinate — Initiative
+  - type: Reference
+    target: [initiativeAdvantage, disguiseKit, poisonersKit]
+
+  # Level 3: Assassinate — Surprising Strikes
+  - id: surprisingStrikes
+    type: Extra
+    name: Surprising Strike
+    target: sneakAttack
+    description: "On a hit during the first round of combat, the target takes $(meta.level) extra damage."
+
+  - id: surprisingStrikesAttack
+    type: Extra
+    target: weaponAttack
+    name: Surprising Strike
+    description: "During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn."
+
+  # Level 9: Infiltration Expertise — Masterful Mimicry
+  - id: masterfulMimicry
+    type: Activity
+    name: Masterful Mimicry
+    condition: $(meta.level >= 9)
+    description: "You unerringly mimic another person's speech, handwriting, or both if you have spent at least 1 hour studying them."
+
+  # Level 9: Infiltration Expertise — Roving Aim
+  - id: rovingAim
+    type: Extra
+    name: Roving Aim
+    target: steadyAim
+    condition: $(meta.level >= 9)
+    description: "Your Speed isn't reduced to 0 by using Steady Aim."
+
+  # Level 13: Envenom Weapons
+  - id: envenomWeapons
+    type: Effect
+    target: activities[cunningStrike].extra["have the Poisoned condition for 1 minute"]
+    operation: replace
+    condition: $(meta.level >= 13)
+    value: "take 2d6 Poison damage and have the Poisoned condition for 1 minute"
+
+  # Level 17: Death Strike
+  - id: deathStrike
+    type: Extra
+    name: Death Strike
+    target: sneakAttack
+    condition: $(meta.level >= 17)
+    description: "On a hit during the first round of a combat, the target must succeed on a DC $(8 + stats.dex.mod + attributes.prof) Constitution saving throw, or the attack's damage is doubled."

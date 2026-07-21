@@ -1,0 +1,13 @@
+id: vitriolicSphere
+type: Activity
+name: Vitriolic Sphere
+resource: level4SpellSlot
+tags: [level4Spell, evocation, sorcerer, wizard, saveSpell, damageSpell, acidDamage]
+time: action
+range: 150 feet
+duration: instantaneous
+description: |
+  You point at a location within range, and a glowing, 1-foot-diameter ball of acid streaks there and explodes in a 20-foot-radius Sphere. Each creature in that area makes a DC $(attributes.spellcasting.save) Dexterity saving throw. On a failed save, a creature takes 10d4 Acid damage and another 5d4 Acid damage at the end of its next turn. On a successful save, a creature takes half the initial damage only.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: The initial damage increases by 2d4 for each spell slot level above 4.

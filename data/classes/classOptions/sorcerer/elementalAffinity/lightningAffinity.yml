@@ -7,22 +7,22 @@ children:
   - type: Reference
     target: lightningResistance
   - type: Effect
-    target: activities[damageSpell AND lightningDamage].description["d12"]
+    target: activities[tags=damageSpell AND tags=lightningDamage].description["d12"]
     operation: replace
     value: "d12$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND lightningDamage].description["d10"]
+    target: activities[tags=damageSpell AND tags=lightningDamage].description["d10"]
     operation: replace
     value: "d10$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND lightningDamage].description["d8"]
+    target: activities[tags=damageSpell AND tags=lightningDamage].description["d8"]
     operation: replace
     value: "d8$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND lightningDamage].description["d6"]
+    target: activities[tags=damageSpell AND tags=lightningDamage].description["d6"]
     operation: replace
     value: "d6$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND lightningDamage].description["d4"]
+    target: activities[tags=damageSpell AND tags=lightningDamage].description["d4"]
     operation: replace
     value: "d4$(formatBonus(stats.cha.mod))"

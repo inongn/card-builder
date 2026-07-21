@@ -1,0 +1,13 @@
+id: cureWounds
+type: Activity
+name: Cure Wounds
+resource: level1SpellSlot
+tags: [level1Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger, healingSpell]
+time: action
+range: touch
+duration: instantaneous
+description: |
+  A creature you touch regains a number of Hit Points equal to 2d8$(formatBonus(attributes.spellcasting.bonus)).
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: The healing increases by 2d8 for each spell slot level above 1.

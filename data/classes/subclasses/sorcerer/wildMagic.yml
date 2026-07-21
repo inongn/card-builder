@@ -39,20 +39,3 @@ children:
     resource: 1 sorceryPoints
     description: You twist fate using your wild magic. Immediately after another creature you can see rolls the d20 for a D20 Test, roll 1d4 and apply the number rolled as a bonus or penalty (your choice) to the d20 roll.
 
-
-  # Level 14: Controlled Chaos
-  - id: controlledChaos
-    type: Extra
-    name: Controlled Chaos
-    target: wildMagicSurge
-    condition: $(meta.level >= 14)
-    description: "Whenever you roll on the Wild Magic Surge table, roll twice and use either number."
-
-  # Level 18: Tamed Surge
-  - id: tamedSurge
-    type: Extra
-    name: Tamed Surge
-    target: wildMagicSurge
-    condition: $(meta.level >= 18)
-    tags: [limitedLR]
-    description: "Immediately after you cast a Sorcerer spell with a spell slot, you can create an effect of your choice from the Wild Magic Surge table instead of rolling on that table. You can choose any effect in the table except for the final row."

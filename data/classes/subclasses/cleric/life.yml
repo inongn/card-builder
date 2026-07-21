@@ -19,7 +19,7 @@ children:
     name: Disciple of Life
     target: healingSpell
     condition: $(meta.level >= 3)
-    description: "The creature regains an additional 2 + spell level Hit Points."
+    description: "The creature regains an additional $(2+(stats.wis.mod)) Hit Points."
 
   # Level 3: Life Domain Spells
   - type: Reference
@@ -52,12 +52,4 @@ children:
     name: Blessed Healer
     target: healingSpell
     condition: $(meta.level >= 6)
-    description: "If you cast this on another creature, you regain 2 + spell level Hit Points."
-
-  # Level 17: Supreme Healing
-  - id: supremeHealing
-    type: Extra
-    name: Supreme Healing
-    target: healingSpell
-    condition: $(meta.level >= 17)
-    description: "Use the highest number possible for each die rolled to restore Hit Points."
+    description: "If you cast this on another creature, you regain $(2+(stats.wis.mod)) Hit Points."

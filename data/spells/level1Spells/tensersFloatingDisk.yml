@@ -1,6 +1,6 @@
 id: tensersFloatingDisk
 type: Activity
-name: Tenser's Floating Disk
+name: Floating Disk
 resource: level1SpellSlot
 tags: [level1Spell, conjuration, wizard, ritual]
 time: action

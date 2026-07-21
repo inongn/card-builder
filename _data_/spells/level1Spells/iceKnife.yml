@@ -1,0 +1,13 @@
+id: iceKnife
+type: Activity
+name: Ice Knife
+resource: level1SpellSlot
+tags: [level1Spell, conjuration, druid, sorcerer, wizard, saveSpell, attackSpell, damageSpell, piercingDamage, coldDamage]
+time: action
+range: 60 feet
+duration: instantaneous
+description: |
+  You create a shard of ice and fling it at one creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes 1d10 Piercing damage. Hit or miss, the shard then explodes. The target and each creature within 5 feet of it must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take 2d6 Cold damage.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: The Cold damage increases by 1d6 for each spell slot level above 1.

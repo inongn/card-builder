@@ -1,0 +1,22 @@
+id: conjureConstructs
+type: Activity
+name: Conjure Constructs
+condition: $(meta.setting === 'faerun')
+resource: level3SpellSlot
+tags: [level3Spell, conjuration, wizard, saveSpell, damageSpell, forceDamage]
+time: action
+range: 60 feet
+duration: concentration, up to 10 minutes
+description: |
+  You conjure a group of intangible, orderly spirits that appear as a Medium group of modrons or other Constructs in an unoccupied space you can see within range. The spirits last for the duration.
+
+  When you cast this spell and as a Magic action on subsequent turns, you can command the spirits to target one creature or object you can see within 5 feet of the spirits and create one of the following effects:
+
+  **Clockwork Force.** The target makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 3d6 Force damage on a failed save or half as much damage on a successful one.
+
+  **Orderly Ward.** The target gains Temporary Hit Points equal to 1d6$(formatBonus(attributes.spellcasting.bonus)).
+
+  When you move on your turn, you can also move the spirits up to 30 feet to an unoccupied space you can see.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: The damage and Temporary Hit Points both increase by 1d6 for each spell slot level above 3.

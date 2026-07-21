@@ -1,0 +1,22 @@
+tags:
+- feat
+- originFeat
+type: Folder
+children:
+- type: Reference
+  target: data.core.spellcasting.chooseCaster
+  quantity: 1
+- type: Slot
+  id: magicInitiateWizardCantrips
+  name: Magic Initiate (Wizard) Cantrips
+  quantity: 2
+  target: wizard AND cantrip
+- type: Slot
+  id: magicInitiateWizardPreparedSpell
+  name: Magic Initiate (Wizard) Prepared Spell
+  target: wizard AND level1Spell
+  quantity: 1
+  overwrite:
+    uses: 1
+id: magicInitiateWizard
+name: Magic Initiate (Wizard)

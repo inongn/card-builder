@@ -1,0 +1,20 @@
+id: telepathic
+name: Telepathic
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Telepathic Communication
+    type: Reference
+    target: telepathyLanguage
+  - name: Detect Thoughts
+    type: Reference
+    target: detectThoughts
+    overwrite:
+      uses: 1

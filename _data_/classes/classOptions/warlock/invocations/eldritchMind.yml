@@ -1,0 +1,6 @@
+id: eldritchMind
+name: Eldritch Mind
+tags:
+  - eldritchInvocation
+type: Reference
+target: concentrationAdvantage

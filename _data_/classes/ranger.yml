@@ -1,0 +1,229 @@
+id: ranger
+name: Ranger
+description: |
+  Far from bustling cities, amid the trees of trackless forests and across wide plains, Rangers keep their unending watch in the wilderness. Rangers learn to track their quarry as a predator does, moving stealthily through the wilds and hiding themselves in brush and rubble.
+
+  Thanks to their connection with nature, Rangers can also cast spells that harness primal powers of the wilderness. A Ranger's talents and magic are honed with deadly focus to protect the world from the ravages of monsters and tyrants.
+tags:
+  - class
+type: Folder
+children:
+  # Core Ranger Traits
+  - id: hitDie
+    type: Attribute
+    value: 10
+  - id: className
+    type: Effect
+    target: meta.class
+    operation: set
+    value: Ranger
+  - id: weaponMastery
+    type: Attribute
+    value: true
+  - type: Reference
+    value: [strSave, dexSave]
+  - type: Reference
+    value: [simpleWeaponProficiency, martialWeaponProficiency]
+  - type: Reference
+    value: [lightArmorTraining, mediumArmorTraining, shieldTraining]
+  - id: rangerSkillProficiencies
+    type: Slot
+    name: Ranger Skill Proficiencies
+    quantity: 3
+    target: animalHandlingProficiency OR athleticsProficiency OR insightProficiency OR investigationProficiency OR natureProficiency OR perceptionProficiency OR stealthProficiency OR survivalProficiency
+
+  # Level 1: Spellcasting
+  - type: Reference
+    target: [halfCaster, wisCaster]
+  - type: Slot
+    id: rangerSpells
+    name: Ranger Spells
+    target: "ranger NOT cantrip $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    variables:
+      maxLevel: "$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)"
+    quantity: $(progression(2,3,4,5,6,6,7,7,9,9,10,10,11,11,12,12,14,14,15,15))
+
+  # Level 1: Favored Enemy (Hunter's Mark)
+
+  - type: Resource
+    name: Favored Enemy
+    id: favoredEnemy
+    quantity: $(progression(2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6))
+  - type: Reference
+    target: huntersMark
+  - type: Effect
+    target: activities[huntersMark].resource
+    operation: push
+    value: favoredEnemy
+  # Level 2: Deft Explorer
+  - id: deftExplorerExpertise
+    type: Slot
+    name: Deft Explorer Expertise
+    quantity: 1
+    target: skillExpertise
+    condition: $(meta.level >= 2)
+
+  # Level 2: Fighting Style
+  - id: fightingStyle
+    type: Slot
+    name: Fighting Style
+    quantity: 1
+    target: fightingStyle OR druidicWarrior
+    condition: $(meta.level >= 2)
+
+  # Level 4: Ability Score Improvement
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+
+  # Level 5: Extra Attack
+  - id: extraAttack
+    type: Extra
+    target: weaponAttack
+    condition: $(meta.level >= 5)
+    name: Extra Attack
+    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+
+  # Level 6: Roving
+  - id: rovingSpeed
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    condition: $(meta.level >= 6)
+    value: 10
+  - id: rovingClimb
+    type: Effect
+    target: attributes.movement.climb
+    operation: set
+    condition: $(meta.level >= 6)
+    value: $(attributes.movement.walk)
+  - id: rovingSwim
+    type: Effect
+    target: attributes.movement.swim
+    operation: set
+    condition: $(meta.level >= 6)
+    value: $(attributes.movement.walk)
+
+  # Level 8: Ability Score Improvement
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)
+
+  # Level 9: Expertise
+  - id: expertise
+    type: Slot
+    name: Ranger Expertise
+    quantity: 2
+    target: skillExpertise
+    condition: $(meta.level >= 9)
+
+  # Level 10: Tireless
+  - id: tireless
+    type: Activity
+    name: Tireless
+    time: action
+    range: self
+    duration: Instantaneous
+    condition: $(meta.level >= 10)
+    resource: tireless
+    description: "Primal forces fuel you on your journeys. Gain 1d8$(formatBonus(stats.wis.mod))   Temporary Hit Points."
+  - id: tireless
+    type: Resource
+    condition: $(meta.level >= 10)
+    name: Tireless
+    quantity: $(Math.max(1, stats.wis.mod))
+  - id: tirelessExhaustion
+    type: Extra
+    name: Decrease Exhaustion
+    target: shortRest
+    condition: $(meta.level >= 10)
+    description: "Your Exhaustion level, if any, decreases by 1."
+
+  # Level 12: Ability Score Improvement
+  - id: level12feat
+    name: Level 12 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 12)
+
+  # Level 13: Relentless Hunter
+  - id: relentlessHunter
+    type: Extra
+    name: Relentless Hunter
+    target: huntersMark
+    condition: $(meta.level >= 13)
+    description: "Taking damage can't break your Concentration on this spell."
+
+  # Level 14: Nature's Veil
+  - id: naturesVeil
+    type: Activity
+    name: Nature's Veil
+    time: bonus action
+    range: self
+    duration: 1 turn
+    condition: $(meta.level >= 14)
+    resource: naturesVeil
+    description: "You invoke spirits of nature to magically hide yourself. You have the Invisible condition until the end of your next turn."
+  - id: naturesVeil
+    type: Resource
+    name: Nature's Veil
+    condition: $(meta.level >= 10)
+    quantity: $(Math.max(1, stats.wis.mod))
+
+  # Level 16: Ability Score Improvement
+  - id: level16feat
+    name: Level 16 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 16)
+
+  # Level 17: Precise Hunter
+  - id: preciseHunter
+    type: Extra
+    name: Precise Hunter
+    target: huntersMark
+    condition: $(meta.level >= 17)
+    description: "You have Advantage on attack rolls against the creature marked by this spell."
+
+  # Level 18: Feral Senses
+  - id: feralSenses
+    type: Effect
+    target: attributes.senses.blindsight
+    operation: set
+    condition: $(meta.level >= 18)
+    value: 30
+
+  # Level 19: Epic Boon
+  - id: epicBoon
+    type: Slot
+    name: Epic Boon
+    target: epicBoon
+    condition: $(meta.level >= 19)
+
+  # Level 20: Foe Slayer
+  - id: foeSlayer
+    type: Effect
+    target: activities[huntersMark].description["1d6"]
+    operation: replace
+    condition: $(meta.level >= 20)
+    value: "1d10"
+
+  # Level 3: Ranger Subclass
+  - id: rangerSubclass
+    name: Ranger Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: rangerSubclass
+
+  # Weapon Mastery
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties

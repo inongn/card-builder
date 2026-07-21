@@ -11,9 +11,9 @@ children:
     target: rayOfSickness
     condition: $(meta.level >= 3)
     overwrite:
-      tags: [innateLR]
+      resource: limited
   - type: Reference
     target: holdPerson
     condition: $(meta.level >= 5)
     overwrite:
-      tags: [innateLR]
+      resource: limited

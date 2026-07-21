@@ -19,9 +19,9 @@ children:
     target: classOption OR primalCompanion
   - id: beastCompanionName
     type: Input
-    name: beastCompanionName
+    name: Beast Companion Name
     inputType: text
-    label: Companion Name
+    label: Beast Companion Name
   - type: Effect
     target: statblocks[beastOfTheLand].name
     operation: set
@@ -57,19 +57,3 @@ children:
     target: commandPrimalCompanion
     condition: $(meta.level >= 7)
     description: "You can also command the beast to take the Dash, Disengage, Dodge, or Help action using its Bonus Action. Whenever it hits with an attack roll and deals damage, it can deal your choice of Force damage or its normal damage type."
-
-  # Level 11: Bestial Fury
-  - id: bestialFury
-    type: Extra
-    name: Bestial Fury
-    target: commandPrimalCompanion
-    condition: $(meta.level >= 11)
-    description: "When you command your beast to take the Beast's Strike action, the beast can use it twice. The first time each turn it hits a creature under the effect of your Hunter's Mark spell, the beast deals extra Force damage equal to the bonus damage of that spell."
-
-  # Level 15: Share Spells
-  - id: shareSpells
-    type: Extra
-    name: Share Spells
-    target: activities[(cantrip OR level1Spell OR level2Spell OR level3Spell OR level4Spell OR level5Spell OR level6Spell OR level7Spell OR level8Spell OR level9Spell) AND range=self]
-    condition: $(meta.level >= 15)
-    description: "You can also affect your Primal Companion beast with the spell if the beast is within 30 feet of you."

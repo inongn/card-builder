@@ -3,7 +3,7 @@ tags:
   - skillExpertise
 target: skills.sleight_of_hand.proficiency
 operation: set
-condition: $(skills.sleight_of_hand.proficiency > 0)
+condition: $(skills.sleight_of_hand.proficiency > .5)
 value: 2
 id: sleightOfHandExpertise
 name: Sleight Of Hand Expertise

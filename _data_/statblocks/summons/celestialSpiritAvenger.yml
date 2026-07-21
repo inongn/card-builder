@@ -1,0 +1,30 @@
+type: Statblock
+name: Celestial Spirit (Avenger)
+tags: [summon]
+id: celestialSpiritAvenger
+size: Large
+category: summon
+classification: Celestial
+ac: "$(11 + (local.maxLevel || 5))"
+hp: "$(40 + 10 * ((local.maxLevel || 5) - 5))"
+movement:
+  walk: 30
+  fly: 40
+stats:
+  str: 16
+  dex: 14
+  con: 16
+  int: 10
+  wis: 14
+  cha: 16
+resistances: [Radiant]
+immunities: [Charmed, Frightened]
+senses:
+  darkvision: 60
+actions:
+  - name: Multiattack
+    description: "The spirit makes $(Math.floor((local.maxLevel || 5) / 2)) Radiant Bow attacks."
+  - name: Radiant Bow
+    description: "_Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 600 ft. _Hit:_ 2d6$(formatBonus(stats.dex.mod)) + $(local.maxLevel || 5) Radiant damage."
+  - name: Healing Touch (1/Day)
+    description: "The spirit touches another creature. The target regains Hit Points equal to 2d8 + $(local.maxLevel || 5)."

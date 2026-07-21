@@ -12,7 +12,7 @@ children:
     value: 1
   - name: Heavy Weapon Mastery
     type: Effect
-    target: activities[weaponAttack and melee and twoHanded].description["$(formatBonus(attributes.melee.bonus))"]
+    target: activities[tags=weaponAttack and tags=melee and tags=twoHanded].description["$(formatBonus(attributes.melee.bonus))"]
     operation: replace
     value: $(formatBonus(attributes.melee.bonus+attributes.prof))
   - id: hew

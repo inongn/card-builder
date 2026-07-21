@@ -1,0 +1,44 @@
+id: masteryProperties
+name: Mastery Properties
+type: Folder
+children:
+  - type: Extra
+    target: graze AND (pactWeapon OR weaponMastery)
+    id: graze
+    name: Graze
+    description: "On a miss, deal $(attributes[local.classification].bonus) $(local.damageType) damage."
+  - type: Extra
+    target: slow AND (pactWeapon OR weaponMastery)
+    id: slow
+    name: Slow
+    description: "On a hit, the target's speed is reduced by 10 feet."
+  - type: Extra
+    target: nick AND (pactWeapon OR weaponMastery)
+    id: nick
+    name: Nick
+    description: "You can make the additional attack of the Light property as part of the Attack action instead of as a Bonus Action."
+  - type: Extra
+    target: cleave AND (pactWeapon OR weaponMastery)
+    id: cleave
+    name: Cleave
+    description: On a hit, you can make another attack against a second creature within 5 feet of the first that is also within your reach.
+  - type: Extra
+    target: push AND (pactWeapon OR weaponMastery)
+    id: push
+    name: Push
+    description: "On a hit, push the target up to 10 feet straight away from yourself."
+  - type: Extra
+    target: topple AND (pactWeapon OR weaponMastery)
+    id: topple
+    name: Topple
+    description: "On a hit, the target must succeed a DC $(8 + attributes.prof + attributes[local.classification].bonus) Constitution saving throw or have the Prone condition."
+  - type: Extra
+    target: sap AND (pactWeapon OR weaponMastery)
+    id: sap
+    name: Sap
+    description: "On a hit, the target has Disadvantage on its next attack roll before the start of your next turn."
+  - type: Extra
+    target: vex AND (pactWeapon OR weaponMastery)
+    id: vex
+    name: Vex
+    description: "On a hit, you have Advantage on your next attack roll against the target before the end of your next turn."

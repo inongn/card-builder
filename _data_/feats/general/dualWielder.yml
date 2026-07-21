@@ -1,0 +1,10 @@
+type: Folder
+name: Dual Wielder
+tags:
+- feat
+children:
+- type: Effect
+  target: activities[weaponAttack].extra["with a Light weapon"]
+  operation: replace
+  value: "with a weapon"
+id: dualWielder

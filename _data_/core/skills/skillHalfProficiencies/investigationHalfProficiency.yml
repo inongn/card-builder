@@ -1,0 +1,7 @@
+type: Effect
+target: skills.investigation.proficiency
+operation: set
+condition: $(skills.investigation.proficiency < 0.5)
+value: 0.5
+id: investigationHalfProficiency
+name: Investigation Half Proficiency

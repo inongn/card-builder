@@ -1,6 +1,6 @@
 id: evardsBlackTentacles
 type: Activity
-name: Evard's Black Tentacles
+name: Tentacles
 resource: level4SpellSlot
 tags: [level4Spell, conjuration, wizard, saveSpell, damageSpell, bludgeoningDamage]
 time: action

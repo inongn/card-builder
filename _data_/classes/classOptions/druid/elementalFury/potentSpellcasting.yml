@@ -1,0 +1,30 @@
+id: potentSpellcasting
+name: Potent Spellcasting
+tags: [elementalFury]
+type: Folder
+children:
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d12"]
+    operation: replace
+    value: d12$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d10"]
+    operation: replace
+    value: d10$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d8"]
+    operation: replace
+    value: d8$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d6"]
+    operation: replace
+    value: d6$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid AND tags=damageSpell].description["d4"]
+    operation: replace
+    value: d4$(formatBonus(stats.wis.mod))
+  - type: Effect
+    target: activities[tags=cantrip AND tags=druid NOT range=self NOT range=touch].range
+    operation: set
+    value: "300 feet"
+    condition: $(meta.level >= 15)

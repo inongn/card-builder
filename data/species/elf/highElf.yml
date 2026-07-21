@@ -11,9 +11,9 @@ children:
     target: detectMagic
     condition: $(meta.level >= 3)
     overwrite:
-      tags: [innateLR]
+      resource: limited
   - type: Reference
     target: mistyStep
     condition: $(meta.level >= 5)
     overwrite:
-      tags: [innateLR]
+      resource: limited

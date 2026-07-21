@@ -1,0 +1,29 @@
+id: fireAffinity
+name: Fire Affinity
+type: Folder
+tags:
+  - elementalAffinity
+children:
+  - type: Reference
+    target: fireResistance
+  # Bake CHA mod into fire damage spell rolls (like potentSpellcasting)
+  - type: Effect
+    target: activities[damageSpell AND fireDamage].description["d12"]
+    operation: replace
+    value: "d12$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[damageSpell AND fireDamage].description["d10"]
+    operation: replace
+    value: "d10$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[damageSpell AND fireDamage].description["d8"]
+    operation: replace
+    value: "d8$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[damageSpell AND fireDamage].description["d6"]
+    operation: replace
+    value: "d6$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[damageSpell AND fireDamage].description["d4"]
+    operation: replace
+    value: "d4$(formatBonus(stats.cha.mod))"

@@ -42,33 +42,3 @@ children:
     target: classOption OR aspectOfTheWilds
     name: Aspect of the Wilds
     condition: $(meta.level >= 6)
-
-  # Level 10: Nature Speaker
-  - type: Reference
-    target: communeWithNature
-    condition: $(meta.level >= 10)
-
-  # Level 14: Power of the Wilds
-  - id: powerOfTheWilds
-    type: Activity
-    name: Power of the Wilds
-    condition: $(meta.level >= 14)
-    description: "When you activate your Rage, you gain one of the following options of your choice:"
-  - id: powerOfTheWildsFalcon
-    type: Extra
-    name: Falcon
-    target: powerOfTheWilds
-    condition: $(meta.level >= 14)
-    description: "While your Rage is active, you have a Fly Speed equal to your Speed if you aren't wearing any armor."
-  - id: powerOfTheWildsLion
-    type: Extra
-    name: Lion
-    target: powerOfTheWilds
-    condition: $(meta.level >= 14)
-    description: "While your Rage is active, any of your enemies within 5 feet of you have Disadvantage on attack rolls against targets other than you or another Barbarian who has this option active."
-  - id: powerOfTheWildsRam
-    type: Extra
-    name: Ram
-    target: powerOfTheWilds
-    condition: $(meta.level >= 14)
-    description: "While your Rage is active, you can cause a Large or smaller creature to have the Prone condition when you hit it with a melee attack."

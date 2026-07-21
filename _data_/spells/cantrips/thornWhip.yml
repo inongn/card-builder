@@ -1,0 +1,10 @@
+id: thornWhip
+type: Activity
+name: Thorn Whip
+tags: [transmutation, cantrip, artificer, druid]
+time: action
+range: 30 feet
+duration: instantaneous
+description: |
+  You create a vine-like whip covered in thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Piercing damage, and if it is Large or smaller, you can pull it up to 10 feet closer to you.
+

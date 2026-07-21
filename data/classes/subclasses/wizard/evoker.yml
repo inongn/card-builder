@@ -27,20 +27,3 @@ children:
     name: Sculpt Spells
     condition: $(meta.level >= 6)
     description: "When you cast this spell, your allies automatically succeed on their saving throw and take no damage if they would normally take half."
-
-  # Level 10: Empowered Evocation
-  - id: empoweredEvocation
-    type: Extra
-    name: Empowered Evocation
-    target: evocation AND damageSpell
-    condition: $(meta.level >= 10)
-    description: "Add $(formatBonus(stats.int.mod)) to one damage roll of the spell."
-
-  # Level 14: Overchannel
-  - id: overchannel
-    type: Activity
-    name: Overchannel
-    condition: $(meta.level >= 14)
-    description: |
-      When you cast a level 1-5 Wizard spell that deals damage, you increase its power to deal maximum damage.
-      The first time you do so, you suffer no adverse effect. If you use this feature again before you finish a Long Rest, you take 2d12 Necrotic damage for each level of the spell slot immediately after you cast it. This damage ignores Resistance and Immunity.

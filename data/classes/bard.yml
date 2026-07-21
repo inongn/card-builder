@@ -51,8 +51,6 @@ children:
     type: Resource
     name: Bardic Inspiration
     quantity: "$(Math.max(1, stats.cha.mod))"
-    sr: "$(meta.level >= 5 ? 'all' : 0)" # Becomes Short Rest recharge at Level 5 (Font of Inspiration)
-    icon: d$(attributes.bardicDie)
 
   - id: bardicInspiration
     type: Activity
@@ -96,7 +94,6 @@ children:
     target: skillExpertise
     quantity: "$(meta.level >= 9 ? 4 : 2)"
     condition: $(meta.level >= 2)
-    description: "Choose two of your skill proficiencies. You gain Expertise in them."
 
   - id: jackOfAllTrades
     type: Reference
@@ -106,8 +103,11 @@ children:
   # ==========================================
   # Level 3
   # ==========================================
-  # Subclass Slot (Placed near end per instructions, but defined here for flow. Will move in final output if strictly needed, but logical grouping is L3).
-  # NOTE: Instruction Step 6 says "The subclass Slot must be near the end of the class file." I will place it at the end.
+  - id: bardSubclass
+    name: Bard Subclass
+    type: Slot
+    target: bardSubclass
+    condition: $(meta.level >= 3)
 
   # ==========================================
   # Level 4
@@ -118,18 +118,6 @@ children:
     target: feat
     quantity: 1
     condition: $(meta.level >= 4)
-
-  # ==========================================
-  # Level 5
-  # ==========================================
-  # Short Rest recharge handled in Bardic Inspiration resource 'sr' field.
-
-  - id: fontOfInspiration
-    type: Activity
-    name: Font of Inspiration
-    condition: $(meta.level >= 5)
-    resource: level1SpellSlot
-    description: "You regain one expended use of Bardic Inspiration."
 
   # ==========================================
   # Level 7
@@ -152,73 +140,3 @@ children:
     target: feat
     quantity: 1
     condition: $(meta.level >= 8)
-
-  # ==========================================
-  # Level 9
-  # ==========================================
-
-  # ==========================================
-  # Level 10
-  # ==========================================
-  # Magical Secrets is handled via the ternary in the 'bardSpells' Slot 'target' field.
-
-  # ==========================================
-  # Level 12
-  # ==========================================
-  - id: level12Feat
-    name: Level 12 Feat
-    type: Slot
-    target: feat
-    quantity: 1
-    condition: $(meta.level >= 12)
-
-  # ==========================================
-  # Level 16
-  # ==========================================
-  - id: level16Feat
-    name: Level 16 Feat
-    type: Slot
-    target: feat
-    quantity: 1
-    condition: $(meta.level >= 16)
-
-  # ==========================================
-  # Level 18
-  # ==========================================
-  - id: superiorInspiration
-    type: Activity
-    name: Superior Inspiration
-    condition: $(meta.level >= 18)
-    description: "When you roll Initiative, you regain expended uses of Bardic Inspiration until you have two if you have fewer than that."
-
-  # ==========================================
-  # Level 19
-  # ==========================================
-  - id: epicBoon
-    name: Epic Boon
-    type: Slot
-    target: epicBoon
-    quantity: 1
-    condition: $(meta.level >= 19)
-
-  # ==========================================
-  # Level 20
-  # ==========================================
-  - id: wordsOfCreation
-    type: Reference
-    target: [powerWordHeal, powerWordKill]
-    condition: $(meta.level >= 20)
-
-  - type: Extra
-    target: powerWordHeal OR powerWordKill
-    name: Words of Creation
-    description: When you cast this spell, you can target a second creature with it if that creature is within 10 feet of the first target.
-
-  # ==========================================
-  # Subclass
-  # ==========================================
-  - id: bardSubclass
-    name: Bard Subclass
-    type: Slot
-    target: bardSubclass
-    condition: $(meta.level >= 3)

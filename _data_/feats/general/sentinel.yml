@@ -1,0 +1,20 @@
+id: sentinel
+name: Sentinel
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Halt
+    type: Extra
+    target: opportunityAttack
+    description: On a hit, the target's Speed becomes 0 for the rest of the current turn.
+  - name: Guardian
+    type: Extra
+    target: opportunityAttack
+    description: You can make an Opportunity Attack when a creature takes the Disengage action or hits a target other than you with an attack. 

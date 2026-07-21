@@ -65,7 +65,7 @@ export const TERM_ICONS = {
     'sneak': { icon: 'colorize', color: 'fire', shortName: 'Sneak' }, // Closest to dagger/pointy
     'rage': { icon: 'show_chart', color: 'fire', shortName: 'Rage' }, // Pulse alternative
     'bardicInspiration': { icon: 'music_note', color: 'healing', shortName: 'Bardic Inspiration' },
-    'wildShape': { icon: 'pets', color: 'action', shortName: 'Wild Shape' },
+    'wildShape': { icon: 'cyclone', color: 'action', shortName: 'Channel Nature' },
     'naturalRecoveryRestore': { icon: 'hive', color: 'healing', shortName: 'Natural Recovery: Restore' },
     'naturalRecoveryCast': { icon: 'spa', color: 'healing', shortName: 'Natural Recovery: Cast' },
     'wildResurgence': { icon: 'nature', color: 'fire', shortName: 'Wild Resurgence' },
@@ -321,8 +321,7 @@ export const renderIcon = (text, showText = true) => {
                         <mdui-icon
                             key={`icon-${index}`}
                             name={part.info.icon}
-                            class={`icon-${part.info.color}`}
-                            style={{ verticalAlign: 'middle' }}
+                            class={`icon-${part.info.color} icon-middle`}
                         ></mdui-icon>
                     );
 

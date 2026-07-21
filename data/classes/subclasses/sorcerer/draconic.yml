@@ -45,24 +45,3 @@ children:
     name: Elemental Affinity
     condition: $(meta.level >= 6)
     target: classOptions OR elementalAffinity
-
-  # Level 14: Dragon Wings
-  - id: dragonWings
-    type: Activity
-    name: Dragon Wings
-    time: bonus action
-    duration: 1 hour
-    condition: $(meta.level >= 14)
-    resource: 3 sorceryPoints
-    tags: [innateLR]
-    description: |
-      You cause draconic wings to appear on your back. The wings last for the duration or until you dismiss them (no action required). For the duration, you have a Fly Speed of 60 feet.
-
-  # Level 18: Dragon Companion
-  - id: dragonCompanion
-    type: Extra
-    name: Dragon Companion
-    target: summonDragon
-    condition: $(meta.level >= 18)
-    description: |
-      You can cast this spell without expending a spell lost once per Long Rest. Whenever you start casting this spell, you can modify it so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting.

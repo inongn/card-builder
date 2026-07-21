@@ -1,0 +1,9 @@
+id: blessedWarrior
+name: Blessed Warrior
+type: Folder
+children:
+  - type: Slot
+    name: Blessed Warrior Cantrips
+    id: blessedWarriorCantrips
+    target: cantrip AND cleric
+    quantity: 2

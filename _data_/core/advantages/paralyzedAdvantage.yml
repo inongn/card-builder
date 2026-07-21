@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: Paralyzed
+target: attributes.advantages
+id: paralyzedAdvantage
+name: Paralyzed Advantage

@@ -1,0 +1,6 @@
+type: Effect
+target: skills.arcana.dis
+operation: set
+value: true
+id: arcanaDisadvantage
+name: Arcana Disadvantage

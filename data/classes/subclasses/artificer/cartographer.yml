@@ -64,8 +64,8 @@ children:
     condition: $(meta.level >= 3)
 
   - type: Effect
-    target: activities[faerieFire].resource
-    operation: push
+    target: activities[id=faerieFire].resource
+    operation: set
     value: illuminatedCartography
     condition: $(meta.level >= 3)
 
@@ -79,31 +79,3 @@ children:
       Once per turn, whenever you cast a spell from your Cartographer Spells list or hit a creature affected by your Faerie Fire with an attack roll, you can add $(Math.max(1, stats.int.mod)) to one damage roll of the spell or attack.
       
       In addition, taking damage can’t cause you to lose Concentration on Faerie Fire.
-
-  # Level 9: Ingenious Movement
-  - id: ingeniousMovement
-    type: Extra
-    name: Ingenious Movement
-    condition: $(meta.level >= 9)
-    description: |
-      When you use your Flash of Genius, you or a willing creature of your choice that you can see within 30 feet of yourself can teleport up to 30 feet to an unoccupied space you can see as part of that same Reaction.
-
-  # Level 15: Superior Atlas
-  - id: superiorAtlas
-    type: Extra
-    name: Superior Atlas
-    condition: $(meta.level >= 15)
-    description: |
-      **Safe Haven.** When a map holder would be reduced to 0 Hit Points but not killed outright, that creature can destroy its map. The creature’s Hit Points instead change to a number equal to twice your Artificer level ($(2 * meta.level)), and the creature is teleported to an unoccupied space within 5 feet of you or another map holder of its choice.
-
-  - id: unerringPath
-    type: Activity
-    name: "Unerring Path"
-    time: action
-    tags: [innateLR]
-    condition: $(meta.level >= 15)
-    description: |
-      If you are one of the map holders for your Adventurer’s Atlas, you can cast Find the Path without expending a spell slot, without preparing the spell, and without needing spell components.
-  - type: Reference
-    target: [findThePath]
-    condition: $(meta.level >= 15)

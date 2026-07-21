@@ -40,31 +40,3 @@ children:
     condition: $(meta.level >= 6)
     resource: 2 focusPoints
     description: "You cause elemental energy to burst in a 20-foot-radius Sphere. Choose Acid, Cold, Fire, Lightning, or Thunder. Each creature in the Sphere must make a DC $(attributes.monkSaveDC) Dexterity saving throw, taking 3d$(attributes.martialArtsDie) damage of the chosen type on a failure or half as much on a success."
-
-  # Level 11: Stride of the Elements
-  - id: strideOfTheElements
-    type: Extra
-    name: Stride of the Elements
-    target: elementalAttunement
-    condition: $(meta.level >= 11)
-    description: "You have a Fly Speed and a Swim Speed of $(attributes.movement.walk) feet."
-
-  # Level 17: Elemental Epitome
-  - id: elementalEpitome
-    type: Extra
-    name: Elemental Epitome
-    target: elementalAttunement
-    condition: $(meta.level >= 17)
-    description: "You gain Resistance to one of the following damage types of your choice: Acid, Cold, Fire, Lightning, or Thunder."
-  - id: elementalEpitomeDestructiveStride
-    type: Extra
-    name: Destructive Stride
-    target: elementalAttunement
-    condition: $(meta.level >= 17)
-    description: "When you use Step of the Wind, your Speed increases by 20 feet until the end of the turn. Any creature of your choice takes 1d$(attributes.martialArtsDie) damage (Acid, Cold, Fire, Lightning, or Thunder; your choice) when you enter a space within 5 feet of it. A creature can take this damage only once per turn."
-  - id: elementalEpitomeEmpoweredStrikes
-    type: Extra
-    name: Empowered Elemental Strikes
-    target: elementalAttunement
-    condition: $(meta.level >= 17)
-    description: "Once on each of your turns, you can deal 1d$(attributes.martialArtsDie) extra damage when you hit a creature with an Unarmed Strike."

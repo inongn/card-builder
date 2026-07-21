@@ -1,0 +1,11 @@
+id: comprehendLanguages
+type: Activity
+name: Comprehend Languages
+resource: level1SpellSlot
+tags: [level1Spell, divination, bard, sorcerer, warlock, wizard, ritual]
+time: action
+range: self
+duration: 1 hour
+description: |
+  For the duration, you understand the literal meaning of any language that you hear or see signed. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text. This spell doesn't decode symbols or secret messages.
+

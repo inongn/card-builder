@@ -1,9 +1,7 @@
 id: sorcerer
 name: Sorcerer
 description: |
-  Sorcerers wield innate magic that is stamped into their being. Some Sorcerers can’t name the origin of their power, while others trace it to strange events in their personal or family history. The blessing of a dragon or a dryad at a baby’s birth or the strike of lightning from a clear sky might spark a Sorcerer’s gift. So too might the gift of a deity, exposure to the strange magic of another plane of existence, or a glimpse into the inner workings of reality. Whatever the origin, the result is an indelible mark on the Sorcerer, a churning magic that can be passed down through generations.
-
-  Sorcerers don’t learn magic; the raw, roiling power of magic is part of them. The essential art of a Sorcerer is learning to harness and channel that innate magic, allowing the Sorcerer to discover new and staggering ways to unleash their power.
+  Sorcerers wield innate magic that is stamped into their being. Some Sorcerers can’t name the origin of their power, while others trace it to strange events in their personal or family history. The blessing of a dragon or a dryad at a baby’s birth or the strike of lightning from a clear sky might spark a Sorcerer’s gift. 
 tags:
   - class
 type: Folder
@@ -55,7 +53,6 @@ children:
       *   The spell save DC of your Sorcerer spells increases by 1.
       *   You have Advantage on the attack rolls of Sorcerer spells you cast.
       $(meta.level >= 7 ? "*   You can use up to two Metamagic options on each spell you cast." : "")
-      $(meta.level >= 20 ? "*   You can use one Metamagic option on each turn without expending Sorcery Points." : "")
     resource: innateSorcery
   - id: innateSorcery
     type: Resource
@@ -63,38 +60,20 @@ children:
     quantity: 2
     condition: $(meta.level >= 1)
 
-  # Level 7: Sorcery Incarnate — allows spending 2 SP as alternative resource
-  - id: sorceryIncarnate
-    type: Effect
-    target: activities[innateSorcery].resource
-    operation: push
-    value: 2 sorceryPoints
-    condition: $(meta.level >= 7)
   # Level 2: Font of Magic
   - id: sorceryPoints
     type: Resource
     name: Sorcery Points
     quantity: $(meta.level)
     condition: $(meta.level >= 2)
-  - id: convertSlotToPoints
-    type: Activity
-    name: Convert Slot to Points
-    condition: $(meta.level >= 2)
-    resource: level1SpellSlot
-    description: "You gain a number of Sorcery Points equal to the slot’s level."
-  - id: createSpellSlot
-    type: Activity
-    name: Create Spell Slot
-    time: bonus action
-    condition: $(meta.level >= 2)
-    resource: sorceryPoints
-    description: |
-      You transform unexpended Sorcery Points into one spell slot (max level 5).
-      *   Level 1: 2 Points
-      *   Level 2: 3 Points
-      *   Level 3: 5 Points
-      *   Level 4: 6 Points
-      *   Level 5: 7 Points
+
+
+  # Level 3: Sorcerer Subclass
+  - id: sorcererSubclass
+    name: Sorcerer Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: sorcererSubclass
 
   # Level 2: Metamagic
   - id: metamagic
@@ -112,14 +91,6 @@ children:
     target: feat
     condition: $(meta.level >= 4)
 
-  # Level 5: Sorcerous Restoration
-  - id: sorcerousRestoration
-    type: Activity
-    name: Sorcerous Restoration
-    tags: [limitedLR]
-    condition: $(meta.level >= 5)
-    description: "When you finish a Short Rest, you can regain expended Sorcery Points equal to $(Math.floor(meta.level / 2))."
-
   # Level 8: Ability Score Improvement
   - id: level8feat
     name: Level 8 Feat
@@ -127,33 +98,3 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 8)
-
-  # Level 12: Ability Score Improvement
-  - id: level12feat
-    name: Level 12 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 12)
-
-  # Level 16: Ability Score Improvement
-  - id: level16feat
-    name: Level 16 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 16)
-
-  # Level 19: Epic Boon
-  - id: epicBoon
-    type: Slot
-    name: Epic Boon
-    target: epicBoon
-    condition: $(meta.level >= 19)
-
-  # Level 3: Sorcerer Subclass
-  - id: sorcererSubclass
-    name: Sorcerer Subclass
-    condition: $(meta.level >= 3)
-    type: Slot
-    target: sorcererSubclass

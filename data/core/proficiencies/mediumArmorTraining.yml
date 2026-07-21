@@ -1,6 +1,6 @@
 type: Effect
-operation: push
-value: mediumArmor
-target: attributes.proficiencies
+operation: set
+value: true
+target: attributes.proficiencies.mediumArmor
 id: mediumArmorTraining
 name: Medium Armor Training

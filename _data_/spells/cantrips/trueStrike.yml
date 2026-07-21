@@ -1,0 +1,9 @@
+id: trueStrike
+type: Activity
+name: True Strike
+tags: [divination, cantrip, artificer, bard, sorcerer, warlock, wizard]
+time: action
+range: self
+duration: instantaneous
+description: |
+  Guided by a flash of magical insight, you make one attack with the weapon used in the spell's casting. Make a $(formatBonus(attributes.spellcasting.attack)) attack roll. On a hit, deal your weapon's damage die $(formatBonus(attributes.spellcasting.bonus)) Radiant damage.

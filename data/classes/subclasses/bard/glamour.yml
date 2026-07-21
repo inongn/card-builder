@@ -21,7 +21,6 @@ children:
     condition: $(meta.level >= 3)
     resource: bardicInspiration
     duration: 1 minute
-    tags: [innateLR]
     description: "After casting an Enchantment or Illusion spell using a spell slot, you force a creature within 60 feet to make a Wisdom save. On a failure, it has the Charmed or Frightened condition (your choice)."
 
   # Level 3: Mantle of Inspiration
@@ -44,19 +43,8 @@ children:
     time: bonus action
     duration: Concentration, up to 1 minute
     condition: $(meta.level >= 6)
-    tags: [limitedLR]
+    resource: limited
     description: |
       You cast Command without expending a spell slot and assume an unearthly appearance for the duration. 
       
       While active, you can cast Command as a Bonus Action without expending a spell slot. Any creature Charmed by you automatically fails its save against this Command.
-    # Note: Can restore use with L3+ spell slot. (Text implies this but resource tracking is manual or requires complex logic).
-
-  # Level 14: Unbreakable Majesty
-  - id: unbreakableMajesty
-    type: Activity
-    name: Unbreakable Majesty
-    time: bonus action
-    duration: 1 minute
-    condition: $(meta.level >= 14)
-    tags: [limitedSR]
-    description: "You assume a majestic presence for the duration. Whenever a creature hits you with an attack for the first time on a turn, it must succeed on a Charisma save or miss instead."

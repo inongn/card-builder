@@ -1,0 +1,22 @@
+id: elvenLineageWoodElf
+name: Wood Elf
+tags: [elvenLineage]
+type: Folder
+children:
+  - id: woodElfSpeed
+    type: Effect
+    target: attributes.movement.walk
+    operation: set
+    value: 35
+  - type: Reference
+    target: druidcraft
+  - type: Reference
+    target: longstrider
+    condition: $(meta.level >= 3)
+    overwrite:
+      tags: [innateLR]
+  - type: Reference
+    target: passWithoutTrace
+    condition: $(meta.level >= 5)
+    overwrite:
+      tags: [innateLR]

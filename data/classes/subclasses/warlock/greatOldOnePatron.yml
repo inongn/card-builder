@@ -66,35 +66,3 @@ children:
     description: |
       When you form a telepathic bond with a creature using your Awakened Mind, you force that creature to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the creature has Disadvantage on attack rolls against you, and you have Advantage on attack rolls against that creature for the duration of the bond.
       
-
-  # Level 10: Eldritch Hex
-  - type: Reference
-    target: hex
-    condition: $(meta.level >= 10)
-
-  - type: Extra
-    target: hex
-    name: Eldritch Hex
-    description: "The target has Disadvantage on Saving Throws of the chosen ability."
-    condition: $(meta.level >= 10)  
-  # Level 10: Thought Shield
-  - id: thoughtShieldRes
-    type: Reference
-    target: psychicResistance
-    condition: $(meta.level >= 10)
-  - id: thoughtShieldReflect
-    type: Activity
-    name: Thought Shield
-    description: "When a creature deals Psychic damage to you, that creature takes the same amount of damage that you take."
-    condition: $(meta.level >= 10)
-
-  # Level 14: Create Thrall
-  - id: createThrall
-    type: Extra
-    target: summonAberrationActivity
-    name: Create Thrall
-    description: |
-      You can modify this spell so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting, and when summoned, the Aberration has $(meta.level + stats.cha.mod) Temporary Hit Points.
-      
-      The first time each turn the Aberration hits a creature under the effect of your Hex, the Aberration deals extra Psychic damage to the target equal to the bonus damage of that spell.
-    condition: $(meta.level >= 14)

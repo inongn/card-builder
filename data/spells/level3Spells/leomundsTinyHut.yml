@@ -1,6 +1,6 @@
 id: leomundsTinyHut
 type: Activity
-name: Leomund's Tiny Hut
+name: Tiny Hut
 resource: level3SpellSlot
 tags: [level3Spell, evocation, bard, wizard, ritual]
 time: 1 minute

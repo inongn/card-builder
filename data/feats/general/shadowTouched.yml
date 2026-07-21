@@ -15,9 +15,9 @@ children:
     type: Slot
     target: level1Spell AND (illusion OR necromancy)
     overwrite:
-      uses: 1
+      resource: limited
   - name: Invisibility
     type: Reference
     target: invisibility
     overwrite:
-      uses: 1
+      resource: limited

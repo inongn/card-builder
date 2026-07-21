@@ -1,0 +1,109 @@
+id: artillerist
+name: Artillerist
+description: |
+  An Artillerist specializes in using magic to hurl energy, projectiles, and explosions on a battlefield.
+type: Folder
+tags:
+  - artificerSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Artillerist"
+
+  # Level 3: Tools of the Trade
+  - type: Reference
+    target: [woodcarversTools, martialWeaponProficiency]
+
+  # Level 3: Artillerist Spells
+  - type: Reference
+    target: [shield, thunderwave]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [scorchingRay, shatter]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [fireball, windWall]
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target: [iceStorm, wallOfFire]
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target: [coneOfCold, wallOfForce]
+    condition: $(meta.level >= 17)
+
+  # Level 3: Eldritch Cannon
+  - id: eldritchCannonFlamethrower
+    type: Activity
+    name: "Eldritch Cannon: Flamethrower"
+    time: bonus action
+    range: self
+    condition: $(meta.level >= 3)
+    description: |
+      The cannon exhales fire in a 15-foot Cone. Each creature in that area makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking $(meta.level >= 9 ? '3d8' : '2d8') Fire damage on a failed save or half as much on a successful one. Flammable objects in the Cone start burning.
+
+  - id: eldritchCannonForceBallista
+    type: Activity
+    name: "Eldritch Cannon: Force Ballista"
+    time: bonus action
+    range: 120 feet
+    condition: $(meta.level >= 3)
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack originating from the cannon at one creature or object within range. On a hit, the target takes $(meta.level >= 9 ? '3d8' : '2d8') Force damage, and if the target is a creature, it is pushed up to 5 feet away from the cannon.
+
+  - id: eldritchCannonProtector
+    type: Activity
+    name: "Eldritch Cannon: Protector"
+    time: bonus action
+    range: 10 feet
+    condition: $(meta.level >= 3)
+    description: |
+      The cannon emits a burst of positive energy that grants itself and each creature of your choice within range gains $(meta.level >= 9 ? '2d8' : '1d8')$(formatBonus(stats.int.mod)) Temporary Hit Points.
+
+  # Level 5: Arcane Firearm
+  - type: Effect
+    target: activities[artificer AND damageSpell].description["d12"]
+    operation: replace
+    value: "d12+1d8"
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[artificer AND damageSpell].description["d10"]
+    operation: replace
+    value: "d10+1d8"
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(artificer AND damageSpell)OR thunderwave].description["d8"]
+    operation: replace
+    value: "d8+1d8"
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(artificer AND damageSpell)OR scorchingRay].description["d6"]
+    operation: replace
+    value: "d6+1d8"
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(artificer AND damageSpell)].description["d4"]
+    operation: replace
+    value: "d4+1d8"
+    condition: $(meta.level >= 5)
+
+  # Level 9: Explosive Cannon
+  - id: detonateCannon
+    type: Activity
+    name: "Detonate Eldritch Cannon"
+    time: reaction
+    range: 60 feet
+    condition: $(meta.level >= 9)
+    description: |
+      When your cannon takes damage, command the cannon to detonate if you are within 60 feet of it. Doing so destroys the cannon and forces each creature within 20 feet of it to make a Dexterity saving throw against your spell save DC, taking 3d10 Force damage on a failed save or half as much damage on a successful one.
+
+  # Level 15: Fortified Position
+  - id: fortifiedPosition
+    type: Extra
+    name: Fortified Position
+    condition: $(meta.level >= 15)
+    description: |
+      **Double Firepower.** You can now have two cannons at the same time, and you can create two with the same Magic action. You can activate both of them with the same Bonus Action.
+
+      **Shimmering Field Projection.** You and your allies have Half Cover while within 10 feet of your Eldritch Cannon.

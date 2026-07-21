@@ -1,0 +1,11 @@
+id: auraOfVitality
+type: Activity
+name: Aura of Vitality
+resource: level3SpellSlot
+tags: [level3Spell, abjuration, cleric, druid, paladin, healingSpell]
+time: action
+range: self
+duration: concentration, up to 1 minute
+description: |
+  An aura radiates from you in a 30-foot Emanation for the duration. When you create the aura and at the start of each of your turns while it persists, you can restore 2d6 Hit Points to one creature in it.
+

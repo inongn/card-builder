@@ -1,0 +1,6 @@
+type: Effect
+target: saves.constitution.proficiency
+operation: set
+value: 1
+id: conSave
+name: Constitution Saving Throw Proficiency

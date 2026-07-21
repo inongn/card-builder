@@ -3,7 +3,7 @@ tags:
   - skillExpertise
 target: skills.history.proficiency
 operation: set
-condition: $(skills.history.proficiency > 0)
+condition: $(skills.history.proficiency > .5)
 value: 2
 id: historyExpertise
 name: History Expertise

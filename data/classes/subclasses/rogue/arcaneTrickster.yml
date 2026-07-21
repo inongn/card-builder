@@ -33,29 +33,3 @@ children:
     target: mageHand
     overwrite:
       time: bonus action
-  # Level 9: Magical Ambush
-  - id: magicalAmbush
-    type: Extra
-    name: Magical Ambush
-    target: saveSpell
-    condition: $(meta.level >= 9)
-    description: "If you have the Invisible condition when you cast this spell, the target has Disadvantage on any saving throw it makes against the spell."
-
-  # Level 13: Versatile Trickster
-  - id: versatileTrickster
-    type: Effect
-    target: activities[cunningStrike].extra["or have the Prone condition."]
-    operation: replace
-    condition: $(meta.level >= 13)
-    value: "or have the Prone condition. You can also use this option on another creature within 5 feet ofyour Mage Hand."
-
-  # Level 17: Spell Thief
-  - id: spellThief
-    type: Activity
-    name: Spell Thief
-    time: reaction
-    range: self
-    duration: 8 hours
-    tags: [limitedLR]
-    condition: $(meta.level >= 17)
-    description: "Immediately after a creature casts a spell that targets you or includes you in its area of effect, the target makes a DC $(attributes.spellcasting.save) Intelligence saving throw. On a failed save, you negate the spell's effect against you, and you steal the knowledge of the spell if it is at least level 1 and of a level you can cast. For the next 8 hours, you have the spell prepared. The creature can't cast it until 8 hours have passed."

@@ -1,0 +1,11 @@
+id: counterspell
+type: Activity
+name: Counterspell
+resource: level3SpellSlot
+tags: [level3Spell, abjuration, sorcerer, warlock, wizard, saveSpell]
+time: reaction
+range: 60 feet
+duration: instantaneous
+description: |
+  Immediately after you see a creature within 60 feet of yourself casting a spell with Verbal, Somatic, or Material components, you attempt to interrupt a creature in the process of casting a spell. The creature makes a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted. If that spell was cast with a spell slot, the slot isn’t expended.
+

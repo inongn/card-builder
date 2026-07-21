@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - damageResistance
+operation: push
+value: Radiant Damage
+target: attributes.resistances
+id: radiantResistance
+name: Radiant Resistance

@@ -14,9 +14,9 @@ children:
     target: longstrider
     condition: $(meta.level >= 3)
     overwrite:
-      tags: [innateLR]
+      resource: limited
   - type: Reference
     target: passWithoutTrace
     condition: $(meta.level >= 5)
     overwrite:
-      tags: [innateLR]
+      resource: limited

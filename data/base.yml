@@ -8,6 +8,8 @@ children:
     type: Input
     subtype: text
     default: ''
+  
+
   - id: level
     type: Input
     name: Level
@@ -15,6 +17,7 @@ children:
     default: 1
     min: 1
     max: 8
+
   - id: allocated_str
     type: Input
     subtype: number
@@ -164,7 +167,15 @@ children:
     value: $(Math.floor(1 + (meta.level + 3) / 4))
   - id: proficiencies
     type: Attribute
-    value: []
+    value: 
+      heavyArmor: false
+      mediumArmor: false
+      lightArmor: false
+      shields: false
+      martialWeapons: false      
+      simpleWeapons: false
+      finesseWeapons: false
+      lightWeapons: false
   - id: senses
     type: Attribute
     value: 
@@ -360,19 +371,19 @@ children:
   - id: armor
     type: Slot
     name: Armor
-    target: "unarmored OR $(attributes.proficiencies.includes('heavyArmor') ? 'heavyArmor OR mediumArmor OR lightArmor' : attributes.proficiencies.includes('mediumArmor') ? 'mediumArmor OR lightArmor' : '$(attributes.proficiencies.includes('lightArmor') ? 'lightArmor' : '')')"
+    target: "unarmored OR $(attributes.proficiencies.heavyArmor ? 'heavyArmor OR mediumArmor OR lightArmor' : attributes.proficiencies.mediumArmor ? 'mediumArmor OR lightArmor' : '$(attributes.proficiencies.lightArmor ? 'lightArmor' : '')')"
     quantity: 1
 
 
   - id: armamentSlot
     type: Slot
     name: Armament
-    target: "simple $(attributes.proficiencies.includes('shieldTraining') ? 'OR shieldEquipment' : '') $(attributes.proficiencies.includes('martialWeapons') ? 'OR martial' : '') $(attributes.proficiencies.includes('lightWeapons') ? 'OR light' : '') $(attributes.proficiencies.includes('finesseWeapons') ? 'OR rapier OR whip' : '')"
-    quantity: "$(1+(attributes.proficiencies.includes('shieldTraining') ? 1 : 0)+(attributes.proficiencies.includes('lightWeapons') ? 1 : 0)+(attributes.proficiencies.includes('martialWeapons') ? 1 : 0)+(attributes.proficiencies.includes('finesseWeapons') ? 1 : 0))"
+    target: "simple $(attributes.proficiencies.shields ? 'OR shieldEquipment' : '') $(attributes.proficiencies.martialWeapons ? 'OR martial' : '') $(attributes.proficiencies.lightWeapons ? 'OR light' : '') $(attributes.proficiencies.finesseWeapons ? 'OR rapier OR whip' : '')"
+    quantity: "$(1+(attributes.proficiencies.shields ? 1 : 0)+(attributes.proficiencies.lightWeapons ? 1 : 0)+(attributes.proficiencies.martialWeapons ? 1 : 0)+(attributes.proficiencies.finesseWeapons ? 1 : 0))"
 
 
   - type: Reference
-    reference: [longRest, shortRest, coreActions, weaponProperties, extraProperties, unarmed, opportunityAttack]
+    reference: [weaponProperties, extraProperties, unarmed, opportunityAttack]
 
   - type: Resource
     id: hitDice
@@ -390,21 +401,8 @@ children:
     target: background
     quantity: 1
 
-
   - id: class
     type: Slot
     name: Class
     target: class
     quantity: 1
-
-  # Off-Hand Attack — available to all; Two-Weapon Fighting style removes the damage penalty
-  - id: offHandAttack
-    type: Activity
-    name: Off-Hand Attack
-    time: bonus action
-    range: self
-    condition: $(activities[id='weaponAttack'] != null)
-    duration: instantaneous
-    description: "When you take the Attack action and attack with a Light melee weapon held in one hand, you can make one extra attack as a Bonus Action later on the same turn. That extra attack must be made with a different Light melee weapon held in the other hand. You don't add your Ability Modifier to the damage of this extra attack unless that modifier is negative."
-
-

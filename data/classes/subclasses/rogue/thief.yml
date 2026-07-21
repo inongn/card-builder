@@ -32,19 +32,3 @@ children:
     target: attributes.movement.climb
     operation: set
     value: $(attributes.movement.walk)
-
-  # Level 9: Supreme Sneak — Stealth Attack
-  - id: cunningStrikeStealthAttack
-    type: Extra
-    name: "Stealth Attack (Cost: 1d6)"
-    target: cunningStrike
-    condition: $(meta.level >= 9)
-    description: "If you have the Hide action's Invisible condition, this attack doesn't end that condition on you if you end the turn behind Three-Quarters Cover or Total Cover."
-
-  # Level 17: Thief's Reflexes
-  - id: thiefsReflexes
-    type: Activity
-    name: Thief's Reflexes
-    range: self
-    duration: Instantaneous
-    description: "You take two turns during the first round of any combat. Take your first turn at your normal Initiative and your second turn at your Initiative minus 10."

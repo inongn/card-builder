@@ -19,6 +19,4 @@ children:
   type: Extra
   target: healingSpell
   name: Healing Rerolls
-  description: Whenever you roll a die to determine the number of Hit Points you restore
-    with a spell or with this feat's Battle Medic benefit, you can reroll the die
-    if it rolls a 1, and you must use the new roll.
+  description: You can reroll the die if it rolls a 1, and you must use the new roll.

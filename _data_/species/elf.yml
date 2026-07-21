@@ -1,0 +1,43 @@
+id: elf
+name: Elf
+tags:
+- species
+description: 'Created by the god Corellon, the first elves could change their forms
+  at will. No longer able to shape-shift at will, the elves retreated to the Feywild.
+  Elves have pointed ears and lack facial and body hair. They live for around 750
+  years, and they don''t sleep but instead enter a trance when they need to rest.
+
+  '
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Elf
+- id: elfDarkvision
+  type: Effect
+  target: attributes.senses.darkvision
+  operation: set
+  value: 60
+- id: elvenLineage
+  name: Elven Lineage
+  type: Slot
+  target: elvenLineage
+  quantity: 1
+- type: Reference
+  target:
+  - charmedAdvantage
+  - chooseCaster
+- id: keenSenses
+  name: Keen Senses
+  type: Slot
+  target: insightProficiency OR perceptionProficiency OR survivalProficiency
+  quantity: 1
+- id: trance
+  type: Extra
+  target: longRest
+  name: Trance
+  description: You don't need to sleep, and magic can't put you to sleep. You can
+    finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation,
+    during which you retain consciousness.

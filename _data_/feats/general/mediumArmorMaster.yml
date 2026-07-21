@@ -1,0 +1,19 @@
+id: mediumArmorMaster
+name: Medium Armor Master
+tags:
+  - feat
+  - generalFeat
+condition: "$(attributes.proficiencies.includes('mediumArmor'))"
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Dexterous Wearer
+    type: Effect
+    target: attributes.ac
+    operation: add
+    value: 1
+    condition: "stats.dex.mod >= 3"

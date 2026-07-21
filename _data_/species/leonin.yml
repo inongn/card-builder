@@ -1,0 +1,37 @@
+id: leonin
+name: Leonin
+tags:
+- species
+description: 'Leonin are golden-furred hunters, a proud and fiercely independent people.
+  They value self-reliance above all else, often viewing the gods with wary skepticism
+  as they protect their ancestral lands through martial prowess and daunting presence.
+
+  '
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Leonin
+- type: Effect
+  target: attributes.movement.walk
+  operation: set
+  value: 35
+- type: Activity
+  range: 10 feet
+  time: bonus action
+  name: Daunting Roar
+  description: You let out a terrifying roar. Each creature of your choice within
+    range must succeed on a DC $(attributes.prof + 8 + stats.con.mod) Wisdom saving
+    throw or have Disadvantage on attack rolls and saving throws until the end of your next turn.
+  resource: dauntingRoar
+  id: dauntingRoar
+- type: Resource
+  name: Daunting Roar
+  id: dauntingRoar
+  quantity: $(attributes.prof)
+- type: Slot
+  name: Hunter's Prowess Skill Proficiency
+  id: huntersProwess
+  target: athleticsProficiency, intimidationProficiency, perceptionProficiency, stealthProficiency

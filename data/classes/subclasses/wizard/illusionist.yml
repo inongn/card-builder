@@ -23,7 +23,7 @@ children:
     condition: $(meta.level >= 3)
   - id: improvedIllusionsMinorIllusionTime
     type: Effect
-    target: activities[minorIllusion].time
+    target: activities[id=minorIllusion].time
     operation: set
     value: "bonus action"
     condition: $(meta.level >= 3)
@@ -38,28 +38,3 @@ children:
   - type: Reference
     target: [summonBeast, summonFey]
     condition: $(meta.level >= 6)
-  - id: phantasmalCreatures
-    type: Effect
-    target: activities[summonBeastActivity, summonFeyActivity].uses
-    condition: $(meta.level >= 6)
-    operation: set
-    value: 1
-
-  # Level 10: Illusory Self
-  - id: illusorySelf
-    type: Activity
-    name: Illusory Self
-    time: reaction
-    condition: $(meta.level >= 10)
-    resource: level2SpellSlot
-    description: "When a creature hits you with an attack roll, you interpose an illusory duplicate of yourself between the attacker and yourself. The attack automatically misses, then the illusion dissipates."
-    tags: [innateLR]
-
-  # Level 14: Illusory Reality
-  - id: illusoryReality
-    type: Activity
-    name: Illusory Reality
-    time: bonus action
-    duration: 1 minute
-    condition: $(meta.level >= 14)
-    description: "You weave magic into illusions to give them a semi-reality. Choose one inanimate, nonmagical object that is part of an Illusion spell you cast. Make it real for the duration."

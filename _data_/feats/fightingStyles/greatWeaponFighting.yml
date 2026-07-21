@@ -1,0 +1,7 @@
+tags:
+- fightingStyle
+type: Extra
+name: Great Weapon Fighting
+target: weaponAttack AND twoHanded AND melee
+description: On a hit, you can treat any 1 or 2 on a damage die as a 3.
+id: greatWeaponFighting

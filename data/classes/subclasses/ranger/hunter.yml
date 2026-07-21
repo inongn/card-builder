@@ -32,21 +32,3 @@ children:
     quantity: 1
     target: classOption OR defensiveTactics
     condition: $(meta.level >= 7)
-
-  # Level 11: Superior Hunter's Prey
-  - id: superiorHuntersPrey
-    type: Extra
-    name: Superior Hunter's Prey
-    target: huntersMark
-    condition: $(meta.level >= 11)
-    description: "Once per turn when you deal damage to a creature marked by this spell, you can also deal that spell's extra damage to a different creature that you can see within 30 feet of the first creature."
-
-  # Level 15: Superior Hunter's Defense
-  - id: superiorHuntersDefense
-    type: Activity
-    name: Superior Hunter's Defense
-    time: reaction
-    range: self
-    duration: 1 turn
-    condition: $(meta.level >= 15)
-    description: "When you take damage, you give yourself Resistance to that damage and any other damage of the same type until the end of the current turn."

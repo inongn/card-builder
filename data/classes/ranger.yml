@@ -2,8 +2,6 @@ id: ranger
 name: Ranger
 description: |
   Far from bustling cities, amid the trees of trackless forests and across wide plains, Rangers keep their unending watch in the wilderness. Rangers learn to track their quarry as a predator does, moving stealthily through the wilds and hiding themselves in brush and rubble.
-
-  Thanks to their connection with nature, Rangers can also cast spells that harness primal powers of the wilderness. A Ranger's talents and magic are honed with deadly focus to protect the world from the ravages of monsters and tyrants.
 tags:
   - class
 type: Folder
@@ -52,8 +50,8 @@ children:
   - type: Reference
     target: huntersMark
   - type: Effect
-    target: activities[huntersMark].resource
-    operation: push
+    target: activities[id=huntersMark].resource
+    operation: set
     value: favoredEnemy
   # Level 2: Deft Explorer
   - id: deftExplorerExpertise
@@ -70,6 +68,19 @@ children:
     quantity: 1
     target: fightingStyle OR druidicWarrior
     condition: $(meta.level >= 2)
+
+  # Level 3: Ranger Subclass
+  - id: rangerSubclass
+    name: Ranger Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: rangerSubclass
+
+  # Weapon Mastery
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties
+
 
   # Level 4: Ability Score Improvement
   - id: level4feat
@@ -114,116 +125,3 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 8)
-
-  # Level 9: Expertise
-  - id: expertise
-    type: Slot
-    name: Ranger Expertise
-    quantity: 2
-    target: skillExpertise
-    condition: $(meta.level >= 9)
-
-  # Level 10: Tireless
-  - id: tireless
-    type: Activity
-    name: Tireless
-    time: action
-    range: self
-    duration: Instantaneous
-    condition: $(meta.level >= 10)
-    resource: tireless
-    description: "Primal forces fuel you on your journeys. Gain 1d8$(formatBonus(stats.wis.mod))   Temporary Hit Points."
-  - id: tireless
-    type: Resource
-    condition: $(meta.level >= 10)
-    name: Tireless
-    quantity: $(Math.max(1, stats.wis.mod))
-  - id: tirelessExhaustion
-    type: Extra
-    name: Decrease Exhaustion
-    target: shortRest
-    condition: $(meta.level >= 10)
-    description: "Your Exhaustion level, if any, decreases by 1."
-
-  # Level 12: Ability Score Improvement
-  - id: level12feat
-    name: Level 12 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 12)
-
-  # Level 13: Relentless Hunter
-  - id: relentlessHunter
-    type: Extra
-    name: Relentless Hunter
-    target: huntersMark
-    condition: $(meta.level >= 13)
-    description: "Taking damage can't break your Concentration on this spell."
-
-  # Level 14: Nature's Veil
-  - id: naturesVeil
-    type: Activity
-    name: Nature's Veil
-    time: bonus action
-    range: self
-    duration: 1 turn
-    condition: $(meta.level >= 14)
-    resource: naturesVeil
-    description: "You invoke spirits of nature to magically hide yourself. You have the Invisible condition until the end of your next turn."
-  - id: naturesVeil
-    type: Resource
-    name: Nature's Veil
-    condition: $(meta.level >= 10)
-    quantity: $(Math.max(1, stats.wis.mod))
-
-  # Level 16: Ability Score Improvement
-  - id: level16feat
-    name: Level 16 Feat
-    type: Slot
-    quantity: 1
-    target: feat
-    condition: $(meta.level >= 16)
-
-  # Level 17: Precise Hunter
-  - id: preciseHunter
-    type: Extra
-    name: Precise Hunter
-    target: huntersMark
-    condition: $(meta.level >= 17)
-    description: "You have Advantage on attack rolls against the creature marked by this spell."
-
-  # Level 18: Feral Senses
-  - id: feralSenses
-    type: Effect
-    target: attributes.senses.blindsight
-    operation: set
-    condition: $(meta.level >= 18)
-    value: 30
-
-  # Level 19: Epic Boon
-  - id: epicBoon
-    type: Slot
-    name: Epic Boon
-    target: epicBoon
-    condition: $(meta.level >= 19)
-
-  # Level 20: Foe Slayer
-  - id: foeSlayer
-    type: Effect
-    target: activities[huntersMark].description["1d6"]
-    operation: replace
-    condition: $(meta.level >= 20)
-    value: "1d10"
-
-  # Level 3: Ranger Subclass
-  - id: rangerSubclass
-    name: Ranger Subclass
-    condition: $(meta.level >= 3)
-    type: Slot
-    target: rangerSubclass
-
-  # Weapon Mastery
-  - id: masteryProperties
-    type: Reference
-    target: masteryProperties

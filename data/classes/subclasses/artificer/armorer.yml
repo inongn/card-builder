@@ -55,19 +55,3 @@ children:
     condition: $(meta.level >= 5)
     name: Extra Attack
     description: "You can attack twice instead of once whenever you take the Attack action on your turn."
-
-  # Level 9: Improved Armorer
-  - id: improvedArmorerReplication
-    type: Extra
-    name: Armor Replication
-    condition: $(meta.level >= 9)
-    description: |
-      You learn an additional plan for your Replicate Magic Item feature, and it must be in the Armor category. If you replace that plan, you must replace it with another Armor plan.
-      In addition, you can create an additional item with that feature, and the item must also be in the Armor category.
-
-  - id: improvedArsenal
-    type: Extra
-    name: Improved Arsenal
-    condition: $(meta.level >= 9)
-    description: |
-      You gain a +1 bonus to attack and damage rolls made with the special weapon of your Arcane Armor model.

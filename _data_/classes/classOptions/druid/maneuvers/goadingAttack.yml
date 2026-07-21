@@ -1,0 +1,6 @@
+id: goadingAttack
+name: Goading Attack
+tags: [maneuver]
+type: Activity
+resource: superiorityDice
+description: When you hit a creature with an attack roll, you attempt to goad the target into attacking you. Add 1d$(attributes.superiorityDie) to the attack’s damage roll. The target must succeed on a DC $(attributes.superioritySave) Wisdom saving throw or have Disadvantage on attack rolls against targets other than you until the end of your next turn.

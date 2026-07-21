@@ -1,0 +1,6 @@
+id: ambush
+name: Ambush
+tags: [maneuver]
+type: Activity
+resource: superiorityDice
+description: When you make a Dexterity (Stealth) check or an Initiative roll, you add 1d$(attributes.superiorityDie) to the roll, unless you have the Incapacitated condition.

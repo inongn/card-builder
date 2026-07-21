@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: martialWeapons
+target: attributes.proficiencies
+id: martialWeaponProficiency
+name: Martial Weapon Proficiency

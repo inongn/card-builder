@@ -1,0 +1,31 @@
+id: gnome
+name: Gnome
+tags:
+- species
+description: 'Gnomes are magical folk created by gods of invention, illusions, and
+  life underground. Gnomes are petite folk with big eyes and pointed ears, who live
+  around 425 years.
+
+  '
+type: Folder
+children:
+- id: species
+  type: Effect
+  target: meta.species
+  operation: set
+  value: Gnome
+- id: gnomeDarkvision
+  type: Effect
+  target: attributes.senses.darkvision
+  operation: set
+  value: 60
+- type: Reference
+  target:
+  - intAdvantage
+  - wisAdvantage
+  - chaAdvantage
+- id: gnomishLineage
+  name: Gnomish Lineage
+  type: Slot
+  target: gnomishLineage
+  quantity: 1

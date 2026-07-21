@@ -9,6 +9,6 @@ variables:
   damageRoll: 1d4
   damageType: piercing
   range: 20 feet
-  classification: finesse
+  classification: ranged
   category: simple
   property: ''

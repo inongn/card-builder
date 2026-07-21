@@ -25,13 +25,13 @@ children:
 
   - id: dexterousAttacksBonus
     type: Effect
-    target: activities[weaponAttack and unarmed].description["$(formatBonus(attributes.melee.bonus))"]
+    target: activities[tags=weaponAttack and tags=unarmed].description["$(formatBonus(attributes.melee.bonus))"]
     operation: replace
     value: "$(formatBonus(attributes.finesse.bonus))"
 
   - id: dexterousAttacksRoll
     type: Effect
-    target: activities[weaponAttack and unarmed].description["$(formatBonus(attributes.melee.attack))"]
+    target: activities[tags=weaponAttack and tags=unarmed].description["$(formatBonus(attributes.melee.attack))"]
     operation: replace
     value: "$(formatBonus(attributes.finesse.attack))"
 
@@ -43,7 +43,7 @@ children:
 
   - id: martialArtsReplacementd4
     type: Effect
-    target: activities[unarmed and weaponAttack].description["1d4"]
+    target: activities[tags=unarmed and tags=weaponAttack].description["1d4"]
     operation: replace
     value: 1d$(attributes.bardicDie)
 
@@ -66,10 +66,3 @@ children:
     condition: $(meta.level >= 6)
     resource: bardicInspiration
     description: "When you roll Initiative, you and each ally within 30 feet gain a 1d$(attributes.bardicDie) bonus to Initiative."
-
-  # Level 14: Leading Evasion
-  - id: leadingEvasion
-    type: Activity
-    name: Leading Evasion
-    condition: $(meta.level >= 14)
-    description: "When subjected to a Dexterity save for half damage, you take no damage if you succeed and half if you fail. You can share this benefit with creatures within 5 feet making the same save."

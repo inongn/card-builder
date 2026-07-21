@@ -7,22 +7,22 @@ children:
   - type: Reference
     target: coldResistance
   - type: Effect
-    target: activities[damageSpell AND coldDamage].description["d12"]
+    target: activities[tags=damageSpell AND tags=coldDamage].description["d12"]
     operation: replace
     value: "d12$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND coldDamage].description["d10"]
+    target: activities[tags=damageSpell AND tags=coldDamage].description["d10"]
     operation: replace
     value: "d10$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND coldDamage].description["d8"]
+    target: activities[tags=damageSpell AND tags=coldDamage].description["d8"]
     operation: replace
     value: "d8$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND coldDamage].description["d6"]
+    target: activities[tags=damageSpell AND tags=coldDamage].description["d6"]
     operation: replace
     value: "d6$(formatBonus(stats.cha.mod))"
   - type: Effect
-    target: activities[damageSpell AND coldDamage].description["d4"]
+    target: activities[tags=damageSpell AND tags=coldDamage].description["d4"]
     operation: replace
     value: "d4$(formatBonus(stats.cha.mod))"

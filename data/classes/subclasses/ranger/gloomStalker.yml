@@ -65,27 +65,3 @@ children:
     quantity: 1
     target: wisSave OR intSave OR chaSave
     condition: $(meta.level >= 7)
-
-  # Level 11: Stalker's Flurry
-  - id: stalkersFlurrySuddenStrike
-    type: Extra
-    name: Sudden Strike
-    target: dreadfulStrike
-    condition: $(meta.level >= 11)
-    description: "Make another attack with the same weapon against a different creature that is within 5 feet of the original target and within the weapon's range."
-  - id: stalkersFlurryMassFear
-    type: Extra
-    name: Mass Fear
-    target: dreadfulStrike
-    condition: $(meta.level >= 11)
-    description: "The target and each creature within 10 feet of it must make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failure, a creature has the Frightened condition until the start of your next turn."
-
-  # Level 15: Shadowy Dodge
-  - id: shadowyDodge
-    type: Activity
-    name: Shadowy Dodge
-    time: reaction
-    range: self
-    duration: Instantaneous
-    condition: $(meta.level >= 15)
-    description: "When a creature makes an attack roll against you, you impose Disadvantage on that roll. Whether the attack hits or misses, you can teleport up to 30 feet to an unoccupied space that you can see."

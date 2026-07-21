@@ -1,0 +1,14 @@
+id: rapier
+name: Rapier
+type: Reference
+target: weaponAttack
+tags: [martial]
+variables:
+  name: Rapier
+  mastery: vex
+  damageRoll: 1d8
+  damageType: piercing
+  range: 5 feet
+  classification: finesse
+  category: martial
+  property: ''

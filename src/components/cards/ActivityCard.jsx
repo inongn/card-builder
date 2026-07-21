@@ -30,16 +30,10 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
             <div
                 className="resource-dots"
                 key="dots"
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: `repeat(${dotsPerRow}, auto)`,
-                    justifyItems: 'end',
-                    direction: 'rtl',
-                    gap: '2px'
-                }}
+                style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}
             >
                 {Array(quantity).fill(0).map((_, j) => (
-                    <mdui-icon key={j} name="crop_square" style={{ transform: 'rotate(45deg)', direction: 'ltr' }} class="icon-small"></mdui-icon>
+                    <mdui-icon key={j} name="crop_square" class="icon-small icon-rotated"></mdui-icon>
                 ))}
             </div>
         );
@@ -95,14 +89,14 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                             options.forEach((opt, i) => {
                                 elements.push(opt);
                                 if (i < options.length - 1) {
-                                    elements.push(<span key={`sep-${i}`} style={{ fontSize: '0.8rem', opacity: 0.7, fontWeight: 'bold' }}>or</span>);
+                                    elements.push(<span key={`sep-${i}`} className="text-or-separator">or</span>);
                                 }
                             });
                             return elements;
                         }
 
                         if (isLimited) {
-                            return <mdui-icon name="replay" class="icon-accent" style={{ verticalAlign: 'middle' }}></mdui-icon>;
+                            return <mdui-icon name="replay" class="icon-accent icon-middle"></mdui-icon>;
                         }
 
                         if (activity.uses && activity.uses > 1) {

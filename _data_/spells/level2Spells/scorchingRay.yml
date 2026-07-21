@@ -1,0 +1,13 @@
+id: scorchingRay
+type: Activity
+name: Scorching Ray
+resource: level2SpellSlot
+tags: [level2Spell, evocation, sorcerer, wizard, attackSpell, damageSpell, fireDamage]
+time: action
+range: 120 feet
+duration: instantaneous
+description: |
+  You hurl three fiery rays. You can hurl them at one target within range or at several. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack for each ray. On a hit, the target takes 2d6 Fire damage.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: You create one additional ray for each spell slot level above 2.

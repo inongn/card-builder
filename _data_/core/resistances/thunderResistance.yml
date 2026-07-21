@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - damageResistance
+operation: push
+value: Thunder Damage
+target: attributes.resistances
+id: thunderResistance
+name: Thunder Resistance

@@ -1,0 +1,6 @@
+type: Effect
+target: saves.intelligence.adv
+operation: set
+value: true
+id: intAdvantage
+name: Int Advantage

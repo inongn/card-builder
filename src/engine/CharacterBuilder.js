@@ -688,8 +688,9 @@ export class CharacterBuilder {
         const inputs = [];
         if (!node || !node.children) return inputs;
 
-        node.children.forEach((child, index) => {
-            const currentPath = [...path, index];
+        node.children.forEach((child) => {
+            const step = { id: child.id, slotIndex: child.slotIndex };
+            const currentPath = [...path, step];
 
             if (child.type === 'Input') {
                 inputs.push({
@@ -715,30 +716,28 @@ export class CharacterBuilder {
             let current = root;
             let found = true;
 
-            for (let i = 0; i < inputData.path.length - 1; i++) {
-                const index = inputData.path[i];
-                if (current.children && current.children[index]) {
-                    current = current.children[index];
-                } else {
+            for (let i = 0; i < inputData.path.length; i++) {
+                const step = inputData.path[i];
+                if (!current.children) {
                     found = false;
                     break;
                 }
+                const child = current.children.find(c => c.id === step.id && c.slotIndex === step.slotIndex);
+                if (!child) {
+                    found = false;
+                    break;
+                }
+                current = child;
             }
 
-            if (found) {
-                const lastIndex = inputData.path[inputData.path.length - 1];
-                if (current.children && current.children[lastIndex]) {
-                    const input = current.children[lastIndex];
-                    if (input.type === 'Input') {
-                        input.value = inputData.value;
+            if (found && current.type === 'Input') {
+                current.value = inputData.value;
 
-                        // Seed CharacterData meta using id
-                        const key = (input.id || input.name || '').replace(/^ui\./i, '').toLowerCase();
-                        if (key) {
-                            if (!this.characterData.meta) this.characterData.meta = {};
-                            this.characterData.meta[key] = inputData.value;
-                        }
-                    }
+                // Seed CharacterData meta using id
+                const key = (current.id || current.name || '').replace(/^ui\./i, '').toLowerCase();
+                if (key) {
+                    if (!this.characterData.meta) this.characterData.meta = {};
+                    this.characterData.meta[key] = inputData.value;
                 }
             }
         });

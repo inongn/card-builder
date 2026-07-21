@@ -63,47 +63,27 @@ children:
 
   # Level 5: Arcane Firearm
   - type: Effect
-    target: activities[artificer AND damageSpell].description["d12"]
+    target: activities[tags=artificer AND tags=damageSpell].description["d12"]
     operation: replace
     value: "d12+1d8"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[artificer AND damageSpell].description["d10"]
+    target: activities[tags=artificer AND tags=damageSpell].description["d10"]
     operation: replace
     value: "d10+1d8"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[(artificer AND damageSpell)OR thunderwave].description["d8"]
+    target: activities[(tags=artificer AND tags=damageSpell)OR thunderwave].description["d8"]
     operation: replace
     value: "d8+1d8"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[(artificer AND damageSpell)OR scorchingRay].description["d6"]
+    target: activities[(tags=artificer AND tags=damageSpell)OR scorchingRay].description["d6"]
     operation: replace
     value: "d6+1d8"
     condition: $(meta.level >= 5)
   - type: Effect
-    target: activities[(artificer AND damageSpell)].description["d4"]
+    target: activities[(tags=artificer AND tags=damageSpell)].description["d4"]
     operation: replace
     value: "d4+1d8"
     condition: $(meta.level >= 5)
-
-  # Level 9: Explosive Cannon
-  - id: detonateCannon
-    type: Activity
-    name: "Detonate Eldritch Cannon"
-    time: reaction
-    range: 60 feet
-    condition: $(meta.level >= 9)
-    description: |
-      When your cannon takes damage, command the cannon to detonate if you are within 60 feet of it. Doing so destroys the cannon and forces each creature within 20 feet of it to make a Dexterity saving throw against your spell save DC, taking 3d10 Force damage on a failed save or half as much damage on a successful one.
-
-  # Level 15: Fortified Position
-  - id: fortifiedPosition
-    type: Extra
-    name: Fortified Position
-    condition: $(meta.level >= 15)
-    description: |
-      **Double Firepower.** You can now have two cannons at the same time, and you can create two with the same Magic action. You can activate both of them with the same Bonus Action.
-
-      **Shimmering Field Projection.** You and your allies have Half Cover while within 10 feet of your Eldritch Cannon.

@@ -54,7 +54,3 @@ children:
       **Distract.** When you$(meta.level >= 17 ? ' or your allies' : '') and the illusion are within 5 feet of a creature, attack rolls against it have Advantage.
       
       **Move.** As a Bonus Action, move the illusion up to 30 feet to a space within 120 feet of you.$(meta.level >= 6 ? ' You can teleport to swap places with it.' : '')
-      
-      $(meta.level >= 17 ? "**Shared Distraction.** When you and your allies make attack rolls against a creature within 5 feet of the illusion, the attack rolls have Advantage." : "")
-
-      $(meta.level >= 17 ? "**Healing Illusion.** When the illusion ends, you or a creature of your choice within 5 feet of it regains $(meta.level) Hit Points." : "")

@@ -1,0 +1,9 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.athletics.proficiency
+operation: set
+condition: $(skills.athletics.proficiency > 0)
+value: 2
+id: athleticsExpertise
+name: Athletics Expertise

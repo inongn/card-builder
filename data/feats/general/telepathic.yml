@@ -17,4 +17,4 @@ children:
     type: Reference
     target: detectThoughts
     overwrite:
-      uses: 1
+      resource: limited

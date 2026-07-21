@@ -1,0 +1,11 @@
+id: divineFavor
+type: Activity
+name: Divine Favor
+resource: level1SpellSlot
+tags: [level1Spell, transmutation, paladin]
+time: bonus action
+range: self
+duration: 1 minute
+description: |
+  Until the spell ends, your attacks with weapons deal an extra 1d4 Radiant damage on a hit.
+

@@ -16,5 +16,5 @@ children:
     description: On a hit, the target has Disadvantage on any saving throw it makes to maintain Concentration.
   - name: Guarded Mind
     type: Activity
-    uses: 1
+    resource: limited
     description: If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead.

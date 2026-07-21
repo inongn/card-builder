@@ -1,6 +1,6 @@
 id: hungerOfHadar
 type: Activity
-name: Hunger of Hadar
+name: Eldritch Hunger
 resource: level3SpellSlot
 tags: [level3Spell, conjuration, warlock, saveSpell, damageSpell, coldDamage, acidDamage]
 time: action

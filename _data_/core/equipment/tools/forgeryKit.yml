@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Forgery Kit
+target: attributes.tools
+id: forgeryKit
+name: Forgery Kit

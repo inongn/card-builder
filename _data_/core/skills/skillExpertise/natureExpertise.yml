@@ -1,0 +1,9 @@
+type: Effect
+tags:
+  - skillExpertise
+target: skills.nature.proficiency
+operation: set
+condition: $(skills.nature.proficiency > 0)
+value: 2
+id: natureExpertise
+name: Nature Expertise

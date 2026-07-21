@@ -46,8 +46,8 @@ children:
   # Level 3: Steps of the Fey  
   - id: mistyStepUses
     type: Effect
-    target: activities[mistyStep].resource
-    operation: push
+    target: activities[id=mistyStep].resource
+    operation: set
     value: stepsOfTheFey
 
   - id: stepsOfTheFey
@@ -66,30 +66,3 @@ children:
     duration: instantaneous
     condition: $(meta.level >= 6)
     description: "When you take damage, you cast Misty Step."
-
-  # Level 10: Beguiling Defenses
-  - id: beguilingDefensesImmunity
-    type: Effect
-    target: attributes.immunities
-    operation: push
-    value: Charmed
-    condition: $(meta.level >= 10)
-  
-  - id: beguilingDefensesReaction
-    type: Activity
-    name: Beguiling Defenses
-    time: reaction
-    duration: instantaneous
-    tags: [innateLR]
-    resource: level1SpellSlot
-    condition: $(meta.level >= 10)
-    description: |
-      When a creature you can see hits you with an attack roll, reduce the damage you take by half (round down), and force the attacker to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the attacker takes Psychic damage equal to the damage you take.
-
-  # Level 14: Bewitching Magic
-  - id: bewitchingMagic
-    type: Extra
-    target: level1Spell AND (enchantment OR illusion)
-    name: Bewitching Magic
-    description: "Immediately after you cast this spell, you can cast Misty Step as part of the same action without expending a slot."
-    condition: $(meta.level >= 14)

@@ -3,7 +3,6 @@ name: Elemental Adept
 tags:
   - feat
   - generalFeat
-  - repeatable
 type: Folder
 children:
   - name: Ability Score Increase
@@ -16,4 +15,3 @@ children:
     id: energyMastery
     quantity: 1
     target: acidResistance OR coldResistance OR fireResistance OR lightningResistance or thunderResistance OR elementalAdeptFeatResistance
-repeatable: true

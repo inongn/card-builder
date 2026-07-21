@@ -1,6 +1,6 @@
 id: armorOfAgathys
 type: Activity
-name: Armor of Agathys
+name: Eldritch Armor
 resource: level1SpellSlot
 tags: [level1Spell, abjuration, warlock]
 time: bonus action

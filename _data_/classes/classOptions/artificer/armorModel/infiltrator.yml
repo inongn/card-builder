@@ -1,0 +1,42 @@
+id: infiltratorModel
+name: Infiltrator
+type: Folder
+tags:
+  - armorModel
+children:
+  - id: lightningLauncher
+    type: Activity
+    name: "Lightning Launcher"
+    time: action
+    range: 90 feet
+    tags: [weaponAttack, attack]
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))) attack. On a hit, the target takes $(meta.level >= 15 ? '2d6' : '1d6')$(formatBonus(stats.int.mod + (meta.level >= 9 ? 1 : 0))) Lightning damage.
+      
+      Once on each of your turns when you hit a creature with the launcher, you can deal an extra 1d6 Lightning damage to that target.
+      
+      $(meta.level >= 15 ? 'Any creature that takes Lightning damage from your Lightning Launcher glimmers with magical light until the start of your next turn. The glimmering creature sheds Dim Light in a 5-foot radius, and it has Disadvantage on attack rolls against you, as the light jolts it if it attacks you.' : '')
+
+  - name: Powered Steps
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    value: 5
+
+  - type: Reference
+    target: stealthAdvantage
+
+  - id: perfectedInfiltratorFlightResource
+    type: Resource
+    name: Perfected Infiltrator Flight Uses
+    quantity: "$(Math.max(1, stats.int.mod))"
+    condition: $(meta.level >= 15)
+
+  - id: perfectedInfiltratorFlight
+    type: Activity
+    name: Perfected Infiltrator Flight
+    time: bonus action
+    resource: perfectedInfiltratorFlightResource
+    condition: $(meta.level >= 15)
+    description: |
+      You gain a Fly Speed equal to twice your Speed ($(2 * attributes.movement.walk) feet) until the end of the current turn.

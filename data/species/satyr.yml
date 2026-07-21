@@ -29,11 +29,9 @@ children:
   condition: $(meta.level >= 3)
   target: charmPerson
   overwrite:
-    tags:
-    - innateLR
+      tags: innateLR
 - type: Reference
   condition: $(meta.level >= 5)
   target: suggestion
   overwrite:
-    tags:
-    - innateLR
+      tags: innateLR

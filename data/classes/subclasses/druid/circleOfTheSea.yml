@@ -21,9 +21,7 @@ children:
   - type: Reference
     target: [controlWater, iceStorm]
     condition: $(meta.level >= 7)
-  - type: Reference
-    target: [conjureElemental, holdMonster]
-    condition: $(meta.level >= 9)
+
 
   # Level 3: Wrath of the Sea (Activation)
   - id: wrathOfTheSea
@@ -38,13 +36,6 @@ children:
       
       When you manifest it, and as a Bonus Action on your subsequent turns, you can choose a creature you can see in the Emanation. The target must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take $(Math.max(1, stats.wis.mod))d6 Cold damage$(meta.level >= 6 ? " and be pushed up to 15 feet away (if Large or smaller)" : "").
 
-  # Level 10: Stormborn — as Extra targeting wrathOfTheSea
-  - id: stormborn
-    type: Extra
-    target: wrathOfTheSea
-    name: Stormborn
-    condition: $(meta.level >= 10)
-    description: "You gain a Fly Speed equal to your Speed and Resistance to Cold, Lightning, and Thunder damage for the duration."
 
   # Level 6: Aquatic Affinity
   - id: aquaticAffinity

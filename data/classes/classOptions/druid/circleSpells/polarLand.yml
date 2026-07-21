@@ -1,0 +1,13 @@
+id: polarLand
+name: Polar Land
+tags: [circleSpells]
+type: Folder
+children:
+  - type: Reference
+    target: [fogCloud, holdPerson, rayOfFrost]
+  - type: Reference
+    condition: meta.level >= 5
+    target: sleetStorm
+  - type: Reference
+    condition: meta.level >= 7
+    target: iceStorm

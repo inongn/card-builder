@@ -1,0 +1,7 @@
+type: Effect
+target: skills.perception.proficiency
+operation: set
+condition: $(skills.perception.proficiency < 0.5)
+value: 0.5
+id: perceptionHalfProficiency
+name: Perception Half Proficiency

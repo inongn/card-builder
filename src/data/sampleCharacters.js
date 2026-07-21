@@ -18,110 +18,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Grunk Ironjaw'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 10
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -226,6 +266,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'barbarianSubclass'
+                                }
+                        ],
+                        propertyId: 'berserker'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -241,17 +292,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'charger'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'barbarianSubclass'
-                                }
-                        ],
-                        propertyId: 'berserker'
                 }
         ]
 }
@@ -268,110 +308,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Sylva Mossrunner'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -520,28 +600,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'durable'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'charger'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'barbarianSubclass'
                                 }
                         ],
@@ -560,6 +618,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'owl'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'durable'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'charger'
                 }
         ]
 }
@@ -576,110 +656,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Bjorveld Ashroot'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -795,6 +915,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'barbarianSubclass'
+                                }
+                        ],
+                        propertyId: 'worldTree'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -810,17 +941,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'speedy'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'barbarianSubclass'
-                                }
-                        ],
-                        propertyId: 'worldTree'
                 }
         ]
 }
@@ -837,110 +957,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Korrax Flameheart'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -1089,6 +1249,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'barbarianSubclass'
+                                }
+                        ],
+                        propertyId: 'zealot'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -1104,17 +1275,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'sentinel'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'barbarianSubclass'
-                                }
-                        ],
-                        propertyId: 'zealot'
                 }
         ]
 }
@@ -1131,110 +1291,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Mirabel Twostep'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -1527,7 +1727,18 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'animalHandlingExpertise'
+                        propertyId: 'arcanaExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSubclass'
+                                }
+                        ],
+                        propertyId: 'dance'
                 },
                 {
                         path: [
@@ -1550,17 +1761,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'speedy'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                }
-                        ],
-                        propertyId: 'dance'
                 }
         ]
 }
@@ -1577,110 +1777,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Sylindra Moonsong'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -2007,7 +2247,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'arcanaExpertise'
+                        propertyId: 'historyExpertise'
                 },
                 {
                         path: [
@@ -2019,7 +2259,18 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'athleticsExpertise'
+                        propertyId: 'deceptionExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSubclass'
+                                }
+                        ],
+                        propertyId: 'glamour'
                 },
                 {
                         path: [
@@ -2042,17 +2293,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'inspiringLeader'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                }
-                        ],
-                        propertyId: 'glamour'
                 }
         ]
 }
@@ -2069,110 +2309,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Pemberwick Thistledown'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -2498,7 +2778,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'deceptionExpertise'
+                        propertyId: 'performanceExpertise'
                 },
                 {
                         path: [
@@ -2510,57 +2790,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'historyExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4Feat'
-                                }
-                        ],
-                        propertyId: 'skillExpert'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4Feat'
-                                },
-                                {
-                                        id: 'skillExpertSkillProficiency'
-                                }
-                        ],
-                        propertyId: 'sleightOfHandProficiency'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4Feat'
-                                },
-                                {
-                                        id: 'skillExpertExpertise'
-                                }
-                        ],
-                        propertyId: 'insightExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8Feat'
-                                }
-                        ],
-                        propertyId: 'alert'
+                        propertyId: 'intimidationExpertise'
                 },
                 {
                         path: [
@@ -2647,6 +2877,56 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4Feat'
+                                }
+                        ],
+                        propertyId: 'skillExpert'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4Feat'
+                                },
+                                {
+                                        id: 'skillExpertSkillProficiency'
+                                }
+                        ],
+                        propertyId: 'sleightOfHandProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4Feat'
+                                },
+                                {
+                                        id: 'skillExpertExpertise'
+                                }
+                        ],
+                        propertyId: 'persuasionExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8Feat'
+                                }
+                        ],
+                        propertyId: 'alert'
                 }
         ]
 }
@@ -2663,110 +2943,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Dax Steelstring'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -3074,23 +3394,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'expertise',
-                                        slotIndex: 0
+                                        id: 'bardSubclass'
                                 }
                         ],
-                        propertyId: 'intimidationExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'expertise',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'investigationExpertise'
+                        propertyId: 'valor'
                 },
                 {
                         path: [
@@ -3113,17 +3420,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'warCaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                }
-                        ],
-                        propertyId: 'valor'
                 }
         ]
 }
@@ -3140,110 +3436,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Sister Merindah'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -3575,6 +3911,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericSubclass'
+                                }
+                        ],
+                        propertyId: 'lifeDomain'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -3601,17 +3948,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'warCaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'clericSubclass'
-                                }
-                        ],
-                        propertyId: 'lifeDomain'
                 }
         ]
 }
@@ -3628,110 +3964,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Vael Sunmantle'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -4099,6 +4475,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericSubclass'
+                                }
+                        ],
+                        propertyId: 'lightDomain'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -4139,17 +4526,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'huntersMark'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'clericSubclass'
-                                }
-                        ],
-                        propertyId: 'lightDomain'
                 }
         ]
 }
@@ -4166,110 +4542,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Nyx Shadowveil'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -4627,6 +5043,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericSubclass'
+                                }
+                        ],
+                        propertyId: 'trickeryDomain'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -4681,17 +5108,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'illusoryScript'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'clericSubclass'
-                                }
-                        ],
-                        propertyId: 'trickeryDomain'
                 }
         ]
 }
@@ -4708,110 +5124,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Commander Barek'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -5108,6 +5564,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericSubclass'
+                                }
+                        ],
+                        propertyId: 'warDomain'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -5134,17 +5601,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'sentinel'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'clericSubclass'
-                                }
-                        ],
-                        propertyId: 'warDomain'
                 }
         ]
 }
@@ -5161,117 +5617,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Wren Fernhollow'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                85,
-                                30,
-                                2
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarName'
+                                }
                         ]
                 }
         ],
@@ -5625,17 +6127,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'telekinetic'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'elementalFury'
                                 }
                         ],
@@ -5647,95 +6138,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 0
+                                        id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'panther'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'ape'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'badger'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 3
-                                }
-                        ],
-                        propertyId: 'bat'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 4
-                                }
-                        ],
-                        propertyId: 'blackBear'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'boar'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 6
-                                }
-                        ],
-                        propertyId: 'brownBear'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 7
-                                }
-                        ],
-                        propertyId: 'camel'
+                        propertyId: 'telekinetic'
                 }
         ]
 }
@@ -5752,117 +6158,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Torrin Bearpaw'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                86,
-                                30,
-                                2
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarName'
+                                }
                         ]
                 }
         ],
@@ -6263,17 +6715,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'durable'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'elementalFury'
                                 }
                         ],
@@ -6285,95 +6726,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 0
+                                        id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'cat'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'constrictorSnake'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'crab'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 3
-                                }
-                        ],
-                        propertyId: 'crocodile'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 4
-                                }
-                        ],
-                        propertyId: 'direWolf'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'draftHorse'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 6
-                                }
-                        ],
-                        propertyId: 'elk'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 7
-                                }
-                        ],
-                        propertyId: 'frog'
+                        propertyId: 'durable'
                 }
         ]
 }
@@ -6390,117 +6746,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Coraline Wavecrest'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                85,
-                                30,
-                                2
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarName'
+                                }
                         ]
                 }
         ],
@@ -6840,17 +7242,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'observant'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'elementalFury'
                                 }
                         ],
@@ -6862,95 +7253,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 0
+                                        id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'giantBadger'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'giantCrab'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'giantGoat'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 3
-                                }
-                        ],
-                        propertyId: 'giantSeahorse'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 4
-                                }
-                        ],
-                        propertyId: 'giantSpider'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'giantWeasel'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 6
-                                }
-                        ],
-                        propertyId: 'goat'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 7
-                                }
-                        ],
-                        propertyId: 'hawk'
+                        propertyId: 'observant'
                 }
         ]
 }
@@ -6967,117 +7273,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Astraea Cosmoss'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                85,
-                                30,
-                                2
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarName'
+                                }
                         ]
                 }
         ],
@@ -7486,17 +7838,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'spellSniper'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'elementalFury'
                                 }
                         ],
@@ -7508,95 +7849,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 0
+                                        id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'lion'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'lizard'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'mastiff'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 3
-                                }
-                        ],
-                        propertyId: 'mule'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 4
-                                }
-                        ],
-                        propertyId: 'octopus'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'pony'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 6
-                                }
-                        ],
-                        propertyId: 'rat'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wildShapeForms',
-                                        slotIndex: 7
-                                }
-                        ],
-                        propertyId: 'raven'
+                        propertyId: 'spellSniper'
                 }
         ]
 }
@@ -7613,110 +7869,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Kira Steelwind'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 10
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -7966,110 +8262,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Brulda Crushfist'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -8230,118 +8566,167 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Valdris Spellblade'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 10
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                86,
-                                20,
-                                10,
-                                2
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 5
+                                },
+                                {
+                                        id: 'familiarName'
+                                }
                         ]
                 }
         ],
@@ -8738,110 +9123,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Callion Mindstrike'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -9057,110 +9482,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Suzara Windfire'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -9278,6 +9743,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'monkSubclass'
+                                }
+                        ],
+                        propertyId: 'elements'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -9307,17 +9783,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'coldResistance'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'monkSubclass'
-                                }
-                        ],
-                        propertyId: 'elements'
                 }
         ]
 }
@@ -9334,110 +9799,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Physician Tae'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 10
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -9577,6 +10082,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'monkSubclass'
+                                }
+                        ],
+                        propertyId: 'mercy'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -9592,17 +10108,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'athlete'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'monkSubclass'
-                                }
-                        ],
-                        propertyId: 'mercy'
                 }
         ]
 }
@@ -9619,110 +10124,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Brother Jiao'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -9884,6 +10429,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'monkSubclass'
+                                }
+                        ],
+                        propertyId: 'openHand'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -9899,17 +10455,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'charger'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'monkSubclass'
-                                }
-                        ],
-                        propertyId: 'openHand'
                 }
         ]
 }
@@ -9926,110 +10471,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Shade Veil'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -10136,6 +10721,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'monkSubclass'
+                                }
+                        ],
+                        propertyId: 'shadows'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -10151,17 +10747,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'skulker'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'monkSubclass'
-                                }
-                        ],
-                        propertyId: 'shadows'
                 }
         ]
 }
@@ -10178,117 +10763,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Ser Lysandra Brightshield'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                86,
-                                29,
-                                1
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findSteed'
+                                },
+                                {
+                                        id: 'steedName'
+                                }
                         ]
                 }
         ],
@@ -10521,6 +11152,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSubclass'
+                                }
+                        ],
+                        propertyId: 'oathOfDevotion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -10550,17 +11192,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'shieldMaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'paladinSubclass'
-                                }
-                        ],
-                        propertyId: 'oathOfDevotion'
                 }
         ]
 }
@@ -10577,117 +11208,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Aurelius Goldhelm'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                86,
-                                29,
-                                1
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findSteed'
+                                },
+                                {
+                                        id: 'steedName'
+                                }
                         ]
                 }
         ],
@@ -10932,6 +11609,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSubclass'
+                                }
+                        ],
+                        propertyId: 'oathOfGlory'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -10961,17 +11649,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'charger'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'paladinSubclass'
-                                }
-                        ],
-                        propertyId: 'oathOfGlory'
                 }
         ]
 }
@@ -10988,117 +11665,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Elarinde Greenvow'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 9
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                86,
-                                29,
-                                1
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findSteed'
+                                },
+                                {
+                                        id: 'steedName'
+                                }
                         ]
                 }
         ],
@@ -11353,6 +12076,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSubclass'
+                                }
+                        ],
+                        propertyId: 'oathOfTheAncients'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -11382,17 +12116,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'polearmMaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'paladinSubclass'
-                                }
-                        ],
-                        propertyId: 'oathOfTheAncients'
                 }
         ]
 }
@@ -11409,117 +12132,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Sable Duskfall'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 10
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                86,
-                                29,
-                                1
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'findSteed'
+                                },
+                                {
+                                        id: 'steedName'
+                                }
                         ]
                 }
         ],
@@ -11719,6 +12488,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSubclass'
+                                }
+                        ],
+                        propertyId: 'oathOfVengeance'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -11748,17 +12528,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'greatWeaponMaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'paladinSubclass'
-                                }
-                        ],
-                        propertyId: 'oathOfVengeance'
                 }
         ]
 }
@@ -11775,117 +12544,163 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Fern Quickarrow'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                86,
-                                46,
-                                2
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSubclass'
+                                },
+                                {
+                                        id: 'beastCompanionName'
+                                }
                         ]
                 }
         ],
@@ -12119,43 +12934,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'deftExplorerExpertise'
-                                }
-                        ],
-                        propertyId: 'natureExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'fightingStyle'
                                 }
                         ],
                         propertyId: 'unarmedFighting'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'sharpshooter'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'alert'
                 },
                 {
                         path: [
@@ -12181,6 +12963,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'beastOfTheLand'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'sharpshooter'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'alert'
                 }
         ]
 }
@@ -12197,110 +13001,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Lirinde Moonwalk'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 10
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -12515,7 +13359,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'deftExplorerExpertise'
                                 }
                         ],
-                        propertyId: 'perceptionExpertise'
+                        propertyId: 'acrobaticsExpertise'
                 },
                 {
                         path: [
@@ -12557,6 +13401,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'elementalism'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSubclass'
+                                }
+                        ],
+                        propertyId: 'feyWanderer'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSubclass'
+                                },
+                                {
+                                        id: 'otherworldlyGlamourSkill'
+                                }
+                        ],
+                        propertyId: 'deceptionProficiency'
                 },
                 {
                         path: [
@@ -12620,32 +13489,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'skillExpertExpertise'
                                 }
                         ],
-                        propertyId: 'stealthExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'rangerSubclass'
-                                }
-                        ],
-                        propertyId: 'feyWanderer'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'rangerSubclass'
-                                },
-                                {
-                                        id: 'otherworldlyGlamourSkill'
-                                }
-                        ],
-                        propertyId: 'deceptionProficiency'
+                        propertyId: 'animalHandlingExpertise'
                 }
         ]
 }
@@ -12662,110 +13506,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Mira Shadowtread'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -12966,43 +13850,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'deftExplorerExpertise'
-                                }
-                        ],
-                        propertyId: 'survivalExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'fightingStyle'
                                 }
                         ],
                         propertyId: 'archery'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'skulker'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'sharpshooter'
                 },
                 {
                         path: [
@@ -13028,6 +13879,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'wisSave'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'skulker'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sharpshooter'
                 }
         ]
 }
@@ -13044,110 +13917,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Rex Bouldershot'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 11
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -13359,28 +14272,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'crossbowExpert'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'sharpshooter'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rangerSubclass'
                                 }
                         ],
@@ -13413,6 +14304,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'escapeTheHorde'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'crossbowExpert'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sharpshooter'
                 }
         ]
 }
@@ -13429,110 +14342,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Pip Nimblefingers'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -13718,85 +14671,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'ritualCaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4feat'
-                                },
-                                {
-                                        id: 'ritualCasterSpells',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'tensersFloatingDisk'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4feat'
-                                },
-                                {
-                                        id: 'ritualCasterSpells',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'unseenServant'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4feat'
-                                },
-                                {
-                                        id: 'ritualCasterSpells',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'alarm'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'rogueExpertise2',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'athleticsExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'warCaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rogueSubclass'
                                 }
                         ],
@@ -13921,6 +14795,85 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'sleep'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'ritualCaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'tensersFloatingDisk'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'unseenServant'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'alarm'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rogueExpertise2',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'athleticsExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -13937,110 +14890,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Vex Nightfall'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -14181,6 +15174,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'rogueSubclass'
+                                }
+                        ],
+                        propertyId: 'assassin'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -14208,17 +15212,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'piercer'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'rogueSubclass'
-                                }
-                        ],
-                        propertyId: 'assassin'
                 }
         ]
 }
@@ -14235,110 +15228,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Kalax Voidcut'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -14534,6 +15567,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'rogueSubclass'
+                                }
+                        ],
+                        propertyId: 'soulknife'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -14561,17 +15605,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'speedy'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'rogueSubclass'
-                                }
-                        ],
-                        propertyId: 'soulknife'
                 }
         ]
 }
@@ -14588,110 +15621,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Dex Quickpocket'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -14821,6 +15894,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'rogueSubclass'
+                                }
+                        ],
+                        propertyId: 'thief'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -14848,17 +15932,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'defensiveDuelist'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'rogueSubclass'
-                                }
-                        ],
-                        propertyId: 'thief'
                 }
         ]
 }
@@ -14875,110 +15948,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Qaldrix Deepthought'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -15312,6 +16425,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'sorcererSubclass'
+                                }
+                        ],
+                        propertyId: 'aberrant'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'metamagic',
                                         slotIndex: 0
                                 }
@@ -15365,17 +16489,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'tashasHideousLaughter'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'sorcererSubclass'
-                                }
-                        ],
-                        propertyId: 'aberrant'
                 }
         ]
 }
@@ -15392,110 +16505,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Cog Precisus'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -15796,6 +16949,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'sorcererSubclass'
+                                }
+                        ],
+                        propertyId: 'clockwork'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'metamagic',
                                         slotIndex: 0
                                 }
@@ -15835,17 +16999,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'warCaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'sorcererSubclass'
-                                }
-                        ],
-                        propertyId: 'clockwork'
                 }
         ]
 }
@@ -15862,110 +17015,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Skaryx Emberclaw'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -16300,6 +17493,31 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'sorcererSubclass'
+                                }
+                        ],
+                        propertyId: 'draconic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererSubclass'
+                                },
+                                {
+                                        id: 'elementalAffinity'
+                                }
+                        ],
+                        propertyId: 'acidAffinity'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'metamagic',
                                         slotIndex: 0
                                 }
@@ -16353,31 +17571,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'spellSniper'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'sorcererSubclass'
-                                }
-                        ],
-                        propertyId: 'draconic'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'sorcererSubclass'
-                                },
-                                {
-                                        id: 'elementalAffinity'
-                                }
-                        ],
-                        propertyId: 'acidAffinity'
                 }
         ]
 }
@@ -16394,110 +17587,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Blix Unpredictus'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -16831,6 +18064,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'sorcererSubclass'
+                                }
+                        ],
+                        propertyId: 'wildMagic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'metamagic',
                                         slotIndex: 0
                                 }
@@ -16870,17 +18114,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'alert'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'sorcererSubclass'
-                                }
-                        ],
-                        propertyId: 'wildMagic'
                 }
         ]
 }
@@ -16897,119 +18130,170 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Mira Thornwhisper'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                84,
-                                21,
-                                0,
-                                1,
-                                2
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'eldritchInvocations',
+                                        slotIndex: 0
+                                },
+                                {
+                                        id: 'pactOfTheChainFolder'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarName'
+                                }
                         ]
                 }
         ],
@@ -17420,110 +18704,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Lux Dawnpact'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 3
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -17995,110 +19319,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Bael Ashpact'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 7
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -18485,110 +19849,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Zelara Voidpact'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 4
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -19012,110 +20416,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Aldus Wardmage'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 7
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -19437,6 +20881,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardSubclass'
+                                }
+                        ],
+                        propertyId: 'abjurer'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -19452,17 +20907,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'alert'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wizardSubclass'
-                                }
-                        ],
-                        propertyId: 'abjurer'
                 }
         ]
 }
@@ -19479,110 +20923,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Oracle Seerus'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -19915,6 +21399,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardSubclass'
+                                }
+                        ],
+                        propertyId: 'diviner'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -19944,17 +21439,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'observant'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wizardSubclass'
-                                }
-                        ],
-                        propertyId: 'diviner'
                 }
         ]
 }
@@ -19971,110 +21455,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Blastus Firebolt'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -20418,6 +21942,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardSubclass'
+                                }
+                        ],
+                        propertyId: 'evoker'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -20447,17 +21982,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'thunderResistance'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wizardSubclass'
-                                }
-                        ],
-                        propertyId: 'evoker'
                 }
         ]
 }
@@ -20474,110 +21998,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Phantasma Veil'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -20911,6 +22475,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardSubclass'
+                                }
+                        ],
+                        propertyId: 'illusionist'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -20940,17 +22515,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'colorSpray'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'wizardSubclass'
-                                }
-                        ],
-                        propertyId: 'illusionist'
                 }
         ]
 }
@@ -20967,110 +22531,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Fizzy Potionson'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -21332,6 +22936,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'artificerSubclass'
+                                }
+                        ],
+                        propertyId: 'alchemist'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -21361,17 +22976,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'alert'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSubclass'
-                                }
-                        ],
-                        propertyId: 'alchemist'
                 }
         ]
 }
@@ -21388,110 +22992,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Boomer Gearloose'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -21743,7 +23387,18 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'foresight'
+                        propertyId: 'waterWalk'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSubclass'
+                                }
+                        ],
+                        propertyId: 'artillerist'
                 },
                 {
                         path: [
@@ -21780,17 +23435,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'acidResistance'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSubclass'
-                                }
-                        ],
-                        propertyId: 'artillerist'
                 }
         ]
 }
@@ -21807,110 +23451,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Mapmaker Pathfinder'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -22184,7 +23868,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'waterWalk'
+                        propertyId: 'createFoodAndWater'
                 },
                 {
                         path: [
@@ -22196,7 +23880,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'createFoodAndWater'
+                        propertyId: 'leomundsSecretChest'
                 },
                 {
                         path: [
@@ -22208,7 +23892,18 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'leomundsSecretChest'
+                        propertyId: 'waterBreathing'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSubclass'
+                                }
+                        ],
+                        propertyId: 'cartographer'
                 },
                 {
                         path: [
@@ -22231,17 +23926,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'observant'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSubclass'
-                                }
-                        ],
-                        propertyId: 'cartographer'
                 }
         ]
 }
@@ -22258,110 +23942,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Ironclad Bulwark'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 6
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 1
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -22601,28 +24325,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'heavyArmorMaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'sentinel'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'artificerSubclass'
                                 }
                         ],
@@ -22641,6 +24343,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'dreadnaughtModel'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'heavyArmorMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sentinel'
                 }
         ]
 }
@@ -22657,110 +24381,150 @@ export const SAMPLE_CHARACTERS = [
         inputs: [
                 {
                         path: [
-                                0
+                                {
+                                        id: 'name'
+                                }
                         ],
                         value: 'Dr. Frankenstitch'
                 },
                 {
                         path: [
-                                1
+                                {
+                                        id: 'level'
+                                }
                         ],
                         value: 8
                 },
                 {
                         path: [
-                                2
+                                {
+                                        id: 'allocated_str'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                3
+                                {
+                                        id: 'allocated_dex'
+                                }
                         ],
                         value: 5
                 },
                 {
                         path: [
-                                4
+                                {
+                                        id: 'allocated_con'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                5
+                                {
+                                        id: 'allocated_int'
+                                }
                         ],
                         value: 12
                 },
                 {
                         path: [
-                                6
+                                {
+                                        id: 'allocated_wis'
+                                }
                         ],
                         value: 2
                 },
                 {
                         path: [
-                                7
+                                {
+                                        id: 'allocated_cha'
+                                }
                         ],
                         value: 0
                 },
                 {
                         path: [
-                                8
+                                {
+                                        id: 'origin_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                9
+                                {
+                                        id: 'origin_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                10
+                                {
+                                        id: 'origin_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                11
+                                {
+                                        id: 'origin_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                12
+                                {
+                                        id: 'origin_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                13
+                                {
+                                        id: 'origin_cha'
+                                }
                         ]
                 },
                 {
                         path: [
-                                14
+                                {
+                                        id: 'asi_str'
+                                }
                         ]
                 },
                 {
                         path: [
-                                15
+                                {
+                                        id: 'asi_dex'
+                                }
                         ]
                 },
                 {
                         path: [
-                                16
+                                {
+                                        id: 'asi_con'
+                                }
                         ]
                 },
                 {
                         path: [
-                                17
+                                {
+                                        id: 'asi_int'
+                                }
                         ]
                 },
                 {
                         path: [
-                                18
+                                {
+                                        id: 'asi_wis'
+                                }
                         ]
                 },
                 {
                         path: [
-                                19
+                                {
+                                        id: 'asi_cha'
+                                }
                         ]
                 }
         ],
@@ -23067,28 +24831,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'resilient'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'warCaster'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'artificerSubclass'
                                 }
                         ],
@@ -23107,6 +24849,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'ferocity'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'resilient'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }

@@ -1,0 +1,70 @@
+id: circleOfTheStars
+name: Circle of the Stars
+description: |
+  The Circle of the Stars has tracked heavenly patterns since time immemorial, discovering secrets hidden amid the constellations. By understanding these secrets, the Druids of this circle seek to harness the powers of the cosmos.
+type: Folder
+tags:
+  - druidSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Stars"
+  # Level 3: Star Map
+  - type: Reference
+    target: [guidance]
+    condition: $(meta.level >= 3)
+  - id: starMap
+    type: Reference
+    target: [guidingBolt]
+    condition: $(meta.level >= 3)
+    overwrite:
+      resource: starMap
+  - id: starMap
+    type: Resource
+    name: Star Map
+    quantity: $(Math.max(1, stats.wis.mod))
+    condition: $(meta.level >= 3)
+
+  # Level 3: Starry Form
+  - id: starryForm
+    type: Activity
+    name: Starry Form
+    time: bonus action
+    duration: 10 minutes
+    resource: wildShape
+    condition: $(meta.level >= 3)
+    description: |
+      You take on a starry form. While in your starry form, you retain your game statistics, but your body becomes luminous, your joints glimmer like stars, and glowing lines connect them as on a star chart. This form sheds Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. $(meta.level >= 14 ? "Additionally, you have resistance to bludgeoning, piercing, and slashing damage." : "")
+
+      Whenever you assume your starry form, choose which of the following constellations glimmers on your body; your choice gives you certain benefits while in the form.
+
+      **Archer.** You hurl a mote of light at a creature or object within range. Make a $(formatBonus(attributes.spellcasting.attack)) attack against the target. On a hit, the target takes $(meta.level >= 10 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) Radiant damage. You can repeat this attack as a Bonus Action while the form lasts.
+      
+      **Chalice.** When you cast a healing spell with a slot, you or creature within 30 feet regains $(meta.level >= 10 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) HP.
+      
+      **Dragon.** When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain Concentration, you can treat a roll of 9 or lower on the d20 as a 10. $(meta.level >= 10 ? "You have a Fly Speed of 20 feet and can hover." : "")
+
+  # Level 6: Cosmic Omen
+  - id: cosmicOmen
+    type: Activity
+    name: Cosmic Omen
+    time: reaction
+    range: 30 feet
+    resource: cosmicOmen
+    condition: $(meta.level >= 6)
+    description: |
+      When you finish a Long Rest, you consult your Star Map for omens and roll a die. Until you finish your next Long Rest, you gain access to a special Reaction based on whether you rolled an even or an odd number on the die:
+      
+      **Weal (Even).** When a creature is about to make a D20 Test, roll 1d6 and add it to the total.
+      
+      **Woe (Odd).** When a creature is about to make a D20 Test, roll 1d6 and subtract it from the total.
+  - id: cosmicOmen
+    type: Resource
+    name: Cosmic Omen
+    quantity: $(Math.max(1, stats.wis.mod))
+    condition: $(meta.level >= 6)
+
+  # Level 10: Twinkling Constellations (Handled in Starry Form description)
+  # Level 14: Full of Stars (Handled in Starry Form description)

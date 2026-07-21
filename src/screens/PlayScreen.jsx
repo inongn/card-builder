@@ -117,12 +117,25 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
 
     return (
         <div className="container play-screen">
-            <mdui-top-app-bar variant="small">
-                <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
+            <mdui-top-app-bar variant="small"
+                scroll-behavior='hide'>
+                <mdui-button-icon
+                    icon="arrow_back" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
                 <mdui-top-app-bar-title>{characterData?.meta?.name || 'Aspida'}</mdui-top-app-bar-title>
-                <mdui-button-icon icon="edit" onClick={() => onNavigate('builder')}></mdui-button-icon>
-                <mdui-button-icon icon="print" onClick={() => onNavigate('print')}></mdui-button-icon>
-                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}></mdui-button-icon>
+                <mdui-button-icon icon="edit" onClick={() => onNavigate('builder')} className="mobile-hidden"></mdui-button-icon>
+                <mdui-button-icon icon="print" onClick={() => onNavigate('print')} className="mobile-hidden"></mdui-button-icon>
+                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme} className="mobile-hidden"></mdui-button-icon>
+
+                <mdui-dropdown className="desktop-hidden">
+                    <mdui-button-icon slot="trigger" icon="more_vert"></mdui-button-icon>
+                    <mdui-menu>
+                        <mdui-menu-item icon="edit" onClick={() => onNavigate('builder')}>Edit</mdui-menu-item>
+                        <mdui-menu-item icon="print" onClick={() => onNavigate('print')}>Print</mdui-menu-item>
+                        <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
+                            {isDarkMode ? 'Light Mode' : 'Dark/Night Mode'}
+                        </mdui-menu-item>
+                    </mdui-menu>
+                </mdui-dropdown>
             </mdui-top-app-bar>
 
             <div className="content play-content">
@@ -147,7 +160,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
 
                     {hasStatblocks && (
                         <>
-                            <div className="section-title" style={{ marginTop: '24px' }}>Allies & Forms</div>
+                            <div className="section-title">Allies & Forms</div>
                             {allyCategories.map(({ key, label }) => {
                                 const allies = groupedAllies[key];
                                 if (allies.length === 0) return null;

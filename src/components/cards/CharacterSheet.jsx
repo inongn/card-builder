@@ -78,11 +78,11 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
 
             <div className="main-card-row">
-                <div className="main-card-column" style={{ gridColumn: 'span 6' }}>
+                <div className="main-card-column col-span-full">
                     <div className="card-title main-card-title show-on-print">
                         {char.meta.name}
                     </div>
-                    <div className="title-primary" style={{ padding: 0 }}>
+                    <div className="title-primary">
                         Lv. {char.meta.level} {char.meta.species} {char.meta.sub} {char.meta.class || 'Unknown Class'}
                     </div>
                 </div>
@@ -211,18 +211,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                         <div className="list-item resource-list-item" key={i}>
                                             <mdui-icon name={info?.icon || 'circle'} class={`icon-${info?.color} icon-small`}></mdui-icon>
                                             <div className="text-primary">{res.name || res.id}</div>
-                                            <div
-                                                className="resource-dots"
-                                                style={{
-                                                    display: 'grid',
-                                                    gridTemplateColumns: `repeat(${dotsPerRow}, auto)`,
-                                                    justifyItems: 'end',
-                                                    direction: 'rtl',
-                                                    gap: '2px'
-                                                }}
-                                            >
+                                            <div className="resource-dots" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
                                                 {Array(q).fill(0).map((_, j) => (
-                                                    <mdui-icon key={j} name="crop_square" style={{ transform: 'rotate(45deg)', direction: 'ltr' }} class="icon-small"></mdui-icon>
+                                                    <mdui-icon key={j} name="crop_square" class="icon-small icon-rotated"></mdui-icon>
                                                 ))}
                                             </div>
                                         </div>
@@ -262,7 +253,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 return (
                                     <div className="list-item info-list-item" key={idx}>
                                         <span className="text-secondary">{info.label}</span>
-                                        <span className="text-primary" style={{ textAlign: 'right' }}>
+                                        <span className="text-primary text-right">
                                             {displayData.map((s, i) => (
                                                 <React.Fragment key={i}>
                                                     {s}{i < displayData.length - 1 && ', '}

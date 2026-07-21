@@ -13,4 +13,3 @@ children:
     type: Resource
     name: Speak with Animals
     quantity: $(attributes.prof)
-    sr: 0

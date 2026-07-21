@@ -10,7 +10,7 @@ children:
     description: |
       On a hit, the target takes an additional $(meta.level >= 15 ? "2d8" : "1d8") Cold, Fire, Lightning, or Thunder damage.
   - id: primalStrikeWildShape
-    type: Extra
-    target: wildShapeActivity
-    name: Primal Strike
-    description: "Once on each turn when you hit a creature with an attack, the target takes an additional $(meta.level >= 15 ? '2d8' : '1d8') Cold, Fire, Lightning, or Thunder damage."
+    type: Effect
+    target: statblocks[wildShapeTemplate].actions["damage"]
+    operation: replace
+    value: "damage + 1d8 Cold, Fire, Lightning or Thunder damage"

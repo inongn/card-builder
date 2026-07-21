@@ -66,5 +66,4 @@ children:
     quantity: $(Math.max(1, stats.wis.mod))
     condition: $(meta.level >= 6)
 
-  # Level 10: Twinkling Constellations (Handled in Starry Form description)
-  # Level 14: Full of Stars (Handled in Starry Form description)
+

@@ -20,6 +20,6 @@ children:
     description: Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.
   - name: Increased Range
     type: Effect
-    target: activities[attackSpell].range
+    target: activities[tags=attackSpell].range
     operation: add
     value: 60
