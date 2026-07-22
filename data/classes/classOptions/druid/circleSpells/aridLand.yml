@@ -1,6 +1,6 @@
 id: aridLand
 name: Arid Land
-tags: [circleSpells]
+tags: [circleLand]
 type: Folder
 children:
   - type: Reference

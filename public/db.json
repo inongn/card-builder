@@ -1862,7 +1862,7 @@
     "id": "aridLand",
     "name": "Arid Land",
     "tags": [
-      "circleSpells"
+      "circleLand"
     ],
     "type": "Folder",
     "children": [
@@ -1890,7 +1890,7 @@
     "id": "polarLand",
     "name": "Polar Land",
     "tags": [
-      "circleSpells"
+      "circleLand"
     ],
     "type": "Folder",
     "children": [
@@ -1918,7 +1918,7 @@
     "id": "temperateLand",
     "name": "Temperate Land",
     "tags": [
-      "circleSpells"
+      "circleLand"
     ],
     "type": "Folder",
     "children": [
@@ -1946,7 +1946,7 @@
     "id": "tropicalLand",
     "name": "Tropical Land",
     "tags": [
-      "circleSpells"
+      "circleLand"
     ],
     "type": "Folder",
     "children": [
@@ -5782,11 +5782,11 @@
         "value": "Land"
       },
       {
-        "id": "circleOfTheLandSpells",
+        "id": "circleOfTheLandType",
         "type": "Slot",
-        "name": "Circle of the Land Spells",
+        "name": "Land Type",
         "quantity": 1,
-        "target": "circleSpells"
+        "target": "circleLand OR classOption"
       },
       {
         "id": "landsAid",
@@ -17381,34 +17381,6 @@
     ]
   },
   {
-    "id": "homunculusServant",
-    "type": "Activity",
-    "name": "Homunculus Servant",
-    "resource": "level2SpellSlot",
-    "tags": [
-      "level2Spell",
-      "conjuration",
-      "artificer",
-      "ritual"
-    ],
-    "time": "1 hour",
-    "range": "10 feet",
-    "duration": "instantaneous",
-    "description": "You summon a special homunculus in an unoccupied space within range. This creature uses the Homunculus Servant stat block. If you already have a homunculus from this spell, the homunculus is replaced by the new one. You determine the homunculus’s appearance, such as a mechanical-looking bird, winged vials, or miniature animate cauldrons.\n\nCombat\n\nThe homunculus is an ally to you and your allies. In combat, it shares your Initiative count, but it takes its turn immediately after yours. It obeys your commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its movement to avoid danger.\n",
-    "children": [
-      {
-        "type": "Reference",
-        "target": "homunculusServant"
-      }
-    ],
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "Use the spell slot’s level for the spell’s level in the stat block."
-      }
-    ]
-  },
-  {
     "id": "invisibility",
     "type": "Activity",
     "name": "Invisibility",
@@ -21629,63 +21601,6 @@
       {
         "name": "Venomous Spew (Centipede Only)",
         "description": "_Constitution Saving Throw:_ $(attributes.spellcasting.save) DC, one creature the insect can see within 10 feet. _Failure:_ The target has the Poisoned condition until the start of the insect’s next turn."
-      }
-    ]
-  },
-  {
-    "type": "Statblock",
-    "name": "Homunculus Servant",
-    "id": "homunculusServant",
-    "category": "summon",
-    "tags": [
-      "summon"
-    ],
-    "size": "Tiny",
-    "classification": "Construct",
-    "ac": 13,
-    "hp": "5 + 5 per spell level",
-    "movement": {
-      "walk": 20,
-      "fly": 30
-    },
-    "stats": {
-      "str": 4,
-      "dex": 15,
-      "con": 12,
-      "int": 10,
-      "wis": 10,
-      "cha": 7
-    },
-    "immunities": [
-      "Poison",
-      "Exhaustion",
-      "Poisoned"
-    ],
-    "senses": {
-      "darkvision": 60
-    },
-    "challenge": 0,
-    "cr": 0,
-    "traits": [
-      {
-        "name": "Evasion",
-        "description": "If the homunculus is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, the homunculus instead takes no damage if it succeeds on the save and only half damage if it fails. It can’t use this trait if it has the Incapacitated condition."
-      },
-      {
-        "name": "Magic Bond",
-        "description": "Add the spell level to any ability check or saving throw the homunculus makes."
-      }
-    ],
-    "actions": [
-      {
-        "name": "Force Strike",
-        "description": "_Melee or Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. or range 30 ft. _Hit:_ 1d6 + the spell's level Force damage."
-      }
-    ],
-    "reactions": [
-      {
-        "name": "Channel Magic",
-        "description": "_Trigger:_ You cast a spell that has a range of touch while the homunculus is within 120 feet of you. _Response:_ The homunculus delivers the spell through its touch."
       }
     ]
   },

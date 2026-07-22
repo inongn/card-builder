@@ -1,6 +1,6 @@
 id: tropicalLand
 name: Tropical Land
-tags: [circleSpells]
+tags: [circleLand]
 type: Folder
 children:
   - type: Reference

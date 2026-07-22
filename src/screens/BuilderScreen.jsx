@@ -289,7 +289,7 @@ const CustomStatsSlider = ({
 };
 
 // Sub-component for rendering option selection cards
-function OptionCard({ option, isSelected, disabled, onClick, characterData }) {
+const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData }) {
     const evaluatedDescription = React.useMemo(() => {
         if (!option.description) return '';
         const evaluator = new ExpressionEvaluator(characterData);
@@ -332,7 +332,7 @@ function OptionCard({ option, isSelected, disabled, onClick, characterData }) {
     });
 
     return (
-        <mdui-list-item rounded
+        <mdui-list-item
             active={isSelected ? 'active' : ''}
             disabled={disabled ? 'disabled' : ''}
             clickable={!disabled}
@@ -353,9 +353,9 @@ function OptionCard({ option, isSelected, disabled, onClick, characterData }) {
             </div>
         </mdui-list-item>
     );
-}
+});
 
-const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobile }) => {
+const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobile, actionButton }) => {
     const { node, path } = selectedSlotItem;
     const isAbilityInput = node.name.match(/^(allocated|origin|asi)_/);
     const [prefix, stat] = isAbilityInput ? node.name.split('_') : [null, null];
@@ -440,6 +440,7 @@ const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobil
                             {localValue !== '' ? localValue : (node.default ?? 1)}
                         </span>
                     )}
+                    {actionButton}
                 </div>
             </div>
 
@@ -503,16 +504,35 @@ export const BuilderScreen = ({
     isNewCharacterCreation,
     setIsNewCharacterCreation
 }) => {
+    const isMobile = window.innerWidth <= 890;
+
     const [selectedSlotItem, setSelectedSlotItem] = React.useState(() => {
-        if (isNewCharacterCreation && propertyTree) {
+        if ((isNewCharacterCreation || !isMobile) && propertyTree) {
             const nodes = collectRenderableNodes(propertyTree, characterData);
-            const firstNameItem = nodes.find(item => item.type === 'Input' && item.node.id === 'name');
+            const firstNameItem = nodes.find(item => item.type === 'Input' && (item.node.id === 'name' || item.node.name === 'name'));
             if (firstNameItem) {
                 return { ...firstNameItem, category: 'origin' };
             }
         }
         return null;
     });
+
+    const mountedRef = React.useRef(false);
+    React.useEffect(() => {
+        if (!mountedRef.current && propertyTree) {
+            mountedRef.current = true;
+            setSelectedCategory('origin');
+            if (isNewCharacterCreation || !isMobile) {
+                const nodes = collectRenderableNodes(propertyTree, characterData);
+                const firstNameItem = nodes.find(item => item.type === 'Input' && (item.node.id === 'name' || item.node.name === 'name'));
+                if (firstNameItem) {
+                    setSelectedSlotItem({ ...firstNameItem, category: 'origin' });
+                }
+            } else {
+                setSelectedSlotItem(null);
+            }
+        }
+    }, [propertyTree, characterData, setSelectedCategory, isNewCharacterCreation, isMobile]);
 
     const availableCategories = React.useMemo(() =>
         getAvailableCategories(propertyTree, characterData),
@@ -531,12 +551,12 @@ export const BuilderScreen = ({
 
     // Default to the first available category if current selection is invalid
     React.useEffect(() => {
-        if (availableCategories.length > 0 && !availableCategories.includes(selectedCategory)) {
+        if (selectedCategory && availableCategories.length > 0 && !availableCategories.includes(selectedCategory)) {
             setSelectedCategory(availableCategories[0]);
         }
     }, [availableCategories, selectedCategory, setSelectedCategory]);
 
-    const getOrderedStepperItems = React.useCallback(() => {
+    const items = React.useMemo(() => {
         if (!propertyTree) return [];
         const renderableNodes = collectRenderableNodes(propertyTree, characterData);
         const orderedItems = [];
@@ -577,90 +597,74 @@ export const BuilderScreen = ({
         }
     }, [isNewCharacterCreation, setIsNewCharacterCreation]);
 
-    // Automatically select the first unfilled slot in the active category (on desktop only)
-    React.useEffect(() => {
-        if (!propertyTree || isNewCharacterCreation) return;
-        const isMobile = window.innerWidth <= 890;
+    // Synchronously determine the correct display and state item to prevent UI flicker
+    const categoryItems = items.filter(item => item.category === selectedCategory);
 
+    const isSameSlotItem = (a, b) => {
+        if (a === b) return true;
+        if (!a || !b) return false;
+        if (a.type !== b.type) return false;
+        if (a.type === 'Abilities') return true;
+        if (a.type === 'Group') return a.id === b.id;
+        return JSON.stringify(a.logicalPath) === JSON.stringify(b.logicalPath);
+    };
+
+    let matchedItem = categoryItems.find(item => isSameSlotItem(item, selectedSlotItem));
+    let displaySlotItem = matchedItem || null;
+    let newSlotItemToSet = selectedSlotItem;
+
+    if (categoryItems.length > 0) {
         if (selectedCategory === 'stats') {
-            if (selectedSlotItem && selectedSlotItem.type === 'Abilities') {
-                return;
+            if (!matchedItem) {
+                displaySlotItem = isMobile ? null : { type: 'Abilities', category: 'stats' };
+                newSlotItemToSet = displaySlotItem;
             }
+        } else if (!matchedItem) {
             if (isMobile) {
-                setSelectedSlotItem(null);
+                displaySlotItem = null;
+                newSlotItemToSet = null;
             } else {
-                setSelectedSlotItem({ type: 'Abilities', category: 'stats' });
-            }
-            return;
-        }
-
-        const items = getOrderedStepperItems();
-        const categoryItems = items.filter(item => item.category === selectedCategory);
-
-        if (categoryItems.length > 0) {
-            // Keep current item selected if it still exists
-            const currentItem = selectedSlotItem;
-            let stillExists = null;
-
-            if (currentItem) {
-                stillExists = categoryItems.find(item => {
-                    if (item.type !== currentItem.type) return false;
-                    if (item.type === 'Group') return item.id === currentItem.id;
-                    if (item.type === 'Abilities') return true;
-                    return JSON.stringify(item.logicalPath) === JSON.stringify(currentItem.logicalPath);
+                const unfilled = categoryItems.find(item => {
+                    if (item.type === 'Input') {
+                        return (item.node.value ?? item.node.default ?? '') === '';
+                    }
+                    if (item.type === 'Slot') {
+                        return !item.node.filled;
+                    }
+                    if (item.type === 'Group') {
+                        return item.items.some(si => !si.node.filled);
+                    }
+                    return false;
                 });
+                displaySlotItem = unfilled || categoryItems[0] || null;
+                newSlotItemToSet = displaySlotItem;
             }
-
-            if (stillExists) {
-                // If it was unfilled and is now filled, and we are on desktop, try to advance
-                if (!isMobile) {
-                    let wasUnfilled = false;
-                    if (currentItem.type === 'Input') {
-                        const val = currentItem.node.value ?? currentItem.node.default ?? '';
-                        wasUnfilled = val === '';
-                    } else if (currentItem.type === 'Slot') {
-                        wasUnfilled = !currentItem.node.filled;
-                    } else if (currentItem.type === 'Group') {
-                        wasUnfilled = currentItem.items.some(si => !si.node.filled);
-                    }
-
-                    let isNowFilled = false;
-                    if (stillExists.type === 'Input') {
-                        const val = stillExists.node.value ?? stillExists.node.default ?? '';
-                        isNowFilled = val !== '';
-                    } else if (stillExists.type === 'Slot') {
-                        isNowFilled = !!stillExists.node.filled;
-                    } else if (stillExists.type === 'Group') {
-                        isNowFilled = stillExists.items.every(si => si.node.filled);
-                    }
-
-                    if (currentItem.type !== 'Input' && wasUnfilled && isNowFilled) {
-                        const nextUnfilled = categoryItems.find(item => {
-                            if (item.type === 'Input') {
-                                return (item.node.value ?? item.node.default ?? '') === '';
-                            }
-                            if (item.type === 'Slot') {
-                                return !item.node.filled;
-                            }
-                            if (item.type === 'Group') {
-                                return item.items.some(si => !si.node.filled);
-                            }
-                            return false;
-                        });
-                        if (nextUnfilled) {
-                            setSelectedSlotItem(nextUnfilled);
-                            return;
-                        }
-                    }
+        } else {
+            // It matched!
+            // Check if we need to auto-advance on desktop
+            if (!isMobile && selectedSlotItem) {
+                let wasUnfilled = false;
+                if (selectedSlotItem.type === 'Input') {
+                    const val = selectedSlotItem.node.value ?? selectedSlotItem.node.default ?? '';
+                    wasUnfilled = val === '';
+                } else if (selectedSlotItem.type === 'Slot') {
+                    wasUnfilled = !selectedSlotItem.node.filled;
+                } else if (selectedSlotItem.type === 'Group') {
+                    wasUnfilled = selectedSlotItem.items.some(si => !si.node.filled);
                 }
-                setSelectedSlotItem(stillExists);
-            } else {
-                // On mobile, do not auto-select on category change to prevent mobile popup bug
-                if (isMobile) {
-                    setSelectedSlotItem(null);
-                } else {
-                    // On desktop, fallback to first unfilled
-                    const unfilled = categoryItems.find(item => {
+
+                let isNowFilled = false;
+                if (matchedItem.type === 'Input') {
+                    const val = matchedItem.node.value ?? matchedItem.node.default ?? '';
+                    isNowFilled = val !== '';
+                } else if (matchedItem.type === 'Slot') {
+                    isNowFilled = !!matchedItem.node.filled;
+                } else if (matchedItem.type === 'Group') {
+                    isNowFilled = matchedItem.items.every(si => si.node.filled);
+                }
+
+                if (selectedSlotItem.type === 'Slot' && wasUnfilled && isNowFilled) {
+                    const nextUnfilled = categoryItems.find(item => {
                         if (item.type === 'Input') {
                             return (item.node.value ?? item.node.default ?? '') === '';
                         }
@@ -672,13 +676,21 @@ export const BuilderScreen = ({
                         }
                         return false;
                     });
-                    setSelectedSlotItem(unfilled || categoryItems[0] || null);
+                    if (nextUnfilled) {
+                        displaySlotItem = nextUnfilled;
+                        newSlotItemToSet = nextUnfilled;
+                    }
                 }
             }
-        } else {
-            setSelectedSlotItem(null);
         }
-    }, [selectedCategory, propertyTree, characterData, getOrderedStepperItems]);
+    } else {
+        displaySlotItem = null;
+        newSlotItemToSet = null;
+    }
+
+    if (!isSameSlotItem(newSlotItemToSet, selectedSlotItem)) {
+        setSelectedSlotItem(newSlotItemToSet);
+    }
 
     const abilityNodesMap = React.useMemo(() => {
         const map = { allocated: {}, origin: {}, asi: {} };
@@ -696,14 +708,14 @@ export const BuilderScreen = ({
     }, [propertyTree, characterData]);
 
     const options = React.useMemo(() => {
-        if (!selectedSlotItem || selectedSlotItem.type === 'Abilities' || selectedSlotItem.type === 'Input') return [];
-        const node = selectedSlotItem.type === 'Slot' ? selectedSlotItem.node : selectedSlotItem.items[0].node;
+        if (!displaySlotItem || displaySlotItem.type === 'Abilities' || displaySlotItem.type === 'Input') return [];
+        const node = displaySlotItem.type === 'Slot' ? displaySlotItem.node : displaySlotItem.items[0].node;
         let opts = handleGetSlotOptions ? handleGetSlotOptions(node) : [];
 
         // Check which slots are filled and ensure their options are in the options list for deselecting
-        const filledNodes = selectedSlotItem.type === 'Slot'
-            ? [selectedSlotItem.node]
-            : selectedSlotItem.items.map(i => i.node);
+        const filledNodes = displaySlotItem.type === 'Slot'
+            ? [displaySlotItem.node]
+            : displaySlotItem.items.map(i => i.node);
 
         filledNodes.forEach(n => {
             const currentFilled = n.filled;
@@ -822,20 +834,20 @@ export const BuilderScreen = ({
         }
 
         return [...resolvedOpts].sort((a, b) => (a.displayName || a.name || '').localeCompare(b.displayName || b.name || ''));
-    }, [selectedSlotItem, handleGetSlotOptions, onGetProperty]);
+    }, [displaySlotItem, handleGetSlotOptions, onGetProperty]);
 
     const handleOptionSelect = (option) => {
-        if (!selectedSlotItem) return;
+        if (!displaySlotItem) return;
 
-        if (selectedSlotItem.type === 'Slot') {
-            const { node, path } = selectedSlotItem;
+        if (displaySlotItem.type === 'Slot') {
+            const { node, path } = displaySlotItem;
             if (node.filled?.id === option.id) {
                 handleClearSlot(path);
             } else {
                 handleFillSlot(path, option.id);
             }
-        } else if (selectedSlotItem.type === 'Group') {
-            const { items } = selectedSlotItem;
+        } else if (displaySlotItem.type === 'Group') {
+            const { items } = displaySlotItem;
             const filledSlot = items.find(item => item.node.filled?.id === option.id);
 
             if (filledSlot) {
@@ -849,42 +861,39 @@ export const BuilderScreen = ({
         }
     };
 
-    const isMobile = window.innerWidth <= 890;
-    const isMobileOverlayActive = isMobile && selectedSlotItem;
-    const isMobileOptionsActive = !!selectedSlotItem;
+    const isMobileOverlayActive = isMobile && displaySlotItem;
+    const isMobileOptionsActive = !!displaySlotItem;
 
     const limitReached = React.useMemo(() => {
-        if (!selectedSlotItem || selectedSlotItem.type !== 'Group') return false;
-        return selectedSlotItem.items.every(i => i.node.filled);
-    }, [selectedSlotItem]);
+        if (!displaySlotItem || displaySlotItem.type !== 'Group') return false;
+        return displaySlotItem.items.every(i => i.node.filled);
+    }, [displaySlotItem]);
 
     const isCurrentSelectionFilled = React.useMemo(() => {
-        if (!selectedSlotItem) return false;
-        if (selectedSlotItem.type === 'Input') {
-            const val = selectedSlotItem.node.value ?? selectedSlotItem.node.default ?? '';
+        if (!displaySlotItem) return false;
+        if (displaySlotItem.type === 'Input') {
+            const val = displaySlotItem.node.value ?? displaySlotItem.node.default ?? '';
             return val !== '';
         }
-        if (selectedSlotItem.type === 'Slot') {
-            return !!selectedSlotItem.node.filled;
+        if (displaySlotItem.type === 'Slot') {
+            return !!displaySlotItem.node.filled;
         }
-        if (selectedSlotItem.type === 'Group') {
-            return selectedSlotItem.items.every(i => i.node.filled);
+        if (displaySlotItem.type === 'Group') {
+            return displaySlotItem.items.every(i => i.node.filled);
         }
-        if (selectedSlotItem.type === 'Abilities') {
+        if (displaySlotItem.type === 'Abilities') {
             return !!categoryStats['stats']?.isComplete;
         }
         return false;
-    }, [selectedSlotItem, categoryStats]);
+    }, [displaySlotItem, categoryStats]);
 
     const handleNextClick = () => {
-        const items = getOrderedStepperItems();
-
         // Find current selection index
         const currentIndex = items.findIndex(item => {
-            if (selectedSlotItem.type !== item.type) return false;
+            if (displaySlotItem.type !== item.type) return false;
             if (item.type === 'Abilities') return true;
-            if (item.type === 'Group') return item.id === selectedSlotItem.id;
-            return JSON.stringify(item.logicalPath) === JSON.stringify(selectedSlotItem.logicalPath);
+            if (item.type === 'Group') return item.id === displaySlotItem.id;
+            return JSON.stringify(item.logicalPath) === JSON.stringify(displaySlotItem.logicalPath);
         });
 
         // Find the next item (filled or not) whose category is available
@@ -917,24 +926,24 @@ export const BuilderScreen = ({
         if (isCurrentSelectionFilled) {
             return "Next";
         }
-        if (!selectedSlotItem) {
+        if (!displaySlotItem) {
             return "Next";
         }
-        if (selectedSlotItem.type === 'Input' || selectedSlotItem.type === 'Slot') {
+        if (displaySlotItem.type === 'Input' || displaySlotItem.type === 'Slot') {
             return "Next";
         }
         // Calculate missing items (N)
         let missingCount = 1;
-        if (selectedSlotItem.type === 'Group') {
-            missingCount = selectedSlotItem.items.filter(i => !i.node.filled).length;
-        } else if (selectedSlotItem.type === 'Abilities') {
+        if (displaySlotItem.type === 'Group') {
+            missingCount = displaySlotItem.items.filter(i => !i.node.filled).length;
+        } else if (displaySlotItem.type === 'Abilities') {
             missingCount = categoryStats['stats']?.pending || 0;
         }
-        if (selectedSlotItem.type === 'Abilities') { // if were in ability selection
+        if (displaySlotItem.type === 'Abilities') { // if were in ability selection
             return `Assign ${missingCount}`;
         }
         return `Pick ${missingCount}`;
-    }, [selectedSlotItem, isCurrentSelectionFilled, isComplete, categoryStats, isMobileOverlayActive]);
+    }, [displaySlotItem, isCurrentSelectionFilled, isComplete, categoryStats, isMobileOverlayActive]);
 
     const handleNextOrSaveClick = () => {
         if (isComplete) {
@@ -948,14 +957,28 @@ export const BuilderScreen = ({
         }
     };
 
+    const renderNextOrSaveButton = () => {
+        if (isMobile) return null;
+        return (
+            <mdui-button
+                variant="filled"
+                disabled={(!isCurrentSelectionFilled && !isComplete) || undefined}
+                onClick={isComplete ? onSave : handleNextClick}
+                size="small"
+            >
+                {isComplete ? 'Save' : (isCurrentSelectionFilled ? 'Next' : nextButtonLabel)}
+            </mdui-button>
+        );
+    };
+
     const topAppBarTitle = isMobileOverlayActive
-        ? (selectedSlotItem.type === 'Group'
-            ? selectedSlotItem.id
-            : (selectedSlotItem.type === 'Abilities'
+        ? (displaySlotItem.type === 'Group'
+            ? displaySlotItem.id
+            : (displaySlotItem.type === 'Abilities'
                 ? 'Ability Scores'
-                : (selectedSlotItem.node && (selectedSlotItem.node.id === 'level' || selectedSlotItem.node.name === 'Level')
-                    ? `Level ${selectedSlotItem.node.value ?? selectedSlotItem.node.default ?? 1}`
-                    : (selectedSlotItem.node.displayName || selectedSlotItem.node.name)
+                : (displaySlotItem.node && (displaySlotItem.node.id === 'level' || displaySlotItem.node.name === 'Level')
+                    ? `Level ${displaySlotItem.node.value ?? displaySlotItem.node.default ?? 1}`
+                    : (displaySlotItem.node.displayName || displaySlotItem.node.name)
                 )
             )
         )
@@ -965,9 +988,7 @@ export const BuilderScreen = ({
         ? <mdui-button-icon icon="arrow_back" onClick={() => setSelectedSlotItem(null)}></mdui-button-icon>
         : <mdui-button-icon icon="arrow_back" onClick={() => onNavigate(builderSource)}></mdui-button-icon>;
 
-    const topAppBarRightAction = isMobileOverlayActive
-        ? <mdui-button variant="filled" disabled={(!isCurrentSelectionFilled && !isComplete) || undefined} onClick={handleNextOrSaveClick} className="mobile-hidden">{nextButtonLabel}</mdui-button>
-        : <mdui-button variant="filled" onClick={onSave} icon="save" disabled={!isComplete} className="mobile-hidden">Save</mdui-button>;
+    const topAppBarRightAction = null;
 
     const renderAbilitiesPane = () => {
         const attr = characterData.attributes || {};
@@ -991,6 +1012,7 @@ export const BuilderScreen = ({
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
                         <span className="options-pane-title">Ability Scores</span>
+                        {renderNextOrSaveButton()}
                     </div>
                 </div>
 
@@ -1089,7 +1111,7 @@ export const BuilderScreen = ({
     };
 
     const renderOptionsPane = () => {
-        if (!selectedSlotItem) {
+        if (!displaySlotItem) {
             const isStats = selectedCategory === 'stats';
             const instructionsTitle = isStats ? "Ability Scores" : "Customize Your Hero";
             const instructionsText = isStats
@@ -1106,32 +1128,34 @@ export const BuilderScreen = ({
             );
         }
 
-        if (selectedSlotItem.type === 'Abilities') {
+        if (displaySlotItem.type === 'Abilities') {
             return renderAbilitiesPane();
         }
 
-        if (selectedSlotItem.type === 'Input') {
+        if (displaySlotItem.type === 'Input') {
             return (
                 <InputPane
-                    selectedSlotItem={selectedSlotItem}
+                    selectedSlotItem={displaySlotItem}
                     characterData={characterData}
                     handleUpdateInput={handleUpdateInput}
                     isMobile={isMobile}
+                    actionButton={renderNextOrSaveButton()}
                 />
             );
         }
 
-        const isGroup = selectedSlotItem.type === 'Group';
-        const slotName = isGroup ? selectedSlotItem.id : (selectedSlotItem.node.displayName || selectedSlotItem.node.name);
+        const isGroup = displaySlotItem.type === 'Group';
+        const slotName = isGroup ? displaySlotItem.id : (displaySlotItem.node.displayName || displaySlotItem.node.name);
 
         return (
             <div
                 className="options-pane"
-                key={selectedSlotItem.type === 'Group' ? selectedSlotItem.id : JSON.stringify(selectedSlotItem.logicalPath)}
+                key={displaySlotItem.type === 'Group' ? displaySlotItem.id : JSON.stringify(displaySlotItem.logicalPath)}
             >
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
                         <span className="options-pane-title">{slotName} Options</span>
+                        {renderNextOrSaveButton()}
                     </div>
                 </div>
 
@@ -1225,8 +1249,8 @@ export const BuilderScreen = ({
                                     }
 
                                     const isSelected = isGroup
-                                        ? selectedSlotItem.items.some(i => i.node.filled?.id === option.id)
-                                        : selectedSlotItem.node.filled?.id === option.id;
+                                        ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                        : displaySlotItem.node.filled?.id === option.id;
 
                                     rendered.push(
                                         <OptionCard
@@ -1274,8 +1298,8 @@ export const BuilderScreen = ({
                                     }
 
                                     const isSelected = isGroup
-                                        ? selectedSlotItem.items.some(i => i.node.filled?.id === option.id)
-                                        : selectedSlotItem.node.filled?.id === option.id;
+                                        ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                        : displaySlotItem.node.filled?.id === option.id;
 
                                     rendered.push(
                                         <OptionCard
@@ -1293,8 +1317,8 @@ export const BuilderScreen = ({
 
                             return options.map(option => {
                                 const isSelected = isGroup
-                                    ? selectedSlotItem.items.some(i => i.node.filled?.id === option.id)
-                                    : selectedSlotItem.node.filled?.id === option.id;
+                                    ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                    : displaySlotItem.node.filled?.id === option.id;
 
                                 return (
                                     <OptionCard
@@ -1329,13 +1353,11 @@ export const BuilderScreen = ({
                 <div className="builder-aside">
                     <mdui-collapse
                         accordion
-                        value={selectedCategory}
+                        value={selectedCategory || ''}
                         onChange={(e) => {
                             if (e.target === e.currentTarget) {
                                 const newVal = e.target.value;
-                                if (newVal) {
-                                    setSelectedCategory(newVal);
-                                }
+                                setSelectedCategory(newVal || null);
                             }
                         }}
                         className="vertical-stepper"
@@ -1385,8 +1407,8 @@ export const BuilderScreen = ({
                                             onGetSlotOptions={handleGetSlotOptions}
                                             filterCategory={step.key}
                                             selectedSlotPath={
-                                                selectedSlotItem
-                                                    ? (selectedSlotItem.type === 'Group' ? selectedSlotItem.id : (selectedSlotItem.type === 'Abilities' ? 'abilities' : JSON.stringify(selectedSlotItem.logicalPath)))
+                                                displaySlotItem
+                                                    ? (displaySlotItem.type === 'Group' ? displaySlotItem.id : (displaySlotItem.type === 'Abilities' ? 'abilities' : JSON.stringify(displaySlotItem.logicalPath)))
                                                     : null
                                             }
                                             onSelectSlot={setSelectedSlotItem}
@@ -1402,8 +1424,8 @@ export const BuilderScreen = ({
                 {/* Right panel: Scrollable options list or instructions */}
                 <div
                     className="builder-main"
-                    key={selectedSlotItem
-                        ? (selectedSlotItem.type === 'Group' ? selectedSlotItem.id : (selectedSlotItem.type === 'Abilities' ? 'abilities' : JSON.stringify(selectedSlotItem.logicalPath)))
+                    key={displaySlotItem
+                        ? (displaySlotItem.type === 'Group' ? displaySlotItem.id : (displaySlotItem.type === 'Abilities' ? 'abilities' : JSON.stringify(displaySlotItem.logicalPath)))
                         : 'instructions'
                     }
                 >

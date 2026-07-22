@@ -12,11 +12,11 @@ children:
     target: meta.sub
     operation: set
     value: "Land"
-  - id: circleOfTheLandSpells
+  - id: circleOfTheLandType
     type: Slot
-    name: Circle of the Land Spells
+    name: Land Type
     quantity: 1
-    target: circleSpells
+    target: circleLand OR classOption
   - id: landsAid
     type: Activity
     name: Land's Aid

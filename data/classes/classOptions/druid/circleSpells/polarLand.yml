@@ -1,6 +1,6 @@
 id: polarLand
 name: Polar Land
-tags: [circleSpells]
+tags: [circleLand]
 type: Folder
 children:
   - type: Reference

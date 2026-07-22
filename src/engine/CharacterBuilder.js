@@ -789,9 +789,6 @@ export class CharacterBuilder {
      * Rebuild character data from property tree
      */
     rebuild() {
-        // Clear expression cache to ensure fresh translations and dependency resolution
-        clearExpressionCache();
-
         // 1. Initial pass to get all effects into characterData (including the new selection)
         this.runRebuildPasses();
 
@@ -914,9 +911,11 @@ export class CharacterBuilder {
                 this.evaluateSpecificField(this.characterData, stage.evaluateAfter, evaluator);
             }
 
-            // Sync visibility after every stage to ensure the tree accurately reflects
+            // Sync visibility after key stages (Attributes & Effects/Final) to accurately reflect
             // changes made by Foundation (level), Attributes (proficiencies), and Effects (weapons).
-            this.syncVisibility(this.propertyTree, evaluator);
+            if (stage.name === 'Attributes' || isFinalStage) {
+                this.syncVisibility(this.propertyTree, evaluator);
+            }
         }
     }
 

@@ -61,10 +61,11 @@ export default function PropertySelectionTree({
 
         return (
             <mdui-list-item
+
                 key={`input-card-${path.join('-')}`}
                 onClick={handleCardClick}
                 active={isActive}
-                rounded
+
             >
                 {label}
                 <span slot="description">
@@ -97,7 +98,7 @@ export default function PropertySelectionTree({
             <mdui-list-item
                 key={`slot-${path.join('-')}`}
                 onClick={handleCardClick}
-                rounded
+
                 active={isActive}
             >
                 <mdui-button-icon
@@ -140,7 +141,7 @@ export default function PropertySelectionTree({
         return (
             <mdui-list-item
                 key={pathStr}
-                rounded
+
                 onClick={handleCardClick}
                 active={isActive}
             >
@@ -179,7 +180,7 @@ export default function PropertySelectionTree({
         return (
             <mdui-list-item
                 key="ability-scores-card"
-                rounded
+
                 onClick={() => onSelectSlot && onSelectSlot({ type: 'Abilities' })}
                 active={isActive}
             >
@@ -267,7 +268,7 @@ export const PropertySelectionDescription = ({ tree, char, filterCategory, onGet
         <div className="property-selection-description">
 
             {folderCards.map(item => (
-                <mdui-list-item key={item.path.join('-')} rounded class="list-item">
+                <mdui-list-item key={item.path.join('-')} class="list-item">
                     <span slot="header">{item.fullFilled.displayName || item.fullFilled.name}</span>
                     <span slot="description">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.fullFilled.description}</ReactMarkdown>

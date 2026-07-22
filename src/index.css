@@ -559,10 +559,93 @@ blockquote {
   overflow: visible !important;
 }
 
-/* Non-mdui-card background for collapse items */
+/* Non-mdui-card background for collapse items with mdui-list-item hover/active/ripple behavior */
 .pseudo-card {
-  background: rgb(var(--mdui-color-surface-container-highest));
-  border-radius: var(--mdui-shape-corner-medium);
+  position: relative !important;
+  overflow: hidden !important;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: rgb(var(--mdui-color-surface-container-lowest));
+  border: 1px solid rgb(var(--mdui-color-outline-variant));
+  border-radius: var(--mdui-shape-corner-large);
+  transition: background-color var(--mdui-motion-duration-short1, 150ms) var(--mdui-motion-easing-standard, ease),
+    border-color var(--mdui-motion-duration-short1, 150ms) var(--mdui-motion-easing-standard, ease),
+    box-shadow var(--mdui-motion-duration-short4, 200ms) var(--mdui-motion-easing-linear, linear);
+}
+
+.pseudo-card>* {
+  position: relative;
+  z-index: 3;
+}
+
+/* Material Design State Layer overlay for Hover & Pressed states */
+.pseudo-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(var(--mdui-color-surface-container-lowest));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--mdui-motion-duration-short1, 150ms) var(--mdui-motion-easing-standard, ease);
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Hover state */
+.pseudo-card:hover::before {
+  opacity: var(--mdui-state-layer-hover, 0.08);
+}
+
+/* Pressed state */
+.pseudo-card:active::before {
+  opacity: var(--mdui-state-layer-pressed, 0.12);
+}
+
+/* Active / Selected state (matching mdui-list-item[active]) */
+.pseudo-card.active,
+.pseudo-card[active],
+.pseudo-card.selected {
+  background-color: rgb(var(--mdui-color-secondary-container)) !important;
+  border-color: rgb(var(--mdui-color-primary)) !important;
+}
+
+.pseudo-card.active::before,
+.pseudo-card[active]::before,
+.pseudo-card.selected::before {
+  background-color: rgb(var(--mdui-color-on-secondary-container));
+}
+
+/* Material Ink Ripple Effect on Click */
+.pseudo-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 50%;
+  background-color: rgba(var(--mdui-color-on-surface), 0.16);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pseudo-card:active::after {
+  animation: pseudo-card-ripple 400ms ease-out;
+}
+
+@keyframes pseudo-card-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.35;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
 }
 
 /* Card header: name + action meta */
@@ -799,13 +882,12 @@ blockquote {
   flex-direction: column;
   height: calc(100vh - 64px);
   overflow: hidden;
-  max-width: 1400px;
   margin: 0 auto;
 }
 
 .builder-layout {
   display: grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 1fr 1.8fr;
   gap: var(--gap-lg);
   height: 100%;
   overflow: hidden;
@@ -819,6 +901,7 @@ blockquote {
   flex-direction: column;
   gap: var(--gap-md);
   scrollbar-width: none;
+
 }
 
 .builder-main {
@@ -838,6 +921,7 @@ blockquote {
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-top: var(--space-1);
   padding-left: var(--space-1);
 }
 
@@ -1051,11 +1135,13 @@ blockquote {
    ========================================================================== */
 
 .options-pane-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: var(--gap-sm);
-  border-bottom: 1.5px solid rgb(var(--mdui-color-outline-variant));
   margin-bottom: var(--gap-md);
   background: rgb(var(--mdui-color-surface));
 }
@@ -2364,6 +2450,11 @@ blockquote {
     display: none !important;
   }
 
+
+  body {
+    background-color: rgb(var(--mdui-color--container));
+  }
+
   .play-content {
     height: calc(100vh - 64px);
     overflow: hidden;
@@ -2371,5 +2462,37 @@ blockquote {
 
   .options-list {
     grid-template-columns: repeat(2, 1fr);
+    padding: var(--gap-md);
+    border-radius: var(--mdui-shape-corner-extra-large);
+
   }
+
+}
+
+
+.hero-card,
+.inner-card,
+.pseudo-card,
+mdui-list-item,
+.ability-card {
+  background-color: rgb(var(--mdui-color-surface-container-lowest)) !important;
+  border: 1px solid rgb(var(--mdui-color-outline-variant));
+  border-radius: var(--mdui-shape-corner-large);
+}
+
+mdui-list-item:hover,
+mdui-list-item:focus,
+mdui-list-item:active {
+  border-radius: var(--mdui-shape-corner-large);
+  border-radius: var(--mdui-shape-corner-large);
+  overflow: hidden;
+}
+
+mdui-ripple {
+  --shape-corner: var(--mdui-shape-corner-large);
+  --shape-corner-rounded: var(--mdui-shape-corner-large);
+}
+
+mdui-list-item[active] {
+  border: 1px solid rgb(var(--mdui-color-primary)) !important;
 }
