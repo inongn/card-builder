@@ -10,6 +10,7 @@ bundle();
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/card-builder/',
   plugins: [
     react(),
     {

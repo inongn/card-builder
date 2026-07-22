@@ -17,7 +17,7 @@ export class PropertyLibrary {
     async loadFromData() {
         try {
             console.log('Fetching database...');
-            const response = await fetch('/db.json');
+            const response = await fetch(`${import.meta.env.BASE_URL}db.json`);
             if (!response.ok) throw new Error('Failed to load db.json');
 
             const db = await response.json();
