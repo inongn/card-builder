@@ -2,7 +2,7 @@ id: compelledDuel
 type: Activity
 name: Compelled Duel
 resource: level1SpellSlot
-tags: [level1Spell, enchantment, paladin, saveSpell, damageSpell]
+tags: [level1Spell, enchantment, paladin, saveSpell]
 time: bonus action
 range: 30 feet
 duration: concentration, up to 1 minute

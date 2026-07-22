@@ -20,6 +20,7 @@
   --color-thunder: #26C6DA;
   --color-physical: #BDBDBD;
   --color-spell: #00BCD4;
+  --color-accent: rgb(var(--mdui-color-primary));
 
   /* Spacing Scale */
   --space-1: 4px;
@@ -102,18 +103,6 @@ mdui-top-app-bar {}
   justify-content: center;
 }
 
-/* Primary-colored text-value (for highlighted numbers) */
-.text-value-primary {
-  font-size: var(--mdui-typescale-headline-medium-size, 1.5rem);
-  font-weight: 700;
-  color: rgb(var(--mdui-color-primary));
-}
-
-/* On-surface-variant helper */
-.text-muted {
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
 .text-right {
   text-align: right;
 }
@@ -139,12 +128,6 @@ mdui-top-app-bar {}
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-}
-
-.stack-md {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
 }
 
 /* Horizontal cluster */
@@ -174,6 +157,7 @@ mdui-top-app-bar {}
   font-size: 1.1rem !important;
 }
 
+
 .icon-large {
   font-size: 4rem;
 }
@@ -195,72 +179,6 @@ mdui-top-app-bar {}
 .icon-rotated {
   transform: rotate(45deg);
   direction: ltr;
-}
-
-/* Action-type icons */
-.icon-action {
-  color: var(--color-action);
-}
-
-.icon-bonus-action {
-  color: var(--color-bonus);
-  transform: rotate(-90deg) scale(1.5);
-}
-
-.icon-reaction {
-  color: var(--color-reaction);
-}
-
-.icon-healing {
-  color: var(--color-healing);
-}
-
-.icon-fire {
-  color: var(--color-fire);
-}
-
-.icon-cold {
-  color: var(--color-cold);
-}
-
-.icon-lightning {
-  color: var(--color-lightning);
-}
-
-.icon-radiant {
-  color: var(--color-radiant);
-}
-
-.icon-poison {
-  color: var(--color-poison);
-}
-
-.icon-acid {
-  color: var(--color-acid);
-}
-
-.icon-necrotic {
-  color: var(--color-necrotic);
-}
-
-.icon-force {
-  color: var(--color-force);
-}
-
-.icon-psychic {
-  color: var(--color-psychic);
-}
-
-.icon-thunder {
-  color: var(--color-thunder);
-}
-
-.icon-physical {
-  color: var(--color-physical);
-}
-
-.icon-spell-slot {
-  color: var(--color-spell);
 }
 
 /* Advantage/Disadvantage indicator badge */
@@ -298,12 +216,6 @@ mdui-top-app-bar {}
   flex-direction: column;
   overflow: hidden;
   padding: var(--space-3) var(--space-4);
-}
-
-
-/* Compact button-icon that pulls edges closer (negative margin hack) */
-.btn-icon-compact {
-  margin: calc(-1 * var(--space-2));
 }
 
 .surface-card.clickable {
@@ -345,65 +257,10 @@ mdui-top-app-bar {}
   flex: 1;
 }
 
-/* Card anatomy — value text inside body */
-.surface-card__value {
-  font-size: var(--mdui-typescale-body-large-size, 0.95rem);
-  font-style: italic;
-  font-weight: 200;
-  color: rgb(var(--mdui-color-on-surface));
-}
-
 .surface-card__value.empty {
   color: rgb(var(--mdui-color-outline));
   font-style: italic;
   font-weight: normal;
-}
-
-/* Card anatomy — footer */
-.surface-card__footer {
-  padding: var(--space-2) var(--space-4);
-  border-top: 1px solid rgb(var(--mdui-color-outline-variant));
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: rgb(var(--mdui-color-surface-container-lowest));
-  min-height: 40px;
-}
-
-/* ==========================================================================
-   STAT BLOCK — Unified label/value/sub display
-   Used in CharacterSheet, ability rows, resource cells, etc.
-   ========================================================================== */
-
-.stat-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.stat-block__label {
-  font-size: var(--mdui-typescale-label-medium-size, 0.7rem);
-  text-transform: uppercase;
-  font-weight: 500;
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
-.stat-block__value {
-  font-size: var(--mdui-typescale-headline-medium-size, 1.5rem);
-  font-weight: 700;
-  color: rgb(var(--mdui-color-on-surface));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: var(--space-1) 0;
-}
-
-.stat-block__sub {
-  font-size: var(--mdui-typescale-body-medium-size, 0.8rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-  opacity: 0.8;
 }
 
 /* ==========================================================================
@@ -417,11 +274,7 @@ mdui-top-app-bar {}
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: rgb(var(--mdui-color-primary));
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-1);
-  padding-bottom: var(--space-1);
-  border-bottom: 2px solid rgb(var(--mdui-color-primary-container));
-  width: 100%;
+  padding: var(--space-2);
   grid-column: 1 / -1;
 }
 
@@ -485,14 +338,6 @@ blockquote {
   max-width: 100%;
   margin: auto;
   gap: var(--gap-sm);
-}
-
-.loading-screen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--mdui-typescale-headline-medium-size, 1.5rem);
-  color: rgb(var(--mdui-color-primary));
 }
 
 .empty-state {
@@ -866,6 +711,7 @@ blockquote {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--gap-md);
   padding: var(--gap-md) 0;
+  padding-bottom: 100px;
 }
 
 .hero-card__name {
@@ -1044,83 +890,14 @@ blockquote {
   cursor: pointer;
 }
 
-/* Compound active state alias */
-.active-slot-card {
-  border-color: rgb(var(--mdui-color-primary)) !important;
-  background-color: rgb(var(--mdui-color-primary-container)) !important;
-}
-
-.slot-card-header {
-  /* uses .surface-card__header */
-}
-
-.slot-card-title {
-  /* uses .surface-card__label */
-}
-
 .slot-card.active-slot-card .slot-card-title {
   color: rgb(var(--mdui-color-primary));
-}
-
-.slot-card-body {
-  /* uses .surface-card__body */
-}
-
-.slot-card-value {
-  /* uses .surface-card__value */
 }
 
 .slot-card-value.empty {
   color: rgb(var(--mdui-color-outline));
   font-style: italic;
   font-weight: normal;
-}
-
-/* ==========================================================================
-   GROUPED SLOT CARDS (Builder aside)
-   Uses surface-card as base
-   ========================================================================== */
-
-.grouped-slots-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.slot-row-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-2) var(--space-3);
-  cursor: pointer;
-}
-
-.slot-row-item:last-child {
-  border-bottom: none;
-}
-
-.slot-row-item:hover {
-  background-color: rgb(var(--mdui-color-surface-container));
-}
-
-.slot-row-item.active-slot-row {
-  background-color: rgb(var(--mdui-color-primary-container));
-  color: rgb(var(--mdui-color-on-primary-container));
-}
-
-.slot-row-label {
-  font-size: var(--mdui-typescale-body-medium-size, 0.85rem);
-  font-weight: 500;
-}
-
-.slot-row-right {
-  display: flex;
-  align-items: center;
-  gap: var(--gap-xs);
-}
-
-.slot-row-value {
-  font-size: var(--mdui-typescale-body-medium-size, 0.85rem);
-  font-weight: 600;
 }
 
 .slot-row-value.empty {
@@ -1161,11 +938,6 @@ blockquote {
   color: rgb(var(--mdui-color-on-surface));
 }
 
-.options-pane-subtitle {
-  font-size: var(--mdui-typescale-body-medium-size, 0.85rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-}
-
 .options-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -1176,10 +948,14 @@ blockquote {
 .option-item {
   cursor: pointer;
   height: 100%;
-  padding: var(--space-4);
-  gap: var(--gap-sm);
+  padding: var(--space-3);
   display: flex;
   flex-direction: column;
+}
+
+.option-item-desc {
+  padding: var(--space-4);
+  gap: var(--space-2);
 }
 
 .ability-card {
@@ -1194,16 +970,6 @@ blockquote {
   min-height: 24px;
 }
 
-.option-item-title-group {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow: hidden;
-  gap: var(--space-1);
-  justify-content: space-between;
-  align-items: center;
-}
-
 .option-item-title {
   font-size: var(--mdui-typescale-title-medium-size, 1.05rem);
   font-weight: 700;
@@ -1212,13 +978,6 @@ blockquote {
 
 .surface-card.selected .option-item-title {
   color: rgb(var(--mdui-color-primary));
-}
-
-.option-item-subtitle {
-  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgb(var(--mdui-color-on-surface-variant));
 }
 
 .option-item-body {
@@ -1233,34 +992,23 @@ blockquote {
   margin-bottom: 0;
 }
 
-.option-item-select-badge {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-size: var(--mdui-typescale-label-medium-size, 0.8rem);
-  font-weight: bold;
-  color: rgb(var(--mdui-color-primary));
+.option-item-meta {
+  font-size: var(--mdui-typescale-body-small-size, 0.85rem);
+  font-style: italic;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Context chips inside option cards */
-.option-item-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+mdui-list-item::part(description) {
+  font-size: var(--mdui-typescale-body-small-size, 0.85rem);
+  font-style: italic;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  line-height: 1.4;
 }
 
-.context-chip {
-  background-color: rgb(var(--mdui-color-secondary-container));
-  color: rgb(var(--mdui-color-on-secondary-container));
-  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
-  font-weight: 500;
-  padding: 0 var(--space-1);
-  border-radius: var(--mdui-shape-corner-extra-small);
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid rgb(var(--mdui-color-outline-variant));
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
 
 /* ==========================================================================
    ABILITIES PANEL (Builder)
@@ -1277,19 +1025,6 @@ blockquote {
   /* intentionally hidden */
 }
 
-.ability-smart-row {
-  display: flex;
-  padding: var(--gap-sm) var(--gap-lg);
-  flex-direction: column;
-}
-
-.ability-smart-row-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-2);
-}
-
 .ability-name {
   font-weight: 500;
   font-size: var(--mdui-typescale-body-large-size, 1rem);
@@ -1299,11 +1034,6 @@ blockquote {
   font-size: var(--mdui-typescale-title-medium-size, 1.25rem);
   font-weight: bold;
   color: rgb(var(--mdui-color-primary));
-}
-
-.ability-smart-row .mdui-number-controls {
-  grid-template-columns: 1fr auto auto;
-  gap: var(--gap-sm);
 }
 
 /* ==========================================================================
@@ -1369,24 +1099,6 @@ blockquote {
   line-height: 1.4;
 }
 
-/* ==========================================================================
-   ABILITY SCORES BUILDER (number controls)
-   ========================================================================== */
-
-.mdui-number-controls {
-  display: grid;
-  grid-template-columns: 3fr auto auto;
-  align-items: center;
-}
-
-.builder-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gap-md);
-  max-width: 800px;
-  margin: 0 auto;
-}
-
 .category-section {
   display: flex;
   flex-direction: column;
@@ -1406,6 +1118,7 @@ blockquote {
   user-select: none;
   cursor: pointer;
   box-sizing: border-box;
+  padding: 0 var(--space-2);
 }
 
 .custom-slider-track {
@@ -1533,35 +1246,6 @@ blockquote {
 .custom-slider-thumb:active {
   cursor: grabbing;
   transform: translate(-50%, -50%) scale(1.15);
-}
-
-.custom-slider-tooltip {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgb(var(--mdui-color-error-container));
-  color: rgb(var(--mdui-color-on-error-container));
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--mdui-shape-corner-extra-small);
-  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
-  font-weight: bold;
-  white-space: nowrap;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
-  animation: tooltip-fade-in 0.15s ease-out;
-  z-index: 20;
-}
-
-.custom-slider-tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 5px;
-  border-style: solid;
-  border-color: rgb(var(--mdui-color-error-container)) transparent transparent transparent;
 }
 
 @keyframes tooltip-fade-in {
@@ -2053,15 +1737,6 @@ blockquote {
   gap: var(--space-2);
 }
 
-.prop-list-item__badge {
-  font-size: var(--mdui-typescale-label-medium-size, 0.75rem);
-  font-weight: 600;
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--mdui-shape-corner-extra-small);
-  background-color: rgb(var(--mdui-color-secondary-container));
-  color: rgb(var(--mdui-color-on-secondary-container));
-}
-
 .prop-list-item__expand-pointer {
   pointer-events: none;
 }
@@ -2238,11 +1913,6 @@ blockquote {
   mdui-navigation-rail,
   mdui-navigation-drawer,
   mdui-top-app-bar,
-  .print-tab-container>div:first-child,
-  .category-creator-container,
-  .preview-container,
-  .saved-characters-view,
-  .loading-screen,
   .header-nav,
   mdui-fab,
   .hide-on-print {
@@ -2417,7 +2087,7 @@ blockquote {
 
   .step-body {
     padding-left: 0 !important;
-    margin-left: 44px !important;
+    margin-left: 30px !important;
   }
 
   .slot-card {
@@ -2474,16 +2144,21 @@ blockquote {
 .inner-card,
 .pseudo-card,
 mdui-list-item,
-.ability-card {
+.ability-card,
+mdui-text-field,
+.input-pane-body {
   background-color: rgb(var(--mdui-color-surface-container-lowest)) !important;
   border: 1px solid rgb(var(--mdui-color-outline-variant));
   border-radius: var(--mdui-shape-corner-large);
 }
 
+mdui-text-field::part(container) {
+  box-shadow: none !important;
+}
+
 mdui-list-item:hover,
 mdui-list-item:focus,
 mdui-list-item:active {
-  border-radius: var(--mdui-shape-corner-large);
   border-radius: var(--mdui-shape-corner-large);
   overflow: hidden;
 }
@@ -2493,6 +2168,11 @@ mdui-ripple {
   --shape-corner-rounded: var(--mdui-shape-corner-large);
 }
 
-mdui-list-item[active] {
+mdui-list-item[active],
+mdui-text-field[focused] {
   border: 1px solid rgb(var(--mdui-color-primary)) !important;
+}
+
+mdui-list-item[active] {
+  background-color: rgb(var(--mdui-color-secondary-container)) !important;
 }

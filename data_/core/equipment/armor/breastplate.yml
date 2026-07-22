@@ -1,9 +1,0 @@
-id: breastplate
-name: Breastplate
-type: Folder
-tags: [mediumArmor, item]
-children:
-  - type: Effect
-    target: attributes.ac
-    operation: set
-    value: $(14 + Math.min(2, stats.dex.mod))

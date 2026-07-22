@@ -1,9 +1,0 @@
-id: gazeOfTwoMinds
-name: Gaze of Two Minds
-tags:
-  - eldritchInvocation
-condition: $(meta.level >= 5)
-type: Activity
-time: bonus action
-duration: 1 turn
-description: "Touch a willing creature to perceive through its senses until the end of your next turn. Use a Bonus Action to extend the duration."

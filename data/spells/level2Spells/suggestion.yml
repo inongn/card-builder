@@ -2,7 +2,7 @@ id: suggestion
 type: Activity
 name: Suggestion
 resource: level2SpellSlot
-tags: [level2Spell, enchantment, bard, sorcerer, warlock, wizard, saveSpell, damageSpell]
+tags: [level2Spell, enchantment, bard, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 30 feet
 duration: concentration, up to 8 hours

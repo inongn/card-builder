@@ -1750,16 +1750,30 @@ export class CharacterBuilder {
                 if (!evaluator.evaluate(prop.condition)) return false;
             }
 
-            // Check if already exists (unless repeatable)
-            if (existingIds.has(prop.id) && !prop.repeatable) {
+            // Check if already exists elsewhere (unless repeatable or filled in this slot)
+            if (existingIds.has(prop.id) && !prop.repeatable && slot.filled?.id !== prop.id) {
                 return false;
             }
 
             return true;
-        }).map(prop => ({
-            ...prop,
-            displayName: evaluator.evaluate(prop.name)
-        }));
+        }).map(prop => {
+            let isDisabled = prop.isDisabled || false;
+            let disabledReason = prop.disabledReason || null;
+
+            if (prop.prerequisiteCondition && !slot.ignoreCondition) {
+                const isMet = evaluator.evaluate(prop.prerequisiteCondition);
+                if (!isMet) {
+                    isDisabled = true;
+                    disabledReason = prop.prerequisite ? `Requires ${prop.prerequisite}` : 'Prerequisites not met';
+                }
+            }
+
+            return {
+                ...prop,
+                displayName: evaluator.evaluate(prop.name),
+                ...(isDisabled ? { isDisabled, disabledReason } : {})
+            };
+        });
 
         return candidates;
     }

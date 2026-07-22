@@ -1,8 +1,0 @@
-tags:
-  - skillProficiency
-type: Effect
-target: skills.survival.proficiency
-operation: set
-value: 1
-id: survivalProficiency
-name: Survival Proficiency

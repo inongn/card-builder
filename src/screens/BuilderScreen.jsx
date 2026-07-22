@@ -1,6 +1,6 @@
 import React from 'react';
 import PropertySelectionTree from '../components/PropertySelectionTree';
-import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode } from '../utils/builderUtils.js';
+import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -13,15 +13,11 @@ import 'mdui/components/slider.js';
 import 'mdui/components/collapse.js';
 import 'mdui/components/collapse-item.js';
 
-const orderedSteps = [
+const orderedCategories = [
     { key: 'origin', icon: 'person', label: 'Origin' },
     { key: 'class', icon: 'school', label: 'Class' },
-    { key: 'feats', icon: 'emoji_events', label: 'Feats' },
-    { key: 'stats', icon: 'fitness_center', label: 'Abilities' },
-    { key: 'skills', icon: 'psychology', label: 'Skills' },
-    { key: 'spellcasting', icon: 'auto_fix_high', label: 'Spells' },
-    { key: 'companion', icon: 'pets', label: 'Companion' },
-    { key: 'equipment', icon: 'shield', label: 'Equipment' },
+    { key: 'abilities', icon: 'fitness_center', label: 'Abilities' },
+    { key: 'arsenal', icon: 'shield', label: 'Arsenal' },
 ];
 
 const isShield = (opt) => {
@@ -36,13 +32,131 @@ const isUnarmored = (opt) => {
     return opt.id === 'unarmored' || tags.includes('unarmored');
 };
 
-// Sub-component for rendering option selection cards
-const getOptionChips = (option) => {
-    const chips = [];
-    const tags = option.tags || [];
-    const vars = option.variables || {};
+const formatAcCalculation = (option, characterData) => {
+    if (!option) return null;
 
-    const isSpell = tags.some(t => t.includes('Spell') || t === 'cantrip') || option.resource?.toLowerCase().includes('spell');
+    const isUnarmoredOption = option.id === 'unarmored' || (option.tags || []).includes('unarmored');
+
+    if (isUnarmoredOption) {
+        const cls = (characterData?.meta?.class || '').toLowerCase();
+        const sub = (characterData?.meta?.sub || '').toLowerCase();
+
+        if (cls === 'barbarian') {
+            return 'AC: 10 + Dexterity + Constitution';
+        }
+        if (cls === 'monk') {
+            return 'AC: 10 + Dexterity + Wisdom';
+        }
+        if (sub === 'draconic' || sub === 'dance') {
+            return 'AC: 10 + Dexterity + Charisma';
+        }
+        return 'AC: 10 + Dexterity';
+    }
+
+    const children = option.children || [];
+    const acEffect = children.find(c => c && c.type === 'Effect' && (c.target === 'attributes.ac' || c.target === 'ac'));
+
+    if (acEffect) {
+        if (acEffect.operation === 'add') {
+            const val = String(acEffect.value).replace(/\$|\(|\)/g, '').trim();
+            const num = parseInt(val, 10);
+            if (!isNaN(num)) {
+                return `AC: +${num}`;
+            }
+            return `AC: +${val}`;
+        }
+
+        if (acEffect.operation === 'set' || !acEffect.operation) {
+            let val = String(acEffect.value || '');
+            val = val.replace(/^\$\((.*)\)$/, '$1').trim();
+
+            if (/^\d+$/.test(val)) {
+                return `AC: ${val}`;
+            }
+
+            const minMatch = val.match(/^(\d+)\s*\+\s*Math\.min\((\d+),\s*stats\.dex\.mod\)$/);
+            if (minMatch) {
+                return `AC: ${minMatch[1]} + Dexterity, up to ${minMatch[2]}`;
+            }
+
+            const dexMatch1 = val.match(/^(\d+)\s*\+\s*stats\.dex\.mod$/);
+            if (dexMatch1) {
+                return `AC: ${dexMatch1[1]} + Dexterity`;
+            }
+            const dexMatch2 = val.match(/^stats\.dex\.mod\s*\+\s*(\d+)$/);
+            if (dexMatch2) {
+                return `AC: ${dexMatch2[1]} + Dexterity`;
+            }
+
+            if (val.includes('stats.')) {
+                let formatted = val
+                    .replace(/stats\.dex\.mod/g, 'Dexterity')
+                    .replace(/stats\.con\.mod/g, 'Constitution')
+                    .replace(/stats\.wis\.mod/g, 'Wisdom')
+                    .replace(/stats\.cha\.mod/g, 'Charisma')
+                    .replace(/stats\.str\.mod/g, 'Strength')
+                    .replace(/stats\.int\.mod/g, 'Intelligence')
+                    .replace(/Math\.min\((\d+),\s*Dexterity\)/g, 'Dexterity, up to $1')
+                    .replace(/Math\.min\(Dexterity,\s*(\d+)\)/g, 'Dexterity, up to $1');
+                return `AC: ${formatted}`;
+            }
+
+            return `AC: ${val}`;
+        }
+    }
+
+    const tags = option.tags || [];
+    if (tags.includes('shieldEquipment') || tags.includes('shield') || option.id === 'shieldEquipment') {
+        return 'AC: +2';
+    }
+
+    return null;
+};
+
+const formatDamageMeta = (vars) => {
+    if (!vars) return null;
+    let roll = vars.damageRoll ? String(vars.damageRoll) : '';
+    let type = vars.damageType ? String(vars.damageType) : '';
+
+    if (!roll && !type) return null;
+
+    if (roll.includes('$') || roll.includes('?')) {
+        const diceMatches = roll.match(/\d+d\d+/g);
+        if (diceMatches && diceMatches.length > 0) {
+            const uniqueDice = [...new Set(diceMatches)];
+            roll = uniqueDice.join('/');
+        } else {
+            roll = '';
+        }
+    }
+
+    const formattedType = type ? (type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()) : '';
+
+    if (roll && formattedType) {
+        return `${roll} ${formattedType}`;
+    }
+    if (roll) {
+        return roll;
+    }
+    if (formattedType) {
+        return formattedType;
+    }
+    return null;
+};
+
+// Sub-component for rendering option selection cards
+const getOptionChips = (option, onGetProperty, characterData) => {
+    let fullOpt = option;
+    if (!fullOpt.children && onGetProperty) {
+        const fetched = onGetProperty(fullOpt.id);
+        if (fetched) fullOpt = { ...fullOpt, ...fetched };
+    }
+
+    const chips = [];
+    const tags = fullOpt.tags || [];
+    const vars = fullOpt.variables || {};
+
+    const isSpell = tags.some(t => t.includes('Spell') || t === 'cantrip') || fullOpt.resource?.toLowerCase().includes('spell');
 
     if (isSpell) {
         // School
@@ -100,6 +214,16 @@ const getOptionChips = (option) => {
         }
         if (tags.includes('medium') && !chips.includes('Medium')) {
             chips.push('Medium');
+        }
+
+        const dmgMeta = formatDamageMeta(vars);
+        if (dmgMeta) {
+            chips.push(dmgMeta);
+        }
+
+        const acCalc = formatAcCalculation(fullOpt, characterData);
+        if (acCalc) {
+            chips.push(acCalc);
         }
     }
 
@@ -289,7 +413,7 @@ const CustomStatsSlider = ({
 };
 
 // Sub-component for rendering option selection cards
-const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData }) {
+const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData, onGetProperty }) {
     const evaluatedDescription = React.useMemo(() => {
         if (!option.description) return '';
         const evaluator = new ExpressionEvaluator(characterData);
@@ -307,23 +431,9 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         }
     };
 
-    const chips = React.useMemo(() => {
-        const allChips = getOptionChips(option);
-        const allowedChips = [];
-        const vars = option.variables || {};
-        if (vars.property) {
-            const prop = String(vars.property)
-                .replace(/([A-Z])/g, ' $1')
-                .trim()
-                .split(' ')
-                .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-                .join('-');
-            if (allChips.includes(prop)) {
-                allowedChips.push(prop);
-            }
-        }
-        return allowedChips;
-    }, [option]);
+    const labels = React.useMemo(() => {
+        return getOptionChips(option, onGetProperty, characterData);
+    }, [option, onGetProperty, characterData]);
 
     const tags = option.tags || [];
     const shouldShowDesc = tags.some(tag => {
@@ -338,13 +448,20 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
             clickable={!disabled}
             onClick={handleCardClick}
         >
-            <div slot="custom" className="option-item" >
+            <div slot="custom" className={`option-item ${shouldShowDesc ? 'option-item-desc' : ''}`} >
                 <div className="option-item-header">
                     <div className="option-item-title">{option.displayName || option.name}</div>
                     {isSelected && (
                         <mdui-icon slot="end-icon" name="check_circle" class="icon-primary"></mdui-icon>
                     )}
+
                 </div>
+                {labels.length > 0 && (
+                    <div className="option-item-meta">
+                        {labels.join(' • ')}
+                    </div>
+                )}
+
                 {shouldShowDesc && option.description && (
                     <span className="option-item-body">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedDescription}</ReactMarkdown>
@@ -561,29 +678,76 @@ export const BuilderScreen = ({
         const renderableNodes = collectRenderableNodes(propertyTree, characterData);
         const orderedItems = [];
 
-        orderedSteps.forEach(step => {
-            if (step.key === 'stats') {
-                orderedItems.push({ type: 'Abilities', category: 'stats' });
+        Object.entries(STEP_DEFINITIONS).forEach(([stepKey, stepDef]) => {
+            if (stepKey === 'stats') {
+                orderedItems.push({ type: 'Abilities', category: 'abilities', step: 'stats' });
                 return;
             }
 
-            const categoryNodes = renderableNodes.filter(item =>
-                (item.type === 'Slot' || item.type === 'Input') && categorizeNode(item) === step.key
+            const stepNodes = renderableNodes.filter(item =>
+                (item.type === 'Slot' || item.type === 'Input') && categorizeNode(item) === stepKey
             );
+            if (stepNodes.length === 0) return;
+
+            if (stepKey === 'companion' || stepKey === 'steed' || stepKey === 'familiar') {
+                orderedItems.push({
+                    type: 'Ally',
+                    allyType: stepKey,
+                    id: `ally-${stepKey}`,
+                    title: stepDef.title,
+                    items: stepNodes,
+                    category: 'arsenal',
+                    step: stepKey
+                });
+                return;
+            }
+
+            if (stepKey === 'classOptions') {
+                const slotNodes = stepNodes.filter(item => item.type === 'Slot');
+                if (slotNodes.length > 0) {
+                    const baseNames = new Set(slotNodes.map(i => (i.node.displayName || i.node.name).replace(/ #\d+$/, '')));
+                    if (baseNames.size > 1) {
+                        orderedItems.push({
+                            type: 'MergedCategory',
+                            category: 'class',
+                            step: 'classOptions',
+                            id: 'merged-classOptions',
+                            title: 'Class Options',
+                            items: slotNodes
+                        });
+                        return;
+                    }
+                }
+            } else if (MERGED_CATEGORIES.includes(stepKey)) {
+                const slotNodes = stepNodes.filter(item => item.type === 'Slot');
+                if (slotNodes.length > 0) {
+                    orderedItems.push({
+                        type: 'MergedCategory',
+                        category: stepDef.category,
+                        step: stepKey,
+                        id: `merged-${stepKey}`,
+                        title: stepDef.title,
+                        items: slotNodes
+                    });
+                }
+                const inputNodes = stepNodes.filter(item => item.type === 'Input');
+                inputNodes.forEach(item => orderedItems.push({ ...item, category: stepDef.category, step: stepKey }));
+                return;
+            }
 
             const visitedGroups = new Set();
-            categoryNodes.forEach(item => {
+            stepNodes.forEach(item => {
                 if (item.type === 'Slot' && item.node.slotIndex !== undefined) {
                     const baseName = (item.node.displayName || item.node.name).replace(/ #\d+$/, '');
                     if (!visitedGroups.has(baseName)) {
                         visitedGroups.add(baseName);
-                        const groupItems = categoryNodes.filter(i =>
+                        const groupItems = stepNodes.filter(i =>
                             i.type === 'Slot' && (i.node.displayName || i.node.name).replace(/ #\d+$/, '') === baseName
                         );
-                        orderedItems.push({ type: 'Group', id: baseName, items: groupItems, category: step.key });
+                        orderedItems.push({ type: 'Group', id: baseName, items: groupItems, category: stepDef.category, step: stepKey });
                     }
                 } else {
-                    orderedItems.push({ ...item, category: step.key });
+                    orderedItems.push({ ...item, category: stepDef.category, step: stepKey });
                 }
             });
         });
@@ -600,87 +764,20 @@ export const BuilderScreen = ({
     // Synchronously determine the correct display and state item to prevent UI flicker
     const categoryItems = items.filter(item => item.category === selectedCategory);
 
-    const isSameSlotItem = (a, b) => {
-        if (a === b) return true;
-        if (!a || !b) return false;
-        if (a.type !== b.type) return false;
-        if (a.type === 'Abilities') return true;
-        if (a.type === 'Group') return a.id === b.id;
-        return JSON.stringify(a.logicalPath) === JSON.stringify(b.logicalPath);
-    };
+    // Uses imported isSameSlotItem helper based on getItemUniqueId
 
     let matchedItem = categoryItems.find(item => isSameSlotItem(item, selectedSlotItem));
     let displaySlotItem = matchedItem || null;
     let newSlotItemToSet = selectedSlotItem;
 
     if (categoryItems.length > 0) {
-        if (selectedCategory === 'stats') {
-            if (!matchedItem) {
-                displaySlotItem = isMobile ? null : { type: 'Abilities', category: 'stats' };
-                newSlotItemToSet = displaySlotItem;
-            }
-        } else if (!matchedItem) {
+        if (!matchedItem) {
             if (isMobile) {
                 displaySlotItem = null;
                 newSlotItemToSet = null;
             } else {
-                const unfilled = categoryItems.find(item => {
-                    if (item.type === 'Input') {
-                        return (item.node.value ?? item.node.default ?? '') === '';
-                    }
-                    if (item.type === 'Slot') {
-                        return !item.node.filled;
-                    }
-                    if (item.type === 'Group') {
-                        return item.items.some(si => !si.node.filled);
-                    }
-                    return false;
-                });
-                displaySlotItem = unfilled || categoryItems[0] || null;
+                displaySlotItem = categoryItems[0] || null;
                 newSlotItemToSet = displaySlotItem;
-            }
-        } else {
-            // It matched!
-            // Check if we need to auto-advance on desktop
-            if (!isMobile && selectedSlotItem) {
-                let wasUnfilled = false;
-                if (selectedSlotItem.type === 'Input') {
-                    const val = selectedSlotItem.node.value ?? selectedSlotItem.node.default ?? '';
-                    wasUnfilled = val === '';
-                } else if (selectedSlotItem.type === 'Slot') {
-                    wasUnfilled = !selectedSlotItem.node.filled;
-                } else if (selectedSlotItem.type === 'Group') {
-                    wasUnfilled = selectedSlotItem.items.some(si => !si.node.filled);
-                }
-
-                let isNowFilled = false;
-                if (matchedItem.type === 'Input') {
-                    const val = matchedItem.node.value ?? matchedItem.node.default ?? '';
-                    isNowFilled = val !== '';
-                } else if (matchedItem.type === 'Slot') {
-                    isNowFilled = !!matchedItem.node.filled;
-                } else if (matchedItem.type === 'Group') {
-                    isNowFilled = matchedItem.items.every(si => si.node.filled);
-                }
-
-                if (selectedSlotItem.type === 'Slot' && wasUnfilled && isNowFilled) {
-                    const nextUnfilled = categoryItems.find(item => {
-                        if (item.type === 'Input') {
-                            return (item.node.value ?? item.node.default ?? '') === '';
-                        }
-                        if (item.type === 'Slot') {
-                            return !item.node.filled;
-                        }
-                        if (item.type === 'Group') {
-                            return item.items.some(si => !si.node.filled);
-                        }
-                        return false;
-                    });
-                    if (nextUnfilled) {
-                        displaySlotItem = nextUnfilled;
-                        newSlotItemToSet = nextUnfilled;
-                    }
-                }
             }
         }
     } else {
@@ -709,6 +806,11 @@ export const BuilderScreen = ({
 
     const options = React.useMemo(() => {
         if (!displaySlotItem || displaySlotItem.type === 'Abilities' || displaySlotItem.type === 'Input') return [];
+
+        if (displaySlotItem.type === 'MergedCategory') {
+            return aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty);
+        }
+
         const node = displaySlotItem.type === 'Slot' ? displaySlotItem.node : displaySlotItem.items[0].node;
         let opts = handleGetSlotOptions ? handleGetSlotOptions(node) : [];
 
@@ -839,6 +941,106 @@ export const BuilderScreen = ({
     const handleOptionSelect = (option) => {
         if (!displaySlotItem) return;
 
+        if (displaySlotItem.type === 'MergedCategory') {
+            const currentChoiceIds = displaySlotItem.items.map(i => i.node.filled?.id).filter(Boolean);
+
+            const categoryOptionsMap = new Map();
+            displaySlotItem.items.forEach(slotItem => {
+                const opts = handleGetSlotOptions ? handleGetSlotOptions(slotItem.node) : [];
+                (opts || []).forEach(opt => {
+                    let fullOpt = opt;
+                    if (!fullOpt.tags && onGetProperty) {
+                        const fetched = onGetProperty(opt.id);
+                        if (fetched) fullOpt = { ...opt, ...fetched };
+                    }
+                    if (!categoryOptionsMap.has(opt.id)) {
+                        categoryOptionsMap.set(opt.id, { option: fullOpt });
+                    }
+                });
+                if (slotItem.node.filled) {
+                    let fullOpt = slotItem.node.filled;
+                    if (!fullOpt.tags && onGetProperty) {
+                        const fetched = onGetProperty(fullOpt.id);
+                        if (fetched) fullOpt = { ...fullOpt, ...fetched };
+                    }
+                    categoryOptionsMap.set(fullOpt.id, { option: fullOpt });
+                }
+            });
+
+            const slotAllowedMap = getSlotAllowedMap(displaySlotItem.items, categoryOptionsMap, handleGetSlotOptions);
+
+            if (option.isSelected) {
+                const newChoiceIds = currentChoiceIds.filter(id => id !== option.id);
+                const matching = findMatchingForChoices(newChoiceIds, displaySlotItem.items, slotAllowedMap);
+
+                displaySlotItem.items.forEach(slotItem => {
+                    const filledId = slotItem.node.filled?.id;
+                    let matchedChoiceId = null;
+                    if (matching) {
+                        for (const [cId, targetSlot] of matching.entries()) {
+                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
+                                matchedChoiceId = cId;
+                                break;
+                            }
+                        }
+                    }
+                    if (filledId && filledId !== matchedChoiceId) {
+                        handleClearSlot(slotItem.path);
+                    }
+                });
+
+                if (matching) {
+                    displaySlotItem.items.forEach(slotItem => {
+                        const filledId = slotItem.node.filled?.id;
+                        let matchedChoiceId = null;
+                        for (const [cId, targetSlot] of matching.entries()) {
+                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
+                                matchedChoiceId = cId;
+                                break;
+                            }
+                        }
+                        if (matchedChoiceId && filledId !== matchedChoiceId) {
+                            handleFillSlot(slotItem.path, matchedChoiceId);
+                        }
+                    });
+                }
+            } else if (!option.isDisabled) {
+                const newChoiceIds = [...currentChoiceIds, option.id];
+                const matching = findMatchingForChoices(newChoiceIds, displaySlotItem.items, slotAllowedMap);
+
+                if (matching) {
+                    displaySlotItem.items.forEach(slotItem => {
+                        const filledId = slotItem.node.filled?.id;
+                        let matchedChoiceId = null;
+                        for (const [cId, targetSlot] of matching.entries()) {
+                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
+                                matchedChoiceId = cId;
+                                break;
+                            }
+                        }
+                        if (filledId && filledId !== matchedChoiceId) {
+                            handleClearSlot(slotItem.path);
+                        }
+                    });
+
+                    displaySlotItem.items.forEach(slotItem => {
+                        const filledId = slotItem.node.filled?.id;
+                        let matchedChoiceId = null;
+                        for (const [cId, targetSlot] of matching.entries()) {
+                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
+                                matchedChoiceId = cId;
+                                break;
+                            }
+                        }
+                        if (matchedChoiceId && filledId !== matchedChoiceId) {
+                            handleFillSlot(slotItem.path, matchedChoiceId);
+                        }
+                    });
+                }
+            }
+            return;
+        }
+
         if (displaySlotItem.type === 'Slot') {
             const { node, path } = displaySlotItem;
             if (node.filled?.id === option.id) {
@@ -865,57 +1067,59 @@ export const BuilderScreen = ({
     const isMobileOptionsActive = !!displaySlotItem;
 
     const limitReached = React.useMemo(() => {
-        if (!displaySlotItem || displaySlotItem.type !== 'Group') return false;
+        if (!displaySlotItem || (displaySlotItem.type !== 'Group' && displaySlotItem.type !== 'MergedCategory')) return false;
         return displaySlotItem.items.every(i => i.node.filled);
     }, [displaySlotItem]);
 
-    const isCurrentSelectionFilled = React.useMemo(() => {
-        if (!displaySlotItem) return false;
-        if (displaySlotItem.type === 'Input') {
-            const val = displaySlotItem.node.value ?? displaySlotItem.node.default ?? '';
+    const isItemFilled = React.useCallback((item) => {
+        if (!item) return false;
+        if (item.type === 'Input') {
+            const val = item.node.value ?? item.node.default ?? '';
             return val !== '';
         }
-        if (displaySlotItem.type === 'Slot') {
-            return !!displaySlotItem.node.filled;
+        if (item.type === 'Slot') {
+            return !!item.node.filled;
         }
-        if (displaySlotItem.type === 'Group') {
-            return displaySlotItem.items.every(i => i.node.filled);
+        if (item.type === 'Group' || item.type === 'MergedCategory') {
+            return item.items.every(i => i.node.filled);
         }
-        if (displaySlotItem.type === 'Abilities') {
+        if (item.type === 'Ally') {
+            return item.items.filter(i => i.type === 'Slot').every(i => i.node.filled);
+        }
+        if (item.type === 'Abilities') {
             return !!categoryStats['stats']?.isComplete;
         }
         return false;
-    }, [displaySlotItem, categoryStats]);
+    }, [categoryStats]);
+
+    const isCurrentSelectionFilled = React.useMemo(() => {
+        return isItemFilled(displaySlotItem);
+    }, [displaySlotItem, isItemFilled]);
 
     const handleNextClick = () => {
-        // Find current selection index
-        const currentIndex = items.findIndex(item => {
-            if (displaySlotItem.type !== item.type) return false;
-            if (item.type === 'Abilities') return true;
-            if (item.type === 'Group') return item.id === displaySlotItem.id;
-            return JSON.stringify(item.logicalPath) === JSON.stringify(displaySlotItem.logicalPath);
-        });
-
-        // Find the next item (filled or not) whose category is available
-        let nextItem = null;
-        if (currentIndex !== -1) {
-            for (let i = 1; i < items.length; i++) {
-                const idx = (currentIndex + i) % items.length;
-                const item = items[idx];
-
-                // Check if item's category is available
-                if (availableCategories.includes(item.category)) {
-                    nextItem = item;
-                    break;
-                }
+        if (!displaySlotItem) {
+            if (items.length > 0) {
+                setSelectedCategory(items[0].category);
+                setSelectedSlotItem(items[0]);
             }
+            return;
+        }
+
+        const currentIndex = items.findIndex(item => isSameSlotItem(item, displaySlotItem));
+
+        let nextItem = null;
+        if (currentIndex !== -1 && currentIndex + 1 < items.length) {
+            nextItem = items[currentIndex + 1];
+        } else {
+            // If on the last item, jump to the first unfilled item in the builder, or wrap to items[0]
+            nextItem = items.find(item => !isItemFilled(item)) || items[0];
         }
 
         if (nextItem) {
-            setSelectedCategory(nextItem.category);
+            if (nextItem.category !== selectedCategory) {
+                setSelectedCategory(nextItem.category);
+            }
             setSelectedSlotItem(nextItem);
-        } else {
-            setSelectedSlotItem(null);
         }
     };
 
@@ -934,18 +1138,21 @@ export const BuilderScreen = ({
         }
         // Calculate missing items (N)
         let missingCount = 1;
-        if (displaySlotItem.type === 'Group') {
+        if (displaySlotItem.type === 'Group' || displaySlotItem.type === 'MergedCategory') {
             missingCount = displaySlotItem.items.filter(i => !i.node.filled).length;
+        } else if (displaySlotItem.type === 'Ally') {
+            missingCount = displaySlotItem.items.filter(i => i.type === 'Slot' && !i.node.filled).length;
         } else if (displaySlotItem.type === 'Abilities') {
             missingCount = categoryStats['stats']?.pending || 0;
         }
+
         if (displaySlotItem.type === 'Abilities') { // if were in ability selection
             return `Assign ${missingCount}`;
         }
         return `Pick ${missingCount}`;
     }, [displaySlotItem, isCurrentSelectionFilled, isComplete, categoryStats, isMobileOverlayActive]);
 
-    const handleNextOrSaveClick = () => {
+    const handleNextOrSaveClick = React.useCallback(() => {
         if (isComplete) {
             if (isMobileOverlayActive) {
                 setSelectedSlotItem(null);
@@ -955,7 +1162,30 @@ export const BuilderScreen = ({
         } else {
             handleNextClick();
         }
-    };
+    }, [isComplete, isMobileOverlayActive, setSelectedSlotItem, onSave, handleNextClick]);
+
+    React.useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Enter') {
+                const targetTag = e.target?.tagName?.toUpperCase() || '';
+                if (targetTag === 'TEXTAREA') {
+                    return;
+                }
+
+                const isDisabled = !isCurrentSelectionFilled && !isComplete;
+                if (!isDisabled) {
+                    if (e.target && typeof e.target.blur === 'function') {
+                        e.target.blur();
+                    }
+                    e.preventDefault();
+                    handleNextOrSaveClick();
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown, true);
+        return () => window.removeEventListener('keydown', handleKeyDown, true);
+    }, [isCurrentSelectionFilled, isComplete, handleNextOrSaveClick]);
 
     const renderNextOrSaveButton = () => {
         if (isMobile) return null;
@@ -963,7 +1193,7 @@ export const BuilderScreen = ({
             <mdui-button
                 variant="filled"
                 disabled={(!isCurrentSelectionFilled && !isComplete) || undefined}
-                onClick={isComplete ? onSave : handleNextClick}
+                onClick={handleNextOrSaveClick}
                 size="small"
             >
                 {isComplete ? 'Save' : (isCurrentSelectionFilled ? 'Next' : nextButtonLabel)}
@@ -971,18 +1201,26 @@ export const BuilderScreen = ({
         );
     };
 
-    const topAppBarTitle = isMobileOverlayActive
-        ? (displaySlotItem.type === 'Group'
-            ? displaySlotItem.id
-            : (displaySlotItem.type === 'Abilities'
-                ? 'Ability Scores'
-                : (displaySlotItem.node && (displaySlotItem.node.id === 'level' || displaySlotItem.node.name === 'Level')
-                    ? `Level ${displaySlotItem.node.value ?? displaySlotItem.node.default ?? 1}`
-                    : (displaySlotItem.node.displayName || displaySlotItem.node.name)
-                )
-            )
-        )
-        : "Aspida";
+    let topAppBarTitle = "Aspida";
+    if (isMobileOverlayActive && displaySlotItem) {
+        if (displaySlotItem.type === 'Group') {
+            topAppBarTitle = displaySlotItem.id;
+        } else if (displaySlotItem.type === 'MergedCategory') {
+            topAppBarTitle = displaySlotItem.title || STEP_DEFINITIONS[displaySlotItem.step]?.title || CATEGORIES[displaySlotItem.category]?.title || displaySlotItem.category;
+        } else if (displaySlotItem.type === 'Abilities') {
+            topAppBarTitle = 'Ability Scores';
+        } else if (displaySlotItem.type === 'Ally') {
+            topAppBarTitle = displaySlotItem.title || STEP_DEFINITIONS[displaySlotItem.allyType]?.title || displaySlotItem.allyType;
+        } else if (displaySlotItem.node) {
+            if (displaySlotItem.node.id === 'level' || displaySlotItem.node.name === 'Level') {
+                topAppBarTitle = `Level ${displaySlotItem.node.value ?? displaySlotItem.node.default ?? 1}`;
+            } else {
+                topAppBarTitle = displaySlotItem.node.displayName || displaySlotItem.node.name || displaySlotItem.title || "Customize";
+            }
+        } else if (displaySlotItem.title) {
+            topAppBarTitle = displaySlotItem.title;
+        }
+    }
 
     const topAppBarLeftAction = isMobileOverlayActive
         ? <mdui-button-icon icon="arrow_back" onClick={() => setSelectedSlotItem(null)}></mdui-button-icon>
@@ -1110,26 +1348,113 @@ export const BuilderScreen = ({
         );
     };
 
+    const renderAllyPane = (allyItem) => {
+        const { allyType, title, items: allyItems } = allyItem;
+
+        const nameInput = allyItems.find(i => i.type === 'Input');
+        const typeSlot = allyItems.find(i => i.type === 'Slot' && (i.node.id?.toLowerCase().includes('type') || i.node.name?.toLowerCase().includes('type') || i.node.id === 'primalCompanion'));
+        const envSlot = allyItems.find(i => i.type === 'Slot' && (i.node.id?.toLowerCase().includes('environment') || i.node.name?.toLowerCase().includes('environment')));
+
+        const otherSlots = allyItems.filter(i => i.type === 'Slot' && i !== typeSlot && i !== envSlot);
+
+        const orderedNodes = [nameInput, typeSlot, envSlot, ...otherSlots].filter(Boolean);
+
+        return (
+            <div className="options-pane ally-pane" key={`ally-pane-${allyType}`}>
+                <div className="options-pane-header">
+                    <div className="options-pane-title-group">
+                        <span className="options-pane-title">{title}</span>
+                        {renderNextOrSaveButton()}
+                    </div>
+                </div>
+
+                <div className="options-list">
+                    {orderedNodes.flatMap(item => {
+                        if (item.type === 'Input') {
+                            const val = item.node.value ?? item.node.default ?? '';
+                            const sectionLabel = item.node.label || item.node.displayName || item.node.name;
+                            return [
+                                <div key={`title-input-${item.node.id || item.node.name}`} className="section-title">
+                                    {sectionLabel}
+                                </div>,
+                                <div key={`input-${item.node.id || item.node.name}`} style={{ marginBottom: '1rem', padding: '0 0.5rem' }}>
+                                    <mdui-text-field
+                                        variant="outlined"
+                                        type="text"
+                                        label={sectionLabel}
+                                        value={val}
+                                        onInput={(e) => handleUpdateInput(item.path, e.target.value)}
+                                        style={{ width: '100%' }}
+                                    />
+                                </div>
+                            ];
+                        }
+
+                        const slotNode = item.node;
+                        const slotTitle = slotNode.displayName || slotNode.name;
+                        let opts = handleGetSlotOptions ? handleGetSlotOptions(slotNode) : [];
+
+                        const currentFilled = slotNode.filled;
+                        if (currentFilled && !opts.some(o => o.id === currentFilled.id)) {
+                            opts = [...opts, { ...currentFilled, displayName: currentFilled.displayName || currentFilled.name }];
+                        }
+
+                        const sectionTitleElement = (
+                            <div key={`title-slot-${slotNode.id || slotNode.name}`} className="section-title">
+                                {slotTitle}
+                            </div>
+                        );
+
+                        const cardElements = opts.map(opt => {
+                            const fullOpt = onGetProperty ? (onGetProperty(opt.id) || opt) : opt;
+                            const optTitle = fullOpt.displayName || fullOpt.name || opt.id;
+                            const isSelected = slotNode.filled?.id === opt.id;
+
+                            return (
+                                <OptionCard
+                                    key={opt.id}
+                                    option={{ ...fullOpt, displayName: optTitle }}
+                                    isSelected={isSelected}
+                                    disabled={false}
+                                    onClick={() => {
+                                        if (isSelected) {
+                                            handleClearSlot(item.path);
+                                        } else {
+                                            handleFillSlot(item.path, opt.id);
+                                        }
+                                    }}
+                                    characterData={characterData}
+                                    onGetProperty={onGetProperty}
+                                />
+                            );
+                        });
+
+                        return [sectionTitleElement, ...cardElements];
+                    })}
+                </div>
+            </div>
+        );
+    };
+
     const renderOptionsPane = () => {
         if (!displaySlotItem) {
             const isStats = selectedCategory === 'stats';
             const instructionsTitle = isStats ? "Ability Scores" : "Customize Your Hero";
-            const instructionsText = isStats
-                ? "Allocate your ability points on the left using the Point Buy pool. Origin and ASI points can also be distributed here."
-                : "Select a slot on the left to see available options, descriptions, and customize your character.";
-            const instructionsIcon = isStats ? "fitness_center" : "auto_fix_high";
-
             return (
                 <div className="instructions-panel">
-                    <mdui-icon name={instructionsIcon} class="instructions-icon"></mdui-icon>
-                    <span className="instructions-title">{instructionsTitle}</span>
-                    <p className="instructions-text">{instructionsText}</p>
+                    <mdui-icon name="handshake" class="instructions-icon"></mdui-icon>
+                    <span className="instructions-title">Selection Overview</span>
+                    <p className="instructions-text">Select an option on the left to configure your character.</p>
                 </div>
             );
         }
 
         if (displaySlotItem.type === 'Abilities') {
             return renderAbilitiesPane();
+        }
+
+        if (displaySlotItem.type === 'Ally') {
+            return renderAllyPane(displaySlotItem);
         }
 
         if (displaySlotItem.type === 'Input') {
@@ -1145,16 +1470,19 @@ export const BuilderScreen = ({
         }
 
         const isGroup = displaySlotItem.type === 'Group';
-        const slotName = isGroup ? displaySlotItem.id : (displaySlotItem.node.displayName || displaySlotItem.node.name);
+        const isMerged = displaySlotItem.type === 'MergedCategory';
+        const slotName = isMerged
+            ? (displaySlotItem.title || CATEGORIES[displaySlotItem.category]?.title || displaySlotItem.category)
+            : (isGroup ? displaySlotItem.id : (displaySlotItem.node?.displayName || displaySlotItem.node?.name || displaySlotItem.title));
 
         return (
             <div
                 className="options-pane"
-                key={displaySlotItem.type === 'Group' ? displaySlotItem.id : JSON.stringify(displaySlotItem.logicalPath)}
+                key={isMerged ? `merged-pane-${displaySlotItem.id || displaySlotItem.category}` : (displaySlotItem.type === 'Group' ? displaySlotItem.id : JSON.stringify(displaySlotItem.logicalPath))}
             >
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
-                        <span className="options-pane-title">{slotName} Options</span>
+                        <span className="options-pane-title">{slotName}</span>
                         {renderNextOrSaveButton()}
                     </div>
                 </div>
@@ -1194,13 +1522,19 @@ export const BuilderScreen = ({
                                 return null;
                             };
 
-                            const getArmorCategory = (opt) => {
-                                if (isUnarmored(opt)) return null;
+                            const getEquipmentCategory = (opt) => {
+                                if (isUnarmored(opt)) return 'unarmored';
 
                                 const tags = opt.tags || [];
                                 if (tags.includes('lightArmor')) return 'light';
                                 if (tags.includes('mediumArmor')) return 'medium';
                                 if (tags.includes('heavyArmor')) return 'heavy';
+
+                                const armCat = getArmamentCategory(opt);
+                                if (armCat) return armCat;
+
+                                if (isShield(opt)) return 'shield';
+
                                 return null;
                             };
 
@@ -1209,8 +1543,19 @@ export const BuilderScreen = ({
                                 return tags.some(t => t.includes('Spell') || t === 'cantrip') || opt.resource?.toLowerCase().includes('spell');
                             });
 
-                            const hasArmament = options.some(opt => isShield(opt) || getArmamentCategory(opt) !== null);
-                            const hasArmor = options.some(opt => isUnarmored(opt) || getArmorCategory(opt) !== null);
+                            const hasEquipment = options.some(opt => getEquipmentCategory(opt) !== null);
+
+                            const isFeatList = options.some(opt => {
+                                const tags = opt.tags || [];
+                                return tags.some(t => t.includes('Feat') || t === 'feat');
+                            });
+
+                            const isClassOptionList = options.some(opt => {
+                                const tags = opt.tags || [];
+                                return tags.includes('circleLand') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes');
+                            });
+
+
 
                             if (isSpellList) {
                                 const getSpellLevel = (opt) => {
@@ -1248,45 +1593,154 @@ export const BuilderScreen = ({
                                         }
                                     }
 
-                                    const isSelected = isGroup
-                                        ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
-                                        : displaySlotItem.node.filled?.id === option.id;
+                                    const isSelected = isMerged
+                                        ? option.isSelected
+                                        : (isGroup
+                                            ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                            : displaySlotItem.node.filled?.id === option.id);
+
+                                    const isDisabled = isMerged
+                                        ? option.isDisabled
+                                        : (option.isDisabled || (limitReached && !isSelected));
 
                                     rendered.push(
                                         <OptionCard
                                             key={option.id}
                                             option={option}
                                             isSelected={isSelected}
-                                            disabled={limitReached && !isSelected}
+                                            disabled={isDisabled}
                                             onClick={() => handleOptionSelect(option)}
                                             characterData={characterData}
+                                            onGetProperty={onGetProperty}
                                         />
                                     );
                                 });
                                 return rendered;
-                            } else if (hasArmament || hasArmor) {
-                                const uniqueCategories = new Set(options.map(opt => getArmamentCategory(opt) || getArmorCategory(opt)).filter(Boolean));
+
+                            } else if (isFeatList) {
+                                const getFeatCategory = (opt) => {
+                                    const tags = opt.tags || [];
+                                    if (tags.includes('fightingStyle')) return "Fighting Styles";
+                                    if (tags.includes('feat')) return "Feats";
+                                    return null;
+                                };
+
+                                const uniqueCategories = new Set(options.map(opt => getFeatCategory(opt)).filter(Boolean));
                                 const showHeaders = uniqueCategories.size > 1;
 
                                 let currentCat = null;
                                 const rendered = [];
                                 options.forEach(option => {
-                                    const armCat = getArmamentCategory(option);
-                                    const armoCat = getArmorCategory(option);
-                                    const cat = armCat || armoCat;
+                                    const cat = getFeatCategory(option);
+
+                                    if (cat && cat !== currentCat) {
+                                        currentCat = cat;
+                                        if (showHeaders) {
+                                            rendered.push(
+                                                <div className="section-title" key={`feat-header-${cat}`}>
+                                                    {cat}
+                                                </div>
+                                            );
+                                        }
+                                    }
+
+                                    const isSelected = isMerged
+                                        ? option.isSelected
+                                        : (isGroup
+                                            ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                            : displaySlotItem.node.filled?.id === option.id);
+
+                                    const isDisabled = isMerged
+                                        ? option.isDisabled
+                                        : (option.isDisabled || (limitReached && !isSelected));
+
+                                    rendered.push(
+                                        <OptionCard
+                                            key={option.id}
+                                            option={option}
+                                            isSelected={isSelected}
+                                            disabled={isDisabled}
+                                            onClick={() => handleOptionSelect(option)}
+                                            characterData={characterData}
+                                            onGetProperty={onGetProperty}
+                                        />
+                                    );
+                                });
+                                return rendered;
+                            } else if (isClassOptionList) {
+                                const getClassOptionCategory = (opt) => {
+                                    const tags = opt.tags || [];
+                                    if (tags.includes('primalOrder')) return "Primal Order Options";
+                                    if (tags.includes('elementalFury')) return "Elemental Fury Options";
+                                    if (tags.includes('circleLand')) return "Land Types";
+                                    if (tags.includes('blessedStrikes')) return "Blessed Strikes Options";
+                                    if (tags.includes('divineOrder')) return "Divine Order Options";
+                                    return null;
+                                };
+
+                                const uniqueCategories = new Set(options.map(opt => getClassOptionCategory(opt)).filter(Boolean));
+                                const showHeaders = uniqueCategories.size > 1;
+
+                                let currentCat = null;
+                                const rendered = [];
+                                options.forEach(option => {
+                                    const cat = getClassOptionCategory(option);
+
+                                    if (cat && cat !== currentCat) {
+                                        currentCat = cat;
+                                        if (showHeaders) {
+                                            rendered.push(
+                                                <div className="section-title" key={`feat-header-${cat}`}>
+                                                    {cat}
+                                                </div>
+                                            );
+                                        }
+                                    }
+
+                                    const isSelected = isMerged
+                                        ? option.isSelected
+                                        : (isGroup
+                                            ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                            : displaySlotItem.node.filled?.id === option.id);
+
+                                    const isDisabled = isMerged
+                                        ? option.isDisabled
+                                        : (option.isDisabled || (limitReached && !isSelected));
+
+                                    rendered.push(
+                                        <OptionCard
+                                            key={option.id}
+                                            option={option}
+                                            isSelected={isSelected}
+                                            disabled={isDisabled}
+                                            onClick={() => handleOptionSelect(option)}
+                                            characterData={characterData}
+                                            onGetProperty={onGetProperty}
+                                        />
+                                    );
+                                });
+                                return rendered;
+                            } else if (hasEquipment) {
+                                const uniqueCategories = new Set(options.map(opt => getEquipmentCategory(opt)).filter(Boolean));
+                                const showHeaders = uniqueCategories.size > 1;
+
+                                let currentCat = null;
+                                const rendered = [];
+                                options.forEach(option => {
+                                    const cat = getEquipmentCategory(option);
 
                                     if (cat && cat !== currentCat) {
                                         currentCat = cat;
                                         const headerNames = {
+                                            'unarmored': "Unarmored",
+                                            'light': "Light Armor",
+                                            'medium': "Medium Armor",
+                                            'heavy': "Heavy Armor",
                                             'simple-melee': "Simple Melee Weapons",
                                             'simple-ranged': "Simple Ranged Weapons",
                                             'martial-melee': "Martial Melee Weapons",
                                             'martial-ranged': "Martial Ranged Weapons",
-                                            'shield': "Shields",
-                                            'light': "Light Armor",
-                                            'medium': "Medium Armor",
-                                            'heavy': "Heavy Armor",
-                                            'unarmored': "Unarmored"
+                                            'shield': "Shields"
                                         };
                                         if (showHeaders && headerNames[cat]) {
                                             rendered.push(
@@ -1297,37 +1751,52 @@ export const BuilderScreen = ({
                                         }
                                     }
 
-                                    const isSelected = isGroup
-                                        ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
-                                        : displaySlotItem.node.filled?.id === option.id;
+                                    const isSelected = isMerged
+                                        ? option.isSelected
+                                        : (isGroup
+                                            ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                            : displaySlotItem.node.filled?.id === option.id);
+
+                                    const isDisabled = isMerged
+                                        ? option.isDisabled
+                                        : (option.isDisabled || (limitReached && !isSelected));
 
                                     rendered.push(
                                         <OptionCard
                                             key={option.id}
                                             option={option}
                                             isSelected={isSelected}
-                                            disabled={limitReached && !isSelected}
+                                            disabled={isDisabled}
                                             onClick={() => handleOptionSelect(option)}
                                             characterData={characterData}
+                                            onGetProperty={onGetProperty}
                                         />
                                     );
                                 });
                                 return rendered;
                             }
 
+
                             return options.map(option => {
-                                const isSelected = isGroup
-                                    ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
-                                    : displaySlotItem.node.filled?.id === option.id;
+                                const isSelected = isMerged
+                                    ? option.isSelected
+                                    : (isGroup
+                                        ? displaySlotItem.items.some(i => i.node.filled?.id === option.id)
+                                        : displaySlotItem.node.filled?.id === option.id);
+
+                                const isDisabled = isMerged
+                                    ? option.isDisabled
+                                    : (option.isDisabled || (limitReached && !isSelected));
 
                                 return (
                                     <OptionCard
                                         key={option.id}
                                         option={option}
                                         isSelected={isSelected}
-                                        disabled={limitReached && !isSelected}
+                                        disabled={isDisabled}
                                         onClick={() => handleOptionSelect(option)}
                                         characterData={characterData}
+                                        onGetProperty={onGetProperty}
                                     />
                                 );
                             });
@@ -1362,10 +1831,10 @@ export const BuilderScreen = ({
                         }}
                         className="vertical-stepper"
                     >
-                        {orderedSteps.map((step, index) => {
-                            const isAvailable = availableCategories.includes(step.key);
-                            const stats = categoryStats[step.key] || { pending: 0, isComplete: false };
-                            const isActive = selectedCategory === step.key;
+                        {orderedCategories.map((cat, index) => {
+                            const isAvailable = availableCategories.includes(cat.key);
+                            const stats = categoryStats[cat.key] || { pending: 0, isComplete: false };
+                            const isActive = selectedCategory === cat.key;
 
                             let stepIndicatorContent = index + 1;
                             if (stats.isComplete) {
@@ -1376,8 +1845,8 @@ export const BuilderScreen = ({
 
                             return (
                                 <mdui-collapse-item
-                                    key={step.key}
-                                    value={step.key}
+                                    key={cat.key}
+                                    value={cat.key}
                                     disabled={!isAvailable || undefined}
                                     className={`step-item ${isActive ? 'active' : ''} ${stats.isComplete ? 'completed' : ''} ${!isAvailable ? 'disabled' : ''}`}
                                 >
@@ -1387,7 +1856,7 @@ export const BuilderScreen = ({
                                         </div>
                                         <div className="step-header">
                                             <div className="step-title-group">
-                                                <span className="step-title">{step.label}</span>
+                                                <span className="step-title">{cat.label}</span>
                                                 {stats.pending > 0 && (
                                                     <mdui-badge>{stats.pending}</mdui-badge>
                                                 )}
@@ -1405,13 +1874,14 @@ export const BuilderScreen = ({
                                             onFillSlot={handleFillSlot}
                                             onClearSlot={handleClearSlot}
                                             onGetSlotOptions={handleGetSlotOptions}
-                                            filterCategory={step.key}
-                                            selectedSlotPath={
-                                                displaySlotItem
-                                                    ? (displaySlotItem.type === 'Group' ? displaySlotItem.id : (displaySlotItem.type === 'Abilities' ? 'abilities' : JSON.stringify(displaySlotItem.logicalPath)))
-                                                    : null
-                                            }
-                                            onSelectSlot={setSelectedSlotItem}
+                                            filterCategory={cat.key}
+                                            selectedSlotPath={displaySlotItem ? getItemUniqueId(displaySlotItem) : null}
+                                            onSelectSlot={(item) => {
+                                                if (item?.category) {
+                                                    setSelectedCategory(item.category);
+                                                }
+                                                setSelectedSlotItem(item);
+                                            }}
                                             onGetProperty={onGetProperty}
                                         />
                                     </div>
@@ -1424,10 +1894,7 @@ export const BuilderScreen = ({
                 {/* Right panel: Scrollable options list or instructions */}
                 <div
                     className="builder-main"
-                    key={displaySlotItem
-                        ? (displaySlotItem.type === 'Group' ? displaySlotItem.id : (displaySlotItem.type === 'Abilities' ? 'abilities' : JSON.stringify(displaySlotItem.logicalPath)))
-                        : 'instructions'
-                    }
+                    key={displaySlotItem ? getItemUniqueId(displaySlotItem) : 'instructions'}
                 >
                     {renderOptionsPane()}
                 </div>

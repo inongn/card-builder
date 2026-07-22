@@ -2,7 +2,7 @@ id: charmPerson
 type: Activity
 name: Charm Person
 resource: level1SpellSlot
-tags: [level1Spell, enchantment, bard, druid, sorcerer, warlock, wizard, saveSpell, damageSpell]
+tags: [level1Spell, enchantment, bard, druid, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 30 feet
 duration: 1 hour

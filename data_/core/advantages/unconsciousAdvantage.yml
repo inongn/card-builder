@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Unconscious
-target: attributes.advantages
-id: unconsciousAdvantage
-name: Unconscious Advantage

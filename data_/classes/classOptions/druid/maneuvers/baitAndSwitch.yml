@@ -1,6 +1,0 @@
-id: baitAndSwitch
-name: Bait and Switch
-tags: [maneuver]
-type: Activity
-resource: superiorityDice
-description: When you're within 5 feet of a creature on your turn, you switch places with that creature, provided you spend at least 5 feet of movement and the creature is willing and doesn't have the Incapacitated condition. This movement doesn't provoke opportunity attacks. Until the start of your next turn, you or the other creature (your choice) gains 1d$(attributes.superiorityDie) bonus to AC.

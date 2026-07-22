@@ -2,11 +2,14 @@ id: investmentOfTheChainMaster
 name: Investment of the Chain Master
 tags:
   - eldritchInvocation
-condition: $(attributes.pactOfTheChain == true && meta.level >= 5)
+condition: $(meta.level >= 5)
+prerequisite: Pact of the Chain
+prerequisiteCondition: $(attributes.pactOfTheChain == true)
 type: Folder
 children:
   - id: commandFamiliar
     type: Activity
+    condition: $(attributes.pactOfTheChain == true)
     time: bonus action
     name: Command Familiar
     description: "You command the familiar to make an attack."  

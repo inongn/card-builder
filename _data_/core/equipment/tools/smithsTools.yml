@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Smith's Tools
-target: attributes.tools
-id: smithsTools
-name: Smith's Tools

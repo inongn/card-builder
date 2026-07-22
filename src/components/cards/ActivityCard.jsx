@@ -96,7 +96,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                         }
 
                         if (isLimited) {
-                            return <mdui-icon name="replay" class="icon-accent icon-middle"></mdui-icon>;
+                            return <mdui-icon name="replay" class="icon-middle" style={{ color: 'var(--color-accent)' }}></mdui-icon>;
                         }
 
                         if (activity.uses && activity.uses > 1) {

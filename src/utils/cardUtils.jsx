@@ -7,7 +7,7 @@ import 'mdui/components/chip.js';
 // ============================================================================
 
 export const TERM_ICONS = {
-    'bonus action': { icon: 'play_arrow', color: 'bonus-action', shortName: 'Bonus' }, // Triangle
+    'bonus action': { icon: 'warning', color: 'bonus', shortName: 'Bonus' }, // Triangle
     'atWill': { icon: '', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
     'free action': { icon: 'auto_awesome', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
     'action': { icon: 'circle', color: 'action', shortName: 'Action' },
@@ -30,16 +30,16 @@ export const TERM_ICONS = {
     'healing': { icon: 'favorite', color: 'healing', shortName: 'Healing' },
 
     'concentration, up to ': { icon: 'psychology', color: 'accent', shortName: 'Concentration' },
-    'spellSlot': { icon: 'filter_none', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level1SpellSlot': { icon: 'filter_1', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level2SpellSlot': { icon: 'filter_2', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level3SpellSlot': { icon: 'filter_3', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level4SpellSlot': { icon: 'filter_4', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level5SpellSlot': { icon: 'filter_5', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level6SpellSlot': { icon: 'filter_6', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level7SpellSlot': { icon: 'filter_7', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level8SpellSlot': { icon: 'filter_8', color: 'spell-slot', shortName: 'Spell Slot' },
-    'level9SpellSlot': { icon: 'filter_9', color: 'spell-slot', shortName: 'Spell Slot' },
+    'spellSlot': { icon: 'filter_none', color: 'spell', shortName: 'Spell Slot' },
+    'level1SpellSlot': { icon: 'filter_1', color: 'spell', shortName: 'Spell Slot' },
+    'level2SpellSlot': { icon: 'filter_2', color: 'spell', shortName: 'Spell Slot' },
+    'level3SpellSlot': { icon: 'filter_3', color: 'spell', shortName: 'Spell Slot' },
+    'level4SpellSlot': { icon: 'filter_4', color: 'spell', shortName: 'Spell Slot' },
+    'level5SpellSlot': { icon: 'filter_5', color: 'spell', shortName: 'Spell Slot' },
+    'level6SpellSlot': { icon: 'filter_6', color: 'spell', shortName: 'Spell Slot' },
+    'level7SpellSlot': { icon: 'filter_7', color: 'spell', shortName: 'Spell Slot' },
+    'level8SpellSlot': { icon: 'filter_8', color: 'spell', shortName: 'Spell Slot' },
+    'level9SpellSlot': { icon: 'filter_9', color: 'spell', shortName: 'Spell Slot' },
     'adrenalineRush': { icon: 'air', color: 'action', shortName: 'Adrenaline Rush' },
     'secondWind': { icon: 'air', color: 'healing', shortName: 'Second Wind' },
     'layOnHands': { icon: 'front_hand', color: 'healing', shortName: 'Hands' }, // Or 'pan_tool_alt'
@@ -78,7 +78,7 @@ export const TERM_ICONS = {
     '5 sorceryPoints': { icon: 'filter_5', color: 'psychic', shortName: '5 Sorcery Points' },
     '6 sorceryPoints': { icon: 'filter_6', color: 'psychic', shortName: '6 Sorcery Points' },
     '7 sorceryPoints': { icon: 'filter_7', color: 'psychic', shortName: '7 Sorcery Points' },
-    'pactMagicSpellSlot': { icon: 'filter_none', color: 'spell-slot', shortName: 'Spell Slots' },
+    'pactMagicSpellSlot': { icon: 'filter_none', color: 'spell', shortName: 'Spell Slots' },
     'psionicEnergyDice': { icon: 'stream', color: 'psychic', shortName: 'Psionic Die' }, // Geometric shape for dice
     'telekineticMovement': { icon: 'control_camera', color: 'psychic', shortName: 'Telekinetic Movement' }, // Geometric shape for dice
     'psiPoweredLeap': { icon: 'redo', color: 'psychic', shortName: 'Psi Powered Leap' },
@@ -248,7 +248,7 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
         if (showLabel) {
             return (
                 <div className="grid-value-chip">
-                    <mdui-icon slot="icon" name={firstIcon.icon} class={`icon-${iconColor} icon-small`}></mdui-icon>
+                    <mdui-icon slot="icon" name={firstIcon.icon} class="icon-small" style={{ color: `var(--color-${iconColor})` }}></mdui-icon>
                     <span className="text-secondary">{content}</span>
                 </div>
             );
@@ -259,7 +259,7 @@ export const renderGridValue = (text, type = 'range', showLabel = true) => {
     if (showLabel) {
         return (
             <div className="grid-value-chip">
-                <mdui-icon slot="icon" name={primaryIcon} class="icon-accent icon-small"></mdui-icon>
+                <mdui-icon slot="icon" name={primaryIcon} class="icon-small" style={{ color: 'var(--color-accent)' }}></mdui-icon>
                 <span className="text-secondary">{str}</span>
             </div>
         );
@@ -321,7 +321,8 @@ export const renderIcon = (text, showText = true) => {
                         <mdui-icon
                             key={`icon-${index}`}
                             name={part.info.icon}
-                            class={`icon-${part.info.color} icon-middle`}
+                            class="icon-middle"
+                            style={{ color: `var(--color-${part.info.color})` }}
                         ></mdui-icon>
                     );
 

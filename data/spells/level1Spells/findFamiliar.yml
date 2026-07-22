@@ -3,6 +3,12 @@ type: Folder
 name: Find Familiar
 tags: [level1Spell, conjuration, wizard, ritual]
 children:
+  - id: familiarName
+    type: Input
+    name: Familiar Name
+    inputType: text
+    label: Familiar Name
+
   - type: Slot
     id: familiarType
     name: Familiar Type
@@ -13,11 +19,6 @@ children:
     name: Familiar Environment
     quantity: 1
     target: familiarLand OR familiarAir OR familiarWater
-  - id: familiarName
-    type: Input
-    name: Familiar Name
-    inputType: text
-    label: Familiar Name
 
   - type: Reference
     target: "otherworldlyFamiliar$(meta.familiarEnvironment || 'Land')$(meta.familiarType || 'Celestial')"

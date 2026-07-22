@@ -1,6 +1,0 @@
-id: maneuveringAttack
-name: Maneuvering Attack
-tags: [maneuver]
-type: Activity
-resource: superiorityDice
-description: When you hit a creature with an attack roll, you maneuver one of your comrades into another position. Add 1d$(attributes.superiorityDie) to the attack’s damage roll, and choose a willing creature who can see or hear you. That creature can use its Reaction to move up to half its Speed without provoking an Opportunity Attack from the target of your attack.

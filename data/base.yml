@@ -378,8 +378,11 @@ children:
   - id: armamentSlot
     type: Slot
     name: Armament
-    target: "simple $(attributes.proficiencies.shields ? 'OR shieldEquipment' : '') $(attributes.proficiencies.martialWeapons ? 'OR martial' : '') $(attributes.proficiencies.lightWeapons ? 'OR light' : '') $(attributes.proficiencies.finesseWeapons ? 'OR rapier OR whip' : '')"
+    target: "simple $(attributes.pactOfTheBlade ? 'OR martial' : '') $(attributes.proficiencies.shields ? 'OR shieldEquipment' : '') $(attributes.proficiencies.martialWeapons ? 'OR martial' : '') $(attributes.proficiencies.lightWeapons ? 'OR light' : '') $(attributes.proficiencies.finesseWeapons ? 'OR rapier OR whip' : '')"
     quantity: "$(1+(attributes.proficiencies.shields ? 1 : 0)+(attributes.proficiencies.lightWeapons ? 1 : 0)+(attributes.proficiencies.martialWeapons ? 1 : 0)+(attributes.proficiencies.finesseWeapons ? 1 : 0))"
+    overwrite:
+      variables.classification: "$(attributes.pactOfTheBlade ? 'spellcasting' : local.classification)"
+      tags: "$(attributes.pactOfTheBlade ? ['pactWeapon'] : local.tags)"
 
 
   - type: Reference

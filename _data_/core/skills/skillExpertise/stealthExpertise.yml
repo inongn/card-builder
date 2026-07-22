@@ -1,9 +1,0 @@
-type: Effect
-tags:
-  - skillExpertise
-target: skills.stealth.proficiency
-operation: set
-condition: $(skills.stealth.proficiency > 0)
-value: 2
-id: stealthExpertise
-name: Stealth Expertise

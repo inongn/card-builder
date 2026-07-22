@@ -2,7 +2,7 @@ id: dominateBeast
 type: Activity
 name: Dominate Beast
 resource: level4SpellSlot
-tags: [level4Spell, enchantment, druid, ranger, sorcerer, saveSpell, damageSpell]
+tags: [level4Spell, enchantment, druid, ranger, sorcerer, saveSpell]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute

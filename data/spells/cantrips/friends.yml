@@ -1,7 +1,7 @@
 id: friends
 type: Activity
 name: Friends
-tags: [enchantment, cantrip, bard, sorcerer, warlock, wizard, saveSpell, damageSpell, forceDamage]
+tags: [enchantment, cantrip, bard, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 10 feet
 duration: concentration, up to 1 minute

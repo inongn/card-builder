@@ -1,9 +1,0 @@
-type: Effect
-tags:
-  - skillExpertise
-target: skills.insight.proficiency
-operation: set
-condition: $(skills.insight.proficiency > 0)
-value: 2
-id: insightExpertise
-name: Insight Expertise

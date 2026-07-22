@@ -1,7 +1,0 @@
-type: Effect
-target: skills.deception.proficiency
-operation: set
-condition: $(skills.deception.proficiency < 0.5)
-value: 0.5
-id: deceptionHalfProficiency
-name: Deception Half Proficiency

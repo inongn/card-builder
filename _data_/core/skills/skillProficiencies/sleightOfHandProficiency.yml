@@ -1,8 +1,0 @@
-tags:
-  - skillProficiency
-type: Effect
-target: skills.sleight_of_hand.proficiency
-operation: set
-value: 1
-id: sleightOfHandProficiency
-name: Sleight Of Hand Proficiency

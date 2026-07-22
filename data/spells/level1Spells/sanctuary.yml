@@ -2,7 +2,7 @@ id: sanctuary
 type: Activity
 name: Sanctuary
 resource: level1SpellSlot
-tags: [level1Spell, abjuration, artificer, cleric, saveSpell, damageSpell]
+tags: [level1Spell, abjuration, artificer, cleric, saveSpell]
 time: bonus action
 range: 30 feet
 duration: 1 minute

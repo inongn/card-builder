@@ -1,6 +1,0 @@
-type: Effect
-target: skills.sleight_of_hand.dis
-operation: set
-value: true
-id: sleightOfHandDisadvantage
-name: Sleight Of Hand Disadvantage

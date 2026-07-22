@@ -1,9 +1,0 @@
-id: studdedLeatherArmor
-name: Studded Leather Armor
-type: Folder
-tags: [lightArmor, item]
-children:
-  - type: Effect
-    target: attributes.ac
-    operation: set
-    value: $(12 + stats.dex.mod)

@@ -102,7 +102,7 @@ children:
   - id: elementalFury
     type: Slot
     name: Elemental Fury
-    target: classOption OR elementalFury
+    target:  elementalFury OR classOption
     quantity: 1
     condition: $(meta.level >= 7)
 

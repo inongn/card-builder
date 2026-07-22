@@ -1,6 +1,0 @@
-id: commandingPresence
-name: Commanding Presence
-tags: [maneuver]
-type: Activity
-resource: superiorityDice
-description: When you make a Charisma (Intimidation, Performance, or Persuasion) check, you add 1d$(attributes.superiorityDie) to the roll.

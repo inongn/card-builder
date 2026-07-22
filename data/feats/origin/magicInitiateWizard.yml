@@ -19,4 +19,4 @@ children:
   overwrite:
     resource: limited
 id: magicInitiateWizard
-name: Magic Initiate (Wizard)
+name: Wizard Initiate

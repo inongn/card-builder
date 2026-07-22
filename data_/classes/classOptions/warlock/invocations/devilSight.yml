@@ -1,9 +1,0 @@
-id: devilSight
-name: Devil's Sight
-tags:
-  - eldritchInvocation
-condition: $(meta.level >= 2)
-type: Effect
-target: attributes.senses.darkvision
-operation: set
-value: 120

@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-target: attributes.immunities
-value: Grappled
-id: grappledImmunity
-name: Grappled Immunity

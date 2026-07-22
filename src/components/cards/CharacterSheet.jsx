@@ -209,7 +209,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
                                     return (
                                         <div className="list-item resource-list-item" key={i}>
-                                            <mdui-icon name={info?.icon || 'circle'} class={`icon-${info?.color} icon-small`}></mdui-icon>
+                                            <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
                                             <div className="text-primary">{res.name || res.id}</div>
                                             <div className="resource-dots" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
                                                 {Array(q).fill(0).map((_, j) => (

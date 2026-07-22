@@ -2,7 +2,7 @@ id: otilukesResilientSphere
 type: Activity
 name: Resilient Sphere
 resource: level4SpellSlot
-tags: [level4Spell, abjuration, artificer, wizard, saveSpell, damageSpell]
+tags: [level4Spell, abjuration, artificer, wizard, saveSpell]
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute

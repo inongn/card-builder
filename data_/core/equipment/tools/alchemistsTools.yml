@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Alchemist's Tools
-target: attributes.tools
-id: alchemistsTools
-name: Alchemist's Tools

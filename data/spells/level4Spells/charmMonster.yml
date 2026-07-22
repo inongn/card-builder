@@ -2,7 +2,7 @@ id: charmMonster
 type: Activity
 name: Charm Monster
 resource: level4SpellSlot
-tags: [level4Spell, enchantment, bard, druid, sorcerer, warlock, wizard, saveSpell, damageSpell]
+tags: [level4Spell, enchantment, bard, druid, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 30 feet
 duration: 1 hour

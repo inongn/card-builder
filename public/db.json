@@ -1017,8 +1017,12 @@
         "id": "armamentSlot",
         "type": "Slot",
         "name": "Armament",
-        "target": "simple $(attributes.proficiencies.shields ? 'OR shieldEquipment' : '') $(attributes.proficiencies.martialWeapons ? 'OR martial' : '') $(attributes.proficiencies.lightWeapons ? 'OR light' : '') $(attributes.proficiencies.finesseWeapons ? 'OR rapier OR whip' : '')",
-        "quantity": "$(1+(attributes.proficiencies.shields ? 1 : 0)+(attributes.proficiencies.lightWeapons ? 1 : 0)+(attributes.proficiencies.martialWeapons ? 1 : 0)+(attributes.proficiencies.finesseWeapons ? 1 : 0))"
+        "target": "simple $(attributes.pactOfTheBlade ? 'OR martial' : '') $(attributes.proficiencies.shields ? 'OR shieldEquipment' : '') $(attributes.proficiencies.martialWeapons ? 'OR martial' : '') $(attributes.proficiencies.lightWeapons ? 'OR light' : '') $(attributes.proficiencies.finesseWeapons ? 'OR rapier OR whip' : '')",
+        "quantity": "$(1+(attributes.proficiencies.shields ? 1 : 0)+(attributes.proficiencies.lightWeapons ? 1 : 0)+(attributes.proficiencies.martialWeapons ? 1 : 0)+(attributes.proficiencies.finesseWeapons ? 1 : 0))",
+        "overwrite": {
+          "variables.classification": "$(attributes.pactOfTheBlade ? 'spellcasting' : local.classification)",
+          "tags": "$(attributes.pactOfTheBlade ? ['pactWeapon'] : local.tags)"
+        }
       },
       {
         "type": "Reference",
@@ -2818,7 +2822,9 @@
     "tags": [
       "eldritchInvocation"
     ],
-    "condition": "$(attributes.pactOfTheBlade == true && meta.level >= 5)",
+    "condition": "$(meta.level >= 5)",
+    "prerequisite": "Pact of the Blade",
+    "prerequisiteCondition": "$(attributes.pactOfTheBlade == true)",
     "type": "Folder",
     "children": [
       {
@@ -2826,6 +2832,7 @@
         "type": "Activity",
         "name": "Eldritch Smite",
         "time": "free action",
+        "condition": "$(attributes.pactOfTheBlade == true)",
         "duration": "instantaneous",
         "resource": [
           "pactMagicSpellSlot"
@@ -2905,12 +2912,15 @@
     "tags": [
       "eldritchInvocation"
     ],
-    "condition": "$(attributes.pactOfTheChain == true && meta.level >= 5)",
+    "condition": "$(meta.level >= 5)",
+    "prerequisite": "Pact of the Chain",
+    "prerequisiteCondition": "$(attributes.pactOfTheChain == true)",
     "type": "Folder",
     "children": [
       {
         "id": "commandFamiliar",
         "type": "Activity",
+        "condition": "$(attributes.pactOfTheChain == true)",
         "time": "bonus action",
         "name": "Command Familiar",
         "description": "You command the familiar to make an attack."
@@ -3029,19 +3039,6 @@
         "value": true
       },
       {
-        "id": "pactOfTheBladeSlot",
-        "type": "Slot",
-        "name": "Pact Weapon",
-        "target": "simple OR martial",
-        "quantity": 1,
-        "overwrite": {
-          "variables.classification": "spellcasting",
-          "tags": [
-            "pactWeapon"
-          ]
-        }
-      },
-      {
         "type": "Reference",
         "target": "masteryProperties"
       }
@@ -3118,14 +3115,16 @@
     "tags": [
       "eldritchInvocation"
     ],
-    "condition": "$(attributes.pactOfTheBlade == true)",
+    "condition": "$(meta.level >= 5)",
+    "prerequisite": "Pact of the Blade",
+    "prerequisiteCondition": "$(attributes.pactOfTheBlade == true)",
     "type": "Folder",
     "children": [
       {
         "id": "extraAttack",
         "type": "Extra",
+        "condition": "$(attributes.pactOfTheBlade == true)",
         "target": "weaponAttack AND pactWeapon",
-        "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
         "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
       }
@@ -3428,7 +3427,7 @@
         "id": "elementalFury",
         "type": "Slot",
         "name": "Elemental Fury",
-        "target": "classOption OR elementalFury",
+        "target": "elementalFury OR classOption",
         "quantity": 1,
         "condition": "$(meta.level >= 7)"
       },
@@ -5382,7 +5381,7 @@
         "id": "magicalDiscoveries",
         "name": "Magical Discoveries",
         "type": "Slot",
-        "target": "(cleric OR druid OR wizard) NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')",
+        "target": "(cleric OR druid OR wizard) NOT class NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')",
         "variables": {
           "maxLevel": "$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)"
         },
@@ -6800,11 +6799,11 @@
       },
       {
         "id": "commandCompanionExtraAttack",
-        "type": "Extra",
-        "name": "Command Companion",
-        "target": "weaponAttack",
+        "type": "Effect",
+        "target": "activities[tags=weaponAttack].extra[\"instead of once, whenever you take the Attack action on your turn.\"]",
+        "operation": "replace",
         "condition": "$(meta.level >= 5)",
-        "description": "You can replace one attack with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
+        "value": "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
       },
       {
         "id": "commandPrimalCompanion",
@@ -12393,29 +12392,6 @@
     ]
   },
   {
-    "id": "martialWeaponTraining",
-    "name": "Martial Weapon Training",
-    "tags": [
-      "feat",
-      "generalFeat"
-    ],
-    "type": "Folder",
-    "children": [
-      {
-        "name": "Ability Score Increase",
-        "type": "Effect",
-        "target": "attributes.asiPoolLimit",
-        "operation": "add",
-        "value": 1
-      },
-      {
-        "name": "Weapon Proficiency",
-        "type": "Reference",
-        "target": "martialWeaponProficiency"
-      }
-    ]
-  },
-  {
     "id": "mediumArmorMaster",
     "name": "Medium Armor Master",
     "tags": [
@@ -13181,7 +13157,7 @@
   },
   {
     "id": "magicInitiateCleric",
-    "name": "Magic Initiate (Cleric)",
+    "name": "Cleric Initiate",
     "tags": [
       "feat",
       "originFeat"
@@ -13214,7 +13190,7 @@
   },
   {
     "id": "magicInitiateDruid",
-    "name": "Magic Initiate (Druid)",
+    "name": "Druid Initiate",
     "tags": [
       "feat",
       "originFeat"
@@ -13276,7 +13252,7 @@
       }
     ],
     "id": "magicInitiateWizard",
-    "name": "Magic Initiate (Wizard)"
+    "name": "Wizard Initiate"
   },
   {
     "id": "musician",
@@ -14783,9 +14759,7 @@
       "sorcerer",
       "warlock",
       "wizard",
-      "saveSpell",
-      "damageSpell",
-      "forceDamage"
+      "saveSpell"
     ],
     "time": "action",
     "range": "10 feet",
@@ -15263,8 +15237,7 @@
       "bard",
       "druid",
       "ranger",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "30 feet",
@@ -15406,8 +15379,7 @@
       "sorcerer",
       "warlock",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "30 feet",
@@ -15501,8 +15473,7 @@
       "level1Spell",
       "enchantment",
       "paladin",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "bonus action",
     "range": "30 feet",
@@ -15845,6 +15816,13 @@
     ],
     "children": [
       {
+        "id": "familiarName",
+        "type": "Input",
+        "name": "Familiar Name",
+        "inputType": "text",
+        "label": "Familiar Name"
+      },
+      {
         "type": "Slot",
         "id": "familiarType",
         "name": "Familiar Type",
@@ -15857,13 +15835,6 @@
         "name": "Familiar Environment",
         "quantity": 1,
         "target": "familiarLand OR familiarAir OR familiarWater"
-      },
-      {
-        "id": "familiarName",
-        "type": "Input",
-        "name": "Familiar Name",
-        "inputType": "text",
-        "label": "Familiar Name"
       },
       {
         "type": "Reference",
@@ -16339,8 +16310,7 @@
       "abjuration",
       "artificer",
       "cleric",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "bonus action",
     "range": "30 feet",
@@ -16432,8 +16402,7 @@
       "bard",
       "sorcerer",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "60 feet",
@@ -16460,33 +16429,6 @@
     "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action’s skill options with them.\n\nMost Beasts have little to say about topics that don’t pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.\n"
   },
   {
-    "id": "spellfireFlare",
-    "type": "Activity",
-    "name": "Spellfire Flare",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level1SpellSlot",
-    "tags": [
-      "level1Spell",
-      "evocation",
-      "sorcerer",
-      "wizard",
-      "attackSpell",
-      "damageSpell",
-      "fireDamage",
-      "radiantDamage"
-    ],
-    "time": "action",
-    "range": "60 feet",
-    "duration": "instantaneous",
-    "description": "You unleash a blast of brilliant fire. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against a target within range; a target gains no benefit from Half Cover or Three-Quarters Cover for this attack roll. On a hit, the target takes 2d10 Radiant damage.\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "You create an additional blast for each spell slot level above 1. You can direct the blasts at the same target or at different ones. Make a separate attack roll for each blast."
-      }
-    ]
-  },
-  {
     "id": "tashasHideousLaughter",
     "type": "Activity",
     "name": "Hideous Laughter",
@@ -16497,8 +16439,7 @@
       "bard",
       "warlock",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "30 feet",
@@ -16595,34 +16536,6 @@
     "range": "60 feet",
     "duration": "1 hour",
     "description": "This spell creates an Invisible, mindless, shapeless, Medium force that performs simple tasks at your command until the spell ends. The servant springs into existence in an unoccupied space on the ground within range. It has AC 10, 1 Hit Point, and a Strength of 2, and it can’t attack. If it drops to 0 Hit Points, the spell ends.\n\nOnce on each of your turns as a Bonus Action, you can mentally command the servant to move up to 15 feet and interact with an object. The servant can perform simple tasks that a human could do, such as fetching things, cleaning, mending, folding clothes, lighting fires, serving food, and pouring drinks. Once you give the command, the servant performs the task to the best of its ability until it completes the task, then waits for your next command.\n\nIf you command the servant to perform a task that would move it more than 60 feet away from you, the spell ends.\n"
-  },
-  {
-    "id": "wardaway",
-    "type": "Activity",
-    "name": "Wardaway",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level1SpellSlot",
-    "tags": [
-      "level1Spell",
-      "abjuration",
-      "bard",
-      "cleric",
-      "paladin",
-      "wizard",
-      "saveSpell",
-      "damageSpell",
-      "forceDamage"
-    ],
-    "time": "action",
-    "range": "60 feet",
-    "duration": "instantaneous",
-    "description": "You hurl a disorienting magical force toward one creature within range. The target makes a DC $(attributes.spellcasting.save) Constitution saving throw; Constructs and Undead automatically succeed on this save.\n\nOn a failed save, the target takes 2d4 Force damage, its Speed is halved until the start of your next turn, and on its next turn, it can take only an action or a Bonus Action (but not both). On a successful save, the target takes half as much damage only.\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "The damage increases by 2d4 for every spell slot level above 1."
-      }
-    ]
   },
   {
     "id": "witchBolt",
@@ -16885,8 +16798,7 @@
       "enchantment",
       "bard",
       "cleric",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "60 feet",
@@ -17015,41 +16927,6 @@
     "description": "For the duration, a willing creature you touch has Darkvision with a range of 150 feet.\n"
   },
   {
-    "id": "deathArmor",
-    "type": "Activity",
-    "name": "Death Armor",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level2SpellSlot",
-    "tags": [
-      "level2Spell",
-      "necromancy",
-      "sorcerer",
-      "wizard"
-    ],
-    "time": "action",
-    "range": "touch",
-    "duration": "1 hour",
-    "description": "For the duration, an inky aura surrounds one creature you touch. The target has Advantage on Death Saving Throws, and once per turn, when a creature within 5 feet of the target hits it with a melee attack roll, the attacker takes 2d4 Necrotic damage.\n"
-  },
-  {
-    "id": "deryansHelpfulHomunculi",
-    "condition": "$(meta.setting === 'faerun')",
-    "type": "Activity",
-    "name": "Deryan's Helpful Homunculi",
-    "resource": "level2SpellSlot",
-    "tags": [
-      "level2Spell",
-      "conjuration",
-      "cleric",
-      "wizard",
-      "ritual"
-    ],
-    "time": "action",
-    "range": "self",
-    "duration": "8 hours",
-    "description": "You summon a group of helpful spirits, which lasts for the duration. The spirits appear as homunculi or as another Construct of your choice but are intangible and invulnerable, and they are considered to have proficiency in the Arcana skill and with the set of Artisan’s Tools used in the spell’s casting.\n\nIf you are crafting an item, the spirits function as a single assistant for your crafting, halving the crafting time.\n"
-  },
-  {
     "id": "detectThoughts",
     "type": "Activity",
     "name": "Detect Thoughts",
@@ -17096,22 +16973,6 @@
         "description": "The damage increases by 1d6 for each spell slot level above 2."
       }
     ]
-  },
-  {
-    "id": "elminstersElusion",
-    "type": "Activity",
-    "name": "Elminster's Elusion",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level2SpellSlot",
-    "tags": [
-      "level2Spell",
-      "abjuration",
-      "wizard"
-    ],
-    "time": "bonus action",
-    "range": "self",
-    "duration": "concentration, up to 10 minutes",
-    "description": "Arcane wards protect you against magic for the duration. You have Advantage on saving throws against spells and magical effects. Additionally, if you succeed on a saving throw against a spell or magical effect and would normally take half as much damage, you instead take no damage.\n"
   },
   {
     "id": "enhanceAbility",
@@ -17961,8 +17822,7 @@
       "sorcerer",
       "warlock",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "30 feet",
@@ -18187,33 +18047,6 @@
     "description": "Roll 1d6 at the end of each of your turns for the duration. On a roll of 4–6, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell ends instantly if you are already on that plane). While on the Ethereal Plane, you can perceive the plane you left, which is cast in shades of gray, but you can’t see anything there more than 60 feet away. You can affect and be affected only by other creatures on the Ethereal Plane, and creatures on the other plane can’t perceive you unless they have a special ability that lets them perceive things on the Ethereal Plane.\n\nYou return to the other plane at the start of your next turn and when the spell ends if you are on the Ethereal Plane. You return to an unoccupied space of your choice that you can see within 10 feet of the space you left. If no unoccupied space is available within that range, you appear in the nearest unoccupied space.\n"
   },
   {
-    "id": "cacophonicShield",
-    "type": "Activity",
-    "name": "Cacophonic Shield",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level3SpellSlot",
-    "tags": [
-      "level3Spell",
-      "evocation",
-      "bard",
-      "sorcerer",
-      "wizard",
-      "saveSpell",
-      "damageSpell",
-      "thunderDamage"
-    ],
-    "time": "action",
-    "range": "self",
-    "duration": "concentration, up to 10 minutes",
-    "description": "Thunderous reverberations fill a 10-foot Emanation originating from you for the duration. Whenever the Emanation enters a creature’s space and whenever a creature enters the Emanation or ends its turn there, the creature makes a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the creature takes 3d6 Thunder damage and has the Deafened condition until the start of your next turn. On a successful save, the creature takes half as much damage only. A creature makes this save only once per turn. When you cast this spell, you can designate creatures to be unaffected by it.\n\nIn addition, you have Resistance to Thunder damage, and ranged attack rolls against you are made with Disadvantage.\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "The damage increases by 1d6 for each spell slot level above 3."
-      }
-    ]
-  },
-  {
     "id": "callLightning",
     "type": "Activity",
     "name": "Call Lightning",
@@ -18302,31 +18135,6 @@
       {
         "name": "Using a Higher-Level Spell Slot",
         "description": "The damage increases by 1d8 for each spell slot level above 3."
-      }
-    ]
-  },
-  {
-    "id": "conjureConstructs",
-    "type": "Activity",
-    "name": "Conjure Constructs",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level3SpellSlot",
-    "tags": [
-      "level3Spell",
-      "conjuration",
-      "wizard",
-      "saveSpell",
-      "damageSpell",
-      "forceDamage"
-    ],
-    "time": "action",
-    "range": "60 feet",
-    "duration": "concentration, up to 10 minutes",
-    "description": "You conjure a group of intangible, orderly spirits that appear as a Medium group of modrons or other Constructs in an unoccupied space you can see within range. The spirits last for the duration.\n\nWhen you cast this spell and as a Magic action on subsequent turns, you can command the spirits to target one creature or object you can see within 5 feet of the spirits and create one of the following effects:\n\n**Clockwork Force.** The target makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 3d6 Force damage on a failed save or half as much damage on a successful one.\n\n**Orderly Ward.** The target gains Temporary Hit Points equal to 1d6$(formatBonus(attributes.spellcasting.bonus)).\n\nWhen you move on your turn, you can also move the spirits up to 30 feet to an unoccupied space you can see.\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "The damage and Temporary Hit Points both increase by 1d6 for each spell slot level above 3."
       }
     ]
   },
@@ -18647,40 +18455,12 @@
       "sorcerer",
       "warlock",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "120 feet",
     "duration": "concentration, up to 1 minute",
     "description": "You create a twisting pattern of colors in a 30-foot Cube within range. The pattern appears for a moment and vanishes. Each creature in the area who can see the pattern must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. While Charmed, the creature has the Incapacitated condition and a Speed of 0.\n\nThe spell ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor.\n"
-  },
-  {
-    "id": "laeralsSilverLance",
-    "type": "Activity",
-    "condition": "$(meta.setting === 'faerun')",
-    "name": "Laeral's Silver Lance",
-    "resource": "level3SpellSlot",
-    "tags": [
-      "level3Spell",
-      "evocation",
-      "cleric",
-      "sorcerer",
-      "wizard",
-      "saveSpell",
-      "damageSpell",
-      "forceDamage"
-    ],
-    "time": "action",
-    "range": "self",
-    "duration": "instantaneous",
-    "description": "Silver energy bursts out from you in a 120-foot-long, 5-foot-wide Line. Each creature of your choice in the Line makes a DC $(attributes.spellcasting.save) Strength saving throw. On a failed save, a creature takes 3d10 Force damage and has the Prone condition. On a successful save, a creature takes half as much damage only.\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "The damage increases by 1d10 for every spell slot level above 3."
-      }
-    ]
   },
   {
     "id": "leomundsTinyHut",
@@ -18785,8 +18565,7 @@
       "sorcerer",
       "warlock",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "120 feet",
@@ -19160,32 +18939,6 @@
     ]
   },
   {
-    "id": "sylunesViper",
-    "type": "Activity",
-    "name": "Sylune's Viper",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level3SpellSlot",
-    "tags": [
-      "level3Spell",
-      "conjuration",
-      "druid",
-      "wizard",
-      "attackSpell",
-      "damageSpell",
-      "forceDamage"
-    ],
-    "time": "bonus action",
-    "range": "self",
-    "duration": "1 hour",
-    "description": "A shimmering, spectral snake encircles your body for the duration. You gain 15 Temporary Hit Points; the spell ends early if you have no Temporary Hit Points left.\n\nWhile the spell is active, you gain the following benefits:\n\n**Climbing.** You gain a Climb Speed equal to your Speed.\n\n**Venomous Bite.** As a Magic action, you can make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack using the snake against one creature within 50 feet. On a hit, the target takes 1d6 Force damage and has the Poisoned condition until the start of your next turn. While Poisoned, the target has the Incapacitated condition.\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "For each spell slot level above 3, the number of Temporary Hit Points you gain from this spell increases by 5, and the damage of Venomous Bite increases by 1d6."
-      }
-    ]
-  },
-  {
     "id": "tongues",
     "type": "Activity",
     "name": "Tongues",
@@ -19337,34 +19090,6 @@
     "description": "An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Poison damage and Advantage on saving throws to avoid or end effects that include the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, or Stunned condition.\n"
   },
   {
-    "id": "backlash",
-    "type": "Activity",
-    "name": "Backlash",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level4SpellSlot",
-    "tags": [
-      "level4Spell",
-      "abjuration",
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "saveSpell",
-      "damageSpell",
-      "forceDamage"
-    ],
-    "time": "reaction",
-    "range": "60 feet",
-    "duration": "instantaneous",
-    "description": "Immediately after taking damage, you ward yourself against destructive energy, reducing the damage taken by 4d6$(formatBonus(attributes.spellcasting.bonus)).\n\nIf the triggering damage was from a creature within range, you can force the creature to make a DC $(attributes.spellcasting.save) Constitution saving throw. The creature takes 4d6 Force damage on a failed save or half as much damage on a successful one.\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "The damage reduction and Force damage from this spell both increase by 1d6 for every spell slot level above 4."
-      }
-    ]
-  },
-  {
     "id": "banishment",
     "type": "Activity",
     "name": "Banishment",
@@ -19430,8 +19155,7 @@
       "sorcerer",
       "warlock",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "30 feet",
@@ -19615,8 +19339,7 @@
       "druid",
       "ranger",
       "sorcerer",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "60 feet",
@@ -19628,27 +19351,6 @@
         "description": "Your Concentration can last longer with a spell slot of level 5 (up to 10 minutes), 6 (up to 1 hour), or 7+ (up to 8 hours)."
       }
     ]
-  },
-  {
-    "id": "doomtide",
-    "type": "Activity",
-    "name": "Doomtide",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level4SpellSlot",
-    "tags": [
-      "level4Spell",
-      "conjuration",
-      "bard",
-      "cleric",
-      "warlock",
-      "saveSpell",
-      "damageSpell",
-      "psychicDamage"
-    ],
-    "time": "action",
-    "range": "120 feet",
-    "duration": "concentration, up to 1 minute",
-    "description": "You create a 20-foot-radius Sphere of inky fog within range. The fog is magical Darkness and lasts for the duration or until a strong wind (such as the one created by the Gust of Wind spell) disperses it, ending the spell.\n\nEach creature in the Sphere when it appears makes a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, a creature takes 5d6 Psychic damage and subtracts 1d6 from its saving throws until the end of its next turn. On a successful save, a creature takes half as much damage only. A creature also makes this save when the Sphere moves into its space, when it enters the Sphere, or when it ends its turn inside the Sphere. A creature makes this save only once per turn.\n\nThe Sphere moves 10 feet away from you at the start of each of your turns.\n\nCasting as a Circle Spell. Casting this as a Circle spell requires a minimum of five secondary casters. In addition to the spell’s usual components, you must provide a special component (a string of three black pearls from Pandemonium), which the spell consumes. The spell’s range increases to 1 mile, and its duration increases to until dispelled (no Concentration required). The spell ends early if any caster who participated in this casting contributes to another casting of Doomtide as a Circle spell.\n\nWhen the spell is cast, each secondary caster must expend a level 3+ spell slot; otherwise, the spell fails.\n"
   },
   {
     "id": "evardsBlackTentacles",
@@ -19980,8 +19682,7 @@
       "abjuration",
       "artificer",
       "wizard",
-      "saveSpell",
-      "damageSpell"
+      "saveSpell"
     ],
     "time": "action",
     "range": "30 feet",
@@ -20031,32 +19732,6 @@
     "range": "60 feet",
     "duration": "concentration, up to 1 hour",
     "description": "You attempt to transform a creature that you can see within range into a Beast. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or shape-shift into a Beast form for the duration. That form can be any Beast you choose that has a Challenge Rating equal to or less than the target's (or the target's level if it doesn't have a Challenge Rating). The target's game statistics are replaced by the stat block of the chosen Beast, but the target retains its alignment, personality, creature type, Hit Points, and Hit Point Dice. See appendix B for a sample of Beast stat blocks.\n\nThe target gains a number of Temporary Hit Points equal to the Hit Points of the Beast form. These Temporary Hit Points vanish if any remain when the spell ends. The spell ends early on the target if it has no Temporary Hit Points left.\n\nThe target is limited in the actions it can perform by the anatomy of its new form, and it can’t speak or cast spells.\n\nThe target's gear melds into the new form. The creature can't use or otherwise benefit from any of that equipment.\n"
-  },
-  {
-    "id": "spellfireStorm",
-    "type": "Activity",
-    "name": "Spellfire Storm",
-    "condition": "$(meta.setting === 'faerun')",
-    "resource": "level4SpellSlot",
-    "tags": [
-      "level4Spell",
-      "evocation",
-      "sorcerer",
-      "wizard",
-      "saveSpell",
-      "damageSpell",
-      "radiantDamage"
-    ],
-    "time": "action",
-    "range": "60 feet",
-    "duration": "concentration, up to 1 minute",
-    "description": "You conjure a pillar of spellfire in a 20-foot-radius, 20-foot-high Cylinder centered on a point within range. The area of the Cylinder is Bright Light, and each creature in it when it appears makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking 4d10 Radiant damage on a failed save or half as much damage on a successful one. A creature also makes this save when it enters the spell’s area for the first time on a turn or ends its turn there. A creature makes this save only once per turn.\n\nIn addition, whenever a creature in the Cylinder casts a spell, that creature makes a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted. If that spell was cast with a spell slot, the slot isn’t expended.\n\nWhen you cast this spell, you can designate creatures to be unaffected by it.\n\nCasting as a Circle Spell. In addition to the spell’s usual components, you must provide a special component (a blue star sapphire worth 25,000+ GP), which the spell consumes. The spell’s range increases to 1 mile, and it no longer requires Concentration. When the spell is cast, each secondary caster must expend a level 3+ spell slot; otherwise, the spell fails.\n\nThe number of secondary casters determines the spell’s area of effect and duration, as shown in the table below. The spell ends early if any caster who participated in this casting contributes to another casting of Spellfire Storm as a Circle spell.\n\nSecondary Casters\n\nArea of Effect\n\nDuration\n\n1-3\n\n40-foot-radius, 40-foot-high Cylinder\n\n1 hour\n\n4-6\n\n60-foot-radius, 60-foot-high Cylinder\n\n8 hours\n\n7+\n\n100-foot-radius, 100-foot-high Cylinder\n\n24 hours\n",
-    "extra": [
-      {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "The damage increases by 1d10 for every spell slot level above 4."
-      }
-    ]
   },
   {
     "id": "staggeringSmite",

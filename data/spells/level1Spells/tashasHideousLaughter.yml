@@ -2,7 +2,7 @@ id: tashasHideousLaughter
 type: Activity
 name: Hideous Laughter
 resource: level1SpellSlot
-tags: [level1Spell, enchantment, bard, warlock, wizard, saveSpell, damageSpell]
+tags: [level1Spell, enchantment, bard, warlock, wizard, saveSpell]
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute

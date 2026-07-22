@@ -2,7 +2,7 @@ id: animalFriendship
 type: Activity
 name: Animal Friendship
 resource: level1SpellSlot
-tags: [level1Spell, enchantment, bard, druid, ranger, saveSpell, damageSpell]
+tags: [level1Spell, enchantment, bard, druid, ranger, saveSpell]
 time: action
 range: 30 feet
 duration: 24 hours

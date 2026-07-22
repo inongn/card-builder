@@ -1,8 +1,0 @@
-tags:
-- fightingStyle
-type: Effect
-target: activities[weaponAttack].extra["You do not add your Ability Modifier to the attack's damage roll."]
-operation: replace
-value: ""
-name: Two Weapon Fighting
-id: twoWeaponFighting

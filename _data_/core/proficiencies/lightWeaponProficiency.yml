@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: lightWeapons
-target: attributes.proficiencies
-id: lightWeaponProficiency
-name: Light Weapon Proficiency

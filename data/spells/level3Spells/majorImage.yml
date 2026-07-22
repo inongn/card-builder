@@ -2,7 +2,7 @@ id: majorImage
 type: Activity
 name: Major Image
 resource: level3SpellSlot
-tags: [level3Spell, illusion, bard, sorcerer, warlock, wizard, saveSpell, damageSpell]
+tags: [level3Spell, illusion, bard, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 120 feet
 duration: concentration, up to 10 minutes

@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Poisoner's Kit
-target: attributes.tools
-id: poisonersKit
-name: Poisoner's Kit

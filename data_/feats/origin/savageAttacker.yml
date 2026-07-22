@@ -1,7 +1,0 @@
-id: savageAttacker
-name: Savage Attacker
-tags:
-- feat
-- originFeat
-type: Activity
-description: Once per turn when you hit a target with a weapon, you roll the weapon's damage dice twice and use either roll against the target.

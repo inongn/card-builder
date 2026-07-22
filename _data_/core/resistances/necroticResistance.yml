@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - damageResistance
-operation: push
-value: Necrotic Damage
-target: attributes.resistances
-id: necroticResistance
-name: Necrotic Resistance

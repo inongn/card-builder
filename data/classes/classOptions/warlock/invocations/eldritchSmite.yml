@@ -2,13 +2,16 @@ id: eldritchSmite
 name: Eldritch Smite
 tags:
   - eldritchInvocation
-condition: $(attributes.pactOfTheBlade == true && meta.level >= 5)
+condition: $(meta.level >= 5)
+prerequisite: Pact of the Blade
+prerequisiteCondition: $(attributes.pactOfTheBlade == true)
 type: Folder
 children:
   - id: eldritchSmiteActivity
     type: Activity
     name: Eldritch Smite
     time: free action
+    condition: $(attributes.pactOfTheBlade == true)
     duration: instantaneous
     resource: [pactMagicSpellSlot]
     description: "Once per turn when you hit a creature with your pact weapon, the target takes an extra 1d8 Force damage, plus another 1d8 per level of the spell slot. You can knock the target Prone if it is Huge or smaller."

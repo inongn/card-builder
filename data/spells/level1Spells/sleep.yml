@@ -2,7 +2,7 @@ id: sleep
 type: Activity
 name: Sleep
 resource: level1SpellSlot
-tags: [level1Spell, enchantment, bard, sorcerer, wizard, saveSpell, damageSpell]
+tags: [level1Spell, enchantment, bard, sorcerer, wizard, saveSpell]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute

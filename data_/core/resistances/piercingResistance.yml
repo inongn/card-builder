@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - damageResistance
-operation: push
-value: Piercing Damage
-target: attributes.resistances
-id: piercingResistance
-name: Piercing Resistance

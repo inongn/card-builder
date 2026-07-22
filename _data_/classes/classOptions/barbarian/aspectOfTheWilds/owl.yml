@@ -1,6 +1,0 @@
-name: Owl Aspect
-tags: [aspectOfTheWilds]
-type: Effect
-target: attributes.senses.darkvision
-operation: add
-value: 60

@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Mason's Tools
-target: attributes.tools
-id: masonsTools
-name: Mason's Tools

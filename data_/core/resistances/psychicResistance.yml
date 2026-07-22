@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - damageResistance
-operation: push
-value: Psychic Damage
-target: attributes.resistances
-id: psychicResistance
-name: Psychic Resistance

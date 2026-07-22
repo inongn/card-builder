@@ -7,13 +7,5 @@ children:
   - id: pactOfTheBlade
     type: Attribute
     value: true
-  - id: pactOfTheBladeSlot
-    type: Slot
-    name: Pact Weapon
-    target: simple OR martial
-    quantity: 1
-    overwrite:
-      variables.classification: spellcasting
-      tags: [pactWeapon]
   - type: Reference
     target: masteryProperties

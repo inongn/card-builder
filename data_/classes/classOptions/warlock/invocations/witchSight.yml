@@ -1,9 +1,0 @@
-id: witchSight
-name: Witch Sight
-tags:
-  - eldritchInvocation
-condition: $(meta.level >= 15)
-type: Effect
-target: attributes.senses.truesight
-operation: set
-value: 30

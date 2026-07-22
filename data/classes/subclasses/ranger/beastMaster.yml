@@ -36,11 +36,11 @@ children:
     value: "$(meta.beastcompanionname ? meta.beastcompanionname + ' (Beast of the Sky)' : 'Beast of the Sky')"
 
   - id: commandCompanionExtraAttack
-    type: Extra
-    name: Command Companion
-    target: weaponAttack
+    type: Effect
+    target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    operation: replace
     condition: $(meta.level >= 5)
-    description: "You can replace one attack with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
+    value: "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
 
   # Command Primal Companion
   - id: commandPrimalCompanion

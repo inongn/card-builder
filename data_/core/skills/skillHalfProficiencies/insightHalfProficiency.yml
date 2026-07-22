@@ -1,7 +1,0 @@
-type: Effect
-target: skills.insight.proficiency
-operation: set
-condition: $(skills.insight.proficiency < 0.5)
-value: 0.5
-id: insightHalfProficiency
-name: Insight Half Proficiency

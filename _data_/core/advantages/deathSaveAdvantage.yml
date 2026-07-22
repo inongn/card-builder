@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Death Saves
-target: attributes.advantages
-id: deathSaveAdvantage
-name: Death Saves

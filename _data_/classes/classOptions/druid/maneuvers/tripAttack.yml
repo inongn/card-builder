@@ -1,6 +1,0 @@
-id: tripAttack
-name: Trip Attack
-tags: [maneuver]
-type: Activity
-resource: superiorityDice
-description: When you hit a creature with an attack roll using a weapon or an Unarmed Strike, you add 1d$(attributes.superiorityDie) to the attack’s damage roll. If the target is Large or smaller, it must succeed on a DC $(attributes.superioritySave) Strength saving throw or have the Prone condition.

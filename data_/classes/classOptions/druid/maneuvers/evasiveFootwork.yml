@@ -1,7 +1,0 @@
-id: evasiveFootwork
-name: Evasive Footwork
-tags: [maneuver]
-type: Activity
-time: bonus action
-resource: superiorityDice
-description: You take the Disengage action and add 1d$(attributes.superiorityDie) to your AC until the start of your next turn.

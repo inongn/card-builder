@@ -11,7 +11,7 @@ import 'mdui/components/card.js';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import { CATEGORIES, MATCHING_ORDER, collectRenderableNodes, categorizeNode } from '../utils/builderUtils.js';
+import { CATEGORIES, STEP_DEFINITIONS, getCategoryForStep, MATCHING_ORDER, collectRenderableNodes, categorizeNode, MERGED_CATEGORIES, getItemUniqueId } from '../utils/builderUtils.js';
 
 
 export default function PropertySelectionTree({
@@ -41,7 +41,7 @@ export default function PropertySelectionTree({
 
     const renderInputCard = (item) => {
         const { node, path } = item;
-        const isActive = selectedSlotPath === JSON.stringify(item.logicalPath);
+        const isActive = selectedSlotPath === getItemUniqueId(item);
         const isAbilityInput = node.name.match(/^(allocated|origin|asi)_/);
 
         let label = node.displayName || node.name;
@@ -78,7 +78,7 @@ export default function PropertySelectionTree({
     const renderSlot = (item) => {
         const { node, path } = item;
         const filledValue = node.filled?.displayName || node.filled?.name || '';
-        const isActive = selectedSlotPath === JSON.stringify(item.logicalPath);
+        const isActive = selectedSlotPath === getItemUniqueId(item);
         const label = node.displayName || node.name;
 
         const handleCardClick = () => {
@@ -117,15 +117,16 @@ export default function PropertySelectionTree({
     };
 
     const renderGroupedSlotCard = (groupName, groupItems) => {
+        const groupItem = { type: 'Group', id: groupName, items: groupItems, category: filterCategory };
         const pathStr = `group-${groupName}`;
-        const isActive = selectedSlotPath === groupName;
+        const isActive = selectedSlotPath === getItemUniqueId(groupItem);
         const filledValues = groupItems.map(item => item.node.filled?.displayName || item.node.filled?.name).filter(Boolean);
         const totalCount = groupItems.length;
         const filledCount = filledValues.length;
 
         const handleCardClick = () => {
             if (onSelectSlot) {
-                onSelectSlot({ type: 'Group', id: groupName, items: groupItems });
+                onSelectSlot(groupItem);
             }
         };
 
@@ -159,11 +160,119 @@ export default function PropertySelectionTree({
         );
     };
 
+    const renderSingleMergedCard = (cardId, title, slotItems, categoryKey, stepKey) => {
+        const mergedItem = { type: 'MergedCategory', category: categoryKey, step: stepKey, id: cardId, title: title, items: slotItems };
+        const filledValues = slotItems.map(item => item.node.filled?.displayName || item.node.filled?.name).filter(Boolean);
+        const totalCount = slotItems.length;
+        const filledCount = filledValues.length;
+
+        const isActive = selectedSlotPath === getItemUniqueId(mergedItem);
+
+        const handleCardClick = () => {
+            if (onSelectSlot) {
+                onSelectSlot(mergedItem);
+            }
+        };
+
+        const handleClearAll = (e) => {
+            e.stopPropagation();
+            slotItems.forEach(item => {
+                if (item.node.filled && onClearSlot) {
+                    onClearSlot(item.path);
+                }
+            });
+        };
+
+        return (
+            <mdui-list-item
+                key={cardId}
+                onClick={handleCardClick}
+                active={isActive}
+            >
+                {filledCount > 0 && (
+                    <mdui-button-icon
+                        icon="clear"
+                        onClick={handleClearAll}
+                        variant="text"
+                        slot="end-icon"
+                    ></mdui-button-icon>
+                )}
+                {title}
+                <span slot="description">
+                    {filledCount > 0 ? filledValues.join(', ') : `Select... (${totalCount})`}
+                </span>
+            </mdui-list-item>
+        );
+    };
+
+    const renderAllyCard = (allyType, allyItems) => {
+        if (!allyItems || allyItems.length === 0) return null;
+
+        const title = STEP_DEFINITIONS[allyType]?.title || allyType;
+        const allyItem = {
+            type: 'Ally',
+            allyType: allyType,
+            id: `ally-${allyType}`,
+            title: title,
+            items: allyItems,
+            category: 'arsenal',
+            step: allyType
+        };
+
+        const filledValues = allyItems
+            .map(item => {
+                if (item.type === 'Input') {
+                    return item.node.value ?? item.node.default ?? '';
+                }
+                return item.node.filled?.displayName || item.node.filled?.name || '';
+            })
+            .filter(Boolean);
+
+        const isActive = selectedSlotPath === getItemUniqueId(allyItem);
+
+        const handleCardClick = () => {
+            if (onSelectSlot) {
+                onSelectSlot(allyItem);
+            }
+        };
+
+        const handleClearAll = (e) => {
+            e.stopPropagation();
+            allyItems.forEach(item => {
+                if (item.type === 'Input' && onUpdateInput) {
+                    onUpdateInput(item.path, '');
+                } else if (item.type === 'Slot' && item.node.filled && onClearSlot) {
+                    onClearSlot(item.path);
+                }
+            });
+        };
+
+        return (
+            <mdui-list-item
+                key={allyItem.id}
+                onClick={handleCardClick}
+                active={isActive}
+            >
+                {filledValues.length > 0 && (
+                    <mdui-button-icon
+                        icon="clear"
+                        onClick={handleClearAll}
+                        variant="text"
+                        slot="end-icon"
+                    ></mdui-button-icon>
+                )}
+                {title}
+                <span slot="description">
+                    {filledValues.length > 0 ? filledValues.join(', ') : 'Configure ' + title}
+                </span>
+            </mdui-list-item>
+        );
+    };
+
     const groupSlots = (items) => {
         const groups = {};
         items.forEach(item => {
             if (item.type === 'Slot' && item.node.slotIndex !== undefined) {
-                // Use the displayName but strip the # suffix to get the base translated name
                 const baseName = (item.node.displayName || item.node.name).replace(/ #\d+$/, '');
                 if (!groups[baseName]) groups[baseName] = [];
                 groups[baseName].push(item);
@@ -176,12 +285,13 @@ export default function PropertySelectionTree({
     };
 
     const renderSmartAbilitiesCard = () => {
-        const isActive = selectedSlotPath === 'abilities';
+        const abilitiesItem = { type: 'Abilities', category: 'abilities', step: 'stats' };
+        const isActive = selectedSlotPath === getItemUniqueId(abilitiesItem);
         return (
             <mdui-list-item
                 key="ability-scores-card"
 
-                onClick={() => onSelectSlot && onSelectSlot({ type: 'Abilities' })}
+                onClick={() => onSelectSlot && onSelectSlot(abilitiesItem)}
                 active={isActive}
             >
                 Ability Scores
@@ -195,38 +305,55 @@ export default function PropertySelectionTree({
     const categorizedNodes = {};
 
     renderableNodes.forEach(item => {
-        const category = categorizeNode(item);
-        if (category) {
-            if (!categorizedNodes[category]) categorizedNodes[category] = [];
-            categorizedNodes[category].push(item);
+        const stepKey = categorizeNode(item);
+        if (stepKey) {
+            if (!categorizedNodes[stepKey]) categorizedNodes[stepKey] = [];
+            categorizedNodes[stepKey].push(item);
         }
     });
 
-    const groupedCategorizedNodes = {};
-    Object.entries(categorizedNodes).forEach(([category, items]) => { groupedCategorizedNodes[category] = groupSlots(items); });
-
     return (
-        <div className="category-creator">
-            {Object.entries(CATEGORIES).sort(([, a], [, b]) => a.order - b.order).map(([key]) => {
-                if (filterCategory && filterCategory !== key) return null;
-                const groups = groupedCategorizedNodes[key] || {};
-                if (key !== 'stats' && Object.keys(groups).length === 0) return null;
+        <React.Fragment>
+            {Object.entries(STEP_DEFINITIONS)
+                .filter(([, stepDef]) => !filterCategory || stepDef.category === filterCategory)
+                .map(([stepKey, stepDef]) => {
+                    const itemsForStep = categorizedNodes[stepKey] || [];
+                    if (stepKey !== 'stats' && itemsForStep.length === 0) return null;
 
-                return (
-                    <div key={key} className="category-section">
-                        {key === 'stats' ? (
-                            renderSmartAbilitiesCard()
-                        ) : (
-                            Object.entries(groups).map(([groupName, groupItems]) => groupItems.length > 1 ? (
-                                renderGroupedSlotCard(groupName, groupItems)
-                            ) : (
-                                groupItems[0].type === 'Input' ? renderInputCard(groupItems[0]) : renderSlot(groupItems[0])
-                            ))
-                        )}
-                    </div>
-                );
-            })}
-        </div>
+                    if (stepKey === 'stats') {
+                        return renderSmartAbilitiesCard();
+                    }
+
+                    if (stepKey === 'companion' || stepKey === 'steed' || stepKey === 'familiar') {
+                        return renderAllyCard(stepKey, itemsForStep);
+                    }
+
+                    if (stepKey === 'classOptions') {
+                        const slotItems = itemsForStep.filter(i => i.type === 'Slot');
+                        if (slotItems.length === 0) return null;
+
+                        const baseNames = new Set(slotItems.map(i => (i.node.displayName || i.node.name).replace(/ #\d+$/, '')));
+                        if (baseNames.size > 1) {
+                            return renderSingleMergedCard(`merged-classOptions`, 'Class Options', slotItems, stepDef.category, 'classOptions');
+                        }
+                    }
+
+                    if (MERGED_CATEGORIES.includes(stepKey)) {
+                        const slotItems = itemsForStep.filter(i => i.type === 'Slot');
+                        if (slotItems.length === 0) return null;
+                        return renderSingleMergedCard(`merged-${stepKey}`, stepDef.title, slotItems, stepDef.category, stepKey);
+                    }
+
+                    const groups = groupSlots(itemsForStep);
+                    return Object.entries(groups).map(([groupName, groupItems]) => {
+                        if (groupItems.length > 1) {
+                            return renderGroupedSlotCard(groupName, groupItems);
+                        }
+                        const single = groupItems[0];
+                        return single.type === 'Input' ? renderInputCard(single) : renderSlot(single);
+                    });
+                })}
+        </React.Fragment>
     );
 }
 

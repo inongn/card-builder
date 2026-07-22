@@ -1,8 +1,0 @@
-tags:
-  - skillProficiency
-type: Effect
-target: skills.stealth.proficiency
-operation: set
-value: 1
-id: stealthProficiency
-name: Stealth Proficiency

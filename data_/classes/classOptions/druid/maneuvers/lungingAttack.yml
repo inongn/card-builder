@@ -1,7 +1,0 @@
-id: lungingAttack
-name: Lunging Attack
-tags: [maneuver]
-type: Activity
-time: bonus action
-resource: superiorityDice
-description: You take the Dash action. If you move at least 5 feet in a straight line immediately before hitting with a melee attack as part of the Attack action on this turn, you add 1d$(attributes.superiorityDie) to the attack’s damage roll.

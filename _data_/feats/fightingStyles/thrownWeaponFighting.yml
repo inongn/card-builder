@@ -1,8 +1,0 @@
-tags:
-- fightingStyle
-type: Effect
-target: attributes.thrown.bonus
-operation: add
-value: 2
-id: thrownWeaponFighting
-name: Thrown Weapon Fighting

@@ -1,6 +1,0 @@
-id: commandersStrike
-name: Commander's Strike
-tags: [maneuver]
-type: Activity
-resource: superiorityDice
-description: When you take the Attack action on your turn, you replace one of your attacks to direct one of your companions to strike. Choose a willing creature who can see or hear you. That creature can immediately use its Reaction to make one attack with a weapon or an Unarmed Strike, adding 1d$(attributes.superiorityDie) to the attack's damage roll on a hit.

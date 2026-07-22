@@ -131,9 +131,6 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
                     <mdui-menu>
                         <mdui-menu-item icon="edit" onClick={() => onNavigate('builder')}>Edit</mdui-menu-item>
                         <mdui-menu-item icon="print" onClick={() => onNavigate('print')}>Print</mdui-menu-item>
-                        <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
-                            {isDarkMode ? 'Light Mode' : 'Dark/Night Mode'}
-                        </mdui-menu-item>
                     </mdui-menu>
                 </mdui-dropdown>
             </mdui-top-app-bar>
