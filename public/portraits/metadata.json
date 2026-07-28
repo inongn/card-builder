@@ -28,6 +28,14 @@
     "species": "Human"
   },
   {
+    "filename": "Barbarian_Berserker_Orc_1.png",
+    "species": "Orc"
+  },
+  {
+    "filename": "Rogue_Thief_Minotaur_1.png",
+    "species": "Minotaur"
+  },
+  {
     "filename": "Ranger_Gloom_Stalker_Elf_1.jpg",
     "species": "Elf"
   },
@@ -44,12 +52,20 @@
     "species": "Human"
   },
   {
+    "filename": "Fighter_Champion_Orc_1.png",
+    "species": "Orc"
+  },
+  {
     "filename": "Artificer_Reanimator_Human_2.jpg",
     "species": "Human"
   },
   {
     "filename": "Monk_Open_Hand_Human_1.jpg",
     "species": "Human"
+  },
+  {
+    "filename": "Paladin_Devotion_Leonin_1.png",
+    "species": "Leonin"
   },
   {
     "filename": "Bard_Dance_Satyr_1.jpg",
@@ -72,6 +88,10 @@
     "species": "Triton"
   },
   {
+    "filename": "Fighter_Champion_Dragonborn_1.png",
+    "species": "Dragonborn"
+  },
+  {
     "filename": "Artificer_Alchemist_Human_1.jpg",
     "species": "Human"
   },
@@ -84,6 +104,14 @@
     "species": "Human"
   },
   {
+    "filename": "Sorcerer_Draconic_Dragonborn_1.png",
+    "species": "Dragonborn"
+  },
+  {
+    "filename": "Wizard_Evoker_Minotaur_1.png",
+    "species": "Minotaur"
+  },
+  {
     "filename": "Bard_Dance_Human_1.jpg",
     "species": "Human"
   },
@@ -94,6 +122,10 @@
   {
     "filename": "Artificer_Cartographer_Human_1.jpg",
     "species": "Human"
+  },
+  {
+    "filename": "Ranger_Hunter_Satyr_1.png",
+    "species": "Satyr"
   },
   {
     "filename": "Sorcerer_Shadow_Sorcery_Human_1.jpg",
@@ -156,6 +188,10 @@
     "species": "Minotaur"
   },
   {
+    "filename": "Barbarian_Berserker_Dragonborn_1.png",
+    "species": "Dragonborn"
+  },
+  {
     "filename": "Bard_Glamour_Aasimar_1.jpg",
     "species": "Aasimar"
   },
@@ -214,6 +250,10 @@
   {
     "filename": "Sorcerer_Wild_Magic_Orc_1.jpg",
     "species": "Orc"
+  },
+  {
+    "filename": "Wizard_Evoker_Dragonborn_1.png",
+    "species": "Dragonborn"
   },
   {
     "filename": "Sorcerer_Spellfire_Human_2.jpg",
@@ -296,6 +336,10 @@
     "species": "Gnome"
   },
   {
+    "filename": "Bard_Glamour_Leonin_1.png",
+    "species": "Leonin"
+  },
+  {
     "filename": "Wizard_Diviner_Human_3.jpg",
     "species": "Human"
   },
@@ -306,6 +350,10 @@
   {
     "filename": "Paladin_Glory_Halfling_1.jpg",
     "species": "Halfling"
+  },
+  {
+    "filename": "Fighter_Champion_Satyr_1.png",
+    "species": "Satyr"
   },
   {
     "filename": "Artificer_Cartographer_Human_2.jpg",
@@ -344,8 +392,24 @@
     "species": "Human"
   },
   {
+    "filename": "Druid_Land_Dragonborn_1.png",
+    "species": "Dragonborn"
+  },
+  {
+    "filename": "Fighter_Champion_Leonin_1.png",
+    "species": "Leonin"
+  },
+  {
     "filename": "Warlock_Undead_Patron_Elf_1.jpg",
     "species": "Elf"
+  },
+  {
+    "filename": "Monk_Open_Hand_Leonin_1.png",
+    "species": "Leonin"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Satyr_1.png",
+    "species": "Satyr"
   },
   {
     "filename": "Druid_Land_Elf_5.jpg",
@@ -362,6 +426,10 @@
   {
     "filename": "Sorcerer_Wild_Magic_Minotaur_1.jpg",
     "species": "Minotaur"
+  },
+  {
+    "filename": "Cleric_Life_Orc_1.png",
+    "species": "Orc"
   },
   {
     "filename": "Fighter_Battle_Master_Human_3.jpg",
@@ -508,6 +576,10 @@
     "species": "Tiefling"
   },
   {
+    "filename": "Barbarian_Wild_Heart_Satyr_1.png",
+    "species": "Satyr"
+  },
+  {
     "filename": "Cleric_Grave_Domain_Goliath_1.jpg",
     "species": "Goliath"
   },
@@ -522,6 +594,10 @@
   {
     "filename": "Paladin_Devotion_Elf_1.jpg",
     "species": "Elf"
+  },
+  {
+    "filename": "Barbarian_Berserker_Dragonborn_2.png",
+    "species": "Dragonborn"
   },
   {
     "filename": "Fighter_Eldritch_Knight_Human_1.jpg",
