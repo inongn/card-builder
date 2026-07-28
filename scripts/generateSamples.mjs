@@ -5,9 +5,9 @@
  * Outputs: src/data/sampleCharacters.js
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, unlinkSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -28,6 +28,42 @@ global.console = console;
 const { PropertyLibrary } = await import('../src/engine/PropertyLibrary.js');
 const { CharacterBuilder } = await import('../src/engine/CharacterBuilder.js');
 
+const { collectRenderableNodes } = await import('../src/utils/builderUtils.js');
+
+// ─── Load portraits metadata ──────────────────────────────────────────────────
+
+const portraitsMetadataPath = resolve(root, 'public/portraits/metadata.json');
+const portraitsMetadata = existsSync(portraitsMetadataPath)
+    ? JSON.parse(readFileSync(portraitsMetadataPath, 'utf8'))
+    : [];
+
+// Track which portrait filenames have been used per class+species combo
+const usedPortraitFilenames = new Set();
+
+/**
+ * Pick a portrait path for a character by class and species.
+ * Prioritises class+species match, then species-only. Cycles through to avoid repeats.
+ */
+function pickPortrait(className, speciesName) {
+    const cls = (className || '').toLowerCase();
+    const sp = (speciesName || '').toLowerCase();
+
+    const candidates = portraitsMetadata.filter(p =>
+        (p.class || '').toLowerCase() === cls &&
+        (p.species || '').toLowerCase() === sp
+    );
+
+    // prefer unused
+    const unused = candidates.filter(p => !usedPortraitFilenames.has(p.filename));
+    const pool = unused.length > 0 ? unused : candidates;
+    if (pool.length === 0) return '';
+
+    // deterministic: pick first (already sorted in metadata)
+    const chosen = pool[0];
+    usedPortraitFilenames.add(chosen.filename);
+    return `portraits/${chosen.filename}`;
+}
+
 // ─── Load DB ──────────────────────────────────────────────────────────────────
 
 const db = JSON.parse(readFileSync(resolve(root, 'public/db.json'), 'utf8'));
@@ -45,7 +81,7 @@ function findUnfilledSlots(node, path = []) {
     if (!node || node.visible === false) return results;
     if (!node.children) return results;
     for (const child of node.children) {
-        if (child.visible === false) continue;
+        if (!child || child.visible === false) continue;
         const step = { id: child.id, slotIndex: child.slotIndex };
         const childPath = [...path, step];
         if (child.type === 'Slot' && !child.filled) {
@@ -232,10 +268,10 @@ const CHARACTERS = [
 
     {
         id: 'sample_barbarian_berserker',
-        name: 'Grunk Ironjaw',
+        name: 'Garth Ironjaw',
         class: 'Barbarian', sub: 'Path of the Berserker',
-        species: 'Orc', background: 'soldier',
-        speciesId: 'orc', classId: 'barbarian', subcId: 'berserker',
+        species: 'Human', background: 'soldier',
+        speciesId: 'human', classId: 'barbarian', subcId: 'berserker',
         str: 8, dex: 3, con: 5, int: 0, wis: 3, cha: 0,
         prefs: {
             barbarianSkillProficiencies: ['athleticsProficiency', 'intimidationProficiency', 'animalHandlingProficiency', 'perceptionProficiency'],
@@ -246,7 +282,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_barbarian_wildHeart',
-        name: 'Sylva Mossrunner',
+        name: 'Bovar Mossrunner',
         class: 'Barbarian', sub: 'Path of the Wild Heart',
         species: 'Minotaur', background: 'guide',
         speciesId: 'minotaur', classId: 'barbarian', subcId: 'wildHeart',
@@ -258,10 +294,10 @@ const CHARACTERS = [
     },
     {
         id: 'sample_barbarian_worldTree',
-        name: 'Bjorveld Ashroot',
+        name: 'Brulda Ashroot',
         class: 'Barbarian', sub: 'Path of the World Tree',
-        species: 'Goliath', background: 'hermit',
-        speciesId: 'goliath', classId: 'barbarian', subcId: 'worldTree',
+        species: 'Elf', background: 'hermit',
+        speciesId: 'elf', classId: 'barbarian', subcId: 'worldTree',
         str: 7, dex: 2, con: 6, int: 0, wis: 1, cha: 0,
         prefs: {
             barbarianSkillProficiencies: ['survivalProficiency', 'natureProficiency'],
@@ -272,8 +308,8 @@ const CHARACTERS = [
         id: 'sample_barbarian_zealot',
         name: 'Korrax Flameheart',
         class: 'Barbarian', sub: 'Path of the Zealot',
-        species: 'Aasimar', background: 'acolyte',
-        speciesId: 'aasimar', classId: 'barbarian', subcId: 'zealot',
+        species: 'Dragonborn', background: 'acolyte',
+        speciesId: 'dragonborn', classId: 'barbarian', subcId: 'zealot',
         str: 6, dex: 2, con: 4, int: 0, wis: 2, cha: 2,
         prefs: {
             barbarianSkillProficiencies: ['intimidationProficiency', 'athleticsProficiency'],
@@ -285,10 +321,10 @@ const CHARACTERS = [
 
     {
         id: 'sample_bard_dance',
-        name: 'Mirabel Twostep',
-        class: 'Bard', sub: 'College of Dance',
-        species: 'Satyr', background: 'entertainer',
-        speciesId: 'satyr', classId: 'bard', subcId: 'dance',
+        name: 'Marcus Twostep',
+        class: 'Bard', sub: 'Dance',
+        species: 'Human', background: 'entertainer',
+        speciesId: 'human', classId: 'bard', subcId: 'dance',
         str: 0, dex: 4, con: 2, int: 1, wis: 2, cha: 7,
         prefs: {
             skillProficiencies: ['performanceProficiency', 'acrobaticsProficiency', 'persuasionProficiency'],
@@ -298,9 +334,9 @@ const CHARACTERS = [
     {
         id: 'sample_bard_glamour',
         name: 'Sylindra Moonsong',
-        class: 'Bard', sub: 'College of Glamour',
-        species: 'Tiefling', background: 'noble',
-        speciesId: 'tiefling', classId: 'bard', subcId: 'glamour',
+        class: 'Bard', sub: 'Glamour',
+        species: 'Elf', background: 'noble',
+        speciesId: 'elf', classId: 'bard', subcId: 'glamour',
         str: 0, dex: 2, con: 2, int: 2, wis: 0, cha: 7,
         prefs: {
             skillProficiencies: ['persuasionProficiency', 'deceptionProficiency', 'performanceProficiency'],
@@ -309,10 +345,10 @@ const CHARACTERS = [
     },
     {
         id: 'sample_bard_lore',
-        name: 'Pemberwick Thistledown',
-        class: 'Bard', sub: 'College of Lore',
-        species: 'Gnome', background: 'sage',
-        speciesId: 'gnome', classId: 'bard', subcId: 'lore',
+        name: 'Penelope Thistledown',
+        class: 'Bard', sub: 'Lore',
+        species: 'Human', background: 'sage',
+        speciesId: 'human', classId: 'bard', subcId: 'lore',
         str: 0, dex: 2, con: 1, int: 3, wis: 2, cha: 5,
         prefs: {
             skillProficiencies: ['arcanaProficiency', 'historyProficiency', 'persuasionProficiency'],
@@ -322,9 +358,9 @@ const CHARACTERS = [
     {
         id: 'sample_bard_valor',
         name: 'Dax Steelstring',
-        class: 'Bard', sub: 'College of Valor',
-        species: 'Human', background: 'soldier',
-        speciesId: 'human', classId: 'bard', subcId: 'valor',
+        class: 'Bard', sub: 'Valor',
+        species: 'Dragonborn', background: 'soldier',
+        speciesId: 'dragonborn', classId: 'bard', subcId: 'valor',
         str: 3, dex: 3, con: 2, int: 1, wis: 1, cha: 5,
         prefs: {
             skillProficiencies: ['performanceProficiency', 'persuasionProficiency', 'athleticsProficiency'],
@@ -337,9 +373,9 @@ const CHARACTERS = [
     {
         id: 'sample_cleric_life',
         name: 'Sister Merindah',
-        class: 'Cleric', sub: 'Life Domain',
-        species: 'Aasimar', background: 'acolyte',
-        speciesId: 'aasimar', classId: 'cleric', subcId: 'lifeDomain',
+        class: 'Cleric', sub: 'Life',
+        species: 'Human', background: 'acolyte',
+        speciesId: 'human', classId: 'cleric', subcId: 'lifeDomain',
         str: 1, dex: 0, con: 3, int: 1, wis: 5, cha: 2,
         prefs: {
             clericSkillProficiencies: ['medicineProficiency', 'insightProficiency'],
@@ -348,8 +384,8 @@ const CHARACTERS = [
     },
     {
         id: 'sample_cleric_light',
-        name: 'Vael Sunmantle',
-        class: 'Cleric', sub: 'Light Domain',
+        name: 'Vala Sunmantle',
+        class: 'Cleric', sub: 'Light',
         species: 'Elf', background: 'acolyte',
         speciesId: 'elf', classId: 'cleric', subcId: 'lightDomain',
         str: 0, dex: 2, con: 2, int: 3, wis: 4, cha: 2,
@@ -361,9 +397,9 @@ const CHARACTERS = [
     {
         id: 'sample_cleric_trickery',
         name: 'Nyx Shadowveil',
-        class: 'Cleric', sub: 'Trickery Domain',
-        species: 'Tiefling', background: 'charlatan',
-        speciesId: 'tiefling', classId: 'cleric', subcId: 'trickeryDomain',
+        class: 'Cleric', sub: 'Trickery',
+        species: 'Halfling', background: 'charlatan',
+        speciesId: 'halfling', classId: 'cleric', subcId: 'trickeryDomain',
         str: 0, dex: 3, con: 2, int: 2, wis: 4, cha: 3,
         prefs: {
             clericSkillProficiencies: ['deceptionProficiency', 'insightProficiency'],
@@ -372,10 +408,10 @@ const CHARACTERS = [
     },
     {
         id: 'sample_cleric_war',
-        name: 'Commander Barek',
-        class: 'Cleric', sub: 'War Domain',
-        species: 'Dwarf', background: 'soldier',
-        speciesId: 'dwarf', classId: 'cleric', subcId: 'warDomain',
+        name: 'Commander Damia',
+        class: 'Cleric', sub: 'War',
+        species: 'Tiefling', background: 'soldier',
+        speciesId: 'tiefling', classId: 'cleric', subcId: 'warDomain',
         str: 3, dex: 1, con: 4, int: 1, wis: 4, cha: 1,
         prefs: {
             clericSkillProficiencies: ['religionProficiency', 'persuasionProficiency'],
@@ -388,16 +424,16 @@ const CHARACTERS = [
     {
         id: 'sample_druid_land',
         name: 'Wren Fernhollow',
-        class: 'Druid', sub: 'Circle of the Land',
-        species: 'Halfling', background: 'hermit',
-        speciesId: 'halfling', classId: 'druid', subcId: 'circleOfTheLand',
+        class: 'Druid', sub: 'Land',
+        species: 'Elf', background: 'hermit',
+        speciesId: 'elf', classId: 'druid', subcId: 'circleOfTheLand',
         str: 0, dex: 2, con: 2, int: 3, wis: 6, cha: 0,
         prefs: { druidSubclass: ['circleOfTheLand'] }
     },
     {
         id: 'sample_druid_moon',
         name: 'Torrin Bearpaw',
-        class: 'Druid', sub: 'Circle of the Moon',
+        class: 'Druid', sub: 'Moon',
         species: 'Human', background: 'guide',
         speciesId: 'human', classId: 'druid', subcId: 'circleOfTheMoon',
         str: 1, dex: 1, con: 3, int: 1, wis: 7, cha: 0,
@@ -406,7 +442,7 @@ const CHARACTERS = [
     {
         id: 'sample_druid_sea',
         name: 'Coraline Wavecrest',
-        class: 'Druid', sub: 'Circle of the Sea',
+        class: 'Druid', sub: 'Sea',
         species: 'Triton', background: 'sailor',
         speciesId: 'triton', classId: 'druid', subcId: 'circleOfTheSea',
         str: 0, dex: 2, con: 2, int: 2, wis: 7, cha: 0,
@@ -415,9 +451,9 @@ const CHARACTERS = [
     {
         id: 'sample_druid_stars',
         name: 'Astraea Cosmoss',
-        class: 'Druid', sub: 'Circle of the Stars',
-        species: 'Gnome', background: 'sage',
-        speciesId: 'gnome', classId: 'druid', subcId: 'circleOfTheStars',
+        class: 'Druid', sub: 'Stars',
+        species: 'Elf', background: 'sage',
+        speciesId: 'elf', classId: 'druid', subcId: 'circleOfTheStars',
         str: 0, dex: 2, con: 2, int: 4, wis: 7, cha: 0,
         prefs: { druidSubclass: ['circleOfTheStars'] }
     },
@@ -428,8 +464,8 @@ const CHARACTERS = [
         id: 'sample_fighter_battleMaster',
         name: 'Kira Steelwind',
         class: 'Fighter', sub: 'Battle Master',
-        species: 'Dwarf', background: 'soldier',
-        speciesId: 'dwarf', classId: 'fighter', subcId: 'battleMaster',
+        species: 'Dragonborn', background: 'soldier',
+        speciesId: 'dragonborn', classId: 'fighter', subcId: 'battleMaster',
         str: 5, dex: 2, con: 5, int: 2, wis: 2, cha: 0,
         prefs: {
             fighterskillproficiencies: ['athleticsProficiency', 'perceptionProficiency'],
@@ -439,10 +475,10 @@ const CHARACTERS = [
     },
     {
         id: 'sample_fighter_champion',
-        name: 'Brulda Crushfist',
+        name: 'Brenda Ironwill',
         class: 'Fighter', sub: 'Champion',
-        species: 'Orc', background: 'soldier',
-        speciesId: 'orc', classId: 'fighter', subcId: 'champion',
+        species: 'Human', background: 'soldier',
+        speciesId: 'human', classId: 'fighter', subcId: 'champion',
         str: 7, dex: 2, con: 5, int: 0, wis: 1, cha: 0,
         prefs: {
             fighterskillproficiencies: ['athleticsProficiency', 'intimidationProficiency'],
@@ -452,10 +488,10 @@ const CHARACTERS = [
     },
     {
         id: 'sample_fighter_eldritchKnight',
-        name: 'Valdris Spellblade',
+        name: 'Valerie Spellblade',
         class: 'Fighter', sub: 'Eldritch Knight',
-        species: 'Elf', background: 'sage',
-        speciesId: 'elf', classId: 'fighter', subcId: 'eldritchKnight',
+        species: 'Human', background: 'sage',
+        speciesId: 'human', classId: 'fighter', subcId: 'eldritchKnight',
         str: 4, dex: 3, con: 3, int: 4, wis: 1, cha: 0,
         prefs: {
             fighterskillproficiencies: ['arcanaProficiency', 'athleticsProficiency'],
@@ -467,8 +503,8 @@ const CHARACTERS = [
         id: 'sample_fighter_psiWarrior',
         name: 'Callion Mindstrike',
         class: 'Fighter', sub: 'Psi Warrior',
-        species: 'Gnome', background: 'sage',
-        speciesId: 'gnome', classId: 'fighter', subcId: 'psiWarrior',
+        species: 'Human', background: 'sage',
+        speciesId: 'human', classId: 'fighter', subcId: 'psiWarrior',
         str: 4, dex: 2, con: 3, int: 5, wis: 1, cha: 0,
         prefs: {
             fighterskillproficiencies: ['arcanaProficiency', 'insightProficiency'],
@@ -482,9 +518,9 @@ const CHARACTERS = [
     {
         id: 'sample_monk_elements',
         name: 'Suzara Windfire',
-        class: 'Monk', sub: 'Warrior of the Elements',
-        species: 'Human', background: 'hermit',
-        speciesId: 'human', classId: 'monk', subcId: 'elements',
+        class: 'Monk', sub: 'the Elements',
+        species: 'Orc', background: 'hermit',
+        speciesId: 'orc', classId: 'monk', subcId: 'elements',
         str: 3, dex: 5, con: 3, int: 0, wis: 4, cha: 0,
         prefs: {
             monkSkillProficiencies: ['acrobaticsProficiency', 'insightProficiency'],
@@ -494,9 +530,9 @@ const CHARACTERS = [
     {
         id: 'sample_monk_mercy',
         name: 'Physician Tae',
-        class: 'Monk', sub: 'Warrior of Mercy',
-        species: 'Halfling', background: 'acolyte',
-        speciesId: 'halfling', classId: 'monk', subcId: 'mercy',
+        class: 'Monk', sub: 'Mercy',
+        species: 'Human', background: 'acolyte',
+        speciesId: 'human', classId: 'monk', subcId: 'mercy',
         str: 2, dex: 5, con: 2, int: 2, wis: 5, cha: 0,
         prefs: {
             monkSkillProficiencies: ['insightProficiency', 'acrobaticsProficiency'],
@@ -505,8 +541,8 @@ const CHARACTERS = [
     },
     {
         id: 'sample_monk_openHand',
-        name: 'Brother Jiao',
-        class: 'Monk', sub: 'Warrior of the Open Hand',
+        name: 'Sister Jiao',
+        class: 'Monk', sub: 'the Open Hand',
         species: 'Human', background: 'hermit',
         speciesId: 'human', classId: 'monk', subcId: 'openHand',
         str: 3, dex: 5, con: 2, int: 1, wis: 4, cha: 0,
@@ -518,9 +554,9 @@ const CHARACTERS = [
     {
         id: 'sample_monk_shadows',
         name: 'Shade Veil',
-        class: 'Monk', sub: 'Warrior of Shadow',
-        species: 'Tiefling', background: 'criminal',
-        speciesId: 'tiefling', classId: 'monk', subcId: 'shadows',
+        class: 'Monk', sub: 'Shadow',
+        species: 'Elf', background: 'criminal',
+        speciesId: 'elf', classId: 'monk', subcId: 'shadows',
         str: 2, dex: 6, con: 2, int: 1, wis: 3, cha: 1,
         prefs: {
             monkSkillProficiencies: ['stealthProficiency', 'acrobaticsProficiency'],
@@ -534,8 +570,8 @@ const CHARACTERS = [
         id: 'sample_paladin_devotion',
         name: 'Ser Lysandra Brightshield',
         class: 'Paladin', sub: 'Oath of Devotion',
-        species: 'Aasimar', background: 'acolyte',
-        speciesId: 'aasimar', classId: 'paladin', subcId: 'oathOfDevotion',
+        species: 'Human', background: 'acolyte',
+        speciesId: 'human', classId: 'paladin', subcId: 'oathOfDevotion',
         str: 5, dex: 1, con: 3, int: 0, wis: 2, cha: 4,
         prefs: { paladinSubclass: ['oathOfDevotion'] }
     },
@@ -543,14 +579,14 @@ const CHARACTERS = [
         id: 'sample_paladin_glory',
         name: 'Aurelius Goldhelm',
         class: 'Paladin', sub: 'Oath of Glory',
-        species: 'Leonin', background: 'noble',
-        speciesId: 'leonin', classId: 'paladin', subcId: 'oathOfGlory',
+        species: 'Tiefling', background: 'noble',
+        speciesId: 'tiefling', classId: 'paladin', subcId: 'oathOfGlory',
         str: 5, dex: 2, con: 3, int: 0, wis: 1, cha: 4,
         prefs: { paladinSubclass: ['oathOfGlory'] }
     },
     {
         id: 'sample_paladin_ancients',
-        name: 'Elarinde Greenvow',
+        name: 'Elarion Greenvow',
         class: 'Paladin', sub: 'Oath of the Ancients',
         species: 'Elf', background: 'guide',
         speciesId: 'elf', classId: 'paladin', subcId: 'oathOfTheAncients',
@@ -561,8 +597,8 @@ const CHARACTERS = [
         id: 'sample_paladin_vengeance',
         name: 'Sable Duskfall',
         class: 'Paladin', sub: 'Oath of Vengeance',
-        species: 'Tiefling', background: 'criminal',
-        speciesId: 'tiefling', classId: 'paladin', subcId: 'oathOfVengeance',
+        species: 'Dragonborn', background: 'criminal',
+        speciesId: 'dragonborn', classId: 'paladin', subcId: 'oathOfVengeance',
         str: 5, dex: 2, con: 3, int: 1, wis: 0, cha: 5,
         prefs: { paladinSubclass: ['oathOfVengeance'] }
     },
@@ -573,14 +609,14 @@ const CHARACTERS = [
         id: 'sample_ranger_beastMaster',
         name: 'Fern Quickarrow',
         class: 'Ranger', sub: 'Beast Master',
-        species: 'Halfling', background: 'guide',
-        speciesId: 'halfling', classId: 'ranger', subcId: 'beastMaster',
+        species: 'Human', background: 'guide',
+        speciesId: 'human', classId: 'ranger', subcId: 'beastMaster',
         str: 2, dex: 5, con: 2, int: 1, wis: 5, cha: 0,
         prefs: { rangerSubclass: ['beastMaster'] }
     },
     {
         id: 'sample_ranger_feyWanderer',
-        name: 'Lirinde Moonwalk',
+        name: 'Lirion Moonwalk',
         class: 'Ranger', sub: 'Fey Wanderer',
         species: 'Elf', background: 'wayfarer',
         speciesId: 'elf', classId: 'ranger', subcId: 'feyWanderer',
@@ -591,8 +627,8 @@ const CHARACTERS = [
         id: 'sample_ranger_gloomStalker',
         name: 'Mira Shadowtread',
         class: 'Ranger', sub: 'Gloom Stalker',
-        species: 'Tiefling', background: 'criminal',
-        speciesId: 'tiefling', classId: 'ranger', subcId: 'gloomStalker',
+        species: 'Dwarf', background: 'criminal',
+        speciesId: 'dwarf', classId: 'ranger', subcId: 'gloomStalker',
         str: 2, dex: 6, con: 2, int: 2, wis: 4, cha: 0,
         prefs: { rangerSubclass: ['gloomStalker'] }
     },
@@ -600,8 +636,8 @@ const CHARACTERS = [
         id: 'sample_ranger_hunter',
         name: 'Rex Bouldershot',
         class: 'Ranger', sub: 'Hunter',
-        species: 'Goliath', background: 'soldier',
-        speciesId: 'goliath', classId: 'ranger', subcId: 'hunter',
+        species: 'Human', background: 'soldier',
+        speciesId: 'human', classId: 'ranger', subcId: 'hunter',
         str: 3, dex: 5, con: 3, int: 1, wis: 3, cha: 0,
         prefs: { rangerSubclass: ['hunter'] }
     },
@@ -610,10 +646,10 @@ const CHARACTERS = [
 
     {
         id: 'sample_rogue_arcaneTrickster',
-        name: 'Pip Nimblefingers',
+        name: 'Grisla Nimblefingers',
         class: 'Rogue', sub: 'Arcane Trickster',
-        species: 'Gnome', background: 'charlatan',
-        speciesId: 'gnome', classId: 'rogue', subcId: 'arcaneTrickster',
+        species: 'Orc', background: 'charlatan',
+        speciesId: 'orc', classId: 'rogue', subcId: 'arcaneTrickster',
         str: 0, dex: 6, con: 2, int: 3, wis: 2, cha: 0,
         prefs: {
             rogueSkillProficiencies: ['sleightOfHandProficiency', 'stealthProficiency', 'deceptionProficiency', 'arcanaProficiency'],
@@ -624,8 +660,8 @@ const CHARACTERS = [
         id: 'sample_rogue_assassin',
         name: 'Vex Nightfall',
         class: 'Rogue', sub: 'Assassin',
-        species: 'Tiefling', background: 'criminal',
-        speciesId: 'tiefling', classId: 'rogue', subcId: 'assassin',
+        species: 'Dragonborn', background: 'criminal',
+        speciesId: 'dragonborn', classId: 'rogue', subcId: 'assassin',
         str: 0, dex: 7, con: 2, int: 3, wis: 1, cha: 0,
         prefs: {
             rogueSkillProficiencies: ['stealthProficiency', 'deceptionProficiency', 'acrobaticsProficiency', 'perceptionProficiency'],
@@ -646,10 +682,10 @@ const CHARACTERS = [
     },
     {
         id: 'sample_rogue_thief',
-        name: 'Dex Quickpocket',
+        name: 'Dextra Quickpocket',
         class: 'Rogue', sub: 'Thief',
-        species: 'Halfling', background: 'criminal',
-        speciesId: 'halfling', classId: 'rogue', subcId: 'thief',
+        species: 'Elf', background: 'criminal',
+        speciesId: 'elf', classId: 'rogue', subcId: 'thief',
         str: 0, dex: 7, con: 2, int: 2, wis: 2, cha: 0,
         prefs: {
             rogueSkillProficiencies: ['stealthProficiency', 'sleightOfHandProficiency', 'acrobaticsProficiency', 'deceptionProficiency'],
@@ -662,34 +698,34 @@ const CHARACTERS = [
     {
         id: 'sample_sorcerer_aberrant',
         name: 'Qaldrix Deepthought',
-        class: 'Sorcerer', sub: 'Aberrant Sorcery',
-        species: 'Gnome', background: 'sage',
-        speciesId: 'gnome', classId: 'sorcerer', subcId: 'aberrant',
+        class: 'Sorcerer', sub: 'Aberrant',
+        species: 'Dragonborn', background: 'sage',
+        speciesId: 'dragonborn', classId: 'sorcerer', subcId: 'aberrant',
         str: 0, dex: 2, con: 2, int: 3, wis: 1, cha: 5,
         prefs: { sorcererSubclass: ['aberrant'] }
     },
     {
         id: 'sample_sorcerer_clockwork',
         name: 'Cog Precisus',
-        class: 'Sorcerer', sub: 'Clockwork Sorcery',
-        species: 'Gnome', background: 'artisan',
-        speciesId: 'gnome', classId: 'sorcerer', subcId: 'clockwork',
+        class: 'Sorcerer', sub: 'Clockwork',
+        species: 'Dwarf', background: 'artisan',
+        speciesId: 'dwarf', classId: 'sorcerer', subcId: 'clockwork',
         str: 0, dex: 2, con: 2, int: 3, wis: 1, cha: 5,
         prefs: { sorcererSubclass: ['clockwork'] }
     },
     {
         id: 'sample_sorcerer_draconic',
-        name: 'Skaryx Emberclaw',
-        class: 'Sorcerer', sub: 'Draconic Sorcery',
-        species: 'Dragonborn', background: 'noble',
-        speciesId: 'dragonborn', classId: 'sorcerer', subcId: 'draconic',
+        name: 'Sylindra Emberclaw',
+        class: 'Sorcerer', sub: 'Draconic',
+        species: 'Tiefling', background: 'noble',
+        speciesId: 'tiefling', classId: 'sorcerer', subcId: 'draconic',
         str: 0, dex: 2, con: 2, int: 2, wis: 1, cha: 6,
         prefs: { sorcererSubclass: ['draconic'] }
     },
     {
         id: 'sample_sorcerer_wildMagic',
         name: 'Blix Unpredictus',
-        class: 'Sorcerer', sub: 'Wild Magic Sorcery',
+        class: 'Sorcerer', sub: 'Wild Magic',
         species: 'Halfling', background: 'charlatan',
         speciesId: 'halfling', classId: 'sorcerer', subcId: 'wildMagic',
         str: 0, dex: 3, con: 2, int: 2, wis: 1, cha: 6,
@@ -701,7 +737,7 @@ const CHARACTERS = [
     {
         id: 'sample_warlock_archfey',
         name: 'Mira Thornwhisper',
-        class: 'Warlock', sub: 'Archfey Patron',
+        class: 'Warlock', sub: 'Archfey',
         species: 'Elf', background: 'wayfarer',
         speciesId: 'elf', classId: 'warlock', subcId: 'archfeyPatron',
         str: 0, dex: 3, con: 2, int: 2, wis: 1, cha: 6,
@@ -710,16 +746,16 @@ const CHARACTERS = [
     {
         id: 'sample_warlock_celestial',
         name: 'Lux Dawnpact',
-        class: 'Warlock', sub: 'Celestial Patron',
-        species: 'Aasimar', background: 'acolyte',
-        speciesId: 'aasimar', classId: 'warlock', subcId: 'celestialPatron',
+        class: 'Warlock', sub: 'Celestial',
+        species: 'Human', background: 'acolyte',
+        speciesId: 'human', classId: 'warlock', subcId: 'celestialPatron',
         str: 0, dex: 2, con: 2, int: 2, wis: 2, cha: 7,
         prefs: { warlockSubclass: ['celestialPatron'] }
     },
     {
         id: 'sample_warlock_fiend',
         name: 'Bael Ashpact',
-        class: 'Warlock', sub: 'Fiend Patron',
+        class: 'Warlock', sub: 'Fiend',
         species: 'Tiefling', background: 'criminal',
         speciesId: 'tiefling', classId: 'warlock', subcId: 'fiendPatron',
         str: 5, dex: 4, con: 2, int: 2, wis: 1, cha: 7,
@@ -732,7 +768,7 @@ const CHARACTERS = [
     {
         id: 'sample_warlock_greatOldOne',
         name: 'Zelara Voidpact',
-        class: 'Warlock', sub: 'Great Old One Patron',
+        class: 'Warlock', sub: 'Great Old One',
         species: 'Human', background: 'hermit',
         speciesId: 'human', classId: 'warlock', subcId: 'greatOldOnePatron',
         str: 0, dex: 2, con: 2, int: 3, wis: 1, cha: 7,
@@ -752,10 +788,10 @@ const CHARACTERS = [
     },
     {
         id: 'sample_wizard_diviner',
-        name: 'Oracle Seerus',
+        name: 'Oracle Seera',
         class: 'Wizard', sub: 'Diviner',
-        species: 'Gnome', background: 'sage',
-        speciesId: 'gnome', classId: 'wizard', subcId: 'diviner',
+        species: 'Tiefling', background: 'sage',
+        speciesId: 'tiefling', classId: 'wizard', subcId: 'diviner',
         str: 0, dex: 1, con: 2, int: 7, wis: 3, cha: 0,
         prefs: { wizardSubclass: ['diviner'] }
     },
@@ -763,8 +799,8 @@ const CHARACTERS = [
         id: 'sample_wizard_evoker',
         name: 'Blastus Firebolt',
         class: 'Wizard', sub: 'Evoker',
-        species: 'Human', background: 'sage',
-        speciesId: 'human', classId: 'wizard', subcId: 'evoker',
+        species: 'Elf', background: 'sage',
+        speciesId: 'elf', classId: 'wizard', subcId: 'evoker',
         str: 0, dex: 2, con: 3, int: 7, wis: 1, cha: 0,
         prefs: { wizardSubclass: ['evoker'] }
     },
@@ -772,8 +808,8 @@ const CHARACTERS = [
         id: 'sample_wizard_illusionist',
         name: 'Phantasma Veil',
         class: 'Wizard', sub: 'Illusionist',
-        species: 'Tiefling', background: 'charlatan',
-        speciesId: 'tiefling', classId: 'wizard', subcId: 'illusionist',
+        species: 'Gnome', background: 'charlatan',
+        speciesId: 'gnome', classId: 'wizard', subcId: 'illusionist',
         str: 0, dex: 2, con: 2, int: 7, wis: 1, cha: 1,
         prefs: { wizardSubclass: ['illusionist'] }
     },
@@ -784,8 +820,8 @@ const CHARACTERS = [
         id: 'sample_artificer_alchemist',
         name: 'Fizzy Potionson',
         class: 'Artificer', sub: 'Alchemist',
-        species: 'Gnome', background: 'artisan',
-        speciesId: 'gnome', classId: 'artificer', subcId: 'alchemist',
+        species: 'Human', background: 'artisan',
+        speciesId: 'human', classId: 'artificer', subcId: 'alchemist',
         str: 0, dex: 2, con: 3, int: 7, wis: 1, cha: 0,
         prefs: { artificerSubclass: ['alchemist'] }
     },
@@ -793,8 +829,8 @@ const CHARACTERS = [
         id: 'sample_artificer_artillerist',
         name: 'Boomer Gearloose',
         class: 'Artificer', sub: 'Artillerist',
-        species: 'Dwarf', background: 'artisan',
-        speciesId: 'dwarf', classId: 'artificer', subcId: 'artillerist',
+        species: 'Gnome', background: 'artisan',
+        speciesId: 'gnome', classId: 'artificer', subcId: 'artillerist',
         str: 0, dex: 3, con: 2, int: 7, wis: 1, cha: 0,
         prefs: { artificerSubclass: ['artillerist'] }
     },
@@ -802,8 +838,8 @@ const CHARACTERS = [
         id: 'sample_artificer_cartographer',
         name: 'Mapmaker Pathfinder',
         class: 'Artificer', sub: 'Cartographer',
-        species: 'Human', background: 'guide',
-        speciesId: 'human', classId: 'artificer', subcId: 'cartographer',
+        species: 'Elf', background: 'guide',
+        speciesId: 'elf', classId: 'artificer', subcId: 'cartographer',
         str: 0, dex: 2, con: 2, int: 7, wis: 2, cha: 0,
         prefs: { artificerSubclass: ['cartographer'] }
     },
@@ -811,8 +847,8 @@ const CHARACTERS = [
         id: 'sample_artificer_armorer',
         name: 'Ironclad Bulwark',
         class: 'Artificer', sub: 'Armorer',
-        species: 'Orc', background: 'soldier',
-        speciesId: 'orc', classId: 'artificer', subcId: 'armorer',
+        species: 'Dwarf', background: 'soldier',
+        speciesId: 'dwarf', classId: 'artificer', subcId: 'armorer',
         str: 0, dex: 2, con: 2, int: 7, wis: 1, cha: 0,
         prefs: {
             artificerSubclass: ['armorer'],
@@ -821,7 +857,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_artificer_reanimator',
-        name: 'Dr. Frankenstitch',
+        name: 'Dr. Fran Frankenstitch',
         class: 'Artificer', sub: 'Reanimator',
         species: 'Human', background: 'hermit',
         speciesId: 'human', classId: 'artificer', subcId: 'reanimator',
@@ -1265,6 +1301,20 @@ async function buildCharacter(def) {
     // Auto-fill remaining slots with preferences
     autoFill(builder, def.prefs || {});
 
+    // Set character image to a matching portrait from public/portraits/
+    const imgUrl = pickPortrait(def.class, def.species);
+    if (imgUrl) {
+        const renderableNodes = collectRenderableNodes(builder.propertyTree, builder.characterData);
+        const levelNode = renderableNodes.find(n => n.type === 'Input' && n.node.id === 'level');
+        if (levelNode) {
+            builder.updateInput(levelNode.path, LEVEL);
+        }
+        const imageNode = renderableNodes.find(n => n.type === 'Input' && n.node.id === 'image');
+        if (imageNode) {
+            builder.updateInput(imageNode.path, imgUrl);
+        }
+    }
+
     // Get final recipe
     const recipe = builder.getRecipe();
 
@@ -1278,6 +1328,7 @@ async function buildCharacter(def) {
         sub: subName,
         species: def.species,
         level: LEVEL,
+        image: imgUrl,
         recipe
     };
 }
@@ -1294,7 +1345,7 @@ for (const def of CHARACTERS) {
         results.push(char);
         console.log(` ✓  (${char.recipe.slots.length} slots filled)`);
     } catch (err) {
-        console.error(` ✗  ERROR: ${err.message}`);
+        console.error(` ✗  ERROR:`, err.stack || err);
         // Fall back to minimal version
         results.push({
             id: def.id,
@@ -1303,6 +1354,7 @@ for (const def of CHARACTERS) {
             sub: def.sub,
             species: def.species,
             level: LEVEL,
+            image: '',
             recipe: { inputs: [], slots: [] }
         });
     }
@@ -1321,6 +1373,7 @@ const serialized = results.map(char => {
         sub: '${char.sub.replace(/'/g, "\\'")}',
         species: '${char.species}',
         level: ${char.level},
+        image: '${char.image || ''}',
         recipe: ${recipeStr}
     }`;
 }).join(',\n\n');

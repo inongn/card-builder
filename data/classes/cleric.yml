@@ -101,7 +101,7 @@ children:
   # Level 7: Blessed Strikes
   - id: blessedStrikes
     type: Slot
-    name: Blessed Strikes
+    name: Blessed Strikesp
     quantity: 1
     target: blessedStrikes OR classOption
     condition: $(meta.level >= 7)

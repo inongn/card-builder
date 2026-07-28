@@ -2,12 +2,18 @@ import React from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
 import { StatblockCard } from '../components/cards/StatblockCard';
+import { getAssetUrl } from '../data/artworkData';
 import 'mdui/components/button.js';
 import 'mdui/components/icon.js';
+import 'mdui/components/avatar.js';
+import 'mdui/components/menu.js';
+import 'mdui/components/dropdown.js';
+import 'mdui/components/menu-item.js';
 
 export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode }) => {
     const mainCardRef = React.useRef(null);
     const asideRef = React.useRef(null);
+    const charImage = characterData?.meta?.image ? getAssetUrl(characterData.meta.image) : undefined;
 
     // Dynamically set padding-bottom on .play-content-aside based on .main-card height
     React.useEffect(() => {
@@ -126,11 +132,20 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
                 <mdui-button-icon icon="print" onClick={() => onNavigate('print')} className="mobile-hidden"></mdui-button-icon>
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme} className="mobile-hidden"></mdui-button-icon>
 
-                <mdui-dropdown className="desktop-hidden">
-                    <mdui-button-icon slot="trigger" icon="more_vert"></mdui-button-icon>
+                <mdui-dropdown placement="bottom-end">
+                    <mdui-avatar
+                        slot="trigger"
+                        src={charImage}
+                        style={{ cursor: 'pointer', margin: '0 8px' }}
+                    >
+                        {!charImage ? (characterData?.meta?.name?.[0]?.toUpperCase() || 'A') : undefined}
+                    </mdui-avatar>
                     <mdui-menu>
-                        <mdui-menu-item icon="edit" onClick={() => onNavigate('builder')}>Edit</mdui-menu-item>
-                        <mdui-menu-item icon="print" onClick={() => onNavigate('print')}>Print</mdui-menu-item>
+                        <mdui-menu-item icon="edit" onClick={() => onNavigate('builder')}>Edit Character</mdui-menu-item>
+                        <mdui-menu-item icon="print" onClick={() => onNavigate('print')}>Print Sheet</mdui-menu-item>
+                        <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
+                            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                        </mdui-menu-item>
                     </mdui-menu>
                 </mdui-dropdown>
             </mdui-top-app-bar>

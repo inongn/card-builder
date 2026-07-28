@@ -1,4 +1,4 @@
-import { ExpressionEvaluator } from '../engine/RpgEngine';
+import { ExpressionEvaluator } from '../engine/RpgEngine.js';
 
 export const CATEGORIES = {
     origin: { title: 'Origin', icon: 'person', order: 1 },
@@ -13,12 +13,13 @@ export const STEP_DEFINITIONS = {
     species: { title: 'Species', category: 'origin', terms: ['species'] },
     lineage: { title: 'Lineage', category: 'origin', terms: ['lineage', 'ancestry', 'legacy'] },
     background: { title: 'Background', category: 'origin', terms: ['background'] },
+    image: { title: 'Portrait', category: 'origin', terms: ['image', 'portrait'] },
 
     // Class
     level: { title: 'Level', category: 'class', terms: ['level'] },
     class: { title: 'Class', category: 'class', terms: ['class'] },
     subclass: { title: 'Subclass', category: 'class', terms: ['subclass'] },
-    classOptions: { title: 'Class Options', category: 'class', terms: ['classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'land', 'blessed', 'hunter', 'defensive', 'affinity', 'pact'] },
+    classOptions: { title: 'Class Options', category: 'class', terms: ['classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'land', 'blessed', 'hunter', 'defensive', 'affinity', 'pact', 'aspectOfTheWilds'] },
     feats: { title: 'Feats', category: 'class', terms: ['feat', 'epicboon', 'fightingstyle'] },
 
     // Abilities
@@ -34,6 +35,7 @@ export const STEP_DEFINITIONS = {
     companion: { title: 'Companion', category: 'arsenal', terms: ['companion', 'primalcompanion'] },
     steed: { title: 'Steed', category: 'arsenal', terms: ['steed'] },
     familiar: { title: 'Familiar', category: 'arsenal', terms: ['familiar'] }
+
 };
 
 export const getCategoryForStep = (stepKey) => {
@@ -61,6 +63,7 @@ export const isSameSlotItem = (a, b) => {
 };
 
 export const MATCHING_ORDER = [
+    'image',
     'lineage',
     'spellcasting',
     'feats',

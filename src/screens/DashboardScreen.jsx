@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { getAssetUrl } from '../data/artworkData';
 
 export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved }) => {
     useEffect(() => {
@@ -42,38 +43,61 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
     return (
         <div className="container">
 
-            <mdui-top-app-bar variant="small"
-                scroll-behavior='hide'>
+            <mdui-top-app-bar variant="small" scroll-behavior="hide">
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
                 <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">New Character</mdui-button>
             </mdui-top-app-bar>
 
+            <div >
+                {savedCharacters.length > 0 ? (
+                    <mdui-list className="content dashboard-content">
+                        {savedCharacters.map((charSaved) => {
+                            const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
+                            const subheadParts = [
+                                `Level ${charSaved.level || 1}`,
+                                charSaved.species,
+                                charSaved.sub,
+                                charSaved.class || 'Unknown Class'
+                            ].filter(Boolean);
 
-            <div className="header-nav">
-                <div className="header-nav-group">
-                </div>
-                <div className="header-nav-group">
-                </div>
-            </div>
-            <div className="content dashboard-content">
-                {savedCharacters.map((charSaved) => (
-                    <mdui-card key={charSaved.id} className="surface-card hero-card" variant="outlined" clickable onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}>
-                        <div className="surface-card__header">
-                            <div className="hero-card__name">{charSaved.name}</div>
-                        </div>
-                        <div className="surface-card__body">
-                            <div className="surface-card__label">
-                                Lv. {charSaved.level || 1} {charSaved.species} {charSaved.sub} {charSaved.class || 'Unknown Class'}
-                            </div>
-                            <mdui-button-icon icon="delete" onClick={(e) => {
-                                e.stopPropagation();
-                                handleDeleteSaved(charSaved.id);
-                            }}></mdui-button-icon>
-                        </div>
-                    </mdui-card>
-                ))}
-                {savedCharacters.length === 0 && (
+                            const initials = charSaved.name
+                                ? charSaved.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+                                : 'A';
+
+                            return (
+                                <mdui-list-item
+                                    key={charSaved.id}
+                                    headline={charSaved.name}
+                                    description={subheadParts.join(' • ')}
+                                    onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}
+                                    className='dashboard-list-item'
+                                >
+                                    <div slot="icon" className="dashboard-portrait">
+                                        {heroImage ? (
+                                            <img
+                                                src={heroImage}
+                                                alt={charSaved.name}
+                                                className="dashboard-portrait__img"
+                                            />
+                                        ) : (
+                                            <span className="dashboard-portrait__initials">{initials}</span>
+                                        )}
+                                    </div>
+
+                                    <mdui-button-icon
+                                        slot="end-icon"
+                                        icon="delete"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleDeleteSaved(charSaved.id);
+                                        }}
+                                    ></mdui-button-icon>
+                                </mdui-list-item>
+                            );
+                        })}
+                    </mdui-list>
+                ) : (
                     <div className="empty-state">
                         <mdui-icon name="person_add" class="icon-large"></mdui-icon>
                         <p>No characters found.</p>

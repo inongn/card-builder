@@ -8,7 +8,15 @@ children:
     type: Input
     subtype: text
     default: ''
+
+  - id: image
+    name: Character Image
+    type: Input
+    subtype: image
+    default: ''
   
+
+
 
   - id: level
     type: Input

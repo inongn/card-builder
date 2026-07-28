@@ -25,15 +25,15 @@ children:
   - type: Effect
     target: statblocks[beastOfTheLand].name
     operation: set
-    value: "$(meta.beastcompanionname ? meta.beastcompanionname + ' (Beast of the Land)' : 'Beast of the Land')"
+    value: "$(meta.beastcompanionname ? meta.beastcompanionname: 'Beast of the Land')"
   - type: Effect
     target: statblocks[beastOfTheSea].name
     operation: set
-    value: "$(meta.beastcompanionname ? meta.beastcompanionname + ' (Beast of the Sea)' : 'Beast of the Sea')"
+    value: "$(meta.beastcompanionname ? meta.beastcompanionname: 'Beast of the Sea')"
   - type: Effect
     target: statblocks[beastOfTheSky].name
     operation: set
-    value: "$(meta.beastcompanionname ? meta.beastcompanionname + ' (Beast of the Sky)' : 'Beast of the Sky')"
+    value: "$(meta.beastcompanionname ? meta.beastcompanionname: 'Beast of the Sky')"
 
   - id: commandCompanionExtraAttack
     type: Effect

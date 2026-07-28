@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python environment & classification results
+.venv/
+classification_results.json
+classified_images/

@@ -336,9 +336,7 @@ export default function PropertySelectionTree({
                         if (baseNames.size > 1) {
                             return renderSingleMergedCard(`merged-classOptions`, 'Class Options', slotItems, stepDef.category, 'classOptions');
                         }
-                    }
-
-                    if (MERGED_CATEGORIES.includes(stepKey)) {
+                    } else if (MERGED_CATEGORIES.includes(stepKey)) {
                         const slotItems = itemsForStep.filter(i => i.type === 'Slot');
                         if (slotItems.length === 0) return null;
                         return renderSingleMergedCard(`merged-${stepKey}`, stepDef.title, slotItems, stepDef.category, stepKey);

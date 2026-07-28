@@ -84,6 +84,7 @@ export default function App() {
                 sub: sc.sub || '',
                 species: sc.species,
                 level: sc.level,
+                image: sc.image || '',
                 recipe: sc.recipe,
                 timestamp: new Date().toISOString()
             }));
@@ -224,6 +225,7 @@ export default function App() {
             sub: characterData.meta?.sub || '',
             species: characterData.meta?.species || '',
             level: characterData.meta?.level || 1,
+            image: characterData.meta?.image || '',
             recipe,
             timestamp
         };
@@ -289,6 +291,7 @@ export default function App() {
                 sub: sc.sub || '',
                 species: sc.species,
                 level: sc.level,
+                image: sc.image || '',
                 recipe: sc.recipe,
                 timestamp: new Date().toISOString()
             }));

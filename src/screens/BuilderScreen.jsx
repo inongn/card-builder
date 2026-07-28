@@ -2,6 +2,7 @@ import React from 'react';
 import PropertySelectionTree from '../components/PropertySelectionTree';
 import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
+import { getSpeciesArtwork, getClassArtwork, getSubclassArtwork, getBackgroundArtwork, getAssetUrl } from '../data/artworkData.js';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import 'mdui/components/button-icon.js';
@@ -12,6 +13,8 @@ import 'mdui/components/card.js';
 import 'mdui/components/slider.js';
 import 'mdui/components/collapse.js';
 import 'mdui/components/collapse-item.js';
+import 'mdui/components/avatar.js';
+import 'mdui/components/text-field.js';
 
 const orderedCategories = [
     { key: 'origin', icon: 'person', label: 'Origin' },
@@ -412,6 +415,126 @@ const CustomStatsSlider = ({
     );
 };
 
+// Image upload component for character creation
+const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
+    const fileInputRef = React.useRef(null);
+    const [portraits, setPortraits] = React.useState([]);
+
+    const species = characterData?.meta?.species || '';
+
+    React.useEffect(() => {
+        let base = '/';
+        try {
+            if (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) {
+                base = import.meta.env.BASE_URL;
+            }
+        } catch (_e) { }
+        const url = (base.endsWith('/') ? base : base + '/') + 'portraits/metadata.json';
+        fetch(url)
+            .then(r => r.json())
+            .then(data => {
+                if (!Array.isArray(data)) return;
+                const speciesName = species.trim().toLowerCase();
+                const filtered = speciesName
+                    ? data.filter(p => (p.species || '').toLowerCase() === speciesName)
+                    : data;
+                setPortraits(filtered);
+            })
+            .catch(() => setPortraits([]));
+    }, [species]);
+
+    const handleFileChange = (e) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                onUpdate(evt.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer?.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                onUpdate(evt.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    let base = '/';
+    try {
+        if (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) {
+            base = import.meta.env.BASE_URL;
+        }
+    } catch (_e) { }
+    const portraitsBase = (base.endsWith('/') ? base : base + '/') + 'portraits/';
+
+    return (
+        <div className="input-pane-body image-upload-pane">
+            <div className="image-preview-container">
+                {localValue ? (
+                    <div className="image-preview-card">
+                        <img src={getAssetUrl(localValue)} alt="Character Portrait" className="image-preview" />
+                        <mdui-button variant="outlined" icon="delete" onClick={() => onUpdate('')}>
+                            Remove Image
+                        </mdui-button>
+                    </div>
+                ) : (
+                    <div
+                        className="image-dropzone"
+                        onClick={() => fileInputRef.current?.click()}
+                        onDragOver={(e) => e.preventDefault()}
+                        onDrop={handleDrop}
+                    >
+                        <mdui-icon name="cloud_upload" class="icon-large"></mdui-icon>
+                        <p style={{ margin: '8px 0', fontSize: '0.9rem', opacity: 0.8 }}>
+                            Click or drag & drop an image file here
+                        </p>
+                        <mdui-button variant="tonal" size="small">Browse File</mdui-button>
+                    </div>
+                )}
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                />
+            </div>
+
+            {portraits.length > 0 && (
+                <div className="image-presets-section">
+                    <div className="section-title" style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '8px' }}>
+                        {species ? `${species} Portraits` : 'Sample Portraits'}
+                    </div>
+                    <div className="preset-grid">
+                        {portraits.map((p, i) => {
+                            const url = portraitsBase + p.filename;
+                            const isActive = localValue === url;
+                            return (
+                                <div
+                                    key={i}
+                                    className={`preset-item ${isActive ? 'active' : ''}`}
+                                    onClick={() => onUpdate(url)}
+                                    style={{ backgroundImage: `url(${url})` }}
+                                    title={p.filename.replace(/\.webp$/, '').replace(/_/g, ' ')}
+                                >
+                                    {isActive && <mdui-icon name="check_circle" class="icon-primary" style={{ fontSize: '1.5rem' }}></mdui-icon>}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
 // Sub-component for rendering option selection cards
 const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData, onGetProperty }) {
     const evaluatedDescription = React.useMemo(() => {
@@ -438,8 +561,31 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
     const tags = option.tags || [];
     const shouldShowDesc = tags.some(tag => {
         const t = tag.toLowerCase();
-        return t === 'class' || t.includes('subclass') || t === 'species' || t === 'background';
+        return t === 'class' || t.includes('subclass') || t === 'species'; // Removed background
     });
+    const artworkUrl = React.useMemo(() => {
+        const optionId = (option.id || '').toLowerCase();
+        const optionName = (option.name || option.displayName || '').toLowerCase();
+
+        const isSpecies = tags.some(t => t.toLowerCase() === 'species') || optionId.startsWith('species-');
+        const isSubclass = tags.some(t => t.toLowerCase().includes('subclass')) || optionId.includes('-subclass-') || optionId.includes('_subclass_');
+        const isClass = (tags.some(t => t.toLowerCase() === 'class') || optionId.startsWith('class-')) && !isSubclass;
+        const isBackground = tags.some(t => t.toLowerCase() === 'background' || t.toLowerCase() === 'bg') || optionId.startsWith('bg-') || optionId.startsWith('background-');
+
+        if (isSpecies) {
+            return getSpeciesArtwork(optionId) || getSpeciesArtwork(optionName);
+        }
+        if (isSubclass) {
+            return getSubclassArtwork(optionId) || getSubclassArtwork(optionName);
+        }
+        if (isClass) {
+            return getClassArtwork(optionId) || getClassArtwork(optionName);
+        }
+        if (isBackground) {
+            return getBackgroundArtwork(optionId) || getBackgroundArtwork(optionName);
+        }
+        return null;
+    }, [option.id, option.name, option.displayName, tags]);
 
     return (
         <mdui-list-item
@@ -447,26 +593,49 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
             disabled={disabled ? 'disabled' : ''}
             clickable={!disabled}
             onClick={handleCardClick}
+            className="card-vertical-item"
         >
-            <div slot="custom" className={`option-item ${shouldShowDesc ? 'option-item-desc' : ''}`} >
-                <div className="option-item-header">
-                    <div className="option-item-title">{option.displayName || option.name}</div>
-                    {isSelected && (
-                        <mdui-icon slot="end-icon" name="check_circle" class="icon-primary"></mdui-icon>
-                    )}
-
-                </div>
-                {labels.length > 0 && (
-                    <div className="option-item-meta">
-                        {labels.join(' • ')}
+            <div slot="custom" className={`card-vertical option-card-vertical ${isSelected ? 'selected' : ''}`}>
+                {artworkUrl ? (
+                    <div className="card-vertical__media" style={{ backgroundImage: `url(${artworkUrl})` }}>
+                        {isSelected && (
+                            <div className="card-selected-badge">
+                                <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
+                            </div>
+                        )}
                     </div>
+                ) : (
+                    shouldShowDesc && (
+                        <div className="card-vertical__media">
+                            <div className="card-media-placeholder">
+                                <mdui-icon name="extension" class="icon-medium"></mdui-icon>
+                            </div>
+                            {isSelected && (
+                                <div className="card-selected-badge">
+                                    <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
+                                </div>
+                            )}
+                        </div>
+                    )
                 )}
-
-                {shouldShowDesc && option.description && (
-                    <span className="option-item-body">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedDescription}</ReactMarkdown>
-                    </span>
-                )}
+                <div className="card-vertical__content">
+                    <div className="card-vertical__headline">
+                        <span>{option.displayName || option.name}</span>
+                        {!artworkUrl && !shouldShowDesc && isSelected && (
+                            <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
+                        )}
+                    </div>
+                    {labels.length > 0 && (
+                        <div className="card-vertical__subhead">
+                            {labels.join(' • ')}
+                        </div>
+                    )}
+                    {shouldShowDesc && option.description && false && (
+                        <div className="card-vertical__body">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedDescription}</ReactMarkdown>
+                        </div>
+                    )}
+                </div>
             </div>
         </mdui-list-item>
     );
@@ -480,6 +649,7 @@ const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobil
     const meta = characterData.meta || {};
 
     const isLevel = node.id === 'level' || node.name === 'Level';
+    const isImageInput = node.subtype === 'image' || node.id === 'image' || node.name === 'Character Image';
 
     const [localValue, setLocalValue] = React.useState(node.value ?? node.default ?? '');
 
@@ -562,7 +732,16 @@ const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobil
             </div>
 
             <div>
-                {node.subtype === 'number' ? (
+                {isImageInput ? (
+                    <ImageUploadPane
+                        localValue={localValue}
+                        onUpdate={(val) => {
+                            setLocalValue(val);
+                            handleUpdateInput(path, val);
+                        }}
+                        characterData={characterData}
+                    />
+                ) : node.subtype === 'number' ? (
                     <div className="input-pane-body">
                         {!isLevel && (
                             <div>
