@@ -9,7 +9,7 @@
 export const SAMPLE_CHARACTERS = [
     {
         id: 'sample_barbarian_berserker',
-        name: 'Rowan Ironjaw',
+        name: 'Riven Steel',
         class: 'Barbarian',
         sub: 'Berserker',
         species: 'Human',
@@ -23,7 +23,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Rowan Ironjaw'
+                        value: 'Riven Steel'
                 },
                 {
                         path: [
@@ -47,7 +47,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 10
+                        value: 9
                 },
                 {
                         path: [
@@ -55,7 +55,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 3
+                        value: 2
                 },
                 {
                         path: [
@@ -63,7 +63,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 5
+                        value: 6
                 },
                 {
                         path: [
@@ -79,7 +79,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -330,7 +330,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_barbarian_wildHeart',
-        name: 'Vorel Mossrunner',
+        name: 'Vael Pathstride',
         class: 'Barbarian',
         sub: 'Wild Heart',
         species: 'Minotaur',
@@ -344,7 +344,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Vorel Mossrunner'
+                        value: 'Vael Pathstride'
                 },
                 {
                         path: [
@@ -368,7 +368,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 11
+                        value: 8
                 },
                 {
                         path: [
@@ -376,7 +376,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -384,7 +384,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -400,7 +400,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -687,7 +687,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_barbarian_worldTree',
-        name: 'Ellis Ashroot',
+        name: 'Soren Deeproot',
         class: 'Barbarian',
         sub: 'World Tree',
         species: 'Elf',
@@ -701,7 +701,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Ellis Ashroot'
+                        value: 'Soren Deeproot'
                 },
                 {
                         path: [
@@ -725,7 +725,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -733,7 +733,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -741,7 +741,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -757,7 +757,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -1008,7 +1008,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_barbarian_zealot',
-        name: 'Korrax Flameheart',
+        name: 'Kaelin Emberbound',
         class: 'Barbarian',
         sub: 'Zealot',
         species: 'Dragonborn',
@@ -1022,7 +1022,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Korrax Flameheart'
+                        value: 'Kaelin Emberbound'
                 },
                 {
                         path: [
@@ -1046,7 +1046,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 11
+                        value: 8
                 },
                 {
                         path: [
@@ -1054,7 +1054,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -1062,7 +1062,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -1078,7 +1078,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -1362,7 +1362,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_bard_dance',
-        name: 'Morgan Twostep',
+        name: 'Morgan Cadence',
         class: 'Bard',
         sub: 'Dance',
         species: 'Human',
@@ -1376,7 +1376,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Morgan Twostep'
+                        value: 'Morgan Cadence'
                 },
                 {
                         path: [
@@ -1408,7 +1408,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -1416,7 +1416,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -1424,7 +1424,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -1440,7 +1440,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 9
                 },
                 {
                         path: [
@@ -1869,7 +1869,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_bard_glamour',
-        name: 'Sylis Moonsong',
+        name: 'Sylvan Whisper',
         class: 'Bard',
         sub: 'Glamour',
         species: 'Elf',
@@ -1883,7 +1883,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Sylis Moonsong'
+                        value: 'Sylvan Whisper'
                 },
                 {
                         path: [
@@ -1915,7 +1915,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 5
+                        value: 3
                 },
                 {
                         path: [
@@ -1923,7 +1923,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -1931,7 +1931,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -2435,9 +2435,9 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_bard_lore',
-        name: 'Pen Thistledown',
+        name: 'Perrin Quill',
         class: 'Bard',
-        sub: 'Lore',
+        sub: 'Alchemist',
         species: 'Human',
         level: 8,
         image: 'subclass_headshot/lore.jpg',
@@ -2449,7 +2449,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Pen Thistledown'
+                        value: 'Perrin Quill'
                 },
                 {
                         path: [
@@ -2481,7 +2481,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -2489,7 +2489,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -2505,7 +2505,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -2513,7 +2513,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 9
                 },
                 {
                         path: [
@@ -2607,15 +2607,25 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'armor'
                                 }
                         ],
-                        propertyId: 'paddedArmor'
+                        propertyId: 'unarmored'
                 },
                 {
                         path: [
                                 {
-                                        id: 'armamentSlot'
+                                        id: 'armamentSlot',
+                                        slotIndex: 0
                                 }
                         ],
-                        propertyId: 'quarterstaff'
+                        propertyId: 'club'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'dagger'
                 },
                 {
                         path: [
@@ -2634,7 +2644,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'skillful'
                                 }
                         ],
-                        propertyId: 'performanceProficiency'
+                        propertyId: 'sleightOfHandProficiency'
                 },
                 {
                         path: [
@@ -2668,7 +2678,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'prestidigitation'
+                        propertyId: 'chillTouch'
                 },
                 {
                         path: [
@@ -2683,7 +2693,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'chillTouch'
+                        propertyId: 'fireBolt'
                 },
                 {
                         path: [
@@ -2697,7 +2707,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateWizardPreparedSpell'
                                 }
                         ],
-                        propertyId: 'disguiseSelf'
+                        propertyId: 'alarm'
                 },
                 {
                         path: [
@@ -2705,7 +2715,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 }
                         ],
-                        propertyId: 'bard'
+                        propertyId: 'artificer'
                 },
                 {
                         path: [
@@ -2713,11 +2723,11 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'skillProficiencies',
+                                        id: 'artificerSkillProficiencies',
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'persuasionProficiency'
+                        propertyId: 'investigationProficiency'
                 },
                 {
                         path: [
@@ -2725,11 +2735,11 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'skillProficiencies',
+                                        id: 'artificerSkillProficiencies',
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'deceptionProficiency'
+                        propertyId: 'medicineProficiency'
                 },
                 {
                         path: [
@@ -2737,11 +2747,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'skillProficiencies',
-                                        slotIndex: 2
+                                        id: 'artisansTools'
                                 }
                         ],
-                        propertyId: 'insightProficiency'
+                        propertyId: 'brewersSupplies'
                 },
                 {
                         path: [
@@ -2749,11 +2758,11 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'bardCantrips',
+                                        id: 'artificerSpells',
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'viciousMockery'
+                        propertyId: 'expeditiousRetreat'
                 },
                 {
                         path: [
@@ -2761,11 +2770,11 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'bardCantrips',
+                                        id: 'artificerSpells',
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'friends'
+                        propertyId: 'faerieFire'
                 },
                 {
                         path: [
@@ -2773,8 +2782,68 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'bardCantrips',
+                                        id: 'artificerSpells',
                                         slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'falseLife'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'featherFall'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'grease'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'identify'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'jump'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerCantrips',
+                                        slotIndex: 0
                                 }
                         ],
                         propertyId: 'mageHand'
@@ -2785,23 +2854,11 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'bardSpells',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'healingWord'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
+                                        id: 'artificerCantrips',
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'cureWounds'
+                        propertyId: 'message'
                 },
                 {
                         path: [
@@ -2809,11 +2866,35 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'bardSpells',
+                                        id: 'replicateMagicItem',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'createFoodAndWater'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'replicateMagicItem',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'leomundsSecretChest'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'replicateMagicItem',
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'invisibility'
+                        propertyId: 'waterBreathing'
                 },
                 {
                         path: [
@@ -2821,11 +2902,10 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'bardSpells',
-                                        slotIndex: 3
+                                        id: 'artificerSubclass'
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'alchemist'
                 },
                 {
                         path: [
@@ -2833,213 +2913,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'bardSpells',
-                                        slotIndex: 4
-                                }
-                        ],
-                        propertyId: 'suggestion'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'thunderwave'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
-                                        slotIndex: 6
-                                }
-                        ],
-                        propertyId: 'detectMagic'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
-                                        slotIndex: 7
-                                }
-                        ],
-                        propertyId: 'holdPerson'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
-                                        slotIndex: 8
-                                }
-                        ],
-                        propertyId: 'silence'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
-                                        slotIndex: 9
-                                }
-                        ],
-                        propertyId: 'mirrorImage'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
-                                        slotIndex: 10
-                                }
-                        ],
-                        propertyId: 'compulsion'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSpells',
-                                        slotIndex: 11
-                                }
-                        ],
-                        propertyId: 'charmPerson'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'expertise',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'insightExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'expertise',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'intimidationExpertise'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                }
-                        ],
-                        propertyId: 'lore'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                },
-                                {
-                                        id: 'bonusProficiencies',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'acrobaticsProficiency'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                },
-                                {
-                                        id: 'bonusProficiencies',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'sleightOfHandProficiency'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                },
-                                {
-                                        id: 'bonusProficiencies',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'stealthProficiency'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                },
-                                {
-                                        id: 'magicalDiscoveries',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'bless'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'bardSubclass'
-                                },
-                                {
-                                        id: 'magicalDiscoveries',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'command'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4Feat'
+                                        id: 'level4feat'
                                 }
                         ],
                         propertyId: 'skillExpert'
@@ -3050,13 +2924,13 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4Feat'
+                                        id: 'level4feat'
                                 },
                                 {
                                         id: 'skillExpertSkillProficiency'
                                 }
                         ],
-                        propertyId: 'animalHandlingProficiency'
+                        propertyId: 'stealthProficiency'
                 },
                 {
                         path: [
@@ -3064,13 +2938,13 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4Feat'
+                                        id: 'level4feat'
                                 },
                                 {
                                         id: 'skillExpertExpertise'
                                 }
                         ],
-                        propertyId: 'performanceExpertise'
+                        propertyId: 'investigationExpertise'
                 },
                 {
                         path: [
@@ -3078,7 +2952,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level8Feat'
+                                        id: 'level8feat'
                                 }
                         ],
                         propertyId: 'alert'
@@ -3089,7 +2963,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_bard_valor',
-        name: 'Dax Steelstring',
+        name: 'Darin Harmon',
         class: 'Bard',
         sub: 'Valor',
         species: 'Dragonborn',
@@ -3103,7 +2977,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Dax Steelstring'
+                        value: 'Darin Harmon'
                 },
                 {
                         path: [
@@ -3127,7 +3001,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -3135,7 +3009,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -3143,7 +3017,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -3159,7 +3033,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -3167,7 +3041,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -3395,7 +3269,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'message'
+                        propertyId: 'friends'
                 },
                 {
                         path: [
@@ -3559,6 +3433,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'expertise',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'performanceExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'bardSubclass'
                                 }
                         ],
@@ -3592,7 +3478,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_cleric_life',
-        name: 'Merin',
+        name: 'Meryn Haven',
         class: 'Cleric',
         sub: 'Life',
         species: 'Human',
@@ -3606,7 +3492,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Merin'
+                        value: 'Meryn Haven'
                 },
                 {
                         path: [
@@ -3630,7 +3516,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -3638,7 +3524,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -3646,7 +3532,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 5
+                        value: 4
                 },
                 {
                         path: [
@@ -3662,7 +3548,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -3864,7 +3750,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateClericPreparedSpell'
                                 }
                         ],
-                        propertyId: 'guidingBolt'
+                        propertyId: 'detectEvilAndGood'
                 },
                 {
                         path: [
@@ -3992,7 +3878,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'inflictWounds'
+                        propertyId: 'guidingBolt'
                 },
                 {
                         path: [
@@ -4004,7 +3890,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'protectionFromEvilAndGood'
+                        propertyId: 'inflictWounds'
                 },
                 {
                         path: [
@@ -4016,7 +3902,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'purifyFoodAndDrink'
+                        propertyId: 'protectionFromEvilAndGood'
                 },
                 {
                         path: [
@@ -4028,7 +3914,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'sanctuary'
+                        propertyId: 'purifyFoodAndDrink'
                 },
                 {
                         path: [
@@ -4052,7 +3938,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'shieldOfFaith'
+                        propertyId: 'sanctuary'
                 },
                 {
                         path: [
@@ -4076,7 +3962,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'createOrDestroyWater'
+                        propertyId: 'command'
                 },
                 {
                         path: [
@@ -4088,7 +3974,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'detectEvilAndGood'
+                        propertyId: 'createOrDestroyWater'
                 },
                 {
                         path: [
@@ -4151,7 +4037,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_cleric_light',
-        name: 'Valen Sunmantle',
+        name: 'Valen Dawn',
         class: 'Cleric',
         sub: 'Light',
         species: 'Elf',
@@ -4165,7 +4051,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Valen Sunmantle'
+                        value: 'Valen Dawn'
                 },
                 {
                         path: [
@@ -4197,7 +4083,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -4205,7 +4091,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -4213,7 +4099,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -4221,7 +4107,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 12
+                        value: 9
                 },
                 {
                         path: [
@@ -4635,7 +4521,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'augury'
+                        propertyId: 'shieldOfFaith'
                 },
                 {
                         path: [
@@ -4647,7 +4533,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'blindnessdeafness'
+                        propertyId: 'augury'
                 },
                 {
                         path: [
@@ -4738,7 +4624,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_cleric_trickery',
-        name: 'Nyx Shadowveil',
+        name: 'Nyx Veil',
         class: 'Cleric',
         sub: 'Trickery',
         species: 'Halfling',
@@ -4752,7 +4638,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Nyx Shadowveil'
+                        value: 'Nyx Veil'
                 },
                 {
                         path: [
@@ -4784,7 +4670,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -4792,7 +4678,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -4800,7 +4686,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -4808,7 +4694,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -4816,7 +4702,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -5213,7 +5099,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'calmEmotions'
+                        propertyId: 'blindnessdeafness'
                 },
                 {
                         path: [
@@ -5274,7 +5160,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'feyMagicSpell'
                                 }
                         ],
-                        propertyId: 'identify'
+                        propertyId: 'speakWithAnimals'
                 },
                 {
                         path: [
@@ -5318,7 +5204,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_cleric_war',
-        name: 'Commander Dael',
+        name: 'Dael Ironheart',
         class: 'Cleric',
         sub: 'War',
         species: 'Tiefling',
@@ -5332,7 +5218,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Commander Dael'
+                        value: 'Dael Ironheart'
                 },
                 {
                         path: [
@@ -5356,7 +5242,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -5364,7 +5250,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -5372,7 +5258,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -5388,7 +5274,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -5396,7 +5282,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -5508,7 +5394,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'dart'
+                        propertyId: 'lightHammer'
                 },
                 {
                         path: [
@@ -5672,7 +5558,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'enhanceAbility'
+                        propertyId: 'continualFlame'
                 },
                 {
                         path: [
@@ -5684,7 +5570,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'findTraps'
+                        propertyId: 'enhanceAbility'
                 },
                 {
                         path: [
@@ -5708,7 +5594,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'gentleRepose'
+                        propertyId: 'findTraps'
                 },
                 {
                         path: [
@@ -5732,7 +5618,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'locateObject'
+                        propertyId: 'gentleRepose'
                 },
                 {
                         path: [
@@ -5768,7 +5654,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'continualFlame'
+                        propertyId: 'calmEmotions'
                 },
                 {
                         path: [
@@ -5831,7 +5717,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_druid_land',
-        name: 'Wren Fernhollow',
+        name: 'Wren Hollow',
         class: 'Druid',
         sub: 'Land',
         species: 'Gnome',
@@ -5845,7 +5731,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Wren Fernhollow'
+                        value: 'Wren Hollow'
                 },
                 {
                         path: [
@@ -5877,7 +5763,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -5885,7 +5771,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -5893,7 +5779,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 5
+                        value: 4
                 },
                 {
                         path: [
@@ -5901,7 +5787,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -6025,7 +5911,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'sickle'
+                        propertyId: 'quarterstaff'
                 },
                 {
                         path: [
@@ -6034,7 +5920,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'quarterstaff'
+                        propertyId: 'sickle'
                 },
                 {
                         path: [
@@ -6249,7 +6135,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'faerieFire'
+                        propertyId: 'charmPerson'
                 },
                 {
                         path: [
@@ -6392,7 +6278,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_druid_moon',
-        name: 'Arbor Bearpaw',
+        name: 'Arden Wilds',
         class: 'Druid',
         sub: 'Moon',
         species: 'Aasimar',
@@ -6406,7 +6292,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Arbor Bearpaw'
+                        value: 'Arden Wilds'
                 },
                 {
                         path: [
@@ -6430,7 +6316,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -6438,7 +6324,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -6446,7 +6332,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 6
+                        value: 4
                 },
                 {
                         path: [
@@ -6840,7 +6726,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'jump'
+                        propertyId: 'longstrider'
                 },
                 {
                         path: [
@@ -6852,7 +6738,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'longstrider'
+                        propertyId: 'animalMessenger'
                 },
                 {
                         path: [
@@ -6864,7 +6750,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'speakWithAnimals'
+                        propertyId: 'beastSense'
                 },
                 {
                         path: [
@@ -6876,7 +6762,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'animalMessenger'
+                        propertyId: 'darkvision'
                 },
                 {
                         path: [
@@ -6967,7 +6853,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_druid_sea',
-        name: 'Coral Wavecrest',
+        name: 'Coral Tides',
         class: 'Druid',
         sub: 'Sea',
         species: 'Triton',
@@ -6981,7 +6867,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Coral Wavecrest'
+                        value: 'Coral Tides'
                 },
                 {
                         path: [
@@ -7005,7 +6891,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -7013,7 +6899,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 5
+                        value: 3
                 },
                 {
                         path: [
@@ -7021,7 +6907,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -7326,7 +7212,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'flamingSphere'
+                        propertyId: 'locateObject'
                 },
                 {
                         path: [
@@ -7362,7 +7248,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'beastSense'
+                        propertyId: 'enlargereduce'
                 },
                 {
                         path: [
@@ -7374,7 +7260,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'darkvision'
+                        propertyId: 'flameBlade'
                 },
                 {
                         path: [
@@ -7386,7 +7272,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'enlargereduce'
+                        propertyId: 'flamingSphere'
                 },
                 {
                         path: [
@@ -7398,7 +7284,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'flameBlade'
+                        propertyId: 'locateAnimalsOrPlants'
                 },
                 {
                         path: [
@@ -7503,7 +7389,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_druid_stars',
-        name: 'Aster Cosmoss',
+        name: 'Aster Starlight',
         class: 'Druid',
         sub: 'Stars',
         species: 'Elf',
@@ -7517,7 +7403,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Aster Cosmoss'
+                        value: 'Aster Starlight'
                 },
                 {
                         path: [
@@ -7549,7 +7435,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -7557,7 +7443,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -7573,7 +7459,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 12
+                        value: 10
                 },
                 {
                         path: [
@@ -7759,7 +7645,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'fireBolt'
+                        propertyId: 'mindSliver'
                 },
                 {
                         path: [
@@ -7774,7 +7660,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mindSliver'
+                        propertyId: 'minorIllusion'
                 },
                 {
                         path: [
@@ -7976,7 +7862,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'locateAnimalsOrPlants'
+                        propertyId: 'moonbeam'
                 },
                 {
                         path: [
@@ -7988,7 +7874,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'moonbeam'
+                        propertyId: 'protectionFromPoison'
                 },
                 {
                         path: [
@@ -8000,7 +7886,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'protectionFromPoison'
+                        propertyId: 'summonBeast'
                 },
                 {
                         path: [
@@ -8119,7 +8005,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_fighter_battleMaster',
-        name: 'Kael Steelwind',
+        name: 'Kaelin Gale',
         class: 'Fighter',
         sub: 'Battle Master',
         species: 'Dragonborn',
@@ -8133,7 +8019,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Kael Steelwind'
+                        value: 'Kaelin Gale'
                 },
                 {
                         path: [
@@ -8157,7 +8043,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 10
+                        value: 6
                 },
                 {
                         path: [
@@ -8165,7 +8051,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -8173,7 +8059,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 5
+                        value: 6
                 },
                 {
                         path: [
@@ -8181,7 +8067,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -8189,7 +8075,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -8502,7 +8388,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'studentOfWarTool'
                                 }
                         ],
-                        propertyId: 'alchemistsTools'
+                        propertyId: 'calligraphersSupplies'
                 },
                 {
                         path: [
@@ -8532,7 +8418,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_fighter_champion',
-        name: 'Bren Ironwill',
+        name: 'Bryn Vanguard',
         class: 'Fighter',
         sub: 'Champion',
         species: 'Human',
@@ -8546,7 +8432,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Bren Ironwill'
+                        value: 'Bryn Vanguard'
                 },
                 {
                         path: [
@@ -8570,7 +8456,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 12
+                        value: 9
                 },
                 {
                         path: [
@@ -8578,7 +8464,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -8594,7 +8480,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -8602,7 +8488,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -8911,7 +8797,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_fighter_eldritchKnight',
-        name: 'Val Spellblade',
+        name: 'Valen Weave',
         class: 'Fighter',
         sub: 'Eldritch Knight',
         species: 'Human',
@@ -8925,7 +8811,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Val Spellblade'
+                        value: 'Valen Weave'
                 },
                 {
                         path: [
@@ -8949,7 +8835,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 10
+                        value: 6
                 },
                 {
                         path: [
@@ -8957,7 +8843,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -8965,7 +8851,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -8973,7 +8859,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -8981,7 +8867,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -9085,7 +8971,7 @@ export const SAMPLE_CHARACTERS = [
                                 },
                                 {
                                         id: 'eldritchKnightSpells',
-                                        slotIndex: 5
+                                        slotIndex: 1
                                 },
                                 {
                                         id: 'familiarName'
@@ -9224,7 +9110,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'minorIllusion'
+                        propertyId: 'rayOfFrost'
                 },
                 {
                         path: [
@@ -9239,7 +9125,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'rayOfFrost'
+                        propertyId: 'shockingGrasp'
                 },
                 {
                         path: [
@@ -9253,7 +9139,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateWizardPreparedSpell'
                                 }
                         ],
-                        propertyId: 'alarm'
+                        propertyId: 'burningHands'
                 },
                 {
                         path: [
@@ -9322,7 +9208,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'shockingGrasp'
+                        propertyId: 'trueStrike'
                 },
                 {
                         path: [
@@ -9337,7 +9223,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'trueStrike'
+                        propertyId: 'acidSplash'
                 },
                 {
                         path: [
@@ -9352,7 +9238,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'burningHands'
+                        propertyId: 'chromaticOrb'
                 },
                 {
                         path: [
@@ -9367,66 +9253,6 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'chromaticOrb'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fighterSubclass'
-                                },
-                                {
-                                        id: 'eldritchKnightSpells',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'expeditiousRetreat'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fighterSubclass'
-                                },
-                                {
-                                        id: 'eldritchKnightSpells',
-                                        slotIndex: 3
-                                }
-                        ],
-                        propertyId: 'falseLife'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fighterSubclass'
-                                },
-                                {
-                                        id: 'eldritchKnightSpells',
-                                        slotIndex: 4
-                                }
-                        ],
-                        propertyId: 'featherFall'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fighterSubclass'
-                                },
-                                {
-                                        id: 'eldritchKnightSpells',
-                                        slotIndex: 5
-                                }
-                        ],
                         propertyId: 'findFamiliar'
                 },
                 {
@@ -9439,7 +9265,7 @@ export const SAMPLE_CHARACTERS = [
                                 },
                                 {
                                         id: 'eldritchKnightSpells',
-                                        slotIndex: 5
+                                        slotIndex: 1
                                 },
                                 {
                                         id: 'familiarType'
@@ -9457,13 +9283,73 @@ export const SAMPLE_CHARACTERS = [
                                 },
                                 {
                                         id: 'eldritchKnightSpells',
-                                        slotIndex: 5
+                                        slotIndex: 1
                                 },
                                 {
                                         id: 'familiarEnvironment'
                                 }
                         ],
                         propertyId: 'familiarLand'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'mageArmor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'magicMissile'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'rayOfSickness'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'shield'
                 },
                 {
                         path: [
@@ -9507,7 +9393,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_fighter_psiWarrior',
-        name: 'Callion Mindstrike',
+        name: 'Callen Mindpulse',
         class: 'Fighter',
         sub: 'Psi Warrior',
         species: 'Human',
@@ -9521,7 +9407,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Callion Mindstrike'
+                        value: 'Callen Mindpulse'
                 },
                 {
                         path: [
@@ -9545,7 +9431,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -9553,7 +9439,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -9561,7 +9447,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -9569,7 +9455,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -9577,7 +9463,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -9788,7 +9674,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateWizardPreparedSpell'
                                 }
                         ],
-                        propertyId: 'grease'
+                        propertyId: 'silentImage'
                 },
                 {
                         path: [
@@ -9886,7 +9772,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_monk_elements',
-        name: 'Suza Windfire',
+        name: 'Shuran Breeze',
         class: 'Monk',
         sub: 'Elements',
         species: 'Orc',
@@ -9900,7 +9786,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Suza Windfire'
+                        value: 'Shuran Breeze'
                 },
                 {
                         path: [
@@ -9924,7 +9810,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -9932,7 +9818,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -9940,7 +9826,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -9948,7 +9834,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -9956,7 +9842,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -10135,7 +10021,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'monkToolProficiency'
                                 }
                         ],
-                        propertyId: 'brewersSupplies'
+                        propertyId: 'carpentersTools'
                 },
                 {
                         path: [
@@ -10190,7 +10076,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_monk_mercy',
-        name: 'Physician Tae',
+        name: 'Tae Meridian',
         class: 'Monk',
         sub: 'Mercy',
         species: 'Human',
@@ -10204,7 +10090,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Physician Tae'
+                        value: 'Tae Meridian'
                 },
                 {
                         path: [
@@ -10228,7 +10114,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -10236,7 +10122,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 10
+                        value: 6
                 },
                 {
                         path: [
@@ -10244,7 +10130,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -10252,7 +10138,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -10260,7 +10146,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 5
+                        value: 6
                 },
                 {
                         path: [
@@ -10454,7 +10340,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateWizardPreparedSpell'
                                 }
                         ],
-                        propertyId: 'mageArmor'
+                        propertyId: 'sleep'
                 },
                 {
                         path: [
@@ -10549,7 +10435,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'monkToolProficiency'
                                 }
                         ],
-                        propertyId: 'calligraphersSupplies'
+                        propertyId: 'cartographersTools'
                 },
                 {
                         path: [
@@ -10590,7 +10476,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_monk_openHand',
-        name: 'Adept Jiao',
+        name: 'Jiao Starlight',
         class: 'Monk',
         sub: 'Open Hand',
         species: 'Human',
@@ -10604,7 +10490,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Adept Jiao'
+                        value: 'Jiao Starlight'
                 },
                 {
                         path: [
@@ -10628,7 +10514,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -10636,7 +10522,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -10644,7 +10530,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -10652,7 +10538,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -10660,7 +10546,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -10861,7 +10747,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'monkToolProficiency'
                                 }
                         ],
-                        propertyId: 'carpentersTools'
+                        propertyId: 'cobblersTools'
                 },
                 {
                         path: [
@@ -10902,7 +10788,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_monk_shadows',
-        name: 'Shade Veil',
+        name: 'Shade Umbra',
         class: 'Monk',
         sub: 'Shadow',
         species: 'Elf',
@@ -10916,7 +10802,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Shade Veil'
+                        value: 'Shade Umbra'
                 },
                 {
                         path: [
@@ -10940,7 +10826,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -10948,7 +10834,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -10956,7 +10842,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -10964,7 +10850,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -10972,7 +10858,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -11173,7 +11059,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'monkToolProficiency'
                                 }
                         ],
-                        propertyId: 'cartographersTools'
+                        propertyId: 'cooksUtensils'
                 },
                 {
                         path: [
@@ -11214,7 +11100,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_paladin_devotion',
-        name: 'Ser Lys Brightshield',
+        name: 'Lorin Aegis',
         class: 'Paladin',
         sub: 'Devotion',
         species: 'Human',
@@ -11228,7 +11114,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Ser Lys Brightshield'
+                        value: 'Lorin Aegis'
                 },
                 {
                         path: [
@@ -11252,7 +11138,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -11260,7 +11146,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -11268,7 +11154,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -11276,7 +11162,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -11292,7 +11178,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -11735,7 +11621,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_paladin_glory',
-        name: 'Auri Goldhelm',
+        name: 'Aureli Crest',
         class: 'Paladin',
         sub: 'Glory',
         species: 'Tiefling',
@@ -11749,7 +11635,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Auri Goldhelm'
+                        value: 'Aureli Crest'
                 },
                 {
                         path: [
@@ -11773,7 +11659,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -11781,7 +11667,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -11789,7 +11675,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -11805,7 +11691,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -11813,7 +11699,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -12201,7 +12087,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_paladin_ancients',
-        name: 'Elen Greenvow',
+        name: 'Elyn Verdant',
         class: 'Paladin',
         sub: 'Ancients',
         species: 'Elf',
@@ -12215,7 +12101,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Elen Greenvow'
+                        value: 'Elyn Verdant'
                 },
                 {
                         path: [
@@ -12239,7 +12125,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 9
+                        value: 5
                 },
                 {
                         path: [
@@ -12247,7 +12133,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -12255,7 +12141,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -12271,7 +12157,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -12279,7 +12165,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -12677,7 +12563,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_paladin_vengeance',
-        name: 'Sable Duskfall',
+        name: 'Sable Nemesis',
         class: 'Paladin',
         sub: 'Vengeance',
         species: 'Dragonborn',
@@ -12691,7 +12577,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Sable Duskfall'
+                        value: 'Sable Nemesis'
                 },
                 {
                         path: [
@@ -12715,7 +12601,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 10
+                        value: 6
                 },
                 {
                         path: [
@@ -12723,7 +12609,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -12731,7 +12617,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -12747,7 +12633,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -12755,7 +12641,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 5
+                        value: 6
                 },
                 {
                         path: [
@@ -13098,7 +12984,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_ranger_beastMaster',
-        name: 'Fern Quickarrow',
+        name: 'Rowan Strider',
         class: 'Ranger',
         sub: 'Beast Master',
         species: 'Human',
@@ -13112,7 +12998,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Fern Quickarrow'
+                        value: 'Rowan Strider'
                 },
                 {
                         path: [
@@ -13136,7 +13022,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -13144,7 +13030,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -13152,7 +13038,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -13160,7 +13046,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -13168,7 +13054,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 5
+                        value: 6
                 },
                 {
                         path: [
@@ -13528,6 +13414,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'deftExplorerExpertise'
+                                }
+                        ],
+                        propertyId: 'stealthExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'fightingStyle'
                                 }
                         ],
@@ -13586,7 +13483,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_ranger_feyWanderer',
-        name: 'Lirion Moonwalk',
+        name: 'Lirien Horizon',
         class: 'Ranger',
         sub: 'Fey Wanderer',
         species: 'Elf',
@@ -13600,7 +13497,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Lirion Moonwalk'
+                        value: 'Lirien Horizon'
                 },
                 {
                         path: [
@@ -13624,7 +13521,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -13632,7 +13529,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 10
+                        value: 7
                 },
                 {
                         path: [
@@ -13640,7 +13537,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -13656,7 +13553,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -13939,7 +13836,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'summonBeast'
+                        propertyId: 'animalFriendship'
                 },
                 {
                         path: [
@@ -13962,7 +13859,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'deftExplorerExpertise'
                                 }
                         ],
-                        propertyId: 'acrobaticsExpertise'
+                        propertyId: 'survivalExpertise'
                 },
                 {
                         path: [
@@ -14092,7 +13989,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'skillExpertExpertise'
                                 }
                         ],
-                        propertyId: 'animalHandlingExpertise'
+                        propertyId: 'acrobaticsExpertise'
                 }
         ]
 }
@@ -14100,7 +13997,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_ranger_gloomStalker',
-        name: 'Miren Shadowtread',
+        name: 'Miren Obscura',
         class: 'Ranger',
         sub: 'Gloom Stalker',
         species: 'Dwarf',
@@ -14114,7 +14011,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Miren Shadowtread'
+                        value: 'Miren Obscura'
                 },
                 {
                         path: [
@@ -14138,7 +14035,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -14146,7 +14043,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -14154,7 +14051,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -14162,7 +14059,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -14170,7 +14067,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -14509,7 +14406,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_ranger_hunter',
-        name: 'Rey Bouldershot',
+        name: 'Rien Boulder',
         class: 'Ranger',
         sub: 'Hunter',
         species: 'Human',
@@ -14523,7 +14420,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Rey Bouldershot'
+                        value: 'Rien Boulder'
                 },
                 {
                         path: [
@@ -14547,7 +14444,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -14555,7 +14452,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 11
+                        value: 7
                 },
                 {
                         path: [
@@ -14563,7 +14460,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -14571,7 +14468,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -14579,7 +14476,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 3
+                        value: 4
                 },
                 {
                         path: [
@@ -14954,7 +14851,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_rogue_arcaneTrickster',
-        name: 'Gris Nimblefingers',
+        name: 'Gris Trick',
         class: 'Rogue',
         sub: 'Arcane Trickster',
         species: 'Orc',
@@ -14968,7 +14865,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Gris Nimblefingers'
+                        value: 'Gris Trick'
                 },
                 {
                         path: [
@@ -14992,7 +14889,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -15000,7 +14897,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 12
+                        value: 10
                 },
                 {
                         path: [
@@ -15008,7 +14905,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -15016,7 +14913,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 5
+                        value: 4
                 },
                 {
                         path: [
@@ -15024,7 +14921,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -15338,7 +15235,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'magicMissile'
+                        propertyId: 'tashasHideousLaughter'
                 },
                 {
                         path: [
@@ -15353,7 +15250,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'rayOfSickness'
+                        propertyId: 'tensersFloatingDisk'
                 },
                 {
                         path: [
@@ -15368,7 +15265,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'shield'
+                        propertyId: 'unseenServant'
                 },
                 {
                         path: [
@@ -15383,7 +15280,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'silentImage'
+                        propertyId: 'witchBolt'
                 },
                 {
                         path: [
@@ -15398,7 +15295,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'sleep'
+                        propertyId: 'alterSelf'
                 },
                 {
                         path: [
@@ -15413,7 +15310,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'tashasHideousLaughter'
+                        propertyId: 'arcaneLock'
                 },
                 {
                         path: [
@@ -15439,7 +15336,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'tensersFloatingDisk'
+                        propertyId: 'alarm'
                 },
                 {
                         path: [
@@ -15454,7 +15351,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'unseenServant'
+                        propertyId: 'comprehendLanguages'
                 },
                 {
                         path: [
@@ -15469,7 +15366,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'alarm'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -15500,7 +15397,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_rogue_assassin',
-        name: 'Vex Nightfall',
+        name: 'Vex Mirage',
         class: 'Rogue',
         sub: 'Assassin',
         species: 'Dragonborn',
@@ -15514,7 +15411,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Vex Nightfall'
+                        value: 'Vex Mirage'
                 },
                 {
                         path: [
@@ -15538,7 +15435,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -15546,7 +15443,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 12
+                        value: 10
                 },
                 {
                         path: [
@@ -15554,7 +15451,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -15562,7 +15459,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 6
+                        value: 4
                 },
                 {
                         path: [
@@ -15570,7 +15467,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -15578,7 +15475,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -15847,7 +15744,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_rogue_soulknife',
-        name: 'Kalax Voidcut',
+        name: 'Kael Psi',
         class: 'Rogue',
         sub: 'Soulknife',
         species: 'Aasimar',
@@ -15861,7 +15758,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Kalax Voidcut'
+                        value: 'Kael Psi'
                 },
                 {
                         path: [
@@ -15885,7 +15782,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -15893,7 +15790,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 12
+                        value: 9
                 },
                 {
                         path: [
@@ -15901,7 +15798,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -15917,7 +15814,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -16046,7 +15943,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'lightHammer'
+                        propertyId: 'sling'
                 },
                 {
                         path: [
@@ -16171,7 +16068,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_rogue_thief',
-        name: 'Dex Quickpocket',
+        name: 'Darin Swift',
         class: 'Rogue',
         sub: 'Thief',
         species: 'Human',
@@ -16185,7 +16082,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Dex Quickpocket'
+                        value: 'Darin Swift'
                 },
                 {
                         path: [
@@ -16209,7 +16106,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -16217,7 +16114,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -16225,7 +16122,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 5
+                        value: 3
                 },
                 {
                         path: [
@@ -16233,7 +16130,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -16241,7 +16138,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -16529,7 +16426,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_sorcerer_aberrant',
-        name: 'Qaldrix Deepthought',
+        name: 'Qal Mind',
         class: 'Sorcerer',
         sub: 'Aberrant',
         species: 'Dragonborn',
@@ -16543,7 +16440,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Qaldrix Deepthought'
+                        value: 'Qal Mind'
                 },
                 {
                         path: [
@@ -16567,7 +16464,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -16575,7 +16472,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -16583,7 +16480,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -16599,7 +16496,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -16607,7 +16504,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -16896,7 +16793,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'crownOfMadness'
+                        propertyId: 'dragonsBreath'
                 },
                 {
                         path: [
@@ -16968,7 +16865,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'witchBolt'
+                        propertyId: 'arcaneVigor'
                 },
                 {
                         path: [
@@ -16980,7 +16877,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'alterSelf'
+                        propertyId: 'blur'
                 },
                 {
                         path: [
@@ -16992,7 +16889,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'arcaneVigor'
+                        propertyId: 'cloudOfDaggers'
                 },
                 {
                         path: [
@@ -17004,7 +16901,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'blur'
+                        propertyId: 'crownOfMadness'
                 },
                 {
                         path: [
@@ -17016,7 +16913,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'cloudOfDaggers'
+                        propertyId: 'darkness'
                 },
                 {
                         path: [
@@ -17095,7 +16992,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_sorcerer_clockwork',
-        name: 'Cog Precisus',
+        name: 'Keth Meridian',
         class: 'Sorcerer',
         sub: 'Clockwork',
         species: 'Dwarf',
@@ -17109,7 +17006,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Cog Precisus'
+                        value: 'Keth Meridian'
                 },
                 {
                         path: [
@@ -17133,7 +17030,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -17141,7 +17038,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -17149,7 +17046,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -17165,7 +17062,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -17173,7 +17070,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -17302,7 +17199,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'artisansTools'
                                 }
                         ],
-                        propertyId: 'cobblersTools'
+                        propertyId: 'glassblowersTools'
                 },
                 {
                         path: [
@@ -17502,7 +17399,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'darkness'
+                        propertyId: 'detectThoughts'
                 },
                 {
                         path: [
@@ -17514,7 +17411,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'detectThoughts'
+                        propertyId: 'knock'
                 },
                 {
                         path: [
@@ -17526,7 +17423,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'dragonsBreath'
+                        propertyId: 'levitate'
                 },
                 {
                         path: [
@@ -17538,7 +17435,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'knock'
+                        propertyId: 'mindSpike'
                 },
                 {
                         path: [
@@ -17603,7 +17500,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_sorcerer_draconic',
-        name: 'Sylin Emberclaw',
+        name: 'Sylis Flame',
         class: 'Sorcerer',
         sub: 'Draconic',
         species: 'Human',
@@ -17617,7 +17514,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Sylin Emberclaw'
+                        value: 'Sylis Flame'
                 },
                 {
                         path: [
@@ -17641,7 +17538,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -17649,7 +17546,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 4
+                        value: 3
                 },
                 {
                         path: [
@@ -17657,7 +17554,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -17665,7 +17562,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -17673,7 +17570,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -17681,7 +17578,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 9
                 },
                 {
                         path: [
@@ -18066,7 +17963,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'levitate'
+                        propertyId: 'phantasmalForce'
                 },
                 {
                         path: [
@@ -18078,7 +17975,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'mindSpike'
+                        propertyId: 'seeInvisibility'
                 },
                 {
                         path: [
@@ -18090,7 +17987,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'phantasmalForce'
+                        propertyId: 'spiderClimb'
                 },
                 {
                         path: [
@@ -18102,7 +17999,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'seeInvisibility'
+                        propertyId: 'blink'
                 },
                 {
                         path: [
@@ -18195,7 +18092,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_sorcerer_wildMagic',
-        name: 'Blix Unpredictus',
+        name: 'Blythe Flux',
         class: 'Sorcerer',
         sub: 'Wild Magic',
         species: 'Human',
@@ -18209,7 +18106,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Blix Unpredictus'
+                        value: 'Blythe Flux'
                 },
                 {
                         path: [
@@ -18233,7 +18130,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -18249,7 +18146,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -18257,7 +18154,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -18265,7 +18162,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -18273,7 +18170,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -18668,7 +18565,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'spiderClimb'
+                        propertyId: 'clairvoyance'
                 },
                 {
                         path: [
@@ -18680,7 +18577,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'blink'
+                        propertyId: 'counterspell'
                 },
                 {
                         path: [
@@ -18692,7 +18589,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'clairvoyance'
+                        propertyId: 'daylight'
                 },
                 {
                         path: [
@@ -18704,7 +18601,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'counterspell'
+                        propertyId: 'dispelMagic'
                 },
                 {
                         path: [
@@ -18769,7 +18666,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_warlock_archfey',
-        name: 'Miren Thornwhisper',
+        name: 'Mire Fey',
         class: 'Warlock',
         sub: 'Archfey',
         species: 'Elf',
@@ -18783,7 +18680,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Miren Thornwhisper'
+                        value: 'Mire Fey'
                 },
                 {
                         path: [
@@ -18807,7 +18704,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -18823,7 +18720,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -18831,7 +18728,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -18839,7 +18736,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -18847,7 +18744,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -19135,7 +19032,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'dispelMagic'
+                        propertyId: 'fear'
                 },
                 {
                         path: [
@@ -19352,7 +19249,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_warlock_celestial',
-        name: 'Lux Dawnpact',
+        name: 'Luce Sol',
         class: 'Warlock',
         sub: 'Celestial',
         species: 'Dwarf',
@@ -19366,7 +19263,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Lux Dawnpact'
+                        value: 'Luce Sol'
                 },
                 {
                         path: [
@@ -19390,7 +19287,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -19406,7 +19303,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -19414,7 +19311,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -19422,7 +19319,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -19430,7 +19327,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -19744,7 +19641,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'fear'
+                        propertyId: 'fly'
                 },
                 {
                         path: [
@@ -19756,7 +19653,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'gaseousForm'
                 },
                 {
                         path: [
@@ -19768,7 +19665,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'gaseousForm'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -19976,7 +19873,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_warlock_fiend',
-        name: 'Bael Ashpact',
+        name: 'Bael Cinder',
         class: 'Warlock',
         sub: 'Fiend',
         species: 'Tiefling',
@@ -19990,7 +19887,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Bael Ashpact'
+                        value: 'Bael Cinder'
                 },
                 {
                         path: [
@@ -20014,7 +19911,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 5
+                        value: 6
                 },
                 {
                         path: [
@@ -20022,7 +19919,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 4
+                        value: 5
                 },
                 {
                         path: [
@@ -20030,7 +19927,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 0
                 },
                 {
                         path: [
@@ -20038,7 +19935,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -20046,7 +19943,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 0
                 },
                 {
                         path: [
@@ -20275,7 +20172,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'removeCurse'
+                        propertyId: 'summonFey'
                 },
                 {
                         path: [
@@ -20335,7 +20232,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'magicCircle'
                 },
                 {
                         path: [
@@ -20347,7 +20244,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'magicCircle'
+                        propertyId: 'majorImage'
                 },
                 {
                         path: [
@@ -20359,7 +20256,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'majorImage'
+                        propertyId: 'removeCurse'
                 },
                 {
                         path: [
@@ -20500,7 +20397,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_warlock_greatOldOne',
-        name: 'Zel Voidpact',
+        name: 'Zell Void',
         class: 'Warlock',
         sub: 'Great Old One',
         species: 'Human',
@@ -20514,7 +20411,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Zel Voidpact'
+                        value: 'Zell Void'
                 },
                 {
                         path: [
@@ -20538,7 +20435,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -20546,7 +20443,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -20554,7 +20451,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -20570,7 +20467,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -20578,7 +20475,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_cha'
                                 }
                         ],
-                        value: 12
+                        value: 8
                 },
                 {
                         path: [
@@ -20844,7 +20741,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'vampiricTouch'
+                        propertyId: 'banishment'
                 },
                 {
                         path: [
@@ -20880,7 +20777,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'summonFey'
+                        propertyId: 'summonUndead'
                 },
                 {
                         path: [
@@ -20892,7 +20789,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'summonUndead'
+                        propertyId: 'tongues'
                 },
                 {
                         path: [
@@ -20904,7 +20801,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'tongues'
+                        propertyId: 'vampiricTouch'
                 },
                 {
                         path: [
@@ -21032,7 +20929,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_wizard_abjurer',
-        name: 'Alis Wardmage',
+        name: 'Alyn Ward',
         class: 'Wizard',
         sub: 'Abjurer',
         species: 'Dwarf',
@@ -21046,7 +20943,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Alis Wardmage'
+                        value: 'Alyn Ward'
                 },
                 {
                         path: [
@@ -21070,7 +20967,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -21078,7 +20975,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -21086,7 +20983,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 7
+                        value: 5
                 },
                 {
                         path: [
@@ -21094,7 +20991,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -21102,7 +20999,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -21484,7 +21381,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'arcaneLock'
+                        propertyId: 'magicMouth'
                 },
                 {
                         path: [
@@ -21496,7 +21393,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'magicMouth'
+                        propertyId: 'melfsAcidArrow'
                 },
                 {
                         path: [
@@ -21548,7 +21445,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_wizard_diviner',
-        name: 'Oracle Seer',
+        name: 'Oren Sight',
         class: 'Wizard',
         sub: 'Diviner',
         species: 'Tiefling',
@@ -21562,7 +21459,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Oracle Seer'
+                        value: 'Oren Sight'
                 },
                 {
                         path: [
@@ -21586,7 +21483,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -21594,7 +21491,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -21602,7 +21499,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -21610,7 +21507,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -21618,7 +21515,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 6
+                        value: 4
                 },
                 {
                         path: [
@@ -22011,7 +21908,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'melfsAcidArrow'
+                        propertyId: 'nystulsMagicAura'
                 },
                 {
                         path: [
@@ -22023,7 +21920,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'nystulsMagicAura'
+                        propertyId: 'ropeTrick'
                 },
                 {
                         path: [
@@ -22089,7 +21986,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_wizard_evoker',
-        name: 'Blast Firebolt',
+        name: 'Blair Spark',
         class: 'Wizard',
         sub: 'Evoker',
         species: 'Elf',
@@ -22103,7 +22000,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Blast Firebolt'
+                        value: 'Blair Spark'
                 },
                 {
                         path: [
@@ -22127,7 +22024,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -22135,7 +22032,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -22143,7 +22040,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 6
+                        value: 4
                 },
                 {
                         path: [
@@ -22151,7 +22048,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -22159,7 +22056,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -22563,7 +22460,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'ropeTrick'
+                        propertyId: 'animateDead'
                 },
                 {
                         path: [
@@ -22575,7 +22472,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'animateDead'
+                        propertyId: 'bestowCurse'
                 },
                 {
                         path: [
@@ -22641,7 +22538,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_wizard_illusionist',
-        name: 'Phan Veil',
+        name: 'Fhan Shimmer',
         class: 'Wizard',
         sub: 'Illusionist',
         species: 'Gnome',
@@ -22655,7 +22552,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Phan Veil'
+                        value: 'Fhan Shimmer'
                 },
                 {
                         path: [
@@ -22679,7 +22576,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -22687,7 +22584,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 5
+                        value: 3
                 },
                 {
                         path: [
@@ -22695,7 +22592,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -22703,7 +22600,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -22711,7 +22608,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -23117,7 +23014,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'bestowCurse'
+                        propertyId: 'feignDeath'
                 },
                 {
                         path: [
@@ -23183,7 +23080,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_artificer_alchemist',
-        name: 'Fizzy Potionmaker',
+        name: 'Fiz Elixir',
         class: 'Artificer',
         sub: 'Alchemist',
         species: 'Human',
@@ -23197,7 +23094,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Fizzy Potionmaker'
+                        value: 'Fiz Elixir'
                 },
                 {
                         path: [
@@ -23221,7 +23118,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -23229,7 +23126,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -23237,7 +23134,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 6
+                        value: 4
                 },
                 {
                         path: [
@@ -23245,7 +23142,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -23253,7 +23150,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -23404,485 +23301,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'alert'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'background'
-                                }
-                        ],
-                        propertyId: 'artisan'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'background'
-                                },
-                                {
-                                        id: 'artisansTools'
-                                }
-                        ],
-                        propertyId: 'cooksUtensils'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                }
-                        ],
-                        propertyId: 'artificer'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSkillProficiencies',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'arcanaProficiency'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSkillProficiencies',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'historyProficiency'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artisansTools'
-                                }
-                        ],
-                        propertyId: 'glassblowersTools'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSpells',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'falseLife'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSpells',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'alarm'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSpells',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'cureWounds'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSpells',
-                                        slotIndex: 3
-                                }
-                        ],
-                        propertyId: 'detectMagic'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSpells',
-                                        slotIndex: 4
-                                }
-                        ],
-                        propertyId: 'disguiseSelf'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSpells',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'expeditiousRetreat'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSpells',
-                                        slotIndex: 6
-                                }
-                        ],
-                        propertyId: 'faerieFire'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerCantrips',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'acidSplash'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerCantrips',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'dancingLights'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'replicateMagicItem',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'createFoodAndWater'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'replicateMagicItem',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'leomundsSecretChest'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'replicateMagicItem',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'waterBreathing'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'artificerSubclass'
-                                }
-                        ],
-                        propertyId: 'alchemist'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'keenMind'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level4feat'
-                                },
-                                {
-                                        id: 'loreKnowledge'
-                                }
-                        ],
-                        propertyId: 'natureProficiency'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'abilityScoreImprovement'
-                }
-        ]
-}
-    },
-
-    {
-        id: 'sample_artificer_artillerist',
-        name: 'Boomer Gearloose',
-        class: 'Artificer',
-        sub: 'Artillerist',
-        species: 'Gnome',
-        level: 8,
-        image: 'subclass_headshot/artillerist.jpg',
-        recipe: {
-        inputs: [
-                {
-                        path: [
-                                {
-                                        id: 'name'
-                                }
-                        ],
-                        value: 'Boomer Gearloose'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'image'
-                                }
-                        ],
-                        value: 'subclass_headshot/artillerist.jpg'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'level'
-                                }
-                        ],
-                        value: 8
-                },
-                {
-                        path: [
-                                {
-                                        id: 'allocated_str'
-                                }
-                        ],
-                        value: 0
-                },
-                {
-                        path: [
-                                {
-                                        id: 'allocated_dex'
-                                }
-                        ],
-                        value: 6
-                },
-                {
-                        path: [
-                                {
-                                        id: 'allocated_con'
-                                }
-                        ],
-                        value: 2
-                },
-                {
-                        path: [
-                                {
-                                        id: 'allocated_int'
-                                }
-                        ],
-                        value: 12
-                },
-                {
-                        path: [
-                                {
-                                        id: 'allocated_wis'
-                                }
-                        ],
-                        value: 1
-                },
-                {
-                        path: [
-                                {
-                                        id: 'allocated_cha'
-                                }
-                        ],
-                        value: 0
-                },
-                {
-                        path: [
-                                {
-                                        id: 'origin_str'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'origin_dex'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'origin_con'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'origin_int'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'origin_wis'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'origin_cha'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'asi_str'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'asi_dex'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'asi_con'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'asi_int'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'asi_wis'
-                                }
-                        ]
-                },
-                {
-                        path: [
-                                {
-                                        id: 'asi_cha'
-                                }
-                        ]
-                }
-        ],
-        slots: [
-                {
-                        path: [
-                                {
-                                        id: 'armor'
-                                }
-                        ],
-                        propertyId: 'breastplate'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'armamentSlot',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'lightCrossbow'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'armamentSlot',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'dagger'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'armamentSlot',
-                                        slotIndex: 2
-                                }
-                        ],
-                        propertyId: 'pistol'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'species'
-                                }
-                        ],
-                        propertyId: 'gnome'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'species'
-                                },
-                                {
-                                        id: 'gnomishLineage'
-                                }
-                        ],
-                        propertyId: 'gnomishLineageForestGnome'
                 },
                 {
                         path: [
@@ -24099,6 +23517,485 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'artificerSubclass'
                                 }
                         ],
+                        propertyId: 'alchemist'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'keenMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                },
+                                {
+                                        id: 'loreKnowledge'
+                                }
+                        ],
+                        propertyId: 'natureProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement'
+                }
+        ]
+}
+    },
+
+    {
+        id: 'sample_artificer_artillerist',
+        name: 'Brem Cog',
+        class: 'Artificer',
+        sub: 'Artillerist',
+        species: 'Gnome',
+        level: 8,
+        image: 'subclass_headshot/artillerist.jpg',
+        recipe: {
+        inputs: [
+                {
+                        path: [
+                                {
+                                        id: 'name'
+                                }
+                        ],
+                        value: 'Brem Cog'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'image'
+                                }
+                        ],
+                        value: 'subclass_headshot/artillerist.jpg'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'level'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_str'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_dex'
+                                }
+                        ],
+                        value: 4
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_con'
+                                }
+                        ],
+                        value: 3
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_int'
+                                }
+                        ],
+                        value: 11
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_wis'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_cha'
+                                }
+                        ],
+                        value: 0
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_con'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_int'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_cha'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_con'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_int'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_cha'
+                                }
+                        ]
+                }
+        ],
+        slots: [
+                {
+                        path: [
+                                {
+                                        id: 'armor'
+                                }
+                        ],
+                        propertyId: 'breastplate'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'lightCrossbow'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'dagger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'pistol'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                }
+                        ],
+                        propertyId: 'gnome'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'gnomishLineage'
+                                }
+                        ],
+                        propertyId: 'gnomishLineageForestGnome'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                }
+                        ],
+                        propertyId: 'artisan'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'artisansTools'
+                                }
+                        ],
+                        propertyId: 'masonsTools'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                }
+                        ],
+                        propertyId: 'artificer'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSkillProficiencies',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSkillProficiencies',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'historyProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artisansTools'
+                                }
+                        ],
+                        propertyId: 'paintersSupplies'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'alarm'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'cureWounds'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'detectMagic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'disguiseSelf'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'expeditiousRetreat'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'faerieFire'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'falseLife'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'acidSplash'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'dancingLights'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'replicateMagicItem',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'createFoodAndWater'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'replicateMagicItem',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'leomundsSecretChest'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'replicateMagicItem',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'waterBreathing'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSubclass'
+                                }
+                        ],
                         propertyId: 'artillerist'
                 },
                 {
@@ -24143,7 +24040,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_artificer_cartographer',
-        name: 'Mapmaker Pathfinder',
+        name: 'Navi Tracker',
         class: 'Artificer',
         sub: 'Berserker',
         species: 'Human',
@@ -24157,7 +24054,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Mapmaker Pathfinder'
+                        value: 'Navi Tracker'
                 },
                 {
                         path: [
@@ -24181,7 +24078,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -24189,7 +24086,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 5
+                        value: 3
                 },
                 {
                         path: [
@@ -24197,7 +24094,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -24205,7 +24102,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -24213,7 +24110,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -24342,7 +24239,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'sling'
+                        propertyId: 'spear'
                 },
                 {
                         path: [
@@ -24508,7 +24405,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_artificer_armorer',
-        name: 'Ironclad Bulwark',
+        name: 'Kael Bulwark',
         class: 'Artificer',
         sub: 'Armorer',
         species: 'Dwarf',
@@ -24522,7 +24419,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Ironclad Bulwark'
+                        value: 'Kael Bulwark'
                 },
                 {
                         path: [
@@ -24546,7 +24443,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -24554,7 +24451,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 6
+                        value: 3
                 },
                 {
                         path: [
@@ -24562,7 +24459,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -24578,7 +24475,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 1
+                        value: 2
                 },
                 {
                         path: [
@@ -24757,7 +24654,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'artisansTools'
                                 }
                         ],
-                        propertyId: 'masonsTools'
+                        propertyId: 'pottersTools'
                 },
                 {
                         path: [
@@ -24956,7 +24853,7 @@ export const SAMPLE_CHARACTERS = [
 
     {
         id: 'sample_artificer_reanimator',
-        name: 'Dr. Frankie Frankenstitch',
+        name: 'Frankie Stitch',
         class: 'Artificer',
         sub: 'Reanimator',
         species: 'Human',
@@ -24970,7 +24867,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'name'
                                 }
                         ],
-                        value: 'Dr. Frankie Frankenstitch'
+                        value: 'Frankie Stitch'
                 },
                 {
                         path: [
@@ -24994,7 +24891,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_str'
                                 }
                         ],
-                        value: 0
+                        value: 1
                 },
                 {
                         path: [
@@ -25002,7 +24899,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_dex'
                                 }
                         ],
-                        value: 5
+                        value: 3
                 },
                 {
                         path: [
@@ -25010,7 +24907,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_con'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -25018,7 +24915,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_int'
                                 }
                         ],
-                        value: 12
+                        value: 11
                 },
                 {
                         path: [
@@ -25026,7 +24923,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'allocated_wis'
                                 }
                         ],
-                        value: 2
+                        value: 3
                 },
                 {
                         path: [
@@ -25227,7 +25124,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'artisansTools'
                                 }
                         ],
-                        propertyId: 'paintersSupplies'
+                        propertyId: 'smithsTools'
                 },
                 {
                         path: [
