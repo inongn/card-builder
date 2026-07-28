@@ -1,0 +1,1158 @@
+{
+  "aberrant.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      217.5,
+      568.0,
+      785.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      76.0,
+      359.0,
+      360.0,
+      644.0
+    ],
+    "detected_frame_box": null
+  },
+  "abjurer.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      173.0,
+      634.0,
+      807.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      139.0,
+      401.0,
+      456.0,
+      579.0
+    ],
+    "detected_frame_box": null
+  },
+  "alchemist.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      4.0,
+      246.0,
+      492.0,
+      734.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      126.0,
+      418.0,
+      370.0,
+      562.0
+    ],
+    "detected_frame_box": null
+  },
+  "arcanetrickster.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      67.0,
+      307.5,
+      447.0,
+      687.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      162.0,
+      439.0,
+      352.0,
+      556.0
+    ],
+    "detected_frame_box": null
+  },
+  "archfeypatron.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      14.5,
+      221.0,
+      524.5,
+      731.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      142.0,
+      399.0,
+      397.0,
+      553.0
+    ],
+    "detected_frame_box": null
+  },
+  "armorer.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      216.0,
+      578.0,
+      794.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      63.0,
+      422.0,
+      352.0,
+      588.0
+    ],
+    "detected_frame_box": null
+  },
+  "artillerist.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      55.5,
+      892.0,
+      947.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      26.0,
+      395.0,
+      472.0,
+      608.0
+    ],
+    "detected_frame_box": null
+  },
+  "assassin.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      0.0,
+      760.0,
+      760.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      0.0,
+      198.0,
+      380.0,
+      395.0
+    ],
+    "detected_frame_box": null
+  },
+  "banneret.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      110.0,
+      304.5,
+      478.0,
+      672.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      202.0,
+      423.0,
+      386.0,
+      554.0
+    ],
+    "detected_frame_box": null
+  },
+  "battlemaster.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      248.5,
+      748.0,
+      996.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      58.0,
+      511.0,
+      432.0,
+      734.0
+    ],
+    "detected_frame_box": null
+  },
+  "beastmaster.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      22.0,
+      349.5,
+      622.0,
+      949.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      172.0,
+      585.0,
+      472.0,
+      714.0
+    ],
+    "detected_frame_box": null
+  },
+  "berserker.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      12.0,
+      762.0,
+      774.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      0.0,
+      270.0,
+      381.0,
+      516.0
+    ],
+    "detected_frame_box": null
+  },
+  "bladesinger.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      211.5,
+      772.0,
+      983.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      43.0,
+      492.0,
+      429.0,
+      703.0
+    ],
+    "detected_frame_box": null
+  },
+  "cartographer.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      181.5,
+      796.0,
+      977.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      3.0,
+      444.0,
+      401.0,
+      715.0
+    ],
+    "detected_frame_box": null
+  },
+  "celestialpatron.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      192.5,
+      706.0,
+      898.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      28.0,
+      412.0,
+      381.0,
+      679.0
+    ],
+    "detected_frame_box": null
+  },
+  "champion.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      107.0,
+      800.0,
+      907.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      39.0,
+      408.0,
+      439.0,
+      606.0
+    ],
+    "detected_frame_box": null
+  },
+  "circleoftheland.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      86.0,
+      380.5,
+      430.0,
+      724.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      172.0,
+      467.0,
+      344.0,
+      638.0
+    ],
+    "detected_frame_box": null
+  },
+  "circleofthemoon.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      154.5,
+      650.0,
+      804.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      94.0,
+      385.0,
+      419.0,
+      574.0
+    ],
+    "detected_frame_box": null
+  },
+  "circleofthesea.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      123.0,
+      316.0,
+      487.0,
+      680.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      214.0,
+      419.0,
+      396.0,
+      577.0
+    ],
+    "detected_frame_box": null
+  },
+  "circleofthestars.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      151.0,
+      321.0,
+      531.0,
+      701.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      246.0,
+      447.0,
+      436.0,
+      575.0
+    ],
+    "detected_frame_box": null
+  },
+  "clockwork.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      60.0,
+      750.0,
+      810.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      144.0,
+      321.0,
+      519.0,
+      549.0
+    ],
+    "detected_frame_box": null
+  },
+  "clockwork.webp": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      69.0,
+      280.0,
+      565.0,
+      776.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      193.0,
+      448.0,
+      441.0,
+      608.0
+    ],
+    "detected_frame_box": null
+  },
+  "dance.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      115.0,
+      784.0,
+      899.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      59.0,
+      392.0,
+      451.0,
+      622.0
+    ],
+    "detected_frame_box": null
+  },
+  "diviner.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      244.0,
+      592.0,
+      836.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      116.0,
+      454.0,
+      412.0,
+      626.0
+    ],
+    "detected_frame_box": null
+  },
+  "draconic.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      196.0,
+      618.0,
+      814.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      78.0,
+      380.0,
+      387.0,
+      630.0
+    ],
+    "detected_frame_box": null
+  },
+  "eldritch_knight.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      70.0,
+      249.0,
+      566.0,
+      745.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      194.0,
+      415.0,
+      442.0,
+      579.0
+    ],
+    "detected_frame_box": null
+  },
+  "eldritchknight.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      70.0,
+      249.0,
+      566.0,
+      745.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      194.0,
+      415.0,
+      442.0,
+      579.0
+    ],
+    "detected_frame_box": null
+  },
+  "elements.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      247.0,
+      488.0,
+      735.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      112.0,
+      401.0,
+      356.0,
+      581.0
+    ],
+    "detected_frame_box": null
+  },
+  "evoker.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      219.5,
+      586.0,
+      805.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      109.0,
+      418.0,
+      402.0,
+      607.0
+    ],
+    "detected_frame_box": null
+  },
+  "feywanderer.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      134.5,
+      303.0,
+      536.5,
+      705.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      235.0,
+      451.0,
+      436.0,
+      557.0
+    ],
+    "detected_frame_box": null
+  },
+  "fiendpatron.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      45.0,
+      324.0,
+      485.0,
+      764.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      155.0,
+      459.0,
+      375.0,
+      629.0
+    ],
+    "detected_frame_box": null
+  },
+  "glamour.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      21.0,
+      305.5,
+      441.0,
+      725.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      126.0,
+      438.0,
+      336.0,
+      593.0
+    ],
+    "detected_frame_box": null
+  },
+  "gloomstalker.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      64.0,
+      285.5,
+      508.0,
+      729.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      175.0,
+      422.0,
+      397.0,
+      593.0
+    ],
+    "detected_frame_box": null
+  },
+  "gravedomain.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      47.5,
+      260.0,
+      541.5,
+      754.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      171.0,
+      435.0,
+      418.0,
+      579.0
+    ],
+    "detected_frame_box": null
+  },
+  "greatoldonepatron.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      247.5,
+      524.0,
+      771.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      131.0,
+      438.0,
+      393.0,
+      581.0
+    ],
+    "detected_frame_box": null
+  },
+  "hollowwarden.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      231.5,
+      642.0,
+      873.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      23.0,
+      461.0,
+      344.0,
+      644.0
+    ],
+    "detected_frame_box": null
+  },
+  "hunter.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      166.0,
+      706.0,
+      872.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      59.0,
+      396.0,
+      412.0,
+      642.0
+    ],
+    "detected_frame_box": null
+  },
+  "illusionist.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      237.5,
+      508.0,
+      745.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      108.0,
+      386.0,
+      362.0,
+      597.0
+    ],
+    "detected_frame_box": null
+  },
+  "knowledgedomain.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      59.5,
+      678.0,
+      737.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      100.0,
+      273.0,
+      439.0,
+      524.0
+    ],
+    "detected_frame_box": null
+  },
+  "lifedomain.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      75.0,
+      262.0,
+      567.0,
+      754.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      198.0,
+      417.0,
+      444.0,
+      599.0
+    ],
+    "detected_frame_box": null
+  },
+  "lightdomain.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      2.0,
+      264.5,
+      526.0,
+      788.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      133.0,
+      415.0,
+      395.0,
+      638.0
+    ],
+    "detected_frame_box": null
+  },
+  "lore.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      222.0,
+      666.0,
+      888.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      62.0,
+      451.0,
+      395.0,
+      659.0
+    ],
+    "detected_frame_box": null
+  },
+  "mercy.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      83.5,
+      762.0,
+      845.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      30.0,
+      347.0,
+      411.0,
+      582.0
+    ],
+    "detected_frame_box": null
+  },
+  "oathofdevotion.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      174.5,
+      638.0,
+      812.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      82.0,
+      381.0,
+      401.0,
+      606.0
+    ],
+    "detected_frame_box": null
+  },
+  "oathofgenies.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      143.5,
+      824.0,
+      967.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      0.0,
+      461.0,
+      412.0,
+      650.0
+    ],
+    "detected_frame_box": null
+  },
+  "oathofglory.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      198.5,
+      666.0,
+      864.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      116.0,
+      421.0,
+      449.0,
+      642.0
+    ],
+    "detected_frame_box": null
+  },
+  "oathoftheancients.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      183.5,
+      666.0,
+      849.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      22.0,
+      439.0,
+      355.0,
+      594.0
+    ],
+    "detected_frame_box": null
+  },
+  "oathofvengeance.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      30.5,
+      774.0,
+      804.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      39.0,
+      290.0,
+      426.0,
+      545.0
+    ],
+    "detected_frame_box": null
+  },
+  "openhand.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      115.0,
+      680.0,
+      795.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      78.0,
+      359.0,
+      418.0,
+      551.0
+    ],
+    "detected_frame_box": null
+  },
+  "phantom.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      221.0,
+      564.0,
+      785.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      133.0,
+      422.0,
+      415.0,
+      584.0
+    ],
+    "detected_frame_box": null
+  },
+  "psiwarrior.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      122.0,
+      644.0,
+      766.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      41.0,
+      363.0,
+      363.0,
+      525.0
+    ],
+    "detected_frame_box": null
+  },
+  "reanimator.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      72.0,
+      108.5,
+      516.0,
+      552.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      183.0,
+      289.0,
+      405.0,
+      372.0
+    ],
+    "detected_frame_box": null
+  },
+  "scion.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      192.5,
+      654.0,
+      846.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      42.0,
+      450.0,
+      369.0,
+      589.0
+    ],
+    "detected_frame_box": null
+  },
+  "shadow.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      47.5,
+      255.5,
+      509.5,
+      717.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      163.0,
+      417.0,
+      394.0,
+      556.0
+    ],
+    "detected_frame_box": null
+  },
+  "shadows.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      41.5,
+      273.5,
+      427.5,
+      659.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      138.0,
+      392.0,
+      331.0,
+      541.0
+    ],
+    "detected_frame_box": null
+  },
+  "soulknife.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      10.5,
+      246.0,
+      480.5,
+      716.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      128.0,
+      412.0,
+      363.0,
+      550.0
+    ],
+    "detected_frame_box": null
+  },
+  "spirits.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      292.0,
+      456.0,
+      748.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      38.0,
+      459.0,
+      266.0,
+      581.0
+    ],
+    "detected_frame_box": null
+  },
+  "thief.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      44.5,
+      184.0,
+      510.5,
+      650.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      161.0,
+      356.0,
+      394.0,
+      478.0
+    ],
+    "detected_frame_box": null
+  },
+  "trickerydomain.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      80.5,
+      262.0,
+      602.5,
+      784.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      211.0,
+      458.0,
+      472.0,
+      588.0
+    ],
+    "detected_frame_box": null
+  },
+  "undeadpatron.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      116.0,
+      343.5,
+      484.0,
+      711.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      208.0,
+      461.0,
+      392.0,
+      594.0
+    ],
+    "detected_frame_box": null
+  },
+  "valor.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      184.0,
+      618.0,
+      802.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      152.0,
+      314.0,
+      461.0,
+      672.0
+    ],
+    "detected_frame_box": null
+  },
+  "wardomain.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      188.5,
+      740.0,
+      928.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      74.0,
+      347.0,
+      444.0,
+      770.0
+    ],
+    "detected_frame_box": null
+  },
+  "wild_heart.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      272.5,
+      478.0,
+      750.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      59.0,
+      381.0,
+      298.0,
+      642.0
+    ],
+    "detected_frame_box": null
+  },
+  "wild_magic.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      139.0,
+      313.5,
+      539.0,
+      713.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      239.0,
+      412.0,
+      439.0,
+      615.0
+    ],
+    "detected_frame_box": null
+  },
+  "wildheart.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      46.5,
+      258.0,
+      788.5,
+      1000.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      232.0,
+      396.0,
+      603.0,
+      989.0
+    ],
+    "detected_frame_box": null
+  },
+  "wildmagic.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      50.0,
+      216.0,
+      562.0,
+      728.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      178.0,
+      368.0,
+      434.0,
+      576.0
+    ],
+    "detected_frame_box": null
+  },
+  "worldtree.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      27.5,
+      240.5,
+      525.5,
+      738.5
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      152.0,
+      350.0,
+      401.0,
+      629.0
+    ],
+    "detected_frame_box": null
+  },
+  "zealot.jpg": {
+    "crop_type": "headshot_1x1",
+    "normalized_crop_box": [
+      0.0,
+      116.0,
+      884.0,
+      1000.0
+    ],
+    "shared_scale_factor": 2.0,
+    "detected_face_box": [
+      35.0,
+      516.0,
+      477.0,
+      946.0
+    ],
+    "detected_frame_box": null
+  }
+}

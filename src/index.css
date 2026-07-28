@@ -2279,10 +2279,10 @@ mdui-list-item[active] {
 }
 
 .card-vertical__media {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 3;
   width: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   position: relative;
   background-color: rgb(var(--mdui-color-surface-container-high));

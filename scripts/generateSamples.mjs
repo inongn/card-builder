@@ -44,29 +44,29 @@ const usedPortraitFilenames = new Set();
  * Pick a portrait path for a character by class, species, and subclass.
  * Prioritises class+subclass+species match, then class+species match. Cycles through to avoid repeats.
  */
-function pickPortrait(className, speciesName, subclassName) {
-    const cls = (className || '').toLowerCase();
-    const sp = (speciesName || '').toLowerCase();
-    const sub = (subclassName || '').toLowerCase();
+/**
+ * Pick a headshot portrait path based directly on the subclass ID.
+ * Targets files inside public/subclass_headshot/
+ */
+function pickPortrait(subcId) {
+    if (!subcId) return '';
 
-    const candidates = portraitsMetadata.filter(p =>
-        (p.class || '').toLowerCase() === cls &&
-        (p.species || '').toLowerCase() === sp
-    );
+    // Normalize subclass ID to lowercase without spaces, underscores, or special characters
+    const cleanSubc = subcId.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-    let unused = candidates.filter(p => !usedPortraitFilenames.has(p.filename));
-    if (unused.length === 0) unused = candidates;
+    const headshotDir = resolve(root, 'public', 'subclass_headshot');
 
-    // prefer subclass match
-    const subCandidates = unused.filter(p => (p.subclass || '').toLowerCase() === sub);
-    const pool = subCandidates.length > 0 ? subCandidates : unused;
+    if (!existsSync(headshotDir)) return '';
 
-    if (pool.length === 0) return '';
+    const files = readdirSync(headshotDir);
 
-    // deterministic: pick first (already sorted in metadata)
-    const chosen = pool[0];
-    usedPortraitFilenames.add(chosen.filename);
-    return `portraits/${chosen.filename}`;
+    // Find matching image file regardless of extension (.jpg, .png, .webp)
+    const match = files.find(file => {
+        const nameWithoutExt = file.substring(0, file.lastIndexOf('.')).toLowerCase().replace(/[^a-z0-9]/g, '');
+        return nameWithoutExt === cleanSubc;
+    });
+
+    return match ? `subclass_headshot/${match}` : '';
 }
 
 // ─── Load DB ──────────────────────────────────────────────────────────────────
@@ -266,7 +266,6 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
 //   prefs: {slotId: [preferredPropertyId, ...]} - slot fill preferences
 
 const LEVEL = 8;
-
 const CHARACTERS = [
 
     // ─── BARBARIAN ────────────────────────────────────────────────────────────
@@ -403,8 +402,8 @@ const CHARACTERS = [
         id: 'sample_cleric_trickery',
         name: 'Nyx Shadowveil',
         class: 'Cleric', sub: 'Trickery',
-        species: 'Orc', background: 'charlatan',
-        speciesId: 'orc', classId: 'cleric', subcId: 'trickeryDomain',
+        species: 'Elf', background: 'charlatan',
+        speciesId: 'elf', classId: 'cleric', subcId: 'trickeryDomain',
         str: 0, dex: 3, con: 2, int: 2, wis: 4, cha: 3,
         prefs: {
             clericSkillProficiencies: ['deceptionProficiency', 'insightProficiency'],
@@ -430,8 +429,8 @@ const CHARACTERS = [
         id: 'sample_druid_land',
         name: 'Wren Fernhollow',
         class: 'Druid', sub: 'Land',
-        species: 'Elf', background: 'hermit',
-        speciesId: 'elf', classId: 'druid', subcId: 'circleOfTheLand',
+        species: 'Gnome', background: 'hermit',
+        speciesId: 'gnome', classId: 'druid', subcId: 'circleOfTheLand',
         str: 0, dex: 2, con: 2, int: 3, wis: 6, cha: 0,
         prefs: { druidSubclass: ['circleOfTheLand'] }
     },
@@ -439,8 +438,8 @@ const CHARACTERS = [
         id: 'sample_druid_moon',
         name: 'Arbor Bearpaw',
         class: 'Druid', sub: 'Moon',
-        species: 'Human', background: 'guide',
-        speciesId: 'human', classId: 'druid', subcId: 'circleOfTheMoon',
+        species: 'Aasimar', background: 'guide',
+        speciesId: 'aasimar', classId: 'druid', subcId: 'circleOfTheMoon',
         str: 1, dex: 1, con: 3, int: 1, wis: 7, cha: 0,
         prefs: { druidSubclass: ['circleOfTheMoon'] }
     },
@@ -560,8 +559,8 @@ const CHARACTERS = [
         id: 'sample_monk_shadows',
         name: 'Shade Veil',
         class: 'Monk', sub: 'Shadow',
-        species: 'Dragonborn', background: 'criminal',
-        speciesId: 'dragonborn', classId: 'monk', subcId: 'shadows',
+        species: 'Elf', background: 'criminal',
+        speciesId: 'elf', classId: 'monk', subcId: 'shadows',
         str: 2, dex: 6, con: 2, int: 1, wis: 3, cha: 1,
         prefs: {
             monkSkillProficiencies: ['stealthProficiency', 'acrobaticsProficiency'],
@@ -632,8 +631,8 @@ const CHARACTERS = [
         id: 'sample_ranger_gloomStalker',
         name: 'Miren Shadowtread',
         class: 'Ranger', sub: 'Gloom Stalker',
-        species: 'Goliath', background: 'criminal',
-        speciesId: 'goliath', classId: 'ranger', subcId: 'gloomStalker',
+        species: 'Dwarf', background: 'criminal',
+        speciesId: 'dwarf', classId: 'ranger', subcId: 'gloomStalker',
         str: 2, dex: 6, con: 2, int: 2, wis: 4, cha: 0,
         prefs: { rangerSubclass: ['gloomStalker'] }
     },
@@ -677,8 +676,8 @@ const CHARACTERS = [
         id: 'sample_rogue_soulknife',
         name: 'Kalax Voidcut',
         class: 'Rogue', sub: 'Soulknife',
-        species: 'Human', background: 'wayfarer',
-        speciesId: 'human', classId: 'rogue', subcId: 'soulknife',
+        species: 'Aasimar', background: 'wayfarer',
+        speciesId: 'aasimar', classId: 'rogue', subcId: 'soulknife',
         str: 1, dex: 6, con: 2, int: 3, wis: 2, cha: 0,
         prefs: {
             rogueSkillProficiencies: ['acrobaticsProficiency', 'stealthProficiency', 'insightProficiency', 'perceptionProficiency'],
@@ -689,8 +688,8 @@ const CHARACTERS = [
         id: 'sample_rogue_thief',
         name: 'Dex Quickpocket',
         class: 'Rogue', sub: 'Thief',
-        species: 'Elf', background: 'criminal',
-        speciesId: 'elf', classId: 'rogue', subcId: 'thief',
+        species: 'Human', background: 'criminal',
+        speciesId: 'human', classId: 'rogue', subcId: 'thief',
         str: 0, dex: 7, con: 2, int: 2, wis: 2, cha: 0,
         prefs: {
             rogueSkillProficiencies: ['stealthProficiency', 'sleightOfHandProficiency', 'acrobaticsProficiency', 'deceptionProficiency'],
@@ -713,8 +712,8 @@ const CHARACTERS = [
         id: 'sample_sorcerer_clockwork',
         name: 'Cog Precisus',
         class: 'Sorcerer', sub: 'Clockwork',
-        species: 'Minotaur', background: 'artisan',
-        speciesId: 'minotaur', classId: 'sorcerer', subcId: 'clockwork',
+        species: 'Dwarf', background: 'artisan',
+        speciesId: 'dwarf', classId: 'sorcerer', subcId: 'clockwork',
         str: 0, dex: 2, con: 2, int: 3, wis: 1, cha: 5,
         prefs: { sorcererSubclass: ['clockwork'] }
     },
@@ -752,8 +751,8 @@ const CHARACTERS = [
         id: 'sample_warlock_celestial',
         name: 'Lux Dawnpact',
         class: 'Warlock', sub: 'Celestial',
-        species: 'Human', background: 'acolyte',
-        speciesId: 'human', classId: 'warlock', subcId: 'celestialPatron',
+        species: 'Dwarf', background: 'acolyte',
+        speciesId: 'dwarf', classId: 'warlock', subcId: 'celestialPatron',
         str: 0, dex: 2, con: 2, int: 2, wis: 2, cha: 7,
         prefs: { warlockSubclass: ['celestialPatron'] }
     },
@@ -786,8 +785,8 @@ const CHARACTERS = [
         id: 'sample_wizard_abjurer',
         name: 'Alis Wardmage',
         class: 'Wizard', sub: 'Abjurer',
-        species: 'Human', background: 'sage',
-        speciesId: 'human', classId: 'wizard', subcId: 'abjurer',
+        species: 'Dwarf', background: 'sage',
+        speciesId: 'dwarf', classId: 'wizard', subcId: 'abjurer',
         str: 0, dex: 1, con: 4, int: 7, wis: 1, cha: 0,
         prefs: { wizardSubclass: ['abjurer'] }
     },
@@ -844,7 +843,7 @@ const CHARACTERS = [
         name: 'Mapmaker Pathfinder',
         class: 'Artificer', sub: 'Cartographer',
         species: 'Human', background: 'guide',
-        speciesId: 'human', classId: 'artificer', subcId: 'cartographer',
+        speciesId: 'human', classId: 'cartographer', subcId: 'cartographer',
         str: 0, dex: 2, con: 2, int: 7, wis: 2, cha: 0,
         prefs: { artificerSubclass: ['cartographer'] }
     },
@@ -1333,7 +1332,8 @@ async function buildCharacter(def) {
     // Auto-fill will now naturally pick it up once the class node exposes the subclass slot!
     autoFill(builder, def.prefs);
     // Set character image to a matching portrait from public/portraits/
-    const imgUrl = pickPortrait(def.class, def.species, def.sub);
+    // Set character image directly from public/subclass_headshot/
+    const imgUrl = pickPortrait(def.subcId);
     if (imgUrl) {
         const renderableNodes = collectRenderableNodes(builder.propertyTree, builder.characterData);
         const levelNode = renderableNodes.find(n => n.type === 'Input' && n.node.id === 'level');
@@ -1344,9 +1344,7 @@ async function buildCharacter(def) {
         if (imageNode) {
             builder.updateInput(imageNode.path, imgUrl);
         }
-    }
-
-    // Get final recipe
+    }    // Get final recipe
     const recipe = builder.getRecipe();
 
     // Get subclass display name

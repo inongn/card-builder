@@ -57,8 +57,9 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                             const subheadParts = [
                                 `Lv. ${charSaved.level || 1}`,
                                 charSaved.species,
-                                charSaved.sub,
-                                charSaved.class || 'Unknown Class'
+                                `${charSaved.sub} ${charSaved.class}`,
+                                //charSaved.sub,
+                                //charSaved.class || 'Unknown Class'
                             ].filter(Boolean);
 
                             const initials = charSaved.name
