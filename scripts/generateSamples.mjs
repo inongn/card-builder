@@ -402,8 +402,8 @@ const CHARACTERS = [
         id: 'sample_cleric_trickery',
         name: 'Nyx Shadowveil',
         class: 'Cleric', sub: 'Trickery',
-        species: 'Elf', background: 'charlatan',
-        speciesId: 'elf', classId: 'cleric', subcId: 'trickeryDomain',
+        species: 'Halfling', background: 'charlatan',
+        speciesId: 'halfling', classId: 'cleric', subcId: 'trickeryDomain',
         str: 0, dex: 3, con: 2, int: 2, wis: 4, cha: 3,
         prefs: {
             clericSkillProficiencies: ['deceptionProficiency', 'insightProficiency'],
@@ -721,8 +721,8 @@ const CHARACTERS = [
         id: 'sample_sorcerer_draconic',
         name: 'Sylin Emberclaw',
         class: 'Sorcerer', sub: 'Draconic',
-        species: 'Tiefling', background: 'noble',
-        speciesId: 'tiefling', classId: 'sorcerer', subcId: 'draconic',
+        species: 'Human', background: 'noble',
+        speciesId: 'human', classId: 'sorcerer', subcId: 'draconic',
         str: 0, dex: 2, con: 2, int: 2, wis: 1, cha: 6,
         prefs: { sorcererSubclass: ['draconic'] }
     },

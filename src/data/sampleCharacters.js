@@ -4741,7 +4741,7 @@ export const SAMPLE_CHARACTERS = [
         name: 'Nyx Shadowveil',
         class: 'Cleric',
         sub: 'Trickery',
-        species: 'Elf',
+        species: 'Halfling',
         level: 8,
         image: 'subclass_headshot/trickerydomain.jpg',
         recipe: {
@@ -4936,29 +4936,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'species'
                                 }
                         ],
-                        propertyId: 'elf'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'species'
-                                },
-                                {
-                                        id: 'elvenLineage'
-                                }
-                        ],
-                        propertyId: 'elvenLineageDrow'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'species'
-                                },
-                                {
-                                        id: 'keenSenses'
-                                }
-                        ],
-                        propertyId: 'insightProficiency'
+                        propertyId: 'halfling'
                 },
                 {
                         path: [
@@ -4981,7 +4959,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'religionProficiency'
+                        propertyId: 'insightProficiency'
                 },
                 {
                         path: [
@@ -4996,7 +4974,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'medicineProficiency'
+                        propertyId: 'religionProficiency'
                 },
                 {
                         path: [
@@ -5011,7 +4989,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'historyProficiency'
+                        propertyId: 'medicineProficiency'
                 },
                 {
                         path: [
@@ -5029,6 +5007,18 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'clericSkillProficiencies',
                                         slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'historyProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericSkillProficiencies',
+                                        slotIndex: 1
                                 }
                         ],
                         propertyId: 'persuasionProficiency'
@@ -17616,7 +17606,7 @@ export const SAMPLE_CHARACTERS = [
         name: 'Sylin Emberclaw',
         class: 'Sorcerer',
         sub: 'Draconic',
-        species: 'Tiefling',
+        species: 'Human',
         level: 8,
         image: 'subclass_headshot/draconic.jpg',
         recipe: {
@@ -17801,7 +17791,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'species'
                                 }
                         ],
-                        propertyId: 'tiefling'
+                        propertyId: 'human'
                 },
                 {
                         path: [
@@ -17809,10 +17799,21 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'species'
                                 },
                                 {
-                                        id: 'fiendishLegacy'
+                                        id: 'skillful'
                                 }
                         ],
-                        propertyId: 'fiendishLegacyInfernal'
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'versatile'
+                                }
+                        ],
+                        propertyId: 'alert'
                 },
                 {
                         path: [
@@ -17835,7 +17836,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'arcanaProficiency'
+                        propertyId: 'deceptionProficiency'
                 },
                 {
                         path: [
@@ -17850,7 +17851,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'deceptionProficiency'
+                        propertyId: 'insightProficiency'
                 },
                 {
                         path: [
@@ -17865,7 +17866,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'insightProficiency'
+                        propertyId: 'acrobaticsProficiency'
                 },
                 {
                         path: [
@@ -17909,7 +17910,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'chillTouch'
+                        propertyId: 'fireBolt'
                 },
                 {
                         path: [
@@ -18175,7 +18176,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'energyMastery'
                                 }
                         ],
-                        propertyId: 'lightningResistance'
+                        propertyId: 'fireResistance'
                 },
                 {
                         path: [
@@ -20174,7 +20175,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fiendishLegacy'
                                 }
                         ],
-                        propertyId: 'fiendishLegacyAbyssal'
+                        propertyId: 'fiendishLegacyInfernal'
                 },
                 {
                         path: [
@@ -20274,7 +20275,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'hellishRebuke'
+                        propertyId: 'removeCurse'
                 },
                 {
                         path: [
@@ -20322,7 +20323,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'removeCurse'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -20491,7 +20492,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'energyMastery'
                                 }
                         ],
-                        propertyId: 'fireResistance'
+                        propertyId: 'lightningResistance'
                 }
         ]
 }
