@@ -357,6 +357,8 @@ export default function App() {
                         onNavigate={handleNavigate}
                         toggleTheme={toggleTheme}
                         isDarkMode={isDarkMode}
+                        loadedCharacterId={loadedCharacterId}
+                        handleDeleteSaved={handleDeleteSaved}
                     />
                 )}
                 {activeTab === 'print' && (

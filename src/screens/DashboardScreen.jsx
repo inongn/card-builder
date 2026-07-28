@@ -55,7 +55,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         {savedCharacters.map((charSaved) => {
                             const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
                             const subheadParts = [
-                                `Level ${charSaved.level || 1}`,
+                                `Lv. ${charSaved.level || 1}`,
                                 charSaved.species,
                                 charSaved.sub,
                                 charSaved.class || 'Unknown Class'
@@ -85,14 +85,6 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                                         )}
                                     </div>
 
-                                    <mdui-button-icon
-                                        slot="end-icon"
-                                        icon="delete"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleDeleteSaved(charSaved.id);
-                                        }}
-                                    ></mdui-button-icon>
                                 </mdui-list-item>
                             );
                         })}

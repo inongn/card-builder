@@ -10,7 +10,7 @@ import 'mdui/components/menu.js';
 import 'mdui/components/dropdown.js';
 import 'mdui/components/menu-item.js';
 
-export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode }) => {
+export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode, loadedCharacterId, handleDeleteSaved }) => {
     const mainCardRef = React.useRef(null);
     const asideRef = React.useRef(null);
     const charImage = characterData?.meta?.image ? getAssetUrl(characterData.meta.image) : undefined;
@@ -130,6 +130,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
                 <mdui-top-app-bar-title>{characterData?.meta?.name || 'Aspida'}</mdui-top-app-bar-title>
                 <mdui-button-icon icon="edit" onClick={() => onNavigate('builder')} className="mobile-hidden"></mdui-button-icon>
                 <mdui-button-icon icon="print" onClick={() => onNavigate('print')} className="mobile-hidden"></mdui-button-icon>
+                <mdui-button-icon icon="delete" onClick={() => { handleDeleteSaved(loadedCharacterId); onNavigate('dashboard'); }} className="mobile-hidden"></mdui-button-icon>
                 <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme} className="mobile-hidden"></mdui-button-icon>
 
                 <mdui-dropdown placement="bottom-end">
@@ -143,6 +144,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode 
                     <mdui-menu>
                         <mdui-menu-item icon="edit" onClick={() => onNavigate('builder')}>Edit Character</mdui-menu-item>
                         <mdui-menu-item icon="print" onClick={() => onNavigate('print')}>Print Sheet</mdui-menu-item>
+                        <mdui-menu-item icon="delete" onClick={() => { handleDeleteSaved(loadedCharacterId); onNavigate('dashboard'); }}>Delete</mdui-menu-item>
                         <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
                             {isDarkMode ? 'Light Mode' : 'Dark Mode'}
                         </mdui-menu-item>

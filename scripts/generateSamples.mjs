@@ -41,21 +41,26 @@ const portraitsMetadata = existsSync(portraitsMetadataPath)
 const usedPortraitFilenames = new Set();
 
 /**
- * Pick a portrait path for a character by class and species.
- * Prioritises class+species match, then species-only. Cycles through to avoid repeats.
+ * Pick a portrait path for a character by class, species, and subclass.
+ * Prioritises class+subclass+species match, then class+species match. Cycles through to avoid repeats.
  */
-function pickPortrait(className, speciesName) {
+function pickPortrait(className, speciesName, subclassName) {
     const cls = (className || '').toLowerCase();
     const sp = (speciesName || '').toLowerCase();
+    const sub = (subclassName || '').toLowerCase();
 
     const candidates = portraitsMetadata.filter(p =>
         (p.class || '').toLowerCase() === cls &&
         (p.species || '').toLowerCase() === sp
     );
 
-    // prefer unused
-    const unused = candidates.filter(p => !usedPortraitFilenames.has(p.filename));
-    const pool = unused.length > 0 ? unused : candidates;
+    let unused = candidates.filter(p => !usedPortraitFilenames.has(p.filename));
+    if (unused.length === 0) unused = candidates;
+
+    // prefer subclass match
+    const subCandidates = unused.filter(p => (p.subclass || '').toLowerCase() === sub);
+    const pool = subCandidates.length > 0 ? subCandidates : unused;
+
     if (pool.length === 0) return '';
 
     // deterministic: pick first (already sorted in metadata)
@@ -268,7 +273,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_barbarian_berserker',
-        name: 'Garth Ironjaw',
+        name: 'Rowan Ironjaw',
         class: 'Barbarian', sub: 'Path of the Berserker',
         species: 'Human', background: 'soldier',
         speciesId: 'human', classId: 'barbarian', subcId: 'berserker',
@@ -282,7 +287,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_barbarian_wildHeart',
-        name: 'Bovar Mossrunner',
+        name: 'Vorel Mossrunner',
         class: 'Barbarian', sub: 'Path of the Wild Heart',
         species: 'Minotaur', background: 'guide',
         speciesId: 'minotaur', classId: 'barbarian', subcId: 'wildHeart',
@@ -294,7 +299,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_barbarian_worldTree',
-        name: 'Brulda Ashroot',
+        name: 'Ellis Ashroot',
         class: 'Barbarian', sub: 'Path of the World Tree',
         species: 'Elf', background: 'hermit',
         speciesId: 'elf', classId: 'barbarian', subcId: 'worldTree',
@@ -321,7 +326,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_bard_dance',
-        name: 'Marcus Twostep',
+        name: 'Morgan Twostep',
         class: 'Bard', sub: 'Dance',
         species: 'Human', background: 'entertainer',
         speciesId: 'human', classId: 'bard', subcId: 'dance',
@@ -333,7 +338,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_bard_glamour',
-        name: 'Sylindra Moonsong',
+        name: 'Sylis Moonsong',
         class: 'Bard', sub: 'Glamour',
         species: 'Elf', background: 'noble',
         speciesId: 'elf', classId: 'bard', subcId: 'glamour',
@@ -345,7 +350,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_bard_lore',
-        name: 'Penelope Thistledown',
+        name: 'Pen Thistledown',
         class: 'Bard', sub: 'Lore',
         species: 'Human', background: 'sage',
         speciesId: 'human', classId: 'bard', subcId: 'lore',
@@ -372,7 +377,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_cleric_life',
-        name: 'Sister Merindah',
+        name: 'Merin',
         class: 'Cleric', sub: 'Life',
         species: 'Human', background: 'acolyte',
         speciesId: 'human', classId: 'cleric', subcId: 'lifeDomain',
@@ -384,7 +389,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_cleric_light',
-        name: 'Vala Sunmantle',
+        name: 'Valen Sunmantle',
         class: 'Cleric', sub: 'Light',
         species: 'Elf', background: 'acolyte',
         speciesId: 'elf', classId: 'cleric', subcId: 'lightDomain',
@@ -398,8 +403,8 @@ const CHARACTERS = [
         id: 'sample_cleric_trickery',
         name: 'Nyx Shadowveil',
         class: 'Cleric', sub: 'Trickery',
-        species: 'Halfling', background: 'charlatan',
-        speciesId: 'halfling', classId: 'cleric', subcId: 'trickeryDomain',
+        species: 'Orc', background: 'charlatan',
+        speciesId: 'orc', classId: 'cleric', subcId: 'trickeryDomain',
         str: 0, dex: 3, con: 2, int: 2, wis: 4, cha: 3,
         prefs: {
             clericSkillProficiencies: ['deceptionProficiency', 'insightProficiency'],
@@ -408,7 +413,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_cleric_war',
-        name: 'Commander Damia',
+        name: 'Commander Dael',
         class: 'Cleric', sub: 'War',
         species: 'Tiefling', background: 'soldier',
         speciesId: 'tiefling', classId: 'cleric', subcId: 'warDomain',
@@ -432,7 +437,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_druid_moon',
-        name: 'Torrin Bearpaw',
+        name: 'Arbor Bearpaw',
         class: 'Druid', sub: 'Moon',
         species: 'Human', background: 'guide',
         speciesId: 'human', classId: 'druid', subcId: 'circleOfTheMoon',
@@ -441,7 +446,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_druid_sea',
-        name: 'Coraline Wavecrest',
+        name: 'Coral Wavecrest',
         class: 'Druid', sub: 'Sea',
         species: 'Triton', background: 'sailor',
         speciesId: 'triton', classId: 'druid', subcId: 'circleOfTheSea',
@@ -450,7 +455,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_druid_stars',
-        name: 'Astraea Cosmoss',
+        name: 'Aster Cosmoss',
         class: 'Druid', sub: 'Stars',
         species: 'Elf', background: 'sage',
         speciesId: 'elf', classId: 'druid', subcId: 'circleOfTheStars',
@@ -462,7 +467,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_fighter_battleMaster',
-        name: 'Kira Steelwind',
+        name: 'Kael Steelwind',
         class: 'Fighter', sub: 'Battle Master',
         species: 'Dragonborn', background: 'soldier',
         speciesId: 'dragonborn', classId: 'fighter', subcId: 'battleMaster',
@@ -475,7 +480,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_fighter_champion',
-        name: 'Brenda Ironwill',
+        name: 'Bren Ironwill',
         class: 'Fighter', sub: 'Champion',
         species: 'Human', background: 'soldier',
         speciesId: 'human', classId: 'fighter', subcId: 'champion',
@@ -488,7 +493,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_fighter_eldritchKnight',
-        name: 'Valerie Spellblade',
+        name: 'Val Spellblade',
         class: 'Fighter', sub: 'Eldritch Knight',
         species: 'Human', background: 'sage',
         speciesId: 'human', classId: 'fighter', subcId: 'eldritchKnight',
@@ -517,7 +522,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_monk_elements',
-        name: 'Suzara Windfire',
+        name: 'Suza Windfire',
         class: 'Monk', sub: 'the Elements',
         species: 'Orc', background: 'hermit',
         speciesId: 'orc', classId: 'monk', subcId: 'elements',
@@ -541,7 +546,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_monk_openHand',
-        name: 'Sister Jiao',
+        name: 'Adept Jiao',
         class: 'Monk', sub: 'the Open Hand',
         species: 'Human', background: 'hermit',
         speciesId: 'human', classId: 'monk', subcId: 'openHand',
@@ -555,8 +560,8 @@ const CHARACTERS = [
         id: 'sample_monk_shadows',
         name: 'Shade Veil',
         class: 'Monk', sub: 'Shadow',
-        species: 'Elf', background: 'criminal',
-        speciesId: 'elf', classId: 'monk', subcId: 'shadows',
+        species: 'Dragonborn', background: 'criminal',
+        speciesId: 'dragonborn', classId: 'monk', subcId: 'shadows',
         str: 2, dex: 6, con: 2, int: 1, wis: 3, cha: 1,
         prefs: {
             monkSkillProficiencies: ['stealthProficiency', 'acrobaticsProficiency'],
@@ -568,7 +573,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_paladin_devotion',
-        name: 'Ser Lysandra Brightshield',
+        name: 'Ser Lys Brightshield',
         class: 'Paladin', sub: 'Oath of Devotion',
         species: 'Human', background: 'acolyte',
         speciesId: 'human', classId: 'paladin', subcId: 'oathOfDevotion',
@@ -577,7 +582,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_paladin_glory',
-        name: 'Aurelius Goldhelm',
+        name: 'Auri Goldhelm',
         class: 'Paladin', sub: 'Oath of Glory',
         species: 'Tiefling', background: 'noble',
         speciesId: 'tiefling', classId: 'paladin', subcId: 'oathOfGlory',
@@ -586,7 +591,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_paladin_ancients',
-        name: 'Elarion Greenvow',
+        name: 'Elen Greenvow',
         class: 'Paladin', sub: 'Oath of the Ancients',
         species: 'Elf', background: 'guide',
         speciesId: 'elf', classId: 'paladin', subcId: 'oathOfTheAncients',
@@ -625,16 +630,16 @@ const CHARACTERS = [
     },
     {
         id: 'sample_ranger_gloomStalker',
-        name: 'Mira Shadowtread',
+        name: 'Miren Shadowtread',
         class: 'Ranger', sub: 'Gloom Stalker',
-        species: 'Dwarf', background: 'criminal',
-        speciesId: 'dwarf', classId: 'ranger', subcId: 'gloomStalker',
+        species: 'Goliath', background: 'criminal',
+        speciesId: 'goliath', classId: 'ranger', subcId: 'gloomStalker',
         str: 2, dex: 6, con: 2, int: 2, wis: 4, cha: 0,
         prefs: { rangerSubclass: ['gloomStalker'] }
     },
     {
         id: 'sample_ranger_hunter',
-        name: 'Rex Bouldershot',
+        name: 'Rey Bouldershot',
         class: 'Ranger', sub: 'Hunter',
         species: 'Human', background: 'soldier',
         speciesId: 'human', classId: 'ranger', subcId: 'hunter',
@@ -646,7 +651,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_rogue_arcaneTrickster',
-        name: 'Grisla Nimblefingers',
+        name: 'Gris Nimblefingers',
         class: 'Rogue', sub: 'Arcane Trickster',
         species: 'Orc', background: 'charlatan',
         speciesId: 'orc', classId: 'rogue', subcId: 'arcaneTrickster',
@@ -682,7 +687,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_rogue_thief',
-        name: 'Dextra Quickpocket',
+        name: 'Dex Quickpocket',
         class: 'Rogue', sub: 'Thief',
         species: 'Elf', background: 'criminal',
         speciesId: 'elf', classId: 'rogue', subcId: 'thief',
@@ -708,14 +713,14 @@ const CHARACTERS = [
         id: 'sample_sorcerer_clockwork',
         name: 'Cog Precisus',
         class: 'Sorcerer', sub: 'Clockwork',
-        species: 'Dwarf', background: 'artisan',
-        speciesId: 'dwarf', classId: 'sorcerer', subcId: 'clockwork',
+        species: 'Minotaur', background: 'artisan',
+        speciesId: 'minotaur', classId: 'sorcerer', subcId: 'clockwork',
         str: 0, dex: 2, con: 2, int: 3, wis: 1, cha: 5,
         prefs: { sorcererSubclass: ['clockwork'] }
     },
     {
         id: 'sample_sorcerer_draconic',
-        name: 'Sylindra Emberclaw',
+        name: 'Sylin Emberclaw',
         class: 'Sorcerer', sub: 'Draconic',
         species: 'Tiefling', background: 'noble',
         speciesId: 'tiefling', classId: 'sorcerer', subcId: 'draconic',
@@ -726,8 +731,8 @@ const CHARACTERS = [
         id: 'sample_sorcerer_wildMagic',
         name: 'Blix Unpredictus',
         class: 'Sorcerer', sub: 'Wild Magic',
-        species: 'Halfling', background: 'charlatan',
-        speciesId: 'halfling', classId: 'sorcerer', subcId: 'wildMagic',
+        species: 'Human', background: 'charlatan',
+        speciesId: 'human', classId: 'sorcerer', subcId: 'wildMagic',
         str: 0, dex: 3, con: 2, int: 2, wis: 1, cha: 6,
         prefs: { sorcererSubclass: ['wildMagic'] }
     },
@@ -736,7 +741,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_warlock_archfey',
-        name: 'Mira Thornwhisper',
+        name: 'Miren Thornwhisper',
         class: 'Warlock', sub: 'Archfey',
         species: 'Elf', background: 'wayfarer',
         speciesId: 'elf', classId: 'warlock', subcId: 'archfeyPatron',
@@ -767,7 +772,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_warlock_greatOldOne',
-        name: 'Zelara Voidpact',
+        name: 'Zel Voidpact',
         class: 'Warlock', sub: 'Great Old One',
         species: 'Human', background: 'hermit',
         speciesId: 'human', classId: 'warlock', subcId: 'greatOldOnePatron',
@@ -779,16 +784,16 @@ const CHARACTERS = [
 
     {
         id: 'sample_wizard_abjurer',
-        name: 'Aldus Wardmage',
+        name: 'Alis Wardmage',
         class: 'Wizard', sub: 'Abjurer',
-        species: 'Dwarf', background: 'sage',
-        speciesId: 'dwarf', classId: 'wizard', subcId: 'abjurer',
+        species: 'Human', background: 'sage',
+        speciesId: 'human', classId: 'wizard', subcId: 'abjurer',
         str: 0, dex: 1, con: 4, int: 7, wis: 1, cha: 0,
         prefs: { wizardSubclass: ['abjurer'] }
     },
     {
         id: 'sample_wizard_diviner',
-        name: 'Oracle Seera',
+        name: 'Oracle Seer',
         class: 'Wizard', sub: 'Diviner',
         species: 'Tiefling', background: 'sage',
         speciesId: 'tiefling', classId: 'wizard', subcId: 'diviner',
@@ -797,7 +802,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_wizard_evoker',
-        name: 'Blastus Firebolt',
+        name: 'Blast Firebolt',
         class: 'Wizard', sub: 'Evoker',
         species: 'Elf', background: 'sage',
         speciesId: 'elf', classId: 'wizard', subcId: 'evoker',
@@ -806,7 +811,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_wizard_illusionist',
-        name: 'Phantasma Veil',
+        name: 'Phan Veil',
         class: 'Wizard', sub: 'Illusionist',
         species: 'Gnome', background: 'charlatan',
         speciesId: 'gnome', classId: 'wizard', subcId: 'illusionist',
@@ -818,7 +823,7 @@ const CHARACTERS = [
 
     {
         id: 'sample_artificer_alchemist',
-        name: 'Fizzy Potionson',
+        name: 'Fizzy Potionmaker',
         class: 'Artificer', sub: 'Alchemist',
         species: 'Human', background: 'artisan',
         speciesId: 'human', classId: 'artificer', subcId: 'alchemist',
@@ -838,8 +843,8 @@ const CHARACTERS = [
         id: 'sample_artificer_cartographer',
         name: 'Mapmaker Pathfinder',
         class: 'Artificer', sub: 'Cartographer',
-        species: 'Elf', background: 'guide',
-        speciesId: 'elf', classId: 'artificer', subcId: 'cartographer',
+        species: 'Human', background: 'guide',
+        speciesId: 'human', classId: 'artificer', subcId: 'cartographer',
         str: 0, dex: 2, con: 2, int: 7, wis: 2, cha: 0,
         prefs: { artificerSubclass: ['cartographer'] }
     },
@@ -857,7 +862,7 @@ const CHARACTERS = [
     },
     {
         id: 'sample_artificer_reanimator',
-        name: 'Dr. Fran Frankenstitch',
+        name: 'Dr. Frankie Frankenstitch',
         class: 'Artificer', sub: 'Reanimator',
         species: 'Human', background: 'hermit',
         speciesId: 'human', classId: 'artificer', subcId: 'reanimator',
@@ -1264,19 +1269,47 @@ async function buildCharacter(def) {
         def[minKey]--;
         currentSum--;
     }
-    // Set level first via input path [1]
-    builder.updateInput([1], LEVEL);
-    // Set stats
-    builder.updateInput([2], def.str);
-    builder.updateInput([3], def.dex);
-    builder.updateInput([4], def.con);
-    builder.updateInput([5], def.int);
-    builder.updateInput([6], def.wis);
-    builder.updateInput([7], def.cha);
-    // Set name
-    builder.updateInput([0], def.name);
+    // Dynamically find inputs by their id instead of hardcoding tree indices
+    const updateInputById = (id, value) => {
+        const inputNodes = [];
+        const findInputs = (node, path = []) => {
+            if (!node || node.visible === false) return;
+            if (node.children) {
+                node.children.forEach((child) => {
+                    const step = { id: child.id, slotIndex: child.slotIndex };
+                    const currentPath = [...path, step];
+                    if (child.type === 'Input' && child.id === id) {
+                        inputNodes.push(currentPath);
+                    }
+                    findInputs(child, currentPath);
+                });
+            }
+        };
+        findInputs(builder.propertyTree);
+
+        // Use applyRecipe's robust logical path updating by pushing to inputs
+        if (inputNodes.length > 0) {
+            const recipe = builder.getRecipe();
+
+            // Remove existing input if any
+            recipe.inputs = recipe.inputs.filter(i => i.path[i.path.length - 1].id !== id);
+
+            recipe.inputs.push({ path: inputNodes[0], value });
+            builder.applyRecipe(recipe);
+        }
+    };
+
+    updateInputById('level', LEVEL);
+    updateInputById('allocated_str', def.str);
+    updateInputById('allocated_dex', def.dex);
+    updateInputById('allocated_con', def.con);
+    updateInputById('allocated_int', def.int);
+    updateInputById('allocated_wis', def.wis);
+    updateInputById('allocated_cha', def.cha);
+    updateInputById('name', def.name);
 
     // Fill species / background / class in top-level slots (use applyRecipe)
+    // Fill base slots (species, background, class)
     const baseSlots = [
         { slotId: 'species', propId: def.speciesId },
         { slotId: 'background', propId: def.background },
@@ -1291,18 +1324,16 @@ async function buildCharacter(def) {
         }
     }
 
-    // Fill subclass slot
-    const subcSlots = findUnfilledSlots(builder.propertyTree);
-    const subcTarget = subcSlots.find(s => s.node.id && s.node.id.endsWith('Subclass'));
-    if (subcTarget) {
-        fillSlotByPath(builder, subcTarget.path, def.subcId);
-    }
+    // Ensure def.prefs includes the target subclass ID under common slot ID variations
+    if (!def.prefs) def.prefs = {};
+    const subSlotKey = `${def.classId}Subclass`;
+    def.prefs[subSlotKey] = [def.subcId];
+    def.prefs['subclass'] = [def.subcId]; // Fallback key
 
-    // Auto-fill remaining slots with preferences
-    autoFill(builder, def.prefs || {});
-
+    // Auto-fill will now naturally pick it up once the class node exposes the subclass slot!
+    autoFill(builder, def.prefs);
     // Set character image to a matching portrait from public/portraits/
-    const imgUrl = pickPortrait(def.class, def.species);
+    const imgUrl = pickPortrait(def.class, def.species, def.sub);
     if (imgUrl) {
         const renderableNodes = collectRenderableNodes(builder.propertyTree, builder.characterData);
         const levelNode = renderableNodes.find(n => n.type === 'Input' && n.node.id === 'level');
