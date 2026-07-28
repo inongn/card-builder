@@ -1,0 +1,37 @@
+id: lament
+name: Path of the Lament
+description: |
+  Barbarians of the Path of the Lament draw upon the mournful spirits of the departed, unleashing their sorrow in terrifying wails and horrifying strikes.
+type: Folder
+tags:
+  - barbarianSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Lament"
+
+  - id: bansheesWail
+    type: Activity
+    name: Banshee's Wail
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    resource: rage
+    condition: $(meta.level >= 3)
+    description: |
+      While your Rage is active, you let out a doleful wail. Each creature of your choice in a 30-foot Emanation originating from you must make a DC $(8 + stats.con.mod + attributes.prof) Constitution saving throw. On a failed save, a creature takes $(attributes.rageDamage)d12 Psychic damage and has the Deafened condition for 1 minute. On a successful save, it takes half as much damage only.
+
+  # Level 6: Commune with the Dead
+  - type: Reference
+    target: [speakWithDead, wisCaster]
+    condition: $(meta.level >= 6)
+
+  # Level 6: Horrifying Strike
+  - id: horrifyingStrike
+    type: Activity
+    name: Horrifying Strike
+    time: free action
+    condition: $(meta.level >= 6)
+    description: "Once per turn when you hit a creature with a Strength-based attack roll while your Rage is active, you can force the target to make a DC $(8 + stats.con.mod + attributes.prof) Wisdom saving throw. On a failed save, the creature has the Frightened condition until the start of your next turn."

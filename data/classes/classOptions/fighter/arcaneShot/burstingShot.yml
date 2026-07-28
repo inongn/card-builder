@@ -1,0 +1,6 @@
+id: burstingShot
+name: Bursting Shot
+type: Activity
+tags: [arcaneShotOption]
+resource: arcaneShot
+description: "When you hit a creature with an attack roll using a weapon with the Ammunition property, the target and each creature within a 10-foot Emanation originating from it take 2d6 Force damage immediately after the attack deals damage."

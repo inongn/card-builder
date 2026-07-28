@@ -1,0 +1,16 @@
+id: lightDomainVestige
+name: Light Domain
+tags: [vestigeType]
+type: Folder
+children:
+  - type: Reference
+    target: [burningHands, faerieFire, flamingSphere, scorchingRay]
+  - type: Reference
+    condition: meta.level >= 5
+    target: [daylight, fireball]
+  - type: Reference
+    condition: meta.level >= 7
+    target: [guardianOfFaith, wallOfFire]
+  - type: Reference
+    condition: meta.level >= 9
+    target: [flameStrike, scrying]

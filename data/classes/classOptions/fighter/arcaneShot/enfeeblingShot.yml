@@ -1,0 +1,6 @@
+id: enfeeblingShot
+name: Enfeebling Shot
+type: Activity
+tags: [arcaneShotOption]
+resource: arcaneShot
+description: "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 2d6 Necrotic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Constitution saving throw or have the Poisoned condition until the end of its next turn. While Poisoned, it subtracts 1d6 from the total damage of its attacks."

@@ -1,0 +1,6 @@
+id: seekingShot
+name: Seeking Shot
+type: Activity
+tags: [arcaneShotOption]
+resource: arcaneShot
+description: "You don't make an attack roll for the attack. Instead, choose one creature you have seen in the last minute. The ammunition flies toward that creature, moving around corners if necessary, ignoring cover. If the target is within your weapon’s long range, it must make a DC $(8 + stats.int.mod + attributes.prof) Dexterity saving throw, taking weapon damage plus 2d6 Force damage and revealing its location on a failure, or half as much on a success."

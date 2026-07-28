@@ -1,0 +1,64 @@
+id: venom
+name: Warrior of Venom
+description: |
+  Monks of the Warrior of Venom harvest toxins from their own blood, coating their weapons with debilitating poisons and using toxic touches to sedate or charm foes.
+type: Folder
+tags:
+  - monkSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Venom"
+
+  # Level 3: Envenom Weapon
+  - id: envenomWeapon
+    type: Activity
+    name: Envenom Weapon
+    time: free action
+    resource: 1 focusPoints
+    condition: $(meta.level >= 3)
+    description: |
+      You coat your Monk weapon in toxin. For 1 minute or until you hit a creature with it, the next creature taking damage from the weapon is subjected to one of the following:
+      
+      **Slowing Toxin.** The target’s Speed is halved, it can’t take Reactions, and it can take either an action or a Bonus Action on its turn, not both. These effects last until the start of your next turn.
+      
+      **Venom.** The target takes Poison damage equal to two rolls of your Martial Arts die (2d$(attributes.martialArtsDie)).
+
+  # Level 3: Potent Arsenal
+  - type: Reference
+    target: poisonersKit
+    condition: $(meta.level >= 3)
+
+  - id: potentArsenal
+    type: Extra
+    target: [envenomWeapon, toxicTouch]
+    condition: $(meta.level >= 3)
+    name: "Potent Arsenal"
+    description: "You can change the damage type to Acid."
+
+  - id: potentArsenalAttacks
+    type: Extra
+    target: weaponAttack
+    condition: $(meta.level >= 3)
+    name: "Potent Arsenal"
+    description: "You can change the damage type to Acid."
+
+  # Level 6: Toxic Touch
+  - id: toxicTouch
+    type: Activity
+    name: Toxic Touch
+    time: action
+    range: touch
+    duration: 1 minute
+    resource: 1 focusPoints
+    condition: $(meta.level >= 6)
+    description: |
+      You touch a creature. The target must succeed on a DC $(attributes.monkSaveDC) Constitution saving throw or have the Poisoned condition for 1 minute. While Poisoned in this way, it suffers one of the following:
+      
+      **Intoxicant.** The target has the Charmed condition until you or your allies deal damage to it.
+      
+      **Sedative.** The target has the Unconscious condition. Another creature can use an action to shake it awake.
+      
+      **Truth Serum.** The target can't knowingly tell a lie.

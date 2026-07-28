@@ -1,0 +1,9 @@
+id: myrkulPact
+name: Aspect of Mortality
+tags: [dreadAllegiance]
+type: Folder
+children:
+  - type: Reference
+    target: necroticResistance
+  - type: Reference
+    target: [chillTouch]

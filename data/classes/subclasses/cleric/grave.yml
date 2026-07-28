@@ -1,0 +1,73 @@
+id: graveDomain
+name: Grave Domain
+description: |
+  Clerics of the Grave Domain guard the boundary between life and death, ensuring that souls find their proper rest and drawing upon the energy of that transition to heal allies and smite foes.
+type: Folder
+tags:
+  - clericSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Grave"
+
+  # Level 3: Grave Domain Spells
+  - type: Reference
+    target: [detectEvilAndGood, falseLife, gentleRepose, rayOfEnfeeblement, spareTheDying]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [revivify, vampiricTouch]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [blight, deathWard]
+    condition: $(meta.level >= 7)
+
+  # Level 3: Circle of Mortality
+  - id: circleOfMortalityPull
+    type: Extra
+    target: weaponAttack OR damageSpell
+    condition: $(meta.level >= 3)
+    name: "Pull of Death"
+    description: "Once per turn, on a hit to a creature that is missing any Hit Points, you deal an extra 1d$(meta.level >= 11 ? 6 : 4) Necrotic damage."
+
+  - id: returnToLifeSpareTheDying
+    type: Effect
+    target: activities[id=spareTheDying].time
+    operation: set
+    value: "bonus action"
+    condition: $(meta.level >= 3)
+
+  - id: circleOfMortalityHealing
+    type: Extra
+    target: healingSpell OR channelDivinity
+    condition: $(meta.level >= 3)
+    name: "Circle of Mortality"
+    description: "When restoring Hit Points to a creature at 0 Hit Points, use the highest possible roll for each die."
+
+  # Level 3: Path to the Grave
+  - id: pathToTheGrave
+    type: Activity
+    name: Path to the Grave
+    time: bonus action
+    range: 30 feet
+    resource: channelDivinity
+    condition: $(meta.level >= 3)
+    description: "You curse a creature within range. Until the start of your next turn, it has Disadvantage on attack rolls and saving throws. The curse ends early when you or an ally hits the target, making the attack deal extra Necrotic or Radiant damage (your choice) equal to $(meta.level)."
+
+  # Level 6: Sentinel at Death’s Door
+  - id: sentinelAtDeathsDoor
+    type: Resource
+    name: Sentinel at Death's Door
+    quantity: $(Math.max(1, stats.wis.mod))
+    condition: $(meta.level >= 6)
+
+  - id: sentinelAtDeathsDoor
+    type: Activity
+    name: Sentinel at Death's Door
+    time: reaction
+    range: 60 feet
+    duration: Instantaneous
+    resource: sentinelAtDeathsDoor
+    condition: $(meta.level >= 6)
+    description: "When you or a Bloodied creature within range is hit with an attack roll, you use your Reaction to halve that attack's damage. If the attack was a Critical Hit, its Critical Hit effects are canceled."

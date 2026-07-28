@@ -40,56 +40,116 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
         };
     }, []);
 
+    const featuredCharacter = savedCharacters.length > 0 ? savedCharacters[0] : null;
+    const remainingCharacters = savedCharacters.length > 1 ? savedCharacters.slice(1) : [];
+
+    // Helper function to render a list item
+    const renderListItem = (charSaved) => {
+        const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
+        const subheadParts = [
+            `Level ${charSaved.level || 1}`,
+            charSaved.species,
+            `${charSaved.sub || ''} ${charSaved.class || ''}`.trim(),
+        ].filter(Boolean);
+
+        const initials = charSaved.name
+            ? charSaved.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+            : 'A';
+
+        return (
+            <mdui-list-item
+                key={charSaved.id}
+                headline={charSaved.name}
+                description={subheadParts.join(' • ')}
+                onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}
+                className="dashboard-list-item"
+            >
+                <div slot="icon" className="dashboard-portrait">
+                    {heroImage ? (
+                        <img
+                            src={heroImage}
+                            alt={charSaved.name}
+                            className="dashboard-portrait__img"
+                        />
+                    ) : (
+                        <span className="dashboard-portrait__initials">{initials}</span>
+                    )}
+                </div>
+            </mdui-list-item>
+        );
+    };
+
     return (
         <div className="container">
-
             <mdui-top-app-bar variant="small" scroll-behavior="hide">
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">New Character</mdui-button>
+                <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">
+                    New Character
+                </mdui-button>
             </mdui-top-app-bar>
 
-            <div >
+            <div>
                 {savedCharacters.length > 0 ? (
-                    <mdui-list className="content dashboard-content">
-                        {savedCharacters.map((charSaved) => {
-                            const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
+                    <div className="content dashboard-content">
+                        {/* MOBILE-ONLY: Widescreen Hero Banner */}
+                        {featuredCharacter && (() => {
+                            const heroImage = featuredCharacter.image ? getAssetUrl(featuredCharacter.image) : null;
                             const subheadParts = [
-                                `Lv. ${charSaved.level || 1}`,
-                                charSaved.species,
-                                `${charSaved.sub} ${charSaved.class}`,
-                                //charSaved.sub,
-                                //charSaved.class || 'Unknown Class'
+                                `Level ${featuredCharacter.level || 1}`,
+                                featuredCharacter.species,
+                                `${featuredCharacter.sub || ''} ${featuredCharacter.class || ''}`.trim(),
                             ].filter(Boolean);
 
-                            const initials = charSaved.name
-                                ? charSaved.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+                            const initials = featuredCharacter.name
+                                ? featuredCharacter.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
                                 : 'A';
 
                             return (
-                                <mdui-list-item
-                                    key={charSaved.id}
-                                    headline={charSaved.name}
-                                    description={subheadParts.join(' • ')}
-                                    onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}
-                                    className='dashboard-list-item'
+                                <mdui-card
+                                    className="featured-hero-banner desktop-hidden"
+                                    clickable
+                                    onClick={() => handleOpenSaved(featuredCharacter.id, featuredCharacter.recipe, 'play')}
                                 >
-                                    <div slot="icon" className="dashboard-portrait">
-                                        {heroImage ? (
-                                            <img
-                                                src={heroImage}
-                                                alt={charSaved.name}
-                                                className="dashboard-portrait__img"
-                                            />
-                                        ) : (
-                                            <span className="dashboard-portrait__initials">{initials}</span>
-                                        )}
-                                    </div>
+                                    {heroImage ? (
+                                        <img
+                                            src={heroImage}
+                                            alt={featuredCharacter.name}
+                                            className="featured-hero__img"
+                                        />
+                                    ) : (
+                                        <div className="featured-hero__fallback">{initials}</div>
+                                    )}
 
-                                </mdui-list-item>
+                                    <div className="featured-hero__overlay" />
+                                    <div className="featured-hero__badge">Last Played</div>
+
+                                    <div className="featured-hero__details">
+                                        <div className="featured-hero__text-group">
+                                            <h2 className="featured-hero__title">{featuredCharacter.name}</h2>
+                                            <p className="featured-hero__subtitle">{subheadParts.join(' • ')}</p>
+                                        </div>
+
+                                    </div>
+                                </mdui-card>
                             );
-                        })}
-                    </mdui-list>
+                        })()}
+
+                        {/* MOBILE-ONLY: List for remaining characters */}
+                        {remainingCharacters.length > 0 && (
+                            <div className="desktop-hidden">
+                                <h3 className="dashboard-section-title">Other Characters</h3>
+                                <mdui-list className="other-characters-list">
+                                    {remainingCharacters.map(renderListItem)}
+                                </mdui-list>
+                            </div>
+                        )}
+
+                        {/* DESKTOP-ONLY: Standard list for ALL characters */}
+                        <mdui-list className="mobile-hidden other-characters-list">
+                            {savedCharacters.map(renderListItem)}
+                        </mdui-list>
+                    </div>
                 ) : (
                     <div className="empty-state">
                         <mdui-icon name="person_add" class="icon-large"></mdui-icon>

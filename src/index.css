@@ -583,6 +583,16 @@ blockquote {
   text-align: center;
 }
 
+.statblock-section-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 /* ==========================================================================
    CHARACTER SHEET (Main Card)
    ========================================================================== */
@@ -707,11 +717,15 @@ blockquote {
    ========================================================================== */
 
 .dashboard-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   padding: var(--gap-md) 0;
   padding-bottom: 100px;
+}
+
+.other-characters-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
 }
 
 /* ── Dashboard portrait avatar (slotted into mdui-list-item icon slot) ── */
@@ -2153,17 +2167,186 @@ mdui-list-item::part(description) {
   }
 }
 
+/* Featured Hero Container */
+.featured-hero-banner {
+  position: relative;
+  width: 100%;
+  /* Mobile-first 16/9 aspect ratio fallback */
+  aspect-ratio: 5 / 3;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Widescreen 5/3 aspect ratio on desktop */
+@media (min-width: 600px) {
+  .featured-hero-banner {
+    aspect-ratio: 5 / 3;
+    max-height: 40rem;
+    /* Soft ceiling for large ultrawide displays */
+  }
+}
+
+.featured-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center right;
+  z-index: 1;
+}
+
+.featured-hero__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  background-color: var(--mdui-color-surface-container-highest, #333);
+  color: var(--mdui-color-on-surface-variant, #fff);
+  z-index: 1;
+}
+
+/* Gradient Fade Overlay */
+.featured-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to right,
+      rgba(var(--mdui-color-surface)) 40%,
+      rgba(var(--mdui-color-surface), 0.4) 80%);
+}
+
+/* Top Badge */
+.featured-hero__badge {
+  position: relative;
+  z-index: 3;
+  align-self: flex-start;
+  margin: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  background-color: rgb(var(--mdui-color-primary-container));
+  color: rgb(var(--mdui-color-on-primary-container));
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(4px);
+}
+
+/* Bottom Information Row */
+.featured-hero__details {
+  position: relative;
+  z-index: 3;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+.featured-hero__text-group {
+  color: rgb(var(--mdui-color-on-surface-variant));
+  text-shadow: 0 1px 3px rgba(var(--mdui-color-surface-container), 0.9);
+}
+
+.featured-hero__title {
+  margin: 0 0 0.25rem 0;
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.featured-hero__subtitle {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  opacity: 0.9;
+}
+
+.featured-hero__action {
+  flex-shrink: 0;
+}
+
+
+.featured-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.featured-card__fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--mdui-color-on-surface-variant);
+}
+
+.featured-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgb(var(--mdui-color-primary-container));
+  color: rgb(var(--mdui-color-on-primary-container));
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.featured-card__content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+}
+
+.featured-card__title {
+  margin: 0 0 4px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.featured-card__subtitle {
+  margin: 0;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.dashboard-section-title {
+  margin: 16px 0 8px 16px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+}
+
 @media (min-width: 891px) {
   .desktop-hidden {
     display: none !important;
   }
 
-  .dashboard-content {
+  .other-characters-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: var(--gap-md);
   }
-
 
   body {
     background-color: rgb(var(--mdui-color--container));
@@ -2188,6 +2371,7 @@ mdui-list-item::part(description) {
 .inner-card,
 .pseudo-card,
 mdui-list-item,
+.featured-hero-banner,
 .ability-card,
 mdui-text-field,
 .input-pane-body {
@@ -2279,7 +2463,7 @@ mdui-list-item[active] {
 }
 
 .card-vertical__media {
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 4 / 3;
   width: 100%;
   background-size: cover;
   background-position: top;

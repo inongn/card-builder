@@ -1,0 +1,56 @@
+id: oathbreaker
+name: Oathbreaker
+description: |
+  An Oathbreaker is a Paladin who has broken their sacred vows to pursue a dark ambition or serve a demonic power. Whatever light burned in the Paladin’s heart has been extinguished. Only darkness remains.
+tags:
+  - paladinSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Oathbreaker"
+
+  # Level 3: Oathbreaker Spells
+  - type: Reference
+    target: [hellishRebuke, witchBolt]
+  - type: Reference
+    condition: meta.level >= 5
+    target: [crownOfMadness, darkness]
+  - type: Reference
+    condition: meta.level >= 9
+    target: [fear, summonUndead]
+  - type: Reference
+    condition: meta.level >= 13
+    target: [blight, phantasmalKiller]
+  - type: Reference
+    condition: meta.level >= 17
+    target: [contagion, steelWindStrike]
+
+  # Level 3: Conjure Undead
+  - id: conjureUndead
+    type: Activity
+    name: Conjure Undead
+    time: bonus action
+    resource: channelDivinity
+    description: "You summon $(Math.max(1, Math.ceil(stats.cha.mod / 2))) Undead (Skeleton or Zombie). They appear within 30 feet, share your Initiative count taking their turn immediately after yours, obey your verbal commands, and last for 1 minute or until dissolved."
+
+  - type: Reference
+    target: [skeleton, zombie]
+    condition: $(meta.level >= 3)
+
+  # Level 3: Dreadful Aspect
+  - id: dreadfulAspect
+    type: Activity
+    name: Dreadful Aspect
+    resource: channelDivinity
+    description: "Immediately after you cast Divine Smite, you cause each chosen creature in a 30-foot Emanation to make a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for 1 minute (repeating save at end of each of its turns)."
+
+  # Level 7: Aura of Hate
+  - id: auraOfHate
+    type: Extra
+    target: auraOfProtection
+    condition: $(meta.level >= 7)
+    name: Aura of Hate
+    description: "When you, or any friendly Fiend or Undead in your Aura of Protection, hit with a melee attack, the attack deals an extra $(stats.cha.mod) Necrotic damage."

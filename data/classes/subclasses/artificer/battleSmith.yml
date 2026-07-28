@@ -1,0 +1,62 @@
+id: battleSmith
+name: Battle Smith
+description: |
+  Battle Smiths are a combination of protector and medic, expert at defending others and repairing both materiel and personnel. They are accompanied by a Steel Defender, a protective construct of their own creation.
+tags:
+  - artificerSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Battle Smith"
+
+  # Level 3: Tools of the Trade
+  - type: Reference
+    target: [smithsTools, martialWeaponProficiency]
+
+  # Level 3: Battle Smith Spells
+  - type: Reference
+    target: [heroism, shield]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [shiningSmite, wardingBond]
+    condition: $(meta.level >= 5)
+  # Level 9+ spells (aura of vitality, conjure barrage, etc.) are above the level cap and omitted.
+
+  # Level 3: Battle Ready — Arcane Empowerment
+  - id: pactOfTheBlade
+    type: Attribute
+    value: true
+  # Level 3: Steel Defender
+  - type: Reference
+    target: steelDefender
+
+  - id: steelDefenderName
+    type: Input
+    name: Steel Defender Name
+    inputType: text
+    label: Steel Defender Name
+
+  - type: Effect
+    target: statblocks[steelDefender].name
+    operation: set
+    value: "$(meta.steeldefendername ? meta.steeldefendername : 'Steel Defender')"
+
+  - id: commandSteelDefender
+    type: Activity
+    name: Command Steel Defender
+    time: bonus action
+    range: 60 feet
+    duration: Instantaneous
+    description: "You command your Steel Defender to take an action. In combat, the defender acts during your turn and can move and take its Reaction on its own, but only takes the Dodge action unless you command it."
+
+
+  # Level 5: Extra Attack
+  - id: extraAttack
+    type: Extra
+    name: Extra Attack
+    target: weaponAttack
+    condition: $(meta.level >= 5)
+    description: "You can attack twice instead of once whenever you take the Attack action. You can replace one attack with a command to your Steel Defender to take the Force-Empowered Rend action."

@@ -120,7 +120,19 @@ export const TERM_ICONS = {
     'experimentalElixirResource': { icon: 'local_pharmacy', color: 'healing', shortName: 'Experimental Elixir' },
     'illuminatedCartography': { icon: 'map', color: 'fire', shortName: 'Illuminated Cartography' },
     'giantStatureResource': { icon: 'expand', color: 'bonus', shortName: 'Giant Stature Uses' },
-    'joltToLifeResource': { icon: 'flash_on', color: 'necrotic', shortName: 'Jolt to Life' }
+    'joltToLifeResource': { icon: 'flash_on', color: 'necrotic', shortName: 'Jolt to Life' },
+    'sentinelAtDeathsDoor': {
+        icon: 'timer_off', color: 'necrotic', shortName: 'Sentinel'
+    },
+    'arcaneShot': {
+        icon: 'gps_fixed', color: 'radiant', shortName: 'Arcane Shot'
+    },
+    'formOfDread': {
+        icon: 'dark_mode', color: 'necrotic', shortName: 'Form of Dread'
+    },
+    'wailsFromTheGraveResource': {
+        icon: 'graphic_eq', color: 'necrotic', shortName: 'Wails From The Grave'
+    }
 };
 
 // Internal normalized map for lookups

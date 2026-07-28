@@ -1,0 +1,9 @@
+id: bhaalPact
+name: Aspect of Slaughter
+tags: [dreadAllegiance]
+type: Folder
+children:
+  - type: Reference
+    target: poisonResistance
+  - type: Reference
+    target: [bladeWard]

@@ -1679,7 +1679,7 @@ export const BuilderScreen = ({
 
                             const isClassOptionList = options.some(opt => {
                                 const tags = opt.tags || [];
-                                return tags.includes('circleLand') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes');
+                                return tags.includes('circleLand') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity') || tags.includes('metamagic') || tags.includes('vestigeType') || tags.includes('eldritchInvocation');
                             });
 
 
@@ -1802,6 +1802,10 @@ export const BuilderScreen = ({
                                     if (tags.includes('circleLand')) return "Land Types";
                                     if (tags.includes('blessedStrikes')) return "Blessed Strikes Options";
                                     if (tags.includes('divineOrder')) return "Divine Order Options";
+                                    if (tags.includes('elementalAffinity')) return "Elemental Affinity Options";
+                                    if (tags.includes('metamagic')) return "Metamagic Options";
+                                    if (tags.includes('eldritchInvocation')) return "Eldritch Invocation Options";
+                                    if (tags.includes('vestigeType')) return "Vestige Options";
                                     return null;
                                 };
 

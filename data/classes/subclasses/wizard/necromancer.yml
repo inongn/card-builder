@@ -1,0 +1,45 @@
+id: necromancer
+name: Necromancer
+description: |
+  The School of Necromancy explores the cosmic forces of life, death, and undeath, mastering spells that drain life force and raise undead thralls to serve them.
+tags:
+  - wizardSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Necromancer"
+
+  # Level 3: Necromancy Spellbook
+  - id: necroticResistance
+    type: Reference
+    target: necroticResistance
+
+  - id: grimHarvest
+    type: Activity
+    name: Grim Harvest
+    description: "When you cast a Necromancy spell using a spell slot, choose an Undead creature within 60 feet to regain 1+$(meta.level) Hit Points, plus the spell slot level."
+
+
+  - id: overwhelmingNecrosis
+    type: Extra
+    target: necroticDamage
+    condition: $(meta.level >= 6)
+    name: Overwhelming Necrosis
+    description: "This spell ignores Resistance to Necrotic Damage."
+
+  # Level 6: Undead Thralls
+  - id: undeadThralls
+    type: Reference
+    target: animateDead
+
+  - id: undeadThrallsDamageEffect
+    type: Effect
+    target: statblocks[classification=Undead].traits
+    operation: push
+    condition: $(meta.level >= 6)
+    value:
+      name: "Withering Strike"
+      description: "Whenever the undead hits a creature with an attack roll, you deal an extra $(Math.max(1, stats.int.mod)) Necrotic damage."

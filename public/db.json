@@ -2300,6 +2300,86 @@
     ]
   },
   {
+    "id": "banishingShot",
+    "name": "Banishing Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 1d6 Psychic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Charisma saving throw or be banished until the end of its next turn (having the Incapacitated condition and 0 Speed)."
+  },
+  {
+    "id": "beguilingShot",
+    "name": "Beguiling Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 2d6 Psychic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Wisdom saving throw or have the Charmed condition until the start of your next turn (treating you or one of your allies within 30 feet of it as the charmer)."
+  },
+  {
+    "id": "burstingShot",
+    "name": "Bursting Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "When you hit a creature with an attack roll using a weapon with the Ammunition property, the target and each creature within a 10-foot Emanation originating from it take 2d6 Force damage immediately after the attack deals damage."
+  },
+  {
+    "id": "enfeeblingShot",
+    "name": "Enfeebling Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 2d6 Necrotic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Constitution saving throw or have the Poisoned condition until the end of its next turn. While Poisoned, it subtracts 1d6 from the total damage of its attacks."
+  },
+  {
+    "id": "graspingShot",
+    "name": "Grasping Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 1d6 Slashing damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Strength saving throw or have the Restrained condition for 1 minute. The target or another creature can use an action to make a Strength (Athletics) check against the DC to end the condition."
+  },
+  {
+    "id": "piercingShot",
+    "name": "Piercing Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "You don't make an attack roll for the attack. Instead, the ammunition shoots forward in a 30-foot Line (1 foot wide) originating from you, then vanishes, ignoring cover. Each creature in the Line must make a DC $(8 + stats.int.mod + attributes.prof) Dexterity saving throw, taking weapon damage plus 2d6 Piercing damage on a failure, or half as much on a success."
+  },
+  {
+    "id": "seekingShot",
+    "name": "Seeking Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "You don't make an attack roll for the attack. Instead, choose one creature you have seen in the last minute. The ammunition flies toward that creature, moving around corners if necessary, ignoring cover. If the target is within your weapon’s long range, it must make a DC $(8 + stats.int.mod + attributes.prof) Dexterity saving throw, taking weapon damage plus 2d6 Force damage and revealing its location on a failure, or half as much on a success."
+  },
+  {
+    "id": "shadowShot",
+    "name": "Shadow Shot",
+    "type": "Activity",
+    "tags": [
+      "arcaneShotOption"
+    ],
+    "resource": "arcaneShot",
+    "description": "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 1d6 Psychic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Wisdom saving throw or have the Blinded condition until the end of its next turn."
+  },
+  {
     "id": "blessedWarrior",
     "name": "Blessed Warrior",
     "type": "Folder",
@@ -2364,6 +2444,66 @@
     "type": "Extra",
     "target": "weaponAttack",
     "description": "Once per turn, you can make another attack against a different creature that is within 5 feet of the target, that is within the weapon's range, and that you haven't attacked this turn."
+  },
+  {
+    "id": "banePact",
+    "name": "Pact of Bane",
+    "tags": [
+      "dreadAllegiance"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": "psychicResistance"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "minorIllusion"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bhaalPact",
+    "name": "Aspect of Slaughter",
+    "tags": [
+      "dreadAllegiance"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": "poisonResistance"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "bladeWard"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "myrkulPact",
+    "name": "Aspect of Mortality",
+    "tags": [
+      "dreadAllegiance"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": "necroticResistance"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "chillTouch"
+        ]
+      }
+    ]
   },
   {
     "id": "acidAffinity",
@@ -3152,6 +3292,178 @@
         "overwrite": {
           "resource": null
         }
+      }
+    ]
+  },
+  {
+    "id": "lifeDomainVestige",
+    "name": "Life Domain",
+    "tags": [
+      "vestigeType"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "cureWounds",
+          "bless",
+          "lesserRestoration",
+          "spiritualWeapon"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "beaconOfHope",
+          "revivify"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 7",
+        "target": [
+          "deathWard",
+          "guardianOfFaith"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "massCureWounds",
+          "raiseDead"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lightDomainVestige",
+    "name": "Light Domain",
+    "tags": [
+      "vestigeType"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "burningHands",
+          "faerieFire",
+          "flamingSphere",
+          "scorchingRay"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "daylight",
+          "fireball"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 7",
+        "target": [
+          "guardianOfFaith",
+          "wallOfFire"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "flameStrike",
+          "scrying"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "trickeryDomainVestige",
+    "name": "Trickery Domain",
+    "tags": [
+      "vestigeType"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "charmPerson",
+          "disguiseSelf",
+          "invisibility",
+          "passWithoutTrace"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "blink",
+          "dispelMagic"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 7",
+        "target": [
+          "dimensionDoor",
+          "polymorph"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "dominatePerson",
+          "modifyMemory"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "warDomainVestige",
+    "name": "War Domain",
+    "tags": [
+      "vestigeType"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "guidingBolt",
+          "shieldOfFaith",
+          "magicWeapon",
+          "spiritualWeapon"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "crusadersMantle",
+          "spiritGuardians"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 7",
+        "target": [
+          "freedomOfMovement",
+          "stoneskin"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "flameStrike",
+          "holdMonster"
+        ]
       }
     ]
   },
@@ -4828,6 +5140,86 @@
     ]
   },
   {
+    "id": "battleSmith",
+    "name": "Battle Smith",
+    "description": "Battle Smiths are a combination of protector and medic, expert at defending others and repairing both materiel and personnel. They are accompanied by a Steel Defender, a protective construct of their own creation.\n",
+    "tags": [
+      "artificerSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Battle Smith"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "smithsTools",
+          "martialWeaponProficiency"
+        ]
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "heroism",
+          "shield"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "shiningSmite",
+          "wardingBond"
+        ],
+        "condition": "$(meta.level >= 5)"
+      },
+      {
+        "id": "pactOfTheBlade",
+        "type": "Attribute",
+        "value": true
+      },
+      {
+        "type": "Reference",
+        "target": "steelDefender"
+      },
+      {
+        "id": "steelDefenderName",
+        "type": "Input",
+        "name": "Steel Defender Name",
+        "inputType": "text",
+        "label": "Steel Defender Name"
+      },
+      {
+        "type": "Effect",
+        "target": "statblocks[steelDefender].name",
+        "operation": "set",
+        "value": "$(meta.steeldefendername ? meta.steeldefendername : 'Steel Defender')"
+      },
+      {
+        "id": "commandSteelDefender",
+        "type": "Activity",
+        "name": "Command Steel Defender",
+        "time": "bonus action",
+        "range": "60 feet",
+        "duration": "Instantaneous",
+        "description": "You command your Steel Defender to take an action. In combat, the defender acts during your turn and can move and take its Reaction on its own, but only takes the Dodge action unless you command it."
+      },
+      {
+        "id": "extraAttack",
+        "type": "Extra",
+        "name": "Extra Attack",
+        "target": "weaponAttack",
+        "condition": "$(meta.level >= 5)",
+        "description": "You can attack twice instead of once whenever you take the Attack action. You can replace one attack with a command to your Steel Defender to take the Force-Empowered Rend action."
+      }
+    ]
+  },
+  {
     "id": "cartographer",
     "name": "Cartographer",
     "description": "Cartographers are the premier navigators and reconnaissance agents. Using their creations, Cartographers can highlight threats, safeguard allies, and carve portals to distant locations.\n",
@@ -5025,6 +5417,42 @@
     ]
   },
   {
+    "id": "ancestralGuardian",
+    "name": "Path of the Ancestral Guardian",
+    "description": "Barbarians of the Path of the Ancestral Guardian commune with the spirits of their ancestors, calling them forth to shield allies and harass enemies.\n",
+    "type": "Folder",
+    "tags": [
+      "barbarianSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Ancestral Guardian"
+      },
+      {
+        "id": "spiritualProtectors",
+        "type": "Activity",
+        "name": "Spiritual Protectors",
+        "time": "free action",
+        "condition": "$(meta.level >= 3)",
+        "description": "While your Rage is active, when you hit a creature with a weapon or an Unarmed Strike, you choose one of these effects:\n\n**Distract.** Until the start of your next turn, the target has Disadvantage on attack rolls against targets other than you or another Barbarian with this feature.\n\n**Protect.** Until the end of the target’s next turn, the next time it hits a creature other than you with an attack roll, that creature has Resistance to the damage dealt by that attack.\n\n**Strike.** The target takes an extra 1d6 Acid, Cold, Fire, Force, Lightning, or Thunder damage (your choice).\n"
+      },
+      {
+        "id": "spiritShield",
+        "type": "Activity",
+        "name": "Spirit Shield",
+        "time": "reaction",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "condition": "$(meta.level >= 6)",
+        "description": "While your Rage is active, when another creature you can see within range takes damage, you reduce that damage by $(attributes.rageDamage)d6."
+      }
+    ]
+  },
+  {
     "id": "berserker",
     "name": "Path of the Berserker",
     "description": "Barbarians who walk the Path of the Berserker direct their Rage primarily toward violence. Their path is one of untrammeled fury, and they thrill in the chaos of battle as they allow their Rage to seize and empower them.\n",
@@ -5058,6 +5486,51 @@
         "type": "Reference",
         "target": "frightenedImmunity",
         "condition": "$(meta.level >= 6)"
+      }
+    ]
+  },
+  {
+    "id": "lament",
+    "name": "Path of the Lament",
+    "description": "Barbarians of the Path of the Lament draw upon the mournful spirits of the departed, unleashing their sorrow in terrifying wails and horrifying strikes.\n",
+    "type": "Folder",
+    "tags": [
+      "barbarianSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Lament"
+      },
+      {
+        "id": "bansheesWail",
+        "type": "Activity",
+        "name": "Banshee's Wail",
+        "time": "bonus action",
+        "range": "self",
+        "duration": "Instantaneous",
+        "resource": "rage",
+        "condition": "$(meta.level >= 3)",
+        "description": "While your Rage is active, you let out a doleful wail. Each creature of your choice in a 30-foot Emanation originating from you must make a DC $(8 + stats.con.mod + attributes.prof) Constitution saving throw. On a failed save, a creature takes $(attributes.rageDamage)d12 Psychic damage and has the Deafened condition for 1 minute. On a successful save, it takes half as much damage only.\n"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "speakWithDead",
+          "wisCaster"
+        ],
+        "condition": "$(meta.level >= 6)"
+      },
+      {
+        "id": "horrifyingStrike",
+        "type": "Activity",
+        "name": "Horrifying Strike",
+        "time": "free action",
+        "condition": "$(meta.level >= 6)",
+        "description": "Once per turn when you hit a creature with a Strength-based attack roll while your Rage is active, you can force the target to make a DC $(8 + stats.con.mod + attributes.prof) Wisdom saving throw. On a failed save, the creature has the Frightened condition until the start of your next turn."
       }
     ]
   },
@@ -5398,6 +5871,148 @@
     ]
   },
   {
+    "id": "moon",
+    "name": "College of the Moon",
+    "description": "Bards of the College of the Moon draw inspiration from the phases and power of the moon, blending lunar secrets with martial and druidic magic.\n",
+    "type": "Folder",
+    "tags": [
+      "bardSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Moon"
+      },
+      {
+        "id": "inspiredEclipse",
+        "type": "Extra",
+        "target": "bardicInspiration",
+        "condition": "$(meta.level >= 3)",
+        "name": "Inspired Eclipse",
+        "description": "You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell."
+      },
+      {
+        "id": "lunarVitality",
+        "type": "Activity",
+        "name": "Lunar Vitality",
+        "time": "free action",
+        "resource": "bardicInspiration",
+        "condition": "$(meta.level >= 3)",
+        "description": "Once per turn when you restore Hit Points to a creature with a spell, you increase the amount of Hit Points restored by 1d$(attributes.bardicDie). The creature's Speed also increases by 10 feet until the end of its next turn."
+      },
+      {
+        "type": "Slot",
+        "id": "primalLoreCantrip",
+        "name": "Primal Lore Cantrip",
+        "target": "druid AND cantrip",
+        "quantity": 1,
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "variables.classification": "spellcasting",
+          "tags": [
+            "bardSpell"
+          ]
+        }
+      },
+      {
+        "type": "Slot",
+        "id": "primalLoreProficiency",
+        "name": "Primal Lore Skill Proficiency",
+        "target": "animalHandlingProficiency OR insightProficiency OR medicineProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency",
+        "quantity": 1,
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "moonbeam"
+        ],
+        "condition": "$(meta.level >= 6)"
+      },
+      {
+        "id": "blessingOfMoonlight",
+        "type": "Activity",
+        "name": "Blessing of Moonlight",
+        "time": "action",
+        "range": "self",
+        "duration": "concentration, up to 1 minute",
+        "resource": "limited",
+        "condition": "$(meta.level >= 6)",
+        "description": "You cast Moonbeam, and you modify it so that you glow faintly while the spell is active. \n\nWhile glowing, you shed Dim Light out to 5 feet, and whenever a creature fails its saving throw against the effects of this Moonbeam, another creature of your choice that you can see within 60 feet of yourself regains 2d4 Hit Points.\n"
+      }
+    ]
+  },
+  {
+    "id": "spirits",
+    "name": "College of Spirits",
+    "description": "Bards of the College of Spirits commune with the spirits of the past, channeling their stories and wisdom to perform wondrous magic.\n",
+    "type": "Folder",
+    "tags": [
+      "bardSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Spirits"
+      },
+      {
+        "type": "Reference",
+        "target": "guidance",
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "range": "60 feet"
+        }
+      },
+      {
+        "id": "spiritsFromBeyond",
+        "type": "Extra",
+        "target": "bardicInspiration",
+        "condition": "$(meta.level >= 3)",
+        "name": "Spirits from Beyond",
+        "description": "You call forth the powers of a random spirit. To determine the spirit you channel, roll the Bardic Inspiration die and refer to the Spirits from Beyond table. The spirit remains channeled until you unleash it or until you finish a Short or Long Rest."
+      },
+      {
+        "id": "spiritChanneling",
+        "type": "Activity",
+        "name": "Spirit Channeling",
+        "time": "bonus action",
+        "range": "self",
+        "resource": "bardicInspiration",
+        "condition": "$(meta.level >= 3)",
+        "description": "You channel a specific spirit. Choose a spirit from the Spirits from Beyond table rather than rolling. The chosen spirit's corresponding number must be less than or equal to the highest number on your Bardic Inspiration die. You can unleash the spirit as a Magic Action.\n\n**Spirits from Beyond Table:**\n* **1. Beloved.** The target regains Hit Points equal to 1d$(attributes.bardicDie) + $(stats.cha.mod).\n* **2. Sharpshooter.** The target takes Force damage equal to 1d$(attributes.bardicDie) + $(stats.cha.mod).\n* **3. Avenger.** Until the end of your next turn, any creature that hits the target with a melee attack roll takes Force damage equal to 1d$(attributes.bardicDie).\n* **4. Renegade.** The target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see.\n* **5. Fortune Teller.** The target has Advantage on D20 Tests until the start of your next turn.\n* **6. Wayfarer.** The target gains Temporary Hit Points equal to 1d$(attributes.bardicDie) + $(meta.level). While it has these, its Speed increases by 10 feet.\n* **7. Trickster.** The target makes a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failure, it takes Psychic damage equal to 2d$(attributes.bardicDie) and is Charmed until the start of your next turn. On a success, it takes half damage only.\n* **8. Shade.** The target has the Invisible condition until the end of its next turn or until it attacks, deals damage, or casts a spell. When the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take Necrotic damage equal to 2d$(attributes.bardicDie).\n* **9. Arsonist.** The target makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking Fire damage equal to 4d$(attributes.bardicDie) on a failure, or half damage on a success.\n* **10. Coward.** The target and each creature of your choice in a 30-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition until the start of your next turn. While Frightened, its Speed is halved and it can only take either an action or a Bonus Action on its turn, not both.\n* **11. Brute.** Each creature of your choice in a 30-foot Emanation makes a DC $(attributes.spellcasting.save) Strength saving throw. On a failure, it takes Thunder damage equal to 3d$(attributes.bardicDie) and is Prone. On a success, it takes half damage only.\n* **12. Priest.** The target regains Hit Points equal to 2d$(attributes.bardicDie), and one of these conditions of your choice ends on it: Blinded, Charmed, Deafened, Paralyzed, Poisoned, or Stunned.\n"
+      },
+      {
+        "id": "powerFromBeyondDamage",
+        "type": "Extra",
+        "target": "damageSpell",
+        "condition": "$(meta.level >= 6)",
+        "name": "Power from Beyond",
+        "description": "Once per turn, you gain a 1d6 bonus to the spell's damage roll."
+      },
+      {
+        "id": "powerFromBeyondHealing",
+        "type": "Extra",
+        "target": "healingSpell",
+        "condition": "$(meta.level >= 6)",
+        "name": "Power from Beyond",
+        "description": "Once per turn, you gain a 1d6 bonus to the spell's healing roll."
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "spiritGuardians"
+        ],
+        "condition": "$(meta.level >= 6)"
+      }
+    ]
+  },
+  {
     "id": "valor",
     "name": "College of Valor",
     "description": "Bards of the College of Valor are daring storytellers whose tales preserve the memory of the great heroes of the past. These bards sing the deeds of the mighty in vaulted halls or to crowds gathered around great bonfires.\n",
@@ -5437,6 +6052,197 @@
         "condition": "$(meta.level >= 5)",
         "name": "Extra Attack",
         "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action."
+      }
+    ]
+  },
+  {
+    "id": "graveDomain",
+    "name": "Grave Domain",
+    "description": "Clerics of the Grave Domain guard the boundary between life and death, ensuring that souls find their proper rest and drawing upon the energy of that transition to heal allies and smite foes.\n",
+    "type": "Folder",
+    "tags": [
+      "clericSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Grave"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "detectEvilAndGood",
+          "falseLife",
+          "gentleRepose",
+          "rayOfEnfeeblement",
+          "spareTheDying"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "revivify",
+          "vampiricTouch"
+        ],
+        "condition": "$(meta.level >= 5)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "blight",
+          "deathWard"
+        ],
+        "condition": "$(meta.level >= 7)"
+      },
+      {
+        "id": "circleOfMortalityPull",
+        "type": "Extra",
+        "target": "weaponAttack OR damageSpell",
+        "condition": "$(meta.level >= 3)",
+        "name": "Pull of Death",
+        "description": "Once per turn, on a hit to a creature that is missing any Hit Points, you deal an extra 1d$(meta.level >= 11 ? 6 : 4) Necrotic damage."
+      },
+      {
+        "id": "returnToLifeSpareTheDying",
+        "type": "Effect",
+        "target": "activities[id=spareTheDying].time",
+        "operation": "set",
+        "value": "bonus action",
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "circleOfMortalityHealing",
+        "type": "Extra",
+        "target": "healingSpell OR channelDivinity",
+        "condition": "$(meta.level >= 3)",
+        "name": "Circle of Mortality",
+        "description": "When restoring Hit Points to a creature at 0 Hit Points, use the highest possible roll for each die."
+      },
+      {
+        "id": "pathToTheGrave",
+        "type": "Activity",
+        "name": "Path to the Grave",
+        "time": "bonus action",
+        "range": "30 feet",
+        "resource": "channelDivinity",
+        "condition": "$(meta.level >= 3)",
+        "description": "You curse a creature within range. Until the start of your next turn, it has Disadvantage on attack rolls and saving throws. The curse ends early when you or an ally hits the target, making the attack deal extra Necrotic or Radiant damage (your choice) equal to $(meta.level)."
+      },
+      {
+        "id": "sentinelAtDeathsDoor",
+        "type": "Resource",
+        "name": "Sentinel at Death's Door",
+        "quantity": "$(Math.max(1, stats.wis.mod))",
+        "condition": "$(meta.level >= 6)"
+      },
+      {
+        "id": "sentinelAtDeathsDoor",
+        "type": "Activity",
+        "name": "Sentinel at Death's Door",
+        "time": "reaction",
+        "range": "60 feet",
+        "duration": "Instantaneous",
+        "resource": "sentinelAtDeathsDoor",
+        "condition": "$(meta.level >= 6)",
+        "description": "When you or a Bloodied creature within range is hit with an attack roll, you use your Reaction to halve that attack's damage. If the attack was a Critical Hit, its Critical Hit effects are canceled."
+      }
+    ]
+  },
+  {
+    "id": "knowledgeDomain",
+    "name": "Knowledge Domain",
+    "description": "Clerics of the Knowledge Domain value learning, memory, and information, using divine insights to uncover secrets and influence minds.\n",
+    "type": "Folder",
+    "tags": [
+      "clericSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Knowledge"
+      },
+      {
+        "id": "blessingsOfKnowledgeTools",
+        "name": "Blessings of Knowledge Tool Proficiency",
+        "type": "Slot",
+        "target": "tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency",
+        "quantity": 1,
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "blessingsOfKnowledgeSkills",
+        "name": "Blessings of Knowledge Skill Proficiencies",
+        "type": "Slot",
+        "target": "arcanaProficiency OR historyProficiency OR natureProficiency OR religionProficiency",
+        "quantity": 2,
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "blessingsOfKnowledgeExpertise",
+        "name": "Blessings of Knowledge Expertises",
+        "type": "Slot",
+        "target": "arcanaExpertise OR historyExpertise OR natureExpertise OR religionExpertise",
+        "quantity": 2,
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "command",
+          "comprehendLanguages",
+          "detectMagic",
+          "detectThoughts",
+          "identify",
+          "mindSpike"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "dispelMagic",
+          "nondetection",
+          "tongues"
+        ],
+        "condition": "$(meta.level >= 5)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "banishment",
+          "confusion"
+        ],
+        "condition": "$(meta.level >= 7)"
+      },
+      {
+        "id": "mindMagic",
+        "type": "Activity",
+        "name": "Mind Magic",
+        "time": "action",
+        "range": "self",
+        "resource": "channelDivinity",
+        "condition": "$(meta.level >= 3)",
+        "description": "You cast one of the following spells without expending a spell slot or requiring Material components: *Comprehend Languages*, *Detect Magic*, *Detect Thoughts*, *Identify*, or *Mind Spike*."
+      },
+      {
+        "id": "unfetteredMindTelepathy",
+        "type": "Activity",
+        "name": "Unfettered Mind",
+        "range": "60 feet",
+        "condition": "$(meta.level >= 6)",
+        "description": "You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact up to $(Math.max(1, stats.wis.mod)) creatures."
+      },
+      {
+        "type": "Reference",
+        "target": "intSave",
+        "condition": "$(meta.level >= 6)"
       }
     ]
   },
@@ -5772,6 +6578,69 @@
     ]
   },
   {
+    "id": "circleOfPreservation",
+    "name": "Circle of Preservation",
+    "description": "Druids of the Circle of Preservation dedicate themselves to defending natural sanctuaries, revitalizing damaged land, and protecting allies from toxic or hostile elements.\n",
+    "type": "Folder",
+    "tags": [
+      "druidSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Preservation"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "bless",
+          "lesserRestoration",
+          "protectionFromPoison",
+          "sanctuary"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "beaconOfHope",
+          "plantGrowth"
+        ],
+        "condition": "$(meta.level >= 5)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "auraOfLife",
+          "deathWard"
+        ],
+        "condition": "$(meta.level >= 7)"
+      },
+      {
+        "id": "preservedLand",
+        "type": "Activity",
+        "name": "Preserved Land",
+        "time": "bonus action",
+        "range": "120 feet",
+        "duration": "1 minute",
+        "resource": "wildShape",
+        "condition": "$(meta.level >= 3)",
+        "description": "You fill a 15-foot Cube on the ground within range with revitalizing energy. It lasts for 1 minute, or until you are Incapacitated, die, or move more than 120 feet away.\n\nAs a Bonus Action on subsequent turns, you can move the Cube up to 30 feet to another area within range.\n\nWhenever a creature ends its turn in the Cube, you can grant it one of the following:\n\n**Bolster.** The creature gains 1d4 + $(meta.level) Temporary Hit Points.\n\n**Purify.** You end the Frightened or Poisoned condition on the creature.\n\n$(meta.level >= 6 ? \"**Fortify.** You and allies inside the Cube gain a +$(Math.max(1, stats.wis.mod)) bonus to Constitution saving throws.\" : \"\")\n\n$(meta.level >= 6 ? \"**Reject.** When the Cube enters an enemy's space or an enemy enter or ends its turn in the Cube, they make a DC $(attributes.spellcasting.save) Wisdom save, taking 2d10 Radiant damage and having their Speed halved on a failure, or taking half damage on a success.\" : \"\")\n"
+      },
+      {
+        "id": "studentOfPreservationTool",
+        "name": "Student of Preservation Tool Proficiency",
+        "type": "Slot",
+        "target": "tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency",
+        "condition": "$(meta.level >= 3)",
+        "quantity": 1
+      }
+    ]
+  },
+  {
     "id": "circleOfTheLand",
     "name": "Circle of the Land",
     "description": "The Circle of the Land comprises mystics and sages who safeguard ancient knowledge and rites. These Druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle’s wisest members preside as the chief priests of their communities.\n",
@@ -6009,6 +6878,221 @@
         "name": "Cosmic Omen",
         "quantity": "$(Math.max(1, stats.wis.mod))",
         "condition": "$(meta.level >= 6)"
+      }
+    ]
+  },
+  {
+    "id": "circleOfTheTitan",
+    "name": "Circle of the Titan",
+    "description": "Druids of the Circle of the Titan channel the cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing devastating shock waves.\n",
+    "type": "Folder",
+    "tags": [
+      "druidSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Titan"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "enlargereduce",
+          "thaumaturgy",
+          "thunderwave"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "fear"
+        ],
+        "condition": "$(meta.level >= 5)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "fireShield"
+        ],
+        "condition": "$(meta.level >= 7)"
+      },
+      {
+        "id": "titanForm",
+        "type": "Activity",
+        "name": "Titan Form",
+        "time": "bonus action",
+        "range": "self",
+        "duration": "10 minutes",
+        "resource": "wildShape",
+        "condition": "$(meta.level >= 3)",
+        "description": "You adopt a Titan Form, choosing Behemoth, Leviathan, or Insectoid. You stay in Titan Form for 10 minutes. While in Titan Form, you can cast your Circle of the Titan spells without requiring Material components. Features that apply to your Beast forms also apply to your Titan Form."
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "titanForm"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "titanMultiattack",
+        "type": "Effect",
+        "target": "statblocks[tags=titanFormTemplate].traits",
+        "operation": "push",
+        "condition": "$(meta.level >= 5)",
+        "value": {
+          "name": "Multiattack",
+          "description": "You make two Rend attacks."
+        }
+      },
+      {
+        "id": "elementalRendEffect",
+        "type": "Effect",
+        "target": "statblocks[tags=titanFormTemplate].traits",
+        "operation": "push",
+        "condition": "$(meta.level >= 6)",
+        "value": {
+          "name": "Elemental Rend",
+          "description": "Whenever you hit with your Titan Form’s Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type."
+        }
+      },
+      {
+        "id": "shockWaveEffect",
+        "type": "Effect",
+        "target": "statblocks[tags=titanFormTemplate].traits",
+        "operation": "push",
+        "condition": "$(meta.level >= 6)",
+        "value": {
+          "name": "Shock Wave",
+          "description": "Once per turn, immediately after you move at least half your Speed, you can create a shock wave in a 10-foot Emanation originating from yourself. Each creature in the Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or have the Prone condition."
+        }
+      }
+    ]
+  },
+  {
+    "id": "arcaneArcher",
+    "name": "Arcane Archer",
+    "description": "Arcane Archers study a unique method of elven archery that weaves magic into their shots to create supernatural combat effects.\n",
+    "type": "Folder",
+    "tags": [
+      "fighterSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Arcane Archer"
+      },
+      {
+        "type": "Slot",
+        "id": "arcaneArcherLoreCantrip",
+        "name": "Arcane Archer Lore Cantrip",
+        "target": "druidcraft OR prestidigitation",
+        "quantity": 1,
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "variables.classification": "spellcasting",
+          "tags": [
+            "fighterSpell"
+          ]
+        }
+      },
+      {
+        "type": "Reference",
+        "target": "intCaster",
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "arcanaProficiency",
+          "natureProficiency"
+        ],
+        "condition": "$(meta.level >= 3 && !skills.arcana.proficiency && !skills.nature.proficiency)"
+      },
+      {
+        "id": "arcaneShot",
+        "type": "Resource",
+        "name": "Arcane Shot",
+        "quantity": "$(Math.max(1, stats.int.mod))",
+        "sr": 1,
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "arcaneShotOptions",
+        "name": "Arcane Shot Options",
+        "type": "Slot",
+        "target": "arcaneShotOption OR classOption",
+        "quantity": "$(meta.level >= 7 ? 3 : 2)",
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "curvingShot",
+        "type": "Activity",
+        "name": "Curving Shot",
+        "time": "bonus action",
+        "condition": "$(meta.level >= 7)",
+        "description": "If you miss a ranged attack roll with ammunition, you redirect the shot. Make a new attack roll against a creature you can see within 60 feet of the original target."
+      },
+      {
+        "id": "magicalAmmunition",
+        "type": "Activity",
+        "name": "Magical Ammunition",
+        "time": "action",
+        "resource": "secondWind",
+        "condition": "$(meta.level >= 7)",
+        "description": "You imbue a piece of nonmagical ammunition with one of the following properties and fire it at a solid surface within range. When the effect ends, the ammunition is destroyed.\n\n**Darkening Shot.** Magical darkness fills a 15-foot Emanation originating from the ammunition for 1 minute. Nonmagical flames are extinguished, and creatures in the Emanation have a –5 penalty to Wisdom (Perception) checks and Passive Perception.\n\n**Unlocking Shot.** A burst of magic fills a 15-foot Emanation. Any mundane lock, stuck, or barred object in the area is unlocked, unstuck or unbarred (limit one lock per object). A loud knock is audible up to 300 feet away.\n\n**Vine Shot.** A 60-foot-long vine grows from the ammunition, lasting 10 minutes.\n"
+      }
+    ]
+  },
+  {
+    "id": "banneret",
+    "name": "Banneret",
+    "description": "Bannerets are paragons of valor and leadership who rally allies to fight against evil, utilizing inspiring presences and Knightly diplomacies.\n",
+    "type": "Folder",
+    "tags": [
+      "fighterSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Banneret"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "comprehendLanguages",
+          "chaCaster"
+        ],
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "time": "10 minutes"
+        }
+      },
+      {
+        "id": "wellSpokenSkill",
+        "name": "Well Spoken Skill Proficiency",
+        "type": "Slot",
+        "target": "insightProficiency OR intimidationProficiency OR persuasionProficiency OR performanceProficiency",
+        "quantity": 1,
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "groupRecovery",
+        "type": "Extra",
+        "target": "secondWind",
+        "condition": "$(meta.level >= 3)",
+        "name": "Group Recovery",
+        "description": "When you use Second Wind, up to $(Math.max(1, stats.cha.mod)) allies within a 30-foot Emanation regain 1d4+$(meta.level) HP.\n\n$(meta.level >= 7 ? \"**Team Tactics.** Each chosen ally has Advantage on D20 Tests until the start of your next turn.\" : \"\")\n"
       }
     ]
   },
@@ -6353,6 +7437,70 @@
     ]
   },
   {
+    "id": "mysticArts",
+    "name": "Warrior of the Mystic Arts",
+    "description": "Monks of the Warrior of the Mystic Arts blend martial arts with sorcerous spellcasting, converting Focus Points to spell slots and vice versa.\n",
+    "type": "Folder",
+    "tags": [
+      "monkSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Mystic Arts"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "oneThirdCaster",
+          "wisCaster"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Slot",
+        "id": "mysticArtsCantrips",
+        "name": "Mystic Arts Cantrips",
+        "target": "sorcerer AND cantrip",
+        "quantity": 2,
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "variables.classification": "spellcasting",
+          "tags": [
+            "monkSpell"
+          ]
+        }
+      },
+      {
+        "type": "Slot",
+        "id": "mysticArtsPreparedSpells",
+        "name": "Mystic Arts Prepared Spells",
+        "target": "sorcerer NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')",
+        "variables": {
+          "maxLevel": "$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)"
+        },
+        "quantity": "$(meta.level >= 8 ? 6 : meta.level >= 7 ? 5 : meta.level >= 4 ? 4 : 3)",
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "variables.classification": "spellcasting",
+          "tags": [
+            "monkSpell"
+          ]
+        }
+      },
+      {
+        "type": "Effect",
+        "target": "activities[tags=weaponAttack].extra[\"instead of once, whenever you take the Attack action on your turn.\"]",
+        "operation": "replace",
+        "condition": "$(meta.level >= 6)",
+        "value": "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a cantrip."
+      }
+    ]
+  },
+  {
     "id": "openHand",
     "name": "Warrior of the Open Hand",
     "description": "Warriors of the Open Hand are masters of unarmed combat. They learn techniques to push and trip their opponents and manipulate their own energy to protect themselves from harm.\n",
@@ -6465,6 +7613,68 @@
     ]
   },
   {
+    "id": "venom",
+    "name": "Warrior of Venom",
+    "description": "Monks of the Warrior of Venom harvest toxins from their own blood, coating their weapons with debilitating poisons and using toxic touches to sedate or charm foes.\n",
+    "type": "Folder",
+    "tags": [
+      "monkSubclass"
+    ],
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Venom"
+      },
+      {
+        "id": "envenomWeapon",
+        "type": "Activity",
+        "name": "Envenom Weapon",
+        "time": "free action",
+        "resource": "1 focusPoints",
+        "condition": "$(meta.level >= 3)",
+        "description": "You coat your Monk weapon in toxin. For 1 minute or until you hit a creature with it, the next creature taking damage from the weapon is subjected to one of the following:\n\n**Slowing Toxin.** The target’s Speed is halved, it can’t take Reactions, and it can take either an action or a Bonus Action on its turn, not both. These effects last until the start of your next turn.\n\n**Venom.** The target takes Poison damage equal to two rolls of your Martial Arts die (2d$(attributes.martialArtsDie)).\n"
+      },
+      {
+        "type": "Reference",
+        "target": "poisonersKit",
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "potentArsenal",
+        "type": "Extra",
+        "target": [
+          "envenomWeapon",
+          "toxicTouch"
+        ],
+        "condition": "$(meta.level >= 3)",
+        "name": "Potent Arsenal",
+        "description": "You can change the damage type to Acid."
+      },
+      {
+        "id": "potentArsenalAttacks",
+        "type": "Extra",
+        "target": "weaponAttack",
+        "condition": "$(meta.level >= 3)",
+        "name": "Potent Arsenal",
+        "description": "You can change the damage type to Acid."
+      },
+      {
+        "id": "toxicTouch",
+        "type": "Activity",
+        "name": "Toxic Touch",
+        "time": "action",
+        "range": "touch",
+        "duration": "1 minute",
+        "resource": "1 focusPoints",
+        "condition": "$(meta.level >= 6)",
+        "description": "You touch a creature. The target must succeed on a DC $(attributes.monkSaveDC) Constitution saving throw or have the Poisoned condition for 1 minute. While Poisoned in this way, it suffers one of the following:\n\n**Intoxicant.** The target has the Charmed condition until you or your allies deal damage to it.\n\n**Sedative.** The target has the Unconscious condition. Another creature can use an action to shake it awake.\n\n**Truth Serum.** The target can't knowingly tell a lie.\n"
+      }
+    ]
+  },
+  {
     "id": "oathOfDevotion",
     "name": "Oath of Devotion",
     "description": "The Oath of Devotion binds Paladins to the ideals of Justice and Order. These Paladins meet the archetype of the knight in shining armor.\n",
@@ -6535,6 +7745,94 @@
         "target": "auraOfProtection",
         "condition": "$(meta.level >= 7)",
         "description": "You and your allies have Immunity to the Charmed condition. If a Charmed ally enters the aura, that condition has no effect on that ally while there."
+      }
+    ]
+  },
+  {
+    "id": "oathOfGenies",
+    "name": "Oath of the Noble Genies",
+    "description": "Paladins of the Oath of the Noble Genies pledge themselves to the vast elemental powers of the Dao, Djinni, Efreeti, and Marid, channeling ancient elemental magic and wielding divine armor infused with elemental grace.\n",
+    "tags": [
+      "paladinSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Noble Genies"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "chromaticOrb",
+          "elementalism",
+          "thunderousSmite"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "mirrorImage",
+          "phantasmalForce"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "fly",
+          "gaseousForm"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 13",
+        "target": [
+          "conjureMinorElementals",
+          "summonElemental"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 17",
+        "target": [
+          "banishingSmite",
+          "contactOtherPlane"
+        ]
+      },
+      {
+        "id": "elementalSmite",
+        "type": "Activity",
+        "name": "Elemental Smite",
+        "resource": "channelDivinity",
+        "description": "Immediately after you cast Divine Smite, you invoke one of the following effects:\n* **Dao’s Crush:** Earth rises up around the target of your Divine Smite. The target has the Grappled condition (escape DC $(attributes.spellcasting.save)). While Grappled, the target has the Restrained condition.\n* **Djinni’s Escape:** You teleport to an unoccupied space within 30 feet and take on a semi-incorporeal form until the end of your next turn (Resistance to Bludgeoning, Piercing, Slashing damage; Immunity to Grappled, Prone, Restrained).\n* **Efreeti’s Fury:** Target takes an extra 2d4 Fire damage, and fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it.\n* **Marid’s Surge:** Target and each creature in a 10-foot Emanation make a DC $(attributes.spellcasting.save) Strength save or be pushed 15 feet away and have the Prone condition.\n"
+      },
+      {
+        "id": "geniesSplendorAC",
+        "type": "Effect",
+        "target": "attributes.ac.base",
+        "operation": "override",
+        "condition": "$(attributes.armor.type == 'none')",
+        "value": "$(10 + stats.dex.mod + stats.cha.mod)"
+      },
+      {
+        "id": "geniesSplendorSkill",
+        "type": "Slot",
+        "name": "Genie's Splendor Skill",
+        "quantity": 1,
+        "target": "skill AND (id == 'acrobatics' OR id == 'intimidation' OR id == 'performance' OR id == 'persuasion')"
+      },
+      {
+        "id": "auraOfElementalShielding",
+        "type": "Extra",
+        "target": "auraOfProtection",
+        "name": "Aura of Elemental Shielding",
+        "condition": "$(meta.level >= 7)",
+        "description": "Choose one damage type: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection. At the start of each of your turns, you can change the damage type (no action required)."
       }
     ]
   },
@@ -6753,6 +8051,94 @@
         "name": "Relentless Avenger",
         "condition": "$(meta.level >= 7)",
         "description": "On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks."
+      }
+    ]
+  },
+  {
+    "id": "oathbreaker",
+    "name": "Oathbreaker",
+    "description": "An Oathbreaker is a Paladin who has broken their sacred vows to pursue a dark ambition or serve a demonic power. Whatever light burned in the Paladin’s heart has been extinguished. Only darkness remains.\n",
+    "tags": [
+      "paladinSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Oathbreaker"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "hellishRebuke",
+          "witchBolt"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "crownOfMadness",
+          "darkness"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "fear",
+          "summonUndead"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 13",
+        "target": [
+          "blight",
+          "phantasmalKiller"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 17",
+        "target": [
+          "contagion",
+          "steelWindStrike"
+        ]
+      },
+      {
+        "id": "conjureUndead",
+        "type": "Activity",
+        "name": "Conjure Undead",
+        "time": "bonus action",
+        "resource": "channelDivinity",
+        "description": "You summon $(Math.max(1, Math.ceil(stats.cha.mod / 2))) Undead (Skeleton or Zombie). They appear within 30 feet, share your Initiative count taking their turn immediately after yours, obey your verbal commands, and last for 1 minute or until dissolved."
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "skeleton",
+          "zombie"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "dreadfulAspect",
+        "type": "Activity",
+        "name": "Dreadful Aspect",
+        "resource": "channelDivinity",
+        "description": "Immediately after you cast Divine Smite, you cause each chosen creature in a 30-foot Emanation to make a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for 1 minute (repeating save at end of each of its turns)."
+      },
+      {
+        "id": "auraOfHate",
+        "type": "Extra",
+        "target": "auraOfProtection",
+        "condition": "$(meta.level >= 7)",
+        "name": "Aura of Hate",
+        "description": "When you, or any friendly Fiend or Undead in your Aura of Protection, hit with a melee attack, the attack deals an extra $(stats.cha.mod) Necrotic damage."
       }
     ]
   },
@@ -7026,6 +8412,83 @@
     ]
   },
   {
+    "id": "hollowWarden",
+    "name": "Hollow Warden",
+    "description": "Hollow Wardens draw power from ancient horrors of the land, growing bark armor, beastly bristles, or bloodied antlers as they unleash nature's primal vengeance.\n",
+    "tags": [
+      "rangerSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Hollow Warden"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "wrathfulSmite"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "alterSelf"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "phantomSteed"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 13",
+        "target": [
+          "dominateBeast"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 17",
+        "target": [
+          "steelWindStrike"
+        ]
+      },
+      {
+        "id": "wrathOfTheWild",
+        "type": "Activity",
+        "name": "Wrath of the Wild",
+        "time": "bonus action",
+        "duration": "1 minute",
+        "resource": "favoredEnemy",
+        "description": "You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. You gain the following benefits for the duration:\n* **Ancient Armor:** Gain a +$(meta.level >= 11 ? 2 : 1) bonus to AC.\n* **Prowling Retribution:** Immediately after a creature within 5 feet deals damage to you or an ally, you can make an Opportunity Attack against it.\n* **Unnerving Aura:** At transformation and at the start of your subsequent turns, each chosen creature in a 10-foot Emanation makes a DC $(attributes.spellcasting.save) Wisdom save or has the Frightened condition until the start of your next turn.\n"
+      },
+      {
+        "id": "hungeringMightConSaves",
+        "type": "Effect",
+        "target": "saves.constitution.bonus",
+        "operation": "add",
+        "condition": "$(meta.level >= 7)",
+        "value": "$(Math.max(1, stats.wis.mod))"
+      },
+      {
+        "id": "hungeringMightHeal",
+        "type": "Extra",
+        "target": "wrathOfTheWild",
+        "condition": "$(meta.level >= 7)",
+        "name": "Hungering Might",
+        "description": "Once per turn when you hit a creature with an attack roll while transformed and Bloodied, you regain 1d10+$(Math.max(1, stats.wis.mod)) Hit Points."
+      }
+    ]
+  },
+  {
     "id": "hunter",
     "name": "Hunter",
     "description": "You stalk prey in the wilds and elsewhere, using your abilities as a Hunter to protect nature and people everywhere from forces that would destroy them.\n",
@@ -7062,6 +8525,94 @@
         "quantity": 1,
         "target": "classOption OR defensiveTactics",
         "condition": "$(meta.level >= 7)"
+      }
+    ]
+  },
+  {
+    "id": "winterWalker",
+    "name": "Winter Walker",
+    "description": "Winter Walkers thrive in subzero wastes and frozen tundras, channeling frost and rime to shield themselves and paralyze their prey.\n",
+    "tags": [
+      "rangerSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Winter Walker"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "iceKnife"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "holdPerson"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "removeCurse"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 13",
+        "target": [
+          "iceStorm"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 17",
+        "target": [
+          "coneOfCold"
+        ]
+      },
+      {
+        "id": "bitingCold",
+        "type": "Extra",
+        "target": "coldDamage",
+        "name": "Biting Cold",
+        "description": "This damage ignores Resistance to Cold damage."
+      },
+      {
+        "id": "frostResistance",
+        "type": "Reference",
+        "target": "coldResistance"
+      },
+      {
+        "id": "polarStrikes",
+        "type": "Extra",
+        "target": "weaponAttack",
+        "name": "Polar Strikes",
+        "description": "Once per turn when you hit with a weapon attack, you deal an extra $(meta.level >= 11 ? '1d6' : '1d4') Cold damage. This damage ignores Resistances."
+      },
+      {
+        "id": "huntersRime",
+        "type": "Extra",
+        "target": "huntersMark",
+        "name": "Hunter's Rime",
+        "description": "You gain 1d10+$(meta.level) Temporary Hit Points. Additionally, a creature marked by your Hunter's Mark can't take the Disengage action."
+      },
+      {
+        "id": "fortifyingSoul",
+        "type": "Activity",
+        "name": "Fortifying Soul",
+        "time": "action",
+        "range": "self",
+        "uses": 1,
+        "condition": "$(meta.level >= 7)",
+        "description": "You bolster your allies in addition to yourself. Choose up to $(Math.max(1, stats.wis.mod)) creatures you can see. Each chosen creature regains 1d10+$(meta.level) Hit Points and has Advantage on saving throws to avoid or end the Frightened condition for 1 hour."
       }
     ]
   },
@@ -7152,6 +8703,86 @@
         "target": "weaponAttack",
         "name": "Surprising Strike",
         "description": "During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn."
+      }
+    ]
+  },
+  {
+    "id": "phantom",
+    "name": "Phantom",
+    "description": "Phantoms slip between the world of the living and the dead, drawing on the knowledge and power of those who have passed to become more lethal rogues. Their supernatural connection to death lets them wring extra harm from their strikes and makes them repositories of ghostly lore.\n",
+    "tags": [
+      "rogueSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Phantom"
+      },
+      {
+        "id": "wailsFromTheGraveResource",
+        "name": "Wails from the Grave",
+        "type": "Resource",
+        "quantity": "$(Math.max(1, stats.dex.mod))"
+      },
+      {
+        "id": "wailsFromTheGrave",
+        "type": "Activity",
+        "name": "Wails from the Grave",
+        "time": "free action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "resource": "wailsFromTheGraveResource",
+        "description": "Immediately after you deal Sneak Attack damage to a creature on your turn, you target a second creature you can see within range. Roll $(Math.ceil(meta.level / 2))d6 and the second creature takes that much Necrotic damage as wails of the dead sound around it.\n"
+      },
+      {
+        "id": "whispersOfTheDead",
+        "type": "Slot",
+        "target": "skillProficiency",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "id": "scion",
+    "name": "Scion",
+    "description": "Scions channel the power of the Dead Three—Bane, Bhaal, and Myrkul—through their blades, becoming ruthless killers who thrive on bloodshed. Their allegiance shifts with their needs, drawing on whichever dark patron's gifts suit the moment.\n",
+    "tags": [
+      "rogueSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Scion"
+      },
+      {
+        "id": "bloodthirst",
+        "name": "Bloodthirst",
+        "type": "Resource",
+        "quantity": "$(Math.max(1, stats.int.mod))"
+      },
+      {
+        "id": "bloodthirst",
+        "type": "Activity",
+        "name": "Bloodthirst",
+        "time": "reaction",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "resource": "bloodthirst",
+        "description": "When an enemy you can see within range takes damage and is Bloodied (at or below half its Hit Point maximum) after taking that damage but is not killed, you teleport to an unoccupied space you can see within 5 feet of that enemy. You can then make one melee attack against it.\n"
+      },
+      {
+        "id": "dreadAllegiance",
+        "name": "Dread Allegiance",
+        "type": "Slot",
+        "target": "dreadAllegiance"
       }
     ]
   },
@@ -7398,6 +9029,71 @@
     ]
   },
   {
+    "id": "demonic",
+    "name": "Demonic Sorcery",
+    "description": "Your innate magic stems from a rift to the Abyss, allowing you to tear open abyssal ruptures and channel chaotic demonic layers into battle.\n",
+    "tags": [
+      "sorcererSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Demonic"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "bane",
+          "dissonantWhispers",
+          "spikeGrowth",
+          "web"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "bestowCurse",
+          "dispelMagic"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 7",
+        "target": [
+          "giantInsect",
+          "hallucinatoryTerrain"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "contactOtherPlane",
+          "modifyMemory"
+        ]
+      },
+      {
+        "id": "abyssalRupture",
+        "type": "Activity",
+        "name": "Abyssal Rupture",
+        "time": "bonus action",
+        "description": "When you use Innate Sorcery, a 10-foot-radius Abyssal sphere ruptures within 30 feet. At activation and as a Bonus Action on subsequent turns, choose:\n* **Demonic Lash:** Melee spell attack (+$(attributes.spellcasting.attack)) against a target within 5 ft of the rupture for 1d8 Slashing damage and pull up to 10 ft toward center.\n* **Terrifying Screams:** Each creature in the rupture makes a DC $(attributes.spellcasting.save) Wisdom save or takes 1d4 Psychic damage.\n"
+      },
+      {
+        "id": "abyssalRealm",
+        "type": "Activity",
+        "name": "Abyssal Realm",
+        "condition": "$(meta.level >= 6)",
+        "description": "When you spend at least 1 Sorcery Point as part of a Magic action or a Bonus Action on your turn, you can pull influence from the Abyss. When you do, you create a 10-foot Emanation originating from you, or you fill the Sphere of your Abyssal Rupture with magic from one of the following layers of the Abyss:\n* **Gaping Maw’s Frenzy.** Designate a direction that is horizontal to you. Each creature in the area that fails a DC $(attributes.spellcasting.save) Charisma saving throw must use as much of its movement as possible to move in that direction at the start of its next turn, taking the safest route.\n* **Maze of Azzatar.** Each creature in the area makes a DC $(attributes.spellcasting.save) Intelligence saving throw. On a failed save, you gain the benefits of the Invisible condition against the target until the start of your next turn.\n* **Slime Pits’ Haze.** Each creature in the area makes a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the target has your choice of the Charmed or Poisoned condition until the start of your next turn.\n"
+      }
+    ]
+  },
+  {
     "id": "draconic",
     "name": "Draconic Sorcery",
     "description": "Your innate magic comes from the gift of a dragon. Perhaps an ancient dragon facing death bequeathed some of its magical power to you or your ancestor. You might have absorbed magic from a site infused with dragons’ power. Or perhaps you handled a treasure taken from a dragon’s hoard that was steeped in draconic power.\n",
@@ -7469,6 +9165,84 @@
         "name": "Elemental Affinity",
         "condition": "$(meta.level >= 6)",
         "target": "classOptions OR elementalAffinity"
+      }
+    ]
+  },
+  {
+    "id": "shadow",
+    "name": "Shadow Sorcery",
+    "description": "You draw your magic from the Shadowfell itself, wrapping yourself in gloom, commanding darkness, and summoning dreadful beasts of ill omen.\n",
+    "tags": [
+      "sorcererSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Shadow"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "bane",
+          "darkness",
+          "inflictWounds",
+          "passWithoutTrace"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "hungerOfHadar",
+          "nondetection"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 7",
+        "target": [
+          "greaterInvisibility",
+          "phantasmalKiller"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "contagion",
+          "creation"
+        ]
+      },
+      {
+        "id": "eyesOfTheDark",
+        "type": "Effect",
+        "target": "attributes.senses.darkvision",
+        "operation": "set",
+        "value": 120
+      },
+      {
+        "id": "strengthOfTheGrave",
+        "type": "Activity",
+        "uses": 1,
+        "name": "Strength of the Grave",
+        "description": "When you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw (DC 5 + damage taken). On a success, your Hit Points instead change to $(stats.cha.mod + meta.level)."
+      },
+      {
+        "id": "beastsOfIllOmen",
+        "type": "Reference",
+        "target": "summonBeast",
+        "condition": "$(meta.level >= 6)"
+      },
+      {
+        "id": "beastsOfIllOmenEffect",
+        "type": "Effect",
+        "target": "activities[summonBeastActivity].time",
+        "operation": "set",
+        "value": "bonus action"
       }
     ]
   },
@@ -7909,6 +9683,169 @@
     ]
   },
   {
+    "id": "undeadPatron",
+    "name": "Undead Patron",
+    "description": "You have made a pact with a legendary undead entity such as a lich, vampire lord, or mummy lord, gaining dreadful powers that ward off death and terrify your foes.\n",
+    "tags": [
+      "warlockSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Undead"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "bane",
+          "blindnessDeafness",
+          "phantasmalForce",
+          "rayOfSickness"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 5",
+        "target": [
+          "speakWithDead",
+          "summonUndead"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 7",
+        "target": [
+          "greaterInvisibility",
+          "phantasmalKiller"
+        ]
+      },
+      {
+        "type": "Reference",
+        "condition": "meta.level >= 9",
+        "target": [
+          "antilifeShell",
+          "cloudkill"
+        ]
+      },
+      {
+        "id": "formOfDread",
+        "type": "Activity",
+        "name": "Form of Dread",
+        "time": "bonus action",
+        "duration": "1 minute",
+        "resource": "formOfDread",
+        "description": "You transform into an avatar of your patron’s dreadful power, gaining the following benefits for the duration:\n* **Facsimile of Life:** You gain 1d10+$(meta.level) Temporary Hit Points.\n* **Fearless Form:** You have Immunity to the Frightened condition. If you are Frightened when you transform, the condition immediately ends for you.\n* **Frightful Avatar:** Once per turn, when you hit a creature with an attack roll, you can force it to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the target has the Frightened condition until the end of your next turn.\n"
+      },
+      {
+        "id": "formOfDread",
+        "name": "Form of Dread",
+        "type": "Resource",
+        "quantity": "$(Math.max(1, stats.cha.mod))"
+      },
+      {
+        "id": "arcaneNecrosis",
+        "type": "Extra",
+        "target": "necroticDamage",
+        "condition": "$(meta.level >= 6)",
+        "name": "Arcane Necrosis",
+        "description": "This damage ignores Resistance to Necrotic damage."
+      },
+      {
+        "id": "necroticSpellConversion",
+        "type": "Extra",
+        "target": "damageSpell NOT necroticDamage",
+        "condition": "$(meta.level >= 6)",
+        "name": "Arcane Necrosis",
+        "description": "You can change this spell's damage type to Necrotic."
+      },
+      {
+        "id": "dreadedNecrosis",
+        "type": "Extra",
+        "target": "formOfDread",
+        "condition": "$(meta.level >= 6)",
+        "name": "Dreaded Necrosis",
+        "description": "Once per turn when you hit a creature and deal Necrotic damage while transformed, you can roll one additional damage die."
+      }
+    ]
+  },
+  {
+    "id": "vestigePatron",
+    "name": "Vestige Patron",
+    "description": "Your patron is a vestige—the ghostly remnant of a lost god, demigod, or primordial force. The vestige manifests as a companion that obeys your commands and channels divine power into your pact.\n",
+    "tags": [
+      "warlockSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Vestige"
+      },
+      {
+        "id": "vestigeCompanion",
+        "type": "Slot",
+        "name": "Vestige Companion",
+        "quantity": 1,
+        "target": "classOption OR vestigeCompanion"
+      },
+      {
+        "id": "vestigeCompanionName",
+        "type": "Input",
+        "name": "Vestige Companion Name",
+        "inputType": "text",
+        "label": "Vestige Companion Name"
+      },
+      {
+        "type": "Effect",
+        "target": "statblocks[undeadVestige].name",
+        "operation": "set",
+        "value": "$(meta.beastcompanionname ? meta.beastcompanionname: 'Undead Vestige')"
+      },
+      {
+        "type": "Effect",
+        "target": "statblocks[celestialVestige].name",
+        "operation": "set",
+        "value": "$(meta.beastcompanionname ? meta.beastcompanionname: 'Celestial Vestige')"
+      },
+      {
+        "type": "Effect",
+        "target": "statblocks[fiendVestige].name",
+        "operation": "set",
+        "value": "$(meta.beastcompanionname ? meta.beastcompanionname: 'Fiend Vestige')"
+      },
+      {
+        "id": "vestigeDomainChoice",
+        "type": "Slot",
+        "name": "Vestige Domain",
+        "quantity": 1,
+        "target": "vestigeType OR classOption"
+      },
+      {
+        "id": "vestigeCompanionExtraAttack",
+        "type": "Effect",
+        "target": "activities[tags=weaponAttack].extra[\"instead of once, whenever you take the Attack action on your turn.\"]",
+        "operation": "replace",
+        "condition": "$(meta.level >= 5)",
+        "value": "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Vestige to take an action in its stat block."
+      },
+      {
+        "id": "commandVestige",
+        "type": "Activity",
+        "time": "bonus action",
+        "range": "60 feet",
+        "name": "Command Vestige",
+        "description": "You command your Vestige to take an action. The vestige acts during your turn and can move and use its Reaction on its own, but only takes the Dodge action unless you command it."
+      }
+    ]
+  },
+  {
     "id": "abjurer",
     "name": "Abjurer",
     "description": "Your study of magic is focused on spells that block, banish, or protect—ending harmful effects, banishing evil influences, and protecting the weak. Abjurers are sought when baleful spirits require exorcism, when locations must be guarded against magical spying, and when portals to other planes of existence must be closed.\n",
@@ -7941,6 +9878,59 @@
         "target": "arcaneWard",
         "condition": "$(meta.level >= 6)",
         "description": "When a creature that you can see within range takes damage, you cause your Arcane Ward to absorb that damage. If this damage reduces the ward to 0 Hit Points, the warded creature takes any remaining damage. If that creature has any Resistances or Vulnerabilities, apply them before reducing the ward's Hit Points."
+      }
+    ]
+  },
+  {
+    "id": "bladesinger",
+    "name": "Bladesinger",
+    "description": "Bladesingers master a tradition of wizardry that incorporates swordplay and dance, executing intricate maneuvers that fend off harm and channel magic into singing blades.\n",
+    "tags": [
+      "wizardSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Bladesinger"
+      },
+      {
+        "id": "bladesong",
+        "type": "Activity",
+        "name": "Bladesong",
+        "time": "bonus action",
+        "resource": "bladesong",
+        "duration": "1 minute",
+        "description": "You invoke an elven magic called the Bladesong, provided you aren’t wearing armor or using a Shield. While the Bladesong is active, you gain the following benefits:\n  * **Agility:** You gain a +$(Math.min(1, stats.int.mod)) bonus to AC, your Speed increases by 10 feet, and gain Advantage on Acrobatics checks.\n  * **Bladework:** Whenever you attack with a weapon with which you have proficiency, you can do so with a $(formatBonus(attributes.spellcasting.attack)) attack roll and a $(formatBonus(attributes.spellcasting.bonus)) damage bonus.\n  * **Focus:** When you make a Constitution saving throw to maintain Concentration, you can add +$(Math.min(1, stats.int.mod)) to the total.\n"
+      },
+      {
+        "id": "bladesong",
+        "type": "Resource",
+        "quantity": "(Math.max(1, stats.int.mod))"
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "martialWeaponProficiency"
+        ]
+      },
+      {
+        "id": "bladesingerSkillProficiencies",
+        "type": "Slot",
+        "name": "Bladesinger Skill Proficiencies",
+        "quantity": 1,
+        "target": "acrobaticsProficiency OR athleticsProficiency OR performanceProficiency OR persuasionProficiency"
+      },
+      {
+        "id": "extraAttack",
+        "type": "Extra",
+        "target": "weaponAttack",
+        "condition": "$(meta.level >= 5)",
+        "name": "Extra Attack",
+        "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action."
       }
     ]
   },
@@ -8063,6 +10053,59 @@
           "summonFey"
         ],
         "condition": "$(meta.level >= 6)"
+      }
+    ]
+  },
+  {
+    "id": "necromancer",
+    "name": "Necromancer",
+    "description": "The School of Necromancy explores the cosmic forces of life, death, and undeath, mastering spells that drain life force and raise undead thralls to serve them.\n",
+    "tags": [
+      "wizardSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "subclassName",
+        "type": "Effect",
+        "target": "meta.sub",
+        "operation": "set",
+        "value": "Necromancer"
+      },
+      {
+        "id": "necroticResistance",
+        "type": "Reference",
+        "target": "necroticResistance"
+      },
+      {
+        "id": "grimHarvest",
+        "type": "Activity",
+        "name": "Grim Harvest",
+        "description": "When you cast a Necromancy spell using a spell slot, choose an Undead creature within 60 feet to regain 1+$(meta.level) Hit Points, plus the spell slot level."
+      },
+      {
+        "id": "overwhelmingNecrosis",
+        "type": "Extra",
+        "target": "necroticDamage",
+        "condition": "$(meta.level >= 6)",
+        "name": "Overwhelming Necrosis",
+        "description": "This spell ignores Resistance to Necrotic Damage."
+      },
+      {
+        "id": "undeadThralls",
+        "type": "Reference",
+        "target": "animateDead"
+      },
+      {
+        "id": "undeadThrallsDamageEffect",
+        "type": "Effect",
+        "target": "statblocks[classification=Undead].traits",
+        "operation": "push",
+        "condition": "$(meta.level >= 6)",
+        "value": {
+          "name": "Withering Strike",
+          "description": "Whenever the undead hits a creature with an attack roll, you deal an extra $(Math.max(1, stats.int.mod)) Necrotic damage."
+        }
       }
     ]
   },
@@ -17932,23 +19975,37 @@
   },
   {
     "id": "animateDead",
-    "type": "Activity",
+    "type": "Folder",
     "name": "Animate Dead",
-    "resource": "level3SpellSlot",
     "tags": [
       "level3Spell",
       "necromancy",
       "cleric",
       "wizard"
     ],
-    "time": "1 minute",
-    "range": "10 feet",
-    "duration": "instantaneous",
-    "description": "Choose a pile of bones or a corpse of a Medium or Small Humanoid within range. The target becomes an Undead creature: a Skeleton if you chose bones or a Zombie if you chose a corpse (see appendix B for the stat blocks).\n\nOn each of your turns, you can take a Bonus Action to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures, you can command any of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move on its next turn, or you can issue a general command, such as to guard a chamber or corridor. If you issue no commands, the creature takes the Dodge action and moves only to avoid harm. Once given an order, the creature continues to follow it until its task is complete.\n\nThe creature is under your control for 24 hours, after which it stops obeying any command you’ve given it. To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends. This use of the spell reasserts your control over up to four creatures you have animated with this spell rather than animating a new creature.\n",
-    "extra": [
+    "children": [
       {
-        "name": "Using a Higher-Level Spell Slot",
-        "description": "You animate or reassert control over two additional Undead creatures for each spell slot level above 3. Each of the creatures must come from a different corpse or pile of bones."
+        "id": "animateDeadActivity",
+        "type": "Activity",
+        "name": "Animate Dead",
+        "resource": "level3SpellSlot",
+        "time": "1 minute",
+        "range": "10 feet",
+        "duration": "instantaneous",
+        "description": "Choose a pile of bones or a corpse of a Medium or Small Humanoid within range. The target becomes an Undead creature: a Skeleton if you chose bones or a Zombie if you chose a corpse (see appendix B for the stat blocks).\n\nOn each of your turns, you can take a Bonus Action to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures, you can command any of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move on its next turn, or you can issue a general command, such as to guard a chamber or corridor. If you issue no commands, the creature takes the Dodge action and moves only to avoid harm. Once given an order, the creature continues to follow it until its task is complete.\n\nThe creature is under your control for 24 hours, after which it stops obeying any command you’ve given it. To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends. This use of the spell reasserts your control over up to four creatures you have animated with this spell rather than animating a new creature.\n",
+        "extra": [
+          {
+            "name": "Using a Higher-Level Spell Slot",
+            "description": "You animate or reassert control over two additional Undead creatures for each spell slot level above 3. Each of the creatures must come from a different corpse or pile of bones."
+          }
+        ]
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "skeleton",
+          "zombie"
+        ]
       }
     ]
   },
@@ -20503,6 +22560,61 @@
   },
   {
     "type": "Statblock",
+    "name": "Celestial Vestige",
+    "tags": [
+      "vestigeCompanion"
+    ],
+    "id": "celestialVestige",
+    "size": "Small",
+    "category": "summon",
+    "classification": "Celestial",
+    "ac": "$(13 + stats.cha.mod)",
+    "hp": "$(4 + 4 * meta.level)",
+    "movement": {
+      "walk": 5,
+      "fly": 30
+    },
+    "stats": {
+      "str": 1,
+      "dex": 14,
+      "con": 10,
+      "int": 15,
+      "wis": 15,
+      "cha": 16
+    },
+    "resistances": [
+      "Radiant"
+    ],
+    "immunities": [
+      "Charmed",
+      "Frightened",
+      "Prone"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "Speaks the languages that you know",
+    "traits": [
+      {
+        "name": "Pact Bond",
+        "description": "Add your Proficiency Bonus to any ability check or saving throw the vestige makes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Vestige's Strike",
+        "description": "_Melee or Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. or range 60 ft. _Hit:_ 1d6+3$(formatBonus(stats.cha.mod)) Radiant damage."
+      }
+    ],
+    "bonusActions": [
+      {
+        "name": "Divine Power (1/Day)",
+        "description": "**Healing Touch.** The vestige touches another creature. The target regains Hit Points equal to 2d8 plus your Charisma modifier and ends one condition on it: Blinded, Deafened, or Poisoned.\n"
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
     "name": "Construct Spirit (Clay)",
     "tags": [
       "summon"
@@ -21069,6 +23181,61 @@
       {
         "name": "Fey Step",
         "description": "The spirit magically teleports up to 30 feet to an unoccupied space it can see. Then the spirit fills a 10-foot Cube within 5 feet of it with magical Darkness, which lasts until the end of its next turn."
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
+    "name": "Fiend Vestige",
+    "tags": [
+      "vestigeCompanion"
+    ],
+    "id": "fiendVestige",
+    "size": "Small",
+    "category": "summon",
+    "classification": "Fiend",
+    "ac": "$(13 + stats.cha.mod)",
+    "hp": "$(4 + 4 * meta.level)",
+    "movement": {
+      "walk": 5,
+      "fly": 30
+    },
+    "stats": {
+      "str": 1,
+      "dex": 14,
+      "con": 10,
+      "int": 15,
+      "wis": 15,
+      "cha": 16
+    },
+    "resistances": [
+      "Fire"
+    ],
+    "immunities": [
+      "Charmed",
+      "Frightened",
+      "Prone"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "Speaks the languages that you know",
+    "traits": [
+      {
+        "name": "Pact Bond",
+        "description": "Add your Proficiency Bonus to any ability check or saving throw the vestige makes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Vestige's Strike",
+        "description": "_Melee or Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. or range 60 ft. _Hit:_ 1d6+3$(formatBonus(stats.cha.mod)) Fire damage."
+      }
+    ],
+    "bonusActions": [
+      {
+        "name": "Divine Power (1/Day)",
+        "description": "**Fiendish Swap.** If you and the vestige are within 60 feet of each other, you both teleport, swapping places.\n"
       }
     ]
   },
@@ -21896,6 +24063,255 @@
   },
   {
     "type": "Statblock",
+    "name": "Skeleton",
+    "tags": [
+      "summon",
+      "skeletonTemplate"
+    ],
+    "id": "skeleton",
+    "size": "Medium",
+    "category": "summon",
+    "classification": "Undead",
+    "ac": 13,
+    "hp": 13,
+    "movement": {
+      "walk": 30
+    },
+    "stats": {
+      "str": 10,
+      "dex": 14,
+      "con": 15,
+      "int": 6,
+      "wis": 8,
+      "cha": 5
+    },
+    "vulnerabilities": [
+      "Bludgeoning"
+    ],
+    "immunities": [
+      "Poison",
+      "Exhaustion",
+      "Poisoned"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "understands the languages it knew in life but can't speak",
+    "actions": [
+      {
+        "name": "Shortsword",
+        "description": "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d6+2 Piercing damage."
+      },
+      {
+        "name": "Shortbow",
+        "description": "_Ranged Attack Roll:_ +4 to hit, range 80/320 ft. _Hit:_ 1d6+2 Piercing damage."
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
+    "name": "Steel Defender",
+    "id": "steelDefender",
+    "category": "companion",
+    "classification": "Construct",
+    "tags": [
+      "steelDefender"
+    ],
+    "size": "Medium",
+    "ac": "$(12 + stats.int.mod)",
+    "hp": "$(5 + 5 * meta.level)",
+    "movement": {
+      "walk": 40
+    },
+    "stats": {
+      "str": 14,
+      "dex": 12,
+      "con": 14,
+      "int": 4,
+      "wis": 10,
+      "cha": 6
+    },
+    "immunities": [
+      "Poison",
+      "Charmed",
+      "Exhaustion",
+      "Poisoned"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "challenge": 0,
+    "cr": 0,
+    "traits": [
+      {
+        "name": "Steel Bond",
+        "description": "Add $(attributes.prof) to any ability check or saving throw the Steel Defender makes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Force-Empowered Rend",
+        "id": "forceEmpoweredRend",
+        "description": "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d8 + $(2 + stats.int.mod) Force damage."
+      },
+      {
+        "name": "Repair (3/Day)",
+        "id": "repair",
+        "description": "The defender, or one Construct or object it can see within 5 feet of it, regains $(2 + stats.int.mod)d8 Hit Points."
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Deflect Attack",
+        "id": "deflectAttack",
+        "description": "_Trigger:_ A creature the defender can see within 5 feet of it makes an attack roll targeting a different creature. _Response:_ The triggering creature makes the attack roll with Disadvantage."
+      }
+    ]
+  },
+  {
+    "name": "Titan Form Templates",
+    "id": "titanForm",
+    "children": [
+      {
+        "type": "Statblock",
+        "name": "Behemoth",
+        "tags": [
+          "titanFormTemplate"
+        ],
+        "id": "behemothTitanForm",
+        "size": "Large",
+        "category": "summon",
+        "classification": "Monstrosity",
+        "ac": "$(13 + stats.wis.mod)",
+        "hp": "$(4 * meta.level)",
+        "movement": {
+          "walk": 40,
+          "climb": 40
+        },
+        "stats": {
+          "str": "$(stats.wis.score)",
+          "dex": "$(stats.wis.score)",
+          "con": "$(stats.con.score)",
+          "int": "$(stats.int.score)",
+          "wis": "$(stats.wis.score)",
+          "cha": "$(stats.cha.score)"
+        },
+        "senses": {
+          "darkvision": 60
+        },
+        "traits": [
+          {
+            "name": "Siege Monster",
+            "description": "You deal double damage to objects and structures."
+          }
+        ],
+        "actions": [
+          {
+            "name": "Rend",
+            "description": "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 10 ft. _Hit:_ $(meta.level >= 12 ? 3 : meta.level >= 6 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) Slashing damage."
+          },
+          {
+            "name": "Incandescent Breath",
+            "description": "You expend a level 1+ spell slot. DC $(attributes.spellcasting.save) Dexterity saving throw for each creature in a 5-foot-wide, 60-foot-long Line. Failure: 2d10 Radiant damage per level of the spell slot expended. Success: Half damage."
+          }
+        ]
+      },
+      {
+        "type": "Statblock",
+        "name": "Leviathan",
+        "tags": [
+          "titanFormTemplate"
+        ],
+        "id": "leviathanTitanForm",
+        "size": "Large",
+        "category": "summon",
+        "classification": "Monstrosity",
+        "ac": "$(13 + stats.wis.mod)",
+        "hp": "$(4 * meta.level)",
+        "movement": {
+          "walk": 40,
+          "swim": 40
+        },
+        "stats": {
+          "str": "$(stats.wis.score)",
+          "dex": "$(stats.wis.score)",
+          "con": "$(stats.con.score)",
+          "int": "$(stats.int.score)",
+          "wis": "$(stats.wis.score)",
+          "cha": "$(stats.cha.score)"
+        },
+        "senses": {
+          "darkvision": 60
+        },
+        "traits": [
+          {
+            "name": "Amphibious",
+            "description": "You can breathe air and water."
+          },
+          {
+            "name": "Siege Monster",
+            "description": "You deal double damage to objects and structures."
+          }
+        ],
+        "actions": [
+          {
+            "name": "Rend",
+            "description": "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 10 ft. _Hit:_ $(meta.level >= 12 ? 3 : meta.level >= 6 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) Bludgeoning damage."
+          }
+        ]
+      },
+      {
+        "type": "Statblock",
+        "name": "Insectoid",
+        "tags": [
+          "titanFormTemplate"
+        ],
+        "id": "insectoidTitanForm",
+        "size": "Large",
+        "category": "summon",
+        "classification": "Monstrosity",
+        "ac": "$(13 + stats.wis.mod)",
+        "hp": "$(4 * meta.level)",
+        "movement": {
+          "walk": 40,
+          "fly": "$(meta.level >= 10 ? 40 : 0)"
+        },
+        "stats": {
+          "str": "$(stats.wis.score)",
+          "dex": "$(stats.wis.score)",
+          "con": "$(stats.con.score)",
+          "int": "$(stats.int.score)",
+          "wis": "$(stats.wis.score)",
+          "cha": "$(stats.cha.score)"
+        },
+        "senses": {
+          "darkvision": 60
+        },
+        "traits": [
+          {
+            "name": "Siege Monster",
+            "description": "You deal double damage to objects and structures."
+          },
+          {
+            "name": "Flyby (Requires Druid Level 10+)",
+            "description": "You don't provoke Opportunity Attacks when you fly out of an enemy's reach."
+          }
+        ],
+        "actions": [
+          {
+            "name": "Rend",
+            "description": "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 10 ft. _Hit:_ $(meta.level >= 12 ? 3 : meta.level >= 6 ? 2 : 1)d8$(formatBonus(stats.wis.mod)) Piercing damage."
+          },
+          {
+            "name": "Energizing Pollen",
+            "description": "You expend a level 1+ spell slot and can move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks while emitting a cloud of healing pollen. When you move within 5 feet of another creature during this movement, you can restore a number of Hit Points equal to 2d6 per level of the spell slot expended (once per turn per creature)."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
     "name": "Undead Spirit (Ghostly)",
     "tags": [
       "summon"
@@ -22039,6 +24455,61 @@
       {
         "name": "Grave Bolt",
         "description": "_Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 150 ft. _Hit:_ 2d4$(formatBonus(stats.dex.mod)) + $(local.maxLevel || 3) Necrotic damage."
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
+    "name": "Undead Vestige",
+    "tags": [
+      "vestigeCompanion"
+    ],
+    "id": "undeadVestige",
+    "size": "Small",
+    "category": "summon",
+    "classification": "Undead",
+    "ac": "$(13 + stats.cha.mod)",
+    "hp": "$(4 + 4 * meta.level)",
+    "movement": {
+      "walk": 5,
+      "fly": 30
+    },
+    "stats": {
+      "str": 1,
+      "dex": 14,
+      "con": 10,
+      "int": 15,
+      "wis": 15,
+      "cha": 16
+    },
+    "resistances": [
+      "Necrotic"
+    ],
+    "immunities": [
+      "Charmed",
+      "Frightened",
+      "Prone"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "Speaks the languages that you know",
+    "traits": [
+      {
+        "name": "Pact Bond",
+        "description": "Add your Proficiency Bonus to any ability check or saving throw the vestige makes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Vestige's Strike",
+        "description": "_Melee or Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. or range 60 ft. _Hit:_ 1d6+3$(formatBonus(stats.cha.mod)) Necrotic damage."
+      }
+    ],
+    "bonusActions": [
+      {
+        "name": "Divine Power (1/Day)",
+        "description": "**Cursed Invocation.** The vestige places a curse on a creature you can see within 30 feet of the vestige for 1 minute. While cursed, the target has Disadvantage on attack rolls against you and the vestige.\n"
       }
     ]
   },
@@ -22198,5 +24669,51 @@
     },
     "traits": "$(local.traits || [])",
     "actions": "$(local.actions || [])"
+  },
+  {
+    "type": "Statblock",
+    "name": "Zombie",
+    "tags": [
+      "summon",
+      "zombieTemplate"
+    ],
+    "id": "zombie",
+    "size": "Medium",
+    "category": "summon",
+    "classification": "Undead",
+    "ac": 8,
+    "hp": 22,
+    "movement": {
+      "walk": 20
+    },
+    "stats": {
+      "str": 13,
+      "dex": 6,
+      "con": 16,
+      "int": 3,
+      "wis": 6,
+      "cha": 5
+    },
+    "immunities": [
+      "Poison",
+      "Exhaustion",
+      "Poisoned"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "understands the languages it knew in life but can't speak",
+    "traits": [
+      {
+        "name": "Undead Fortitude",
+        "description": "If damage reduces the zombie to 0 Hit Points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is Radiant or from a Critical Hit. On a success, the zombie drops to 1 Hit Point instead."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Slam",
+        "description": "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1d6+1 Bludgeoning damage."
+      }
+    ]
   }
 ]

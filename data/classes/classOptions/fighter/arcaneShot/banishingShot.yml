@@ -1,0 +1,6 @@
+id: banishingShot
+name: Banishing Shot
+type: Activity
+tags: [arcaneShotOption]
+resource: arcaneShot
+description: "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 1d6 Psychic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Charisma saving throw or be banished until the end of its next turn (having the Incapacitated condition and 0 Speed)."

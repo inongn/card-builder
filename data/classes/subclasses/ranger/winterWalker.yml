@@ -1,0 +1,63 @@
+id: winterWalker
+name: Winter Walker
+description: |
+  Winter Walkers thrive in subzero wastes and frozen tundras, channeling frost and rime to shield themselves and paralyze their prey.
+tags:
+  - rangerSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Winter Walker"
+
+  # Level 3: Winter Walker Spells
+  - type: Reference
+    target: [iceKnife]
+  - type: Reference
+    condition: meta.level >= 5
+    target: [holdPerson]
+  - type: Reference
+    condition: meta.level >= 9
+    target: [removeCurse]
+  - type: Reference
+    condition: meta.level >= 13
+    target: [iceStorm]
+  - type: Reference
+    condition: meta.level >= 17
+    target: [coneOfCold]
+
+  # Level 3: Frigid Explorer
+  - id: bitingCold
+    type: Extra
+    target: coldDamage
+    name: Biting Cold
+    description: "This damage ignores Resistance to Cold damage."
+
+  - id: frostResistance
+    type: Reference
+    target: coldResistance
+
+  - id: polarStrikes
+    type: Extra
+    target: weaponAttack
+    name: Polar Strikes
+    description: "Once per turn when you hit with a weapon attack, you deal an extra $(meta.level >= 11 ? '1d6' : '1d4') Cold damage. This damage ignores Resistances."
+
+  # Level 3: Hunter's Rime
+  - id: huntersRime
+    type: Extra
+    target: huntersMark
+    name: "Hunter's Rime"
+    description: "You gain 1d10+$(meta.level) Temporary Hit Points. Additionally, a creature marked by your Hunter's Mark can't take the Disengage action."
+
+  # Level 7: Fortifying Soul
+  - id: fortifyingSoul
+    type: Activity
+    name: Fortifying Soul
+    time: action
+    range: self
+    uses: 1
+    condition: $(meta.level >= 7)
+    description: "You bolster your allies in addition to yourself. Choose up to $(Math.max(1, stats.wis.mod)) creatures you can see. Each chosen creature regains 1d10+$(meta.level) Hit Points and has Advantage on saving throws to avoid or end the Frightened condition for 1 hour."

@@ -50,6 +50,52 @@ function debounce(fn, delay) {
 }
 
 // ============================================================================
+// HELPERS
+// ============================================================================
+
+const loadAndSortCharacters = () => {
+    const savedRaw = localStorage.getItem('saved_characters');
+    const saved = JSON.parse(savedRaw || '[]');
+    
+    // Remove all previous sample characters to ensure fresh reload
+    const userCharacters = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
+    
+    const enabledRaw = localStorage.getItem('sample_characters_enabled');
+    const isEnabled = enabledRaw !== 'false';
+
+    let merged = userCharacters;
+    if (isEnabled) {
+        // Load fresh sample characters
+        const freshSamples = SAMPLE_CHARACTERS.map(sc => {
+            const existing = saved.find(c => c.id === sc.id);
+            return {
+                id: sc.id,
+                name: sc.name,
+                class: sc.class,
+                sub: sc.sub || '',
+                species: sc.species,
+                level: sc.level,
+                image: sc.image || '',
+                recipe: sc.recipe,
+                timestamp: existing?.timestamp || new Date().toISOString(),
+                lastPlayed: existing?.lastPlayed
+            };
+        });
+        merged = [...userCharacters, ...freshSamples];
+    }
+    
+    // Sort by lastPlayed desc, then timestamp desc
+    merged.sort((a, b) => {
+        const timeA = a.lastPlayed || a.timestamp || '';
+        const timeB = b.lastPlayed || b.timestamp || '';
+        return timeB.localeCompare(timeA);
+    });
+
+    localStorage.setItem('saved_characters', JSON.stringify(merged));
+    return merged;
+};
+
+// ============================================================================
 // MAIN APP
 // ============================================================================
 
@@ -65,38 +111,7 @@ export default function App() {
     const [isDarkMode, setIsDarkMode] = useState(() =>
         window.matchMedia('(prefers-color-scheme: dark)').matches
     );
-    const [savedCharacters, setSavedCharacters] = useState(() => {
-        const savedRaw = localStorage.getItem('saved_characters');
-        const saved = JSON.parse(savedRaw || '[]');
-        
-        // Remove all previous sample characters to ensure fresh reload
-        const userCharacters = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
-        
-        const enabledRaw = localStorage.getItem('sample_characters_enabled');
-        const isEnabled = enabledRaw !== 'false';
-
-        if (isEnabled) {
-            // Load fresh sample characters
-            const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
-                id: sc.id,
-                name: sc.name,
-                class: sc.class,
-                sub: sc.sub || '',
-                species: sc.species,
-                level: sc.level,
-                image: sc.image || '',
-                recipe: sc.recipe,
-                timestamp: new Date().toISOString()
-            }));
-
-            const merged = [...userCharacters, ...freshSamples];
-            localStorage.setItem('saved_characters', JSON.stringify(merged));
-            return merged;
-        } else {
-            localStorage.setItem('saved_characters', JSON.stringify(userCharacters));
-            return userCharacters;
-        }
-    });
+    const [savedCharacters, setSavedCharacters] = useState(() => loadAndSortCharacters());
     const [loadedCharacterId, setLoadedCharacterId] = useState(null);
     const [builderSource, setBuilderSource] = useState('dashboard');
     const [isNewCharacterCreation, setIsNewCharacterCreation] = useState(false);
@@ -117,8 +132,7 @@ export default function App() {
     }, [isDarkMode]);
 
     useEffect(() => {
-        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
-        setSavedCharacters(saved);
+        setSavedCharacters(loadAndSortCharacters());
     }, [activeTab]);
 
     const builderRef = useRef(null);
@@ -227,7 +241,8 @@ export default function App() {
             level: characterData.meta?.level || 1,
             image: characterData.meta?.image || '',
             recipe,
-            timestamp
+            timestamp,
+            lastPlayed: timestamp
         };
 
         if (index !== -1) {
@@ -235,6 +250,14 @@ export default function App() {
         } else {
             saved.push(charSummary);
         }
+
+        // Sort by lastPlayed desc, then timestamp desc
+        saved.sort((a, b) => {
+            const timeA = a.lastPlayed || a.timestamp || '';
+            const timeB = b.lastPlayed || b.timestamp || '';
+            return timeB.localeCompare(timeA);
+        });
+
         localStorage.setItem('saved_characters', JSON.stringify(saved));
         setSavedCharacters(saved);
         setActiveTab('play');
@@ -252,6 +275,23 @@ export default function App() {
         syncState();
         setLoadedCharacterId(id);
         setIsNewCharacterCreation(false);
+
+        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
+        const updated = saved.map(c => {
+            if (c.id === id) {
+                return { ...c, lastPlayed: new Date().toISOString() };
+            }
+            return c;
+        });
+
+        updated.sort((a, b) => {
+            const timeA = a.lastPlayed || a.timestamp || '';
+            const timeB = b.lastPlayed || b.timestamp || '';
+            return timeB.localeCompare(timeA);
+        });
+
+        localStorage.setItem('saved_characters', JSON.stringify(updated));
+        setSavedCharacters(updated);
         setActiveTab(targetTab);
     }, [builder, syncState]);
 

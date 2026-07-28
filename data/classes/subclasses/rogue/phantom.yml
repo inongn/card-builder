@@ -1,0 +1,36 @@
+id: phantom
+name: Phantom
+description: |
+  Phantoms slip between the world of the living and the dead, drawing on the knowledge and power of those who have passed to become more lethal rogues. Their supernatural connection to death lets them wring extra harm from their strikes and makes them repositories of ghostly lore.
+tags:
+  - rogueSubclass
+type: Folder
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Phantom"
+
+  # Level 3: Wails from the Grave — Resource
+  - id: wailsFromTheGraveResource
+    name: Wails from the Grave
+    type: Resource
+    quantity: "$(Math.max(1, stats.dex.mod))"
+
+  # Level 3: Wails from the Grave — Activity
+  - id: wailsFromTheGrave
+    type: Activity
+    name: Wails from the Grave
+    time: free action
+    range: 30 feet
+    duration: Instantaneous
+    resource: wailsFromTheGraveResource
+    description: |
+      Immediately after you deal Sneak Attack damage to a creature on your turn, you target a second creature you can see within range. Roll $(Math.ceil(meta.level / 2))d6 and the second creature takes that much Necrotic damage as wails of the dead sound around it.
+
+  # Level 3: Whispers of the Dead — Activity
+  - id: whispersOfTheDead
+    type: Slot
+    target: skillProficiency
+    quantity: 1

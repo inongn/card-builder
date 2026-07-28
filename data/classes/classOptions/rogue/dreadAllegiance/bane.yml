@@ -1,0 +1,9 @@
+id: banePact
+name: Pact of Bane
+tags: [dreadAllegiance]
+type: Folder
+children:
+  - type: Reference
+    target: psychicResistance
+  - type: Reference
+    target: [minorIllusion]

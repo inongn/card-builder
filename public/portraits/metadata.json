@@ -256,8 +256,8 @@
     "species": "Goliath"
   },
   {
-    "filename": "Druid_Land_Elf_4.jpg",
-    "species": "Elf"
+    "filename": "Druid_Land_Goliath_1.jpg",
+    "species": "Goliath"
   },
   {
     "filename": "Fighter_Champion_Elf_1.jpg",
@@ -686,10 +686,6 @@
   {
     "filename": "Barbarian_Wild_Heart_Human_1.jpg",
     "species": "Human"
-  },
-  {
-    "filename": "Wizard_Diviner_Goliath_2.jpg",
-    "species": "Goliath"
   },
   {
     "filename": "Ranger_Gloom_Stalker_Human_1.jpg",

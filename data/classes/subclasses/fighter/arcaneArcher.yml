@@ -1,0 +1,73 @@
+id: arcaneArcher
+name: Arcane Archer
+description: |
+  Arcane Archers study a unique method of elven archery that weaves magic into their shots to create supernatural combat effects.
+type: Folder
+tags:
+  - fighterSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Arcane Archer"
+
+  # Level 3: Arcane Archer Lore
+  - type: Slot
+    id: arcaneArcherLoreCantrip
+    name: "Arcane Archer Lore Cantrip"
+    target: "druidcraft OR prestidigitation"
+    quantity: 1
+    condition: $(meta.level >= 3)
+    overwrite:
+      variables.classification: "spellcasting"
+      tags: ["fighterSpell"]
+
+  - type: Reference
+    target: intCaster
+    condition: $(meta.level >= 3)
+
+  # Case 1: Neither proficient
+  - type: Reference
+    target: [arcanaProficiency, natureProficiency]
+    condition: $(meta.level >= 3 && !skills.arcana.proficiency && !skills.nature.proficiency)
+  
+
+  # Level 3: Arcane Shot
+  - id: arcaneShot
+    type: Resource
+    name: Arcane Shot
+    quantity: $(Math.max(1, stats.int.mod))
+    sr: 1
+    condition: $(meta.level >= 3)
+
+
+  - id: arcaneShotOptions
+    name: "Arcane Shot Options"
+    type: Slot
+    target: arcaneShotOption OR classOption
+    quantity: "$(meta.level >= 7 ? 3 : 2)"
+    condition: $(meta.level >= 3)
+
+  # Level 7: Curving Shot
+  - id: curvingShot
+    type: Activity
+    name: Curving Shot
+    time: bonus action
+    condition: $(meta.level >= 7)
+    description: "If you miss a ranged attack roll with ammunition, you redirect the shot. Make a new attack roll against a creature you can see within 60 feet of the original target."
+
+  - id: magicalAmmunition
+    type: Activity
+    name: Magical Ammunition
+    time: action
+    resource: secondWind
+    condition: $(meta.level >= 7)
+    description: |
+      You imbue a piece of nonmagical ammunition with one of the following properties and fire it at a solid surface within range. When the effect ends, the ammunition is destroyed.
+      
+      **Darkening Shot.** Magical darkness fills a 15-foot Emanation originating from the ammunition for 1 minute. Nonmagical flames are extinguished, and creatures in the Emanation have a –5 penalty to Wisdom (Perception) checks and Passive Perception.
+      
+      **Unlocking Shot.** A burst of magic fills a 15-foot Emanation. Any mundane lock, stuck, or barred object in the area is unlocked, unstuck or unbarred (limit one lock per object). A loud knock is audible up to 300 feet away.
+      
+      **Vine Shot.** A 60-foot-long vine grows from the ammunition, lasting 10 minutes.
