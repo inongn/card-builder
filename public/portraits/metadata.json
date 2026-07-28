@@ -1,0 +1,570 @@
+[
+  {
+    "filename": "Rogue_Thief_Goliath_1.jpg",
+    "species": "Goliath"
+  },
+  {
+    "filename": "Bard_Valor_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Dwarf_1.jpg",
+    "species": "Dwarf"
+  },
+  {
+    "filename": "Rogue_Thief_Orc_1.jpg",
+    "species": "Orc"
+  },
+  {
+    "filename": "Ranger_Beast_Master_Tiefling_1.jpg",
+    "species": "Tiefling"
+  },
+  {
+    "filename": "Paladin_Glory_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Berserker_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Ranger_Gloom_Stalker_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Wizard_Evoker_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Berserker_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Banneret_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Artificer_Reanimator_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Monk_Open_Hand_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Bard_Dance_Satyr_1.jpg",
+    "species": "Satyr"
+  },
+  {
+    "filename": "Ranger_Hunter_Elf_2.webp",
+    "species": "Elf"
+  },
+  {
+    "filename": "Artificer_Cartographer_Triton_1.jpg",
+    "species": "Triton"
+  },
+  {
+    "filename": "Druid_Land_Tiefling_1.webp",
+    "species": "Tiefling"
+  },
+  {
+    "filename": "Druid_Sea_Triton_3.jpg",
+    "species": "Triton"
+  },
+  {
+    "filename": "Artificer_Alchemist_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Paladin_Devotion_Leonin_1.jpg",
+    "species": "Leonin"
+  },
+  {
+    "filename": "Barbarian_Berserker_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Bard_Dance_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Wizard_Diviner_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Artificer_Cartographer_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Sorcerer_Shadow_Sorcery_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Paladin_Glory_Aasimar_1.jpg",
+    "species": "Aasimar"
+  },
+  {
+    "filename": "Wizard_Diviner_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Human_4.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Warlock_Fiend_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Thief_Triton_1.jpg",
+    "species": "Triton"
+  },
+  {
+    "filename": "Artificer_Artillerist_Gnome_1.jpg",
+    "species": "Gnome"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Goliath_1.jpg",
+    "species": "Goliath"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Monk_Elements_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Cleric_Trickery_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Wizard_Evoker_Human_5.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Champion_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Berserker_Minotaur_1.jpg",
+    "species": "Minotaur"
+  },
+  {
+    "filename": "Bard_Glamour_Aasimar_1.jpg",
+    "species": "Aasimar"
+  },
+  {
+    "filename": "Wizard_Evoker_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Cleric_War_Satyr_1.jpg",
+    "species": "Satyr"
+  },
+  {
+    "filename": "Artificer_Reanimator_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Warlock_Fiend_Elf_1.webp",
+    "species": "Elf"
+  },
+  {
+    "filename": "Barbarian_Berserker_Satyr_1.webp",
+    "species": "Satyr"
+  },
+  {
+    "filename": "Wizard_Diviner_Goliath_1.jpg",
+    "species": "Goliath"
+  },
+  {
+    "filename": "Druid_Land_Elf_4.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Fighter_Champion_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Barbarian_Berserker_Leonin_2.jpg",
+    "species": "Leonin"
+  },
+  {
+    "filename": "Fighter_Champion_Dwarf_1.jpg",
+    "species": "Dwarf"
+  },
+  {
+    "filename": "Ranger_Beast_Master_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Paladin_Devotion_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Thief_Orc_2.jpg",
+    "species": "Orc"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Orc_1.jpg",
+    "species": "Orc"
+  },
+  {
+    "filename": "Sorcerer_Spellfire_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Assassin_Human_4.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Warlock_Fiend_Tiefling_1.jpg",
+    "species": "Tiefling"
+  },
+  {
+    "filename": "Barbarian_Berserker_Elf_2.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Artificer_Armorer_Dwarf_1.jpg",
+    "species": "Dwarf"
+  },
+  {
+    "filename": "Druid_Land_Elf_8.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Ranger_Hunter_Orc_1.jpg",
+    "species": "Orc"
+  },
+  {
+    "filename": "Fighter_Banneret_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Berserker_Leonin_1.jpg",
+    "species": "Leonin"
+  },
+  {
+    "filename": "Fighter_Eldritch_Knight_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Thief_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Land_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Cleric_War_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Psi_Warrior_Aasimar_1.jpg",
+    "species": "Aasimar"
+  },
+  {
+    "filename": "Warlock_Great_Old_One_Tiefling_1.jpg",
+    "species": "Tiefling"
+  },
+  {
+    "filename": "Paladin_Glory_Leonin_1.jpg",
+    "species": "Leonin"
+  },
+  {
+    "filename": "Bard_College_of_Spirits_Goliath_1.jpg",
+    "species": "Goliath"
+  },
+  {
+    "filename": "Wizard_Illusionist_Gnome_1.jpg",
+    "species": "Gnome"
+  },
+  {
+    "filename": "Wizard_Diviner_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Land_Halfling_1.webp",
+    "species": "Halfling"
+  },
+  {
+    "filename": "Paladin_Glory_Halfling_1.jpg",
+    "species": "Halfling"
+  },
+  {
+    "filename": "Artificer_Cartographer_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Land_Satyr_1.jpg",
+    "species": "Satyr"
+  },
+  {
+    "filename": "Fighter_Banneret_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Paladin_Devotion_Dragonborn_1.jpg",
+    "species": "Dragonborn"
+  },
+  {
+    "filename": "Artificer_Cartographer_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Human_1.webp",
+    "species": "Human"
+  },
+  {
+    "filename": "Bard_Lore_Human_1.webp",
+    "species": "Human"
+  },
+  {
+    "filename": "Wizard_Evoker_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Bard_Glamour_Human_1.png",
+    "species": "Human"
+  },
+  {
+    "filename": "Warlock_Undead_Patron_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Druid_Land_Elf_5.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Wizard_Evoker_Human_4.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Champion_Dwarf_2.jpg",
+    "species": "Dwarf"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Minotaur_1.jpg",
+    "species": "Minotaur"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Land_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Bard_Lore_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Ranger_Beast_Master_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Cleric_Life_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Sea_Triton_2.jpg",
+    "species": "Triton"
+  },
+  {
+    "filename": "Bard_Dance_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Land_Leonin_1.jpg",
+    "species": "Leonin"
+  },
+  {
+    "filename": "Bard_Valor_Tiefling_1.jpg",
+    "species": "Tiefling"
+  },
+  {
+    "filename": "Druid_Land_Elf_7.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Barbarian_Berserker_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Druid_Land_Elf_3.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Fighter_Champion_Dragonborn_1.jpg",
+    "species": "Dragonborn"
+  },
+  {
+    "filename": "Rogue_Thief_Elf_1.webp",
+    "species": "Elf"
+  },
+  {
+    "filename": "Paladin_Devotion_Aasimar_1.jpg",
+    "species": "Aasimar"
+  },
+  {
+    "filename": "Rogue_Soulknife_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Assassin_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Paladin_Devotion_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Soulknife_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Berserker_Minotaur_3.jpg",
+    "species": "Minotaur"
+  },
+  {
+    "filename": "Artificer_Artillerist_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Berserker_Elf_3.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Barbarian_Berserker_Minotaur_2.jpg",
+    "species": "Minotaur"
+  },
+  {
+    "filename": "Rogue_Assassin_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Assassin_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Rogue_Phantom_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Human_5.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Paladin_Devotion_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Cleric_Light_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Bard_Lore_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Artificer_Cartographer_Human_4.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Human_4.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Land_Elf_2.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Fighter_Champion_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Wizard_Evoker_Tiefling_1.jpg",
+    "species": "Tiefling"
+  },
+  {
+    "filename": "Cleric_Grave_Domain_Goliath_1.jpg",
+    "species": "Goliath"
+  },
+  {
+    "filename": "Fighter_Eldritch_Knight_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Sea_Triton_1.jpg",
+    "species": "Triton"
+  },
+  {
+    "filename": "Paladin_Devotion_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Fighter_Eldritch_Knight_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Wild_Heart_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Wizard_Diviner_Goliath_2.jpg",
+    "species": "Goliath"
+  },
+  {
+    "filename": "Ranger_Gloom_Stalker_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Fighter_Battle_Master_Minotaur_1.jpg",
+    "species": "Minotaur"
+  },
+  {
+    "filename": "Ranger_Beast_Master_Human_2.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Artificer_Reanimator_Human_3.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Ranger_Hunter_Elf_1.jpg",
+    "species": "Elf"
+  },
+  {
+    "filename": "Sorcerer_Spellfire_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Artificer_Armorer_Human_1.jpg",
+    "species": "Human"
+  },
+  {
+    "filename": "Druid_Land_Human_2.jpg",
+    "species": "Human"
+  }
+]
