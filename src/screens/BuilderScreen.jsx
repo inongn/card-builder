@@ -415,9 +415,8 @@ const CustomStatsSlider = ({
     );
 };
 
-// Image upload component for character creation
+// Image upload component for character creation (Preset Selection Only)
 const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
-    const fileInputRef = React.useRef(null);
     const [portraits, setPortraits] = React.useState([]);
 
     const species = characterData?.meta?.species || '';
@@ -443,29 +442,6 @@ const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
             .catch(() => setPortraits([]));
     }, [species]);
 
-    const handleFileChange = (e) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (evt) => {
-                onUpdate(evt.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    const handleDrop = (e) => {
-        e.preventDefault();
-        const file = e.dataTransfer?.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (evt) => {
-                onUpdate(evt.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
     let base = '/';
     try {
         if (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) {
@@ -474,66 +450,38 @@ const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
     } catch (_e) { }
     const portraitsBase = (base.endsWith('/') ? base : base + '/') + 'portraits/';
 
+    if (portraits.length === 0) {
+        return null;
+    }
+
     return (
         <div className="input-pane-body image-upload-pane">
-            <div className="image-preview-container">
-                {localValue ? (
-                    <div className="image-preview-card">
-                        <img src={getAssetUrl(localValue)} alt="Character Portrait" className="image-preview" />
-                        <mdui-button variant="outlined" icon="delete" onClick={() => onUpdate('')}>
-                            Remove Image
-                        </mdui-button>
-                    </div>
-                ) : (
-                    <div
-                        className="image-dropzone"
-                        onClick={() => fileInputRef.current?.click()}
-                        onDragOver={(e) => e.preventDefault()}
-                        onDrop={handleDrop}
-                    >
-                        <mdui-icon name="cloud_upload" class="icon-large"></mdui-icon>
-                        <p style={{ margin: '8px 0', fontSize: '0.9rem', opacity: 0.8 }}>
-                            Click or drag & drop an image file here
-                        </p>
-                        <mdui-button variant="tonal" size="small">Browse File</mdui-button>
-                    </div>
-                )}
-                <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                    onChange={handleFileChange}
-                />
-            </div>
-
-            {portraits.length > 0 && (
-                <div className="image-presets-section">
-                    <div className="section-title" style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '8px' }}>
-                        {species ? `${species} Portraits` : 'Sample Portraits'}
-                    </div>
-                    <div className="preset-grid">
-                        {portraits.map((p, i) => {
-                            const url = portraitsBase + p.filename;
-                            const isActive = localValue === url;
-                            return (
-                                <div
-                                    key={i}
-                                    className={`preset-item ${isActive ? 'active' : ''}`}
-                                    onClick={() => onUpdate(url)}
-                                    style={{ backgroundImage: `url(${url})` }}
-                                    title={p.filename.replace(/\.webp$/, '').replace(/_/g, ' ')}
-                                >
-                                    {isActive && <mdui-icon name="check_circle" class="icon-primary" style={{ fontSize: '1.5rem' }}></mdui-icon>}
-                                </div>
-                            );
-                        })}
-                    </div>
+            <div className="image-presets-section">
+                <div className="section-title" style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '8px' }}>
+                    {species ? `${species} Portraits` : 'Select Portrait'}
                 </div>
-            )}
+                <div className="preset-grid">
+                    {portraits.map((p, i) => {
+                        const url = portraitsBase + p.filename;
+                        const isActive = localValue === url;
+                        return (
+                            <div
+                                key={i}
+                                className={`preset-item ${isActive ? 'active' : ''}`}
+                                onClick={() => onUpdate(isActive ? '' : url)}
+                                style={{ backgroundImage: `url(${url})` }}
+                                title={p.filename.replace(/\.webp$/, '').replace(/_/g, ' ')}
+                            >
+                                {isActive && <mdui-icon name="check_circle" class="icon-primary" style={{ fontSize: '1.5rem' }}></mdui-icon>}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
         </div>
     );
 };
+
 
 // Sub-component for rendering option selection cards
 const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData, onGetProperty }) {

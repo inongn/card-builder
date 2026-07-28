@@ -14288,8 +14288,8 @@
       },
       {
         "type": "Slot",
-        "name": "Hunter's Prowess Skill Proficiency",
-        "id": "huntersProwess",
+        "name": "Leonin Prowess Skill Proficiency",
+        "id": "leoninSkillProficiency",
         "target": "athleticsProficiency, intimidationProficiency, perceptionProficiency, stealthProficiency"
       }
     ]

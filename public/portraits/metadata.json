@@ -40,6 +40,10 @@
     "species": "Elf"
   },
   {
+    "filename": "Artificer_Battle_Smith_Gnome_1.png",
+    "species": "Gnome"
+  },
+  {
     "filename": "Wizard_Evoker_Human_1.jpg",
     "species": "Human"
   },
@@ -70,6 +74,14 @@
   {
     "filename": "Bard_Dance_Satyr_1.jpg",
     "species": "Satyr"
+  },
+  {
+    "filename": "Rogue_Thief_Halfling_1.png",
+    "species": "Halfling"
+  },
+  {
+    "filename": "Barbarian_Berserker_Dwarf_1.png",
+    "species": "Dwarf"
   },
   {
     "filename": "Ranger_Hunter_Elf_2.webp",
@@ -110,6 +122,10 @@
   {
     "filename": "Wizard_Evoker_Minotaur_1.png",
     "species": "Minotaur"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Tiefling_1.png",
+    "species": "Tiefling"
   },
   {
     "filename": "Bard_Dance_Human_1.jpg",
@@ -156,6 +172,10 @@
     "species": "Triton"
   },
   {
+    "filename": "Warlock_Fiend_Tiefling_1.png",
+    "species": "Tiefling"
+  },
+  {
     "filename": "Artificer_Artillerist_Gnome_1.jpg",
     "species": "Gnome"
   },
@@ -166,6 +186,10 @@
   {
     "filename": "Fighter_Battle_Master_Elf_1.jpg",
     "species": "Elf"
+  },
+  {
+    "filename": "Fighter_Eldritch_Knight_Halfling_2.png",
+    "species": "Halfling"
   },
   {
     "filename": "Monk_Elements_Human_1.jpg",
@@ -196,6 +220,10 @@
     "species": "Aasimar"
   },
   {
+    "filename": "Bard_Lore_Halfling_1.png",
+    "species": "Halfling"
+  },
+  {
     "filename": "Wizard_Evoker_Human_3.jpg",
     "species": "Human"
   },
@@ -204,12 +232,20 @@
     "species": "Satyr"
   },
   {
+    "filename": "Artificer_Cartographer_Gnome_1.png",
+    "species": "Gnome"
+  },
+  {
     "filename": "Artificer_Reanimator_Human_1.jpg",
     "species": "Human"
   },
   {
     "filename": "Warlock_Fiend_Elf_1.webp",
     "species": "Elf"
+  },
+  {
+    "filename": "Druid_Land_Dwarf_1.png",
+    "species": "Dwarf"
   },
   {
     "filename": "Barbarian_Berserker_Satyr_1.webp",
@@ -230,6 +266,10 @@
   {
     "filename": "Barbarian_Berserker_Leonin_2.jpg",
     "species": "Leonin"
+  },
+  {
+    "filename": "Paladin_Devotion_Dwarf_1.png",
+    "species": "Dwarf"
   },
   {
     "filename": "Fighter_Champion_Dwarf_1.jpg",
@@ -404,6 +444,14 @@
     "species": "Elf"
   },
   {
+    "filename": "Artificer_Artillerist_Halfling_1.png",
+    "species": "Halfling"
+  },
+  {
+    "filename": "Bard_Lore_Halfling_2.png",
+    "species": "Halfling"
+  },
+  {
     "filename": "Monk_Open_Hand_Leonin_1.png",
     "species": "Leonin"
   },
@@ -432,6 +480,10 @@
     "species": "Orc"
   },
   {
+    "filename": "Wizard_Diviner_Halfling_1.png",
+    "species": "Halfling"
+  },
+  {
     "filename": "Fighter_Battle_Master_Human_3.jpg",
     "species": "Human"
   },
@@ -450,6 +502,10 @@
   {
     "filename": "Cleric_Life_Human_1.jpg",
     "species": "Human"
+  },
+  {
+    "filename": "Barbarian_Berserker_Tiefling_1.png",
+    "species": "Tiefling"
   },
   {
     "filename": "Druid_Sea_Triton_2.jpg",
@@ -548,6 +604,10 @@
     "species": "Human"
   },
   {
+    "filename": "Artificer_Armorer_Dwarf_1.png",
+    "species": "Dwarf"
+  },
+  {
     "filename": "Cleric_Light_Human_1.jpg",
     "species": "Human"
   },
@@ -562,6 +622,14 @@
   {
     "filename": "Fighter_Battle_Master_Human_4.jpg",
     "species": "Human"
+  },
+  {
+    "filename": "Fighter_Champion_Dwarf_1.png",
+    "species": "Dwarf"
+  },
+  {
+    "filename": "Wizard_Abjurer_Halfling_1.png",
+    "species": "Halfling"
   },
   {
     "filename": "Druid_Land_Elf_2.jpg",
@@ -580,12 +648,20 @@
     "species": "Satyr"
   },
   {
+    "filename": "Cleric_Life_Dwarf_1.png",
+    "species": "Dwarf"
+  },
+  {
     "filename": "Cleric_Grave_Domain_Goliath_1.jpg",
     "species": "Goliath"
   },
   {
     "filename": "Fighter_Eldritch_Knight_Human_3.jpg",
     "species": "Human"
+  },
+  {
+    "filename": "Fighter_Eldritch_Knight_Halfling_1.png",
+    "species": "Halfling"
   },
   {
     "filename": "Druid_Sea_Triton_1.jpg",
@@ -602,6 +678,10 @@
   {
     "filename": "Fighter_Eldritch_Knight_Human_1.jpg",
     "species": "Human"
+  },
+  {
+    "filename": "Artificer_Alchemist_Gnome_1.png",
+    "species": "Gnome"
   },
   {
     "filename": "Barbarian_Wild_Heart_Human_1.jpg",
@@ -638,6 +718,10 @@
   {
     "filename": "Artificer_Armorer_Human_1.jpg",
     "species": "Human"
+  },
+  {
+    "filename": "Sorcerer_Wild_Magic_Tiefling_2.png",
+    "species": "Tiefling"
   },
   {
     "filename": "Druid_Land_Human_2.jpg",
