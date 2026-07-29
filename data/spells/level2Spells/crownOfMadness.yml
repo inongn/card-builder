@@ -6,6 +6,7 @@ tags: [level2Spell, enchantment, bard, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 120 feet
 duration: concentration, up to 1 minute
+summary: "You crown a humanoid with madness, forcing it to attack nearby creatures."
 description: |
   One creature that you can see within range must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. The creature succeeds automatically if it isn’t Humanoid.
 

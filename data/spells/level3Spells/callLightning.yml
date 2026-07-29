@@ -6,6 +6,7 @@ tags: [level3Spell, conjuration, druid, saveSpell, damageSpell, lightningDamage]
 time: action
 range: 120 feet
 duration: concentration, up to 10 minutes
+summary: "A storm cloud gathers and strikes lightning down at your command."
 description: |
   A storm cloud appears at a point within range that you can see above yourself. It takes the shape of a Cylinder that is 10 feet tall with a 60-foot radius.
 

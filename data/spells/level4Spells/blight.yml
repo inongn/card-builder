@@ -6,6 +6,7 @@ tags: [level4Spell, necromancy, druid, sorcerer, warlock, wizard, saveSpell, dam
 time: action
 range: 30 feet
 duration: instantaneous
+summary: "You drain the moisture and life force from a target, dealing necrotic damage."
 description: |
   A creature that you can see within range makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking 8d8 Necrotic damage on a failed save or half as much damage on a successful one. A Plant creature automatically fails the save.
 

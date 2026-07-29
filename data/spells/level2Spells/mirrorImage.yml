@@ -6,6 +6,7 @@ tags: [level2Spell, illusion, bard, sorcerer, warlock, wizard]
 time: action
 range: self
 duration: 1 minute
+summary: "Three illusory duplicates of yourself appear to misdirect attacks."
 description: |
   Three illusory duplicates of yourself appear in your space. Until the spell ends, the duplicates move with you and mimic your actions, shifting position so it’s impossible to track which image is real.
 

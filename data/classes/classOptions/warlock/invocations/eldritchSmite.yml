@@ -1,4 +1,5 @@
 id: eldritchSmite
+summary: "Expend a spell slot to deal extra force damage and knock a target prone."
 name: Eldritch Smite
 tags:
   - eldritchInvocation

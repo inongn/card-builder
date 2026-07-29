@@ -1,4 +1,5 @@
 id: lifeDomainVestige
+summary: "Gain divine healing spells and heavy armor proficiency from the Life Domain."
 name: Life Domain
 tags: [vestigeType]
 type: Folder

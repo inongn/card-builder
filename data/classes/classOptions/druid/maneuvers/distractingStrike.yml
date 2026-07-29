@@ -1,4 +1,5 @@
 id: distractingStrike
+summary: "Deal extra damage and grant an ally advantage on their next attack."
 name: Distracting Strike
 tags: [maneuver]
 type: Activity

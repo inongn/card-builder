@@ -1,4 +1,5 @@
 id: commandersStrike
+summary: "Forgo an attack to direct an ally to strike immediately."
 name: Commander's Strike
 tags: [maneuver]
 type: Activity

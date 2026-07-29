@@ -6,6 +6,7 @@ tags: [level4Spell, enchantment, druid, ranger, sorcerer, saveSpell]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute
+summary: "You take telepathic control of a beast."
 description: |
   One Beast you can see within range must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. The target has Advantage on the save if you or your allies are fighting it. Whenever the target takes damage, it repeats the save, ending the spell on itself on a success.
 

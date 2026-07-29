@@ -80,7 +80,6 @@ mdui-top-app-bar {}
 .text-primary {
   font-weight: bold;
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -518,6 +517,20 @@ blockquote {
   display: flex;
   gap: var(--gap-xs);
   align-items: center;
+}
+
+.card-subtitle-container {
+  text-align: left;
+  padding-top: var(--gap-xs);
+  margin-bottom: calc(var(--gap-xs) * -1);
+}
+
+.card-subtitle {
+  font-size: var(--mdui-typescale-body-small-size, 0.8rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--mdui-color-on-surface-variant);
+  opacity: 0.85;
 }
 
 /* 3-column stats grid inside a card */
@@ -2418,7 +2431,8 @@ mdui-list-item::part(description) {
 
   .other-characters-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    align-items: start;
     gap: var(--gap-md);
   }
 
@@ -2435,7 +2449,6 @@ mdui-list-item::part(description) {
     grid-template-columns: repeat(2, 1fr);
     padding: var(--gap-md);
     border-radius: var(--mdui-shape-corner-extra-large);
-
   }
 
 }
@@ -2645,10 +2658,31 @@ mdui-list-item[active] {
   opacity: 0.9;
 }
 
-.card-vertical-item {
+mdui-list-item.card-vertical-item,
+mdui-list-item.card-vertical-item[active],
+mdui-list-item.card-vertical-item:hover,
+mdui-list-item.card-vertical-item:focus,
+mdui-list-item.card-vertical-item:active {
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+mdui-list-item.card-vertical-item::part(container) {
+  height: 100%;
   width: 100%;
   padding: 0 !important;
   background: transparent !important;
+  border: none !important;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ==========================================================================
@@ -2849,13 +2883,16 @@ mdui-list-item[active] {
     color: inherit !important;
     box-shadow: none !important;
   }
+
   .dice-roller .dice-icon {
     display: none !important;
   }
+
   .hp-input {
     border-bottom: none !important;
     background: none !important;
   }
+
   .resource-dot-interactive {
     cursor: default !important;
   }

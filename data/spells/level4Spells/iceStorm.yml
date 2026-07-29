@@ -6,6 +6,7 @@ tags: [level4Spell, evocation, druid, sorcerer, wizard, saveSpell, damageSpell, 
 time: action
 range: 300 feet
 duration: instantaneous
+summary: "Hail and cold rain fall in a cylinder, damaging and creating difficult terrain."
 description: |
   Hail falls in a 20-foot-radius, 40-foot-high Cylinder centered on a point within range. Each creature in the Cylinder makes a DC $(attributes.spellcasting.save) Dexterity saving throw. A creature takes 2d10 Bludgeoning damage and 4d6 Cold damage on a failed save or half as much damage on a successful one.
 

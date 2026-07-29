@@ -5,6 +5,7 @@ tags: [evocation, cantrip, sorcerer, attackSpell, damageSpell, fireDamage, coldD
 time: action
 range: 120 feet
 duration: instantaneous
+summary: "You unleash an unpredictable burst of elemental magic."
 description: |
   You cast sorcerous energy at one creature or object within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 damage of a type you choose: Acid, Cold, Fire, Lightning, Poison, Psychic, or Thunder.
 

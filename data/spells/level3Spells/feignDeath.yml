@@ -6,6 +6,7 @@ tags: [level3Spell, necromancy, bard, cleric, druid, wizard, ritual]
 time: action
 range: touch
 duration: 1 hour
+summary: "You put a willing creature into a cataleptic state indistinguishable from death."
 description: |
   You touch a willing creature and put it into a cataleptic state that is indistinguishable from death.
 

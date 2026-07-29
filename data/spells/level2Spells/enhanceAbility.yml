@@ -6,6 +6,7 @@ tags: [level2Spell, transmutation, artificer, bard, cleric, druid, ranger, sorce
 time: action
 range: touch
 duration: concentration, up to 1 hour
+summary: "You touch a creature and choose Strength, Dexterity, Intelligence, Wisdom, or Charisma."
 description: |
   You touch a creature and choose Strength, Dexterity, Intelligence, Wisdom, or Charisma. For the duration, the target has Advantage on ability checks using the chosen ability.
 extra:

@@ -1,4 +1,5 @@
 id: tacticalAssessment
+summary: "Add a maneuver die to History, Insight, or Investigation checks."
 name: Tactical Assessment
 tags: [maneuver]
 type: Activity

@@ -1,4 +1,5 @@
 id: piercer
+summary: "Reroll piercing damage dice and deal lethal critical piercing damage."
 name: Piercer
 tags:
   - feat

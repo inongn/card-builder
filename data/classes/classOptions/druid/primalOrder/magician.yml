@@ -1,4 +1,5 @@
 type: Folder
+summary: "Learn extra nature cantrips and gain bonus Nature skill checks."
 id: magician
 name: Magician
 tags: [primalOrder]

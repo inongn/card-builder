@@ -6,6 +6,7 @@ tags: [level1Spell, evocation, cleric, attackSpell, damageSpell, radiantDamage]
 time: action
 range: 120 feet
 duration: 1 round
+summary: "You hurl a bolt of radiance that illuminates the target for the next attack."
 description: |
   You hurl a bolt of light toward a creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, it takes 4d6 Radiant damage, and the next attack roll made against it before the end of your next turn has Advantage.
 extra:

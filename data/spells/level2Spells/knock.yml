@@ -6,6 +6,7 @@ tags: [level2Spell, transmutation, bard, sorcerer, wizard]
 time: action
 range: 60 feet
 duration: instantaneous
+summary: "A loud knock echoes as you open locks, bars, and latches."
 description: |
   Choose an object that you can see within range. The object can be a door, a box, a chest, a set of manacles, a padlock, or another object that contains a mundane or magical means that prevents access.
 

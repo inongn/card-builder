@@ -6,6 +6,7 @@ tags: [level1Spell, transmutation, artificer, bard, druid, ranger, wizard]
 time: action
 range: touch
 duration: 1 hour
+summary: "You touch a creature to increase its movement speed."
 description: |
   You touch a creature. The target’s Speed increases by 10 feet until the spell ends.
 extra:

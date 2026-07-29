@@ -2,6 +2,7 @@ id: findFamiliar
 type: Folder
 name: Find Familiar
 tags: [level1Spell, conjuration, wizard, ritual]
+summary: "You gain the service of an otherworldly spirit that takes an animal form."
 children:
   - id: familiarName
     type: Input

@@ -2,6 +2,7 @@ tags:
 - feat
 - originFeat
 type: Folder
+summary: "Swap initiative order with willing allies and avoid being surprised."
 children:
 - type: Effect
   target: attributes.initiative

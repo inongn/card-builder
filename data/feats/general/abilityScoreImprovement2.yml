@@ -1,6 +1,6 @@
-id: abilityScoreImprovement
+id: abilityScoreImprovement2
 summary: "Increase one ability score by 2, or two ability scores by 1."
-name: Ability Score Improvement
+name: Ability Score Improvement II
 tags:
   - feat
   - generalFeat

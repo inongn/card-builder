@@ -6,6 +6,7 @@ tags: [level2Spell, conjuration, artificer, sorcerer, wizard, saveSpell, damageS
 time: action
 range: 60 feet
 duration: concentration, up to 1 hour
+summary: "You conjure a mass of sticky webs to snare and entangle foes."
 description: |
   You conjure a mass of sticky webbing at a point within range. The webs fill a 20-foot Cube there for the duration. The webs are Difficult Terrain, and the area within them is Lightly Obscured.
 

@@ -6,6 +6,7 @@ tags: [level3Spell, evocation, cleric, druid, paladin, ranger, sorcerer]
 time: action
 range: 60 feet
 duration: 1 hour
+summary: "A 60-foot sphere of bright light illuminates the area and dispels darkness."
 description: |
   For the duration, sunlight spreads from a point within range and fills a 60-foot-radius Sphere. The sunlight’s area is Bright Light and sheds Dim Light for an additional 60 feet.
 

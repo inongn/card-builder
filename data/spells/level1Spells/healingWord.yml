@@ -6,6 +6,7 @@ tags: [level1Spell, abjuration, bard, cleric, druid, healingSpell]
 time: bonus action
 range: 60 feet
 duration: instantaneous
+summary: "A quick word of magic heals a target at a distance."
 description: |
   A creature of your choice that you can see within range regains Hit Points equal to 2d4$(formatBonus(attributes.spellcasting.bonus)).
 extra:

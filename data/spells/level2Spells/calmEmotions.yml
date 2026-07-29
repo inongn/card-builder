@@ -6,6 +6,7 @@ tags: [level2Spell, enchantment, bard, cleric, saveSpell]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute
+summary: "You suppress strong emotions or charm/frighten effects in an area."
 description: |
   Each Humanoid in a 20-foot-radius Sphere centered on a point you choose within range must succeed on a DC $(attributes.spellcasting.save) Charisma saving throw or be affected by one of the following effects (choose for each creature):
 

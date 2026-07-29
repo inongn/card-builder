@@ -6,6 +6,7 @@ tags: [level1Spell, abjuration, cleric, paladin]
 time: bonus action
 range: 60 feet
 duration: concentration, up to 10 minutes
+summary: "A shimmering field of protective magic grants +2 AC to a target."
 description: |
   A shimmering field surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.
 

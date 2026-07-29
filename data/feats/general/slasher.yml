@@ -1,4 +1,5 @@
 id: slasher
+summary: "Slashing strikes slow enemies and weaken their retaliatory attacks."
 name: Slasher
 tags:
   - feat

@@ -6,6 +6,7 @@ tags: [level1Spell, evocation, sorcerer, warlock, wizard, attackSpell, damageSpe
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute
+summary: "You form a sustained arc of crackling lightning between yourself and a target."
 description: |
   A beam of crackling energy lances toward a creature within range, forming a sustained arc of lightning between you and the target. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against it. On a hit, the target takes 2d12 Lightning damage.
 

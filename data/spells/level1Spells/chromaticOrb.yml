@@ -6,6 +6,7 @@ tags: [level1Spell, evocation, sorcerer, wizard, attackSpell, damageSpell, fireD
 time: action
 range: 90 feet
 duration: instantaneous
+summary: "You hurl an orb of elemental energy at a target."
 description: |
   You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type.
 

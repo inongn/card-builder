@@ -5,6 +5,7 @@ tags: [transmutation, cantrip, artificer, bard, druid, sorcerer, wizard]
 time: action
 range: 120 feet
 duration: 1 round
+summary: "You whisper a secret message to a target at a distance."
 description: |
   You point toward a creature within range and whisper a message. The target (and only the target) hears the message and can reply in a whisper that only you can hear.
 

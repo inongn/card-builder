@@ -1,4 +1,5 @@
 id: savageAttacker
+summary: "Reroll weapon damage dice once per turn and take the higher total."
 name: Savage Attacker
 tags:
 - feat

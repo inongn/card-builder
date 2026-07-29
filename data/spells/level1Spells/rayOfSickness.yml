@@ -6,6 +6,7 @@ tags: [level1Spell, necromancy, sorcerer, wizard, attackSpell, damageSpell, pois
 time: action
 range: 60 feet
 duration: instantaneous
+summary: "You shoot a greenish ray that deals poison damage and sickening illness."
 description: |
   You shoot a greenish ray at a creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes 2d8 Poison damage and has the Poisoned condition until the end of your next turn.
 extra:

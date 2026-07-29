@@ -6,6 +6,7 @@ tags: [level3Spell, abjuration, cleric, paladin, warlock, wizard, saveSpell]
 time: 1 minute
 range: 10 feet
 duration: 1 hour
+summary: "You create a magical cylinder that wards against specific creature types."
 description: |
   You create a 10-foot-radius, 20-foot-tall Cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the Cylinder intersects with the floor or other surface.
 

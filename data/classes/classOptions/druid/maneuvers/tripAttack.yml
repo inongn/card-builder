@@ -1,4 +1,5 @@
 id: tripAttack
+summary: "Deal extra damage and knock a target prone."
 name: Trip Attack
 tags: [maneuver]
 type: Activity

@@ -1,4 +1,5 @@
 id: beguilingShot
+summary: "Imbue an arrow with enchantment to charm a target and distract foes."
 name: Beguiling Shot
 type: Activity
 tags: [arcaneShotOption]

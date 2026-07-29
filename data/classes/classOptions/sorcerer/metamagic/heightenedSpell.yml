@@ -1,4 +1,5 @@
 id: heightenedSpell
+summary: "Impose disadvantage on a target's first saving throw against your spell."
 name: Heightened Spell
 type: Folder
 tags:

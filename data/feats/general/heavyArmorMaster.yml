@@ -1,4 +1,5 @@
 id: heavyArmorMaster
+summary: "Reduce incoming physical damage while wearing heavy armor."
 name: Heavy Armor Master
 tags:
   - feat

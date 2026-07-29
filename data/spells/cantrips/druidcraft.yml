@@ -5,6 +5,7 @@ tags: [transmutation, cantrip, druid]
 time: action
 range: 30 feet
 duration: instantaneous
+summary: "You channel nature magic to create subtle wilderness effects."
 description: |
   Whispering to the spirits of nature, you create one of the following effects within range.
 

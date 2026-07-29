@@ -6,6 +6,7 @@ tags: [level4Spell, abjuration, artificer, wizard]
 time: 10 minutes
 range: 120 feet
 duration: 24 hours
+summary: "You make an area magically secure against scrying and planar travel."
 description: |
   You make an area within range magically secure. The area is a Cube that can be as small as 5 feet to as large as 100 feet on each side. The spell lasts for the duration.
 

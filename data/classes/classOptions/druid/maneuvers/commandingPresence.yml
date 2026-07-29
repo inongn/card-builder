@@ -1,4 +1,5 @@
 id: commandingPresence
+summary: "Add a maneuver die to Intimidation, Performance, or Persuasion checks."
 name: Commanding Presence
 tags: [maneuver]
 type: Activity

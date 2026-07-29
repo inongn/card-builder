@@ -6,6 +6,7 @@ tags: [level4Spell, conjuration, wizard, saveSpell, damageSpell, forceDamage]
 time: action
 range: 30 feet
 duration: 8 hours
+summary: "You conjure a phantom watchdog to guard an area and strike invaders."
 description: |
   You conjure a phantom watchdog in an unoccupied space that you can see within range. The hound remains for the duration or until the two of you are more than 300 feet apart from each other.
 

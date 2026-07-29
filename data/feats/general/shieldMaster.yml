@@ -1,4 +1,5 @@
 id: shieldMaster
+summary: "Use your shield to shove foes and block directional spell damage."
 name: Shield Master
 tags:
   - feat

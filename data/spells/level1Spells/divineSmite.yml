@@ -6,6 +6,7 @@ tags: [level1Spell, evocation, paladin]
 time: bonus action
 range: self
 duration: instantaneous
+summary: "Your strike unleashes a burst of extra radiant damage."
 description: |
   Immediately after hitting a target with a Melee weapon or an Unarmed Strike, the target takes an extra 2d8 Radiant damage from the attack. The damage increases by 1d8 if the target is a Fiend or an Undead.
 extra:

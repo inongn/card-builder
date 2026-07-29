@@ -6,6 +6,7 @@ tags: [level2Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger]
 time: action
 range: 30 feet
 duration: 8 hours
+summary: "You bolster your allies with toughness and extra hit points."
 description: |
   Choose up to three creatures within range. Each target’s Hit Point maximum and current Hit Points increase by 5 for the duration.
 extra:

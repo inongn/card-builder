@@ -120,6 +120,15 @@ export const categorizeNode = (item) => {
         searchText += ' ' + (item.node.name || '').toLowerCase() + ' ' + (item.node.id || '').toLowerCase();
     } else {
         searchText = (item.node.name || '').toLowerCase() + ' ' + (item.node.id || '').toLowerCase();
+        if (item.node.tags) {
+            searchText += ' ' + (Array.isArray(item.node.tags) ? item.node.tags.join(' ') : String(item.node.tags)).toLowerCase();
+        }
+        if (item.node.resource) {
+            searchText += ' ' + String(item.node.resource).toLowerCase();
+        }
+        if (item.node.type) {
+            searchText += ' ' + String(item.node.type).toLowerCase();
+        }
     }
 
     for (const stepKey of MATCHING_ORDER) {
@@ -520,12 +529,115 @@ export const findMatchingForChoices = (choiceIds, slotItems, slotAllowedMap) => 
     return null;
 };
 
-export const aggregateCategoryOptions = (slotItems, handleGetSlotOptions, onGetProperty) => {
-    if (!slotItems || slotItems.length === 0) return [];
+export const isValidHardcodedOption = (node, categoryKey) => {
+    if (!node) return false;
+
+    const nodeType = (node.type || '').toLowerCase();
+    if (nodeType === 'slot' || nodeType === 'input' || nodeType === 'resource' || nodeType === 'attribute') {
+        return false;
+    }
+
+    const nodeId = String(node.id || node.name || '').toLowerCase();
+    const tags = new Set((node.tags || []).map(t => String(t).toLowerCase()));
+    const target = String(node.target || '').toLowerCase();
+
+    // Ignore generic features/slots/resources by name/id
+    if (nodeId.includes('slot') || nodeId.includes('spellcasting') || nodeId.includes('hitdie') || nodeId.includes('classname')) {
+        return false;
+    }
+
+    if (categoryKey === 'spellcasting') {
+        const isSpellTag = tags.has('cantrip') || tags.has('level1spell') || tags.has('level2spell') ||
+            tags.has('level3spell') || tags.has('level4spell') || tags.has('level5spell') ||
+            tags.has('level6spell') || tags.has('level7spell') || tags.has('level8spell') ||
+            tags.has('level9spell') || tags.has('spell');
+        const isActivitySpell = nodeType === 'activity' && (tags.size === 0 || isSpellTag || (node.resource && String(node.resource).toLowerCase().includes('spell')));
+        return isSpellTag || isActivitySpell;
+    }
+
+    if (categoryKey === 'skills') {
+        return tags.has('skillproficiency') || target.startsWith('skills.') || nodeId.endsWith('proficiency');
+    }
+
+    if (categoryKey === 'expertise') {
+        return tags.has('skillexpertise') || nodeId.endsWith('expertise');
+    }
+
+    if (categoryKey === 'tools') {
+        return tags.has('tool') || tags.has('toolproficiency') || target === 'attributes.tools' || nodeId.endsWith('tools') || nodeId.endsWith('kit');
+    }
+
+    if (categoryKey === 'feats') {
+        return tags.has('feat') || tags.has('originfeat') || tags.has('generalfeat') || tags.has('fightingstyle') || tags.has('epicboon');
+    }
+
+    if (categoryKey === 'saves') {
+        return tags.has('saveproficiency') || tags.has('savingthrow') || target.includes('save');
+    }
+
+    if (nodeType === 'folder' && !tags.has('feat') && !tags.has('originfeat') && !tags.has('generalfeat') && !tags.has('fightingstyle')) {
+        return false;
+    }
+
+    return true;
+};
+
+export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
+    if (!tree) return [];
+
+    const filledSlotPropertyIds = new Set();
+    const collectFilledSlotIds = (node) => {
+        if (!node) return;
+        if (node.condition) {
+            const evaluator = new ExpressionEvaluator(char);
+            if (!evaluator.evaluate(node.condition)) return;
+        }
+        if (node.type === 'Slot' && node.filled?.id) {
+            filledSlotPropertyIds.add(node.filled.id);
+        }
+        if (node.children && Array.isArray(node.children)) {
+            node.children.forEach(collectFilledSlotIds);
+        }
+    };
+    collectFilledSlotIds(tree);
+
+    const hardcodedNodes = [];
+    const seenIds = new Set();
+
+    const traverse = (node, path = []) => {
+        if (!node) return;
+        if (node.condition) {
+            const evaluator = new ExpressionEvaluator(char);
+            if (!evaluator.evaluate(node.condition)) return;
+        }
+
+        const nodeId = node.id || node.name;
+        if (nodeId && !filledSlotPropertyIds.has(nodeId) && !seenIds.has(nodeId)) {
+            if (isValidHardcodedOption(node, stepKey)) {
+                const nodeCategory = categorizeNode({ type: node.type, node });
+                if (nodeCategory === stepKey) {
+                    seenIds.add(nodeId);
+                    hardcodedNodes.push(node);
+                }
+            }
+        }
+
+        if (node.children && Array.isArray(node.children)) {
+            node.children.forEach((child, index) => traverse(child, [...path, index]));
+        }
+    };
+
+    traverse(tree);
+    return hardcodedNodes;
+};
+
+export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, onGetProperty, hardcodedNodes = []) => {
+    if ((!slotItems || slotItems.length === 0) && (!hardcodedNodes || hardcodedNodes.length === 0)) return [];
 
     const optMap = new Map();
+    const hardcodedOptionIds = new Set();
 
-    slotItems.forEach(slotItem => {
+    (slotItems || []).forEach(slotItem => {
         const slotNode = slotItem.node;
         let opts = handleGetSlotOptions ? handleGetSlotOptions(slotNode) : [];
         if (!opts) opts = [];
@@ -551,7 +663,8 @@ export const aggregateCategoryOptions = (slotItems, handleGetSlotOptions, onGetP
                 optMap.set(opt.id, {
                     option: { ...fullOpt, displayName: fullOpt.displayName || fullOpt.name },
                     candidateSlotItems: [],
-                    filledSlotItem: null
+                    filledSlotItem: null,
+                    isHardcoded: false
                 });
             }
 
@@ -566,18 +679,58 @@ export const aggregateCategoryOptions = (slotItems, handleGetSlotOptions, onGetP
         });
     });
 
-    const slotAllowedMap = getSlotAllowedMap(slotItems, optMap, handleGetSlotOptions);
-    const currentChoiceIds = slotItems.map(s => s.node.filled?.id).filter(Boolean);
+    (hardcodedNodes || []).forEach(hNode => {
+        const hId = hNode.id || hNode.name;
+        if (!hId) return;
+
+        hardcodedOptionIds.add(hId);
+
+        let fullOpt = hNode;
+        if (onGetProperty) {
+            const fetched = onGetProperty(hId);
+            if (fetched) fullOpt = { ...hNode, ...fetched };
+        }
+
+        if (!optMap.has(hId)) {
+            optMap.set(hId, {
+                option: { ...fullOpt, displayName: fullOpt.displayName || fullOpt.name },
+                candidateSlotItems: [],
+                filledSlotItem: null,
+                isHardcoded: true
+            });
+        } else {
+            const entry = optMap.get(hId);
+            entry.isHardcoded = true;
+            entry.option = { ...entry.option, ...fullOpt, displayName: fullOpt.displayName || fullOpt.name || entry.option.displayName || entry.option.name };
+        }
+    });
+
+    const slotAllowedMap = getSlotAllowedMap(slotItems || [], optMap, handleGetSlotOptions);
+    const currentChoiceIds = (slotItems || [])
+        .map(s => s.node.filled?.id)
+        .filter(id => Boolean(id) && !hardcodedOptionIds.has(id));
 
     const aggregated = Array.from(optMap.values()).map(entry => {
+        if (entry.isHardcoded) {
+            return {
+                ...entry.option,
+                isSelected: true,
+                isDisabled: true,
+                isHardcoded: true,
+                filledSlotPath: null,
+                candidateSlotItems: entry.candidateSlotItems
+            };
+        }
+
         const isSelected = !!entry.filledSlotItem;
         const testChoices = isSelected ? currentChoiceIds : [...currentChoiceIds, entry.option.id];
-        const isDisabled = !isSelected && !canMatchChoicesToSlots(testChoices, slotItems, slotAllowedMap);
+        const isDisabled = !isSelected && !canMatchChoicesToSlots(testChoices, slotItems || [], slotAllowedMap);
 
         return {
             ...entry.option,
             isSelected,
             isDisabled,
+            isHardcoded: false,
             filledSlotPath: entry.filledSlotItem ? entry.filledSlotItem.path : null,
             candidateSlotItems: entry.candidateSlotItems
         };

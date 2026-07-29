@@ -6,6 +6,7 @@ tags: [level4Spell, divination, cleric, druid, wizard, ritual]
 time: action
 range: self
 duration: instantaneous
+summary: "You contact a deity or servant to receive a truthful reply about a future goal."
 description: |
   This spell puts you in contact with a god or a god’s servants. You ask one question about a specific goal, event, or activity to occur within 7 days. The DM offers a truthful reply, which might be a short phrase or cryptic rhyme. The spell doesn’t account for circumstances that might change the answer, such as the casting of other spells.
 

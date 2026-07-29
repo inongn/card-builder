@@ -6,6 +6,7 @@ tags: [level3Spell, conjuration, druid, sorcerer, wizard, saveSpell]
 time: action
 range: 150 feet
 duration: concentration, up to 1 minute
+summary: "Sleet falls in an area, blinding creatures and creating slippery ice."
 description: |
   Until the spell ends, sleet falls in a 40-foot-tall, 20-foot-radius Cylinder centered on a point you choose within range. The area is Heavily Obscured, and exposed flames in the area are doused.
 

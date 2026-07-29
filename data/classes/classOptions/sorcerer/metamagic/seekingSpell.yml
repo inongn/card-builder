@@ -1,4 +1,5 @@
 id: seekingSpell
+summary: "Reroll a missed spell attack roll to turn a miss into a hit."
 name: Seeking Spell
 type: Folder
 tags:

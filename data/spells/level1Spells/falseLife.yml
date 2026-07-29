@@ -6,6 +6,7 @@ tags: [level1Spell, necromancy, artificer, sorcerer, wizard]
 time: action
 range: self
 duration: instantaneous
+summary: "You bolster yourself with a vitality boost of temporary hit points."
 description: |
   You gain 2d4+4 Temporary Hit Points.
 extra:

@@ -1,9 +1,11 @@
+summary: Recall lore about spells, magic items, and the planes of existence.
 type: Effect
 tags:
+  - intelligence
   - skillExpertise
 target: skills.arcana.proficiency
 operation: set
 condition: $(skills.arcana.proficiency > .5)
 value: 2
 id: arcanaExpertise
-name: Arcana Expertise
+name: Arcana

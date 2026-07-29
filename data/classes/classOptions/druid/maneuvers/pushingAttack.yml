@@ -1,4 +1,5 @@
 id: pushingAttack
+summary: "Deal extra damage and push the target back up to 15 feet."
 name: Pushing Attack
 tags: [maneuver]
 type: Activity

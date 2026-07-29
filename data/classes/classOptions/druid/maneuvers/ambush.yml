@@ -1,4 +1,5 @@
 id: ambush
+summary: "Add a maneuver die to Stealth checks or Initiative rolls."
 name: Ambush
 tags: [maneuver]
 type: Activity

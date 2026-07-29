@@ -1,8 +1,10 @@
+summary: Recall lore about gods, religious rituals, and holy symbols.
 tags:
+  - intelligence
   - skillProficiency
 type: Effect
 target: skills.religion.proficiency
 operation: set
 value: 1
 id: religionProficiency
-name: Religion Proficiency
+name: Religion

@@ -6,6 +6,7 @@ tags: [level1Spell, transmutation, artificer, druid, ranger, sorcerer, wizard]
 time: bonus action
 range: touch
 duration: 1 minute
+summary: "You touch a creature to triple its jump distance."
 description: |
   You touch a willing creature. Once on each of its turns until the spell ends, that creature can jump up to 30 feet by spending 10 feet of movement.
 extra:

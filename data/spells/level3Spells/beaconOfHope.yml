@@ -6,6 +6,7 @@ tags: [level3Spell, abjuration, cleric, healingSpell]
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute
+summary: "You grant hope and maximum healing to allies in an area."
 description: |
   Choose any number of creatures within range. For the duration, each target has Advantage on Wisdom saving throws and Death Saving Throws and regains the maximum number of Hit Points possible from any healing.
 

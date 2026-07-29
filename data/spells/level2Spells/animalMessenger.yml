@@ -6,6 +6,7 @@ tags: [level2Spell, enchantment, bard, druid, ranger, ritual, saveSpell]
 time: action
 range: 30 feet
 duration: 24 hours
+summary: "You command a tiny beast to deliver a message to a distant location."
 description: |
   A Tiny Beast of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Charisma saving throw, or it attempts to deliver a message for you (if the target’s Challenge Rating isn’t 0, it automatically succeeds). You specify a location you have visited and a recipient who matches a general description, such as “a person dressed in the uniform of the town guard” or “a red-haired dwarf wearing a pointed hat.” You also communicate a message of up to twenty-five words. The Beast travels for the duration toward the specified location, covering about 25 miles per 24 hours or 50 miles if the Beast can fly.
 

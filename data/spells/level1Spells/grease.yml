@@ -6,6 +6,7 @@ tags: [level1Spell, conjuration, artificer, sorcerer, wizard, saveSpell]
 time: action
 range: 60 feet
 duration: 1 minute
+summary: "Slick grease covers the ground, turning it into difficult terrain."
 description: |
   Nonflammable grease covers the ground in a 10-foot square centered on a point within range and turns it into Difficult Terrain for the duration.
 

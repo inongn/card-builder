@@ -1,4 +1,5 @@
 id: polearmMaster
+summary: "Make bonus reach strikes and opportunity attacks when foes enter reach."
 name: Polearm Master
 tags:
   - feat

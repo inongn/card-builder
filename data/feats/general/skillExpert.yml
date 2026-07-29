@@ -1,4 +1,5 @@
 id: skillExpert
+summary: "Gain skill proficiency and double proficiency bonus in one chosen skill."
 name: Skill Expert
 tags:
   - feat

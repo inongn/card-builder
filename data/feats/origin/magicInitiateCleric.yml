@@ -1,4 +1,5 @@
 id: magicInitiateCleric
+summary: "Learn divine cantrips and a 1st-level cleric spell."
 name: Cleric Initiate
 tags:
 - feat

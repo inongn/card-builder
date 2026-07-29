@@ -1,9 +1,11 @@
+summary: Calm or train an animal, or get an animal to behave in a certain way.
 type: Effect
 tags:
+  - wisdom
   - skillExpertise
 target: skills.animal_handling.proficiency
 operation: set
 condition: $(skills.animal_handling.proficiency > .5)
 value: 2
 id: animalHandlingExpertise
-name: Animal Handling Expertise
+name: Animal Handling

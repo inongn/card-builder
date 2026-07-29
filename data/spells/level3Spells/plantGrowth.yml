@@ -6,6 +6,7 @@ tags: [level3Spell, transmutation, bard, druid, ranger]
 time: action
 range: 150 feet
 duration: instantaneous
+summary: "You channel vitality into plants to overgrow terrain or enrich crops."
 description: |
   This spell channels vitality into plants. The casting time you use determines whether the spell has the Overgrowth or the Enrichment effect below.
 

@@ -5,6 +5,7 @@ tags: [transmutation, cantrip, artificer, bard, sorcerer, warlock, wizard]
 time: action
 range: 10 feet
 duration: up to 1 hour
+summary: "You perform minor magical tricks and utility effects."
 description: |
   You create a magical effect within range. Choose the effect from the options below. If you cast this spell multiple times, you can have up to three of its non-instantaneous effects active at a time.
 

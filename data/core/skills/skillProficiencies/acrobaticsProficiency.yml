@@ -1,8 +1,10 @@
+summary: Stay on your feet in a tricky situation, or perform an acrobatic stunt.
 tags:
+  - dexterity
   - skillProficiency
 type: Effect
 target: skills.acrobatics.proficiency
 operation: set
 value: 1
 id: acrobaticsProficiency
-name: Acrobatics Proficiency
+name: Acrobatics

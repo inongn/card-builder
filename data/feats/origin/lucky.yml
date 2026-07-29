@@ -1,4 +1,5 @@
 id: lucky
+summary: "Expend luck points to gain advantage on rolls or impose disadvantage on foes."
 name: Lucky
 tags:
 - feat

@@ -1,4 +1,5 @@
 id: ritualCaster
+summary: "Learn and cast utility ritual spells from a ritual book."
 name: Ritual Caster
 tags:
   - feat

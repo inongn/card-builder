@@ -1,4 +1,5 @@
 id: crusher
+summary: "Bludgeoning strikes knock targets back and empower critical hits."
 name: Crusher
 tags:
   - feat

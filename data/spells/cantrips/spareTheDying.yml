@@ -5,6 +5,7 @@ tags: [necromancy, cantrip, artificer, cleric, druid]
 time: action
 range: 15 feet
 duration: instantaneous
+summary: "You touch a dying creature to stabilize it."
 description: |
   Choose a creature within range that has 0 Hit Points and isn’t dead. The creature becomes Stable.
 

@@ -1,4 +1,5 @@
 id: charger
+summary: "Gain extra momentum and damage when charging into melee after a dash."
 name: Charger
 tags:
   - feat

@@ -1,4 +1,5 @@
 id: maneuveringAttack
+summary: "Deal extra damage and allow an ally to reposition safely."
 name: Maneuvering Attack
 tags: [maneuver]
 type: Activity

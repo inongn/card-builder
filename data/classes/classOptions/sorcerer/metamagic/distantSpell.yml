@@ -1,4 +1,5 @@
 id: distantSpell
+summary: "Double the range of a spell or turn a touch spell into range."
 name: Distant Spell
 type: Folder
 tags:

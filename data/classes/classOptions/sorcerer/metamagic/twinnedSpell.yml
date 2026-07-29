@@ -1,4 +1,5 @@
 id: twinnedSpell
+summary: "Target a second creature with a spell that normally targets only one."
 name: Twinned Spell
 type: Folder
 tags:

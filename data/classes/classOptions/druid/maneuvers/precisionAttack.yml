@@ -1,4 +1,5 @@
 id: precisionAttack
+summary: "Add a maneuver die to an attack roll to ensure a hit."
 name: Precision Attack
 tags: [maneuver]
 type: Activity

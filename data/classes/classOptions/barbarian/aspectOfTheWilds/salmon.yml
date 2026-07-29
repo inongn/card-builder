@@ -1,4 +1,5 @@
 name: Salmon Aspect
+summary: "Gain powerful swimming and stubborn endurance inspired by the salmon spirit."
 tags: [aspectOfTheWilds]
 type: Effect
 target: attributes.movement.swim

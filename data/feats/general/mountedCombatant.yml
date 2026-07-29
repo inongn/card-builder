@@ -1,4 +1,5 @@
 id: mountedCombatant
+summary: "Gain tactical advantage and protective maneuvers while mounted."
 name: Mounted Combatant
 tags:
   - feat

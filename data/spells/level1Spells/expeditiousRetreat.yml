@@ -6,6 +6,7 @@ tags: [level1Spell, transmutation, artificer, sorcerer, warlock, wizard]
 time: bonus action
 range: self
 duration: concentration, up to 10 minutes
+summary: "You move with sudden speed, allowing continuous dashing."
 description: |
   You take the Dash action, and until the spell ends, you can take that action again as a Bonus Action.
 

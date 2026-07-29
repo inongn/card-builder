@@ -1,4 +1,5 @@
 id: enfeeblingShot
+summary: "Imbue an arrow with necromancy to weaken the target's physical strikes."
 name: Enfeebling Shot
 type: Activity
 tags: [arcaneShotOption]

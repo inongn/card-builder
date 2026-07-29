@@ -1,4 +1,5 @@
 id: infiltratorModel
+summary: "Optimize armor model for stealth, speed, and ranged lightning attacks."
 name: Infiltrator
 type: Folder
 tags:

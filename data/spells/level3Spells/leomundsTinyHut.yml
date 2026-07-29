@@ -6,6 +6,7 @@ tags: [level3Spell, evocation, bard, wizard, ritual]
 time: 1 minute
 range: self
 duration: 8 hours
+summary: "A protective, opaque dome of force springs up around your party."
 description: |
   A 10-foot Emanation springs into existence around you and remains stationary for the duration. The spell fails when you cast it if the Emanation isn’t big enough to fully encapsulate all creatures in its area.
 

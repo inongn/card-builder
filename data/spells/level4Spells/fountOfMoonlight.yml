@@ -6,6 +6,7 @@ tags: [level4Spell, evocation, bard, druid, saveSpell, damageSpell, forceDamage,
 time: action
 range: self
 duration: concentration, up to 10 minutes
+summary: "Cool moonlight wreathes your body, blinding foes and boosting melee strikes."
 description: |
   A cool light wreathes your body for the duration, emitting Bright Light in a 20-foot radius and Dim Light for an additional 20 feet.
 

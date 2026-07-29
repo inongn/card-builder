@@ -1,9 +1,11 @@
+summary: Act, tell a story, perform music, or dance.
 type: Effect
 tags:
+  - charisma
   - skillExpertise
 target: skills.performance.proficiency
 operation: set
 condition: $(skills.performance.proficiency > .5)
 value: 2
 id: performanceExpertise
-name: Performance Expertise
+name: Performance

@@ -1,4 +1,5 @@
 id: warDomainVestige
+summary: "Gain bonus weapon strikes and protective barrier spells from the War Domain."
 name: War Domain
 tags: [vestigeType]
 type: Folder

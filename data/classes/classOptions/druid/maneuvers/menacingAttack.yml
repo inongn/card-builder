@@ -1,4 +1,5 @@
 id: menacingAttack
+summary: "Deal extra damage and frighten the target."
 name: Menacing Attack
 tags: [maneuver]
 type: Activity

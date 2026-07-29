@@ -1,4 +1,5 @@
 id: colossusSlayer
+summary: "Deal extra damage once per turn to creatures below their hit point max."
 name: Colossus Slayer
 tags: [huntersPrey]
 type: Extra

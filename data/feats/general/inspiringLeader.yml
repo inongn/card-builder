@@ -1,4 +1,5 @@
 id: inspiringLeader
+summary: "Inspire companions with speeches to grant temporary hit points."
 name: Inspiring Leader
 tags:
   - feat

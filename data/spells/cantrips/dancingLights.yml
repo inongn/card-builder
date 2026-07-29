@@ -5,6 +5,7 @@ tags: [illusion, cantrip, artificer, bard, sorcerer, wizard]
 time: action
 range: 120 feet
 duration: concentration, up to 1 minute
+summary: "You create up to four lights that hover or move at your command."
 description: |
   You create up to four torch-size lights within range, making them appear as torches, lanterns, or glowing orbs that hover for the duration. Alternatively, you combine the four lights into one glowing Medium form that is vaguely humanlike. Whichever form you choose, each light sheds Dim Light in a 10-foot radius.
 

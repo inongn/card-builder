@@ -6,6 +6,7 @@ tags: [level2Spell, divination, bard, sorcerer, wizard, saveSpell]
 time: action
 range: self
 duration: concentration, up to 1 minute
+summary: "You read the surface thoughts or probe deeper into the mind of a target."
 description: |
   You activate one of the effects below. Until the spell ends, you can activate either effect as a Magic action on your later turns.
 

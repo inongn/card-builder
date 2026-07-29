@@ -1,4 +1,5 @@
 id: sweepingAttack
+summary: "Sweep your weapon to deal damage to a second nearby target."
 name: Sweeping Attack
 tags: [maneuver]
 type: Activity

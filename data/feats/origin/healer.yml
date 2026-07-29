@@ -1,4 +1,5 @@
 id: healer
+summary: "Use healer kits to restore hit points and stabilize dying allies."
 name: Healer
 tags:
 - feat

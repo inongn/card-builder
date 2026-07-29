@@ -1,6 +1,6 @@
 import React from 'react';
 import PropertySelectionTree from '../components/PropertySelectionTree';
-import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
+import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
 import { getSpeciesArtwork, getClassArtwork, getSubclassArtwork, getBackgroundArtwork, getAssetUrl } from '../data/artworkData.js';
 import ReactMarkdown from 'react-markdown';
@@ -485,17 +485,6 @@ const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
 
 // Sub-component for rendering option selection cards
 const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData, onGetProperty }) {
-    const evaluatedDescription = React.useMemo(() => {
-        if (!option.description) return '';
-        const evaluator = new ExpressionEvaluator(characterData);
-        try {
-            return evaluator.evaluate(option.description);
-        } catch (e) {
-            console.error(e);
-            return option.description;
-        }
-    }, [option.description, characterData]);
-
     const handleCardClick = () => {
         if (!disabled && onClick) {
             onClick();
@@ -535,12 +524,24 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         return null;
     }, [option.id, option.name, option.displayName, tags]);
 
-    const firstSentence = React.useMemo(() => {
-        if (!evaluatedDescription) return '';
-        const clean = String(evaluatedDescription).replace(/\r?\n|\r/g, ' ').trim();
+    const evaluatedSummary = React.useMemo(() => {
+        const rawText = option.summary || option.description;
+        if (!rawText) return '';
+        const evaluator = new ExpressionEvaluator(characterData);
+        let evaluated = '';
+        try {
+            evaluated = evaluator.evaluate(rawText);
+        } catch (e) {
+            console.error(e);
+            evaluated = rawText;
+        }
+
+        if (option.summary) return String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
+
+        const clean = String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
         const match = clean.match(/^.*?[.!?](?:\s|$)/);
         return match ? match[0].trim() : clean;
-    }, [evaluatedDescription]);
+    }, [option.summary, option.description, characterData]);
 
     return (
         <mdui-list-item
@@ -568,9 +569,9 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                                     {labels.join(' • ')}
                                 </div>
                             )}
-                            {firstSentence && (
+                            {evaluatedSummary && (
                                 <div className="card-vertical__body">
-                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{firstSentence}</ReactMarkdown>
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedSummary}</ReactMarkdown>
                                 </div>
                             )}
                         </div>
@@ -586,6 +587,11 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                         {labels.length > 0 && (
                             <div className="card-vertical__subhead">
                                 {labels.join(' • ')}
+                            </div>
+                        )}
+                        {evaluatedSummary && (
+                            <div className="card-vertical__body">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedSummary}</ReactMarkdown>
                             </div>
                         )}
                     </div>
@@ -941,7 +947,9 @@ export const BuilderScreen = ({
         if (!displaySlotItem || displaySlotItem.type === 'Abilities' || displaySlotItem.type === 'Input') return [];
 
         if (displaySlotItem.type === 'MergedCategory') {
-            return aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty);
+            const stepKey = displaySlotItem.step || displaySlotItem.category;
+            const hardcodedNodes = getMergedCategoryHardcodedNodes(propertyTree, characterData, stepKey);
+            return aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty, hardcodedNodes);
         }
 
         const node = displaySlotItem.type === 'Slot' ? displaySlotItem.node : displaySlotItem.items[0].node;

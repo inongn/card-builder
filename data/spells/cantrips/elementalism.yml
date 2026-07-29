@@ -5,6 +5,7 @@ tags: [transmutation, cantrip, artificer, druid, sorcerer, wizard]
 time: action
 range: 30 feet
 duration: instantaneous
+summary: "You manipulate elemental forces to create minor elemental effects."
 description: |
   You exert control over the elements, creating one of the following effects within range.
 

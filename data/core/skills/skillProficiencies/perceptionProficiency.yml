@@ -1,8 +1,10 @@
+summary: Using a combination of senses, notice something that's easy to miss.
 tags:
+  - wisdom
   - skillProficiency
 type: Effect
 target: skills.perception.proficiency
 operation: set
 value: 1
 id: perceptionProficiency
-name: Perception Proficiency
+name: Perception

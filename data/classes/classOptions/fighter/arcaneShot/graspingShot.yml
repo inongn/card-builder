@@ -1,4 +1,5 @@
 id: graspingShot
+summary: "Imbue an arrow with nature magic to snare a target in brambles."
 name: Grasping Shot
 type: Activity
 tags: [arcaneShotOption]

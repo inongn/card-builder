@@ -1,4 +1,5 @@
 id: baitAndSwitch
+summary: "Swap places with an ally and boost their AC with a maneuver die."
 name: Bait and Switch
 tags: [maneuver]
 type: Activity

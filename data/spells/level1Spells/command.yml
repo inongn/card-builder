@@ -6,6 +6,7 @@ tags: [level1Spell, enchantment, bard, cleric, paladin, saveSpell]
 time: action
 range: 60 feet
 duration: instantaneous
+summary: "You speak a one-word command that a target must obey."
 description: |
   You speak a one-word command to a creature you can see within range. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or follow the command on its next turn. Choose the command from these options:
 

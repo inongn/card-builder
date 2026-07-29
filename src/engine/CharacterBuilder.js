@@ -958,12 +958,17 @@ export class CharacterBuilder {
     /**
      * Collect all properties from the tree, merging conditions along the path
      */
-    collectAllProperties(node, collection, inheritedPriority = 0, inheritedVariables = {}, inheritedIgnoreCondition = false, inheritedCondition = null) {
+    collectAllProperties(node, collection, inheritedPriority = 0, inheritedVariables = {}, inheritedIgnoreCondition = false, inheritedCondition = null, inheritedAncestry = []) {
         if (!node) return;
 
         const priority = node.priority !== undefined ? node.priority : inheritedPriority;
         const variables = node.variables ? { ...inheritedVariables, ...node.variables } : inheritedVariables;
         const ignoreCondition = node.ignoreCondition || inheritedIgnoreCondition;
+
+        const currentAncestry = [
+            ...inheritedAncestry,
+            { id: node.id, type: node.type, tags: Array.isArray(node.tags) ? node.tags : (node.tags ? [node.tags] : []) }
+        ];
 
         // SMART PRUNING: Respect visibility calculated in previous passes
         // Folders and Slots are always traversed (as they might have visible children even if they themselves aren't 'Applied' nodes)
@@ -989,14 +994,15 @@ export class CharacterBuilder {
                 priority,
                 variables,
                 ignoreCondition,
-                condition: mergedCondition
+                condition: mergedCondition,
+                sourceAncestry: currentAncestry
             });
         }
 
         // Process children
         const children = node.children || [];
         for (const child of children) {
-            this.collectAllProperties(child, collection, priority, variables, ignoreCondition, mergedCondition);
+            this.collectAllProperties(child, collection, priority, variables, ignoreCondition, mergedCondition, currentAncestry);
         }
     }
 
@@ -1432,7 +1438,8 @@ export class CharacterBuilder {
                         type: evaluator.bakeVariables(prop.subtype, scope),
                         description: description,
                         extra: existingExtras,
-                        variables: cardVariables // Store variables for dynamic evaluation
+                        variables: cardVariables, // Store variables for dynamic evaluation
+                        sourceAncestry: prop.sourceAncestry || []
                     };
 
                     this.characterData.activities.push(cardObj);

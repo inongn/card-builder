@@ -6,6 +6,7 @@ tags: [level3Spell, divination, bard, cleric, sorcerer, wizard]
 time: 10 minutes
 range: 1 mile
 duration: concentration, up to 10 minutes
+summary: "You create an invisible sensor to see or hear a distant location."
 description: |
   You create an Invisible sensor within range in a location familiar to you (a place you have visited or seen before) or in an obvious location that is unfamiliar to you (such as behind a door, around a corner, or in a grove of trees). The intangible, invulnerable sensor remains in place for the duration.
 

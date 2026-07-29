@@ -6,6 +6,7 @@ tags: [level3Spell, transmutation, artificer, druid, ranger, sorcerer, wizard, r
 time: action
 range: 30 feet
 duration: 24 hours
+summary: "You grant up to ten creatures the ability to breathe underwater."
 description: |
   This spell grants up to ten willing creatures of your choice within range the ability to breathe underwater until the spell ends. Affected creatures also retain their normal mode of respiration.
 

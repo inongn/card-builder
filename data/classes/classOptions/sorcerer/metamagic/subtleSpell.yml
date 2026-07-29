@@ -1,4 +1,5 @@
 id: subtleSpell
+summary: "Cast a spell without needing verbal or somatic components."
 name: Subtle Spell
 type: Folder
 tags:

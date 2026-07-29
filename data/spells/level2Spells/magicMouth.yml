@@ -6,6 +6,7 @@ tags: [level2Spell, illusion, artificer, bard, wizard, ritual]
 time: 1 minute
 range: 30 feet
 duration: until dispelled
+summary: "You enchant an object to speak a message when a trigger occurs."
 description: |
   You implant a message within an object in range - a message that is uttered when a trigger condition is met. Choose an object that you can see and that isn’t being worn or carried by another creature. Then speak the message, which must be 25 words or fewer, though it can be delivered over as long as 10 minutes. Finally, determine the circumstance that will trigger the spell to deliver your message.
 

@@ -6,6 +6,7 @@ tags: [level1Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger,
 time: action
 range: touch
 duration: instantaneous
+summary: "A creature you touch regains hit points."
 description: |
   A creature you touch regains a number of Hit Points equal to 2d8$(formatBonus(attributes.spellcasting.bonus)).
 extra:

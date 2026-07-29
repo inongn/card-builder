@@ -6,6 +6,7 @@ tags: [level3Spell, conjuration, cleric, saveSpell, damageSpell, necroticDamage,
 time: action
 range: self
 duration: concentration, up to 10 minutes
+summary: "Protective spirits flit around you, damaging and slowing nearby foes."
 description: |
   Protective spirits flit around you in a 15-foot Emanation for the duration. If you are good or neutral, their spectral form appears angelic or fey (your choice). If you are evil, they appear fiendish.
 

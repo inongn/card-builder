@@ -1,4 +1,5 @@
 id: shadowShot
+summary: "Imbue an arrow with illusion to blind the target's vision."
 name: Shadow Shot
 type: Activity
 tags: [arcaneShotOption]

@@ -6,6 +6,7 @@ tags: [level3Spell, conjuration, druid, ranger, saveSpell, damageSpell, slashing
 time: action
 range: 60 feet
 duration: concentration, up to 10 minutes
+summary: "You summon a pack of spectral animals to protect you and strike foes."
 description: |
   You conjure nature spirits that appear as a Large pack of spectral, intangible animals in an unoccupied space you can see within range. The pack lasts for the duration, and you choose the spirits’ animal form, such as wolves, serpents, or birds.
 

@@ -6,6 +6,7 @@ tags: [level4Spell, transmutation, artificer, wizard]
 time: 10 minutes
 range: 120 feet
 duration: instantaneous
+summary: "You convert raw materials into finished products of the same material."
 description: |
   You convert raw materials into products of the same material. For example, you can fabricate a wooden bridge from a clump of trees, a rope from a patch of hemp, or clothes from flax or wool.
 

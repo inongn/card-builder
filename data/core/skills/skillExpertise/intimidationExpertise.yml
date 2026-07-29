@@ -1,9 +1,11 @@
+summary: Awe or threaten someone into doing what you want.
 type: Effect
 tags:
+  - charisma
   - skillExpertise
 target: skills.intimidation.proficiency
 operation: set
 condition: $(skills.intimidation.proficiency > 0)
 value: 2
 id: intimidationExpertise
-name: Intimidation Expertise
+name: Intimidation

@@ -1,8 +1,10 @@
+summary: Escape notice by moving quietly and hiding behind things.
 tags:
+  - dexterity
   - skillProficiency
 type: Effect
 target: skills.stealth.proficiency
 operation: set
 value: 1
 id: stealthProficiency
-name: Stealth Proficiency
+name: Stealth

@@ -1,4 +1,5 @@
 id: extendedSpell
+summary: "Double the duration of a spell up to a maximum of 24 hours."
 name: Extended Spell
 type: Folder
 tags:

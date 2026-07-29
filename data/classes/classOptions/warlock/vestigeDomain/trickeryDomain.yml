@@ -1,4 +1,5 @@
 id: trickeryDomainVestige
+summary: "Gain illusory stealth spells and trickster duplicates from the Trickery Domain."
 name: Trickery Domain
 tags: [vestigeType]
 type: Folder

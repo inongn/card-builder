@@ -6,6 +6,7 @@ tags: [level1Spell, abjuration, artificer, cleric, saveSpell]
 time: bonus action
 range: 30 feet
 duration: 1 minute
+summary: "You ward a creature, causing attackers to hesitate before striking it."
 description: |
   You ward a creature within range. Until the spell ends, any creature who targets the warded creature with an attack roll or a damaging spell must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or either choose a new target or lose the attack or spell. This spell doesn’t protect the warded creature from areas of effect.
 

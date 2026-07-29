@@ -6,6 +6,7 @@ tags: [level4Spell, conjuration, cleric, saveSpell, damageSpell, radiantDamage]
 time: action
 range: 30 feet
 duration: 8 hours
+summary: "A large spectral guardian appears to strike trespassers."
 description: |
   A Large spectral guardian appears and hovers for the duration in an unoccupied space that you can see within range. The guardian occupies that space and is invulnerable, and it appears in a form appropriate for your deity or pantheon.
 

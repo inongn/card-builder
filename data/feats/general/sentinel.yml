@@ -1,4 +1,5 @@
 id: sentinel
+summary: "Halt moving foes in their tracks and punish enemies that attack allies."
 name: Sentinel
 tags:
   - feat

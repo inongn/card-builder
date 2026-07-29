@@ -1,4 +1,5 @@
 id: agonizingBlast
+summary: "Add your Charisma modifier to the damage of your Eldritch Blast."
 name: Agonizing Blast
 tags:
   - eldritchInvocation

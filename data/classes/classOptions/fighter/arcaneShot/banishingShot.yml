@@ -1,4 +1,5 @@
 id: banishingShot
+summary: "Imbue an arrow with abjuration to temporarily banish a target."
 name: Banishing Shot
 type: Activity
 tags: [arcaneShotOption]

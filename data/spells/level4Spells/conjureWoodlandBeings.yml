@@ -6,6 +6,7 @@ tags: [level4Spell, conjuration, druid, ranger, saveSpell, damageSpell, forceDam
 time: action
 range: self
 duration: concentration, up to 10 minutes
+summary: "You conjure nature spirits that swirl around you to protect and strike."
 description: |
   You conjure nature spirits that flit around you in a 10-foot Emanation for the duration. Whenever the Emanation enters the space of a creature you can see and whenever a creature you can see enters the Emanation or ends its turn there, you can force that creature to make a DC $(attributes.spellcasting.save) Wisdom saving throw. The creature takes 5d8 Force damage on a failed save or half as much damage on a successful one. A creature makes this save only once per turn.
 

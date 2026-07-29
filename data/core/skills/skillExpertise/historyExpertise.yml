@@ -1,9 +1,11 @@
+summary: Recall lore about historical events, people, nations, and cultures.
 type: Effect
 tags:
+  - intelligence
   - skillExpertise
 target: skills.history.proficiency
 operation: set
 condition: $(skills.history.proficiency > .5)
 value: 2
 id: historyExpertise
-name: History Expertise
+name: History

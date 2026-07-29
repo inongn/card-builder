@@ -6,6 +6,7 @@ tags: [level4Spell, enchantment, bard, saveSpell]
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute
+summary: "You compel creatures in an area to move in a designated direction."
 description: |
   Each creature of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition until the spell ends.
 

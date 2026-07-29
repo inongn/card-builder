@@ -6,6 +6,7 @@ tags: [level4Spell, abjuration, cleric, paladin, sorcerer, warlock, wizard, save
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute
+summary: "You banish a target to a harmless demiplane or its native realm."
 description: |
   One creature that you can see within range must succeed on a DC $(attributes.spellcasting.save) Charisma saving throw or be transported to a harmless demiplane for the duration. While there, the target has the Incapacitated condition. When the spell ends, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied.
 

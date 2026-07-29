@@ -5,6 +5,7 @@ tags: [conjuration, cantrip, artificer, bard, sorcerer, warlock, wizard]
 time: action
 range: 30 feet
 duration: 1 minute
+summary: "You create a spectral hand to manipulate objects at a distance."
 description: |
   A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.
 

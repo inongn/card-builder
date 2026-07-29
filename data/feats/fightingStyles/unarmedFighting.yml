@@ -1,6 +1,7 @@
 tags:
 - fightingStyle
 type: Folder
+summary: "Enhance unarmed strike damage and deal extra damage to grappled targets."
 children:
 - type: Extra
   target: unarmed

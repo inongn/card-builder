@@ -6,6 +6,7 @@ tags: [level3Spell, illusion, bard, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: self
 duration: concentration, up to 1 minute
+summary: "You project a terrifying image that causes creatures to drop items and flee."
 description: |
   Each creature in a 30-foot Cone must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or drop whatever it is holding and have the Frightened condition for the duration.
 

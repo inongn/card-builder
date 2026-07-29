@@ -6,6 +6,7 @@ tags: [level2Spell, necromancy, cleric, paladin, wizard, ritual]
 time: action
 range: touch
 duration: 10 days
+summary: "You preserve a dead body from decay and undead rising."
 description: |
   You touch a corpse or other remains. For the duration, the target is protected from decay and can’t become Undead.
 

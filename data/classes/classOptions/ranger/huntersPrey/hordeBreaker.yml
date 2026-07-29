@@ -1,4 +1,5 @@
 id: hordeBreaker
+summary: "Make an extra weapon attack against another creature adjacent to your target."
 name: Horde Breaker
 tags: [huntersPrey]
 type: Extra

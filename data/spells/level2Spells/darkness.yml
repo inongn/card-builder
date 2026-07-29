@@ -6,6 +6,7 @@ tags: [level2Spell, evocation, sorcerer, warlock, wizard]
 time: action
 range: 60 feet
 duration: concentration, up to 10 minutes
+summary: "Magical darkness spreads from a point, blocking vision and darkvision."
 description: |
   For the duration, magical Darkness spreads from a point within range and fills a 15-foot-radius Sphere. Darkvision can’t see through it, and nonmagical light can’t illuminate it.
 

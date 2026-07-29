@@ -1,4 +1,5 @@
 id: dreadnaughtModel
+summary: "Optimize armor model for heavy defense, temporary hit points, and thunder strikes."
 name: Dreadnaught
 type: Folder
 tags:

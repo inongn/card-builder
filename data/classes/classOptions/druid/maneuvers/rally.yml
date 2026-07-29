@@ -1,4 +1,5 @@
 id: rally
+summary: "Bolster an ally with temporary hit points using your maneuver die."
 name: Rally
 tags: [maneuver]
 type: Activity

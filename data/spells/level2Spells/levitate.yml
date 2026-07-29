@@ -6,6 +6,7 @@ tags: [level2Spell, transmutation, artificer, sorcerer, wizard, saveSpell]
 time: action
 range: 60 feet
 duration: concentration, up to 10 minutes
+summary: "You cause a creature or object to rise vertically into the air."
 description: |
   One creature or loose object of your choice that you can see within range rises vertically up to 20 feet and remains suspended there for the duration. The spell can levitate an object that weighs up to 500 pounds. An unwilling creature that succeeds on a DC $(attributes.spellcasting.save) Constitution saving throw is unaffected.
 

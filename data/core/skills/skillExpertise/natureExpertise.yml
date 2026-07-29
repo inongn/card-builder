@@ -1,9 +1,11 @@
+summary: Recall lore about terrain, plants, animals, and weather.
 type: Effect
 tags:
+  - intelligence
   - skillExpertise
 target: skills.nature.proficiency
 operation: set
 condition: $(skills.nature.proficiency > .5)
 value: 2
 id: natureExpertise
-name: Nature Expertise
+name: Nature

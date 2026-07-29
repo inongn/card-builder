@@ -1,4 +1,5 @@
 id: disarmingAttack
+summary: "Deal extra damage and force the target to drop a held object."
 name: Disarming Attack
 tags: [maneuver]
 type: Activity

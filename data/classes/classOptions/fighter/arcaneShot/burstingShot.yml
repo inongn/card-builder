@@ -1,4 +1,5 @@
 id: burstingShot
+summary: "Imbue an arrow with evocation to detonate in a burst of force."
 name: Bursting Shot
 type: Activity
 tags: [arcaneShotOption]

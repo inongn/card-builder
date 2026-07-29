@@ -5,7 +5,7 @@ export const formatBonus = (value, alwaysShow = false) => {
     if (typeof value === 'number') {
         const num = Number(value);
         if (isNaN(num)) return value;
-        if (num === 0) return alwaysShow ? '+0' : '';
+        if (num === 0) return '+0';
         return num > 0 ? `+${num}` : `${num}`;
     }
     return value;

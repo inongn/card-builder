@@ -1,4 +1,5 @@
 id: crafter
+summary: "Craft gear during long rests at a discount and reduced time."
 name: Crafter
 tags:
 - feat

@@ -6,6 +6,7 @@ tags: [level1Spell, conjuration, ranger, saveSpell, damageSpell, piercingDamage]
 time: bonus action
 range: self
 duration: concentration, up to 1 minute
+summary: "Your weapon strike summons grasping vines to restrain a target."
 description: |
   Immediately after hitting a creature with a weapon, grasping vines appear on it, and it makes a DC $(attributes.spellcasting.save) Strength saving throw. A Large or larger creature has Advantage on this save. On a failed save, the target has the Restrained condition until the spell ends. On a successful save, the vines shrivel away, and the spell ends.
 

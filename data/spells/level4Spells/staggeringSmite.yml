@@ -6,6 +6,7 @@ tags: [level4Spell, enchantment, paladin, saveSpell, damageSpell, psychicDamage]
 time: bonus action
 range: self
 duration: instantaneous
+summary: "Your strike deals psychic damage and leaves the target stunned."
 description: |
   Immediately after hitting a creature with a Melee weapon or an Unarmed Strike, the target takes an extra 4d6 Psychic damage from the attack, and the target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Stunned condition until the end of your next turn.
 extra:

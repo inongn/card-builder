@@ -1,4 +1,5 @@
 id: quickenedSpell
+summary: "Change a spell with a casting time of 1 action to 1 Bonus Action."
 name: Quickened Spell
 type: Folder
 tags:

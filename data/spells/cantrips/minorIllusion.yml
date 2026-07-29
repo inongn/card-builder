@@ -5,6 +5,7 @@ tags: [illusion, cantrip, bard, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 30 feet
 duration: 1 minute
+summary: "You create a sound or an image of an object within range."
 description: |
   You create a sound or an image of an object within range that lasts for the duration. See the descriptions below for the effects of each. The illusion ends if you cast this spell again.
 

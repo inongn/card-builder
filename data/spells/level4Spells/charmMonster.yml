@@ -6,6 +6,7 @@ tags: [level4Spell, enchantment, bard, druid, sorcerer, warlock, wizard, saveSpe
 time: action
 range: 30 feet
 duration: 1 hour
+summary: "You charm any creature type to regard you as a friendly acquaintance."
 description: |
   One creature you can see within range makes a DC $(attributes.spellcasting.save) Wisdom saving throw. It does so with Advantage if you or your allies are fighting it. On a failed save, the target has the Charmed condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you.
 extra:

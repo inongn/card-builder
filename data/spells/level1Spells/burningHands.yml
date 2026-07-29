@@ -6,6 +6,7 @@ tags: [level1Spell, evocation, sorcerer, wizard, saveSpell, damageSpell, fireDam
 time: action
 range: self
 duration: instantaneous
+summary: "A thin sheet of flames shoots forth from your fingertips."
 description: |
   A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.
 

@@ -1,4 +1,5 @@
 id: repellingBlast
+summary: "Push a target up to 10 feet away when hitting with Eldritch Blast."
 name: Repelling Blast
 tags:
   - eldritchInvocation

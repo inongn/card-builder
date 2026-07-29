@@ -6,6 +6,7 @@ tags: [level2Spell, divination, bard, druid, ranger, ritual]
 time: action
 range: self
 duration: instantaneous
+summary: "You sense the direction of a specific kind of beast or plant."
 description: |
   Describe or name a specific kind of Beast, Plant creature, or nonmagical plant. You learn the direction and distance to the closest creature or plant of that kind within 5 miles, if any are present.
 

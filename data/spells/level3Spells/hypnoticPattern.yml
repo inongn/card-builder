@@ -6,6 +6,7 @@ tags: [level3Spell, illusion, bard, sorcerer, warlock, wizard, saveSpell]
 time: action
 range: 120 feet
 duration: concentration, up to 1 minute
+summary: "You create a twisting pattern of colors that charms and incapacitates."
 description: |
   You create a twisting pattern of colors in a 30-foot Cube within range. The pattern appears for a moment and vanishes. Each creature in the area who can see the pattern must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. While Charmed, the creature has the Incapacitated condition and a Speed of 0.
 

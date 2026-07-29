@@ -1,4 +1,5 @@
 id: piercingShot
+summary: "Imbue an arrow to transform into a line of piercing force."
 name: Piercing Shot
 type: Activity
 tags: [arcaneShotOption]

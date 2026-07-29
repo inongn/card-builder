@@ -1,4 +1,5 @@
 id: potentSpellcasting
+summary: "Add Wisdom modifier to the damage dealt by your cleric cantrips."
 name: Potent Spellcasting
 tags: [elementalFury]
 type: Folder

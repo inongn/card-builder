@@ -6,6 +6,7 @@ tags: [level1Spell, enchantment, bard, druid, ranger, saveSpell]
 time: action
 range: 30 feet
 duration: 24 hours
+summary: "You convince a beast that you mean it no harm."
 description: |
   Target a Beast that you can see within range. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. If you or one of your allies deals damage to the target, the spells ends.
 extra:

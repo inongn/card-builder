@@ -1,4 +1,5 @@
 id: speedy
+summary: "Increase movement speed and ignore difficult terrain penalty when dashing."
 name: Speedy
 tags:
   - feat

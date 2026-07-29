@@ -1,4 +1,5 @@
 id: spellSniper
+summary: "Double spell range, ignore cover, and learn a offensive cantrip."
 name: Spell Sniper
 tags:
   - feat

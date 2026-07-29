@@ -6,6 +6,7 @@ tags: [level3Spell, conjuration, bard, sorcerer, wizard, saveSpell]
 time: action
 range: 90 feet
 duration: concentration, up to 1 minute
+summary: "You create a sphere of nauseating gas that causes retching."
 description: |
   You create a 20-foot-radius Sphere of yellow, nauseating gas centered on a point within range. The cloud is Heavily Obscured. The cloud lingers in the air for the duration or until a strong wind (such as the one created by Gust of Wind) disperses it.
 

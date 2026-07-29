@@ -2,6 +2,7 @@ id: findSteed
 type: Folder
 name: Find Steed
 tags: [level2Spell, conjuration, paladin]
+summary: "You summon an otherworldly spirit that takes the form of a loyal mount."
 children:
   - type: Slot
     id: steedType

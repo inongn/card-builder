@@ -1,4 +1,5 @@
 id: potentSpellcastingCleric
+summary: "Add Wisdom modifier to the damage dealt by your cleric cantrips."
 name: Potent Spellcasting
 type: Folder
 tags:

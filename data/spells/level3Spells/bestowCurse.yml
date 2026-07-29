@@ -6,6 +6,7 @@ tags: [level3Spell, necromancy, bard, cleric, wizard, saveSpell, damageSpell, ne
 time: action
 range: touch
 duration: concentration, up to 1 minute
+summary: "You touch a target to inflict a custom debilitating curse."
 description: |
   You touch a creature, which must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or become cursed for the duration. Until the curse ends, the target suffers one of the following effects of your choice:
 

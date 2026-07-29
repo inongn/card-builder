@@ -1,4 +1,5 @@
 id: lightDomainVestige
+summary: "Gain radiant fire spells and warding flares from the Light Domain."
 name: Light Domain
 tags: [vestigeType]
 type: Folder

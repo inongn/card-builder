@@ -6,6 +6,7 @@ tags: [level1Spell, conjuration, ranger, saveSpell, damageSpell, piercingDamage]
 time: bonus action
 range: self
 duration: instantaneous
+summary: "Your ranged strike creates a burst of thorny rain."
 description: |
   Immediately after hitting a creature with a Ranged weapon, this spell creates a rain of thorns that sprouts from your Ranged weapon or ammunition. The target of the attack and each creature within 5 feet of it make a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 1d10 Piercing damage on a failed save or half as much damage on a successful one.
 extra:

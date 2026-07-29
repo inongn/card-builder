@@ -6,6 +6,7 @@ tags: [level1Spell, transmutation, cleric, druid]
 time: action
 range: 30 feet
 duration: instantaneous
+summary: "You create or destroy a quantity of water or fog."
 description: |
   You do one of the following:
 

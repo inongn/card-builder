@@ -5,6 +5,7 @@ tags: [abjuration, cantrip, bard, sorcerer, warlock, wizard]
 time: action
 range: self
 duration: concentration, up to 1 minute
+summary: "You ward yourself against weapon attacks."
 description: |
   Whenever a creature makes an attack roll against you before the spell ends, the attacker subtracts 1d4 from the attack roll.
 

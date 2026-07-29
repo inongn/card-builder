@@ -1,4 +1,5 @@
 id: crossbowExpert
+summary: "Ignore loading properties and shoot crossbows in close melee without penalty."
 name: Crossbow Expert
 tags:
   - feat

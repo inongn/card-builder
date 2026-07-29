@@ -5,4 +5,5 @@ target: attributes.ac
 operation: add
 value: 1
 id: defense
+summary: "Gain a +1 bonus to Armor Class while wearing armor."
 name: Defense

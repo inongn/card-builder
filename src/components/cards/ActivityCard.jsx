@@ -143,8 +143,90 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
         </div>
     );
 
+    const getActivitySubtitle = () => {
+        const tags = activity.tags || [];
+
+        // 0. Weapon Attack check
+        const isWeaponAttack = (activity.id && String(activity.id).toLowerCase().includes('weaponattack')) ||
+            tags.some(t => String(t).toLowerCase() === 'weaponattack');
+
+        if (isWeaponAttack) {
+            return 'Weapon Attack';
+        }
+
+        // 1. Spells check
+        const isSpell = tags.some(t => String(t).includes('Spell') || String(t) === 'cantrip') || (activity.resource && String(activity.resource).toLowerCase().includes('spell'));
+
+        if (isSpell) {
+            const schools = ['abjuration', 'conjuration', 'divination', 'enchantment', 'evocation', 'illusion', 'necromancy', 'transmutation'];
+            const foundSchoolTag = tags.find(t => schools.includes(String(t).toLowerCase()));
+            const schoolName = foundSchoolTag
+                ? foundSchoolTag.charAt(0).toUpperCase() + foundSchoolTag.slice(1).toLowerCase()
+                : '';
+
+            const isCantrip = tags.includes('cantrip');
+            if (isCantrip) {
+                return schoolName ? `${schoolName} Cantrip` : 'Cantrip';
+            }
+
+            let levelNum = null;
+            const levelTag = tags.find(t => /^level\d+Spell$/i.test(String(t)));
+            if (levelTag) {
+                const match = levelTag.match(/\d+/);
+                if (match) levelNum = match[0];
+            } else if (activity.resource) {
+                const match = String(activity.resource).match(/\d+/);
+                if (match) levelNum = match[0];
+            }
+
+            if (levelNum) {
+                return schoolName ? `Level ${levelNum} ${schoolName}` : `Level ${levelNum} Spell`;
+            }
+
+            return schoolName ? `${schoolName} Spell` : 'Spell';
+        }
+
+        // 2. Ancestry / Parent tags check for Species, Subclass, Class
+        const ancestry = activity.sourceAncestry || [];
+        const allAncestryTags = ancestry.flatMap(a => (a.tags || []).map(t => String(t).toLowerCase()));
+        const allAncestryIds = ancestry.map(a => String(a.id || '').toLowerCase());
+
+        const isSpecies = tags.some(t => String(t).toLowerCase() === 'species') ||
+            allAncestryTags.includes('species') ||
+            allAncestryIds.some(id => id.startsWith('species-') || id === 'species');
+
+        if (isSpecies) return 'Species Trait';
+
+        const isSubclass = tags.some(t => String(t).toLowerCase().includes('subclass')) ||
+            allAncestryTags.some(t => t.includes('subclass')) ||
+            allAncestryIds.some(id => id.includes('subclass'));
+
+        if (isSubclass) return 'Subclass Feature';
+
+        const isFeat = tags.some(t => String(t).toLowerCase().includes('feat')) ||
+            allAncestryTags.some(t => t.includes('feat')) ||
+            allAncestryIds.some(id => id.includes('feat'));
+
+        if (isFeat) return 'Feat Benefit';
+
+        const isClass = tags.some(t => String(t).toLowerCase() === 'class') ||
+            allAncestryTags.includes('class') ||
+            allAncestryIds.some(id => id.startsWith('class-') || id.includes('class'));
+
+        if (isClass) return 'Class Feature';
+
+        return 'Core Feature';
+    };
+
+    const subtitleText = getActivitySubtitle();
+
     const bodyContent = (
         <>
+            {subtitleText && (
+                <div className="card-subtitle-container">
+                    <span className="card-subtitle">{subtitleText}</span>
+                </div>
+            )}
             <div className="card-grid">
                 {activity.time && renderGridValue(activity.time, 'time')}
                 {activity.range && renderGridValue(activity.range, 'range')}

@@ -6,6 +6,7 @@ tags: [level1Spell, necromancy, cleric, saveSpell, damageSpell, necroticDamage]
 time: action
 range: touch
 duration: instantaneous
+summary: "Your touch inflicts heavy necrotic damage."
 description: |
   A creature you touch makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking 2d10 Necrotic damage on a failed save or half as much damage on a successful one.
 extra:

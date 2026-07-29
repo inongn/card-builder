@@ -6,6 +6,7 @@ tags: [level2Spell, evocation, druid, ranger, sorcerer, wizard, saveSpell]
 time: action
 range: self
 duration: concentration, up to 1 minute
+summary: "A strong gust of wind blasts out from you, pushing targets."
 description: |
   A Line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the duration. Each creature in the Line must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be pushed 15 feet away from you in a direction following the Line. A creature that ends its turn in the Line must make the same save.
 
