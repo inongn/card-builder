@@ -1,5 +1,6 @@
 id: poisonAffinity
 name: Poison Affinity
+summary: "Gain poison resistance and add Charisma modifier to poison damage spells."
 type: Folder
 tags:
   - elementalAffinity

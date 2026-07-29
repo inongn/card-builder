@@ -1,5 +1,6 @@
 id: coldAffinity
 name: Cold Affinity
+summary: "Gain cold resistance and add Charisma modifier to cold damage spells."
 type: Folder
 tags:
   - elementalAffinity

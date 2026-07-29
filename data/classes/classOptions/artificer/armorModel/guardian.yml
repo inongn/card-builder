@@ -1,5 +1,6 @@
 id: guardianModel
 name: Guardian
+summary: "Optimize armor model for front-line defense, thunder pulse strikes, and temporary hit points."
 type: Folder
 tags:
   - armorModel

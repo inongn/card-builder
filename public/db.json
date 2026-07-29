@@ -1577,6 +1577,7 @@
   {
     "id": "guardianModel",
     "name": "Guardian",
+    "summary": "Optimize armor model for front-line defense, thunder pulse strikes, and temporary hit points.",
     "type": "Folder",
     "tags": [
       "armorModel"
@@ -2430,6 +2431,7 @@
   {
     "id": "blessedWarrior",
     "name": "Blessed Warrior",
+    "summary": "Learn two cleric cantrips of your choice.",
     "type": "Folder",
     "children": [
       {
@@ -2444,6 +2446,7 @@
   {
     "id": "druidicWarrior",
     "name": "Druidic Warrior",
+    "summary": "Learn two druid cantrips of your choice.",
     "type": "Folder",
     "children": [
       {
@@ -2458,6 +2461,7 @@
   {
     "id": "escapeTheHorde",
     "name": "Escape the Horde",
+    "summary": "Opportunity Attacks have Disadvantage against you.",
     "tags": [
       "defensiveTactics"
     ],
@@ -2467,6 +2471,7 @@
   {
     "id": "multiattackDefense",
     "name": "Multiattack Defense",
+    "summary": "Attacks from a creature hit you with have Disadvantage for the rest of the turn.",
     "tags": [
       "defensiveTactics"
     ],
@@ -2498,6 +2503,7 @@
   {
     "id": "banePact",
     "name": "Aspect of Tyranny",
+    "summary": "Gain psychic resistance and learn the Minor Illusion cantrip.",
     "tags": [
       "dreadAllegiance"
     ],
@@ -2518,6 +2524,7 @@
   {
     "id": "bhaalPact",
     "name": "Aspect of Slaughter",
+    "summary": "Gain poison resistance and learn the Blade Ward cantrip.",
     "tags": [
       "dreadAllegiance"
     ],
@@ -2538,6 +2545,7 @@
   {
     "id": "myrkulPact",
     "name": "Aspect of Mortality",
+    "summary": "Gain necrotic resistance and learn the Chill Touch cantrip.",
     "tags": [
       "dreadAllegiance"
     ],
@@ -2558,6 +2566,7 @@
   {
     "id": "acidAffinity",
     "name": "Acid Affinity",
+    "summary": "Gain acid resistance and add Charisma modifier to acid damage spells.",
     "type": "Folder",
     "tags": [
       "elementalAffinity"
@@ -2602,6 +2611,7 @@
   {
     "id": "coldAffinity",
     "name": "Cold Affinity",
+    "summary": "Gain cold resistance and add Charisma modifier to cold damage spells.",
     "type": "Folder",
     "tags": [
       "elementalAffinity"
@@ -2646,6 +2656,7 @@
   {
     "id": "fireAffinity",
     "name": "Fire Affinity",
+    "summary": "Gain fire resistance and add Charisma modifier to fire damage spells.",
     "type": "Folder",
     "tags": [
       "elementalAffinity"
@@ -2690,6 +2701,7 @@
   {
     "id": "lightningAffinity",
     "name": "Lightning Affinity",
+    "summary": "Gain lightning resistance and add Charisma modifier to lightning damage spells.",
     "type": "Folder",
     "tags": [
       "elementalAffinity"
@@ -2734,6 +2746,7 @@
   {
     "id": "poisonAffinity",
     "name": "Poison Affinity",
+    "summary": "Gain poison resistance and add Charisma modifier to poison damage spells.",
     "type": "Folder",
     "tags": [
       "elementalAffinity"
@@ -2922,6 +2935,7 @@
   {
     "id": "transmutedSpell",
     "name": "Transmuted Spell",
+    "summary": "Change the elemental damage type of a spell to another elemental damage type.",
     "type": "Folder",
     "tags": [
       "metamagic"
@@ -3007,6 +3021,7 @@
   {
     "id": "devilSight",
     "name": "Devil's Sight",
+    "summary": "See normally in darkness, both magical and nonmagical, to a distance of 120 feet.",
     "tags": [
       "eldritchInvocation"
     ],
@@ -3055,6 +3070,7 @@
   {
     "id": "eldritchSpear",
     "name": "Eldritch Spear",
+    "summary": "Increase the range of your Eldritch Blast cantrip.",
     "tags": [
       "eldritchInvocation"
     ],
@@ -3098,6 +3114,7 @@
   {
     "id": "giftOfTheDepths",
     "name": "Gift of the Depths",
+    "summary": "Gain a swimming speed equal to your walking speed and the ability to breathe underwater.",
     "tags": [
       "eldritchInvocation"
     ],
@@ -3144,6 +3161,7 @@
   {
     "id": "lessonsOfTheFirstOnes",
     "name": "Lessons of the First Ones",
+    "summary": "Gain an Origin Feat of your choice.",
     "tags": [
       "eldritchInvocation"
     ],
@@ -3192,6 +3210,7 @@
   {
     "id": "mistyVisions",
     "name": "Misty Visions",
+    "summary": "Cast Silent Image at will without expending a spell slot.",
     "tags": [
       "eldritchInvocation"
     ],

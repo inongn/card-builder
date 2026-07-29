@@ -1,5 +1,6 @@
 id: escapeTheHorde
 name: Escape the Horde
+summary: "Opportunity Attacks have Disadvantage against you."
 tags: [defensiveTactics]
 type: Activity
 description: "Opportunity Attacks have Disadvantage against you."

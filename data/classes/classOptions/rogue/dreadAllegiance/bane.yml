@@ -1,5 +1,6 @@
 id: banePact
 name: Aspect of Tyranny
+summary: "Gain psychic resistance and learn the Minor Illusion cantrip."
 tags: [dreadAllegiance]
 type: Folder
 children:

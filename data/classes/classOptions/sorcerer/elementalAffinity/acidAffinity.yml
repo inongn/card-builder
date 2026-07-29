@@ -1,5 +1,6 @@
 id: acidAffinity
 name: Acid Affinity
+summary: "Gain acid resistance and add Charisma modifier to acid damage spells."
 type: Folder
 tags:
   - elementalAffinity

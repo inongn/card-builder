@@ -1,5 +1,6 @@
 id: lightningAffinity
 name: Lightning Affinity
+summary: "Gain lightning resistance and add Charisma modifier to lightning damage spells."
 type: Folder
 tags:
   - elementalAffinity

@@ -1,5 +1,6 @@
 id: eldritchSpear
 name: Eldritch Spear
+summary: "Increase the range of your Eldritch Blast cantrip."
 tags:
   - eldritchInvocation
 type: Effect

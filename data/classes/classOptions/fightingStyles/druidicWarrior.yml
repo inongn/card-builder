@@ -1,5 +1,6 @@
 id: druidicWarrior
 name: Druidic Warrior
+summary: "Learn two druid cantrips of your choice."
 type: Folder
 children:
   - type: Slot

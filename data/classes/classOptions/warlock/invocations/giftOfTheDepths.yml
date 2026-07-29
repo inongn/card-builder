@@ -1,5 +1,6 @@
 id: giftOfTheDepths
 name: Gift of the Depths
+summary: "Gain a swimming speed equal to your walking speed and the ability to breathe underwater."
 tags:
   - eldritchInvocation
 condition: $(meta.level >= 5)

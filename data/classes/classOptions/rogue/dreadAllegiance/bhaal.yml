@@ -1,5 +1,6 @@
 id: bhaalPact
 name: Aspect of Slaughter
+summary: "Gain poison resistance and learn the Blade Ward cantrip."
 tags: [dreadAllegiance]
 type: Folder
 children:

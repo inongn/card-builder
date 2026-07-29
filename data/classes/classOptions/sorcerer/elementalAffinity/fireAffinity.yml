@@ -1,5 +1,6 @@
 id: fireAffinity
 name: Fire Affinity
+summary: "Gain fire resistance and add Charisma modifier to fire damage spells."
 type: Folder
 tags:
   - elementalAffinity
