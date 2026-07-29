@@ -36,7 +36,26 @@ import { PlayScreen } from './screens/PlayScreen';
 import { PrintScreen } from './screens/PrintScreen';
 import DebugDrawer from './components/DebugDrawer';
 
-setColorScheme('#ee0feeff');
+import { getColorFromImage } from 'mdui/functions/getColorFromImage.js';
+import { getAssetUrl } from './data/artworkData.js';
+
+const DEFAULT_THEME_COLOR = '#ee0feeff';
+
+setColorScheme(DEFAULT_THEME_COLOR);
+
+function hexToRgb(hex) {
+    if (!hex) return null;
+    let c = hex.replace('#', '');
+    if (c.length === 3) c = c.split('').map(x => x + x).join('');
+    if (c.length === 8) c = c.slice(0, 6);
+    const num = parseInt(c, 16);
+    if (isNaN(num)) return null;
+    return {
+        r: (num >> 16) & 255,
+        g: (num >> 8) & 255,
+        b: 255 & num
+    };
+}
 // ============================================================================
 // DEBOUNCE UTILITY
 // ============================================================================
@@ -134,6 +153,64 @@ export default function App() {
     useEffect(() => {
         setSavedCharacters(loadAndSortCharacters());
     }, [activeTab]);
+
+    // Helper to get extracted color from image URL using HTMLImageElement
+    const extractColorFromUrl = useCallback((url) => {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = () => {
+                getColorFromImage(img)
+                    .then(color => resolve(color))
+                    .catch((err) => {
+                        console.warn('Failed to extract color from image:', err);
+                        resolve(null);
+                    });
+            };
+            img.onerror = () => resolve(null);
+            img.src = url;
+        });
+    }, []);
+
+    // Handle dynamic mdui theme colors & hero tint depending on activeTab
+    useEffect(() => {
+        if (loading) return;
+
+        let activeColorPromise = null;
+
+        if (activeTab === 'dashboard') {
+            const lastPlayedHero = savedCharacters.length > 0 ? savedCharacters[0] : null;
+            if (lastPlayedHero && lastPlayedHero.image) {
+                const imgUrl = getAssetUrl(lastPlayedHero.image);
+                activeColorPromise = extractColorFromUrl(imgUrl);
+            }
+        } else if (activeTab === 'play') {
+            if (characterData && characterData.meta && characterData.meta.image) {
+                const imgUrl = getAssetUrl(characterData.meta.image);
+                activeColorPromise = extractColorFromUrl(imgUrl);
+            }
+        }
+
+        if (activeColorPromise) {
+            activeColorPromise.then((colorHex) => {
+                if (colorHex) {
+                    setColorScheme(colorHex);
+                    const rgb = hexToRgb(colorHex);
+                    if (rgb) {
+                        document.documentElement.style.setProperty('--hero-primary-rgb', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+                    } else {
+                        document.documentElement.style.removeProperty('--hero-primary-rgb');
+                    }
+                } else {
+                    setColorScheme(DEFAULT_THEME_COLOR);
+                    document.documentElement.style.removeProperty('--hero-primary-rgb');
+                }
+            });
+        } else {
+            setColorScheme(DEFAULT_THEME_COLOR);
+            document.documentElement.style.removeProperty('--hero-primary-rgb');
+        }
+    }, [activeTab, savedCharacters, characterData, loading, extractColorFromUrl]);
 
     const builderRef = useRef(null);
     builderRef.current = builder;

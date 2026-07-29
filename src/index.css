@@ -2254,23 +2254,30 @@ mdui-list-item::part(description) {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/smokey_grunge_pattern.png') left center / cover no-repeat;
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0.7) 25%, transparent 65%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0.5) 25%, transparent 65%);
+  background-image: linear-gradient(to right,
+      rgba(var(--hero-primary-rgb, 142, 230, 255), 0.5),
+      rgba(var(--hero-primary-rgb, 142, 230, 255), 0.15) 50%,
+      transparent 80%), url('/smokey_grunge_pattern.png');
+  background-position: left center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 35%, transparent 70%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 35%, transparent 70%);
 }
 
-/* Light mode specific blending */
+/* Light mode specific blending - inverted texture for bright smoke tinted with primary color */
 .mdui-theme-light .featured-hero__overlay::before {
-  mix-blend-mode: multiply;
   filter: invert(1);
-  opacity: 0.8;
+  mix-blend-mode: multiply;
+  opacity: 0.75;
 }
 
 /* Dark mode specific blending */
 .mdui-theme-dark .featured-hero__overlay::before {
-  mix-blend-mode: screen;
   filter: none;
-  opacity: 0.75;
+  mix-blend-mode: screen;
+  opacity: 0.85;
 }
 
 /* Top Badge */
