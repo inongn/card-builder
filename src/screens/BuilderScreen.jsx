@@ -588,11 +588,6 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                                 {labels.join(' • ')}
                             </div>
                         )}
-                        {firstSentence && (
-                            <div className="card-vertical__body">
-                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{firstSentence}</ReactMarkdown>
-                            </div>
-                        )}
                     </div>
                 )}
             </div>

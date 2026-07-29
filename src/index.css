@@ -2523,7 +2523,6 @@ mdui-list-item[active] {
   cursor: pointer;
   height: 100%;
   width: 100%;
-  aspect-ratio: 4 / 3;
   box-sizing: border-box;
 }
 
@@ -2587,7 +2586,7 @@ mdui-list-item[active] {
 }
 
 .card-vertical__header-plain {
-  padding: 16px 20px 8px 20px;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
   gap: 4px;
