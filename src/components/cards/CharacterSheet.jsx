@@ -309,7 +309,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 ) : null}
                             </div>
                         </div>
-                        <div className="text-secondary">HP (<DiceRoller formula={`1d${char.attributes.hitDie} + ${hitDiceQuantity * char.stats.con.mod}`} label="Hit Die roll" interactive={isPlayMode} showIcon={false}>
+                        <div className="text-secondary">HP (<DiceRoller formula={`1d${char.attributes.hitDie} + ${char.stats.con.mod}`} label="Hit Die roll" interactive={isPlayMode} showIcon={false}>
                             d{char.attributes.hitDie}{char.stats.con.mod >= 0 ? `+${char.stats.con.mod}` : char.stats.con.mod}
                         </DiceRoller>)</div>
                     </mdui-card>
