@@ -8,6 +8,38 @@ import 'mdui/components/card.js';
 import 'mdui/components/chip.js';
 import 'mdui/components/icon.js';
 
+function evaluateHpFormula(input) {
+    if (input === null || input === undefined) return '';
+    const str = String(input).trim();
+    if (!str) return '';
+
+    // If it's pure numbers, sanitize and return string formatted integer
+    if (/^-?\d+$/.test(str)) {
+        return String(Math.max(0, parseInt(str, 10)));
+    }
+
+    // Only allow simple math characters: digits, whitespace, +, -, *, /, (, )
+    if (!/^[\d\s+\-*/()]+$/.test(str)) {
+        // Safe fallback: extract digits or keep 0
+        const numericOnly = str.replace(/[^\d]/g, '');
+        return numericOnly ? String(Math.max(0, parseInt(numericOnly, 10))) : '';
+    }
+
+    try {
+        // Safe evaluation of basic math expressions using Function
+        const result = new Function(`"use strict"; return (${str})`)();
+        if (typeof result === 'number' && !isNaN(result) && isFinite(result)) {
+            return String(Math.max(0, Math.floor(result)));
+        }
+    } catch (e) {
+        // On evaluation error, attempt to keep numeric digits
+        const numericOnly = str.replace(/[^\d]/g, '');
+        return numericOnly ? String(Math.max(0, parseInt(numericOnly, 10))) : '';
+    }
+
+    return '';
+}
+
 export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, className, variant, interactive = true }, ref) => {
     const isPlayMode = variant !== 'static' && interactive !== false;
     const RESOURCE_WRAP_THRESHOLD = 10;
@@ -162,7 +194,13 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     <div className="text-secondary">{skill.stat.toUpperCase()}</div>
                                     <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                     <div className="text-secondary">
-                                        <DiceRoller formula={formatBonus(skill.bonus, true)} label={`${skill.name} check`} interactive={isPlayMode} showIcon={false}>
+                                        <DiceRoller
+                                            formula={formatBonus(skill.bonus, true)}
+                                            label={`${skill.name} check`}
+                                            interactive={isPlayMode}
+                                            showIcon={false}
+                                            rollOptions={{ adv: skill.adv, dis: skill.dis, min: skill.min }}
+                                        >
                                             {formatBonus(skill.bonus, true)}
                                         </DiceRoller>
                                     </div>
@@ -187,11 +225,18 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 if (save.proficiency === 1) profIcon = 'circle';
                                 if (save.proficiency === 2) profIcon = 'adjust';
                                 else if (save.proficiency === 0.5) profIcon = 'circle_circle';
+                                const saveName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
                                 return (
                                     <div className="list-item saves-list-item" key={key}>
                                         <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                         <div className="text-secondary">
-                                            <DiceRoller formula={formatBonus(save.bonus, true)} label={`${key.toUpperCase()} save`} interactive={isPlayMode} showIcon={false}>
+                                            <DiceRoller
+                                                formula={formatBonus(save.bonus, true)}
+                                                label={`${saveName} save`}
+                                                interactive={isPlayMode}
+                                                showIcon={false}
+                                                rollOptions={{ adv: save.adv, dis: save.dis, min: save.min }}
+                                            >
                                                 {formatBonus(save.bonus, true)}
                                             </DiceRoller>
                                         </div>
@@ -199,7 +244,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                             {save.adv && <AdvantageIndicator type="adv" />}
                                             {save.dis && <AdvantageIndicator type="dis" />}
                                             {save.min && <AdvantageIndicator type="min" value={save.min} />}
-                                            {key.charAt(0).toUpperCase() + key.slice(1)}
+                                            {saveName}
                                         </div>
                                     </div>
                                 );
@@ -220,14 +265,23 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <div className="important-number">
                                 {isPlayMode ? (
                                     <input
-                                        type="number"
+                                        type="text"
                                         className="hp-input"
                                         value={playState.currentHp}
                                         placeholder={char.attributes.hp}
-                                        min="0"
                                         onChange={(e) => {
-                                            const val = e.target.value.replace(/[^\d]/g, '');
-                                            updatePlayState({ currentHp: val });
+                                            updatePlayState({ currentHp: e.target.value });
+                                        }}
+                                        onBlur={(e) => {
+                                            const resolved = evaluateHpFormula(e.target.value);
+                                            updatePlayState({ currentHp: resolved });
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                const resolved = evaluateHpFormula(e.target.value);
+                                                updatePlayState({ currentHp: resolved });
+                                                e.target.blur();
+                                            }
                                         }}
                                     />
                                 ) : null}
@@ -236,14 +290,23 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <div className="important-number">
                                 {isPlayMode ? (
                                     <input
-                                        type="number"
+                                        type="text"
                                         className="hp-input"
                                         value={playState.tempHp}
                                         placeholder="0"
-                                        min="0"
                                         onChange={(e) => {
-                                            const val = e.target.value.replace(/[^\d]/g, '');
-                                            updatePlayState({ tempHp: val });
+                                            updatePlayState({ tempHp: e.target.value });
+                                        }}
+                                        onBlur={(e) => {
+                                            const resolved = evaluateHpFormula(e.target.value);
+                                            updatePlayState({ tempHp: resolved });
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                const resolved = evaluateHpFormula(e.target.value);
+                                                updatePlayState({ tempHp: resolved });
+                                                e.target.blur();
+                                            }
                                         }}
                                     />
                                 ) : null}

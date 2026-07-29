@@ -2,14 +2,14 @@ import React from 'react';
 import { triggerDiceRoll } from '../../utils/diceUtils';
 import 'mdui/components/icon.js';
 
-export const DiceRoller = ({ formula, label, children, interactive = true, showIcon = true, className = '' }) => {
+export const DiceRoller = ({ formula, label, children, interactive = true, showIcon = true, className = '', rollOptions = null }) => {
     if (!interactive) {
         return <span className={className}>{children || formula}</span>;
     }
 
     const handleClick = (e) => {
         e.stopPropagation();
-        triggerDiceRoll(formula, label);
+        triggerDiceRoll(formula, label, rollOptions);
     };
 
     return (
