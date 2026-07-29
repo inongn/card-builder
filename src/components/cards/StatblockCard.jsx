@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { renderGridValue } from '../../utils/cardUtils';
+import { processDiceInChildren, DiceRoller } from './DiceRoller';
 import 'mdui/components/card.js';
 import 'mdui/components/collapse-item.js';
 import 'mdui/components/divider.js';
@@ -9,6 +10,8 @@ import { AutoFitContent } from '../AutoFitContent';
 
 export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
     if (!statblock) return null;
+
+    const isPlayMode = variant !== 'static';
 
     const {
         name,
@@ -26,13 +29,18 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
         reactions = []
     } = statblock;
 
+    const markdownComponents = {
+        p: ({ children }) => (
+            <span>{processDiceInChildren(children, isPlayMode, name)}</span>
+        ),
+        span: ({ children }) => (
+            <span>{processDiceInChildren(children, isPlayMode, name)}</span>
+        )
+    };
 
     const headerContent = (
         <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
-            <span className="card-title">
-                {name
-                }
-            </span>
+            <span className="card-title">{name}</span>
             <div className="card-meta">
                 <span className="text-secondary">{size} {classification}</span>
             </div>
@@ -46,7 +54,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                 {Object.entries(stats).map(([stat, value]) => (
                     <div key={stat} className="statblock-stat-item">
                         <strong>{stat.toUpperCase()}</strong>
-                        <div>{value}</div>
+                        <div>{processDiceInChildren(String(value), isPlayMode, `${name} ${stat.toUpperCase()}`)}</div>
                     </div>
                 ))}
             </div>
@@ -56,12 +64,10 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
     const renderMovement = () => {
         if (!movement) return null;
 
-        // Filter out entries where the speed is 0
         const activeMovements = Object.entries(movement)
             .filter(([_, speed]) => speed !== 0)
             .map(([type, speed]) => `${type} ${speed} ft.`);
 
-        // If all speeds were 0 and the array is empty, don't render anything
         if (activeMovements.length === 0) return null;
 
         return (
@@ -78,18 +84,16 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                     <strong>Armor Class</strong> {ac}
                 </div>
                 <div>
-                    <strong>Hit Points</strong> {hp}
+                    <strong>Hit Points</strong> {processDiceInChildren(String(hp || ''), isPlayMode, `${name} HP`)}
                 </div>
                 {renderMovement()}
             </div>
             <div>
                 {senses && (() => {
-                    // Filter out entries where the range is 0
                     const activeSenses = Object.entries(senses)
                         .filter(([_, range]) => range !== 0)
                         .map(([type, range]) => `${type} ${range} ft.`);
 
-                    // Only render the block if there's at least one active sense
                     if (activeSenses.length === 0) return null;
 
                     return (
@@ -103,10 +107,6 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
 
             {renderStats()}
 
-
-
-
-
             <div>
                 {traits.length > 0 && (
                     <div>
@@ -116,7 +116,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                         </div>
                         {traits.map((trait, i) => (
                             <div key={i}>
-                                <strong>{trait.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{trait.description}</ReactMarkdown>
+                                <strong>{trait.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{trait.description}</ReactMarkdown>
                             </div>
                         ))}
                     </div>
@@ -144,7 +144,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                         </div>
                         {bonusActions.map((action, i) => (
                             <div key={i}>
-                                <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{action.description}</ReactMarkdown>
+                                <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{action.description}</ReactMarkdown>
                             </div>
                         ))}
                     </div>
@@ -158,7 +158,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                         </div>
                         {reactions.map((reaction, i) => (
                             <div key={i}>
-                                <strong>{reaction.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{reaction.description}</ReactMarkdown>
+                                <strong>{reaction.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{reaction.description}</ReactMarkdown>
                             </div>
                         ))}
                     </div>

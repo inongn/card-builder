@@ -36,7 +36,7 @@ export const PrintScreen = ({ char, onNavigate }) => {
                 <div className="print-page first-page">
                     <div className="print-grid">
                         <div className="main-card-print-slot">
-                            <CharacterSheet char={char} onNavigate={onNavigate} />
+                            <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} />
                         </div>
                         {page1Cards.map((card, idx) => (
                             <div key={idx} className="action-card-print-slot">

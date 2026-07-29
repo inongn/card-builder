@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { renderGridValue, renderIcon, sortDescription } from '../../utils/cardUtils';
+import { processDiceInChildren } from './DiceRoller';
 
 import 'mdui/components/card.js';
 import 'mdui/components/collapse-item.js';
@@ -9,18 +10,32 @@ import 'mdui/components/divider.js';
 
 import { AutoFitContent } from '../AutoFitContent';
 
-const markdownComponents = {
-    p: ({ children }) => (
-        <div className="card-description-paragraph">
-            <p>{children}</p>
-        </div>
-    )
-};
-
 export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) => {
     if (!activity) return null;
 
+    const isPlayMode = variant !== 'static';
     const RESOURCE_WRAP_THRESHOLD = 10;
+    const [usedDots, setUsedDots] = useState(0);
+
+    const markdownComponents = {
+        p: ({ children }) => (
+            <div className="card-description-paragraph">
+                <p>{processDiceInChildren(children, isPlayMode, activity.name)}</p>
+            </div>
+        ),
+        li: ({ children }) => (
+            <li>{processDiceInChildren(children, isPlayMode, activity.name)}</li>
+        ),
+        span: ({ children }) => (
+            <span>{processDiceInChildren(children, isPlayMode, activity.name)}</span>
+        )
+    };
+
+    const handleDotClick = (e, index) => {
+        e.stopPropagation();
+        if (!isPlayMode) return;
+        setUsedDots(prev => (prev > index ? index : index + 1));
+    };
 
     const renderDots = (quantity) => {
         const rows = quantity > RESOURCE_WRAP_THRESHOLD ? Math.ceil(quantity / RESOURCE_WRAP_THRESHOLD) : 1;
@@ -32,9 +47,17 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                 key="dots"
                 style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}
             >
-                {Array(quantity).fill(0).map((_, j) => (
-                    <mdui-icon key={j} name="crop_square" class="icon-small icon-rotated"></mdui-icon>
-                ))}
+                {Array(quantity).fill(0).map((_, j) => {
+                    const isUsed = j < usedDots;
+                    return (
+                        <mdui-icon
+                            key={j}
+                            name={isUsed ? 'square' : 'crop_square'}
+                            class={`icon-small icon-rotated ${isPlayMode ? 'resource-dot-interactive' : ''} ${isUsed ? 'used' : ''}`}
+                            onClick={(e) => handleDotClick(e, j)}
+                        ></mdui-icon>
+                    );
+                })}
             </div>
         );
     };
@@ -44,7 +67,6 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
         const isSpellSlot = lowerId.includes('spellslot');
 
         if (isSpellSlot) {
-            // Requirement: check that the character actually has level<n>SpellSlot, or at the very least pactMagicSpellSlot
             const hasSpecific = char?.resources?.some(r => (r.id || '').toLowerCase() === lowerId || (r.name || '').toLowerCase() === lowerId);
             const hasPact = char?.resources?.some(r => r.id === 'pactMagicSpellSlot');
 
@@ -96,7 +118,18 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                         }
 
                         if (isLimited) {
-                            return <mdui-icon name="replay" class="icon-middle" style={{ color: 'var(--color-accent)' }}></mdui-icon>;
+                            const isUsed = usedDots > 0;
+                            return (
+                                <mdui-icon
+                                    name="replay"
+                                    class={`icon-middle ${isPlayMode ? 'resource-dot-interactive' : ''} ${isUsed ? 'used' : ''}`}
+                                    style={{ color: isUsed ? 'var(--mdui-color-outline)' : 'var(--color-accent)' }}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        if (isPlayMode) setUsedDots(prev => (prev ? 0 : 1));
+                                    }}
+                                ></mdui-icon>
+                            );
                         }
 
                         if (activity.uses && activity.uses > 1) {
@@ -130,7 +163,6 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                                 }
                             </div>
                         )}
-
 
                         {hasExtra && (
                             <div className="card-description extra">

@@ -2681,3 +2681,119 @@ mdui-list-item[active] {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ==========================================================================
+   PLAY UI INTERACTIVE STYLES
+   ========================================================================== */
+
+/* Dice Roller Clickable Element */
+.dice-roller {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 5px;
+  border-radius: var(--mdui-shape-corner-extra-small, 4px);
+  background-color: rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.1);
+  color: rgb(var(--mdui-color-primary));
+  border: 1px dashed rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.35);
+  cursor: pointer;
+  transition: all 150ms ease;
+  font-weight: bold;
+  user-select: none;
+}
+
+.dice-roller:hover {
+  background-color: rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.22);
+  border-color: rgb(var(--mdui-color-primary));
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dice-roller:active {
+  transform: scale(0.96);
+}
+
+.dice-roller .dice-icon {
+  font-size: 0.9em !important;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+/* HP Section Form Inputs */
+.hp-input {
+  width: 100%;
+  max-width: 70px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed rgb(var(--mdui-color-outline));
+  color: rgb(var(--mdui-color-on-surface));
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 2px 0;
+  outline: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.hp-input:hover {
+  border-bottom-color: rgb(var(--mdui-color-primary));
+}
+
+.hp-input:focus {
+  border-bottom-style: solid;
+  border-bottom-color: rgb(var(--mdui-color-primary));
+  background-color: rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.08);
+}
+
+/* Hide numeric spinner arrows on HP input */
+.hp-input::-webkit-outer-spin-button,
+.hp-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hp-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Interactive Resource Dots */
+.resource-dot-interactive {
+  cursor: pointer;
+  transition: transform 120ms ease, opacity 150ms ease, color 150ms ease;
+  user-select: none;
+}
+
+.resource-dot-interactive:hover {
+  transform: rotate(45deg) scale(1.3);
+  color: rgb(var(--mdui-color-primary));
+}
+
+.resource-dot-interactive.used {
+  opacity: 0.3;
+}
+
+.resource-dot-interactive.used:hover {
+  opacity: 0.75;
+}
+
+/* Suppress interactive play styling in print output */
+@media print {
+  .dice-roller {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    color: inherit !important;
+    box-shadow: none !important;
+  }
+  .dice-roller .dice-icon {
+    display: none !important;
+  }
+  .hp-input {
+    border-bottom: none !important;
+    background: none !important;
+  }
+  .resource-dot-interactive {
+    cursor: default !important;
+  }
+}

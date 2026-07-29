@@ -1,15 +1,60 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { formatBonus } from '../../engine/RpgEngine';
 import { getIconInfo } from '../../utils/cardUtils';
 import { AdvantageIndicator } from './AdvantageIndicator';
+import { DiceRoller } from './DiceRoller';
 
 import 'mdui/components/card.js';
 import 'mdui/components/chip.js';
 import 'mdui/components/icon.js';
 
-
-export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, className }, ref) => {
+export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, className, variant, interactive = true }, ref) => {
+    const isPlayMode = variant !== 'static' && interactive !== false;
     const RESOURCE_WRAP_THRESHOLD = 10;
+
+    const charId = char?.meta?.name || 'character';
+    const storageKey = `play_state_${charId}`;
+
+    const [playState, setPlayState] = useState(() => {
+        try {
+            const saved = localStorage.getItem(storageKey);
+            return saved ? JSON.parse(saved) : { currentHp: '', tempHp: '', usedResources: {} };
+        } catch (e) {
+            return { currentHp: '', tempHp: '', usedResources: {} };
+        }
+    });
+
+    const updatePlayState = (updater) => {
+        setPlayState(prev => {
+            const next = typeof updater === 'function' ? updater(prev) : { ...prev, ...updater };
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(next));
+            } catch (e) {
+                // ignore quota / storage errors
+            }
+            return next;
+        });
+    };
+
+    const handleToggleResourceDot = (resKey, dotIndex) => {
+        if (!isPlayMode) return;
+        updatePlayState(prev => {
+            const currentUsed = prev.usedResources?.[resKey] || 0;
+            let nextUsed;
+            if (currentUsed > dotIndex) {
+                nextUsed = dotIndex;
+            } else {
+                nextUsed = dotIndex + 1;
+            }
+            return {
+                ...prev,
+                usedResources: {
+                    ...(prev.usedResources || {}),
+                    [resKey]: nextUsed
+                }
+            };
+        });
+    };
 
     const resourceCounts = useMemo(() => {
         if (!char || !char.activities) return {};
@@ -59,7 +104,6 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
             if (valB !== valA) return valB - valA;
 
-            // If horizontal space is the same, sort by total quantity
             const qA = a.quantity || 0;
             const qB = b.quantity || 0;
             if (qB !== qA) return qB - qA;
@@ -72,11 +116,11 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
     if (!char) return null;
 
+    const hitDiceQuantity = char.resources.find(r => r.id === 'hitDice' || r.name === 'Hit Dice')?.quantity || char.meta.level;
+
     return (
         <div ref={ref} className={`main-card ${className || ''}`}>
             {/* Header: Name and Level Info */}
-
-
             <div className="main-card-row">
                 <div className="main-card-column col-span-full">
                     <div className="card-title main-card-title show-on-print">
@@ -87,12 +131,17 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                     </div>
                 </div>
             </div>
+
             {/* Ability Scores */}
             <div className="main-card-row">
                 {Object.entries(char.stats).map(([key, value]) => (
                     <mdui-card variant="filled" className="inner-card main-card-box stat-box" key={key}>
                         <div className="text-secondary">{key.toUpperCase()}</div>
-                        <div className="important-number">{formatBonus(value.mod, true)}</div>
+                        <div className="important-number">
+                            <DiceRoller formula={formatBonus(value.mod, true)} label={`${key.toUpperCase()} check`} interactive={isPlayMode} showIcon={false}>
+                                {formatBonus(value.mod, true)}
+                            </DiceRoller>
+                        </div>
                         <div className="text-secondary">{value.score}</div>
                     </mdui-card>
                 ))}
@@ -113,7 +162,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     <div className="text-secondary">{skill.stat.toUpperCase()}</div>
                                     <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                     <div className="text-secondary">
-                                        {formatBonus(skill.bonus, true)}
+                                        <DiceRoller formula={formatBonus(skill.bonus, true)} label={`${skill.name} check`} interactive={isPlayMode} showIcon={false}>
+                                            {formatBonus(skill.bonus, true)}
+                                        </DiceRoller>
                                     </div>
 
                                     <div className="text-primary">
@@ -121,11 +172,13 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                         {skill.dis && !skill.adv && <AdvantageIndicator type="dis" />}
                                         {skill.adv && skill.dis && <></>}
                                         {skill.min && <AdvantageIndicator type="min" value={skill.min} />}
-                                        {skill.name}</div>
+                                        {skill.name}
+                                    </div>
                                 </div>
                             );
                         })}
                     </mdui-card>
+
                     {/* Saving Throws */}
                     <mdui-card variant="filled" className="inner-card">
                         <div className="main-card-list saves-list">
@@ -138,7 +191,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     <div className="list-item saves-list-item" key={key}>
                                         <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                         <div className="text-secondary">
-                                            {formatBonus(save.bonus, true)}
+                                            <DiceRoller formula={formatBonus(save.bonus, true)} label={`${key.toUpperCase()} save`} interactive={isPlayMode} showIcon={false}>
+                                                {formatBonus(save.bonus, true)}
+                                            </DiceRoller>
                                         </div>
                                         <div className="text-primary">
                                             {save.adv && <AdvantageIndicator type="adv" />}
@@ -162,27 +217,60 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <div className="text-secondary">Temp</div>
                         </div>
                         <div className="main-card-box-hp-row">
-                            <div className="important-number"></div>
+                            <div className="important-number">
+                                {isPlayMode ? (
+                                    <input
+                                        type="number"
+                                        className="hp-input"
+                                        value={playState.currentHp}
+                                        placeholder={char.attributes.hp}
+                                        min="0"
+                                        onChange={(e) => {
+                                            const val = e.target.value.replace(/[^\d]/g, '');
+                                            updatePlayState({ currentHp: val });
+                                        }}
+                                    />
+                                ) : null}
+                            </div>
                             <div className="important-number">{char.attributes.hp}</div>
-                            <div className="important-number"></div>
+                            <div className="important-number">
+                                {isPlayMode ? (
+                                    <input
+                                        type="number"
+                                        className="hp-input"
+                                        value={playState.tempHp}
+                                        placeholder="0"
+                                        min="0"
+                                        onChange={(e) => {
+                                            const val = e.target.value.replace(/[^\d]/g, '');
+                                            updatePlayState({ tempHp: val });
+                                        }}
+                                    />
+                                ) : null}
+                            </div>
                         </div>
                         <div className="text-secondary">HP</div>
                         <div className="main-card-list">
                             <div className="list-item info-list-item">
                                 <span className="text-secondary">Hit Dice</span>
                                 <span className="text-primary">
-                                    {char.resources.find(r => r.id === 'hitDice' || r.name === 'Hit Dice')?.quantity || char.meta.level}d{char.attributes.hitDie}
+                                    <DiceRoller formula={`${hitDiceQuantity}d${char.attributes.hitDie}`} label="Hit Die roll" interactive={isPlayMode} showIcon={false}>
+                                        {hitDiceQuantity}d{char.attributes.hitDie}
+                                    </DiceRoller>
                                 </span>
                             </div>
                         </div>
                     </mdui-card>
+
                     <div className="main-card-combat-row">
                         <mdui-card variant="filled" className="inner-card main-card-box">
                             <div className="text-secondary">Initiative</div>
                             <div className="important-number">
                                 {char.attributes.initiativeAdvantage && <AdvantageIndicator type="adv" />}
                                 {char.attributes.initiativeDisadvantage && <AdvantageIndicator type="dis" />}
-                                {formatBonus(char.attributes.initiative, true)}
+                                <DiceRoller formula={formatBonus(char.attributes.initiative, true)} label="Initiative roll" interactive={isPlayMode} showIcon={false}>
+                                    {formatBonus(char.attributes.initiative, true)}
+                                </DiceRoller>
                             </div>
                             <div className="text-secondary">Mod</div>
                         </mdui-card>
@@ -197,24 +285,35 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <div className="text-secondary">Speed</div>
                         </mdui-card>
                     </div>
+
                     {/* Resources List */}
                     {sortedResources.length > 0 && (
                         <mdui-card variant="filled" className="inner-card">
                             <div className="main-card-list">
                                 {sortedResources.map((res, i) => {
-                                    const info = getIconInfo(res.id || res.name);
+                                    const resKey = res.id || res.name;
+                                    const info = getIconInfo(resKey);
                                     const q = res.quantity || 0;
                                     const rows = q > RESOURCE_WRAP_THRESHOLD ? Math.ceil(q / RESOURCE_WRAP_THRESHOLD) : 1;
                                     const dotsPerRow = Math.max(1, Math.ceil(q / rows));
+                                    const usedCount = playState.usedResources?.[resKey] || 0;
 
                                     return (
                                         <div className="list-item resource-list-item" key={i}>
                                             <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
                                             <div className="text-primary">{res.name || res.id}</div>
                                             <div className="resource-dots" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
-                                                {Array(q).fill(0).map((_, j) => (
-                                                    <mdui-icon key={j} name="crop_square" class="icon-small icon-rotated"></mdui-icon>
-                                                ))}
+                                                {Array(q).fill(0).map((_, j) => {
+                                                    const isUsed = j < usedCount;
+                                                    return (
+                                                        <mdui-icon
+                                                            key={j}
+                                                            name={isUsed ? 'square' : 'crop_square'}
+                                                            class={`icon-small icon-rotated ${isPlayMode ? 'resource-dot-interactive' : ''} ${isUsed ? 'used' : ''}`}
+                                                            onClick={() => handleToggleResourceDot(resKey, j)}
+                                                        ></mdui-icon>
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                     );
@@ -247,7 +346,6 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                         });
                                 }
 
-                                // Only render if there's actual content to display
                                 if (displayData.length === 0) return null;
 
                                 return (
