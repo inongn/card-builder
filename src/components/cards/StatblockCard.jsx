@@ -72,7 +72,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
     };
 
     const bodyContent = (
-        <div className="card-content">
+        <div className="card-content card-description">
             <div>
                 <div>
                     <strong>Armor Class</strong> {ac}
@@ -110,7 +110,10 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
             <div>
                 {traits.length > 0 && (
                     <div>
-                        <mdui-divider></mdui-divider>
+                        <div className="statblock-section-header">
+                            <span>Traits</span>
+                            <mdui-divider></mdui-divider>
+                        </div>
                         {traits.map((trait, i) => (
                             <div key={i}>
                                 <strong>{trait.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{trait.description}</ReactMarkdown>
@@ -119,10 +122,12 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                     </div>
                 )}
 
-                <mdui-divider></mdui-divider>
-
                 {actions.length > 0 && (
                     <div>
+                        <div className="statblock-section-header">
+                            <span>Actions</span>
+                            <mdui-divider></mdui-divider>
+                        </div>
                         {actions.map((action, i) => (
                             <div key={i}>
                                 <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{action.description}</ReactMarkdown>
@@ -131,11 +136,12 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                     </div>
                 )}
 
-
                 {bonusActions.length > 0 && (
                     <div>
-                        <mdui-divider></mdui-divider>
-                        <div className="statblock-section-header">Bonus Actions</div>
+                        <div className="statblock-section-header">
+                            <span>Bonus Actions</span>
+                            <mdui-divider></mdui-divider>
+                        </div>
                         {bonusActions.map((action, i) => (
                             <div key={i}>
                                 <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{action.description}</ReactMarkdown>
@@ -146,8 +152,10 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
 
                 {reactions.length > 0 && (
                     <div>
-                        <mdui-divider></mdui-divider>
-                        <div className="statblock-section-header">Reactions</div>
+                        <div className="statblock-section-header">
+                            <span>Reactions</span>
+                            <mdui-divider></mdui-divider>
+                        </div>
                         {reactions.map((reaction, i) => (
                             <div key={i}>
                                 <strong>{reaction.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{reaction.description}</ReactMarkdown>

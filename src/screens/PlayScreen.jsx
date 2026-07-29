@@ -128,16 +128,12 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
                 <mdui-button-icon
                     icon="arrow_back" onClick={() => onNavigate('dashboard')}></mdui-button-icon>
                 <mdui-top-app-bar-title>{characterData?.meta?.name || 'Aspida'}</mdui-top-app-bar-title>
-                <mdui-button-icon icon="edit" onClick={() => onNavigate('builder')} className="mobile-hidden"></mdui-button-icon>
-                <mdui-button-icon icon="print" onClick={() => onNavigate('print')} className="mobile-hidden"></mdui-button-icon>
-                <mdui-button-icon icon="delete" onClick={() => { handleDeleteSaved(loadedCharacterId); onNavigate('dashboard'); }} className="mobile-hidden"></mdui-button-icon>
-                <mdui-button-icon icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme} className="mobile-hidden"></mdui-button-icon>
 
                 <mdui-dropdown placement="bottom-end">
                     <mdui-avatar
                         slot="trigger"
                         src={charImage}
-                        style={{ cursor: 'pointer', margin: '0 8px' }}
+                        style={{ cursor: 'pointer', margin: '' }}
                     >
                         {!charImage ? (characterData?.meta?.name?.[0]?.toUpperCase() || 'A') : undefined}
                     </mdui-avatar>

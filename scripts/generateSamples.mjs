@@ -886,8 +886,8 @@ const CHARACTERS = [
         id: 'sample_rogue_phantom',
         name: 'Vael Shroud',
         class: 'Rogue', sub: 'Phantom',
-        species: 'Aasimar', background: 'hermit',
-        speciesId: 'aasimar', classId: 'rogue', subcId: 'phantom',
+        species: 'Human', background: 'hermit',
+        speciesId: 'human', classId: 'rogue', subcId: 'phantom',
         str: 1, dex: 8, con: 3, int: 3, wis: 3, cha: 2,
         prefs: {
             rogueSkillProficiencies: ['stealthProficiency', 'insightProficiency', 'perceptionProficiency', 'deceptionProficiency'],
@@ -900,8 +900,8 @@ const CHARACTERS = [
         id: 'sample_rogue_scion',
         name: 'Reth Scourge',
         class: 'Rogue', sub: 'Scion',
-        species: 'Tiefling', background: 'criminal',
-        speciesId: 'tiefling', classId: 'rogue', subcId: 'scion',
+        species: 'Orc', background: 'criminal',
+        speciesId: 'orc', classId: 'rogue', subcId: 'scion',
         str: 2, dex: 8, con: 3, int: 5, wis: 1, cha: 1,
         prefs: {
             rogueSkillProficiencies: ['stealthProficiency', 'deceptionProficiency', 'intimidationProficiency', 'investigationProficiency'],

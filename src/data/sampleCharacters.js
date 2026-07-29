@@ -24273,7 +24273,7 @@ export const SAMPLE_CHARACTERS = [
         name: 'Vael Shroud',
         class: 'Rogue',
         sub: 'Phantom',
-        species: 'Aasimar',
+        species: 'Human',
         level: 8,
         image: 'subclass_headshot/phantom.jpg',
         recipe: {
@@ -24482,7 +24482,29 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'species'
                                 }
                         ],
-                        propertyId: 'aasimar'
+                        propertyId: 'human'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'skillful'
+                                }
+                        ],
+                        propertyId: 'stealthProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'versatile'
+                                }
+                        ],
+                        propertyId: 'alert'
                 },
                 {
                         path: [
@@ -24510,7 +24532,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'stealthProficiency'
+                        propertyId: 'insightProficiency'
                 },
                 {
                         path: [
@@ -24522,7 +24544,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'insightProficiency'
+                        propertyId: 'perceptionProficiency'
                 },
                 {
                         path: [
@@ -24534,7 +24556,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'perceptionProficiency'
+                        propertyId: 'deceptionProficiency'
                 },
                 {
                         path: [
@@ -24546,7 +24568,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'deceptionProficiency'
+                        propertyId: 'sleightOfHandProficiency'
                 },
                 {
                         path: [
@@ -24595,7 +24617,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'whispersOfTheDead'
                                 }
                         ],
-                        propertyId: 'sleightOfHandProficiency'
+                        propertyId: 'acrobaticsProficiency'
                 },
                 {
                         path: [
@@ -24652,7 +24674,7 @@ export const SAMPLE_CHARACTERS = [
         name: 'Reth Scourge',
         class: 'Rogue',
         sub: 'Scion',
-        species: 'Tiefling',
+        species: 'Orc',
         level: 8,
         image: 'subclass_headshot/scion.jpg',
         recipe: {
@@ -24861,18 +24883,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'species'
                                 }
                         ],
-                        propertyId: 'tiefling'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'species'
-                                },
-                                {
-                                        id: 'fiendishLegacy'
-                                }
-                        ],
-                        propertyId: 'fiendishLegacyAbyssal'
+                        propertyId: 'orc'
                 },
                 {
                         path: [

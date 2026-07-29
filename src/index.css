@@ -577,6 +577,7 @@ blockquote {
    STATBLOCK CARD
    ========================================================================== */
 
+
 .statblock-stats-row {
   display: flex;
   justify-content: space-between;
@@ -584,14 +585,24 @@ blockquote {
 }
 
 .statblock-section-header {
-  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xs, 6px);
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  opacity: 0.6;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  color: var(--mdui-color-primary, #b00020);
 }
+
+.statblock-section-header span {
+  white-space: nowrap;
+}
+
+.statblock-section-header mdui-divider {
+  flex: 1;
+}
+
 
 /* ==========================================================================
    CHARACTER SHEET (Main Card)
@@ -1931,6 +1942,11 @@ mdui-list-item::part(description) {
 .print-mode .main-card {
   border-radius: 0 !important;
   box-shadow: none !important;
+}
+
+.print-mode .card-description.extra,
+.print-mode .text-secondary {
+  color: rgb(60, 60, 60);
 }
 
 /* ==========================================================================
