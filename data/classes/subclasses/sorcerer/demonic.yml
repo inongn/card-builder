@@ -29,7 +29,7 @@ children:
   - id: abyssalRupture
     type: Activity
     name: Abyssal Rupture
-    time: bonus action
+    time: free action
     description: |
       When you use Innate Sorcery, a 10-foot-radius Abyssal sphere ruptures within 30 feet. At activation and as a Bonus Action on subsequent turns, choose:
       * **Demonic Lash:** Melee spell attack (+$(attributes.spellcasting.attack)) against a target within 5 ft of the rupture for 1d8 Slashing damage and pull up to 10 ft toward center.
