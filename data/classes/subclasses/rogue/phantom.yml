@@ -1,7 +1,6 @@
 id: phantom
 name: Phantom
-description: |
-  Phantoms slip between the world of the living and the dead, drawing on the knowledge and power of those who have passed to become more lethal rogues. Their supernatural connection to death lets them wring extra harm from their strikes and makes them repositories of ghostly lore.
+description: 'Slip between the living and dead, drawing on spectral power to strike with supernatural lethality.'
 tags:
   - rogueSubclass
 type: Folder

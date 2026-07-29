@@ -1,7 +1,6 @@
 id: hollowWarden
 name: Hollow Warden
-description: |
-  Hollow Wardens draw power from ancient horrors of the land, growing bark armor, beastly bristles, or bloodied antlers as they unleash nature's primal vengeance.
+description: 'Draw power from ancient horrors to grow bark armor and unleash nature’s primal, terrifying vengeance.'
 tags:
   - rangerSubclass
 type: Folder

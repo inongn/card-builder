@@ -1,7 +1,6 @@
 id: graveDomain
 name: Grave Domain
-description: |
-  Clerics of the Grave Domain guard the boundary between life and death, ensuring that souls find their proper rest and drawing upon the energy of that transition to heal allies and smite foes.
+description: 'Guard the boundary between life and death, drawing upon transitional energy to heal or smite.'
 type: Folder
 tags:
   - clericSubclass

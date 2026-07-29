@@ -1,7 +1,6 @@
 id: barbarian
 name: Barbarian
-description: |
-  Barbarians are mighty warriors who are powered by primal forces of the multiverse that manifest as a Rage. More than a mere emotion—and not limited to anger—this Rage is an incarnation of a predator's ferocity, a storm's fury, and a sea's turmoil.
+description: 'Fierce warriors fueled by primal rage, embodying the raw ferocity and stamina of nature.'
 tags:
   - class
 type: Folder

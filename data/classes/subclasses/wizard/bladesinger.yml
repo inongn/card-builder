@@ -1,7 +1,6 @@
 id: bladesinger
 name: Bladesinger
-description: |
-  Bladesingers master a tradition of wizardry that incorporates swordplay and dance, executing intricate maneuvers that fend off harm and channel magic into singing blades.
+description: 'Master a wizardry tradition mixing swordplay and dance to channel magic into your singing blades.'
 tags:
   - wizardSubclass
 type: Folder

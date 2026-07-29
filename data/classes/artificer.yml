@@ -1,7 +1,6 @@
 id: artificer
 name: Artificer
-description: |
-  Masters of invention, Artificers use ingenuity and magic to unlock extraordinary capabilities in objects. They see magic as a complex system waiting to be decoded and then harnessed in their spells and inventions.
+description: 'Masters of invention who use ingenuity and magic to infuse extraordinary power into objects.'
 tags:
   - class
 type: Folder

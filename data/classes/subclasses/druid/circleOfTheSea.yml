@@ -1,7 +1,6 @@
 id: circleOfTheSea
 name: Circle of the Sea
-description: |
-  Druids of the Circle of the Sea draw on the tempestuous forces of oceans and storms. Some view themselves as embodiments of nature's wrath, seeking vengeance against those who despoil nature. Others seek mystical unity with nature by attuning themselves to the ebb and flow of the tides.
+description: 'Draw on the tempestuous forces of oceans and storms, embodying nature’s wrath or mystical unity.'
 type: Folder
 tags:
   - druidSubclass

@@ -1,7 +1,6 @@
 id: lament
 name: Path of the Lament
-description: |
-  Barbarians of the Path of the Lament draw upon the mournful spirits of the departed, unleashing their sorrow in terrifying wails and horrifying strikes.
+description: 'Draw upon mournful departed spirits, unleashing their sorrow in terrifying wails and strikes.'
 type: Folder
 tags:
   - barbarianSubclass

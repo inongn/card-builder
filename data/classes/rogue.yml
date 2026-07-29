@@ -1,7 +1,6 @@
 id: rogue
 name: Rogue
-description: |
-  Rogues rely on cunning, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem. A few even learn magical tricks to supplement their other abilities. Many Rogues focus on stealth and deception, while others refine skills that help them in a dungeon environment, such as climbing, finding and disarming traps and opening locks.
+description: 'Cunning tricksters who rely on stealth, precision, and vulnerability to strike effectively.'
 tags:
   - class
 type: Folder

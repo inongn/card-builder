@@ -1,7 +1,6 @@
 id: hunter
 name: Hunter
-description: |
-  You stalk prey in the wilds and elsewhere, using your abilities as a Hunter to protect nature and people everywhere from forces that would destroy them.
+description: 'Stalk prey in the wilds, using your abilities as a Hunter to protect nature and people everywhere.'
 tags:
   - rangerSubclass
 type: Folder

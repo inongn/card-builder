@@ -1,7 +1,6 @@
 id: dance
 name: College of Dance
-description: |
-  Bards of the College of Dance know that the Words of Creation can't be contained within speech or song; the words are uttered by the movements of celestial bodies and flow through the motions of the smallest creatures. These bards practice a way of being in harmony with the whirling cosmos that emphasizes agility, speed, and grace.
+description: 'Harmonize with the whirling cosmos through agile, speedy, and graceful dances that weave magic.'
 type: Folder
 tags:
   - bardSubclass

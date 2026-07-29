@@ -1,7 +1,6 @@
 id: valor
 name: College of Valor
-description: |
-  Bards of the College of Valor are daring storytellers whose tales preserve the memory of the great heroes of the past. These bards sing the deeds of the mighty in vaulted halls or to crowds gathered around great bonfires.
+description: 'Sing tales of the mighty in combat, preserving the memories of great heroes as a daring storyteller.'
 type: Folder
 tags:
   - bardSubclass

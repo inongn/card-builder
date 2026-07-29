@@ -1,7 +1,6 @@
 id: artillerist
 name: Artillerist
-description: |
-  An Artillerist specializes in using magic to hurl energy, projectiles, and explosions on a battlefield.
+description: 'Specialize in using magic to hurl energy, projectiles, and deadly explosions on the battlefield.'
 type: Folder
 tags:
   - artificerSubclass

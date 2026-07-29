@@ -2,12 +2,7 @@ id: elf
 name: Elf
 tags:
 - species
-description: 'Created by the god Corellon, the first elves could change their forms
-  at will. No longer able to shape-shift at will, the elves retreated to the Feywild.
-  Elves have pointed ears and lack facial and body hair. They live for around 750
-  years, and they don''t sleep but instead enter a trance when they need to rest.
-
-  '
+description: 'Magical, long-lived beings born of the Feywild who rest in a trance rather than sleep.'
 type: Folder
 children:
 - id: species

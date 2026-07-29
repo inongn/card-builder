@@ -1,7 +1,6 @@
 id: ancestralGuardian
 name: Path of the Ancestral Guardian
-description: |
-  Barbarians of the Path of the Ancestral Guardian commune with the spirits of their ancestors, calling them forth to shield allies and harass enemies.
+description: 'Commune with the spirits of your ancestors, calling them forth to shield allies and harass enemies.'
 type: Folder
 tags:
   - barbarianSubclass

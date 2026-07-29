@@ -1,7 +1,6 @@
 id: moon
 name: College of the Moon
-description: |
-  Bards of the College of the Moon draw inspiration from the phases and power of the moon, blending lunar secrets with martial and druidic magic.
+description: 'Draw inspiration from lunar phases, blending moonlit secrets with martial and druidic magic.'
 type: Folder
 tags:
   - bardSubclass

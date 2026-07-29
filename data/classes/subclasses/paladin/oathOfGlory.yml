@@ -1,7 +1,6 @@
 id: oathOfGlory
 name: Oath of Glory
-description: |
-  Paladins who take the Oath of Glory believe they and their companions are destined to achieve glory through deeds of heroism.
+description: 'Embrace a destiny of greatness, leading companions to achieve immortal glory through heroic deeds.'
 tags:
   - paladinSubclass
 type: Folder

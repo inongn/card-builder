@@ -1,7 +1,6 @@
 id: monk
 name: Monk
-description: |
-  Monks use rigorous combat training and mental discipline to align themselves with the multiverse and focus their internal reservoirs of power. Different Monks conceptualize this power in various ways: as breath, energy, life force, essence, or self, for example. Whether channeled as a striking display of martial prowess or as a subtler manifestation of defense and speed, this power infuses all that a Monk does.
+description: 'Ascetic martial artists who harness inner focus to strike with lightning speed and precision.'
 tags:
   - class
 type: Folder

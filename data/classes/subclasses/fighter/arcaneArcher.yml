@@ -1,7 +1,6 @@
 id: arcaneArcher
 name: Arcane Archer
-description: |
-  Arcane Archers study a unique method of elven archery that weaves magic into their shots to create supernatural combat effects.
+description: 'Study a unique method of elven archery that weaves magic into shots to create supernatural effects.'
 type: Folder
 tags:
   - fighterSubclass

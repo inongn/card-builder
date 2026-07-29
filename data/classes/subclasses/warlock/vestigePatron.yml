@@ -1,7 +1,6 @@
 id: vestigePatron
 name: Vestige Patron
-description: |
-  Your patron is a vestige—the ghostly remnant of a lost god, demigod, or primordial force. The vestige manifests as a companion that obeys your commands and channels divine power into your pact.
+description: 'Draw power from a ghostly vestige of a lost god, manifesting a companion to channel divine magic.'
 tags:
   - warlockSubclass
 type: Folder

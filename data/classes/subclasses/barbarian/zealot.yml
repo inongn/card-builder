@@ -1,7 +1,6 @@
 id: zealot
 name: Path of the Zealot
-description: |
-  Barbarians who walk the Path of the Zealot receive boons from a god or pantheon. These Barbarians experience their Rage as an ecstatic episode of divine union that infuses them with power. They are often allies to the priests and other followers of their god or pantheon.
+description: 'Receive boons from a god, experiencing Rage as a divine union that infuses you with holy power.'
 tags:
   - barbarianSubclass
 type: Folder

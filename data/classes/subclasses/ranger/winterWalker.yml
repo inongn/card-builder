@@ -1,7 +1,6 @@
 id: winterWalker
 name: Winter Walker
-description: |
-  Winter Walkers thrive in subzero wastes and frozen tundras, channeling frost and rime to shield themselves and paralyze their prey.
+description: 'Thrive in frozen tundras, channeling frost and rime to shield yourself and paralyze your prey.'
 tags:
   - rangerSubclass
 type: Folder

@@ -1,7 +1,6 @@
 id: mysticArts
 name: Warrior of the Mystic Arts
-description: |
-  Monks of the Warrior of the Mystic Arts blend martial arts with sorcerous spellcasting, converting Focus Points to spell slots and vice versa.
+description: 'Wield magic to supplement martial skill, harnessing supernatural focus to enhance magical and physical abilities.'
 type: Folder
 tags:
   - monkSubclass

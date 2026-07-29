@@ -1,7 +1,6 @@
 id: worldTree
 name: Path of the World Tree
-description: |
-  Barbarians who follow the Path of the World Tree connect with the cosmic tree Yggdrasil through their Rage. This tree grows among the Outer Planes, connecting them to each other and the Material Plane. These Barbarians draw on the tree's magic for vitality and as a means of dimensional travel.
+description: 'Connect with the cosmic World Tree through your Rage, drawing on its magic for vitality and travel.'
 tags:
   - barbarianSubclass
 type: Folder

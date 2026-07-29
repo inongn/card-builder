@@ -1,7 +1,6 @@
 id: beastMaster
 name: Beast Master
-description: |
-  A Beast Master forms a mystical bond with a special animal, drawing on primal magic and a deep connection to the natural world.
+description: 'Form a mystical bond with a special animal, drawing on primal magic and deep natural connection.'
 tags:
   - rangerSubclass
 type: Folder

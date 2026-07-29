@@ -1,7 +1,6 @@
 id: oathbreaker
 name: Oathbreaker
-description: |
-  An Oathbreaker is a Paladin who has broken their sacred vows to pursue a dark ambition or serve a demonic power. Whatever light burned in the Paladin’s heart has been extinguished. Only darkness remains.
+description: 'Break your sacred vows to pursue dark ambitions, extinguishing the light in your heart for demonic power.'
 tags:
   - paladinSubclass
 type: Folder

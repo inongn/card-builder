@@ -1,7 +1,6 @@
 id: oathOfDevotion
 name: Oath of Devotion
-description: |
-  The Oath of Devotion binds Paladins to the ideals of Justice and Order. These Paladins meet the archetype of the knight in shining armor.
+description: 'Bind yourself to Justice and Order, embodying the classic archetype of a knight in shining armor.'
 tags:
   - paladinSubclass
 type: Folder

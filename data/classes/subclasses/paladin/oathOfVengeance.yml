@@ -1,7 +1,6 @@
 id: oathOfVengeance
 name: Oath of Vengeance
-description: |
-  The Oath of Vengeance is a solemn commitment to punish those who have committed grievously evil acts.
+description: 'Make a solemn commitment to hunt down and relentlessly punish those who have committed grievously evil acts.'
 tags:
   - paladinSubclass
 type: Folder

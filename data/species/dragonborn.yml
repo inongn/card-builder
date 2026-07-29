@@ -2,10 +2,7 @@ id: dragonborn
 name: Dragonborn
 tags:
 - species
-description: "The ancestors of dragonborn hatched from the eggs of chromatic and metallic\
-  \ dragons. Dragonborn look like wingless, bipedal dragons\u2014scaly, bright-eyed,\
-  \ and thick-boned with horns on their heads\u2014and their coloration and other\
-  \ features are reminiscent of their draconic ancestors.\n"
+description: 'Descendants of metallic and chromatic dragons with scaly skin and elemental breath weapons.'
 type: Folder
 children:
 - id: species

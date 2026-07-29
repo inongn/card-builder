@@ -1,7 +1,6 @@
 id: paladin
 name: Paladin
-description: |
-  Paladins are united by their oaths to stand against the forces of annihilation and corruption. Whether sworn before a god's altar, in a sacred glade before nature spirits, or in a moment of desperation and grief with the dead as the only witness, a Paladin's oath is a powerful bond. It is a source of power that turns a devout warrior into a blessed champion.
+description: 'Holy warriors bound by sacred oaths, smiting evil with radiant power and protective auras.'
 tags:
   - class
 type: Folder

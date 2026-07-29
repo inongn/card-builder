@@ -1,7 +1,6 @@
 id: shadow
 name: Shadow Sorcery
-description: |
-  You draw your magic from the Shadowfell itself, wrapping yourself in gloom, commanding darkness, and summoning dreadful beasts of ill omen.
+description: 'Draw magic from the Shadowfell to command darkness, wrap yourself in gloom, and summon foul beasts.'
 tags:
   - sorcererSubclass
 type: Folder

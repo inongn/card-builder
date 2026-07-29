@@ -1,11 +1,6 @@
 id: sage
 name: Sage
-description: 'You spent your formative years traveling between manors and monasteries,
-  performing various odd jobs and services in exchange for access to their libraries.
-  You whiled away many a long evening studying books and scrolls, learning the lore
-  of the multiverse - even the rudiments of magic - and your mind yearns for more.
-
-  '
+description: 'You spent long nights in ancient archives, devouring scrolls and mastering arcane lore.'
 tags:
 - background
 type: Folder

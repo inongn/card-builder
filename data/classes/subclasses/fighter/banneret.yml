@@ -1,7 +1,6 @@
 id: banneret
 name: Banneret
-description: |
-  Bannerets are paragons of valor and leadership who rally allies to fight against evil, utilizing inspiring presences and Knightly diplomacies.
+description: 'Rally allies to fight against evil as a paragon of valor, utilizing inspiring presence and diplomacy.'
 type: Folder
 tags:
   - fighterSubclass

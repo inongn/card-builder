@@ -1,7 +1,6 @@
 id: thief
 name: Thief
-description: |
-  A mix of burglar, treasure hunter, and explorer, you are the epitome of an adventurer. In addition to improving your agility and stealth, you gain abilities useful for delving into ruins and getting maximum benefit from the magic items you find there.
+description: 'Mix burglary and exploration, gaining abilities to delve into ruins and maximize magic item benefits.'
 tags:
   - rogueSubclass
 type: Folder

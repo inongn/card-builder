@@ -1,9 +1,6 @@
 id: psiWarrior
 name: Psi Warrior
-description: |
-  Psi Warriors awaken the power of their minds to augment their physical might. They harness this psionic power to infuse their weapon strikes, lash out with telekinetic energy, and create barriers of mental force.
-
-
+description: 'Awaken the power of your mind to augment physical might, infusing weapon strikes with psionic power.'
 tags:
   - fighterSubclass
 type: Folder

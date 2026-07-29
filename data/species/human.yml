@@ -2,11 +2,7 @@ id: human
 name: Human
 tags:
 - species
-description: 'Found throughout the multiverse, humans are as varied as they are numerous,
-  and they endeavor to achieve as much as they can in the years they are given. Their
-  ambition and resourcefulness are commended, respected, and feared on many worlds.
-
-  '
+description: 'Ambitious and resourceful mortals whose diverse talents drive them across every realm.'
 type: Folder
 children:
 - id: species

@@ -1,7 +1,6 @@
 id: undeadPatron
 name: Undead Patron
-description: |
-  You have made a pact with a legendary undead entity such as a lich, vampire lord, or mummy lord, gaining dreadful powers that ward off death and terrify your foes.
+description: 'Make a pact with a legendary undead entity, gaining dreadful powers to ward off death and terrify foes.'
 tags:
   - warlockSubclass
 type: Folder

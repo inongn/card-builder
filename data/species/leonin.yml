@@ -2,11 +2,7 @@ id: leonin
 name: Leonin
 tags:
 - species
-description: 'Leonin are golden-furred hunters, a proud and fiercely independent people.
-  They value self-reliance above all else, often viewing the gods with wary skepticism
-  as they protect their ancestral lands through martial prowess and daunting presence.
-
-  '
+description: 'Fierce, golden-furred hunters who value pride, martial prowess, and fierce independence.'
 type: Folder
 children:
 - id: species

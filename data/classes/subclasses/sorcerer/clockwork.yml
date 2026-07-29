@@ -1,7 +1,6 @@
 id: clockwork
 name: Clockwork Sorcery
-description: |
-  The cosmic force of order has suffused you with magic. That power arises from Mechanus or a realm like it—a plane of existence shaped entirely by clockwork efficiency. You or someone from your lineage might have become entangled in the machinations of modrons, the orderly beings who inhabit Mechanus.
+description: 'Channel the cosmic force of order, utilizing clockwork magic from Mechanus to manipulate reality.'
 type: Folder
 tags:
   - sorcererSubclass

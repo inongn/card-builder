@@ -1,7 +1,6 @@
 id: circleOfPreservation
 name: Circle of Preservation
-description: |
-  Druids of the Circle of Preservation dedicate themselves to defending natural sanctuaries, revitalizing damaged land, and protecting allies from toxic or hostile elements.
+description: 'Defend natural sanctuaries, revitalize damaged land, and protect allies from toxic or hostile elements.'
 type: Folder
 tags:
   - druidSubclass

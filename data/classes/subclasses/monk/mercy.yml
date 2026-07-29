@@ -1,7 +1,6 @@
 id: mercy
 name: Warrior of Mercy
-description: |
-  Warriors of Mercy manipulate the life force of others. These Monks are wandering physicians, but they bring a swift end to their enemies. They often wear masks, presenting themselves as faceless bringers of life and death.
+description: 'Manipulate life force as a masked wandering physician, acting as a faceless bringer of life and death.'
 tags:
   - monkSubclass
 type: Folder

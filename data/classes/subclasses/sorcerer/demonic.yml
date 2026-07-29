@@ -1,7 +1,6 @@
 id: demonic
 name: Demonic Sorcery
-description: |
-  Your innate magic stems from a rift to the Abyss, allowing you to tear open abyssal ruptures and channel chaotic demonic layers into battle.
+description: 'Draw magic from a rift to the Abyss, tearing open ruptures to channel chaotic demonic power.'
 tags:
   - sorcererSubclass
 type: Folder

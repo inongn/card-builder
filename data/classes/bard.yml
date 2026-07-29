@@ -1,7 +1,6 @@
 id: bard
 name: Bard
-description: |
-  Invoking magic through music, dance, and verse, Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions. Bards believe the multiverse was spoken into existence and that remnants of its Words of Creation still resound and glimmer on every plane of existence.
+description: 'Inspiring performers who weave magic into music, words, and lore to manipulate battle and mind.'
 tags:
   - class
 type: Folder

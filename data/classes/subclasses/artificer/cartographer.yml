@@ -1,7 +1,6 @@
 id: cartographer
 name: Cartographer
-description: |
-  Cartographers are the premier navigators and reconnaissance agents. Using their creations, Cartographers can highlight threats, safeguard allies, and carve portals to distant locations.
+description: 'Navigate and scout, using your creations to highlight threats, safeguard allies, and carve portals.'
 type: Folder
 tags:
   - artificerSubclass

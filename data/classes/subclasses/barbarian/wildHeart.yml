@@ -1,7 +1,6 @@
 id: wildHeart
 name: Path of the Wild Heart
-description: |
-  Barbarians who follow the Path of the Wild Heart view themselves as kin to animals. These Barbarians learn magical means to communicate with animals, and their Rage heightens their connection to animals as it fills them with supernatural might.
+description: 'Communicate with animals and channel supernatural might as your Rage deepens your primal connection.'
 tags:
   - barbarianSubclass
 type: Folder

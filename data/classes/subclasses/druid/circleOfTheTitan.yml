@@ -1,7 +1,6 @@
 id: circleOfTheTitan
 name: Circle of the Titan
-description: |
-  Druids of the Circle of the Titan channel the cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing devastating shock waves.
+description: 'Channel cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing shock waves.'
 type: Folder
 tags:
   - druidSubclass

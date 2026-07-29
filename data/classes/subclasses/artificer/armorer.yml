@@ -1,7 +1,6 @@
 id: armorer
 name: Armorer
-description: |
-  An Armorer modifies armor to function almost like a second skin. The armor is enhanced to hone the Armorer’s magic, unleash potent attacks, and generate a formidable defense.
+description: 'Modify armor to function as a second skin, enhancing magic, attacks, and generating defense.'
 type: Folder
 tags:
   - artificerSubclass

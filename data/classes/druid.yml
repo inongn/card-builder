@@ -1,7 +1,6 @@
 zid: druid
 name: Druid
-description: |
-  Druids belong to ancient orders that call on the forces of nature. Harnessing the magic of animals, plants, and the four elements, Druids heal, transform into animals, and wield elemental destruction.
+description: 'Guardians of nature who wield primal magic and shape-shift into dangerous wilderness beasts.'
 tags:
   - class
 type: Folder

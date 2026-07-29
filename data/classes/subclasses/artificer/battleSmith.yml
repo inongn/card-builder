@@ -1,7 +1,6 @@
 id: battleSmith
 name: Battle Smith
-description: |
-  Battle Smiths are a combination of protector and medic, expert at defending others and repairing both materiel and personnel. They are accompanied by a Steel Defender, a protective construct of their own creation.
+description: 'Combine protection and healing, accompanied by a loyal Steel Defender of your own creation.'
 tags:
   - artificerSubclass
 type: Folder

@@ -1,7 +1,6 @@
 id: scion
 name: Scion
-description: |
-  Scions channel the power of the Dead Three—Bane, Bhaal, and Myrkul—through their blades, becoming ruthless killers who thrive on bloodshed. Their allegiance shifts with their needs, drawing on whichever dark patron's gifts suit the moment.
+description: 'Channel dark power through malevolent dread aspects, shifting your allegiance to unleash sinister magic.'
 tags:
   - rogueSubclass
 type: Folder
@@ -33,4 +32,4 @@ children:
   - id: dreadAllegiance
     name: Dread Allegiance
     type: Slot
-    target: dreadAllegiance
+    target: dreadAllegiance OR classOptions

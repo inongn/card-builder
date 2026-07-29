@@ -2205,7 +2205,7 @@ mdui-list-item::part(description) {
   position: relative;
   width: 100%;
   /* Mobile-first 16/9 aspect ratio fallback */
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 4 / 3;
   margin-bottom: 2rem;
   border-radius: 1rem;
   overflow: hidden;
@@ -2217,7 +2217,7 @@ mdui-list-item::part(description) {
 /* Widescreen 5/3 aspect ratio on desktop */
 @media (min-width: 600px) {
   .featured-hero-banner {
-    aspect-ratio: 5 / 3;
+    aspect-ratio: 4 / 3;
     max-height: 40rem;
     /* Soft ceiling for large ultrawide displays */
   }
@@ -2254,7 +2254,7 @@ mdui-list-item::part(description) {
   background:
     linear-gradient(to right,
       rgb(var(--mdui-color-surface)) 0%,
-      rgba(var(--mdui-color-surface), 1) 40%,
+      rgba(var(--mdui-color-surface), 1) 30%,
       rgba(var(--mdui-color-surface), 0.3) 80%,
       transparent 100%),
     linear-gradient(to top,
@@ -2354,7 +2354,7 @@ mdui-list-item::part(description) {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: center;
 }
 
 .featured-card__fallback {
@@ -2523,6 +2523,7 @@ mdui-list-item[active] {
   cursor: pointer;
   height: 100%;
   width: 100%;
+  aspect-ratio: 4 / 3;
   box-sizing: border-box;
 }
 
@@ -2540,10 +2541,56 @@ mdui-list-item[active] {
   aspect-ratio: 4 / 3;
   width: 100%;
   background-size: cover;
-  background-position: top;
+  background-position: center top;
   background-repeat: no-repeat;
   position: relative;
   background-color: rgb(var(--mdui-color-surface-container-high));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.card-vertical__media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.05) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-vertical__media-details {
+  position: relative;
+  z-index: 2;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-vertical__media-details .card-vertical__headline {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.card-vertical__media-details .card-vertical__subhead {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.card-vertical__media-details .card-vertical__body {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  font-size: 0.825rem;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.card-vertical__header-plain {
+  padding: 16px 20px 8px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .card-media-placeholder {
@@ -2556,18 +2603,19 @@ mdui-list-item[active] {
 
 .card-selected-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 10px;
+  right: 10px;
   background: rgba(0, 0, 0, 0.65);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px;
+  z-index: 3;
 }
 
 .card-vertical__content {
-  padding: 16px 20px;
+  padding: 12px 16px 16px 16px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -2575,7 +2623,7 @@ mdui-list-item[active] {
 }
 
 .card-vertical__headline {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.25;
   color: rgb(var(--mdui-color-on-surface));
@@ -2585,7 +2633,7 @@ mdui-list-item[active] {
 }
 
 .card-vertical__subhead {
-  font-size: 0.925rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: rgb(var(--mdui-color-on-surface-variant));
   opacity: 0.9;
@@ -2595,8 +2643,7 @@ mdui-list-item[active] {
   font-size: 0.875rem;
   line-height: 1.5;
   color: rgb(var(--mdui-color-on-surface-variant));
-  opacity: 0.8;
-  margin-top: 4px;
+  opacity: 0.9;
 }
 
 .card-vertical-item {

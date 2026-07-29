@@ -2,11 +2,7 @@ id: gnome
 name: Gnome
 tags:
 - species
-description: 'Gnomes are magical folk created by gods of invention, illusions, and
-  life underground. Gnomes are petite folk with big eyes and pointed ears, who live
-  around 425 years.
-
-  '
+description: 'Petite, inventive folk imbued with wild wonder, keen intellect, and natural magic.'
 type: Folder
 children:
 - id: species

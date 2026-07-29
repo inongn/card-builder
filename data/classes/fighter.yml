@@ -1,7 +1,6 @@
 id: fighter
 name: Fighter
-description: |
-  Fighters rule many battlefields. Questing knights, royal champions, elite soldiers, and hardened mercenaries - as Fighters, they all share an unparalleled prowess with weapons and armor. And they are well acquainted with death, both meting it out and defying it.
+description: 'Unmatched martial experts skilled with every weapon and armor to dominate the battlefield.'
 tags:
   - class
 type: Folder

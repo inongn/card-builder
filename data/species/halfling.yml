@@ -2,12 +2,7 @@ id: halfling
 name: Halfling
 tags:
 - species
-description: 'Cherished and guided by gods who value life, home, and hearth, halflings
-  gravitate toward bucolic havens where family and community help shape their lives.
-  Many halflings possess a brave and adventurous spirit. Their size helps them pass
-  through crowds unnoticed and slip through tight spaces.
-
-  '
+description: 'Small, nimble folk blessed with extraordinary luck, bravery, and a love for hearth and home.'
 type: Folder
 children:
 - id: species

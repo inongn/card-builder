@@ -1,7 +1,6 @@
 id: oathOfTheAncients
 name: Oath of the Ancients
-description: |
-  Paladins who swear this oath cherish the light; they love the beautiful and life-giving things of the world more than any principles of honor, courage, and justice.
+description: 'Cherish the light, loving the beautiful and life-giving things of the world above all other principles.'
 tags:
   - paladinSubclass
 type: Folder

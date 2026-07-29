@@ -1,7 +1,6 @@
 id: venom
 name: Warrior of Venom
-description: |
-  Monks of the Warrior of Venom harvest toxins from their own blood, coating their weapons with debilitating poisons and using toxic touches to sedate or charm foes.
+description: 'Harvest blood toxins to coat weapons in debilitating poison and use toxic touches to sedate or charm.'
 type: Folder
 tags:
   - monkSubclass

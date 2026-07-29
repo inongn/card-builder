@@ -1,7 +1,6 @@
 id: oathOfGenies
 name: Oath of the Noble Genies
-description: |
-  Paladins of the Oath of the Noble Genies pledge themselves to the vast elemental powers of the Dao, Djinni, Efreeti, and Marid, channeling ancient elemental magic and wielding divine armor infused with elemental grace.
+description: 'Pledge to noble Genies, channeling ancient elemental magic and wielding divine, elementally-infused armor.'
 tags:
   - paladinSubclass
 type: Folder

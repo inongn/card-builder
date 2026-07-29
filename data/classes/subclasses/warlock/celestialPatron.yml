@@ -1,7 +1,6 @@
 id: celestialPatron
 name: Celestial Patron
-description: |
-  Your pact draws on the Upper Planes, the realms of everlasting bliss. You might enter an agreement with an empyrean, a couatl, a sphinx, a unicorn, or another heavenly entity. Or you might call on numerous such beings as you pursue goals aligned with theirs.
+description: 'Draw power from the Upper Planes, forging a pact with heavenly entities to wield light and healing.'
 tags:
   - warlockSubclass
 type: Folder

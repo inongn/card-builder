@@ -1,7 +1,6 @@
 id: archfeyPatron
 name: Archfey Patron
-description: |
-  Your pact draws on the power of the Feywild. When you choose this subclass, you might make a deal with an archfey, such as the Prince of Frost; the Queen of Air and Darkness, ruler of the Gloaming Court; Titania of the Summer Court; or an ancient hag.
+description: 'Draw power from the Feywild, making a pact with a powerful archfey to weave beguiling, mirthful magic.'
 tags:
   - warlockSubclass
 type: Folder

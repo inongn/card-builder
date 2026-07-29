@@ -1,7 +1,6 @@
 id: greatOldOnePatron
 name: Great Old One Patron
-description: |
-  Your pact draws on the Far Realm or an elder god—a being such as Tharizdun, Hadar, or Great Cthulhu. The motives of these beings are incomprehensible, and the Great Old One might be indifferent to your existence.
+description: 'Draw power from the Far Realm or an incomprehensible elder god, mastering cosmic mind-bending magic.'
 tags:
   - warlockSubclass
 type: Folder

@@ -535,6 +535,13 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         return null;
     }, [option.id, option.name, option.displayName, tags]);
 
+    const firstSentence = React.useMemo(() => {
+        if (!evaluatedDescription) return '';
+        const clean = String(evaluatedDescription).replace(/\r?\n|\r/g, ' ').trim();
+        const match = clean.match(/^.*?[.!?](?:\s|$)/);
+        return match ? match[0].trim() : clean;
+    }, [evaluatedDescription]);
+
     return (
         <mdui-list-item
             active={isSelected ? 'active' : ''}
@@ -546,44 +553,48 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
             <div slot="custom" className={`card-vertical option-card-vertical ${isSelected ? 'selected' : ''}`}>
                 {artworkUrl ? (
                     <div className="card-vertical__media" style={{ backgroundImage: `url(${artworkUrl})` }}>
+                        <div className="card-vertical__media-overlay" />
                         {isSelected && (
                             <div className="card-selected-badge">
                                 <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
                             </div>
                         )}
-                    </div>
-                ) : (
-                    shouldShowDesc && (
-                        <div className="card-vertical__media">
-                            <div className="card-media-placeholder">
-                                <mdui-icon name="extension" class="icon-medium"></mdui-icon>
+                        <div className="card-vertical__media-details">
+                            <div className="card-vertical__headline">
+                                <span>{option.displayName || option.name}</span>
                             </div>
-                            {isSelected && (
-                                <div className="card-selected-badge">
-                                    <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
+                            {labels.length > 0 && (
+                                <div className="card-vertical__subhead">
+                                    {labels.join(' • ')}
+                                </div>
+                            )}
+                            {firstSentence && (
+                                <div className="card-vertical__body">
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{firstSentence}</ReactMarkdown>
                                 </div>
                             )}
                         </div>
-                    )
-                )}
-                <div className="card-vertical__content">
-                    <div className="card-vertical__headline">
-                        <span>{option.displayName || option.name}</span>
-                        {!artworkUrl && !shouldShowDesc && isSelected && (
-                            <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
+                    </div>
+                ) : (
+                    <div className="card-vertical__header-plain">
+                        <div className="card-vertical__headline">
+                            <span>{option.displayName || option.name}</span>
+                            {isSelected && (
+                                <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
+                            )}
+                        </div>
+                        {labels.length > 0 && (
+                            <div className="card-vertical__subhead">
+                                {labels.join(' • ')}
+                            </div>
+                        )}
+                        {firstSentence && (
+                            <div className="card-vertical__body">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{firstSentence}</ReactMarkdown>
+                            </div>
                         )}
                     </div>
-                    {labels.length > 0 && (
-                        <div className="card-vertical__subhead">
-                            {labels.join(' • ')}
-                        </div>
-                    )}
-                    {shouldShowDesc && option.description && false && (
-                        <div className="card-vertical__body">
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedDescription}</ReactMarkdown>
-                        </div>
-                    )}
-                </div>
+                )}
             </div>
         </mdui-list-item>
     );

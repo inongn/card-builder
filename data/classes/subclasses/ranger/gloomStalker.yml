@@ -1,7 +1,6 @@
 id: gloomStalker
 name: Gloom Stalker
-description: |
-  Gloom Stalkers are at home in the darkest places, wielding magic drawn from the Shadowfell to combat enemies that lurk in darkness.
+description: 'Feel at home in the darkest places, wielding Shadowfell magic to combat enemies lurking in darkness.'
 tags:
   - rangerSubclass
 type: Folder

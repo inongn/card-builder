@@ -1,7 +1,6 @@
 id: necromancer
 name: Necromancer
-description: |
-  The School of Necromancy explores the cosmic forces of life, death, and undeath, mastering spells that drain life force and raise undead thralls to serve them.
+description: 'Explore the cosmic forces of life and death, draining life force and raising loyal undead thralls.'
 tags:
   - wizardSubclass
 type: Folder

@@ -2,12 +2,7 @@ id: orc
 name: Orc
 tags:
 - species
-description: 'Orcs trace their creation to Gruumsh, who equipped his children with
-  gifts to help them wander great plains, vast caverns, and churning seas. Even when
-  they turn their devotion to other gods, orcs retain Gruumsh''s gifts: endurance,
-  determination, and the ability to see in darkness.
-
-  '
+description: 'Strong, driven warriors endowed with Gruumsh''s endurance, unyielding grit, and darkvision.'
 type: Folder
 children:
 - id: species

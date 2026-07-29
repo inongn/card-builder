@@ -1,7 +1,6 @@
 id: illusionist
 name: Illusionist
-description: |
-  You specialize in magic that dazzles the senses and tricks the mind, and the illusions you craft make the impossible seem real. Most Wizards believe that their counterparts in ancient civilizations knew secrets of magic that have been lost to the ages, and discovering those secrets could unlock the path to a power greater than any magic available in the present age.
+description: 'Specialize in magic that dazzles senses and tricks the mind, crafting illusions that seem utterly real.'
 type: Folder
 tags:
   - wizardSubclass

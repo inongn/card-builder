@@ -1,7 +1,6 @@
 id: shadows
 name: Warrior of Shadow
-description: |
-  Warriors of Shadow practice stealth and subterfuge, harnessing the power of the Shadowfell. They are at home in darkness, able to draw gloom around themselves to hide, leap from shadow to shadow, and take on a wraithlike form.
+description: 'Practice stealth and subterfuge by harnessing Shadowfell power to hide, shadow-leap, and become wraithlike.'
 tags:
   - monkSubclass
 type: Folder

@@ -1,7 +1,6 @@
 id: reanimator
 name: Reanimator
-description: |
-  Reanimators defy the laws of nature in pursuit of gruesome experiments. These grim Artificers stitch together servants from disparate corpses, use foul magic to strengthen the living, and transform the art of necromancy into a terrifying science.
+description: 'Stitch together servants from corpses, transforming the dark art of necromancy into a grim science.'
 type: Folder
 tags:
   - artificerSubclass

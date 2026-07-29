@@ -1,7 +1,6 @@
 id: eldritchKnight
 name: Eldritch Knight
-description: |
-  Eldritch Knights combine the martial mastery common to all Fighters with a careful study of magic. Their spells both complement and extend their combat skills, providing additional protection to shore up their armor and also allowing them to engage many foes at once with explosive magic.
+description: 'Combine martial mastery with a careful study of magic, casting spells to extend your combat skills.'
 tags:
   - fighterSubclass
 type: Folder

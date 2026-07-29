@@ -1,7 +1,6 @@
 id: openHand
 name: Warrior of the Open Hand
-description: |
-  Warriors of the Open Hand are masters of unarmed combat. They learn techniques to push and trip their opponents and manipulate their own energy to protect themselves from harm.
+description: 'Master unarmed combat with techniques to push, trip, and manipulate energy to protect against harm.'
 tags:
   - monkSubclass
 type: Folder

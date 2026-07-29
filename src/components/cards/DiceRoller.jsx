@@ -46,6 +46,11 @@ export function processDiceInChildren(children, interactive = true, defaultLabel
             const matchIndex = match.index;
             const formula = match[0];
 
+            // Ignore standalone 'd20' or 'D20' as rollable formulas
+            if (/^d20$/i.test(formula.trim())) {
+                continue;
+            }
+
             if (matchIndex > lastIndex) {
                 parts.push(children.substring(lastIndex, matchIndex));
             }

@@ -1,7 +1,6 @@
 id: spirits
 name: College of Spirits
-description: |
-  Bards of the College of Spirits commune with the spirits of the past, channeling their stories and wisdom to perform wondrous magic.
+description: 'Commune with past spirits, channeling their stories and wisdom to perform wondrous magic.'
 type: Folder
 tags:
   - bardSubclass

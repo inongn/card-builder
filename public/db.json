@@ -2,7 +2,7 @@
   {
     "id": "acolyte",
     "name": "Acolyte",
-    "description": "You devoted yourself to service in a temple, either nestled in a town or secluded in a sacred grove. There you performed rites in honor of a god or pantheon. You served under a priest and studied religion. Thanks to your priest's instruction and your own devotion, you also learned how to channel a modicum of divine power in service to your place of worship and the people who prayed there.",
+    "description": "You devoted your youth to temple service, learning sacred rites and channeling divine favor.",
     "tags": [
       "background"
     ],
@@ -32,7 +32,7 @@
   {
     "id": "artisan",
     "name": "Artisan",
-    "description": "You began mopping floors and scrubbing counters in an artisan's workshop for a few coppers per day as soon as you were strong enough to carry a bucket. When you were old enough to apprentice, you learned to create basic crafts of your own, as well as how to sweet-talk the occasional demanding customer. Your trade has also given you a keen eye for detail.\n",
+    "description": "You honed a craft in an artisan's workshop, gaining a sharp eye for detail and customer trade.",
     "tags": [
       "background"
     ],
@@ -67,7 +67,7 @@
   {
     "id": "charlatan",
     "name": "Charlatan",
-    "description": "Once you were old enough to order an ale, you soon had a favorite stool in every tavern within ten miles of where you were born. As you traveled the circuit from public house to watering hole, you learned to prey on unfortunates who were in the market for a comforting lie or two—perhaps a sham potion or forged ancestry records.\n",
+    "description": "You mastered the art of tavern scams, selling comforting lies and forged goods to the gullible.",
     "tags": [
       "background"
     ],
@@ -97,7 +97,7 @@
   {
     "id": "criminal",
     "name": "Criminal",
-    "description": "You eked out a living in dark alleyways, cutting purses or burgling shops. Perhaps you were part of a small gang of like-minded wrongdoers who looked out for each other. Or maybe you were a lone wolf, fending for yourself against the local thieves' guild and more fearsome lawbreakers.\n",
+    "description": "You learned to survive in dark alleyways through picking pockets, burglary, and street smarts.",
     "tags": [
       "background"
     ],
@@ -127,7 +127,7 @@
   {
     "id": "entertainer",
     "name": "Entertainer",
-    "description": "You spent much of your youth following roving fairs and carnivals, performing odd jobs for musicians and acrobats in exchange for lessons. You may have learned how to walk a tightrope, how to play a lute in a distinct style, or how to recite poetry with impeccable diction. To this day, you thrive on applause and long for the stage.\n",
+    "description": "You traveled with carnivals and fairs, captivating crowds with song, dance, and acrobatics.",
     "tags": [
       "background"
     ],
@@ -157,7 +157,7 @@
   {
     "id": "farmer",
     "name": "Farmer",
-    "description": "You grew up close to the land. Years tending animals and cultivating the earth rewarded you with patience and good health. You have a keen appreciation for nature's bounty alongside a healthy respect for nature's wrath.\n",
+    "description": "Years tending crops and livestock gave you patience, endurance, and deep respect for nature.",
     "tags": [
       "background"
     ],
@@ -187,7 +187,7 @@
   {
     "id": "guard",
     "name": "Guard",
-    "description": "Your feet ache when you remember the countless hours you spent at your post in the tower. You were trained to keep one eye looking outside the wall, watching for marauders sweeping from the nearby forest, and your other eye looking inside the wall, searching for cutpurses and troublemakers.\n",
+    "description": "You spent long watches on city walls, trained to spot marauders and keep urban order.",
     "tags": [
       "background"
     ],
@@ -217,7 +217,7 @@
   {
     "id": "guide",
     "name": "Guide",
-    "description": "You came of age outdoors, far from settled lands. Your home was anywhere you chose to spread your bedroll. There are wonders in the wilderness—strange monsters, pristine forests and streams, overgrown ruins of great halls once trod by giants—and you learned to fend for yourself as you explored them. From time to time, you guided friendly nature priests who instructed you in the fundamentals of channeling the magic of the wild.\n",
+    "description": "You grew up exploring untamed wilds, guiding travelers through perilous frontiers.",
     "tags": [
       "background"
     ],
@@ -247,7 +247,7 @@
   {
     "id": "hermit",
     "name": "Hermit",
-    "description": "You spent your early years secluded in a hut or monastery located well beyond the outskirts of the nearest settlement. In those days, your only companions were the creatures of the forest and those who would occasionally visit to bring news of the outside world and supplies. The solitude allowed you to spend many hours pondering the mysteries of creation.\n",
+    "description": "You lived in quiet solitude away from civilization, contemplating creation and wild mysteries.",
     "tags": [
       "background"
     ],
@@ -277,7 +277,7 @@
   {
     "id": "merchant",
     "name": "Merchant",
-    "description": "You were apprenticed to a trader, caravan master, or shopkeeper, learning the fundamentals of commerce. You traveled broadly, and you earned a living by buying and selling the raw materials artisans need to practice their craft or finished works from such crafters. You might have transported goods from one place to another (by ship, wagon, or caravan) or bought them from traveling traders and sold them in your own shop.\n",
+    "description": "You learned the flow of trade, buying and selling goods across busy markets and caravans.",
     "tags": [
       "background"
     ],
@@ -307,7 +307,7 @@
   {
     "id": "noble",
     "name": "Noble",
-    "description": "You were raised in a castle, surrounded by wealth, power, and privilege. Your family of minor aristocrats ensured that you received a first-class education, some of which you appreciated and some of which you resented. Your time in the castle, especially the many hours you spent observing your family at court, also taught you a great deal about leadership.\n",
+    "description": "Raised among wealth and courtly politics, you learned leadership, etiquette, and privilege.",
     "tags": [
       "background"
     ],
@@ -337,7 +337,7 @@
   {
     "id": "sage",
     "name": "Sage",
-    "description": "You spent your formative years traveling between manors and monasteries, performing various odd jobs and services in exchange for access to their libraries. You whiled away many a long evening studying books and scrolls, learning the lore of the multiverse - even the rudiments of magic - and your mind yearns for more.\n",
+    "description": "You spent long nights in ancient archives, devouring scrolls and mastering arcane lore.",
     "tags": [
       "background"
     ],
@@ -367,7 +367,7 @@
   {
     "id": "sailor",
     "name": "Sailor",
-    "description": "You lived as a seafarer, wind at your back and decks swaying beneath your feet. You've perched on barstools in more ports of call than you can remember, faced mighty storms, and swapped stories with folk who live beneath the waves.\n",
+    "description": "You braved ocean storms and foreign ports, forged by a life navigating swaying decks.",
     "tags": [
       "background"
     ],
@@ -397,7 +397,7 @@
   {
     "id": "scribe",
     "name": "Scribe",
-    "description": "You spent formative years in a scriptorium, a monastery dedicated to the preservation of knowledge, or a government agency, where you learned to write with a clear hand and produce finely written texts. Perhaps you scribed government documents or copied tomes of literature. You might have some skill as a writer of poetry, narrative, or scholarly research. Above all, you have a careful attention to detail, helping you avoid introducing mistakes to the documents you copy and create.\n",
+    "description": "You trained in scriptoriums copying rare texts, developing meticulous precision and calligraphic skill.",
     "tags": [
       "background"
     ],
@@ -427,7 +427,7 @@
   {
     "id": "soldier",
     "name": "Soldier",
-    "description": "You began training for war as soon as you reached adulthood and carry precious few memories of life before you took up arms. Battle is in your blood. Sometimes you catch yourself reflexively performing the basic fighting exercises you learned first. Eventually, you put that training to use on the battlefield, protecting the realm by waging war.\n",
+    "description": "Trained for battlefield combat, you carry martial discipline and war memories into every fight.",
     "tags": [
       "background"
     ],
@@ -457,7 +457,7 @@
   {
     "id": "wayfarer",
     "name": "Wayfarer",
-    "description": "You grew up on the streets surrounded by similarly ill-fated castoffs, a few of them friends and a few of them rivals. You slept where you could and did odd jobs for food. At times, when the hunger became unbearable, you resorted to theft. Still, you never lost your pride and never abandoned hope. Fate is not yet finished with you.\n",
+    "description": "Raised on city streets, you survived hardship through resourcefulness, grit, and hope.",
     "tags": [
       "background"
     ],
@@ -1071,7 +1071,7 @@
   {
     "id": "artificer",
     "name": "Artificer",
-    "description": "Masters of invention, Artificers use ingenuity and magic to unlock extraordinary capabilities in objects. They see magic as a complex system waiting to be decoded and then harnessed in their spells and inventions.\n",
+    "description": "Masters of invention who use ingenuity and magic to infuse extraordinary power into objects.",
     "tags": [
       "class"
     ],
@@ -1209,7 +1209,7 @@
   {
     "id": "barbarian",
     "name": "Barbarian",
-    "description": "Barbarians are mighty warriors who are powered by primal forces of the multiverse that manifest as a Rage. More than a mere emotion—and not limited to anger—this Rage is an incarnation of a predator's ferocity, a storm's fury, and a sea's turmoil.\n",
+    "description": "Fierce warriors fueled by primal rage, embodying the raw ferocity and stamina of nature.",
     "tags": [
       "class"
     ],
@@ -1376,7 +1376,7 @@
   {
     "id": "bard",
     "name": "Bard",
-    "description": "Invoking magic through music, dance, and verse, Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions. Bards believe the multiverse was spoken into existence and that remnants of its Words of Creation still resound and glimmer on every plane of existence.\n",
+    "description": "Inspiring performers who weave magic into music, words, and lore to manipulate battle and mind.",
     "tags": [
       "class"
     ],
@@ -2447,7 +2447,7 @@
   },
   {
     "id": "banePact",
-    "name": "Pact of Bane",
+    "name": "Aspect of Tyranny",
     "tags": [
       "dreadAllegiance"
     ],
@@ -3470,7 +3470,7 @@
   {
     "id": "cleric",
     "name": "Cleric",
-    "description": "Clerics draw power from the realms of the gods and harness it to work miracles. Blessed by a deity, a pantheon, or another immortal entity, a Cleric can reach out to the divine magic of the Outer Planes—where gods dwell—and channel it to bolster people and battle foes.\n",
+    "description": "Divine champions who channel holy magic to heal allies, smite foes, and serve their deity.",
     "tags": [
       "class"
     ],
@@ -3616,7 +3616,7 @@
   {
     "zid": "druid",
     "name": "Druid",
-    "description": "Druids belong to ancient orders that call on the forces of nature. Harnessing the magic of animals, plants, and the four elements, Druids heal, transform into animals, and wield elemental destruction.\n",
+    "description": "Guardians of nature who wield primal magic and shape-shift into dangerous wilderness beasts.",
     "tags": [
       "class"
     ],
@@ -3764,7 +3764,7 @@
   {
     "id": "fighter",
     "name": "Fighter",
-    "description": "Fighters rule many battlefields. Questing knights, royal champions, elite soldiers, and hardened mercenaries - as Fighters, they all share an unparalleled prowess with weapons and armor. And they are well acquainted with death, both meting it out and defying it.\n",
+    "description": "Unmatched martial experts skilled with every weapon and armor to dominate the battlefield.",
     "tags": [
       "class"
     ],
@@ -3917,7 +3917,7 @@
   {
     "id": "monk",
     "name": "Monk",
-    "description": "Monks use rigorous combat training and mental discipline to align themselves with the multiverse and focus their internal reservoirs of power. Different Monks conceptualize this power in various ways: as breath, energy, life force, essence, or self, for example. Whether channeled as a striking display of martial prowess or as a subtler manifestation of defense and speed, this power infuses all that a Monk does.\n",
+    "description": "Ascetic martial artists who harness inner focus to strike with lightning speed and precision.",
     "tags": [
       "class"
     ],
@@ -4166,7 +4166,7 @@
   {
     "id": "paladin",
     "name": "Paladin",
-    "description": "Paladins are united by their oaths to stand against the forces of annihilation and corruption. Whether sworn before a god's altar, in a sacred glade before nature spirits, or in a moment of desperation and grief with the dead as the only witness, a Paladin's oath is a powerful bond. It is a source of power that turns a devout warrior into a blessed champion.\n",
+    "description": "Holy warriors bound by sacred oaths, smiting evil with radiant power and protective auras.",
     "tags": [
       "class"
     ],
@@ -4338,7 +4338,7 @@
   {
     "id": "ranger",
     "name": "Ranger",
-    "description": "Far from bustling cities, amid the trees of trackless forests and across wide plains, Rangers keep their unending watch in the wilderness. Rangers learn to track their quarry as a predator does, moving stealthily through the wilds and hiding themselves in brush and rubble.\n",
+    "description": "Deadly wilderness scouts and trackers who combine martial skill with nature magic.",
     "tags": [
       "class"
     ],
@@ -4504,7 +4504,7 @@
   {
     "id": "rogue",
     "name": "Rogue",
-    "description": "Rogues rely on cunning, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem. A few even learn magical tricks to supplement their other abilities. Many Rogues focus on stealth and deception, while others refine skills that help them in a dungeon environment, such as climbing, finding and disarming traps and opening locks.\n",
+    "description": "Cunning tricksters who rely on stealth, precision, and vulnerability to strike effectively.",
     "tags": [
       "class"
     ],
@@ -4693,7 +4693,7 @@
   {
     "id": "sorcerer",
     "name": "Sorcerer",
-    "description": "Sorcerers wield innate magic that is stamped into their being. Some Sorcerers can’t name the origin of their power, while others trace it to strange events in their personal or family history. The blessing of a dragon or a dryad at a baby’s birth or the strike of lightning from a clear sky might spark a Sorcerer’s gift. \n",
+    "description": "Spellcasters carrying innate magic in their bloodline, twisting raw arcana at will.",
     "tags": [
       "class"
     ],
@@ -4815,7 +4815,7 @@
   {
     "id": "alchemist",
     "name": "Alchemist",
-    "description": "An Alchemist is an expert at combining reagents to produce magical effects. Alchemists use their creations to give life and to leech it away.\n",
+    "description": "Combine reagents to produce magical effects, using creations to give life and to leech it away.",
     "type": "Folder",
     "tags": [
       "artificerSubclass"
@@ -4929,7 +4929,7 @@
   {
     "id": "armorer",
     "name": "Armorer",
-    "description": "An Armorer modifies armor to function almost like a second skin. The armor is enhanced to hone the Armorer’s magic, unleash potent attacks, and generate a formidable defense.\n",
+    "description": "Modify armor to function as a second skin, enhancing magic, attacks, and generating defense.",
     "type": "Folder",
     "tags": [
       "artificerSubclass"
@@ -5015,7 +5015,7 @@
   {
     "id": "artillerist",
     "name": "Artillerist",
-    "description": "An Artillerist specializes in using magic to hurl energy, projectiles, and explosions on a battlefield.\n",
+    "description": "Specialize in using magic to hurl energy, projectiles, and deadly explosions on the battlefield.",
     "type": "Folder",
     "tags": [
       "artificerSubclass"
@@ -5142,7 +5142,7 @@
   {
     "id": "battleSmith",
     "name": "Battle Smith",
-    "description": "Battle Smiths are a combination of protector and medic, expert at defending others and repairing both materiel and personnel. They are accompanied by a Steel Defender, a protective construct of their own creation.\n",
+    "description": "Combine protection and healing, accompanied by a loyal Steel Defender of your own creation.",
     "tags": [
       "artificerSubclass"
     ],
@@ -5222,7 +5222,7 @@
   {
     "id": "cartographer",
     "name": "Cartographer",
-    "description": "Cartographers are the premier navigators and reconnaissance agents. Using their creations, Cartographers can highlight threats, safeguard allies, and carve portals to distant locations.\n",
+    "description": "Navigate and scout, using your creations to highlight threats, safeguard allies, and carve portals.",
     "type": "Folder",
     "tags": [
       "artificerSubclass"
@@ -5326,7 +5326,7 @@
   {
     "id": "reanimator",
     "name": "Reanimator",
-    "description": "Reanimators defy the laws of nature in pursuit of gruesome experiments. These grim Artificers stitch together servants from disparate corpses, use foul magic to strengthen the living, and transform the art of necromancy into a terrifying science.\n",
+    "description": "Stitch together servants from corpses, transforming the dark art of necromancy into a grim science.",
     "type": "Folder",
     "tags": [
       "artificerSubclass"
@@ -5419,7 +5419,7 @@
   {
     "id": "ancestralGuardian",
     "name": "Path of the Ancestral Guardian",
-    "description": "Barbarians of the Path of the Ancestral Guardian commune with the spirits of their ancestors, calling them forth to shield allies and harass enemies.\n",
+    "description": "Commune with the spirits of your ancestors, calling them forth to shield allies and harass enemies.",
     "type": "Folder",
     "tags": [
       "barbarianSubclass"
@@ -5455,7 +5455,7 @@
   {
     "id": "berserker",
     "name": "Path of the Berserker",
-    "description": "Barbarians who walk the Path of the Berserker direct their Rage primarily toward violence. Their path is one of untrammeled fury, and they thrill in the chaos of battle as they allow their Rage to seize and empower them.\n",
+    "description": "Direct your Rage toward violence, thrilling in untrammeled fury and the chaos of battle.",
     "tags": [
       "barbarianSubclass"
     ],
@@ -5492,7 +5492,7 @@
   {
     "id": "lament",
     "name": "Path of the Lament",
-    "description": "Barbarians of the Path of the Lament draw upon the mournful spirits of the departed, unleashing their sorrow in terrifying wails and horrifying strikes.\n",
+    "description": "Draw upon mournful departed spirits, unleashing their sorrow in terrifying wails and strikes.",
     "type": "Folder",
     "tags": [
       "barbarianSubclass"
@@ -5537,7 +5537,7 @@
   {
     "id": "wildHeart",
     "name": "Path of the Wild Heart",
-    "description": "Barbarians who follow the Path of the Wild Heart view themselves as kin to animals. These Barbarians learn magical means to communicate with animals, and their Rage heightens their connection to animals as it fills them with supernatural might.\n",
+    "description": "Communicate with animals and channel supernatural might as your Rage deepens your primal connection.",
     "tags": [
       "barbarianSubclass"
     ],
@@ -5597,7 +5597,7 @@
   {
     "id": "worldTree",
     "name": "Path of the World Tree",
-    "description": "Barbarians who follow the Path of the World Tree connect with the cosmic tree Yggdrasil through their Rage. This tree grows among the Outer Planes, connecting them to each other and the Material Plane. These Barbarians draw on the tree's magic for vitality and as a means of dimensional travel.\n",
+    "description": "Connect with the cosmic World Tree through your Rage, drawing on its magic for vitality and travel.",
     "tags": [
       "barbarianSubclass"
     ],
@@ -5642,7 +5642,7 @@
   {
     "id": "zealot",
     "name": "Path of the Zealot",
-    "description": "Barbarians who walk the Path of the Zealot receive boons from a god or pantheon. These Barbarians experience their Rage as an ecstatic episode of divine union that infuses them with power. They are often allies to the priests and other followers of their god or pantheon.\n",
+    "description": "Receive boons from a god, experiencing Rage as a divine union that infuses you with holy power.",
     "tags": [
       "barbarianSubclass"
     ],
@@ -5692,7 +5692,7 @@
   {
     "id": "dance",
     "name": "College of Dance",
-    "description": "Bards of the College of Dance know that the Words of Creation can't be contained within speech or song; the words are uttered by the movements of celestial bodies and flow through the motions of the smallest creatures. These bards practice a way of being in harmony with the whirling cosmos that emphasizes agility, speed, and grace.\n",
+    "description": "Harmonize with the whirling cosmos through agile, speedy, and graceful dances that weave magic.",
     "type": "Folder",
     "tags": [
       "bardSubclass"
@@ -5769,7 +5769,7 @@
   {
     "id": "glamour",
     "name": "College of Glamour",
-    "description": "Bards of the College of Glamour trace their origins to the beguiling magic of the Feywild. These bards weave threads of beauty and terror into their songs and stories, and the mightiest among them can cloak themselves in otherworldly majesty.\n",
+    "description": "Weave threads of Feywild beauty and terror into your performances to cloak yourself in majesty.",
     "type": "Folder",
     "tags": [
       "bardSubclass"
@@ -5827,7 +5827,7 @@
   {
     "id": "lore",
     "name": "College of Lore",
-    "description": "Bards of the College of Lore collect spells and secrets from diverse sources, such as scholarly tomes, mystical rites, and peasant tales.\n",
+    "description": "Collect spells and secrets from diverse sources, uncovering ancient knowledge and mystical rites.",
     "type": "Folder",
     "tags": [
       "bardSubclass"
@@ -5873,7 +5873,7 @@
   {
     "id": "moon",
     "name": "College of the Moon",
-    "description": "Bards of the College of the Moon draw inspiration from the phases and power of the moon, blending lunar secrets with martial and druidic magic.\n",
+    "description": "Draw inspiration from lunar phases, blending moonlit secrets with martial and druidic magic.",
     "type": "Folder",
     "tags": [
       "bardSubclass"
@@ -5948,7 +5948,7 @@
   {
     "id": "spirits",
     "name": "College of Spirits",
-    "description": "Bards of the College of Spirits commune with the spirits of the past, channeling their stories and wisdom to perform wondrous magic.\n",
+    "description": "Commune with past spirits, channeling their stories and wisdom to perform wondrous magic.",
     "type": "Folder",
     "tags": [
       "bardSubclass"
@@ -6015,7 +6015,7 @@
   {
     "id": "valor",
     "name": "College of Valor",
-    "description": "Bards of the College of Valor are daring storytellers whose tales preserve the memory of the great heroes of the past. These bards sing the deeds of the mighty in vaulted halls or to crowds gathered around great bonfires.\n",
+    "description": "Sing tales of the mighty in combat, preserving the memories of great heroes as a daring storyteller.",
     "type": "Folder",
     "tags": [
       "bardSubclass"
@@ -6058,7 +6058,7 @@
   {
     "id": "graveDomain",
     "name": "Grave Domain",
-    "description": "Clerics of the Grave Domain guard the boundary between life and death, ensuring that souls find their proper rest and drawing upon the energy of that transition to heal allies and smite foes.\n",
+    "description": "Guard the boundary between life and death, drawing upon transitional energy to heal or smite.",
     "type": "Folder",
     "tags": [
       "clericSubclass"
@@ -6155,7 +6155,7 @@
   {
     "id": "knowledgeDomain",
     "name": "Knowledge Domain",
-    "description": "Clerics of the Knowledge Domain value learning, memory, and information, using divine insights to uncover secrets and influence minds.\n",
+    "description": "Value learning and information, using divine insights to uncover secrets and influence minds.",
     "type": "Folder",
     "tags": [
       "clericSubclass"
@@ -6249,7 +6249,7 @@
   {
     "id": "lifeDomain",
     "name": "Life Domain",
-    "description": "The Life Domain focuses on the positive energy that helps sustain all life in the multiverse. Clerics who tap into this domain are masters of healing, using that life force to cure many hurts.\n\nExistence itself relies on the positive energy associated with this domain, so a Cleric of almost any religious tradition might choose it. This domain is particularly associated with agricultural deities, gods of healing or endurance, and gods of home and community. Religious orders of healing also seek the magic of this domain.\n",
+    "description": "Tap into the positive energy of the multiverse as a master of healing, using life force to cure.",
     "type": "Folder",
     "tags": [
       "clericSubclass"
@@ -6328,7 +6328,7 @@
   {
     "id": "lightDomain",
     "name": "Light Domain",
-    "description": "The Light Domain emphasizes the divine power to bring about blazing fire and revelation. Clerics who wield this power are enlightened souls infused with radiance and the power of their deities’ discerning vision, charged with chasing away lies and burning away darkness.\n\nThe Light Domain is associated with gods of truth, vigilance, beauty, insight, and renewal. Some of these gods are identified with the sun or as charioteers who guide the sun across the sky. Others are sentinels who pierce deception. Some are deities of beauty and artistry who teach that art is a vehicle for the soul’s improvement.\n",
+    "description": "Emphasize the divine power of blazing fire and revelation, burning away darkness and chasing away lies.",
     "type": "Folder",
     "tags": [
       "clericSubclass"
@@ -6410,7 +6410,7 @@
   {
     "id": "trickeryDomain",
     "name": "Trickery Domain",
-    "description": "The Trickery Domain offers magic of deception, illusion, and stealth. Clerics who wield this magic are a disruptive force in the world, puncturing pride, mocking tyrants, freeing captives, and flouting hollow traditions. They prefer subterfuge and pranks to direct confrontation.\n\nGods of trickery are mischief-makers and instigators who stand as a constant challenge to the accepted order among both gods and mortals. They embody the forces of change and social upheaval, and they’re patrons of thieves, scoundrels, gamblers, rebels, and liberators.\n",
+    "description": "Wield magic of deception, illusion, and stealth as a disruptive force puncturing pride and tyranny.",
     "type": "Folder",
     "tags": [
       "clericSubclass"
@@ -6483,7 +6483,7 @@
   {
     "id": "warDomain",
     "name": "War Domain",
-    "description": "War has many manifestations. It can make heroes of ordinary people. It can be desperate and horrific, with acts of cruelty and cowardice eclipsing instances of excellence and courage. Clerics who tap into the magic of the War Domain excel in battle, inspiring others to fight the good fight or offering acts of violence as prayers.\n\nGods of the War Domain watch over warriors and reward them for their great deeds. They include champions of honor and chivalry as well as gods of destruction and pillage. Other war gods take a more neutral stance, promoting war in all its manifestations and supporting warriors in any circumstance.\n",
+    "description": "Excel in battle by tapping into the magic of war, inspiring others or offering violence as a prayer.",
     "type": "Folder",
     "tags": [
       "clericSubclass"
@@ -6580,7 +6580,7 @@
   {
     "id": "circleOfPreservation",
     "name": "Circle of Preservation",
-    "description": "Druids of the Circle of Preservation dedicate themselves to defending natural sanctuaries, revitalizing damaged land, and protecting allies from toxic or hostile elements.\n",
+    "description": "Defend natural sanctuaries, revitalize damaged land, and protect allies from toxic or hostile elements.",
     "type": "Folder",
     "tags": [
       "druidSubclass"
@@ -6643,7 +6643,7 @@
   {
     "id": "circleOfTheLand",
     "name": "Circle of the Land",
-    "description": "The Circle of the Land comprises mystics and sages who safeguard ancient knowledge and rites. These Druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle’s wisest members preside as the chief priests of their communities.\n",
+    "description": "Safeguard ancient knowledge and rites as a mystic and sage, whispering primal secrets in Druidic.",
     "tags": [
       "druidSubclass"
     ],
@@ -6677,7 +6677,7 @@
   {
     "id": "circleOfTheMoon",
     "name": "Circle of the Moon",
-    "description": "Druids of the Circle of the Moon draw on lunar magic to transform themselves. Their order gathers under the moon to share news and perform rituals. Changeable as the moon, a Druid of this circle might prowl as a great cat one night, soar over the treetops as an eagle the next day, and then crash through undergrowth as a bear to drive off a trespassing monster.\n",
+    "description": "Draw on lunar magic to transform yourself into various beasts, changeable and powerful as the moon.",
     "type": "Folder",
     "tags": [
       "druidSubclass"
@@ -6752,7 +6752,7 @@
   {
     "id": "circleOfTheSea",
     "name": "Circle of the Sea",
-    "description": "Druids of the Circle of the Sea draw on the tempestuous forces of oceans and storms. Some view themselves as embodiments of nature's wrath, seeking vengeance against those who despoil nature. Others seek mystical unity with nature by attuning themselves to the ebb and flow of the tides.\n",
+    "description": "Draw on the tempestuous forces of oceans and storms, embodying nature’s wrath or mystical unity.",
     "type": "Folder",
     "tags": [
       "druidSubclass"
@@ -6814,7 +6814,7 @@
   {
     "id": "circleOfTheStars",
     "name": "Circle of the Stars",
-    "description": "The Circle of the Stars has tracked heavenly patterns since time immemorial, discovering secrets hidden amid the constellations. By understanding these secrets, the Druids of this circle seek to harness the powers of the cosmos.\n",
+    "description": "Track heavenly patterns to discover cosmic secrets, harnessing the power of constellations.",
     "type": "Folder",
     "tags": [
       "druidSubclass"
@@ -6884,7 +6884,7 @@
   {
     "id": "circleOfTheTitan",
     "name": "Circle of the Titan",
-    "description": "Druids of the Circle of the Titan channel the cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing devastating shock waves.\n",
+    "description": "Channel cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing shock waves.",
     "type": "Folder",
     "tags": [
       "druidSubclass"
@@ -6976,7 +6976,7 @@
   {
     "id": "arcaneArcher",
     "name": "Arcane Archer",
-    "description": "Arcane Archers study a unique method of elven archery that weaves magic into their shots to create supernatural combat effects.\n",
+    "description": "Study a unique method of elven archery that weaves magic into shots to create supernatural effects.",
     "type": "Folder",
     "tags": [
       "fighterSubclass"
@@ -7054,7 +7054,7 @@
   {
     "id": "banneret",
     "name": "Banneret",
-    "description": "Bannerets are paragons of valor and leadership who rally allies to fight against evil, utilizing inspiring presences and Knightly diplomacies.\n",
+    "description": "Rally allies to fight against evil as a paragon of valor, utilizing inspiring presence and diplomacy.",
     "type": "Folder",
     "tags": [
       "fighterSubclass"
@@ -7099,7 +7099,7 @@
   {
     "id": "battleMaster",
     "name": "Battle Master",
-    "description": "Battle Masters are students of the art of battle, learning martial techniques passed down through generations. The most accomplished Battle Masters are well-rounded figures who combine their carefully honed combat skills with academic study in the fields of history, theory, and the arts.\n",
+    "description": "Combine honed combat skills with academic study to master martial techniques passed down generations.",
     "tags": [
       "fighterSubclass"
     ],
@@ -7165,7 +7165,7 @@
   {
     "id": "champion",
     "name": "Champion",
-    "description": "A Champion focuses on the development of martial prowess in a relentless pursuit of victory. Champions combine rigorous training with physical excellence to deal devastating blows, withstand peril, and garner glory. Whether in athletic contests or bloody battle, Champions strive for the crown of the victor.\n",
+    "description": "Focus on martial prowess and relentless pursuit of victory to deal devastating blows and garner glory.",
     "tags": [
       "fighterSubclass"
     ],
@@ -7215,7 +7215,7 @@
   {
     "id": "eldritchKnight",
     "name": "Eldritch Knight",
-    "description": "Eldritch Knights combine the martial mastery common to all Fighters with a careful study of magic. Their spells both complement and extend their combat skills, providing additional protection to shore up their armor and also allowing them to engage many foes at once with explosive magic.\n",
+    "description": "Combine martial mastery with a careful study of magic, casting spells to extend your combat skills.",
     "tags": [
       "fighterSubclass"
     ],
@@ -7272,7 +7272,7 @@
   {
     "id": "psiWarrior",
     "name": "Psi Warrior",
-    "description": "Psi Warriors awaken the power of their minds to augment their physical might. They harness this psionic power to infuse their weapon strikes, lash out with telekinetic energy, and create barriers of mental force.\n",
+    "description": "Awaken the power of your mind to augment physical might, infusing weapon strikes with psionic power.",
     "tags": [
       "fighterSubclass"
     ],
@@ -7350,7 +7350,7 @@
   {
     "id": "elements",
     "name": "Warrior of the Elements",
-    "description": "Warriors of the Elements tap into the power of the Elemental Planes. Harnessing their supernatural focus, these Monks momentarily tame the energy of the Elemental Chaos to empower themselves in and out of battle.\n",
+    "description": "Tap into the Elemental Planes, harnessing supernatural focus to tame chaotic energy in and out of battle.",
     "tags": [
       "monkSubclass"
     ],
@@ -7396,7 +7396,7 @@
   {
     "id": "mercy",
     "name": "Warrior of Mercy",
-    "description": "Warriors of Mercy manipulate the life force of others. These Monks are wandering physicians, but they bring a swift end to their enemies. They often wear masks, presenting themselves as faceless bringers of life and death.\n",
+    "description": "Manipulate life force as a masked wandering physician, acting as a faceless bringer of life and death.",
     "tags": [
       "monkSubclass"
     ],
@@ -7439,7 +7439,7 @@
   {
     "id": "mysticArts",
     "name": "Warrior of the Mystic Arts",
-    "description": "Monks of the Warrior of the Mystic Arts blend martial arts with sorcerous spellcasting, converting Focus Points to spell slots and vice versa.\n",
+    "description": "Wield magic to supplement martial skill, harnessing supernatural focus to enhance magical and physical abilities.",
     "type": "Folder",
     "tags": [
       "monkSubclass"
@@ -7503,7 +7503,7 @@
   {
     "id": "openHand",
     "name": "Warrior of the Open Hand",
-    "description": "Warriors of the Open Hand are masters of unarmed combat. They learn techniques to push and trip their opponents and manipulate their own energy to protect themselves from harm.\n",
+    "description": "Master unarmed combat with techniques to push, trip, and manipulate energy to protect against harm.",
     "tags": [
       "monkSubclass"
     ],
@@ -7565,7 +7565,7 @@
   {
     "id": "shadows",
     "name": "Warrior of Shadow",
-    "description": "Warriors of Shadow practice stealth and subterfuge, harnessing the power of the Shadowfell. They are at home in darkness, able to draw gloom around themselves to hide, leap from shadow to shadow, and take on a wraithlike form.\n",
+    "description": "Practice stealth and subterfuge by harnessing Shadowfell power to hide, shadow-leap, and become wraithlike.",
     "tags": [
       "monkSubclass"
     ],
@@ -7615,7 +7615,7 @@
   {
     "id": "venom",
     "name": "Warrior of Venom",
-    "description": "Monks of the Warrior of Venom harvest toxins from their own blood, coating their weapons with debilitating poisons and using toxic touches to sedate or charm foes.\n",
+    "description": "Harvest blood toxins to coat weapons in debilitating poison and use toxic touches to sedate or charm.",
     "type": "Folder",
     "tags": [
       "monkSubclass"
@@ -7677,7 +7677,7 @@
   {
     "id": "oathOfDevotion",
     "name": "Oath of Devotion",
-    "description": "The Oath of Devotion binds Paladins to the ideals of Justice and Order. These Paladins meet the archetype of the knight in shining armor.\n",
+    "description": "Bind yourself to Justice and Order, embodying the classic archetype of a knight in shining armor.",
     "tags": [
       "paladinSubclass"
     ],
@@ -7751,7 +7751,7 @@
   {
     "id": "oathOfGenies",
     "name": "Oath of the Noble Genies",
-    "description": "Paladins of the Oath of the Noble Genies pledge themselves to the vast elemental powers of the Dao, Djinni, Efreeti, and Marid, channeling ancient elemental magic and wielding divine armor infused with elemental grace.\n",
+    "description": "Pledge to noble Genies, channeling ancient elemental magic and wielding divine, elementally-infused armor.",
     "tags": [
       "paladinSubclass"
     ],
@@ -7839,7 +7839,7 @@
   {
     "id": "oathOfGlory",
     "name": "Oath of Glory",
-    "description": "Paladins who take the Oath of Glory believe they and their companions are destined to achieve glory through deeds of heroism.\n",
+    "description": "Embrace a destiny of greatness, leading companions to achieve immortal glory through heroic deeds.",
     "tags": [
       "paladinSubclass"
     ],
@@ -7931,7 +7931,7 @@
   {
     "id": "oathOfTheAncients",
     "name": "Oath of the Ancients",
-    "description": "Paladins who swear this oath cherish the light; they love the beautiful and life-giving things of the world more than any principles of honor, courage, and justice.\n",
+    "description": "Cherish the light, loving the beautiful and life-giving things of the world above all other principles.",
     "tags": [
       "paladinSubclass"
     ],
@@ -8006,7 +8006,7 @@
   {
     "id": "oathOfVengeance",
     "name": "Oath of Vengeance",
-    "description": "The Oath of Vengeance is a solemn commitment to punish those who have committed grievously evil acts.\n",
+    "description": "Make a solemn commitment to hunt down and relentlessly punish those who have committed grievously evil acts.",
     "tags": [
       "paladinSubclass"
     ],
@@ -8057,7 +8057,7 @@
   {
     "id": "oathbreaker",
     "name": "Oathbreaker",
-    "description": "An Oathbreaker is a Paladin who has broken their sacred vows to pursue a dark ambition or serve a demonic power. Whatever light burned in the Paladin’s heart has been extinguished. Only darkness remains.\n",
+    "description": "Break your sacred vows to pursue dark ambitions, extinguishing the light in your heart for demonic power.",
     "tags": [
       "paladinSubclass"
     ],
@@ -8145,7 +8145,7 @@
   {
     "id": "beastMaster",
     "name": "Beast Master",
-    "description": "A Beast Master forms a mystical bond with a special animal, drawing on primal magic and a deep connection to the natural world.\n",
+    "description": "Form a mystical bond with a special animal, drawing on primal magic and deep natural connection.",
     "tags": [
       "rangerSubclass"
     ],
@@ -8219,7 +8219,7 @@
   {
     "id": "feyWanderer",
     "name": "Fey Wanderer",
-    "description": "A fey mystique surrounds you, thanks to the boon of an archfey or a location in the Feywild that transformed you. Your joyful laughter brightens the hearts of the downtrodden, and your martial prowess strikes terror in your foes, for great is the mirth of the fey and dreadful is their fury.\n",
+    "description": "Embody a fey mystique to brighten hearts with joyful laughter and strike terror with martial prowess.",
     "tags": [
       "rangerSubclass"
     ],
@@ -8325,7 +8325,7 @@
   {
     "id": "gloomStalker",
     "name": "Gloom Stalker",
-    "description": "Gloom Stalkers are at home in the darkest places, wielding magic drawn from the Shadowfell to combat enemies that lurk in darkness.\n",
+    "description": "Feel at home in the darkest places, wielding Shadowfell magic to combat enemies lurking in darkness.",
     "tags": [
       "rangerSubclass"
     ],
@@ -8414,7 +8414,7 @@
   {
     "id": "hollowWarden",
     "name": "Hollow Warden",
-    "description": "Hollow Wardens draw power from ancient horrors of the land, growing bark armor, beastly bristles, or bloodied antlers as they unleash nature's primal vengeance.\n",
+    "description": "Draw power from ancient horrors to grow bark armor and unleash nature’s primal, terrifying vengeance.",
     "tags": [
       "rangerSubclass"
     ],
@@ -8491,7 +8491,7 @@
   {
     "id": "hunter",
     "name": "Hunter",
-    "description": "You stalk prey in the wilds and elsewhere, using your abilities as a Hunter to protect nature and people everywhere from forces that would destroy them.\n",
+    "description": "Stalk prey in the wilds, using your abilities as a Hunter to protect nature and people everywhere.",
     "tags": [
       "rangerSubclass"
     ],
@@ -8531,7 +8531,7 @@
   {
     "id": "winterWalker",
     "name": "Winter Walker",
-    "description": "Winter Walkers thrive in subzero wastes and frozen tundras, channeling frost and rime to shield themselves and paralyze their prey.\n",
+    "description": "Thrive in frozen tundras, channeling frost and rime to shield yourself and paralyze your prey.",
     "tags": [
       "rangerSubclass"
     ],
@@ -8619,7 +8619,7 @@
   {
     "id": "arcaneTrickster",
     "name": "Arcane Trickster",
-    "description": "Some Rogues enhance their fine-honed skills of stealth and agility with spells, learning magical tricks to aid them in their trade. Some Arcane Tricksters use their talents as pickpockets and burglars, while others are pranksters.\n",
+    "description": "Enhance your stealth and agility with spells, learning magical tricks for burglary or pranks.",
     "tags": [
       "rogueSubclass"
     ],
@@ -8669,7 +8669,7 @@
   {
     "id": "assassin",
     "name": "Assassin",
-    "description": "An Assassin's training focuses on using stealth, poison, and disguise to eliminate foes with deadly efficiency. While some Rogues who follow this path are hired killers, spies, or bounty hunters, the capabilities of this subclass are equally useful for adventurers facing a variety of monstrous enemies.\n",
+    "description": "Use stealth, poison, and disguise to eliminate foes with deadly efficiency as a trained killer.",
     "tags": [
       "rogueSubclass"
     ],
@@ -8709,7 +8709,7 @@
   {
     "id": "phantom",
     "name": "Phantom",
-    "description": "Phantoms slip between the world of the living and the dead, drawing on the knowledge and power of those who have passed to become more lethal rogues. Their supernatural connection to death lets them wring extra harm from their strikes and makes them repositories of ghostly lore.\n",
+    "description": "Slip between the living and dead, drawing on spectral power to strike with supernatural lethality.",
     "tags": [
       "rogueSubclass"
     ],
@@ -8749,7 +8749,7 @@
   {
     "id": "scion",
     "name": "Scion",
-    "description": "Scions channel the power of the Dead Three—Bane, Bhaal, and Myrkul—through their blades, becoming ruthless killers who thrive on bloodshed. Their allegiance shifts with their needs, drawing on whichever dark patron's gifts suit the moment.\n",
+    "description": "Channel dark power through malevolent dread aspects, shifting your allegiance to unleash sinister magic.",
     "tags": [
       "rogueSubclass"
     ],
@@ -8782,14 +8782,14 @@
         "id": "dreadAllegiance",
         "name": "Dread Allegiance",
         "type": "Slot",
-        "target": "dreadAllegiance"
+        "target": "dreadAllegiance OR classOptions"
       }
     ]
   },
   {
     "id": "soulknife",
     "name": "Soulknife",
-    "description": "A Soulknife strikes with the mind, cutting through barriers both physical and psychic. These Rogues discover psionic power within themselves and channel it to do their roguish work. As a Soulknife your psionic abilities might have haunted you since childhood, revealing their full potential only as you experienced the stress of adventure. Or you might have sought out an order of psychic adepts and spent years learning how to manifest your power.\n",
+    "description": "Strike with your mind, channeling innate psionic power to cut through physical and psychic barriers.",
     "tags": [
       "rogueSubclass"
     ],
@@ -8853,7 +8853,7 @@
   {
     "id": "thief",
     "name": "Thief",
-    "description": "A mix of burglar, treasure hunter, and explorer, you are the epitome of an adventurer. In addition to improving your agility and stealth, you gain abilities useful for delving into ruins and getting maximum benefit from the magic items you find there.\n",
+    "description": "Mix burglary and exploration, gaining abilities to delve into ruins and maximize magic item benefits.",
     "tags": [
       "rogueSubclass"
     ],
@@ -8888,7 +8888,7 @@
   {
     "id": "aberrant",
     "name": "Aberrant Sorcery",
-    "description": "An alien influence has wrapped its tendrils around your mind, giving you psionic power. You can now touch other minds with that power and alter the world around you. Will this power shine from you as a hopeful beacon to others? Or will you be a terror to those who feel the stab of your mind?\n",
+    "description": "Wield psionic power granted by an alien influence, touching minds and altering the world around you.",
     "type": "Folder",
     "tags": [
       "sorcererSubclass"
@@ -8951,7 +8951,7 @@
   {
     "id": "clockwork",
     "name": "Clockwork Sorcery",
-    "description": "The cosmic force of order has suffused you with magic. That power arises from Mechanus or a realm like it—a plane of existence shaped entirely by clockwork efficiency. You or someone from your lineage might have become entangled in the machinations of modrons, the orderly beings who inhabit Mechanus.\n",
+    "description": "Channel the cosmic force of order, utilizing clockwork magic from Mechanus to manipulate reality.",
     "type": "Folder",
     "tags": [
       "sorcererSubclass"
@@ -9031,7 +9031,7 @@
   {
     "id": "demonic",
     "name": "Demonic Sorcery",
-    "description": "Your innate magic stems from a rift to the Abyss, allowing you to tear open abyssal ruptures and channel chaotic demonic layers into battle.\n",
+    "description": "Draw magic from a rift to the Abyss, tearing open ruptures to channel chaotic demonic power.",
     "tags": [
       "sorcererSubclass"
     ],
@@ -9096,7 +9096,7 @@
   {
     "id": "draconic",
     "name": "Draconic Sorcery",
-    "description": "Your innate magic comes from the gift of a dragon. Perhaps an ancient dragon facing death bequeathed some of its magical power to you or your ancestor. You might have absorbed magic from a site infused with dragons’ power. Or perhaps you handled a treasure taken from a dragon’s hoard that was steeped in draconic power.\n",
+    "description": "Wield innate magic granted by dragons, channeling their ancient power into devastating spells.",
     "type": "Folder",
     "tags": [
       "sorcererSubclass"
@@ -9171,7 +9171,7 @@
   {
     "id": "shadow",
     "name": "Shadow Sorcery",
-    "description": "You draw your magic from the Shadowfell itself, wrapping yourself in gloom, commanding darkness, and summoning dreadful beasts of ill omen.\n",
+    "description": "Draw magic from the Shadowfell to command darkness, wrap yourself in gloom, and summon foul beasts.",
     "tags": [
       "sorcererSubclass"
     ],
@@ -9249,7 +9249,7 @@
   {
     "id": "wildMagic",
     "name": "Wild Magic Sorcery",
-    "description": "Your innate magic stems from the forces of chaos that underlie the order of creation. You or an ancestor might have endured exposure to raw magic, perhaps through a planar portal leading to Limbo or the Elemental Planes. Perhaps you were blessed by a fey being or marked by a demon. Or your magic could be a fluke with no apparent cause. Whatever its source, this magic churns within you, waiting for any outlet.\n",
+    "description": "Channel the underlying chaos of creation, unleashing unpredictable raw magic in spectacular bursts.",
     "type": "Folder",
     "tags": [
       "sorcererSubclass"
@@ -9291,7 +9291,7 @@
   {
     "id": "archfeyPatron",
     "name": "Archfey Patron",
-    "description": "Your pact draws on the power of the Feywild. When you choose this subclass, you might make a deal with an archfey, such as the Prince of Frost; the Queen of Air and Darkness, ruler of the Gloaming Court; Titania of the Summer Court; or an ancient hag.\n",
+    "description": "Draw power from the Feywild, making a pact with a powerful archfey to weave beguiling, mirthful magic.",
     "tags": [
       "warlockSubclass"
     ],
@@ -9377,7 +9377,7 @@
   {
     "id": "celestialPatron",
     "name": "Celestial Patron",
-    "description": "Your pact draws on the Upper Planes, the realms of everlasting bliss. You might enter an agreement with an empyrean, a couatl, a sphinx, a unicorn, or another heavenly entity. Or you might call on numerous such beings as you pursue goals aligned with theirs.\n",
+    "description": "Draw power from the Upper Planes, forging a pact with heavenly entities to wield light and healing.",
     "tags": [
       "warlockSubclass"
     ],
@@ -9495,7 +9495,7 @@
   {
     "id": "fiendPatron",
     "name": "Fiend Patron",
-    "description": "Your pact draws on the Lower Planes, the realms of perdition. You might forge a bargain with a demon lord such as Demogorgon or Orcus; an archdevil such as Asmodeus; or a pit fiend.\n",
+    "description": "Draw power from the Lower Planes, forging a dark bargain with a demon lord or archdevil.",
     "tags": [
       "warlockSubclass"
     ],
@@ -9590,7 +9590,7 @@
   {
     "id": "greatOldOnePatron",
     "name": "Great Old One Patron",
-    "description": "Your pact draws on the Far Realm or an elder god—a being such as Tharizdun, Hadar, or Great Cthulhu. The motives of these beings are incomprehensible, and the Great Old One might be indifferent to your existence.\n",
+    "description": "Draw power from the Far Realm or an incomprehensible elder god, mastering cosmic mind-bending magic.",
     "tags": [
       "warlockSubclass"
     ],
@@ -9685,7 +9685,7 @@
   {
     "id": "undeadPatron",
     "name": "Undead Patron",
-    "description": "You have made a pact with a legendary undead entity such as a lich, vampire lord, or mummy lord, gaining dreadful powers that ward off death and terrify your foes.\n",
+    "description": "Make a pact with a legendary undead entity, gaining dreadful powers to ward off death and terrify foes.",
     "tags": [
       "warlockSubclass"
     ],
@@ -9775,7 +9775,7 @@
   {
     "id": "vestigePatron",
     "name": "Vestige Patron",
-    "description": "Your patron is a vestige—the ghostly remnant of a lost god, demigod, or primordial force. The vestige manifests as a companion that obeys your commands and channels divine power into your pact.\n",
+    "description": "Draw power from a ghostly vestige of a lost god, manifesting a companion to channel divine magic.",
     "tags": [
       "warlockSubclass"
     ],
@@ -9848,7 +9848,7 @@
   {
     "id": "abjurer",
     "name": "Abjurer",
-    "description": "Your study of magic is focused on spells that block, banish, or protect—ending harmful effects, banishing evil influences, and protecting the weak. Abjurers are sought when baleful spirits require exorcism, when locations must be guarded against magical spying, and when portals to other planes of existence must be closed.\n",
+    "description": "Focus your magical study on spells that block, banish, and protect, warding against magical harm.",
     "type": "Folder",
     "tags": [
       "wizardSubclass"
@@ -9884,7 +9884,7 @@
   {
     "id": "bladesinger",
     "name": "Bladesinger",
-    "description": "Bladesingers master a tradition of wizardry that incorporates swordplay and dance, executing intricate maneuvers that fend off harm and channel magic into singing blades.\n",
+    "description": "Master a wizardry tradition mixing swordplay and dance to channel magic into your singing blades.",
     "tags": [
       "wizardSubclass"
     ],
@@ -9937,7 +9937,7 @@
   {
     "id": "diviner",
     "name": "Diviner",
-    "description": "The counsel of a Diviner is sought by those who want a clearer understanding of the past, present, and future. As a Diviner, you strive to part the veils of space, time, and consciousness. You work to master spells of discernment, remote viewing, supernatural knowledge, and foresight.\n",
+    "description": "Part the veils of space and time as a Diviner, mastering spells of discernment, foresight, and truth.",
     "type": "Folder",
     "tags": [
       "wizardSubclass"
@@ -9970,7 +9970,7 @@
   {
     "id": "evoker",
     "name": "Evoker",
-    "description": "Your studies focus on magic that creates powerful elemental effects such as bitter cold, searing flame, rolling thunder, crackling lightning, and burning acid. Some Evokers find employment in military forces, serving as artillery to blast armies from afar. Others use their power to protect others, while some seek their own gain.\n",
+    "description": "Create powerful elemental effects like searing flame and crackling lightning, blasting armies afar.",
     "type": "Folder",
     "tags": [
       "wizardSubclass"
@@ -10004,7 +10004,7 @@
   {
     "id": "illusionist",
     "name": "Illusionist",
-    "description": "You specialize in magic that dazzles the senses and tricks the mind, and the illusions you craft make the impossible seem real. Most Wizards believe that their counterparts in ancient civilizations knew secrets of magic that have been lost to the ages, and discovering those secrets could unlock the path to a power greater than any magic available in the present age.\n",
+    "description": "Specialize in magic that dazzles senses and tricks the mind, crafting illusions that seem utterly real.",
     "type": "Folder",
     "tags": [
       "wizardSubclass"
@@ -10059,7 +10059,7 @@
   {
     "id": "necromancer",
     "name": "Necromancer",
-    "description": "The School of Necromancy explores the cosmic forces of life, death, and undeath, mastering spells that drain life force and raise undead thralls to serve them.\n",
+    "description": "Explore the cosmic forces of life and death, draining life force and raising loyal undead thralls.",
     "tags": [
       "wizardSubclass"
     ],
@@ -10112,7 +10112,7 @@
   {
     "id": "warlock",
     "name": "Warlock",
-    "description": "Warlocks quest for knowledge that lies hidden in the fabric of the multiverse. They often begin their search for magical power by delving into tomes of forbidden lore, dabbling in invocations meant to attract the power of extraplanar beings, or seeking places of power where the influence of these beings can be felt. \n",
+    "description": "Seekers of arcane power bound by pacts to enigmatic otherworldly patrons.",
     "tags": [
       "class"
     ],
@@ -10215,7 +10215,7 @@
   {
     "id": "wizard",
     "name": "Wizard",
-    "description": "Wizards are defined by their exhaustive study of magic's inner workings. They cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. Their magic conjures monsters from other planes of existence, glimpses the future, or forms protective barriers. Their mightiest spells change one substance into another, call meteors from the sky, or open portals to other worlds.\n",
+    "description": "Scholarly mages who master the arcane arts through intense study and spellbooks.",
     "tags": [
       "class"
     ],
@@ -15401,7 +15401,7 @@
     "tags": [
       "species"
     ],
-    "description": "Aasimar (pronounced AH-sih-mar) are mortals who carry a spark of the Upper Planes within their souls. Whether descended from an angelic being or infused with celestial power, they can fan that spark to bring light, healing, and heavenly fury. Aasimar can arise among any population of mortals. They resemble their parents, but they live for up to 160 years and have features that hint at their celestial heritage.\n",
+    "description": "Mortals who carry a spark of the Upper Planes, bringing light, healing, and celestial fury.",
     "type": "Folder",
     "children": [
       {
@@ -15648,7 +15648,7 @@
     "tags": [
       "species"
     ],
-    "description": "The ancestors of dragonborn hatched from the eggs of chromatic and metallic dragons. Dragonborn look like wingless, bipedal dragons—scaly, bright-eyed, and thick-boned with horns on their heads—and their coloration and other features are reminiscent of their draconic ancestors.\n",
+    "description": "Descendants of metallic and chromatic dragons with scaly skin and elemental breath weapons.",
     "type": "Folder",
     "children": [
       {
@@ -15707,7 +15707,7 @@
     "tags": [
       "species"
     ],
-    "description": "Dwarves were raised from the earth in the elder days by a deity of the forge. That god gave dwarves an affinity for stone and metal and for living underground, and made them resilient like the mountains, with a life span of about 350 years.\n",
+    "description": "Resilient folk forged from stone and metal, enduring as the mountains with an affinity for craft.",
     "type": "Folder",
     "children": [
       {
@@ -15871,7 +15871,7 @@
     "tags": [
       "species"
     ],
-    "description": "Created by the god Corellon, the first elves could change their forms at will. No longer able to shape-shift at will, the elves retreated to the Feywild. Elves have pointed ears and lack facial and body hair. They live for around 750 years, and they don't sleep but instead enter a trance when they need to rest.\n",
+    "description": "Magical, long-lived beings born of the Feywild who rest in a trance rather than sleep.",
     "type": "Folder",
     "children": [
       {
@@ -15981,7 +15981,7 @@
     "tags": [
       "species"
     ],
-    "description": "Gnomes are magical folk created by gods of invention, illusions, and life underground. Gnomes are petite folk with big eyes and pointed ears, who live around 425 years.\n",
+    "description": "Petite, inventive folk imbued with wild wonder, keen intellect, and natural magic.",
     "type": "Folder",
     "children": [
       {
@@ -16171,7 +16171,7 @@
     "tags": [
       "species"
     ],
-    "description": "Towering over most folk, goliaths are distant descendants of giants. Each goliath bears the favors of the first giants—favors that manifest in various supernatural boons, including the ability to quickly grow and temporarily approach the height of goliaths' gigantic kin.\n",
+    "description": "Towering descendants of giants who command supernatural martial boons and sudden growth.",
     "type": "Folder",
     "children": [
       {
@@ -16218,7 +16218,7 @@
     "tags": [
       "species"
     ],
-    "description": "Cherished and guided by gods who value life, home, and hearth, halflings gravitate toward bucolic havens where family and community help shape their lives. Many halflings possess a brave and adventurous spirit. Their size helps them pass through crowds unnoticed and slip through tight spaces.\n",
+    "description": "Small, nimble folk blessed with extraordinary luck, bravery, and a love for hearth and home.",
     "type": "Folder",
     "children": [
       {
@@ -16259,7 +16259,7 @@
     "tags": [
       "species"
     ],
-    "description": "Found throughout the multiverse, humans are as varied as they are numerous, and they endeavor to achieve as much as they can in the years they are given. Their ambition and resourcefulness are commended, respected, and feared on many worlds.\n",
+    "description": "Ambitious and resourceful mortals whose diverse talents drive them across every realm.",
     "type": "Folder",
     "children": [
       {
@@ -16298,7 +16298,7 @@
     "tags": [
       "species"
     ],
-    "description": "Leonin are golden-furred hunters, a proud and fiercely independent people. They value self-reliance above all else, often viewing the gods with wary skepticism as they protect their ancestral lands through martial prowess and daunting presence.\n",
+    "description": "Fierce, golden-furred hunters who value pride, martial prowess, and fierce independence.",
     "type": "Folder",
     "children": [
       {
@@ -16343,7 +16343,7 @@
     "tags": [
       "species"
     ],
-    "description": "Minotaurs are barrel-chested humanoids with heads resembling those of bulls. Blessed with a supernaturally strong sense of direction, minotaurs make great navigators. Some sages believe minotaurs were first created by the Lady of Pain to patrol the magical mazes that she uses to trap her foes.\n",
+    "description": "Powerful horned humanoids with an uncanny sense of direction and relentless charge.",
     "type": "Folder",
     "children": [
       {
@@ -16377,7 +16377,7 @@
     "tags": [
       "species"
     ],
-    "description": "Orcs trace their creation to Gruumsh, who equipped his children with gifts to help them wander great plains, vast caverns, and churning seas. Even when they turn their devotion to other gods, orcs retain Gruumsh's gifts: endurance, determination, and the ability to see in darkness.\n",
+    "description": "Strong, driven warriors endowed with Gruumsh's endurance, unyielding grit, and darkvision.",
     "type": "Folder",
     "children": [
       {
@@ -16425,7 +16425,7 @@
     "tags": [
       "species"
     ],
-    "description": "Originating in the Feywild—a realm of pure emotion-satyrs thrive on the energy of merriment. They resemble elves but have goatlike legs, cloven hooves, and ram or goat horns. The magic of the fey realm has given them an innate ability to perform, to delight, and to resist magical intrusion. While they're usually found in the Feywild, satyrs do wander to other planes of existence, most often to the Material Plane. There they seek to bring a bit of their home plane's splendor to other worlds.\n",
+    "description": "Fey revelers with goatlike legs whose music and magic thrive on unbridled joy.",
     "type": "Folder",
     "children": [
       {
@@ -16575,7 +16575,7 @@
     "tags": [
       "species"
     ],
-    "description": "Tieflings are either born in the Lower Planes or have fiendish ancestors who originated there. A tiefling is linked by blood to a devil, a demon, or some other Fiend. This connection to the Lower Planes is the tiefling's fiendish legacy, which comes with the promise of power yet has no effect on the tiefling's moral outlook.\n",
+    "description": "Mortals carrying a fiendish heritage that sparks supernatural power and planar resistance.",
     "type": "Folder",
     "children": [
       {
@@ -16614,7 +16614,7 @@
     "tags": [
       "species"
     ],
-    "description": "Originally from the Elemental Plane of Water, many tritons entered the Material Plane centuries ago in response to the growing threat of evil elementals. Those tritons spread across the worlds' oceans, protecting the surface from terrors in the deep. Over time, triton have extended their stewardship over the sea floor to the ocean's surface.\n",
+    "description": "Aquatic guardians from the Plane of Water who defend both ocean depths and surface shores.",
     "type": "Folder",
     "children": [
       {

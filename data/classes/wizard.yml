@@ -1,7 +1,6 @@
 id: wizard
 name: Wizard
-description: |
-  Wizards are defined by their exhaustive study of magic's inner workings. They cast spells of explosive fire, arcing lightning, subtle deception, and spectacular transformations. Their magic conjures monsters from other planes of existence, glimpses the future, or forms protective barriers. Their mightiest spells change one substance into another, call meteors from the sky, or open portals to other worlds.
+description: 'Scholarly mages who master the arcane arts through intense study and spellbooks.'
 tags:
   - class
 type: Folder

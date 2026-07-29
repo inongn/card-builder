@@ -1,7 +1,6 @@
 id: warlock
 name: Warlock
-description: |
-  Warlocks quest for knowledge that lies hidden in the fabric of the multiverse. They often begin their search for magical power by delving into tomes of forbidden lore, dabbling in invocations meant to attract the power of extraplanar beings, or seeking places of power where the influence of these beings can be felt. 
+description: 'Seekers of arcane power bound by pacts to enigmatic otherworldly patrons.'
 tags:
   - class
 type: Folder

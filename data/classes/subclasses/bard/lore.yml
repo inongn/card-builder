@@ -1,7 +1,6 @@
 id: lore
 name: College of Lore
-description: |
-  Bards of the College of Lore collect spells and secrets from diverse sources, such as scholarly tomes, mystical rites, and peasant tales.
+description: 'Collect spells and secrets from diverse sources, uncovering ancient knowledge and mystical rites.'
 type: Folder
 tags:
   - bardSubclass
