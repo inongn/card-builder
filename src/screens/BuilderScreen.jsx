@@ -1250,6 +1250,26 @@ export const BuilderScreen = ({
         }
     };
 
+    const handlePreviousClick = () => {
+        if (!displaySlotItem || items.length === 0) return;
+
+        const currentIndex = items.findIndex(item => isSameSlotItem(item, displaySlotItem));
+
+        let prevItem = null;
+        if (currentIndex > 0) {
+            prevItem = items[currentIndex - 1];
+        } else {
+            prevItem = items[items.length - 1];
+        }
+
+        if (prevItem) {
+            if (prevItem.category !== selectedCategory) {
+                setSelectedCategory(prevItem.category);
+            }
+            setSelectedSlotItem(prevItem);
+        }
+    };
+
     const nextButtonLabel = React.useMemo(() => {
         if (isComplete) {
             return isMobileOverlayActive ? "Review" : "Save";
@@ -2032,21 +2052,31 @@ export const BuilderScreen = ({
             </div>
 
             {isMobile && (isMobileOverlayActive || isComplete) && (
-                <mdui-fab
-                    key={nextButtonLabel}
-                    extended
-                    icon={isComplete
-                        ? (isMobileOverlayActive ? "visibility" : "save")
-                        : (isCurrentSelectionFilled ? "arrow_forward" : "check")
-                    }
-                    disabled={isMobileOverlayActive && (!isCurrentSelectionFilled && !isComplete) ? true : undefined}
-                    onClick={isMobileOverlayActive ? handleNextOrSaveClick : onSave}
-                    className="desktop-hidden builder-mobile-fab"
-                >
-                    {nextButtonLabel}
-                </mdui-fab>
-            )
-            }
+                <div className="desktop-hidden builder-mobile-fab-container">
+                    {isMobileOverlayActive && (
+                        <mdui-fab
+                            icon="arrow_back"
+                            onClick={handlePreviousClick}
+                            className="builder-mobile-fab-prev"
+                        >
+                            Previous
+                        </mdui-fab>
+                    )}
+                    <mdui-fab
+                        key={nextButtonLabel}
+                        extended
+                        icon={isComplete
+                            ? (isMobileOverlayActive ? "visibility" : "save")
+                            : (isCurrentSelectionFilled ? "arrow_forward" : "check")
+                        }
+                        disabled={isMobileOverlayActive && (!isCurrentSelectionFilled && !isComplete) ? true : undefined}
+                        onClick={isMobileOverlayActive ? handleNextOrSaveClick : onSave}
+                        className="builder-mobile-fab"
+                    >
+                        {nextButtonLabel}
+                    </mdui-fab>
+                </div>
+            )}
         </div >
     );
 };

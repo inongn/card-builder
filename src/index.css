@@ -2042,12 +2042,28 @@ mdui-list-item::part(description) {
     display: none !important;
   }
 
-  .dashboard-fab,
-  .builder-mobile-fab {
+  .dashboard-fab {
     position: fixed;
     bottom: 24px;
     right: 24px;
     z-index: 1000;
+  }
+
+  .builder-mobile-fab-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    left: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--gap-sm, 12px);
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .builder-mobile-fab-container mdui-fab {
+    pointer-events: auto;
   }
 
   .builder-content,
