@@ -2693,9 +2693,9 @@ mdui-list-item[active] {
   gap: 3px;
   padding: 1px 5px;
   border-radius: var(--mdui-shape-corner-extra-small, 4px);
-  background-color: rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.1);
+  background-color: rgba(var(--mdui-color-primary), 0.1);
   color: rgb(var(--mdui-color-primary));
-  border: 1px dashed rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.35);
+  border: 1px dashed rgba(var(--mdui-color-primary), 0.35);
   cursor: pointer;
   transition: all 150ms ease;
   font-weight: bold;
@@ -2703,7 +2703,7 @@ mdui-list-item[active] {
 }
 
 .dice-roller:hover {
-  background-color: rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.22);
+  background-color: rgba(var(--mdui-color-primary), 0.22);
   border-color: rgb(var(--mdui-color-primary));
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -2743,7 +2743,7 @@ mdui-list-item[active] {
 .hp-input:focus {
   border-bottom-style: solid;
   border-bottom-color: rgb(var(--mdui-color-primary));
-  background-color: rgba(var(--mdui-color-primary-rgb, 176, 0, 32), 0.08);
+  background-color: rgba(var(--mdui-color-primary), 0.08);
 }
 
 /* Hide numeric spinner arrows on HP input */
