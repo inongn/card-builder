@@ -7,11 +7,11 @@ children:
   - type: Reference
     target: [charmPerson, disguiseSelf, invisibility, passWithoutTrace]
   - type: Reference
-    condition: meta.level >= 5
+    condition: $(meta.level >= 5)
     target: [blink, dispelMagic]
   - type: Reference
-    condition: meta.level >= 7
+    condition: $(meta.level >= 7)
     target: [dimensionDoor, polymorph]
   - type: Reference
-    condition: meta.level >= 9
+    condition: $(meta.level >= 9)
     target: [dominatePerson, modifyMemory]

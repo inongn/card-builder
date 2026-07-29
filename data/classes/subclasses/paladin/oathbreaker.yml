@@ -15,16 +15,16 @@ children:
   - type: Reference
     target: [hellishRebuke, witchBolt]
   - type: Reference
-    condition: meta.level >= 5
+    condition: $(meta.level >= 5)
     target: [crownOfMadness, darkness]
   - type: Reference
-    condition: meta.level >= 9
+    condition: $(meta.level >= 9)
     target: [fear, summonUndead]
   - type: Reference
-    condition: meta.level >= 13
+    condition: $(meta.level >= 13)
     target: [blight, phantasmalKiller]
   - type: Reference
-    condition: meta.level >= 17
+    condition: $(meta.level >= 17)
     target: [contagion, steelWindStrike]
 
   # Level 3: Conjure Undead

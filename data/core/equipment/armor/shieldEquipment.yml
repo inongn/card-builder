@@ -7,3 +7,7 @@ children:
     target: attributes.ac
     operation: add
     value: 2
+  - type: Effect
+    target: attributes.shieldEquipped
+    operation: set
+    value: true

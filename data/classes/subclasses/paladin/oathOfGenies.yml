@@ -15,16 +15,16 @@ children:
   - type: Reference
     target: [chromaticOrb, elementalism, thunderousSmite]
   - type: Reference
-    condition: meta.level >= 5
+    condition: $(meta.level >= 5)
     target: [mirrorImage, phantasmalForce]
   - type: Reference
-    condition: meta.level >= 9
+    condition: $(meta.level >= 9)
     target: [fly, gaseousForm]
   - type: Reference
-    condition: meta.level >= 13
+    condition: $(meta.level >= 13)
     target: [conjureMinorElementals, summonElemental]
   - type: Reference
-    condition: meta.level >= 17
+    condition: $(meta.level >= 17)
     target: [banishingSmite, contactOtherPlane]
 
   # Level 3: Elemental Smite

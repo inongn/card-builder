@@ -34,6 +34,13 @@ children:
     type: Attribute
     value: $(progression(6,6,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
 
+  - id: martialArtsReplacementUnarmed
+    type: Effect
+    target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))"
+    condition: $(meta.level >= 1)
+    
   - id: martialArtsReplacementd4
     type: Effect
     target: activities[tags=melee and tags=weaponAttack].description["1d4"]

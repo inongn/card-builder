@@ -15,17 +15,9 @@ children:
   - type: Reference
     target: [iceKnife]
   - type: Reference
-    condition: meta.level >= 5
+    condition: $(meta.level >= 5)
     target: [holdPerson]
-  - type: Reference
-    condition: meta.level >= 9
-    target: [removeCurse]
-  - type: Reference
-    condition: meta.level >= 13
-    target: [iceStorm]
-  - type: Reference
-    condition: meta.level >= 17
-    target: [coneOfCold]
+
 
   # Level 3: Frigid Explorer
   - id: bitingCold

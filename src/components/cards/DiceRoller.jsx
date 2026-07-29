@@ -26,7 +26,7 @@ export const DiceRoller = ({ formula, label, children, interactive = true, showI
             }}
         >
             <span className="dice-roller-text">{children || formula}</span>
-            {showIcon && <mdui-icon name="casino" class="icon-small dice-icon"></mdui-icon>}
+            {showIcon && <mdui-icon name="casino" class="icon-xsmall dice-icon"></mdui-icon>}
         </span>
     );
 };

@@ -7,11 +7,11 @@ children:
   - type: Reference
     target: [cureWounds, bless, lesserRestoration, spiritualWeapon]
   - type: Reference
-    condition: meta.level >= 5
+    condition: $(meta.level >= 5)
     target: [beaconOfHope, revivify]
   - type: Reference
-    condition: meta.level >= 7
+    condition: $(meta.level >= 7)
     target: [deathWard, guardianOfFaith]
   - type: Reference
-    condition: meta.level >= 9
+    condition: $(meta.level >= 9)
     target: [massCureWounds, raiseDead]

@@ -156,6 +156,9 @@ mdui-top-app-bar {}
   font-size: 1.1rem !important;
 }
 
+.icon-xsmall {
+  font-size: .9rem !important;
+}
 
 .icon-large {
   font-size: 4rem;
@@ -460,37 +463,6 @@ blockquote {
   background-color: rgb(var(--mdui-color-on-secondary-container));
 }
 
-/* Material Ink Ripple Effect on Click */
-.pseudo-card::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  padding-top: 100%;
-  border-radius: 50%;
-  background-color: rgba(var(--mdui-color-on-surface), 0.16);
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.pseudo-card:active::after {
-  animation: pseudo-card-ripple 400ms ease-out;
-}
-
-@keyframes pseudo-card-ripple {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.35;
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(2.5);
-    opacity: 0;
-  }
-}
 
 /* Card header: name + action meta */
 .card-header {
@@ -2785,7 +2757,6 @@ mdui-list-item.card-vertical-item::part(container) {
 
 /* Dice Roller Clickable Element */
 .dice-roller {
-  display: inline-flex;
   align-items: center;
   gap: 3px;
   padding: 0px 2px;
@@ -2797,6 +2768,12 @@ mdui-list-item.card-vertical-item::part(container) {
   transition: all 150ms ease;
   font-weight: bold;
   user-select: none;
+  display: inline-flex;
+  /* Ensures align-items and gap work reliably */
+
+  /* Shave off height in the line layout */
+  margin-top: -4px;
+  margin-bottom: -4px;
 }
 
 .dice-roller:hover {

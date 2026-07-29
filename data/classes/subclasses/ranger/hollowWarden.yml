@@ -15,16 +15,16 @@ children:
   - type: Reference
     target: [wrathfulSmite]
   - type: Reference
-    condition: meta.level >= 5
+    condition: $(meta.level >= 5)    
     target: [alterSelf]
   - type: Reference
-    condition: meta.level >= 9
+    condition: $(meta.level >= 9)
     target: [phantomSteed]
   - type: Reference
-    condition: meta.level >= 13
+    condition: $(meta.level >= 13)
     target: [dominateBeast]
   - type: Reference
-    condition: meta.level >= 17
+    condition: $(meta.level >= 17)
     target: [steelWindStrike]
 
   # Level 3: Wrath of the Wild

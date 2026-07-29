@@ -15,13 +15,13 @@ children:
   - type: Reference
     target: [bane, blindnessDeafness, phantasmalForce, rayOfSickness]
   - type: Reference
-    condition: meta.level >= 5
+    condition: $(meta.level >= 5)
     target: [speakWithDead, summonUndead]
   - type: Reference
-    condition: meta.level >= 7
+    condition: $(meta.level >= 7)
     target: [greaterInvisibility, phantasmalKiller]
   - type: Reference
-    condition: meta.level >= 9
+    condition: $(meta.level >= 9)
     target: [antilifeShell, cloudkill]
 
   # Level 3: Form of Dread

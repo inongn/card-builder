@@ -31,11 +31,10 @@ export const STEP_DEFINITIONS = {
 
     // Arsenal
     spellcasting: { title: 'Spellcasting', category: 'arsenal', terms: ['cantrip', 'spell'] },
-    equipment: { title: 'Equipment', category: 'arsenal', terms: ['armor', 'weapon', 'armament', 'hand'] },
+    equipment: { title: 'Equipment', category: 'arsenal', terms: ['armor', 'weapon', 'armament'] },
     companion: { title: 'Companion', category: 'arsenal', terms: ['companion', 'primalcompanion'] },
     steed: { title: 'Steed', category: 'arsenal', terms: ['steed'] },
     familiar: { title: 'Familiar', category: 'arsenal', terms: ['familiar'] }
-
 };
 
 export const getCategoryForStep = (stepKey) => {
@@ -85,12 +84,34 @@ export const MATCHING_ORDER = [
     'stats'
 ];
 
+/**
+ * Safely evaluates whether a given node's condition evaluates to true,
+ * mirroring the exact truthiness logic used in the CharacterBuilder.
+ */
+export const isNodeConditionMet = (node, char) => {
+    if (!node) return false;
+
+    // Respect the visibility flag calculated by the CharacterBuilder engine
+    if (node.visible === false) return false;
+
+    // If it has a condition and character data is available, evaluate strictly
+    if (node.condition && char) {
+        try {
+            const evaluator = new ExpressionEvaluator(char);
+            const result = evaluator.evaluate(node.condition);
+            // Strict truthiness: treat null, false, undefined, and unresolvable string expressions as false
+            return !!result && !(typeof result === 'string' && result.includes('$('));
+        } catch (e) {
+            return false;
+        }
+    }
+
+    return true;
+};
+
 export const collectRenderableNodes = (node, char, path = [], logicalPath = []) => {
     const nodes = [];
-    if (node.condition) {
-        const evaluator = new ExpressionEvaluator(char);
-        if (!evaluator.evaluate(node.condition)) return nodes;
-    }
+    if (!isNodeConditionMet(node, char)) return nodes;
 
     const step = { id: node.id || node.name, slotIndex: node.slotIndex };
     const currentLogicalPath = [...logicalPath, step];
@@ -438,18 +459,22 @@ export const matchesSlotTagExpression = (opt, slotNode) => {
     });
 };
 
-export const getSlotAllowedMap = (slotItems, allCategoryOptionsMap, handleGetSlotOptions) => {
+export const getSlotAllowedMap = (slotItems, allCategoryOptionsMap, handleGetSlotOptions, char) => {
     const slotAllowedMap = new Map();
 
     slotItems.forEach(item => {
         const allowed = new Set();
-        const opts = handleGetSlotOptions ? handleGetSlotOptions(item.node) : [];
+        let opts = handleGetSlotOptions ? handleGetSlotOptions(item.node) : [];
+        if (opts) {
+            opts = opts.filter(o => isNodeConditionMet(o, char));
+        }
+
         (opts || []).forEach(o => allowed.add(o.id));
         if (item.node.filled?.id) allowed.add(item.node.filled.id);
 
         for (const [optId, entry] of allCategoryOptionsMap.entries()) {
             if (!allowed.has(optId)) {
-                if (matchesSlotTagExpression(entry.option, item.node)) {
+                if (isNodeConditionMet(entry.option, char) && matchesSlotTagExpression(entry.option, item.node)) {
                     allowed.add(optId);
                 }
             }
@@ -542,7 +567,7 @@ export const isValidHardcodedOption = (node, categoryKey) => {
     const target = String(node.target || '').toLowerCase();
 
     // Ignore generic features/slots/resources by name/id
-    if (nodeId.includes('slot') || nodeId.includes('spellcasting') || nodeId.includes('hitdie') || nodeId.includes('classname')) {
+    if (nodeId.includes('slot') || nodeId.includes('spellcasting') || nodeId.includes('hitdie') || nodeId.includes('classname') || nodeId.includes('weaponproficiency') || nodeId.includes('training') || nodeId.includes('breathweapon') || nodeId.includes('mastery')) {
         return false;
     }
 
@@ -588,10 +613,8 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
     const filledSlotPropertyIds = new Set();
     const collectFilledSlotIds = (node) => {
         if (!node) return;
-        if (node.condition) {
-            const evaluator = new ExpressionEvaluator(char);
-            if (!evaluator.evaluate(node.condition)) return;
-        }
+        if (!isNodeConditionMet(node, char)) return;
+
         if (node.type === 'Slot' && node.filled?.id) {
             filledSlotPropertyIds.add(node.filled.id);
         }
@@ -606,10 +629,7 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
 
     const traverse = (node, path = []) => {
         if (!node) return;
-        if (node.condition) {
-            const evaluator = new ExpressionEvaluator(char);
-            if (!evaluator.evaluate(node.condition)) return;
-        }
+        if (!isNodeConditionMet(node, char)) return;
 
         const nodeId = node.id || node.name;
         if (nodeId && !filledSlotPropertyIds.has(nodeId) && !seenIds.has(nodeId)) {
@@ -631,7 +651,7 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
     return hardcodedNodes;
 };
 
-export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, onGetProperty, hardcodedNodes = []) => {
+export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, onGetProperty, hardcodedNodes = [], char) => {
     if ((!slotItems || slotItems.length === 0) && (!hardcodedNodes || hardcodedNodes.length === 0)) return [];
 
     const optMap = new Map();
@@ -641,6 +661,9 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
         const slotNode = slotItem.node;
         let opts = handleGetSlotOptions ? handleGetSlotOptions(slotNode) : [];
         if (!opts) opts = [];
+
+        // Filter out choices whose reference/node conditions evaluate to false
+        opts = opts.filter(opt => isNodeConditionMet(opt, char));
 
         const currentFilled = slotNode.filled;
         if (currentFilled && !opts.some(o => o.id === currentFilled.id)) {
@@ -659,6 +682,9 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
                 const fetched = onGetProperty(opt.id);
                 if (fetched) fullOpt = { ...opt, ...fetched };
             }
+
+            if (!isNodeConditionMet(fullOpt, char)) return;
+
             if (!optMap.has(opt.id)) {
                 optMap.set(opt.id, {
                     option: { ...fullOpt, displayName: fullOpt.displayName || fullOpt.name },
@@ -680,6 +706,8 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
     });
 
     (hardcodedNodes || []).forEach(hNode => {
+        if (!isNodeConditionMet(hNode, char)) return;
+
         const hId = hNode.id || hNode.name;
         if (!hId) return;
 
@@ -690,6 +718,8 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
             const fetched = onGetProperty(hId);
             if (fetched) fullOpt = { ...hNode, ...fetched };
         }
+
+        if (!isNodeConditionMet(fullOpt, char)) return;
 
         if (!optMap.has(hId)) {
             optMap.set(hId, {
@@ -705,7 +735,7 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
         }
     });
 
-    const slotAllowedMap = getSlotAllowedMap(slotItems || [], optMap, handleGetSlotOptions);
+    const slotAllowedMap = getSlotAllowedMap(slotItems || [], optMap, handleGetSlotOptions, char);
     const currentChoiceIds = (slotItems || [])
         .map(s => s.node.filled?.id)
         .filter(id => Boolean(id) && !hardcodedOptionIds.has(id));
@@ -757,4 +787,3 @@ export const findOptimalSlotForOption = (optionId, slotItems, handleGetSlotOptio
 
     return candidateSlots[0].path;
 };
-
