@@ -27,8 +27,9 @@ global.console = console;
 
 const { PropertyLibrary } = await import('../src/engine/PropertyLibrary.js');
 const { CharacterBuilder } = await import('../src/engine/CharacterBuilder.js');
+const { ExpressionEvaluator } = await import('../src/engine/ExpressionEvaluator.js');
 
-const { collectRenderableNodes } = await import('../src/utils/builderUtils.js');
+const { collectRenderableNodes, matchesSlotTagExpression, isNodeConditionMet } = await import('../src/utils/builderUtils.js');
 
 // ─── Load portraits metadata ──────────────────────────────────────────────────
 
@@ -81,20 +82,11 @@ const globallyUsedIds = new Set();
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /** Find all unfilled Slot nodes in the tree, returned as {node, path[]} */
-function findUnfilledSlots(node, path = []) {
-    const results = [];
-    if (!node || node.visible === false) return results;
-    if (!node.children) return results;
-    for (const child of node.children) {
-        if (!child || child.visible === false) continue;
-        const step = { id: child.id, slotIndex: child.slotIndex };
-        const childPath = [...path, step];
-        if (child.type === 'Slot' && !child.filled) {
-            results.push({ node: child, path: childPath });
-        }
-        results.push(...findUnfilledSlots(child, childPath));
-    }
-    return results;
+function findUnfilledSlots(builder) {
+    const nodes = collectRenderableNodes(builder.propertyTree, builder.characterData);
+    return nodes
+        .filter(item => item.type === 'Slot' && !item.node.filled)
+        .map(item => ({ node: item.node, path: item.logicalPath.slice(1) }));
 }
 
 /** Navigate the tree by logical path, returning the node (or null) */
@@ -124,11 +116,24 @@ function fillSlotByPath(builder, logicalPath, propertyId) {
  */
 function getOptions(builder, slotNode) {
     if (!slotNode?.target) return [];
-    try {
-        return library.findByTags(slotNode.target);
-    } catch {
-        return [];
+    let targetExpr = slotNode.target;
+    if (typeof targetExpr === 'string' && targetExpr.includes('$')) {
+        try {
+            const evaluator = new ExpressionEvaluator(builder.characterData);
+            targetExpr = evaluator.evaluate(targetExpr, slotNode.variables || {});
+        } catch {
+            targetExpr = targetExpr.replace(/\$\([^)]+\)/g, '');
+        }
     }
+
+    const dummyNode = { ...slotNode, target: targetExpr };
+    const opts = [];
+    for (const prop of library.properties.values()) {
+        if (matchesSlotTagExpression(prop, dummyNode)) {
+            opts.push(prop);
+        }
+    }
+    return opts.filter(opt => isNodeConditionMet(opt, builder.characterData));
 }
 
 function pickOption(options, existingIds, prefer = []) {
@@ -194,7 +199,7 @@ function collectActivePropertyIds(node, results = new Set()) {
 function autoFill(builder, preferences = {}, maxPasses = 20) {
     let totalFilled = 0;
     for (let pass = 0; pass < maxPasses; pass++) {
-        const slots = findUnfilledSlots(builder.propertyTree);
+        const slots = findUnfilledSlots(builder);
         if (slots.length === 0) break;
 
         let filledThisPass = 0;
@@ -214,7 +219,10 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
 
             // Dynamic theme/synergy additions to preferList
             const classKey = builder.characterData.meta?.class?.toLowerCase() || '';
-            if (node.target && (node.target.includes('cantrip') || node.target.includes('spell') || node.target.includes('Spell'))) {
+            const targetLower = String(node.target || '').toLowerCase();
+            const idLower = String(node.id || '').toLowerCase();
+
+            if (targetLower.includes('cantrip') || targetLower.includes('spell')) {
                 const classSpells = {
                     barbarian: [],
                     bard: ['viciousMockery', 'prestidigitation', 'healingWord', 'cureWounds', 'invisibility', 'shatter', 'suggestion', 'disguiseSelf', 'thunderwave', 'detectMagic', 'holdPerson', 'silence', 'mirrorImage', 'compulsion'],
@@ -229,7 +237,11 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
                 };
                 const spells = classSpells[classKey] || [];
                 preferList = [...preferList, ...spells];
-            } else if (node.target && (node.target.includes('proficiency') || node.target.includes('Proficiency') || node.target.includes('skill') || node.target.includes('Skill'))) {
+            } else if (targetLower.includes('expertise') || idLower.includes('expertise')) {
+                preferList = [...preferList, 'athleticsExpertise', 'stealthExpertise', 'perceptionExpertise', 'insightExpertise', 'acrobaticsExpertise', 'survivalExpertise', 'performanceExpertise', 'deceptionExpertise', 'historyExpertise', 'investigationExpertise', 'natureExpertise', 'religionExpertise', 'sleightOfHandExpertise', 'arcanaExpertise', 'medicineExpertise', 'persuasionExpertise', 'intimidationExpertise', 'animalHandlingExpertise'];
+            } else if (targetLower.includes('save')) {
+                preferList = [...preferList, 'strSave', 'dexSave', 'conSave', 'intSave', 'wisSave', 'chaSave'];
+            } else if (targetLower.includes('proficiency') || targetLower.includes('skill')) {
                 const classSkills = {
                     barbarian: ['athleticsProficiency', 'intimidationProficiency', 'survivalProficiency', 'perceptionProficiency'],
                     bard: ['performanceProficiency', 'persuasionProficiency', 'deceptionProficiency', 'insightProficiency', 'acrobaticsProficiency'],
@@ -246,7 +258,11 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
                     psion: ['arcanaProficiency', 'historyProficiency', 'insightProficiency', 'investigationProficiency', 'perceptionProficiency', 'persuasionProficiency']
                 };
                 const skills = classSkills[classKey] || [];
-                preferList = [...preferList, ...skills];
+                const allSkills = ['athleticsProficiency', 'acrobaticsProficiency', 'sleightOfHandProficiency', 'stealthProficiency', 'arcanaProficiency', 'historyProficiency', 'investigationProficiency', 'natureProficiency', 'religionProficiency', 'animalHandlingProficiency', 'insightProficiency', 'medicineProficiency', 'perceptionProficiency', 'survivalProficiency', 'deceptionProficiency', 'intimidationProficiency', 'performanceProficiency', 'persuasionProficiency'];
+                preferList = [...preferList, ...skills, ...allSkills];
+            } else if (targetLower.includes('simple') || targetLower.includes('martial') || targetLower.includes('shield') || targetLower.includes('equipment') || targetLower.includes('armament')) {
+                const allWeaponsArmor = ['greatsword', 'greataxe', 'longsword', 'shortsword', 'dagger', 'shieldEquipment', 'javelin', 'lightCrossbow', 'shortbow', 'mace', 'spear', 'warhammer', 'handaxe', 'quarterstaff', 'flail', 'glaive', 'halberd', 'morningstar', 'pike', 'rapier', 'scimitar', 'trident', 'warPick', 'whip', 'blowgun', 'heavyCrossbow', 'handCrossbow', 'net', 'sling', 'club', 'greatclub', 'lightHammer', 'sickle', 'unarmored', 'leatherArmor', 'studdedLeather', 'hideArmor', 'chainShirt', 'breastplate', 'halfPlate', 'ringMail', 'chainMail', 'splintArmor', 'plateArmor'];
+                preferList = [...preferList, ...allWeaponsArmor];
             }
 
             const chosen = pickOption(options, existingIds, preferList);
@@ -446,7 +462,7 @@ const CHARACTERS = [
         speciesId: 'orc', classId: 'cleric', subcId: 'knowledgeDomain',
         str: 0, dex: 2, con: 3, int: 5, wis: 7, cha: 2,
         prefs: {
-            clericSkillProficiencies: ['historyProficiency', 'arcanaProficiency'],
+            clericSkillProficiencies: ['medicineProficiency', 'insightProficiency'],
             clericSubclass: ['knowledgeDomain'],
         }
     },
@@ -645,11 +661,11 @@ const CHARACTERS = [
         name: 'Yuen Arcane',
         class: 'Monk', sub: 'Warrior of the Mystic Arts',
         species: 'Human', background: 'sage',
-        speciesId: 'human', classId: 'monk', subcId: 'mysticArts',
+        speciesId: 'human', classId: 'monk', subcId: 'mystic',
         str: 3, dex: 6, con: 3, int: 5, wis: 4, cha: 0,
         prefs: {
             monkSkillProficiencies: ['arcanaProficiency', 'acrobaticsProficiency'],
-            monkSubclass: ['mysticArts'],
+            monkSubclass: ['mystic'],
         }
     },
     {
@@ -1234,7 +1250,10 @@ const CHARACTERS = [
         species: 'Human', background: 'soldier',
         speciesId: 'human', classId: 'artificer', subcId: 'battleSmith',
         str: 3, dex: 3, con: 5, int: 8, wis: 2, cha: 0,
-        prefs: { artificerSubclass: ['battleSmith'] }
+        prefs: {
+            artificerSubclass: ['battleSmith'],
+            armamentSlot: ['greatsword', 'shieldEquipment', 'javelin', 'mace', 'spear']
+        }
     }
 ];
 
@@ -1731,7 +1750,7 @@ async function buildCharacter(def) {
     ];
 
     for (const { slotId, propId } of baseSlots) {
-        const slots = findUnfilledSlots(builder.propertyTree);
+        const slots = findUnfilledSlots(builder);
         const target = slots.find(s => s.node.id === slotId);
         if (target) {
             fillSlotByPath(builder, target.path, propId);
