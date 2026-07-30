@@ -427,29 +427,6 @@ export class CharacterBuilder {
         return state;
     }
 
-    findChildByStep(current, step) {
-        if (!current || !current.children) return null;
-
-        // 1. Direct child match
-        let child = current.children.find(c =>
-            c.id === step.id &&
-            (step.slotIndex === undefined || c.slotIndex === step.slotIndex)
-        );
-        if (child) return child;
-
-        // 2. Look inside children if current is a container/slot (e.g. class -> artificer -> artificerSpells)
-        for (const c of current.children) {
-            if (c.children && Array.isArray(c.children)) {
-                child = c.children.find(sub =>
-                    sub.id === step.id &&
-                    (step.slotIndex === undefined || sub.slotIndex === step.slotIndex)
-                );
-                if (child) return child;
-            }
-        }
-        return null;
-    }
-
     /**
      * Reapply selections and UI state to a newly built tree
      */
@@ -467,7 +444,7 @@ export class CharacterBuilder {
                     found = false;
                     break;
                 }
-                const child = this.findChildByStep(current, step);
+                const child = current.children.find(c => c.id === step.id && c.slotIndex === step.slotIndex);
                 if (!child) {
                     found = false;
                     break;
@@ -512,10 +489,11 @@ export class CharacterBuilder {
             let current = root;
             for (const step of path) {
                 if (!current.children) break;
-                const child = this.findChildByStep(current, step);
-                if (child) current = child;
+                const child = current.children.find(c => c.id === step.id && c.slotIndex === step.slotIndex);
+                if (!child) break;
+                current = child;
             }
-            if (current) current.expanded = true;
+            current.expanded = true;
         });
     }
 
@@ -564,7 +542,10 @@ export class CharacterBuilder {
                 }
 
                 // Find child by name and slotIndex
-                const child = this.findChildByStep(current, step);
+                const child = current.children.find(c =>
+                    c.id === step.id &&
+                    c.slotIndex === step.slotIndex
+                );
 
                 if (!child) {
                     found = false;
@@ -741,7 +722,7 @@ export class CharacterBuilder {
                     found = false;
                     break;
                 }
-                const child = this.findChildByStep(current, step);
+                const child = current.children.find(c => c.id === step.id && c.slotIndex === step.slotIndex);
                 if (!child) {
                     found = false;
                     break;

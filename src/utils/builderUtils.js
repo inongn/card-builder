@@ -441,54 +441,22 @@ export const matchesSlotTagExpression = (opt, slotNode) => {
     const tagSource = slotNode.target || slotNode.tags;
     if (!tagSource) return true;
 
-    const optTags = new Set();
-    (opt.tags || []).forEach(t => {
-        const str = String(t).toLowerCase();
-        optTags.add(str);
-        optTags.add(str.replace(/proficiency$/i, ''));
-        optTags.add(str.replace(/expertise$/i, ''));
-    });
-    if (opt.id) {
-        const idStr = String(opt.id).toLowerCase();
-        optTags.add(idStr);
-        optTags.add(idStr.replace(/proficiency$/i, ''));
-        optTags.add(idStr.replace(/expertise$/i, ''));
-    }
+    const optTags = new Set((opt.tags || []).map(t => String(t).toLowerCase()));
+    if (opt.id) optTags.add(String(opt.id).toLowerCase());
 
-    const expr = (Array.isArray(tagSource) ? tagSource.join(' OR ') : String(tagSource)).replace(/,/g, ' OR ').toLowerCase();
+    const expr = (Array.isArray(tagSource) ? tagSource.join(' OR ') : String(tagSource)).toLowerCase();
+
     const orGroups = expr.split(/\s+or\s+/);
-
     return orGroups.some(group => {
-        let cleaned = group.trim().replace(/^\(|\)$/g, '');
-        cleaned = cleaned.replace(/^(id|name)\s*==\s*/g, '').replace(/['"]/g, '');
-
-        const rawTokens = cleaned.split(/\s+/).filter(t => t && t !== 'and');
-        if (rawTokens.length === 0) return true;
-
-        let negated = false;
-        for (const token of rawTokens) {
-            let t = token.replace(/^\(|\)$/g, '').trim();
-            if (!t) continue;
-
-            if (t === 'not') {
-                negated = true;
-                continue;
+        const andTokens = group.split(/\s+and\s+/).map(t => t.trim().replace(/^\(|\)$/g, ''));
+        return andTokens.every(token => {
+            if (!token) return true;
+            if (token.startsWith('not ')) {
+                const notToken = token.slice(4).trim();
+                return !optTags.has(notToken);
             }
-
-            if (t.startsWith('not ')) {
-                t = t.slice(4).trim();
-                negated = true;
-            }
-
-            const hasTag = optTags.has(t) || optTags.has(t + 'proficiency') || optTags.has(t + 'expertise');
-            if (negated) {
-                if (hasTag) return false;
-                negated = false;
-            } else {
-                if (!hasTag) return false;
-            }
-        }
-        return true;
+            return optTags.has(token);
+        });
     });
 };
 

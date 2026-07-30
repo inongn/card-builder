@@ -183,20 +183,9 @@ export class ExpressionEvaluator {
     evaluate(expr, scope = {}) {
         if (typeof expr !== 'string') return expr;
 
-        const evaluatedScope = {};
-        if (scope && typeof scope === 'object') {
-            for (const key in scope) {
-                let val = scope[key];
-                if (typeof val === 'string' && val.includes('$')) {
-                    val = this.evaluate(val);
-                }
-                evaluatedScope[key] = val;
-            }
-        }
-
-        const effectiveScope = (evaluatedScope.maxLevel !== undefined)
-            ? evaluatedScope
-            : { maxLevel: this.getMaxSpellLevel(), ...evaluatedScope };
+        const effectiveScope = (scope && scope.maxLevel !== undefined)
+            ? scope
+            : { maxLevel: this.getMaxSpellLevel(), ...scope };
 
         // Support local.key even without $() wrapper for simplicity
         if (!expr.includes('$')) {
