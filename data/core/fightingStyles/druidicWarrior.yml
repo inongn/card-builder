@@ -1,9 +1,0 @@
-id: druidicWarrior
-name: Druidic Warrior
-type: Folder
-children:
-  - type: Slot
-    name: Druidic Warrior Cantrips
-    id: druidicWarriorCantrips
-    target: cantrip AND druid
-    quantity: 2

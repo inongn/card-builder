@@ -19,7 +19,7 @@ export const STEP_DEFINITIONS = {
     level: { title: 'Level', category: 'class', terms: ['level'] },
     class: { title: 'Class', category: 'class', terms: ['class'] },
     subclass: { title: 'Subclass', category: 'class', terms: ['subclass'] },
-    classOptions: { title: 'Class Options', category: 'class', terms: ['vestigeType', 'classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'land', 'blessed', 'hunter', 'defensive', 'affinity', 'pact', 'aspectOfTheWilds'] },
+    classOptions: { title: 'Class Options', category: 'class', terms: ['vestigeType', 'classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'land', 'armormodel','blessedstrikes', 'huntersPrey', 'defensiveTactics', 'affinity', 'pact', 'aspectOfTheWilds'] },
     feats: { title: 'Feats', category: 'class', terms: ['feat', 'epicboon', 'fightingstyle'] },
 
     // Abilities
@@ -63,6 +63,7 @@ export const isSameSlotItem = (a, b) => {
 
 export const MATCHING_ORDER = [
     'image',
+    'equipment',
     'lineage',
     'spellcasting',
     'feats',
@@ -80,7 +81,6 @@ export const MATCHING_ORDER = [
     'saves',
     'skills',
     'expertise',
-    'equipment',
     'stats'
 ];
 
@@ -567,7 +567,7 @@ export const isValidHardcodedOption = (node, categoryKey) => {
     const target = String(node.target || '').toLowerCase();
 
     // Ignore generic features/slots/resources by name/id
-    if (nodeId.includes('slot') || nodeId.includes('spellcasting') || nodeId.includes('hitdie') || nodeId.includes('classname') || nodeId.includes('weaponproficiency') || nodeId.includes('training') || nodeId.includes('breathweapon') || nodeId.includes('mastery')) {
+    if (nodeId.includes('slot') || nodeId.includes('spellcasting') || nodeId.includes('hitdie') || nodeId.includes('classname') || nodeId.includes('weaponproficiency') || nodeId.includes('training') || nodeId.includes('breathweapon') || nodeId.includes('mastery') || nodeId.includes('unarmed')) {
         return false;
     }
 

@@ -10881,13 +10881,15 @@
         "type": "Effect",
         "target": "attributes.ac",
         "operation": "add",
-        "value": 2
+        "value": 2,
+        "id": "shieldAC"
       },
       {
         "type": "Effect",
         "target": "attributes.shieldEquipped",
         "operation": "set",
-        "value": true
+        "value": true,
+        "id": "shieldFlag"
       }
     ]
   },
@@ -12099,34 +12101,6 @@
         "target": "meta.familiarEnvironment",
         "operation": "set",
         "value": "Water"
-      }
-    ]
-  },
-  {
-    "id": "blessedWarrior",
-    "name": "Blessed Warrior",
-    "type": "Folder",
-    "children": [
-      {
-        "type": "Slot",
-        "name": "Blessed Warrior Cantrips",
-        "id": "blessedWarriorCantrips",
-        "target": "cantrip AND cleric",
-        "quantity": 2
-      }
-    ]
-  },
-  {
-    "id": "druidicWarrior",
-    "name": "Druidic Warrior",
-    "type": "Folder",
-    "children": [
-      {
-        "type": "Slot",
-        "name": "Druidic Warrior Cantrips",
-        "id": "druidicWarriorCantrips",
-        "target": "cantrip AND druid",
-        "quantity": 2
       }
     ]
   },
