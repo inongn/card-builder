@@ -2,7 +2,7 @@ id: shatter
 type: Activity
 name: Shatter
 resource: level2SpellSlot
-tags: [level2Spell, evocation, bard, sorcerer, wizard, saveSpell, damageSpell, thunderDamage]
+tags: [level2Spell, evocation, bard, sorcerer, wizard, saveSpell, damageSpell, thunderDamage, psion]
 time: action
 range: 60 feet
 duration: instantaneous

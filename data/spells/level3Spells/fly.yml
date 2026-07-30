@@ -2,7 +2,7 @@ id: fly
 type: Activity
 name: Fly
 resource: level3SpellSlot
-tags: [level3Spell, transmutation, artificer, sorcerer, warlock, wizard]
+tags: [level3Spell, transmutation, artificer, sorcerer, warlock, wizard, psion]
 time: action
 range: touch
 duration: concentration, up to 10 minutes

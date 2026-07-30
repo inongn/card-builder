@@ -2,7 +2,7 @@ id: polymorph
 type: Activity
 name: Polymorph
 resource: level4SpellSlot
-tags: [level4Spell, transmutation, bard, druid, sorcerer, wizard, saveSpell]
+tags: [level4Spell, transmutation, bard, druid, sorcerer, wizard, saveSpell, psion]
 time: action
 range: 60 feet
 duration: concentration, up to 1 hour

@@ -1,7 +1,7 @@
 id: bladeWard
 type: Activity
 name: Blade Ward
-tags: [abjuration, cantrip, bard, sorcerer, warlock, wizard]
+tags: [abjuration, cantrip, bard, sorcerer, warlock, wizard, psion]
 time: action
 range: self
 duration: concentration, up to 1 minute

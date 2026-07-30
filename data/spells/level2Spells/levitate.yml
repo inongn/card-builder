@@ -2,7 +2,7 @@ id: levitate
 type: Activity
 name: Levitate
 resource: level2SpellSlot
-tags: [level2Spell, transmutation, artificer, sorcerer, wizard, saveSpell]
+tags: [level2Spell, transmutation, artificer, sorcerer, wizard, saveSpell, psion]
 time: action
 range: 60 feet
 duration: concentration, up to 10 minutes

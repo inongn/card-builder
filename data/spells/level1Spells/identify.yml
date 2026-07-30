@@ -2,7 +2,7 @@ id: identify
 type: Activity
 name: Identify
 resource: level1SpellSlot
-tags: [level1Spell, divination, artificer, bard, wizard, ritual]
+tags: [level1Spell, divination, artificer, bard, wizard, ritual, psion]
 time: 1 minute
 range: touch
 duration: instantaneous

@@ -2,7 +2,7 @@ id: dissonantWhispers
 type: Activity
 name: Dissonant Whispers
 resource: level1SpellSlot
-tags: [level1Spell, enchantment, bard, saveSpell, damageSpell, psychicDamage]
+tags: [level1Spell, enchantment, bard, saveSpell, damageSpell, psychicDamage, psion]
 time: action
 range: 60 feet
 duration: instantaneous

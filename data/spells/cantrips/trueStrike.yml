@@ -1,7 +1,7 @@
 id: trueStrike
 type: Activity
 name: True Strike
-tags: [divination, cantrip, artificer, bard, sorcerer, warlock, wizard]
+tags: [divination, cantrip, artificer, bard, sorcerer, warlock, wizard, psion]
 time: action
 range: self
 duration: instantaneous

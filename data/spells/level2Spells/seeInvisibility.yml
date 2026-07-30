@@ -2,7 +2,7 @@ id: seeInvisibility
 type: Activity
 name: See Invisibility
 resource: level2SpellSlot
-tags: [level2Spell, divination, artificer, bard, sorcerer, wizard]
+tags: [level2Spell, divination, artificer, bard, sorcerer, wizard, psion]
 time: action
 range: self
 duration: 1 hour

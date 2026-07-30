@@ -2,7 +2,7 @@ id: comprehendLanguages
 type: Activity
 name: Comprehend Languages
 resource: level1SpellSlot
-tags: [level1Spell, divination, bard, sorcerer, warlock, wizard, ritual]
+tags: [level1Spell, divination, bard, sorcerer, warlock, wizard, ritual, psion]
 time: action
 range: self
 duration: 1 hour

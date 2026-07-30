@@ -2,7 +2,7 @@ id: holdPerson
 type: Activity
 name: Hold Person
 resource: level2SpellSlot
-tags: [level2Spell, enchantment, bard, cleric, druid, sorcerer, warlock, wizard, saveSpell]
+tags: [level2Spell, enchantment, bard, cleric, druid, sorcerer, warlock, wizard, saveSpell, psion]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute

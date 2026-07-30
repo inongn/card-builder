@@ -2,7 +2,7 @@ id: dimensionDoor
 type: Activity
 name: Dimension Door
 resource: level4SpellSlot
-tags: [level4Spell, conjuration, bard, sorcerer, warlock, wizard]
+tags: [level4Spell, conjuration, bard, sorcerer, warlock, wizard, psion]
 time: action
 range: 500 feet
 duration: instantaneous

@@ -1,7 +1,7 @@
 id: minorIllusion
 type: Activity
 name: Minor Illusion
-tags: [illusion, cantrip, bard, sorcerer, warlock, wizard, saveSpell]
+tags: [illusion, cantrip, bard, sorcerer, warlock, wizard, saveSpell, psion]
 time: action
 range: 30 feet
 duration: 1 minute

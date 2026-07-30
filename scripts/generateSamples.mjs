@@ -1087,6 +1087,61 @@ const CHARACTERS = [
         prefs: { wizardSubclass: ['necromancer'] }
     },
 
+    // ─── PSION ────────────────────────────────────────────────────────────────
+
+    {
+        id: 'sample_psion_metamorph',
+        name: 'Xylar Fleshweaver',
+        class: 'Psion', sub: 'Metamorph',
+        species: 'Goliath', background: 'hermit',
+        speciesId: 'goliath', classId: 'psion', subcId: 'metamorph',
+        str: 2, dex: 4, con: 5, int: 8, wis: 2, cha: 0,
+        prefs: {
+            psionSkillProficiencies: ['arcanaProficiency', 'perceptionProficiency'],
+            psionSubclass: ['metamorph'],
+            psionicDiscipline: ['biofeedback', 'sharpenedMind', 'inerrantAim']
+        }
+    },
+    {
+        id: 'sample_psion_psiWarper',
+        name: 'Zephyr Rift',
+        class: 'Psion', sub: 'Psi Warper',
+        species: 'Elf', background: 'wayfarer',
+        speciesId: 'elf', classId: 'psion', subcId: 'psiWarper',
+        str: 0, dex: 5, con: 4, int: 8, wis: 3, cha: 1,
+        prefs: {
+            psionSkillProficiencies: ['arcanaProficiency', 'insightProficiency'],
+            psionSubclass: ['psiWarper'],
+            psionicDiscipline: ['bolsteringPrecognition', 'expandedAwareness', 'psionicGuards']
+        }
+    },
+    {
+        id: 'sample_psion_psykinetic',
+        name: 'Kael Mindforce',
+        class: 'Psion', sub: 'Psykinetic',
+        species: 'Human', background: 'soldier',
+        speciesId: 'human', classId: 'psion', subcId: 'psykinetic',
+        str: 1, dex: 4, con: 5, int: 8, wis: 2, cha: 1,
+        prefs: {
+            psionSkillProficiencies: ['arcanaProficiency', 'athleticsProficiency'],
+            psionSubclass: ['psykinetic'],
+            psionicDiscipline: ['destructiveThoughts', 'psionicBacklash', 'sharpenedMind']
+        }
+    },
+    {
+        id: 'sample_psion_telepath',
+        name: 'Mindra Vane',
+        class: 'Psion', sub: 'Telepath',
+        species: 'Tiefling', background: 'charlatan',
+        speciesId: 'tiefling', classId: 'psion', subcId: 'telepath',
+        str: 0, dex: 3, con: 4, int: 8, wis: 3, cha: 3,
+        prefs: {
+            psionSkillProficiencies: ['insightProficiency', 'persuasionProficiency'],
+            psionSubclass: ['telepath'],
+            psionicDiscipline: ['idInsinuation', 'devilishTongue', 'observantMind']
+        }
+    },
+
     // ─── ARTIFICER ─────────────────────────────────────────────────────────────
 
     {
@@ -1266,6 +1321,12 @@ async function buildCharacter(def) {
         'sample_wizard_evoker': 'spellSniper',
         'sample_wizard_illusionist': 'actor',
 
+        // Psion (4)
+        'sample_psion_metamorph': 'resilient',
+        'sample_psion_psiWarper': 'telekinetic',
+        'sample_psion_psykinetic': 'warCaster',
+        'sample_psion_telepath': 'telepathic',
+
         // Artificer (4)
         'sample_artificer_alchemist': 'keenMind',
         'sample_artificer_artillerist': 'spellSniper',
@@ -1355,6 +1416,12 @@ async function buildCharacter(def) {
         'sample_wizard_diviner': 'observant',
         'sample_wizard_evoker': 'elementalAdept',
         'sample_wizard_illusionist': 'shadowTouched',
+
+        // Psion (4)
+        'sample_psion_metamorph': 'warCaster',
+        'sample_psion_psiWarper': 'speedy',
+        'sample_psion_psykinetic': 'telekinetic',
+        'sample_psion_telepath': 'keenMind',
 
         // Artificer (4)
         'sample_artificer_alchemist': 'alert',
@@ -1468,6 +1535,13 @@ async function buildCharacter(def) {
         armorPref = ['unarmored'];
         if (classId === 'wizard' && subcId === 'bladesinger') {
             weaponPref = ['rapier', 'shortsword', 'dagger'];
+        } else {
+            weaponPref = ['dagger', 'quarterstaff', 'lightCrossbow'];
+        }
+    } else if (classId === 'psion') {
+        armorPref = ['unarmored', 'studdedLeatherArmor', 'leatherArmor'];
+        if (subcId === 'metamorph') {
+            weaponPref = ['shortsword', 'dagger', 'quarterstaff'];
         } else {
             weaponPref = ['dagger', 'quarterstaff', 'lightCrossbow'];
         }

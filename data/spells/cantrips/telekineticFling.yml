@@ -1,0 +1,10 @@
+id: telekineticFling
+name: Telekinetic Fling
+summary: "Fling an object at a target within range, dealing Bludgeoning damage."
+tags: [evocation, cantrip, psion, attackSpell, damageSpell, bludgeoningDamage]
+type: Activity
+time: action
+range: 60 feet
+duration: Instantaneous
+description: |
+  You telekinetically hurl an object weighing up to 5 pounds at a target within range. Make a ranged spell attack. On a hit, the target takes 1d10 Bludgeoning damage.

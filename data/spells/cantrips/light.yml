@@ -1,7 +1,7 @@
 id: lightSpell
 type: Activity
 name: Light
-tags: [evocation, cantrip, artificer, bard, cleric, sorcerer, wizard]
+tags: [evocation, cantrip, artificer, bard, cleric, sorcerer, wizard, psion]
 time: action
 range: touch
 duration: 1 hour

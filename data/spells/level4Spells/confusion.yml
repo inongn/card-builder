@@ -2,7 +2,7 @@ id: confusion
 type: Activity
 name: Confusion
 resource: level4SpellSlot
-tags: [level4Spell, enchantment, bard, druid, sorcerer, wizard, saveSpell]
+tags: [level4Spell, enchantment, bard, druid, sorcerer, wizard, saveSpell, psion]
 time: action
 range: 90 feet
 duration: concentration, up to 1 minute

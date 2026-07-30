@@ -1,7 +1,7 @@
 id: message
 type: Activity
 name: Message
-tags: [transmutation, cantrip, artificer, bard, druid, sorcerer, wizard]
+tags: [transmutation, cantrip, artificer, bard, druid, sorcerer, wizard, psion]
 time: action
 range: 120 feet
 duration: 1 round

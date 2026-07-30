@@ -1,7 +1,7 @@
 id: mindSliver
 type: Activity
 name: Mind Sliver
-tags: [enchantment, cantrip, sorcerer, warlock, wizard, saveSpell, damageSpell, psychicDamage]
+tags: [enchantment, cantrip, sorcerer, warlock, wizard, saveSpell, damageSpell, psychicDamage, psion]
 time: action
 range: 60 feet
 duration: 1 round

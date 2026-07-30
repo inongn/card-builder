@@ -2,7 +2,7 @@ id: thunderwave
 type: Activity
 name: Thunderwave
 resource: level1SpellSlot
-tags: [level1Spell, evocation, bard, druid, sorcerer, wizard, saveSpell, damageSpell, thunderDamage]
+tags: [level1Spell, evocation, bard, druid, sorcerer, wizard, saveSpell, damageSpell, thunderDamage, psion]
 time: action
 range: self
 duration: instantaneous

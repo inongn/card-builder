@@ -2,7 +2,7 @@ id: knock
 type: Activity
 name: Knock
 resource: level2SpellSlot
-tags: [level2Spell, transmutation, bard, sorcerer, wizard]
+tags: [level2Spell, transmutation, bard, sorcerer, wizard, psion]
 time: action
 range: 60 feet
 duration: instantaneous

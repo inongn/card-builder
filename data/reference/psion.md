@@ -314,3 +314,136 @@ At the start of your turn, you can expend one Psionic Energy Die to strengthen y
 
 Level 6: Potent Thoughts
 You have telepathy with a range of 60 feet. In addition, you add your Intelligence modifier to the damage you deal with any Psion cantrip.
+
+# Psion Spells
+
+CANTRIPS (LEVEL 0 PSION SPELLS)
+Spell School Special
+Blade Ward Abjuration C
+Dancing Lights Illusion C
+Friends Enchantment C
+Light Evocation —
+Mage Hand Conjuration —
+Mending Transmutation —
+Message Transmutation —
+Mind Sliver Enchantment —
+Minor Illusion Illusion —
+Prestidigitation Transmutation —
+Telekinetic Fling
+(appears in this UA)
+Evocation —
+True Strike Divination —
+LEVEL 1 PSION SPELLS
+Spell School Special
+Animal Friendship Enchantment —
+Charm Person Enchantment —
+Command Enchantment —
+Comprehend 
+Languages
+Divination R
+Detect Magic Divination C, R
+Dissonant Whispers Enchantment —
+Feather Fall Transmutation —
+Identify Divination R, M
+Jump Transmutation —
+Life Siphon
+(appears in this UA)
+Evocation —
+Longstrider Transmutation —
+Mage Armor Abjuration —
+Sanctuary Abjuration —
+Shield Abjuration —
+Silent Image Illusion C
+Sleep Enchantment C
+Speak with Animals Divination R
+Tasha’s Hideous 
+Laughter
+Enchantment C
+Tenser’s Floating Disk Conjuration R
+Thunderwave Evocation —
+LEVEL 2 PSION SPELLS
+Spell School Special
+Animal Messenger Enchantment R
+Blindness/Deafness Transmutation —
+Calm Emotions Enchantment C
+Crown of Madness Enchantment C
+Detect Thoughts Divination C
+Ectoplasmic Trail
+(appears in this UA)
+Necromancy —
+Ego Whip (appears in 
+this UA)
+Enchantment —
+Enhance Ability Transmutation C
+Enlarge/Reduce Transmutation C
+Enthrall Enchantment C
+Heat Metal Transmutation C
+Hold Person Enchantment C
+Invisibility Illusion C
+Knock Transmutation —
+Levitate Transmutation C
+Locate Animals or 
+Plants
+Divination R
+Locate Object Divination C
+Magic Mouth Illusion R, M
+Mind Spike Divination C
+Mirror Image Illusion —
+Phantasmal Force Illusion C
+See Invisibility Divination —
+Shatter Evocation —
+Silence Illusion C, R
+Suggestion Enchantment C
+Tasha’s Mind Whip 
+(appears in this UA)
+Enchantment —
+Zone of Truth Enchantment —
+LEVEL 3 PSION SPELLS
+Spell School Special
+Bestow Curse Necromancy C
+Bleeding Darkness
+(appears in this UA)
+Evocation C, M
+Clairvoyance Divination C, M
+Dispel Magic Abjuration —
+Enemies Abound
+(appears in this UA)
+Enchantment C
+Fear Illusion C
+Fly Transmutation C
+Hypnotic Pattern Illusion C
+Intellect Fortress 
+(appears in this UA)
+Abjuration C
+Major Image Illusion C
+Nondetection Abjuration M
+Sending Divination —
+Summon Astral Entity 
+(appears in this UA)
+Conjuration C, M
+Telekinetic Crush
+(appears in this UA)
+Transmutation —
+Tongues Divination —
+LEVEL 4 PSION SPELLS
+Spell School Special
+Arcane Eye Divination C
+Banishment Abjuration C
+Charm Monster Enchantment —
+Compulsion Enchantment C
+Confusion Enchantment C
+Dimension Door Conjuration —
+Freedom of Movement Abjuration —
+Greater Invisibility Illusion C
+Hallucinatory Terrain Illusion —
+Life Inversion Field
+(appears in this UA)
+Abjuration C
+Locate Creature Divination C
+Phantasmal Killer Illusion C
+Polymorph Transmutation C
+Raulothim’s Psychic 
+Lance (appears in this 
+UA)
+Enchantment —
+Summon Aberration Conjuration C, M

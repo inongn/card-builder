@@ -27,7 +27,7 @@ const isShield = (opt) => {
     const tags = opt.tags || [];
     const vars = opt.variables || {};
     const category = (vars.category || '').toLowerCase();
-    return tags.includes('shieldEquipment') || tags.includes('shield') || category === 'shield';
+    return tags.includes('shieldEquipment') || category === 'shield';
 };
 
 const isUnarmored = (opt) => {
@@ -109,7 +109,7 @@ const formatAcCalculation = (option, characterData) => {
     }
 
     const tags = option.tags || [];
-    if (tags.includes('shieldEquipment') || tags.includes('shield') || option.id === 'shieldEquipment') {
+    if (tags.includes('shieldEquipment') || option.id === 'shieldEquipment') {
         return 'AC: +2';
     }
 

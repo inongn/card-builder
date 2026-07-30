@@ -2,7 +2,7 @@ id: hallucinatoryTerrain
 type: Activity
 name: Hallucinatory Terrain
 resource: level4SpellSlot
-tags: [level4Spell, illusion, bard, druid, warlock, wizard, saveSpell]
+tags: [level4Spell, illusion, bard, druid, warlock, wizard, saveSpell, psion]
 time: 10 minutes
 range: 300 feet
 duration: 24 hours

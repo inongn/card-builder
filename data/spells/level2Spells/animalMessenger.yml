@@ -2,7 +2,7 @@ id: animalMessenger
 type: Activity
 name: Animal Messenger
 resource: level2SpellSlot
-tags: [level2Spell, enchantment, bard, druid, ranger, ritual, saveSpell]
+tags: [level2Spell, enchantment, bard, druid, ranger, ritual, saveSpell, psion]
 time: action
 range: 30 feet
 duration: 24 hours

@@ -2,7 +2,7 @@ id: detectThoughts
 type: Activity
 name: Detect Thoughts
 resource: level2SpellSlot
-tags: [level2Spell, divination, bard, sorcerer, wizard, saveSpell]
+tags: [level2Spell, divination, bard, sorcerer, wizard, saveSpell, psion]
 time: action
 range: self
 duration: concentration, up to 1 minute

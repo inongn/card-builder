@@ -2,7 +2,7 @@ id: phantasmalKiller
 type: Activity
 name: Phantasmal Killer
 resource: level4SpellSlot
-tags: [level4Spell, illusion, bard, wizard, saveSpell, damageSpell, psychicDamage]
+tags: [level4Spell, illusion, bard, wizard, saveSpell, damageSpell, psychicDamage, psion]
 time: action
 range: 120 feet
 duration: concentration, up to 1 minute

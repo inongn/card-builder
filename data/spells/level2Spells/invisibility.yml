@@ -2,7 +2,7 @@ id: invisibility
 type: Activity
 name: Invisibility
 resource: level2SpellSlot
-tags: [level2Spell, illusion, artificer, bard, sorcerer, warlock, wizard]
+tags: [level2Spell, illusion, artificer, bard, sorcerer, warlock, wizard, psion]
 time: action
 range: touch
 duration: concentration, up to 1 hour

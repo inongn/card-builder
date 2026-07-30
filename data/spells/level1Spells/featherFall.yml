@@ -2,7 +2,7 @@ id: featherFall
 type: Activity
 name: Feather Fall
 resource: level1SpellSlot
-tags: [level1Spell, transmutation, artificer, bard, sorcerer, wizard]
+tags: [level1Spell, transmutation, artificer, bard, sorcerer, wizard, psion]
 time: reaction
 range: 60 feet
 duration: 1 minute

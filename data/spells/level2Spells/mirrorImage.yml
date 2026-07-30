@@ -2,7 +2,7 @@ id: mirrorImage
 type: Activity
 name: Mirror Image
 resource: level2SpellSlot
-tags: [level2Spell, illusion, bard, sorcerer, warlock, wizard]
+tags: [level2Spell, illusion, bard, sorcerer, warlock, wizard, psion]
 time: action
 range: self
 duration: 1 minute

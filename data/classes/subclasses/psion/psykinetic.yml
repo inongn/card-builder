@@ -1,0 +1,57 @@
+id: psykinetic
+name: Psykinetic
+description: 'Mold psionic force like a malleable tool, erecting sturdy barriers and striking with the force of a battering ram.'
+type: Folder
+tags:
+  - psionSubclass
+children:
+  - id: subclassName
+    type: Effect
+    target: meta.sub
+    operation: set
+    value: "Psykinetic"
+
+  # Level 3: Psykinetic Spells
+  - type: Reference
+    target: [cloudOfDaggers, levitate, shield, thunderwave]
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: [slow, telekineticCrush]
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: [otilukesResilientSphere, stoneShape]
+    condition: $(meta.level >= 7)
+
+
+  # Level 3: Telekinetic Techniques
+  - id: telekineticTechniques
+    type: Extra
+    target: telekineticPropel
+    condition: $(meta.level >= 3)
+    name: Telekinetic Techniques
+    description: |
+      You can roll 5d4 instead of expending a Psionic Energy Die.
+
+      When a target fails its saving throw, you can impose one of the following effects:
+      * **Boost.** The target's Speed increases by 10 feet until the start of your next turn.
+      * **Disorient.** The target cannot make Opportunity Attacks until the start of its next turn.
+      * **Telekinetic Bolt.** The target takes Force damage equal to the number rolled on the die.
+
+  # Level 6: Destructive Trance
+  - id: destructiveTrance
+    type: Activity
+    name: Destructive Trance
+    time: free action
+    range: self
+    duration: 10 minutes
+    resource: psionicEnergyDice
+    condition: $(meta.level >= 6)
+    description: "At the start of your turn, you enter a destructive state for the duration. You gain a Fly Speed of 20 feet (hover). When you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell."
+
+  # Level 6: Rebounding Field
+  - id: reboundingField
+    type: Extra
+    target: shield
+    condition: $(meta.level >= 6)
+    name: Rebounding Field
+    description: "The attacker must make a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage on a failed save, or half on a success. You gain Temporary Hit Points equal to the damage dealt."

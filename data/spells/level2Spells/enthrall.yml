@@ -2,7 +2,7 @@ id: enthrall
 type: Activity
 name: Enthrall
 resource: level2SpellSlot
-tags: [level2Spell, enchantment, bard, warlock, saveSpell]
+tags: [level2Spell, enchantment, bard, warlock, saveSpell, psion]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute

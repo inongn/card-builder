@@ -2,7 +2,7 @@ id: locateCreature
 type: Activity
 name: Locate Creature
 resource: level4SpellSlot
-tags: [level4Spell, divination, bard, cleric, druid, paladin, ranger, wizard]
+tags: [level4Spell, divination, bard, cleric, druid, paladin, ranger, wizard, psion]
 time: action
 range: self
 duration: concentration, up to 1 hour

@@ -2,7 +2,7 @@ id: compulsion
 type: Activity
 name: Compulsion
 resource: level4SpellSlot
-tags: [level4Spell, enchantment, bard, saveSpell]
+tags: [level4Spell, enchantment, bard, saveSpell, psion]
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute

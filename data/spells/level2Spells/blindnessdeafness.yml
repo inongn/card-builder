@@ -2,7 +2,7 @@ id: blindnessdeafness
 type: Activity
 name: Blindness/Deafness
 resource: level2SpellSlot
-tags: [level2Spell, transmutation, bard, cleric, sorcerer, wizard, saveSpell]
+tags: [level2Spell, transmutation, bard, cleric, sorcerer, wizard, saveSpell, psion]
 time: action
 range: 120 feet
 duration: 1 minute

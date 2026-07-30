@@ -2,7 +2,7 @@ id: tensersFloatingDisk
 type: Activity
 name: Floating Disk
 resource: level1SpellSlot
-tags: [level1Spell, conjuration, wizard, ritual]
+tags: [level1Spell, conjuration, wizard, ritual, psion]
 time: action
 range: 30 feet
 duration: 1 hour

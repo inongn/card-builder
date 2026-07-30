@@ -1,7 +1,7 @@
 id: prestidigitation
 type: Activity
 name: Prestidigitation
-tags: [transmutation, cantrip, artificer, bard, sorcerer, warlock, wizard]
+tags: [transmutation, cantrip, artificer, bard, sorcerer, warlock, wizard, psion]
 time: action
 range: 10 feet
 duration: up to 1 hour

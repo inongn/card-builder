@@ -2,7 +2,7 @@ id: crownOfMadness
 type: Activity
 name: Crown Of Madness
 resource: level2SpellSlot
-tags: [level2Spell, enchantment, bard, sorcerer, warlock, wizard, saveSpell]
+tags: [level2Spell, enchantment, bard, sorcerer, warlock, wizard, saveSpell, psion]
 time: action
 range: 120 feet
 duration: concentration, up to 1 minute

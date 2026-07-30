@@ -2,7 +2,7 @@ id: mageArmor
 type: Activity
 name: Mage Armor
 resource: level1SpellSlot
-tags: [level1Spell, abjuration, sorcerer, wizard]
+tags: [level1Spell, abjuration, sorcerer, wizard, psion]
 time: action
 range: touch
 duration: 8 hours

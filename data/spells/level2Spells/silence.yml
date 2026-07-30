@@ -2,7 +2,7 @@ id: silence
 type: Activity
 name: Silence
 resource: level2SpellSlot
-tags: [level2Spell, illusion, bard, cleric, ranger, ritual]
+tags: [level2Spell, illusion, bard, cleric, ranger, ritual, psion]
 time: action
 range: 120 feet
 duration: concentration, up to 10 minutes

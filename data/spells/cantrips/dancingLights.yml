@@ -1,7 +1,7 @@
 id: dancingLights
 type: Activity
 name: Dancing Lights
-tags: [illusion, cantrip, artificer, bard, sorcerer, wizard]
+tags: [illusion, cantrip, artificer, bard, sorcerer, wizard, psion]
 time: action
 range: 120 feet
 duration: concentration, up to 1 minute

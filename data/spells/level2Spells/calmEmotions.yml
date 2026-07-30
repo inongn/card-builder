@@ -2,7 +2,7 @@ id: calmEmotions
 type: Activity
 name: Calm Emotions
 resource: level2SpellSlot
-tags: [level2Spell, enchantment, bard, cleric, saveSpell]
+tags: [level2Spell, enchantment, bard, cleric, saveSpell, psion]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute

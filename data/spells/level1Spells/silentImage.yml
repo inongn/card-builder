@@ -2,7 +2,7 @@ id: silentImage
 type: Activity
 name: Silent Image
 resource: level1SpellSlot
-tags: [level1Spell, illusion, bard, sorcerer, wizard, saveSpell]
+tags: [level1Spell, illusion, bard, sorcerer, wizard, saveSpell, psion]
 time: action
 range: 60 feet
 duration: concentration, up to 10 minutes

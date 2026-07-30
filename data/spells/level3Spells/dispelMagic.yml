@@ -2,7 +2,7 @@ id: dispelMagic
 type: Activity
 name: Dispel Magic
 resource: level3SpellSlot
-tags: [level3Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger, sorcerer, warlock, wizard]
+tags: [level3Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger, sorcerer, warlock, wizard, psion]
 time: action
 range: 120 feet
 duration: instantaneous

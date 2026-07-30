@@ -2,7 +2,7 @@ id: longstrider
 type: Activity
 name: Longstrider
 resource: level1SpellSlot
-tags: [level1Spell, transmutation, artificer, bard, druid, ranger, wizard]
+tags: [level1Spell, transmutation, artificer, bard, druid, ranger, wizard, psion]
 time: action
 range: touch
 duration: 1 hour

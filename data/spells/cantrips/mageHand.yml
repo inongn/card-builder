@@ -1,7 +1,7 @@
 id: mageHand
 type: Activity
 name: Mage Hand
-tags: [conjuration, cantrip, artificer, bard, sorcerer, warlock, wizard]
+tags: [conjuration, cantrip, artificer, bard, sorcerer, warlock, wizard, psion]
 time: action
 range: 30 feet
 duration: 1 minute

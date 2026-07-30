@@ -2,7 +2,7 @@ id: detectMagic
 type: Activity
 name: Detect Magic
 resource: level1SpellSlot
-tags: [level1Spell, divination, artificer, bard, cleric, druid, paladin, ranger, sorcerer, warlock, wizard, ritual]
+tags: [level1Spell, divination, artificer, bard, cleric, druid, paladin, ranger, sorcerer, warlock, wizard, ritual, psion]
 time: action
 range: self
 duration: concentration, up to 10 minutes

@@ -2,7 +2,7 @@ id: locateObject
 type: Activity
 name: Locate Object
 resource: level2SpellSlot
-tags: [level2Spell, divination, bard, cleric, druid, paladin, ranger, wizard]
+tags: [level2Spell, divination, bard, cleric, druid, paladin, ranger, wizard, psion]
 time: action
 range: self
 duration: concentration, up to 10 minutes

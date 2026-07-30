@@ -1,7 +1,7 @@
 id: mending
 type: Activity
 name: Mending
-tags: [transmutation, cantrip, bard, cleric, druid, sorcerer, wizard]
+tags: [transmutation, cantrip, bard, cleric, druid, sorcerer, wizard, psion]
 time: 1 minute
 range: touch
 duration: instantaneous

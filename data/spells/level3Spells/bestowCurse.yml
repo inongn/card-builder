@@ -2,7 +2,7 @@ id: bestowCurse
 type: Activity
 name: Bestow Curse
 resource: level3SpellSlot
-tags: [level3Spell, necromancy, bard, cleric, wizard, saveSpell, damageSpell, necroticDamage]
+tags: [level3Spell, necromancy, bard, cleric, wizard, saveSpell, damageSpell, necroticDamage, psion]
 time: action
 range: touch
 duration: concentration, up to 1 minute

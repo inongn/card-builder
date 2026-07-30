@@ -2,7 +2,7 @@ id: command
 type: Activity
 name: Command
 resource: level1SpellSlot
-tags: [level1Spell, enchantment, bard, cleric, paladin, saveSpell]
+tags: [level1Spell, enchantment, bard, cleric, paladin, saveSpell, psion]
 time: action
 range: 60 feet
 duration: instantaneous

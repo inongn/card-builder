@@ -2,7 +2,7 @@ id: freedomOfMovement
 type: Activity
 name: Freedom of Movement
 resource: level4SpellSlot
-tags: [level4Spell, abjuration, artificer, bard, cleric, druid, ranger]
+tags: [level4Spell, abjuration, artificer, bard, cleric, druid, ranger, psion]
 time: action
 range: touch
 duration: 1 hour

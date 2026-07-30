@@ -2,7 +2,7 @@ id: banishment
 type: Activity
 name: Banishment
 resource: level4SpellSlot
-tags: [level4Spell, abjuration, cleric, paladin, sorcerer, warlock, wizard, saveSpell]
+tags: [level4Spell, abjuration, cleric, paladin, sorcerer, warlock, wizard, saveSpell, psion]
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute

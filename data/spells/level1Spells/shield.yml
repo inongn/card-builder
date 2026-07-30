@@ -2,7 +2,7 @@ id: shield
 type: Activity
 name: Shield
 resource: level1SpellSlot
-tags: [level1Spell, abjuration, sorcerer, wizard]
+tags: [level1Spell, abjuration, sorcerer, wizard, psion]
 time: reaction
 range: self
 duration: 1 round

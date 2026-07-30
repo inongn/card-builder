@@ -2,7 +2,7 @@ id: arcaneEye
 type: Activity
 name: Arcane Eye
 resource: level4SpellSlot
-tags: [level4Spell, divination, artificer, wizard]
+tags: [level4Spell, divination, artificer, wizard, psion]
 time: action
 range: 30 feet
 duration: concentration, up to 1 hour

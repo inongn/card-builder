@@ -2,7 +2,7 @@ id: nondetection
 type: Activity
 name: Nondetection
 resource: level3SpellSlot
-tags: [level3Spell, abjuration, bard, ranger, wizard]
+tags: [level3Spell, abjuration, bard, ranger, wizard, psion]
 time: action
 range: touch
 duration: 8 hours

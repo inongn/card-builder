@@ -2,7 +2,7 @@ id: locateAnimalsOrPlants
 type: Activity
 name: Locate Animals or Plants
 resource: level2SpellSlot
-tags: [level2Spell, divination, bard, druid, ranger, ritual]
+tags: [level2Spell, divination, bard, druid, ranger, ritual, psion]
 time: action
 range: self
 duration: instantaneous

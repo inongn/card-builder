@@ -2,7 +2,7 @@ id: sending
 type: Activity
 name: Sending
 resource: level3SpellSlot
-tags: [level3Spell, divination, bard, cleric, wizard]
+tags: [level3Spell, divination, bard, cleric, wizard, psion]
 time: action
 range: unlimited
 duration: instantaneous

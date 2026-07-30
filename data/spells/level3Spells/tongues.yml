@@ -2,7 +2,7 @@ id: tongues
 type: Activity
 name: Tongues
 resource: level3SpellSlot
-tags: [level3Spell, divination, bard, cleric, sorcerer, warlock, wizard]
+tags: [level3Spell, divination, bard, cleric, sorcerer, warlock, wizard, psion]
 time: action
 range: touch
 duration: 1 hour

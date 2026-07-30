@@ -19,7 +19,7 @@ export const STEP_DEFINITIONS = {
     level: { title: 'Level', category: 'class', terms: ['level'] },
     class: { title: 'Class', category: 'class', terms: ['class'] },
     subclass: { title: 'Subclass', category: 'class', terms: ['subclass'] },
-    classOptions: { title: 'Class Options', category: 'class', terms: ['vestigeType', 'classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'land', 'armormodel','blessedstrikes', 'huntersPrey', 'defensiveTactics', 'affinity', 'pact', 'aspectOfTheWilds'] },
+    classOptions: { title: 'Class Options', category: 'class', terms: ['vestigeType', 'classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'landtype', 'armormodel','blessedstrikes', 'huntersPrey', 'defensiveTactics', 'affinity', 'dreadallegianceo', 'aspectOfTheWilds'] },
     feats: { title: 'Feats', category: 'class', terms: ['feat', 'epicboon', 'fightingstyle'] },
 
     // Abilities
@@ -63,7 +63,6 @@ export const isSameSlotItem = (a, b) => {
 
 export const MATCHING_ORDER = [
     'image',
-    'equipment',
     'lineage',
     'spellcasting',
     'feats',
@@ -81,7 +80,9 @@ export const MATCHING_ORDER = [
     'saves',
     'skills',
     'expertise',
-    'stats'
+    'stats',
+      'equipment',
+
 ];
 
 /**
@@ -359,8 +360,8 @@ export const sortCategoryOptions = (opts, onGetProperty) => {
         });
     }
 
-    const isShield = (opt) => (opt.tags || []).includes('shield');
-    const isUnarmored = (opt) => (opt.tags || []).includes('unarmored');
+    const isShield = (opt) => (opt.tags || []).includes('shield') || (opt.tags || []).includes('shieldEquipment') || opt.id === 'shieldEquipment';
+    const isUnarmored = (opt) => (opt.tags || []).includes('unarmored') || opt.id === 'unarmored';
 
     const getArmamentCategory = (opt) => {
         if (isShield(opt)) return null;
@@ -558,7 +559,7 @@ export const isValidHardcodedOption = (node, categoryKey) => {
     if (!node) return false;
 
     const nodeType = (node.type || '').toLowerCase();
-    if (nodeType === 'slot' || nodeType === 'input' || nodeType === 'resource' || nodeType === 'attribute') {
+    if (nodeType === 'slot' || nodeType === 'input' || nodeType === 'resource' || nodeType === 'attribute' || nodeType === 'effect') {
         return false;
     }
 
@@ -630,6 +631,11 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
     const traverse = (node, path = []) => {
         if (!node) return;
         if (!isNodeConditionMet(node, char)) return;
+
+        // Skip traversing into children of filled slots as those are part of an already selected property
+        if (node.type === 'Slot' && node.filled) {
+            return;
+        }
 
         const nodeId = node.id || node.name;
         if (nodeId && !filledSlotPropertyIds.has(nodeId) && !seenIds.has(nodeId)) {

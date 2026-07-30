@@ -1,0 +1,10 @@
+id: lifeSiphon
+name: Life Siphon
+summary: "Siphon life force from a target, dealing Necromancy damage and regaining hit points."
+tags: [level1Spell, evocation, psion, saveSpell, damageSpell, healingSpell]
+type: Activity
+time: action
+range: 30 feet
+duration: Instantaneous
+description: |
+  You siphon life force from a creature you can see within range. The target makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking 2d6 Necrotic damage on a failed save or half as much on a successful one. You regain hit points equal to half the damage dealt.

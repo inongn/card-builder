@@ -2,7 +2,7 @@ id: phantasmalForce
 type: Activity
 name: Phantasmal Force
 resource: level2SpellSlot
-tags: [level2Spell, illusion, bard, sorcerer, wizard, saveSpell, damageSpell, psychicDamage]
+tags: [level2Spell, illusion, bard, sorcerer, wizard, saveSpell, damageSpell, psychicDamage, psion]
 time: action
 range: 60 feet
 duration: concentration, up to 1 minute

@@ -2,7 +2,7 @@ id: zoneOfTruth
 type: Activity
 name: Zone of Truth
 resource: level2SpellSlot
-tags: [level2Spell, enchantment, bard, cleric, paladin, saveSpell]
+tags: [level2Spell, enchantment, bard, cleric, paladin, saveSpell, psion]
 time: action
 range: 60 feet
 duration: 10 minutes

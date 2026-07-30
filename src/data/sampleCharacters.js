@@ -169,7 +169,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -327,7 +328,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -642,7 +643,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'athlete'
+                        propertyId: 'actor'
                 }
         ]
 }
@@ -1306,7 +1307,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'aspectOfTheWilds'
                                 }
                         ],
-                        propertyId: 'owl'
+                        propertyId: 'biofeedback'
                 },
                 {
                         path: [
@@ -1921,7 +1922,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -2528,7 +2529,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'primalLoreCantrip'
                                 }
                         ],
-                        propertyId: 'message'
+                        propertyId: 'mending'
                 },
                 {
                         path: [
@@ -3124,7 +3125,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8Feat'
                                 }
                         ],
-                        propertyId: 'chef'
+                        propertyId: 'athlete'
                 }
         ]
 }
@@ -3624,7 +3625,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level4Feat'
                                 }
                         ],
-                        propertyId: 'crossbowExpert'
+                        propertyId: 'chef'
                 },
                 {
                         path: [
@@ -4520,7 +4521,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'minorIllusion'
+                        propertyId: 'message'
                 },
                 {
                         path: [
@@ -4532,7 +4533,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'starryWisp'
+                        propertyId: 'minorIllusion'
                 },
                 {
                         path: [
@@ -5154,7 +5155,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'thunderclap'
+                        propertyId: 'starryWisp'
                 },
                 {
                         path: [
@@ -5865,7 +5866,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'thaumaturgeCantrip'
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -5909,7 +5910,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'defensiveDuelist'
+                        propertyId: 'crossbowExpert'
                 }
         ]
 }
@@ -6239,7 +6240,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -6251,7 +6252,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'resistance'
+                        propertyId: 'mending'
                 },
                 {
                         path: [
@@ -6420,7 +6421,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'thaumaturgeCantrip'
                                 }
                         ],
-                        propertyId: 'spareTheDying'
+                        propertyId: 'resistance'
                 },
                 {
                         path: [
@@ -6909,7 +6910,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -6921,7 +6922,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'resistance'
+                        propertyId: 'mending'
                 },
                 {
                         path: [
@@ -6933,7 +6934,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'spareTheDying'
+                        propertyId: 'resistance'
                 },
                 {
                         path: [
@@ -6945,7 +6946,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'thaumaturgy'
+                        propertyId: 'spareTheDying'
                 },
                 {
                         path: [
@@ -7133,7 +7134,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'bolsteringPrecognition'
                 },
                 {
                         path: [
@@ -7472,7 +7473,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -7484,7 +7485,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'resistance'
+                        propertyId: 'mending'
                 },
                 {
                         path: [
@@ -7496,7 +7497,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'spareTheDying'
+                        propertyId: 'resistance'
                 },
                 {
                         path: [
@@ -7508,7 +7509,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'thaumaturgy'
+                        propertyId: 'spareTheDying'
                 },
                 {
                         path: [
@@ -7677,7 +7678,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'thaumaturgeCantrip'
                                 }
                         ],
-                        propertyId: 'tollTheDead'
+                        propertyId: 'thaumaturgy'
                 },
                 {
                         path: [
@@ -7710,7 +7711,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'destructiveThoughts'
                 },
                 {
                         path: [
@@ -8066,7 +8067,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -8078,7 +8079,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'resistance'
+                        propertyId: 'mending'
                 },
                 {
                         path: [
@@ -8247,7 +8248,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'thaumaturgeCantrip'
                                 }
                         ],
-                        propertyId: 'spareTheDying'
+                        propertyId: 'resistance'
                 },
                 {
                         path: [
@@ -8294,7 +8295,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'devilishTongue'
                 },
                 {
                         path: [
@@ -8624,7 +8625,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -8636,7 +8637,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'resistance'
+                        propertyId: 'mending'
                 },
                 {
                         path: [
@@ -8824,7 +8825,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'expandedAwareness'
                 },
                 {
                         path: [
@@ -9401,7 +9402,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'dualWielder'
+                        propertyId: 'defensiveDuelist'
                 }
         ]
 }
@@ -9721,7 +9722,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'druidcraft'
+                        propertyId: 'thunderclap'
                 },
                 {
                         path: [
@@ -9733,7 +9734,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'elementalism'
+                        propertyId: 'druidcraft'
                 },
                 {
                         path: [
@@ -9745,7 +9746,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'elementalism'
                 },
                 {
                         path: [
@@ -9972,21 +9973,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'elementalAdept'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                },
-                                {
-                                        id: 'energyMastery'
-                                }
-                        ],
-                        propertyId: 'acidResistance'
+                        propertyId: 'dualWielder'
                 }
         ]
 }
@@ -10540,7 +10527,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'idInsinuation'
                 },
                 {
                         path: [
@@ -11124,7 +11111,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'inerrantAim'
                 },
                 {
                         path: [
@@ -11664,7 +11651,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'observantMind'
                 },
                 {
                         path: [
@@ -12284,7 +12271,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'psionicBacklash'
                 },
                 {
                         path: [
@@ -12724,7 +12711,21 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'grappler'
+                        propertyId: 'elementalAdept'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'energyMastery'
+                                }
+                        ],
+                        propertyId: 'acidResistance'
                 }
         ]
 }
@@ -12995,7 +12996,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -13459,7 +13460,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'ambush'
+                        propertyId: 'psionicGuards'
                 },
                 {
                         path: [
@@ -13474,7 +13475,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'baitAndSwitch'
+                        propertyId: 'sharpenedMind'
                 },
                 {
                         path: [
@@ -13489,7 +13490,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'commandersStrike'
+                        propertyId: 'ambush'
                 },
                 {
                         path: [
@@ -13504,7 +13505,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'commandingPresence'
+                        propertyId: 'baitAndSwitch'
                 },
                 {
                         path: [
@@ -13519,7 +13520,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'disarmingAttack'
+                        propertyId: 'commandersStrike'
                 },
                 {
                         path: [
@@ -15417,7 +15418,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'lightlyArmored'
+                        propertyId: 'grappler'
                 }
         ]
 }
@@ -15734,7 +15735,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'mageSlayer'
+                        propertyId: 'lightlyArmored'
                 }
         ]
 }
@@ -16312,7 +16313,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -17326,7 +17327,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -19331,7 +19332,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -24430,7 +24431,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -24663,7 +24665,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -24800,7 +24802,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -25042,7 +25045,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -26055,7 +26058,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'blink'
+                        propertyId: 'tashasMindWhip'
                 },
                 {
                         path: [
@@ -26067,7 +26070,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'clairvoyance'
+                        propertyId: 'blink'
                 },
                 {
                         path: [
@@ -26599,7 +26602,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'counterspell'
+                        propertyId: 'clairvoyance'
                 },
                 {
                         path: [
@@ -26611,7 +26614,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'counterspell'
                 },
                 {
                         path: [
@@ -26623,7 +26626,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'lightningBolt'
+                        propertyId: 'gaseousForm'
                 },
                 {
                         path: [
@@ -26635,7 +26638,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'gaseousForm'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -27206,7 +27209,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'majorImage'
+                        propertyId: 'intellectFortress'
                 },
                 {
                         path: [
@@ -27218,7 +27221,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'slow'
+                        propertyId: 'lightningBolt'
                 },
                 {
                         path: [
@@ -27230,7 +27233,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'stinkingCloud'
+                        propertyId: 'majorImage'
                 },
                 {
                         path: [
@@ -27242,7 +27245,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'tongues'
+                        propertyId: 'slow'
                 },
                 {
                         path: [
@@ -27459,7 +27462,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -27730,7 +27734,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'vampiricTouch'
+                        propertyId: 'stinkingCloud'
                 },
                 {
                         path: [
@@ -27742,7 +27746,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'waterBreathing'
+                        propertyId: 'tongues'
                 },
                 {
                         path: [
@@ -27754,7 +27758,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'waterWalk'
+                        propertyId: 'vampiricTouch'
                 },
                 {
                         path: [
@@ -27766,7 +27770,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'banishment'
+                        propertyId: 'waterBreathing'
                 },
                 {
                         path: [
@@ -27823,7 +27827,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -27983,7 +27987,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -28219,7 +28224,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'dominateBeast'
+                        propertyId: 'confusion'
                 },
                 {
                         path: [
@@ -28243,7 +28248,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'blight'
+                        propertyId: 'waterWalk'
                 },
                 {
                         path: [
@@ -28255,7 +28260,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'charmMonster'
+                        propertyId: 'banishment'
                 },
                 {
                         path: [
@@ -28267,7 +28272,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'confusion'
+                        propertyId: 'blight'
                 },
                 {
                         path: [
@@ -28279,7 +28284,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'dimensionDoor'
+                        propertyId: 'charmMonster'
                 },
                 {
                         path: [
@@ -28336,7 +28341,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -29161,7 +29166,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -29382,7 +29387,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'acidSplash'
+                        propertyId: 'telekineticFling'
                 },
                 {
                         path: [
@@ -29401,7 +29406,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'chillTouch'
+                        propertyId: 'acidSplash'
                 },
                 {
                         path: [
@@ -29420,7 +29425,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'dancingLights'
+                        propertyId: 'chillTouch'
                 },
                 {
                         path: [
@@ -29910,7 +29915,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'armsOfHadar'
+                        propertyId: 'summonAberration'
                 },
                 {
                         path: [
@@ -29922,7 +29927,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'hallucinatoryTerrain'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -29934,7 +29939,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'summonAberration'
+                        propertyId: 'hallucinatoryTerrain'
                 },
                 {
                         path: [
@@ -29946,7 +29951,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'bane'
+                        propertyId: 'raulothimsPsychicLance'
                 },
                 {
                         path: [
@@ -30437,7 +30442,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'comprehendLanguages'
+                        propertyId: 'charmPerson'
                 },
                 {
                         path: [
@@ -30473,7 +30478,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'armsOfHadar'
+                        propertyId: 'comprehendLanguages'
                 },
                 {
                         path: [
@@ -30485,7 +30490,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'bane'
+                        propertyId: 'armsOfHadar'
                 },
                 {
                         path: [
@@ -30497,7 +30502,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'charmPerson'
+                        propertyId: 'bane'
                 },
                 {
                         path: [
@@ -30777,7 +30782,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -31173,7 +31179,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -31333,7 +31339,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -31748,7 +31755,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -34649,7 +34656,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -35024,7 +35032,2088 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
+                }
+        ]
+}
+    },
+
+    {
+        id: 'sample_psion_metamorph',
+        name: 'Xylar Fleshweaver',
+        class: 'Psion',
+        sub: 'Metamorph',
+        species: 'Goliath',
+        level: 8,
+        image: 'subclass_headshot/metamorph.jpg',
+        recipe: {
+        inputs: [
+                {
+                        path: [
+                                {
+                                        id: 'name'
+                                }
+                        ],
+                        value: 'Xylar Fleshweaver'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'image'
+                                }
+                        ],
+                        value: 'subclass_headshot/metamorph.jpg'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'level'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_str'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_dex'
+                                }
+                        ],
+                        value: 4
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_con'
+                                }
+                        ],
+                        value: 5
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_int'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_wis'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_cha'
+                                }
+                        ],
+                        value: 0
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_con'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_int'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_cha'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_con'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_int'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_cha'
+                                }
+                        ]
+                }
+        ],
+        slots: [
+                {
+                        path: [
+                                {
+                                        id: 'armor'
+                                }
+                        ],
+                        propertyId: 'unarmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot'
+                                }
+                        ],
+                        propertyId: 'dagger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                }
+                        ],
+                        propertyId: 'goliath'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'giantAncestry'
+                                }
+                        ],
+                        propertyId: 'giantAncestryFrost'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                }
+                        ],
+                        propertyId: 'hermit'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                }
+                        ],
+                        propertyId: 'psion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'perceptionProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'bladeWard'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'dancingLights'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'friends'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'lifeSiphon'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'ectoplasmicTrail'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'egoWhip'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'bleedingDarkness'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'summonAstralEntity'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'telekineticCrush'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'arcaneEye'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'freedomOfMovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'greaterInvisibility'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 9
+                                }
+                        ],
+                        propertyId: 'lifeInversionField'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'locateCreature'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'phantasmalKiller'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'biofeedback'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'sharpenedMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'inerrantAim'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSubclass'
+                                }
+                        ],
+                        propertyId: 'metamorph'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'resilient'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
+                }
+        ]
+}
+    },
+
+    {
+        id: 'sample_psion_psiWarper',
+        name: 'Zephyr Rift',
+        class: 'Psion',
+        sub: 'Psi Warper',
+        species: 'Elf',
+        level: 8,
+        image: 'subclass_headshot/psiwarper.jpg',
+        recipe: {
+        inputs: [
+                {
+                        path: [
+                                {
+                                        id: 'name'
+                                }
+                        ],
+                        value: 'Zephyr Rift'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'image'
+                                }
+                        ],
+                        value: 'subclass_headshot/psiwarper.jpg'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'level'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_str'
+                                }
+                        ],
+                        value: 0
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_dex'
+                                }
+                        ],
+                        value: 5
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_con'
+                                }
+                        ],
+                        value: 4
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_int'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_wis'
+                                }
+                        ],
+                        value: 3
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_cha'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_dex'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_con'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_int'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_cha'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_dex'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_con'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_int'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_cha'
+                                }
+                        ]
+                }
+        ],
+        slots: [
+                {
+                        path: [
+                                {
+                                        id: 'armor'
+                                }
+                        ],
+                        propertyId: 'unarmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot'
+                                }
+                        ],
+                        propertyId: 'dagger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                }
+                        ],
+                        propertyId: 'elf'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'elvenLineage'
+                                }
+                        ],
+                        propertyId: 'elvenLineageDrow'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'keenSenses'
+                                }
+                        ],
+                        propertyId: 'perceptionProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                }
+                        ],
+                        propertyId: 'wayfarer'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                }
+                        ],
+                        propertyId: 'psion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'intimidationProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'bladeWard'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'lightSpell'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'friends'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'polymorph'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'longstrider'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'animalFriendship'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'charmPerson'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'comprehendLanguages'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'detectMagic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'dissonantWhispers'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'mageArmor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 9
+                                }
+                        ],
+                        propertyId: 'identify'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'jump'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'lifeSiphon'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'bolsteringPrecognition'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'expandedAwareness'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'psionicGuards'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSubclass'
+                                }
+                        ],
+                        propertyId: 'psiWarper'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'telekinetic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'speedy'
+                }
+        ]
+}
+    },
+
+    {
+        id: 'sample_psion_psykinetic',
+        name: 'Kael Mindforce',
+        class: 'Psion',
+        sub: 'Psykinetic',
+        species: 'Human',
+        level: 8,
+        image: 'subclass_headshot/psykinetic.jpg',
+        recipe: {
+        inputs: [
+                {
+                        path: [
+                                {
+                                        id: 'name'
+                                }
+                        ],
+                        value: 'Kael Mindforce'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'image'
+                                }
+                        ],
+                        value: 'subclass_headshot/psykinetic.jpg'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'level'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_str'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_dex'
+                                }
+                        ],
+                        value: 4
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_con'
+                                }
+                        ],
+                        value: 5
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_int'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_wis'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_cha'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_con'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_int'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_cha'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_con'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_int'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_cha'
+                                }
+                        ]
+                }
+        ],
+        slots: [
+                {
+                        path: [
+                                {
+                                        id: 'armor'
+                                }
+                        ],
+                        propertyId: 'unarmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot'
+                                }
+                        ],
+                        propertyId: 'dagger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                }
+                        ],
+                        propertyId: 'human'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'skillful'
+                                }
+                        ],
+                        propertyId: 'acrobaticsProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'versatile'
+                                }
+                        ],
+                        propertyId: 'alert'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                }
+                        ],
+                        propertyId: 'soldier'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                }
+                        ],
+                        propertyId: 'psion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'insightProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'bladeWard'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'dancingLights'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'friends'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'animalFriendship'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'charmPerson'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'comprehendLanguages'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'detectMagic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'dissonantWhispers'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'featherFall'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'identify'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'jump'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 9
+                                }
+                        ],
+                        propertyId: 'lifeSiphon'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'longstrider'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'mageArmor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'destructiveThoughts'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'psionicBacklash'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'sharpenedMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSubclass'
+                                }
+                        ],
+                        propertyId: 'psykinetic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'telekinetic'
+                }
+        ]
+}
+    },
+
+    {
+        id: 'sample_psion_telepath',
+        name: 'Mindra Vane',
+        class: 'Psion',
+        sub: 'Telepath',
+        species: 'Tiefling',
+        level: 8,
+        image: 'subclass_headshot/telepath.jpg',
+        recipe: {
+        inputs: [
+                {
+                        path: [
+                                {
+                                        id: 'name'
+                                }
+                        ],
+                        value: 'Mindra Vane'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'image'
+                                }
+                        ],
+                        value: 'subclass_headshot/telepath.jpg'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'level'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_str'
+                                }
+                        ],
+                        value: 0
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_dex'
+                                }
+                        ],
+                        value: 3
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_con'
+                                }
+                        ],
+                        value: 4
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_int'
+                                }
+                        ],
+                        value: 8
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_wis'
+                                }
+                        ],
+                        value: 3
+                },
+                {
+                        path: [
+                                {
+                                        id: 'allocated_cha'
+                                }
+                        ],
+                        value: 3
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_con'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_int'
+                                }
+                        ],
+                        value: 2
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'origin_cha'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_str'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_dex'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_con'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_int'
+                                }
+                        ],
+                        value: 1
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_wis'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'asi_cha'
+                                }
+                        ]
+                }
+        ],
+        slots: [
+                {
+                        path: [
+                                {
+                                        id: 'armor'
+                                }
+                        ],
+                        propertyId: 'unarmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'armamentSlot'
+                                }
+                        ],
+                        propertyId: 'dagger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                }
+                        ],
+                        propertyId: 'tiefling'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'fiendishLegacy'
+                                }
+                        ],
+                        propertyId: 'fiendishLegacyAbyssal'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                }
+                        ],
+                        propertyId: 'charlatan'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'acrobaticsProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'animalHandlingProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                }
+                        ],
+                        propertyId: 'psion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'insightProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSkillProficiencies',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'persuasionProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'bladeWard'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'dancingLights'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionCantrips',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'friends'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'animalFriendship'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'charmPerson'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'sanctuary'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'comprehendLanguages'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'detectMagic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'dissonantWhispers'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'featherFall'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'identify'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'jump'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 9
+                                }
+                        ],
+                        propertyId: 'lifeSiphon'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'longstrider'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'mageArmor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'idInsinuation'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'devilishTongue'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionicDiscipline',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'observantMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionSubclass'
+                                }
+                        ],
+                        propertyId: 'telepath'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'telepathic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'keenMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'loreKnowledge'
+                                }
+                        ],
+                        propertyId: 'historyProficiency'
                 }
         ]
 }
@@ -37555,7 +39644,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -37884,7 +39974,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }

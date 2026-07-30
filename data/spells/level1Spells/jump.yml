@@ -2,7 +2,7 @@ id: jump
 type: Activity
 name: Jump
 resource: level1SpellSlot
-tags: [level1Spell, transmutation, artificer, druid, ranger, sorcerer, wizard]
+tags: [level1Spell, transmutation, artificer, druid, ranger, sorcerer, wizard, psion]
 time: bonus action
 range: touch
 duration: 1 minute

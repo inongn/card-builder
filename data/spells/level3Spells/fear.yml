@@ -2,7 +2,7 @@ id: fear
 type: Activity
 name: Fear
 resource: level3SpellSlot
-tags: [level3Spell, illusion, bard, sorcerer, warlock, wizard, saveSpell]
+tags: [level3Spell, illusion, bard, sorcerer, warlock, wizard, saveSpell, psion]
 time: action
 range: self
 duration: concentration, up to 1 minute

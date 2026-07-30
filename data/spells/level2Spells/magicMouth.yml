@@ -2,7 +2,7 @@ id: magicMouth
 type: Activity
 name: Magic Mouth
 resource: level2SpellSlot
-tags: [level2Spell, illusion, artificer, bard, wizard, ritual]
+tags: [level2Spell, illusion, artificer, bard, wizard, ritual, psion]
 time: 1 minute
 range: 30 feet
 duration: until dispelled

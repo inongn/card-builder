@@ -2,7 +2,7 @@ id: speakWithAnimals
 type: Activity
 name: Speak with Animals
 resource: level1SpellSlot
-tags: [level1Spell, divination, bard, druid, ranger, warlock, ritual]
+tags: [level1Spell, divination, bard, druid, ranger, warlock, ritual, psion]
 time: action
 range: self
 duration: 10 minutes

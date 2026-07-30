@@ -2,7 +2,7 @@ id: clairvoyance
 type: Activity
 name: Clairvoyance
 resource: level3SpellSlot
-tags: [level3Spell, divination, bard, cleric, sorcerer, wizard]
+tags: [level3Spell, divination, bard, cleric, sorcerer, wizard, psion]
 time: 10 minutes
 range: 1 mile
 duration: concentration, up to 10 minutes
