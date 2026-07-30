@@ -1,10 +1,14 @@
 id: lifeSiphon
-name: Life Siphon
-summary: "Siphon life force from a target, dealing Necromancy damage and regaining hit points."
-tags: [level1Spell, evocation, psion, saveSpell, damageSpell, healingSpell]
 type: Activity
+name: Life Siphon
+resource: level1SpellSlot
+tags: [level1Spell, evocation, psion, attackSpell, damageSpell, psychicDamage]
 time: action
-range: 30 feet
-duration: Instantaneous
+range: 120 feet
+duration: instantaneous
+summary: "You fire an orb of psionic energy at a target, optionally expending Hit Dice for extra damage."
 description: |
-  You siphon life force from a creature you can see within range. The target makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking 2d6 Necrotic damage on a failed save or half as much on a successful one. You regain hit points equal to half the damage dealt.
+  You fire an orb of psionic energy fueled by your life force at a creature you can see within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes 1d10 Psychic damage and you can expend one Hit Point Die to increase the damage by 1d10.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: The damage increases by 1d10 and the number of Hit Dice you can expend increases by one for each spell slot level above 1.

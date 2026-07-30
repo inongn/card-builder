@@ -39,7 +39,7 @@ children:
     duration: Instantaneous
     resource: psionicEnergyDice
     condition: $(meta.level >= 3)
-    description: "When a creature within range hits with an attack roll, substract 1d$(attributes.psiDice) from the attack roll, potentially causing it to miss. The die is expended only if the target misses."
+    description: "When a creature within range hits with an attack roll, subtract 1d$(attributes.psiDice) from the attack roll, potentially causing it to miss. The die is expended only if the target misses."
 
   # Level 6: Bulwark Mind
   - id: bulwarkMind
@@ -50,7 +50,7 @@ children:
     duration: 10 minutes
     resource: psionicEnergyDice
     condition: $(meta.level >= 6)
-    description: "At the start of your turn, you enter a fortified state for the duration. You gain Resistance to Psychic damage, and add 1d$(attributes.psiDice) to Intelligence, Wisdom, and Charisma saving throws."
+    description: "Enter a fortified state for 10 minutes. You gain Resistance to Psychic damage, and add 1d$(attributes.psiDice) to Intelligence, Wisdom, and Charisma saving throws."
 
   - type: Effect
     target: activities[tags=cantrip AND tags=psion AND tags=damageSpell].description["d12"]

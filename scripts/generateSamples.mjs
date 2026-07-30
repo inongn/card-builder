@@ -206,9 +206,10 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
             const options = getOptions(builder, node);
             if (options.length === 0) continue;
 
-            // Check if this slot id has a preference
+            // Check if this slot id or name has a preference
             const slotId = node.id || '';
-            let preferList = preferences[slotId] || preferences['*'] || [];
+            const slotNameCamel = (node.name || '').replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => index === 0 ? letter.toLowerCase() : letter.toUpperCase()).replace(/\s+/g, '');
+            let preferList = preferences[slotId] || preferences[node.name] || preferences[slotNameCamel] || preferences['*'] || [];
             if (!Array.isArray(preferList)) preferList = [preferList];
 
             // Dynamic theme/synergy additions to preferList
@@ -223,7 +224,8 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
                     sorcerer: ['fireBolt', 'mindSliver', 'prestidigitation', 'shield', 'magicMissile', 'scorchingRay', 'mistyStep', 'fireball', 'haste', 'web', 'shatter'],
                     warlock: ['eldritchBlast', 'prestidigitation', 'hex', 'hellishRebuke', 'mistyStep', 'shatter', 'hungerOfHadar', 'armorOfAgathys', 'holdPerson'],
                     paladin: ['bless', 'heroism', 'cureWounds', 'shieldOfFaith', 'thunderousSmite', 'wrathfulSmite'],
-                    ranger: ['huntersMark', 'goodberry', 'longstrider', 'passWithoutTrace', 'fogCloud', 'cureWounds']
+                    ranger: ['huntersMark', 'goodberry', 'longstrider', 'passWithoutTrace', 'fogCloud', 'cureWounds'],
+                    psion: ['mindSliver', 'telekineticFling', 'mageHand', 'shield', 'mageArmor', 'mindSpike', 'dissonantWhispers', 'detectThoughts', 'levitate', 'mistyStep', 'shatter', 'holdPerson', 'invisibility', 'fly', 'haste', 'hypnoticPattern', 'telekinesis', 'dimensionDoor']
                 };
                 const spells = classSpells[classKey] || [];
                 preferList = [...preferList, ...spells];
@@ -240,7 +242,8 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
                     rogue: ['stealthProficiency', 'sleightOfHandProficiency', 'acrobaticsProficiency', 'perceptionProficiency', 'deceptionProficiency'],
                     sorcerer: ['arcanaProficiency', 'deceptionProficiency', 'persuasionProficiency', 'insightProficiency'],
                     warlock: ['deceptionProficiency', 'intimidationProficiency', 'arcanaProficiency', 'historyProficiency'],
-                    wizard: ['arcanaProficiency', 'historyProficiency', 'investigationProficiency', 'religionProficiency']
+                    wizard: ['arcanaProficiency', 'historyProficiency', 'investigationProficiency', 'religionProficiency'],
+                    psion: ['arcanaProficiency', 'historyProficiency', 'insightProficiency', 'investigationProficiency', 'perceptionProficiency', 'persuasionProficiency']
                 };
                 const skills = classSkills[classKey] || [];
                 preferList = [...preferList, ...skills];
@@ -1099,7 +1102,8 @@ const CHARACTERS = [
         prefs: {
             psionSkillProficiencies: ['arcanaProficiency', 'perceptionProficiency'],
             psionSubclass: ['metamorph'],
-            psionicDiscipline: ['biofeedback', 'sharpenedMind', 'inerrantAim']
+            psionicDiscipline: ['biofeedback', 'sharpenedMind', 'inerrantAim'],
+            savingThrowProficiency: ['conSave']
         }
     },
     {
@@ -1126,6 +1130,33 @@ const CHARACTERS = [
             psionSkillProficiencies: ['arcanaProficiency', 'athleticsProficiency'],
             psionSubclass: ['psykinetic'],
             psionicDiscipline: ['destructiveThoughts', 'psionicBacklash', 'sharpenedMind']
+        }
+    },
+    {
+        id: 'sample_psion_seer',
+        name: 'Varian Chrono',
+        class: 'Psion', sub: 'Seer',
+        species: 'Elf', background: 'sage',
+        speciesId: 'elf', classId: 'psion', subcId: 'seer',
+        str: 0, dex: 5, con: 4, int: 8, wis: 3, cha: 1,
+        prefs: {
+            psionSkillProficiencies: ['arcanaProficiency', 'insightProficiency'],
+            psionSubclass: ['seer'],
+            psionicDiscipline: ['bolsteringPrecognition', 'expandedAwareness', 'inerrantAim']
+        }
+    },
+    {
+        id: 'sample_psion_shaper',
+        name: 'Lyra Astral',
+        class: 'Psion', sub: 'Shaper',
+        species: 'Gnome', background: 'hermit',
+        speciesId: 'gnome', classId: 'psion', subcId: 'shaper',
+        str: 0, dex: 4, con: 5, int: 8, wis: 3, cha: 1,
+        prefs: {
+            psionSkillProficiencies: ['arcanaProficiency', 'natureProficiency'],
+            psionSubclass: ['shaper'],
+            psionicDiscipline: ['expandedAwareness', 'psionicGuards', 'biofeedback'],
+            savingThrowProficiency: ['conSave']
         }
     },
     {
@@ -1321,10 +1352,12 @@ async function buildCharacter(def) {
         'sample_wizard_evoker': 'spellSniper',
         'sample_wizard_illusionist': 'actor',
 
-        // Psion (4)
+        // Psion (6)
         'sample_psion_metamorph': 'resilient',
         'sample_psion_psiWarper': 'telekinetic',
         'sample_psion_psykinetic': 'warCaster',
+        'sample_psion_seer': 'alert',
+        'sample_psion_shaper': 'resilient',
         'sample_psion_telepath': 'telepathic',
 
         // Artificer (4)
@@ -1417,10 +1450,12 @@ async function buildCharacter(def) {
         'sample_wizard_evoker': 'elementalAdept',
         'sample_wizard_illusionist': 'shadowTouched',
 
-        // Psion (4)
+        // Psion (6)
         'sample_psion_metamorph': 'warCaster',
         'sample_psion_psiWarper': 'speedy',
         'sample_psion_psykinetic': 'telekinetic',
+        'sample_psion_seer': 'keenMind',
+        'sample_psion_shaper': 'telekinetic',
         'sample_psion_telepath': 'keenMind',
 
         // Artificer (4)

@@ -45,6 +45,32 @@ export class ExpressionEvaluator {
     }
 
     /**
+     * Get the maximum spell level for the current character context
+     */
+    getMaxSpellLevel() {
+        const meta = this.context?.meta || {};
+        const attr = this.context?.attributes || {};
+        if (attr.maxSpellLevel !== undefined && attr.maxSpellLevel !== null) return Number(attr.maxSpellLevel);
+        if (attr.maxLevel !== undefined && attr.maxLevel !== null) return Number(attr.maxLevel);
+        if (meta.maxLevel !== undefined && meta.maxLevel !== null) return Number(meta.maxLevel);
+
+        const level = meta.level || 1;
+        const cls = (meta.class || '').toLowerCase();
+        const sub = (meta.sub || '').toLowerCase();
+
+        if (['psion', 'wizard', 'sorcerer', 'cleric', 'druid', 'bard', 'warlock'].includes(cls)) {
+            return Math.min(9, Math.ceil(level / 2));
+        }
+        if (['paladin', 'ranger', 'artificer'].includes(cls)) {
+            return Math.min(5, Math.ceil(level / 4));
+        }
+        if (['eldritchknight', 'arcanetrickster', 'mysticarts'].includes(sub)) {
+            return level >= 19 ? 4 : level >= 13 ? 3 : level >= 7 ? 2 : 1;
+        }
+        return Math.min(9, Math.ceil(level / 2));
+    }
+
+    /**
      * progression() function for level-based progression
      */
     progression(...values) {
@@ -60,16 +86,20 @@ export class ExpressionEvaluator {
     bakeVariables(val, scope = {}) {
         if (val === null || val === undefined) return val;
 
+        const effectiveScope = (scope && scope.maxLevel !== undefined)
+            ? scope
+            : { maxLevel: this.getMaxSpellLevel(), ...scope };
+
         // Recursively handle arrays
         if (Array.isArray(val)) {
-            return val.map(item => this.bakeVariables(item, scope));
+            return val.map(item => this.bakeVariables(item, effectiveScope));
         }
 
         // Recursively handle objects
         if (typeof val === 'object') {
             const result = {};
             for (const key in val) {
-                result[key] = this.bakeVariables(val[key], scope);
+                result[key] = this.bakeVariables(val[key], effectiveScope);
             }
             return result;
         }
@@ -81,7 +111,7 @@ export class ExpressionEvaluator {
         // and avoiding baking objects which breaks JS expressions.
         return val.replace(/local\.([\w.]+)\b/g, (match, path) => {
             const parts = path.split('.');
-            let current = scope;
+            let current = effectiveScope;
             let i = 0;
             for (; i < parts.length; i++) {
                 const part = parts[i];
@@ -153,16 +183,20 @@ export class ExpressionEvaluator {
     evaluate(expr, scope = {}) {
         if (typeof expr !== 'string') return expr;
 
+        const effectiveScope = (scope && scope.maxLevel !== undefined)
+            ? scope
+            : { maxLevel: this.getMaxSpellLevel(), ...scope };
+
         // Support local.key even without $() wrapper for simplicity
         if (!expr.includes('$')) {
             if (expr.includes('local.')) {
-                return this.bakeVariables(expr, scope);
+                return this.bakeVariables(expr, effectiveScope);
             }
             return expr;
         }
 
         // Bake local variables into the expression string so they persist even if deferred
-        let result = this.bakeVariables(expr, scope);
+        let result = this.bakeVariables(expr, effectiveScope);
 
         // Multi-pass inside-out evaluation
         while (true) {
@@ -196,7 +230,7 @@ export class ExpressionEvaluator {
                     this.context.saves || {},
                     this.context.activities || [],
                     this.progression.bind(this),
-                    scope,
+                    effectiveScope,
                     formatBonus,
                     this.formatObject.bind(this),
                     this.capitalize.bind(this)
