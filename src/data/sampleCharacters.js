@@ -13,6 +13,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Barbarian',
         sub: 'Ancestral Guardian',
         species: 'Human',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/ancestralguardian.jpg',
         recipe: {
@@ -340,6 +341,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Barbarian',
         sub: 'Lament',
         species: 'Leonin',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/lament.jpg',
         recipe: {
@@ -655,6 +657,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Barbarian',
         sub: 'Berserker',
         species: 'Human',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/berserker.jpg',
         recipe: {
@@ -980,6 +983,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Barbarian',
         sub: 'Wild Heart',
         species: 'Satyr',
+        background: 'Guide',
         level: 8,
         image: 'subclass_headshot/wildheart.png',
         recipe: {
@@ -1341,6 +1345,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Barbarian',
         sub: 'World Tree',
         species: 'Elf',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/worldtree.jpg',
         recipe: {
@@ -1666,6 +1671,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Barbarian',
         sub: 'Zealot',
         species: 'Dragonborn',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/zealot.jpg',
         recipe: {
@@ -2024,6 +2030,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Bard',
         sub: 'Moon',
         species: 'Elf',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/moon.jpg',
         recipe: {
@@ -2591,6 +2598,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Bard',
         sub: 'Spirits',
         species: 'Goliath',
+        background: 'Charlatan',
         level: 8,
         image: 'subclass_headshot/spirits.jpg',
         recipe: {
@@ -3137,6 +3145,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Bard',
         sub: 'Dance',
         species: 'Human',
+        background: 'Entertainer',
         level: 8,
         image: 'subclass_headshot/dance.jpg',
         recipe: {
@@ -3648,6 +3657,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Bard',
         sub: 'Glamour',
         species: 'Elf',
+        background: 'Noble',
         level: 8,
         image: 'subclass_headshot/glamour.jpg',
         recipe: {
@@ -4192,6 +4202,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Bard',
         sub: 'Lore',
         species: 'Human',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/lore.jpg',
         recipe: {
@@ -4849,6 +4860,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Bard',
         sub: 'Valor',
         species: 'Dragonborn',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/valor.jpg',
         recipe: {
@@ -5344,6 +5356,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Cleric',
         sub: 'Grave',
         species: 'Elf',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/gravedomain.jpg',
         recipe: {
@@ -5922,6 +5935,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Cleric',
         sub: 'Knowledge',
         species: 'Orc',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/knowledgedomain.jpg',
         recipe: {
@@ -6550,6 +6564,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Cleric',
         sub: 'Life',
         species: 'Human',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/lifedomain.jpg',
         recipe: {
@@ -7157,6 +7172,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Cleric',
         sub: 'Light',
         species: 'Elf',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/lightdomain.jpg',
         recipe: {
@@ -7748,6 +7764,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Cleric',
         sub: 'Trickery',
         species: 'Halfling',
+        background: 'Charlatan',
         level: 8,
         image: 'subclass_headshot/trickerydomain.jpg',
         recipe: {
@@ -8332,6 +8349,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Cleric',
         sub: 'War',
         species: 'Tiefling',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/wardomain.jpg',
         recipe: {
@@ -8848,6 +8866,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Druid',
         sub: 'Preservation',
         species: 'Gnome',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/circleofpreservation.png',
         recipe: {
@@ -9414,6 +9433,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Druid',
         sub: 'Titan',
         species: 'Triton',
+        background: 'Guide',
         level: 8,
         image: 'subclass_headshot/circleofthetitan.jpg',
         recipe: {
@@ -9985,6 +10005,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Druid',
         sub: 'Land',
         species: 'Gnome',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/circleoftheland.jpg',
         recipe: {
@@ -10550,6 +10571,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Druid',
         sub: 'Moon',
         species: 'Aasimar',
+        background: 'Guide',
         level: 8,
         image: 'subclass_headshot/circleofthemoon.jpg',
         recipe: {
@@ -11134,6 +11156,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Druid',
         sub: 'Sea',
         species: 'Triton',
+        background: 'Sailor',
         level: 8,
         image: 'subclass_headshot/circleofthesea.jpg',
         recipe: {
@@ -11674,6 +11697,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Druid',
         sub: 'Stars',
         species: 'Elf',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/circleofthestars.jpg',
         recipe: {
@@ -12294,6 +12318,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Fighter',
         sub: 'Arcane Archer',
         species: 'Elf',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/arcanearcher.jpg',
         recipe: {
@@ -12737,6 +12762,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Fighter',
         sub: 'Banneret',
         species: 'Human',
+        background: 'Noble',
         level: 8,
         image: 'subclass_headshot/banneret.jpg',
         recipe: {
@@ -13165,6 +13191,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Fighter',
         sub: 'Battle Master',
         species: 'Dragonborn',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/battlemaster.jpg',
         recipe: {
@@ -13582,6 +13609,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Fighter',
         sub: 'Champion',
         species: 'Human',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/champion.jpg',
         recipe: {
@@ -13965,6 +13993,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Fighter',
         sub: 'Eldritch Knight',
         species: 'Human',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/eldritch_knight.jpg',
         recipe: {
@@ -14521,6 +14550,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Fighter',
         sub: 'Psi Warrior',
         species: 'Human',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/psiwarrior.jpg',
         recipe: {
@@ -14904,6 +14934,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Monk',
         sub: 'Mystic Arts',
         species: 'Human',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/mysticarts.jpg',
         recipe: {
@@ -15430,6 +15461,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Monk',
         sub: 'Venom',
         species: 'Human',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/venom.jpg',
         recipe: {
@@ -15747,6 +15779,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Monk',
         sub: 'Elements',
         species: 'Orc',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/elements.jpg',
         recipe: {
@@ -16055,6 +16088,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Monk',
         sub: 'Mercy',
         species: 'Human',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/mercy.jpg',
         recipe: {
@@ -16415,6 +16449,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Monk',
         sub: 'Open Hand',
         species: 'Human',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/openhand.jpg',
         recipe: {
@@ -16731,6 +16766,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Monk',
         sub: 'Shadow',
         species: 'Elf',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/shadows.jpg',
         recipe: {
@@ -17047,6 +17083,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Paladin',
         sub: 'Devotion',
         species: 'Human',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/oathofdevotion.jpg',
         recipe: {
@@ -17527,6 +17564,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Paladin',
         sub: 'Glory',
         species: 'Tiefling',
+        background: 'Noble',
         level: 8,
         image: 'subclass_headshot/oathofglory.jpg',
         recipe: {
@@ -17985,6 +18023,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Paladin',
         sub: 'Ancients',
         species: 'Elf',
+        background: 'Guide',
         level: 8,
         image: 'subclass_headshot/oathoftheancients.jpg',
         recipe: {
@@ -18465,6 +18504,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Paladin',
         sub: 'Vengeance',
         species: 'Dragonborn',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/oathofvengeance.jpg',
         recipe: {
@@ -18890,6 +18930,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Paladin',
         sub: 'Noble Genies',
         species: 'Dragonborn',
+        background: 'Noble',
         level: 8,
         image: 'subclass_headshot/oathofgenies.jpg',
         recipe: {
@@ -19391,6 +19432,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Paladin',
         sub: 'Oathbreaker',
         species: 'Tiefling',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/oathbreaker.jpg',
         recipe: {
@@ -19817,6 +19859,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Ranger',
         sub: 'Beast Master',
         species: 'Human',
+        background: 'Guide',
         level: 8,
         image: 'subclass_headshot/beastmaster.jpg',
         recipe: {
@@ -20339,6 +20382,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Ranger',
         sub: 'Fey Wanderer',
         species: 'Elf',
+        background: 'Wayfarer',
         level: 8,
         image: 'subclass_headshot/feywanderer.jpg',
         recipe: {
@@ -20827,6 +20871,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Ranger',
         sub: 'Gloom Stalker',
         species: 'Dwarf',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/gloomstalker.jpg',
         recipe: {
@@ -21251,6 +21296,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Ranger',
         sub: 'Hunter',
         species: 'Human',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/hunter.jpg',
         recipe: {
@@ -21711,6 +21757,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Ranger',
         sub: 'Winter Walker',
         species: 'Goliath',
+        background: 'Guide',
         level: 8,
         image: 'subclass_headshot/winterwalker.jpg',
         recipe: {
@@ -22165,6 +22212,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Ranger',
         sub: 'Hollow Warden',
         species: 'Dragonborn',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/hollowwarden.jpg',
         recipe: {
@@ -22576,6 +22624,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Rogue',
         sub: 'Arcane Trickster',
         species: 'Orc',
+        background: 'Charlatan',
         level: 8,
         image: 'subclass_headshot/arcanetrickster.jpg',
         recipe: {
@@ -23150,6 +23199,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Rogue',
         sub: 'Assassin',
         species: 'Dragonborn',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/assassin.jpg',
         recipe: {
@@ -23525,6 +23575,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Rogue',
         sub: 'Soulknife',
         species: 'Aasimar',
+        background: 'Wayfarer',
         level: 8,
         image: 'subclass_headshot/soulknife.jpg',
         recipe: {
@@ -23889,6 +23940,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Rogue',
         sub: 'Thief',
         species: 'Human',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/thief.jpg',
         recipe: {
@@ -24275,6 +24327,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Rogue',
         sub: 'Phantom',
         species: 'Human',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/phantom.jpg',
         recipe: {
@@ -24677,6 +24730,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Rogue',
         sub: 'Scion',
         species: 'Orc',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/scion.jpg',
         recipe: {
@@ -25057,6 +25111,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Sorcerer',
         sub: 'Aberrant',
         species: 'Dragonborn',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/aberrant.jpg',
         recipe: {
@@ -25627,6 +25682,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Sorcerer',
         sub: 'Clockwork',
         species: 'Dwarf',
+        background: 'Artisan',
         level: 8,
         image: 'subclass_headshot/clockwork.jpg',
         recipe: {
@@ -26139,6 +26195,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Sorcerer',
         sub: 'Draconic',
         species: 'Human',
+        background: 'Noble',
         level: 8,
         image: 'subclass_headshot/draconic.jpg',
         recipe: {
@@ -26735,6 +26792,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Sorcerer',
         sub: 'Wild Magic',
         species: 'Human',
+        background: 'Charlatan',
         level: 8,
         image: 'subclass_headshot/wildmagic.jpg',
         recipe: {
@@ -27314,6 +27372,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Sorcerer',
         sub: 'Shadow',
         species: 'Human',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/shadow.jpg',
         recipe: {
@@ -27839,6 +27898,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Sorcerer',
         sub: 'Demonic',
         species: 'Tiefling',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/demonic.png',
         recipe: {
@@ -28353,6 +28413,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Warlock',
         sub: 'Archfey',
         species: 'Elf',
+        background: 'Wayfarer',
         level: 8,
         image: 'subclass_headshot/archfeypatron.jpg',
         recipe: {
@@ -28940,6 +29001,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Warlock',
         sub: 'Celestial',
         species: 'Dwarf',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/celestialpatron.jpg',
         recipe: {
@@ -29568,6 +29630,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Warlock',
         sub: 'Fiend',
         species: 'Tiefling',
+        background: 'Criminal',
         level: 8,
         image: 'subclass_headshot/fiendpatron.jpg',
         recipe: {
@@ -30096,6 +30159,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Warlock',
         sub: 'Great Old One',
         species: 'Human',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/greatoldonepatron.jpg',
         recipe: {
@@ -30634,6 +30698,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Warlock',
         sub: 'Undead',
         species: 'Human',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/undeadpatron.jpg',
         recipe: {
@@ -31191,6 +31256,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Warlock',
         sub: 'Vestige',
         species: 'Aasimar',
+        background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/vestigepatron.jpg',
         recipe: {
@@ -31767,6 +31833,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Wizard',
         sub: 'Abjurer',
         species: 'Dwarf',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/abjurer.jpg',
         recipe: {
@@ -32286,6 +32353,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Wizard',
         sub: 'Diviner',
         species: 'Tiefling',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/diviner.jpg',
         recipe: {
@@ -32831,6 +32899,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Wizard',
         sub: 'Evoker',
         species: 'Elf',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/evoker.jpg',
         recipe: {
@@ -33387,6 +33456,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Wizard',
         sub: 'Illusionist',
         species: 'Gnome',
+        background: 'Charlatan',
         level: 8,
         image: 'subclass_headshot/illusionist.jpg',
         recipe: {
@@ -33933,6 +34003,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Wizard',
         sub: 'Bladesinger',
         species: 'Elf',
+        background: 'Noble',
         level: 8,
         image: 'subclass_headshot/bladesinger.jpg',
         recipe: {
@@ -34500,6 +34571,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Wizard',
         sub: 'Necromancer',
         species: 'Human',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/necromancer.jpg',
         recipe: {
@@ -35044,6 +35116,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Psion',
         sub: 'Metamorph',
         species: 'Goliath',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/metamorph.jpg',
         recipe: {
@@ -35544,6 +35617,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Psion',
         sub: 'Psi Warper',
         species: 'Elf',
+        background: 'Wayfarer',
         level: 8,
         image: 'subclass_headshot/psiwarper.jpeg',
         recipe: {
@@ -36055,6 +36129,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Psion',
         sub: 'Psykinetic',
         species: 'Human',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/psykinetic.jpg',
         recipe: {
@@ -36566,6 +36641,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Psion',
         sub: 'Seer',
         species: 'Elf',
+        background: 'Sage',
         level: 8,
         image: 'subclass_headshot/seer.jpg',
         recipe: {
@@ -37134,6 +37210,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Psion',
         sub: 'Shaper',
         species: 'Gnome',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/shaper.jpg',
         recipe: {
@@ -37684,6 +37761,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Psion',
         sub: 'Telepath',
         species: 'Tiefling',
+        background: 'Charlatan',
         level: 8,
         image: 'subclass_headshot/telepath.jpg',
         recipe: {
@@ -38243,6 +38321,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Artificer',
         sub: 'Alchemist',
         species: 'Gnome',
+        background: 'Artisan',
         level: 8,
         image: 'subclass_headshot/alchemist.jpg',
         recipe: {
@@ -38716,6 +38795,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Artificer',
         sub: 'Artillerist',
         species: 'Gnome',
+        background: 'Artisan',
         level: 8,
         image: 'subclass_headshot/artillerist.jpg',
         recipe: {
@@ -39199,6 +39279,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Artificer',
         sub: 'Cartographer',
         species: 'Human',
+        background: 'Guide',
         level: 8,
         image: 'subclass_headshot/cartographer.jpg',
         recipe: {
@@ -39703,6 +39784,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Artificer',
         sub: 'Armorer',
         species: 'Dwarf',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/armorer.jpg',
         recipe: {
@@ -40155,6 +40237,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Artificer',
         sub: 'Reanimator',
         species: 'Human',
+        background: 'Hermit',
         level: 8,
         image: 'subclass_headshot/reanimator.jpg',
         recipe: {
@@ -40629,6 +40712,7 @@ export const SAMPLE_CHARACTERS = [
         class: 'Artificer',
         sub: 'Battle Smith',
         species: 'Human',
+        background: 'Soldier',
         level: 8,
         image: 'subclass_headshot/battlesmith.jpg',
         recipe: {

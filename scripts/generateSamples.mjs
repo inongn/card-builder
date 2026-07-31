@@ -1774,6 +1774,7 @@ async function buildCharacter(def) {
 
     // Get subclass display name
     const subName = builder.characterData.meta?.sub || def.sub;
+    const backgroundName = builder.characterData.meta?.background || '';
 
     return {
         id: def.id,
@@ -1781,6 +1782,7 @@ async function buildCharacter(def) {
         class: def.class,
         sub: subName,
         species: def.species,
+        background: backgroundName,
         level: LEVEL,
         image: imgUrl,
         recipe
@@ -1807,6 +1809,7 @@ for (const def of CHARACTERS) {
             class: def.class,
             sub: def.sub,
             species: def.species,
+            background: '',
             level: LEVEL,
             image: '',
             recipe: { inputs: [], slots: [] }
@@ -1826,6 +1829,7 @@ const serialized = results.map(char => {
         class: '${char.class}',
         sub: '${char.sub.replace(/'/g, "\\'")}',
         species: '${char.species}',
+        background: '${char.background.replace(/'/g, "\\'")}',
         level: ${char.level},
         image: '${char.image || ''}',
         recipe: ${recipeStr}

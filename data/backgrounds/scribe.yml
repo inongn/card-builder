@@ -5,6 +5,10 @@ tags:
 - background
 type: Folder
 children:
+- type: Effect
+  target: meta.background
+  operation: set
+  value: "Scribe"
 - type: Reference
   target:
   - investigationProficiency

@@ -5,6 +5,10 @@ tags:
 - background
 type: Folder
 children:
+- type: Effect
+  target: meta.background
+  operation: set
+  value: "Sailor"
 - type: Reference
   target:
   - acrobaticsProficiency

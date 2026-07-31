@@ -156,7 +156,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                         {char.meta.name}
                     </div>
                     <div className="title-primary">
-                        Lv. {char.meta.level} {char.meta.species} {char.meta.sub} {char.meta.class || 'Unknown Class'}
+                        {[`Lv. ${char.meta.level}`, [char.meta.species].filter(Boolean).join(' '), `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
                     </div>
                 </div>
             </div>

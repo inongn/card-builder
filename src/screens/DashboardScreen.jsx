@@ -48,7 +48,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
         const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
         const subheadParts = [
             `Level ${charSaved.level || 1}`,
-            charSaved.species,
+            [charSaved.background, charSaved.species].filter(Boolean).join(' '),
             `${charSaved.sub || ''} ${charSaved.class || ''}`.trim(),
         ].filter(Boolean);
 
@@ -97,7 +97,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                             const heroImage = featuredCharacter.image ? getAssetUrl(featuredCharacter.image) : null;
                             const subheadParts = [
                                 `Level ${featuredCharacter.level || 1}`,
-                                featuredCharacter.species,
+                                [featuredCharacter.background, featuredCharacter.species].filter(Boolean).join(' '),
                                 `${featuredCharacter.sub || ''} ${featuredCharacter.class || ''}`.trim(),
                             ].filter(Boolean);
 

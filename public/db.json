@@ -9,6 +9,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Acolyte"
+      },
+      {
         "type": "Reference",
         "target": [
           "insightProficiency",
@@ -38,6 +44,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Artisan"
+      },
       {
         "type": "Reference",
         "target": [
@@ -74,6 +86,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Charlatan"
+      },
+      {
         "type": "Reference",
         "target": [
           "deceptionProficiency",
@@ -103,6 +121,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Criminal"
+      },
       {
         "type": "Reference",
         "target": [
@@ -134,6 +158,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Entertainer"
+      },
+      {
         "type": "Reference",
         "target": [
           "acrobaticsProficiency",
@@ -163,6 +193,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Farmer"
+      },
       {
         "type": "Reference",
         "target": [
@@ -194,6 +230,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Guard"
+      },
+      {
         "type": "Reference",
         "target": [
           "athleticsProficiency",
@@ -223,6 +265,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Guide"
+      },
       {
         "type": "Reference",
         "target": [
@@ -254,6 +302,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Hermit"
+      },
+      {
         "type": "Reference",
         "target": [
           "medicineProficiency",
@@ -283,6 +337,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Merchant"
+      },
       {
         "type": "Reference",
         "target": [
@@ -314,6 +374,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Noble"
+      },
+      {
         "type": "Reference",
         "target": [
           "historyProficiency",
@@ -343,6 +409,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Sage"
+      },
       {
         "type": "Reference",
         "target": [
@@ -374,6 +446,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Sailor"
+      },
+      {
         "type": "Reference",
         "target": [
           "acrobaticsProficiency",
@@ -403,6 +481,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Scribe"
+      },
       {
         "type": "Reference",
         "target": [
@@ -434,6 +518,12 @@
     "type": "Folder",
     "children": [
       {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Soldier"
+      },
+      {
         "type": "Reference",
         "target": [
           "athleticsProficiency",
@@ -463,6 +553,12 @@
     ],
     "type": "Folder",
     "children": [
+      {
+        "type": "Effect",
+        "target": "meta.background",
+        "operation": "set",
+        "value": "Wayfarer"
+      },
       {
         "type": "Reference",
         "target": [
