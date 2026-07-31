@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const publicDir = path.join(__dirname, '..', 'public');
-const dirsToOptimize = ['subclass', 'species', 'class', 'background', 'portraits'];
+const dirsToOptimize = ['subclass', 'species', 'class', 'background', 'portraits', 'subclass_headshot'];
 
 let totalConverted = 0;
 let totalSavedBytes = 0;

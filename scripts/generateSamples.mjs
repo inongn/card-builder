@@ -60,11 +60,19 @@ function pickPortrait(subcId) {
 
     const files = readdirSync(headshotDir);
 
-    // Find matching image file regardless of extension (.jpg, .png, .webp)
-    const match = files.find(file => {
+    // Find matching image file prioritizing .webp over other extensions
+    let match = files.find(file => {
+        const ext = file.substring(file.lastIndexOf('.')).toLowerCase();
         const nameWithoutExt = file.substring(0, file.lastIndexOf('.')).toLowerCase().replace(/[^a-z0-9]/g, '');
-        return nameWithoutExt === cleanSubc;
+        return nameWithoutExt === cleanSubc && ext === '.webp';
     });
+
+    if (!match) {
+        match = files.find(file => {
+            const nameWithoutExt = file.substring(0, file.lastIndexOf('.')).toLowerCase().replace(/[^a-z0-9]/g, '');
+            return nameWithoutExt === cleanSubc;
+        });
+    }
 
     return match ? `subclass_headshot/${match}` : '';
 }

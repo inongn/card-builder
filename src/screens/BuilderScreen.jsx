@@ -434,9 +434,12 @@ const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
             .then(data => {
                 if (!Array.isArray(data)) return;
                 const speciesName = species.trim().toLowerCase();
-                const filtered = speciesName
+                const filtered = (speciesName
                     ? data.filter(p => (p.species || '').toLowerCase() === speciesName)
-                    : data;
+                    : data).map(p => ({
+                        ...p,
+                        filename: p.filename.replace(/\.(jpg|jpeg|png)$/i, '.webp')
+                    }));
                 setPortraits(filtered);
             })
             .catch(() => setPortraits([]));

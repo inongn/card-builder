@@ -15,7 +15,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/ancestralguardian.jpg',
+        image: 'subclass_headshot/ancestralguardian.webp',
         recipe: {
         inputs: [
                 {
@@ -32,7 +32,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/ancestralguardian.jpg'
+                        value: 'subclass_headshot/ancestralguardian.webp'
                 },
                 {
                         path: [
@@ -343,7 +343,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Leonin',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/lament.jpg',
+        image: 'subclass_headshot/lament.webp',
         recipe: {
         inputs: [
                 {
@@ -360,7 +360,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/lament.jpg'
+                        value: 'subclass_headshot/lament.webp'
                 },
                 {
                         path: [
@@ -659,7 +659,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/berserker.jpg',
+        image: 'subclass_headshot/berserker.webp',
         recipe: {
         inputs: [
                 {
@@ -676,7 +676,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/berserker.jpg'
+                        value: 'subclass_headshot/berserker.webp'
                 },
                 {
                         path: [
@@ -985,7 +985,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Satyr',
         background: 'Guide',
         level: 8,
-        image: 'subclass_headshot/wildheart.png',
+        image: 'subclass_headshot/wildheart.webp',
         recipe: {
         inputs: [
                 {
@@ -1002,7 +1002,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/wildheart.png'
+                        value: 'subclass_headshot/wildheart.webp'
                 },
                 {
                         path: [
@@ -1347,7 +1347,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/worldtree.jpg',
+        image: 'subclass_headshot/worldtree.webp',
         recipe: {
         inputs: [
                 {
@@ -1364,7 +1364,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/worldtree.jpg'
+                        value: 'subclass_headshot/worldtree.webp'
                 },
                 {
                         path: [
@@ -1673,7 +1673,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/zealot.jpg',
+        image: 'subclass_headshot/zealot.webp',
         recipe: {
         inputs: [
                 {
@@ -1690,7 +1690,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/zealot.jpg'
+                        value: 'subclass_headshot/zealot.webp'
                 },
                 {
                         path: [
@@ -2032,7 +2032,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/moon.jpg',
+        image: 'subclass_headshot/moon.webp',
         recipe: {
         inputs: [
                 {
@@ -2049,7 +2049,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/moon.jpg'
+                        value: 'subclass_headshot/moon.webp'
                 },
                 {
                         path: [
@@ -2600,7 +2600,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Goliath',
         background: 'Charlatan',
         level: 8,
-        image: 'subclass_headshot/spirits.jpg',
+        image: 'subclass_headshot/spirits.webp',
         recipe: {
         inputs: [
                 {
@@ -2617,7 +2617,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/spirits.jpg'
+                        value: 'subclass_headshot/spirits.webp'
                 },
                 {
                         path: [
@@ -3147,7 +3147,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Entertainer',
         level: 8,
-        image: 'subclass_headshot/dance.jpg',
+        image: 'subclass_headshot/dance.webp',
         recipe: {
         inputs: [
                 {
@@ -3164,7 +3164,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/dance.jpg'
+                        value: 'subclass_headshot/dance.webp'
                 },
                 {
                         path: [
@@ -3659,7 +3659,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Noble',
         level: 8,
-        image: 'subclass_headshot/glamour.jpg',
+        image: 'subclass_headshot/glamour.webp',
         recipe: {
         inputs: [
                 {
@@ -3676,7 +3676,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/glamour.jpg'
+                        value: 'subclass_headshot/glamour.webp'
                 },
                 {
                         path: [
@@ -4204,7 +4204,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/lore.jpg',
+        image: 'subclass_headshot/lore.webp',
         recipe: {
         inputs: [
                 {
@@ -4221,7 +4221,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/lore.jpg'
+                        value: 'subclass_headshot/lore.webp'
                 },
                 {
                         path: [
@@ -4862,7 +4862,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/valor.jpg',
+        image: 'subclass_headshot/valor.webp',
         recipe: {
         inputs: [
                 {
@@ -4879,7 +4879,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/valor.jpg'
+                        value: 'subclass_headshot/valor.webp'
                 },
                 {
                         path: [
@@ -5358,7 +5358,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/gravedomain.jpg',
+        image: 'subclass_headshot/gravedomain.webp',
         recipe: {
         inputs: [
                 {
@@ -5375,7 +5375,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/gravedomain.jpg'
+                        value: 'subclass_headshot/gravedomain.webp'
                 },
                 {
                         path: [
@@ -5937,7 +5937,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Orc',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/knowledgedomain.jpg',
+        image: 'subclass_headshot/knowledgedomain.webp',
         recipe: {
         inputs: [
                 {
@@ -5954,7 +5954,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/knowledgedomain.jpg'
+                        value: 'subclass_headshot/knowledgedomain.webp'
                 },
                 {
                         path: [
@@ -6566,7 +6566,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/lifedomain.jpg',
+        image: 'subclass_headshot/lifedomain.webp',
         recipe: {
         inputs: [
                 {
@@ -6583,7 +6583,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/lifedomain.jpg'
+                        value: 'subclass_headshot/lifedomain.webp'
                 },
                 {
                         path: [
@@ -7174,7 +7174,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/lightdomain.jpg',
+        image: 'subclass_headshot/lightdomain.webp',
         recipe: {
         inputs: [
                 {
@@ -7191,7 +7191,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/lightdomain.jpg'
+                        value: 'subclass_headshot/lightdomain.webp'
                 },
                 {
                         path: [
@@ -7766,7 +7766,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Halfling',
         background: 'Charlatan',
         level: 8,
-        image: 'subclass_headshot/trickerydomain.jpg',
+        image: 'subclass_headshot/trickerydomain.webp',
         recipe: {
         inputs: [
                 {
@@ -7783,7 +7783,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/trickerydomain.jpg'
+                        value: 'subclass_headshot/trickerydomain.webp'
                 },
                 {
                         path: [
@@ -8351,7 +8351,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Tiefling',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/wardomain.jpg',
+        image: 'subclass_headshot/wardomain.webp',
         recipe: {
         inputs: [
                 {
@@ -8368,7 +8368,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/wardomain.jpg'
+                        value: 'subclass_headshot/wardomain.webp'
                 },
                 {
                         path: [
@@ -8868,7 +8868,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Gnome',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/circleofpreservation.png',
+        image: 'subclass_headshot/circleofpreservation.webp',
         recipe: {
         inputs: [
                 {
@@ -8885,7 +8885,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/circleofpreservation.png'
+                        value: 'subclass_headshot/circleofpreservation.webp'
                 },
                 {
                         path: [
@@ -9435,7 +9435,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Triton',
         background: 'Guide',
         level: 8,
-        image: 'subclass_headshot/circleofthetitan.jpg',
+        image: 'subclass_headshot/circleofthetitan.webp',
         recipe: {
         inputs: [
                 {
@@ -9452,7 +9452,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/circleofthetitan.jpg'
+                        value: 'subclass_headshot/circleofthetitan.webp'
                 },
                 {
                         path: [
@@ -10007,7 +10007,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Gnome',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/circleoftheland.jpg',
+        image: 'subclass_headshot/circleoftheland.webp',
         recipe: {
         inputs: [
                 {
@@ -10024,7 +10024,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/circleoftheland.jpg'
+                        value: 'subclass_headshot/circleoftheland.webp'
                 },
                 {
                         path: [
@@ -10573,7 +10573,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Aasimar',
         background: 'Guide',
         level: 8,
-        image: 'subclass_headshot/circleofthemoon.jpg',
+        image: 'subclass_headshot/circleofthemoon.webp',
         recipe: {
         inputs: [
                 {
@@ -10590,7 +10590,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/circleofthemoon.jpg'
+                        value: 'subclass_headshot/circleofthemoon.webp'
                 },
                 {
                         path: [
@@ -11158,7 +11158,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Triton',
         background: 'Sailor',
         level: 8,
-        image: 'subclass_headshot/circleofthesea.jpg',
+        image: 'subclass_headshot/circleofthesea.webp',
         recipe: {
         inputs: [
                 {
@@ -11175,7 +11175,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/circleofthesea.jpg'
+                        value: 'subclass_headshot/circleofthesea.webp'
                 },
                 {
                         path: [
@@ -11699,7 +11699,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/circleofthestars.jpg',
+        image: 'subclass_headshot/circleofthestars.webp',
         recipe: {
         inputs: [
                 {
@@ -11716,7 +11716,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/circleofthestars.jpg'
+                        value: 'subclass_headshot/circleofthestars.webp'
                 },
                 {
                         path: [
@@ -12320,7 +12320,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/arcanearcher.jpg',
+        image: 'subclass_headshot/arcanearcher.webp',
         recipe: {
         inputs: [
                 {
@@ -12337,7 +12337,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/arcanearcher.jpg'
+                        value: 'subclass_headshot/arcanearcher.webp'
                 },
                 {
                         path: [
@@ -12764,7 +12764,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Noble',
         level: 8,
-        image: 'subclass_headshot/banneret.jpg',
+        image: 'subclass_headshot/banneret.webp',
         recipe: {
         inputs: [
                 {
@@ -12781,7 +12781,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/banneret.jpg'
+                        value: 'subclass_headshot/banneret.webp'
                 },
                 {
                         path: [
@@ -13193,7 +13193,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/battlemaster.jpg',
+        image: 'subclass_headshot/battlemaster.webp',
         recipe: {
         inputs: [
                 {
@@ -13210,7 +13210,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/battlemaster.jpg'
+                        value: 'subclass_headshot/battlemaster.webp'
                 },
                 {
                         path: [
@@ -13611,7 +13611,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/champion.jpg',
+        image: 'subclass_headshot/champion.webp',
         recipe: {
         inputs: [
                 {
@@ -13628,7 +13628,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/champion.jpg'
+                        value: 'subclass_headshot/champion.webp'
                 },
                 {
                         path: [
@@ -13995,7 +13995,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/eldritch_knight.jpg',
+        image: 'subclass_headshot/eldritch_knight.webp',
         recipe: {
         inputs: [
                 {
@@ -14012,7 +14012,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/eldritch_knight.jpg'
+                        value: 'subclass_headshot/eldritch_knight.webp'
                 },
                 {
                         path: [
@@ -14552,7 +14552,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/psiwarrior.jpg',
+        image: 'subclass_headshot/psiwarrior.webp',
         recipe: {
         inputs: [
                 {
@@ -14569,7 +14569,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/psiwarrior.jpg'
+                        value: 'subclass_headshot/psiwarrior.webp'
                 },
                 {
                         path: [
@@ -14936,7 +14936,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/mysticarts.jpg',
+        image: 'subclass_headshot/mysticarts.webp',
         recipe: {
         inputs: [
                 {
@@ -14953,7 +14953,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/mysticarts.jpg'
+                        value: 'subclass_headshot/mysticarts.webp'
                 },
                 {
                         path: [
@@ -15463,7 +15463,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/venom.jpg',
+        image: 'subclass_headshot/venom.webp',
         recipe: {
         inputs: [
                 {
@@ -15480,7 +15480,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/venom.jpg'
+                        value: 'subclass_headshot/venom.webp'
                 },
                 {
                         path: [
@@ -15781,7 +15781,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Orc',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/elements.jpg',
+        image: 'subclass_headshot/elements.webp',
         recipe: {
         inputs: [
                 {
@@ -15798,7 +15798,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/elements.jpg'
+                        value: 'subclass_headshot/elements.webp'
                 },
                 {
                         path: [
@@ -16090,7 +16090,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/mercy.jpg',
+        image: 'subclass_headshot/mercy.webp',
         recipe: {
         inputs: [
                 {
@@ -16107,7 +16107,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/mercy.jpg'
+                        value: 'subclass_headshot/mercy.webp'
                 },
                 {
                         path: [
@@ -16451,7 +16451,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/openhand.jpg',
+        image: 'subclass_headshot/openhand.webp',
         recipe: {
         inputs: [
                 {
@@ -16468,7 +16468,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/openhand.jpg'
+                        value: 'subclass_headshot/openhand.webp'
                 },
                 {
                         path: [
@@ -16768,7 +16768,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/shadows.jpg',
+        image: 'subclass_headshot/shadows.webp',
         recipe: {
         inputs: [
                 {
@@ -16785,7 +16785,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/shadows.jpg'
+                        value: 'subclass_headshot/shadows.webp'
                 },
                 {
                         path: [
@@ -17085,7 +17085,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/oathofdevotion.jpg',
+        image: 'subclass_headshot/oathofdevotion.webp',
         recipe: {
         inputs: [
                 {
@@ -17102,7 +17102,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/oathofdevotion.jpg'
+                        value: 'subclass_headshot/oathofdevotion.webp'
                 },
                 {
                         path: [
@@ -17566,7 +17566,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Tiefling',
         background: 'Noble',
         level: 8,
-        image: 'subclass_headshot/oathofglory.jpg',
+        image: 'subclass_headshot/oathofglory.webp',
         recipe: {
         inputs: [
                 {
@@ -17583,7 +17583,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/oathofglory.jpg'
+                        value: 'subclass_headshot/oathofglory.webp'
                 },
                 {
                         path: [
@@ -18025,7 +18025,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Guide',
         level: 8,
-        image: 'subclass_headshot/oathoftheancients.jpg',
+        image: 'subclass_headshot/oathoftheancients.webp',
         recipe: {
         inputs: [
                 {
@@ -18042,7 +18042,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/oathoftheancients.jpg'
+                        value: 'subclass_headshot/oathoftheancients.webp'
                 },
                 {
                         path: [
@@ -18506,7 +18506,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/oathofvengeance.jpg',
+        image: 'subclass_headshot/oathofvengeance.webp',
         recipe: {
         inputs: [
                 {
@@ -18523,7 +18523,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/oathofvengeance.jpg'
+                        value: 'subclass_headshot/oathofvengeance.webp'
                 },
                 {
                         path: [
@@ -18932,7 +18932,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Noble',
         level: 8,
-        image: 'subclass_headshot/oathofgenies.jpg',
+        image: 'subclass_headshot/oathofgenies.webp',
         recipe: {
         inputs: [
                 {
@@ -18949,7 +18949,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/oathofgenies.jpg'
+                        value: 'subclass_headshot/oathofgenies.webp'
                 },
                 {
                         path: [
@@ -19434,7 +19434,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Tiefling',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/oathbreaker.jpg',
+        image: 'subclass_headshot/oathbreaker.webp',
         recipe: {
         inputs: [
                 {
@@ -19451,7 +19451,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/oathbreaker.jpg'
+                        value: 'subclass_headshot/oathbreaker.webp'
                 },
                 {
                         path: [
@@ -19861,7 +19861,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Guide',
         level: 8,
-        image: 'subclass_headshot/beastmaster.jpg',
+        image: 'subclass_headshot/beastmaster.webp',
         recipe: {
         inputs: [
                 {
@@ -19878,7 +19878,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/beastmaster.jpg'
+                        value: 'subclass_headshot/beastmaster.webp'
                 },
                 {
                         path: [
@@ -20384,7 +20384,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Wayfarer',
         level: 8,
-        image: 'subclass_headshot/feywanderer.jpg',
+        image: 'subclass_headshot/feywanderer.webp',
         recipe: {
         inputs: [
                 {
@@ -20401,7 +20401,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/feywanderer.jpg'
+                        value: 'subclass_headshot/feywanderer.webp'
                 },
                 {
                         path: [
@@ -20873,7 +20873,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dwarf',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/gloomstalker.jpg',
+        image: 'subclass_headshot/gloomstalker.webp',
         recipe: {
         inputs: [
                 {
@@ -20890,7 +20890,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/gloomstalker.jpg'
+                        value: 'subclass_headshot/gloomstalker.webp'
                 },
                 {
                         path: [
@@ -21298,7 +21298,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/hunter.jpg',
+        image: 'subclass_headshot/hunter.webp',
         recipe: {
         inputs: [
                 {
@@ -21315,7 +21315,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/hunter.jpg'
+                        value: 'subclass_headshot/hunter.webp'
                 },
                 {
                         path: [
@@ -21759,7 +21759,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Goliath',
         background: 'Guide',
         level: 8,
-        image: 'subclass_headshot/winterwalker.jpg',
+        image: 'subclass_headshot/winterwalker.webp',
         recipe: {
         inputs: [
                 {
@@ -21776,7 +21776,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/winterwalker.jpg'
+                        value: 'subclass_headshot/winterwalker.webp'
                 },
                 {
                         path: [
@@ -22214,7 +22214,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/hollowwarden.jpg',
+        image: 'subclass_headshot/hollowwarden.webp',
         recipe: {
         inputs: [
                 {
@@ -22231,7 +22231,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/hollowwarden.jpg'
+                        value: 'subclass_headshot/hollowwarden.webp'
                 },
                 {
                         path: [
@@ -22626,7 +22626,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Orc',
         background: 'Charlatan',
         level: 8,
-        image: 'subclass_headshot/arcanetrickster.jpg',
+        image: 'subclass_headshot/arcanetrickster.webp',
         recipe: {
         inputs: [
                 {
@@ -22643,7 +22643,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/arcanetrickster.jpg'
+                        value: 'subclass_headshot/arcanetrickster.webp'
                 },
                 {
                         path: [
@@ -23201,7 +23201,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/assassin.jpg',
+        image: 'subclass_headshot/assassin.webp',
         recipe: {
         inputs: [
                 {
@@ -23218,7 +23218,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/assassin.jpg'
+                        value: 'subclass_headshot/assassin.webp'
                 },
                 {
                         path: [
@@ -23577,7 +23577,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Aasimar',
         background: 'Wayfarer',
         level: 8,
-        image: 'subclass_headshot/soulknife.jpg',
+        image: 'subclass_headshot/soulknife.webp',
         recipe: {
         inputs: [
                 {
@@ -23594,7 +23594,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/soulknife.jpg'
+                        value: 'subclass_headshot/soulknife.webp'
                 },
                 {
                         path: [
@@ -23942,7 +23942,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/thief.jpg',
+        image: 'subclass_headshot/thief.webp',
         recipe: {
         inputs: [
                 {
@@ -23959,7 +23959,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/thief.jpg'
+                        value: 'subclass_headshot/thief.webp'
                 },
                 {
                         path: [
@@ -24329,7 +24329,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/phantom.jpg',
+        image: 'subclass_headshot/phantom.webp',
         recipe: {
         inputs: [
                 {
@@ -24346,7 +24346,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/phantom.jpg'
+                        value: 'subclass_headshot/phantom.webp'
                 },
                 {
                         path: [
@@ -24732,7 +24732,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Orc',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/scion.jpg',
+        image: 'subclass_headshot/scion.webp',
         recipe: {
         inputs: [
                 {
@@ -24749,7 +24749,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/scion.jpg'
+                        value: 'subclass_headshot/scion.webp'
                 },
                 {
                         path: [
@@ -25113,7 +25113,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dragonborn',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/aberrant.jpg',
+        image: 'subclass_headshot/aberrant.webp',
         recipe: {
         inputs: [
                 {
@@ -25130,7 +25130,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/aberrant.jpg'
+                        value: 'subclass_headshot/aberrant.webp'
                 },
                 {
                         path: [
@@ -25684,7 +25684,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dwarf',
         background: 'Artisan',
         level: 8,
-        image: 'subclass_headshot/clockwork.jpg',
+        image: 'subclass_headshot/clockwork.webp',
         recipe: {
         inputs: [
                 {
@@ -25701,7 +25701,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/clockwork.jpg'
+                        value: 'subclass_headshot/clockwork.webp'
                 },
                 {
                         path: [
@@ -26197,7 +26197,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Noble',
         level: 8,
-        image: 'subclass_headshot/draconic.jpg',
+        image: 'subclass_headshot/draconic.webp',
         recipe: {
         inputs: [
                 {
@@ -26214,7 +26214,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/draconic.jpg'
+                        value: 'subclass_headshot/draconic.webp'
                 },
                 {
                         path: [
@@ -26794,7 +26794,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Charlatan',
         level: 8,
-        image: 'subclass_headshot/wildmagic.jpg',
+        image: 'subclass_headshot/wildmagic.webp',
         recipe: {
         inputs: [
                 {
@@ -26811,7 +26811,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/wildmagic.jpg'
+                        value: 'subclass_headshot/wildmagic.webp'
                 },
                 {
                         path: [
@@ -27374,7 +27374,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/shadow.jpg',
+        image: 'subclass_headshot/shadow.webp',
         recipe: {
         inputs: [
                 {
@@ -27391,7 +27391,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/shadow.jpg'
+                        value: 'subclass_headshot/shadow.webp'
                 },
                 {
                         path: [
@@ -27900,7 +27900,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Tiefling',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/demonic.png',
+        image: 'subclass_headshot/demonic.webp',
         recipe: {
         inputs: [
                 {
@@ -27917,7 +27917,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/demonic.png'
+                        value: 'subclass_headshot/demonic.webp'
                 },
                 {
                         path: [
@@ -28415,7 +28415,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Wayfarer',
         level: 8,
-        image: 'subclass_headshot/archfeypatron.jpg',
+        image: 'subclass_headshot/archfeypatron.webp',
         recipe: {
         inputs: [
                 {
@@ -28432,7 +28432,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/archfeypatron.jpg'
+                        value: 'subclass_headshot/archfeypatron.webp'
                 },
                 {
                         path: [
@@ -29003,7 +29003,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dwarf',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/celestialpatron.jpg',
+        image: 'subclass_headshot/celestialpatron.webp',
         recipe: {
         inputs: [
                 {
@@ -29020,7 +29020,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/celestialpatron.jpg'
+                        value: 'subclass_headshot/celestialpatron.webp'
                 },
                 {
                         path: [
@@ -29632,7 +29632,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Tiefling',
         background: 'Criminal',
         level: 8,
-        image: 'subclass_headshot/fiendpatron.jpg',
+        image: 'subclass_headshot/fiendpatron.webp',
         recipe: {
         inputs: [
                 {
@@ -29649,7 +29649,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/fiendpatron.jpg'
+                        value: 'subclass_headshot/fiendpatron.webp'
                 },
                 {
                         path: [
@@ -30161,7 +30161,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/greatoldonepatron.jpg',
+        image: 'subclass_headshot/greatoldonepatron.webp',
         recipe: {
         inputs: [
                 {
@@ -30178,7 +30178,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/greatoldonepatron.jpg'
+                        value: 'subclass_headshot/greatoldonepatron.webp'
                 },
                 {
                         path: [
@@ -30700,7 +30700,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/undeadpatron.jpg',
+        image: 'subclass_headshot/undeadpatron.webp',
         recipe: {
         inputs: [
                 {
@@ -30717,7 +30717,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/undeadpatron.jpg'
+                        value: 'subclass_headshot/undeadpatron.webp'
                 },
                 {
                         path: [
@@ -31258,7 +31258,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Aasimar',
         background: 'Acolyte',
         level: 8,
-        image: 'subclass_headshot/vestigepatron.jpg',
+        image: 'subclass_headshot/vestigepatron.webp',
         recipe: {
         inputs: [
                 {
@@ -31275,7 +31275,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/vestigepatron.jpg'
+                        value: 'subclass_headshot/vestigepatron.webp'
                 },
                 {
                         path: [
@@ -31835,7 +31835,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dwarf',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/abjurer.jpg',
+        image: 'subclass_headshot/abjurer.webp',
         recipe: {
         inputs: [
                 {
@@ -31852,7 +31852,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/abjurer.jpg'
+                        value: 'subclass_headshot/abjurer.webp'
                 },
                 {
                         path: [
@@ -32355,7 +32355,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Tiefling',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/diviner.jpg',
+        image: 'subclass_headshot/diviner.webp',
         recipe: {
         inputs: [
                 {
@@ -32372,7 +32372,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/diviner.jpg'
+                        value: 'subclass_headshot/diviner.webp'
                 },
                 {
                         path: [
@@ -32901,7 +32901,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/evoker.jpg',
+        image: 'subclass_headshot/evoker.webp',
         recipe: {
         inputs: [
                 {
@@ -32918,7 +32918,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/evoker.jpg'
+                        value: 'subclass_headshot/evoker.webp'
                 },
                 {
                         path: [
@@ -33458,7 +33458,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Gnome',
         background: 'Charlatan',
         level: 8,
-        image: 'subclass_headshot/illusionist.jpg',
+        image: 'subclass_headshot/illusionist.webp',
         recipe: {
         inputs: [
                 {
@@ -33475,7 +33475,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/illusionist.jpg'
+                        value: 'subclass_headshot/illusionist.webp'
                 },
                 {
                         path: [
@@ -34005,7 +34005,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Noble',
         level: 8,
-        image: 'subclass_headshot/bladesinger.jpg',
+        image: 'subclass_headshot/bladesinger.webp',
         recipe: {
         inputs: [
                 {
@@ -34022,7 +34022,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/bladesinger.jpg'
+                        value: 'subclass_headshot/bladesinger.webp'
                 },
                 {
                         path: [
@@ -34573,7 +34573,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/necromancer.jpg',
+        image: 'subclass_headshot/necromancer.webp',
         recipe: {
         inputs: [
                 {
@@ -34590,7 +34590,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/necromancer.jpg'
+                        value: 'subclass_headshot/necromancer.webp'
                 },
                 {
                         path: [
@@ -35118,7 +35118,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Goliath',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/metamorph.jpg',
+        image: 'subclass_headshot/metamorph.webp',
         recipe: {
         inputs: [
                 {
@@ -35135,7 +35135,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/metamorph.jpg'
+                        value: 'subclass_headshot/metamorph.webp'
                 },
                 {
                         path: [
@@ -35619,7 +35619,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Wayfarer',
         level: 8,
-        image: 'subclass_headshot/psiwarper.jpeg',
+        image: 'subclass_headshot/psiwarper.webp',
         recipe: {
         inputs: [
                 {
@@ -35636,7 +35636,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/psiwarper.jpeg'
+                        value: 'subclass_headshot/psiwarper.webp'
                 },
                 {
                         path: [
@@ -36131,7 +36131,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/psykinetic.jpg',
+        image: 'subclass_headshot/psykinetic.webp',
         recipe: {
         inputs: [
                 {
@@ -36148,7 +36148,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/psykinetic.jpg'
+                        value: 'subclass_headshot/psykinetic.webp'
                 },
                 {
                         path: [
@@ -36643,7 +36643,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Elf',
         background: 'Sage',
         level: 8,
-        image: 'subclass_headshot/seer.jpg',
+        image: 'subclass_headshot/seer.webp',
         recipe: {
         inputs: [
                 {
@@ -36660,7 +36660,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/seer.jpg'
+                        value: 'subclass_headshot/seer.webp'
                 },
                 {
                         path: [
@@ -37212,7 +37212,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Gnome',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/shaper.jpg',
+        image: 'subclass_headshot/shaper.webp',
         recipe: {
         inputs: [
                 {
@@ -37229,7 +37229,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/shaper.jpg'
+                        value: 'subclass_headshot/shaper.webp'
                 },
                 {
                         path: [
@@ -37763,7 +37763,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Tiefling',
         background: 'Charlatan',
         level: 8,
-        image: 'subclass_headshot/telepath.jpg',
+        image: 'subclass_headshot/telepath.webp',
         recipe: {
         inputs: [
                 {
@@ -37780,7 +37780,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/telepath.jpg'
+                        value: 'subclass_headshot/telepath.webp'
                 },
                 {
                         path: [
@@ -38323,7 +38323,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Gnome',
         background: 'Artisan',
         level: 8,
-        image: 'subclass_headshot/alchemist.jpg',
+        image: 'subclass_headshot/alchemist.webp',
         recipe: {
         inputs: [
                 {
@@ -38340,7 +38340,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/alchemist.jpg'
+                        value: 'subclass_headshot/alchemist.webp'
                 },
                 {
                         path: [
@@ -38797,7 +38797,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Gnome',
         background: 'Artisan',
         level: 8,
-        image: 'subclass_headshot/artillerist.jpg',
+        image: 'subclass_headshot/artillerist.webp',
         recipe: {
         inputs: [
                 {
@@ -38814,7 +38814,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/artillerist.jpg'
+                        value: 'subclass_headshot/artillerist.webp'
                 },
                 {
                         path: [
@@ -39281,7 +39281,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Guide',
         level: 8,
-        image: 'subclass_headshot/cartographer.jpg',
+        image: 'subclass_headshot/cartographer.webp',
         recipe: {
         inputs: [
                 {
@@ -39298,7 +39298,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/cartographer.jpg'
+                        value: 'subclass_headshot/cartographer.webp'
                 },
                 {
                         path: [
@@ -39786,7 +39786,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Dwarf',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/armorer.jpg',
+        image: 'subclass_headshot/armorer.webp',
         recipe: {
         inputs: [
                 {
@@ -39803,7 +39803,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/armorer.jpg'
+                        value: 'subclass_headshot/armorer.webp'
                 },
                 {
                         path: [
@@ -40239,7 +40239,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Hermit',
         level: 8,
-        image: 'subclass_headshot/reanimator.jpg',
+        image: 'subclass_headshot/reanimator.webp',
         recipe: {
         inputs: [
                 {
@@ -40256,7 +40256,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/reanimator.jpg'
+                        value: 'subclass_headshot/reanimator.webp'
                 },
                 {
                         path: [
@@ -40714,7 +40714,7 @@ export const SAMPLE_CHARACTERS = [
         species: 'Human',
         background: 'Soldier',
         level: 8,
-        image: 'subclass_headshot/battlesmith.jpg',
+        image: 'subclass_headshot/battlesmith.webp',
         recipe: {
         inputs: [
                 {
@@ -40731,7 +40731,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'image'
                                 }
                         ],
-                        value: 'subclass_headshot/battlesmith.jpg'
+                        value: 'subclass_headshot/battlesmith.webp'
                 },
                 {
                         path: [
