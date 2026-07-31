@@ -43,39 +43,44 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
     const featuredCharacter = savedCharacters.length > 0 ? savedCharacters[0] : null;
     const remainingCharacters = savedCharacters.length > 1 ? savedCharacters.slice(1) : [];
 
-    // Helper function to render a list item
-    const renderListItem = (charSaved) => {
+    // Helper function to render a hero card
+    const renderHeroCard = (charSaved) => {
         const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
-        const subheadParts = [
+        const bgSpecies = [charSaved.background, charSaved.species].filter(Boolean).join(' ');
+        const levelClass = [
             `Level ${charSaved.level || 1}`,
-            [charSaved.background, charSaved.species].filter(Boolean).join(' '),
-            `${charSaved.sub || ''} ${charSaved.class || ''}`.trim(),
-        ].filter(Boolean);
+            charSaved.sub,
+            charSaved.class
+        ].filter(Boolean).join(' ');
 
         const initials = charSaved.name
             ? charSaved.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
             : 'A';
 
         return (
-            <mdui-list-item
+            <mdui-card
                 key={charSaved.id}
-                headline={charSaved.name}
-                description={subheadParts.join(' • ')}
+                clickable
                 onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}
-                className="dashboard-list-item"
+                className="dashboard-hero-card"
             >
-                <div slot="icon" className="dashboard-portrait">
+                <div className="dashboard-hero-card__media">
                     {heroImage ? (
                         <img
                             src={heroImage}
                             alt={charSaved.name}
-                            className="dashboard-portrait__img"
+                            className="dashboard-hero-card__img"
                         />
                     ) : (
-                        <span className="dashboard-portrait__initials">{initials}</span>
+                        <div className="dashboard-hero-card__fallback">{initials}</div>
                     )}
                 </div>
-            </mdui-list-item>
+                <div className="dashboard-hero-card__content">
+                    <h3 className="dashboard-hero-card__title">{charSaved.name}</h3>
+                    {levelClass && <p className="dashboard-hero-card__subtitle dashboard-hero-card__subtitle--primary">{levelClass}</p>}
+                    {bgSpecies && <p className="dashboard-hero-card__subtitle dashboard-hero-card__subtitle--secondary">{bgSpecies}</p>}
+                </div>
+            </mdui-card>
         );
     };
 
@@ -95,11 +100,12 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         {/* MOBILE-ONLY: Widescreen Hero Banner */}
                         {featuredCharacter && (() => {
                             const heroImage = featuredCharacter.image ? getAssetUrl(featuredCharacter.image) : null;
-                            const subheadParts = [
+                            const bgSpecies = [featuredCharacter.background, featuredCharacter.species].filter(Boolean).join(' ');
+                            const levelClass = [
                                 `Level ${featuredCharacter.level || 1}`,
-                                [featuredCharacter.background, featuredCharacter.species].filter(Boolean).join(' '),
-                                `${featuredCharacter.sub || ''} ${featuredCharacter.class || ''}`.trim(),
-                            ].filter(Boolean);
+                                featuredCharacter.sub,
+                                featuredCharacter.class
+                            ].filter(Boolean).join(' ');
 
                             const initials = featuredCharacter.name
                                 ? featuredCharacter.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
@@ -127,7 +133,8 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                                     <div className="featured-hero__details">
                                         <div className="featured-hero__text-group">
                                             <h2 className="featured-hero__title">{featuredCharacter.name}</h2>
-                                            <p className="featured-hero__subtitle">{subheadParts.join(' • ')}</p>
+                                            {levelClass && <p className="featured-hero__subtitle featured-hero__subtitle--primary">{levelClass}</p>}
+                                            {bgSpecies && <p className="featured-hero__subtitle featured-hero__subtitle--secondary">{bgSpecies}</p>}
                                         </div>
 
                                     </div>
@@ -139,16 +146,16 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         {remainingCharacters.length > 0 && (
                             <div className="desktop-hidden">
                                 <h3 className="dashboard-section-title">Other Characters</h3>
-                                <mdui-list className="other-characters-list">
-                                    {remainingCharacters.map(renderListItem)}
-                                </mdui-list>
+                                <div className="other-characters-list">
+                                    {remainingCharacters.map(renderHeroCard)}
+                                </div>
                             </div>
                         )}
 
-                        {/* DESKTOP-ONLY: Standard list for ALL characters */}
-                        <mdui-list className="mobile-hidden other-characters-list">
-                            {savedCharacters.map(renderListItem)}
-                        </mdui-list>
+                        {/* DESKTOP-ONLY: Standard grid for ALL characters */}
+                        <div className="mobile-hidden other-characters-list">
+                            {savedCharacters.map(renderHeroCard)}
+                        </div>
                     </div>
                 ) : (
                     <div className="empty-state">
