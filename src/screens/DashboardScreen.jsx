@@ -46,7 +46,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
     // Helper function to render a hero card
     const renderHeroCard = (charSaved) => {
         const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
-        const bgSpecies = [charSaved.background, charSaved.species].filter(Boolean).join(' ');
+        const bgSpecies = [charSaved.species, charSaved.background].filter(Boolean).join(' ');
         const levelClass = [
             `Level ${charSaved.level || 1}`,
             charSaved.sub,
@@ -102,7 +102,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         {/* MOBILE-ONLY: Widescreen Hero Banner */}
                         {featuredCharacter && (() => {
                             const heroImage = featuredCharacter.image ? getAssetUrl(featuredCharacter.image) : null;
-                            const bgSpecies = [featuredCharacter.background, featuredCharacter.species].filter(Boolean).join(' ');
+                            const bgSpecies = [featuredCharacter.species, featuredCharacter.background].filter(Boolean).join(' ');
                             const levelClass = [
                                 `Level ${featuredCharacter.level || 1}`,
                                 featuredCharacter.sub,

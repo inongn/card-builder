@@ -51,6 +51,15 @@ body {
   color: var(--mdui-color-on-surface);
   font-family: "Google Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+:root {
+  transition: --hero-primary-rgb 0.6s ease;
+}
+
+* {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, fill 0.4s ease;
 }
 
 strong {
@@ -2338,6 +2347,7 @@ mdui-list-item::part(description) {
   background-blend-mode: overlay;
   mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 55%, transparent 75%);
   -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 55%, transparent 75%);
+  transition: background-image 0.5s ease, opacity 0.5s ease;
 }
 
 /* Light mode specific blending - inverted texture for bright smoke tinted with primary color */
