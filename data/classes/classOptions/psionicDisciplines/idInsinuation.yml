@@ -1,7 +1,7 @@
 id: idInsinuation
 name: Id Insinuation
 summary: "Subtract half a Psionic Energy Die roll from a target's save against your Enchantment or Illusion spells."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: Varies

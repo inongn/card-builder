@@ -1,7 +1,7 @@
 id: bolsteringPrecognition
 name: Bolstering Precognition
 summary: "Grant a bonus to a creature's next D20 Test when casting Abjuration or Divination spells."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: 60 feet

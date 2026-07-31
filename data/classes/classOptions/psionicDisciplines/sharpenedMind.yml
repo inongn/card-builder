@@ -1,7 +1,7 @@
 id: sharpenedMind
 name: Sharpened Mind
 summary: "Ignore Psychic resistance and substitute a recorded Psionic die roll on damage once per turn."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: self

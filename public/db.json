@@ -2559,8 +2559,7 @@
     "name": "Biofeedback",
     "summary": "Gain Temporary Hit Points when casting Necromancy or Transmutation spells.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2574,8 +2573,7 @@
     "name": "Bolstering Precognition",
     "summary": "Grant a bonus to a creature's next D20 Test when casting Abjuration or Divination spells.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2589,8 +2587,7 @@
     "name": "Destructive Thoughts",
     "summary": "Deal extra Psychic damage to a target when casting Conjuration or Evocation saving throw spells.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2604,8 +2601,7 @@
     "name": "Devilish Tongue",
     "summary": "Add a Psionic Energy Die to an Influence ability check.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2619,8 +2615,7 @@
     "name": "Expanded Awareness",
     "summary": "Add a Psionic Energy Die to a Search ability check.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2634,8 +2629,7 @@
     "name": "Id Insinuation",
     "summary": "Subtract half a Psionic Energy Die roll from a target's save against your Enchantment or Illusion spells.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2649,8 +2643,7 @@
     "name": "Inerrant Aim",
     "summary": "Add a Psionic Energy Die to a missed attack roll.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2664,8 +2657,7 @@
     "name": "Observant Mind",
     "summary": "Add a Psionic Energy Die to a Study ability check.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2679,8 +2671,7 @@
     "name": "Psionic Backlash",
     "summary": "Reduce incoming attack damage and deal Psychic damage back to the attacker.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "reaction",
@@ -2694,8 +2685,7 @@
     "name": "Psionic Guards",
     "summary": "Gain Immunity to Charmed/Frightened conditions and Advantage on Int saves.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",
@@ -2709,8 +2699,7 @@
     "name": "Sharpened Mind",
     "summary": "Ignore Psychic resistance and substitute a recorded Psionic die roll on damage once per turn.",
     "tags": [
-      "psionicDiscipline",
-      "classOption"
+      "psionicDiscipline"
     ],
     "type": "Activity",
     "time": "free action",

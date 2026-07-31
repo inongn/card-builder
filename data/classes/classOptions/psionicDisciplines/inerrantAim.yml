@@ -1,7 +1,7 @@
 id: inerrantAim
 name: Inerrant Aim
 summary: "Add a Psionic Energy Die to a missed attack roll."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: self

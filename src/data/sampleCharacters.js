@@ -1311,7 +1311,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'aspectOfTheWilds'
                                 }
                         ],
-                        propertyId: 'biofeedback'
+                        propertyId: 'owl'
                 },
                 {
                         path: [
@@ -7149,7 +7149,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'bolsteringPrecognition'
+                        propertyId: 'divineStrike'
                 },
                 {
                         path: [
@@ -7727,7 +7727,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'destructiveThoughts'
+                        propertyId: 'divineStrike'
                 },
                 {
                         path: [
@@ -8312,7 +8312,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'devilishTongue'
+                        propertyId: 'divineStrike'
                 },
                 {
                         path: [
@@ -8843,7 +8843,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'expandedAwareness'
+                        propertyId: 'divineStrike'
                 },
                 {
                         path: [
@@ -10548,7 +10548,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'idInsinuation'
+                        propertyId: 'potentSpellcasting'
                 },
                 {
                         path: [
@@ -11133,7 +11133,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'inerrantAim'
+                        propertyId: 'potentSpellcasting'
                 },
                 {
                         path: [
@@ -11674,7 +11674,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'observantMind'
+                        propertyId: 'potentSpellcasting'
                 },
                 {
                         path: [
@@ -12295,7 +12295,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'psionicBacklash'
+                        propertyId: 'potentSpellcasting'
                 },
                 {
                         path: [
@@ -13487,7 +13487,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'psionicGuards'
+                        propertyId: 'ambush'
                 },
                 {
                         path: [
@@ -13502,7 +13502,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'sharpenedMind'
+                        propertyId: 'baitAndSwitch'
                 },
                 {
                         path: [
@@ -13517,7 +13517,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'ambush'
+                        propertyId: 'commandersStrike'
                 },
                 {
                         path: [
@@ -13532,7 +13532,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'baitAndSwitch'
+                        propertyId: 'commandingPresence'
                 },
                 {
                         path: [
@@ -13547,7 +13547,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'commandersStrike'
+                        propertyId: 'disarmingAttack'
                 },
                 {
                         path: [

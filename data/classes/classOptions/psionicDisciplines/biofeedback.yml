@@ -1,7 +1,7 @@
 id: biofeedback
 name: Biofeedback
 summary: "Gain Temporary Hit Points when casting Necromancy or Transmutation spells."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: self

@@ -1,7 +1,7 @@
 id: psionicBacklash
 name: Psionic Backlash
 summary: "Reduce incoming attack damage and deal Psychic damage back to the attacker."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: reaction
 range: Varies

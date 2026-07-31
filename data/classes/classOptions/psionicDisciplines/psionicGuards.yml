@@ -1,7 +1,7 @@
 id: psionicGuards
 name: Psionic Guards
 summary: "Gain Immunity to Charmed/Frightened conditions and Advantage on Int saves."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: self

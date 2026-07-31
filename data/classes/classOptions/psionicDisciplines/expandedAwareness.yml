@@ -1,7 +1,7 @@
 id: expandedAwareness
 name: Expanded Awareness
 summary: "Add a Psionic Energy Die to a Search ability check."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: self

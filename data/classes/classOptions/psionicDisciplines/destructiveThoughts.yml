@@ -1,7 +1,7 @@
 id: destructiveThoughts
 name: Destructive Thoughts
 summary: "Deal extra Psychic damage to a target when casting Conjuration or Evocation saving throw spells."
-tags: [psionicDiscipline, classOption]
+tags: [psionicDiscipline]
 type: Activity
 time: free action
 range: Varies
