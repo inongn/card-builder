@@ -70,6 +70,8 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                             src={heroImage}
                             alt={charSaved.name}
                             className="dashboard-hero-card__img"
+                            loading="lazy"
+                            decoding="async"
                         />
                     ) : (
                         <div className="dashboard-hero-card__fallback">{initials}</div>
@@ -122,6 +124,8 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                                             src={heroImage}
                                             alt={featuredCharacter.name}
                                             className="featured-hero__img"
+                                            fetchpriority="high"
+                                            decoding="async"
                                         />
                                     ) : (
                                         <div className="featured-hero__fallback">{initials}</div>

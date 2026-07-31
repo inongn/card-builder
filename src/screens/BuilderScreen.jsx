@@ -469,10 +469,17 @@ const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
                                 key={i}
                                 className={`preset-item ${isActive ? 'active' : ''}`}
                                 onClick={() => onUpdate(isActive ? '' : url)}
-                                style={{ backgroundImage: `url(${url})` }}
                                 title={p.filename.replace(/\.webp$/, '').replace(/_/g, ' ')}
                             >
-                                {isActive && <mdui-icon name="check_circle" class="icon-primary" style={{ fontSize: '1.5rem' }}></mdui-icon>}
+                                <img
+                                    src={url}
+                                    alt=""
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="preset-item__img"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
+                                {isActive && <mdui-icon name="check_circle" class="icon-primary" style={{ fontSize: '1.5rem', position: 'absolute' }}></mdui-icon>}
                             </div>
                         );
                     })}

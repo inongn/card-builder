@@ -30,22 +30,22 @@ export function getAssetUrl(path) {
 
 export function getSpeciesArtwork(speciesId) {
     const s = cleanId(speciesId);
-    return s ? getAssetUrl(`/species/${s}.jpg`) : null;
+    return s ? getAssetUrl(`/species/${s}.webp`) : null;
 }
 
 export function getClassArtwork(classId) {
     const c = cleanId(classId);
-    return c ? getAssetUrl(`/class/${c}.jpg`) : null;
+    return c ? getAssetUrl(`/class/${c}.webp`) : null;
 }
 
 export function getSubclassArtwork(subclassId) {
     const sc = cleanId(subclassId);
-    return sc ? getAssetUrl(`/subclass/${sc}.jpg`) : null;
+    return sc ? getAssetUrl(`/subclass/${sc}.webp`) : null;
 }
 
 export function getBackgroundArtwork(backgroundId) {
     const b = cleanId(backgroundId);
-    return b ? getAssetUrl(`/background/${b}.jpg`) : null;
+    return b ? getAssetUrl(`/background/${b}.webp`) : null;
 }
 
 export function getComboArtwork(speciesId, classId, backgroundId, subclassId) {
