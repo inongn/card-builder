@@ -13,7 +13,7 @@ children:
 - type: Effect
   target: attributes.movement.walk
   operation: set
-  value: 35
+  value: 30
 - type: Activity
   range: 10 feet
   time: bonus action
@@ -30,4 +30,18 @@ children:
 - type: Slot
   name: Leonin Prowess Skill Proficiency
   id: leoninSkillProficiency
-  target: athleticsProficiency, intimidationProficiency, perceptionProficiency, stealthProficiency
+  target: survivalProficiency, perceptionProficiency, stealthProficiency
+- id: leoninDarkvision
+  type: Effect
+  target: attributes.senses.darkvision
+  operation: set
+  value: 60
+- id: feralPounce
+  type: Extra
+  target: unarmed
+  name: Pounce
+  description: "Once per turn, you can use both the Damage and Shove options."
+- type: Effect
+  target: activities[tags=unarmed].description["Bludgeoning"]
+  operation: replace
+  value: "Slashing"

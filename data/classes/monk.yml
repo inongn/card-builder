@@ -38,7 +38,7 @@ children:
     type: Effect
     target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
     operation: replace
-    value: 1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))"
+    value: 1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))
     condition: $(meta.level >= 1)
     
   - id: martialArtsReplacementd4
@@ -102,6 +102,7 @@ children:
   # Level 2: Monk's Focus
   - id: focusPoints
     type: Resource
+    condition: $(meta.level >= 2)
     name: Focus Points
     quantity: $(progression(0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))
     sr: all

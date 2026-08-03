@@ -884,8 +884,15 @@ export class CharacterBuilder {
             const isFinalStage = i === numStages - 1;
             const properties = byStage.get(stage.name) || [];
 
-            // Sort by priority within stage to allow explicit ordering
-            properties.sort((a, b) => (a.priority || 0) - (b.priority || 0));
+            // Sort by operation priority first ('set'/'softSet' before 'add'/'push'/etc.) then by explicitly defined priority
+            properties.sort((a, b) => {
+                const isASet = (a.type === 'Effect' && (a.operation === 'set' || a.operation === 'softSet')) || a.type !== 'Effect';
+                const isBSet = (b.type === 'Effect' && (b.operation === 'set' || b.operation === 'softSet')) || b.type !== 'Effect';
+                if (isASet !== isBSet) {
+                    return isASet ? -1 : 1;
+                }
+                return (a.priority || 0) - (b.priority || 0);
+            });
 
             const evaluator = new ExpressionEvaluator(this.characterData);
             for (const prop of properties) {

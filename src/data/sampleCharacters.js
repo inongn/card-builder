@@ -561,7 +561,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'leoninSkillProficiency'
                                 }
                         ],
-                        propertyId: 'athleticsProficiency'
+                        propertyId: 'survivalProficiency'
                 },
                 {
                         path: [
@@ -589,7 +589,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'intimidationProficiency'
+                        propertyId: 'athleticsProficiency'
                 },
                 {
                         path: [
@@ -601,7 +601,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'survivalProficiency'
+                        propertyId: 'intimidationProficiency'
                 },
                 {
                         path: [

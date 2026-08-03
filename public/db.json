@@ -4322,7 +4322,7 @@
         "type": "Effect",
         "target": "activities[tags=unarmed].description[\"$(Math.max(1, 1+attributes.melee.bonus))\"]",
         "operation": "replace",
-        "value": "1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))\"",
+        "value": "1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))",
         "condition": "$(meta.level >= 1)"
       },
       {
@@ -4393,6 +4393,7 @@
       {
         "id": "focusPoints",
         "type": "Resource",
+        "condition": "$(meta.level >= 2)",
         "name": "Focus Points",
         "quantity": "$(progression(0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))",
         "sr": "all"
@@ -17478,7 +17479,7 @@
         "type": "Effect",
         "target": "attributes.movement.walk",
         "operation": "set",
-        "value": 35
+        "value": 30
       },
       {
         "type": "Activity",
@@ -17499,7 +17500,27 @@
         "type": "Slot",
         "name": "Leonin Prowess Skill Proficiency",
         "id": "leoninSkillProficiency",
-        "target": "athleticsProficiency, intimidationProficiency, perceptionProficiency, stealthProficiency"
+        "target": "survivalProficiency, perceptionProficiency, stealthProficiency"
+      },
+      {
+        "id": "leoninDarkvision",
+        "type": "Effect",
+        "target": "attributes.senses.darkvision",
+        "operation": "set",
+        "value": 60
+      },
+      {
+        "id": "feralPounce",
+        "type": "Extra",
+        "target": "unarmed",
+        "name": "Pounce",
+        "description": "Once per turn, you can use both the Damage and Shove options."
+      },
+      {
+        "type": "Effect",
+        "target": "activities[tags=unarmed].description[\"Bludgeoning\"]",
+        "operation": "replace",
+        "value": "Slashing"
       }
     ]
   },
@@ -17825,6 +17846,74 @@
         "overwrite": {
           "resource": "limited"
         }
+      }
+    ]
+  },
+  {
+    "id": "warforged",
+    "name": "Warforged",
+    "tags": [
+      "species"
+    ],
+    "description": "Mechanical beings, infused with alchemical fluids and wooden-metal bodies capable of pain and emotion.",
+    "type": "Folder",
+    "children": [
+      {
+        "id": "species",
+        "type": "Effect",
+        "target": "meta.species",
+        "operation": "set",
+        "value": "Warforged"
+      },
+      {
+        "id": "speed",
+        "type": "Effect",
+        "target": "attributes.movement.walk",
+        "operation": "set",
+        "value": 30
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "poisonResistance",
+          "poisonedAdvantage"
+        ]
+      },
+      {
+        "id": "integratedProtection",
+        "type": "Effect",
+        "target": "attributes.ac",
+        "name": "Integrated Protection",
+        "operation": "add",
+        "value": 1
+      },
+      {
+        "id": "sentrysRest",
+        "type": "Extra",
+        "target": "longRest",
+        "name": "Sentry's Rest",
+        "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious."
+      },
+      {
+        "id": "specializedDesignSkill",
+        "name": "Specialized Design Skill Proficiency",
+        "type": "Slot",
+        "target": "skillProficiency",
+        "quantity": 1
+      },
+      {
+        "id": "specializedDesignTool",
+        "name": "Specialized Design Tool Proficiency",
+        "type": "Slot",
+        "target": "tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency",
+        "quantity": 1
+      },
+      {
+        "id": "tireless",
+        "type": "Extra",
+        "target": "longRest",
+        "name": "Tireless",
+        "description": "You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation."
       }
     ]
   },
