@@ -760,7 +760,7 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
         const isSelected = !!entry.filledSlotItem;
         const testChoices = isSelected ? currentChoiceIds : [...currentChoiceIds, entry.option.id];
-        const isDisabled = !isSelected && !canMatchChoicesToSlots(testChoices, slotItems || [], slotAllowedMap);
+        const isDisabled = !!entry.option.isDisabled || (!isSelected && !canMatchChoicesToSlots(testChoices, slotItems || [], slotAllowedMap));
 
         return {
             ...entry.option,
@@ -779,7 +779,7 @@ export const findOptimalSlotForOption = (optionId, slotItems, handleGetSlotOptio
     const candidateSlots = slotItems.filter(item => {
         if (item.node.filled) return false;
         const opts = handleGetSlotOptions ? handleGetSlotOptions(item.node) : [];
-        return (opts || []).some(o => o.id === optionId);
+        return (opts || []).some(o => o.id === optionId && !o.isDisabled);
     });
 
     if (candidateSlots.length === 0) return null;

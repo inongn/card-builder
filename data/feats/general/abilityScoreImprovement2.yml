@@ -4,11 +4,12 @@ name: Ability Score Improvement II
 tags:
   - feat
   - generalFeat
-  - repeatable
 type: Folder
+condition: $(meta.level >= 8)
+prerequisite: ASI I
+prerequisiteCondition: $(attributes.asiFlag == true)
 children:
   - type: Effect
     target: attributes.asiPoolLimit
     operation: add
     value: 2
-repeatable: true

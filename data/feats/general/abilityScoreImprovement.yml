@@ -1,14 +1,15 @@
 id: abilityScoreImprovement
 summary: "Increase one ability score by 2, or two ability scores by 1."
-name: Ability Score Improvement
+name: Ability Score Improvement I
 tags:
   - feat
   - generalFeat
-  - repeatable
 type: Folder
 children:
   - type: Effect
     target: attributes.asiPoolLimit
     operation: add
     value: 2
-repeatable: true
+  - id: asiFlag
+    type: Attribute
+    value: true

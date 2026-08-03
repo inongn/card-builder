@@ -1093,12 +1093,14 @@ export class CharacterBuilder {
             if (prop) {
                 let shouldClear = false;
 
-                // 1. Condition validation
-                // Check the property's own condition against the current character state
-                if (prop.condition && !node.ignoreCondition) {
+                // 1. Condition & Prerequisite validation
+                if (!node.ignoreCondition) {
                     const evaluator = new ExpressionEvaluator(this.characterData);
                     const scope = { ...node.variables, ...(prop.variables || {}) };
-                    if (!evaluator.evaluate(prop.condition, scope)) {
+                    if (prop.condition && !evaluator.evaluate(prop.condition, scope)) {
+                        shouldClear = true;
+                    }
+                    if (!shouldClear && prop.prerequisiteCondition && !evaluator.evaluate(prop.prerequisiteCondition, scope)) {
                         shouldClear = true;
                     }
                 }

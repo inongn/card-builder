@@ -152,11 +152,31 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
             {/* Header: Name and Level Info */}
             <div className="main-card-row">
                 <div className="main-card-column col-span-full">
-                    <div className="card-title main-card-title show-on-print">
-                        {char.meta.name}
-                    </div>
-                    <div className="title-primary">
-                        {[`Lv. ${char.meta.level}`, [char.meta.species].filter(Boolean).join(' '), `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
+                    <div className="main-card-title-row">
+                        <div className="card-subtitle-container">
+                            <span className="title-primary show-on-print">{char.meta.name}</span>
+                            <div className="card-subtitle-container show-on-print">
+                                <span className="card-subtitle">
+                                    {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
+                                </span>
+                                <span className="subtitle-separator" aria-hidden="true"> • </span>
+                                <span className="card-subtitle">
+                                    {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
+                                </span>
+                            </div>
+
+                        </div>
+                        <div className="title-primary card-subtitle-container hide-on-print">
+                            {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
+
+                            <span className="mobile-hidden title-secondary">
+                                {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
+                            </span>
+                        </div>
+                        <div className="title-secondary desktop-hidden hide-on-print">
+                            {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -283,7 +303,12 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     />
                                 ) : null}
                             </div>
-                            <div className="important-number">{char.attributes.hp}</div>
+                            <div className="important-number">{char.attributes.hp}
+                                <div className="text-secondary">(<DiceRoller formula={`1d${char.attributes.hitDie} + ${char.stats.con.mod}`} label="Hit Die roll" interactive={isPlayMode} showIcon={false}>
+                                    d{char.attributes.hitDie}{char.stats.con.mod >= 0 ? `+${char.stats.con.mod}` : char.stats.con.mod}
+                                </DiceRoller>)</div>
+
+                            </div>
                             <div className="important-number">
                                 {isPlayMode ? (
                                     <input
@@ -309,9 +334,6 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 ) : null}
                             </div>
                         </div>
-                        <div className="text-secondary">HP (<DiceRoller formula={`1d${char.attributes.hitDie} + ${char.stats.con.mod}`} label="Hit Die roll" interactive={isPlayMode} showIcon={false}>
-                            d{char.attributes.hitDie}{char.stats.con.mod >= 0 ? `+${char.stats.con.mod}` : char.stats.con.mod}
-                        </DiceRoller>)</div>
                     </mdui-card>
 
                     <div className="main-card-combat-row">

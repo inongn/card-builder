@@ -14986,11 +14986,10 @@
   {
     "id": "abilityScoreImprovement",
     "summary": "Increase one ability score by 2, or two ability scores by 1.",
-    "name": "Ability Score Improvement",
+    "name": "Ability Score Improvement I",
     "tags": [
       "feat",
-      "generalFeat",
-      "repeatable"
+      "generalFeat"
     ],
     "type": "Folder",
     "children": [
@@ -14999,9 +14998,13 @@
         "target": "attributes.asiPoolLimit",
         "operation": "add",
         "value": 2
+      },
+      {
+        "id": "asiFlag",
+        "type": "Attribute",
+        "value": true
       }
-    ],
-    "repeatable": true
+    ]
   },
   {
     "id": "abilityScoreImprovement2",
@@ -15009,10 +15012,12 @@
     "name": "Ability Score Improvement II",
     "tags": [
       "feat",
-      "generalFeat",
-      "repeatable"
+      "generalFeat"
     ],
     "type": "Folder",
+    "condition": "$(meta.level >= 8)",
+    "prerequisite": "ASI I",
+    "prerequisiteCondition": "$(attributes.asiFlag == true)",
     "children": [
       {
         "type": "Effect",
@@ -15020,8 +15025,7 @@
         "operation": "add",
         "value": 2
       }
-    ],
-    "repeatable": true
+    ]
   },
   {
     "id": "actor",
@@ -17082,6 +17086,119 @@
         "target": "longRest",
         "name": "Trance",
         "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+      }
+    ]
+  },
+  {
+    "id": "githLineageGithyanki",
+    "name": "Githyanki",
+    "tags": [
+      "githLineage"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Slot",
+        "id": "githyankiSkillProficiency",
+        "name": "Githyanki Skill Proficiency",
+        "target": "skillProficiency",
+        "quantity": 1
+      },
+      {
+        "type": "Reference",
+        "target": "jump",
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "resource": "limited"
+        }
+      },
+      {
+        "type": "Reference",
+        "target": "mistyStep",
+        "condition": "$(meta.level >= 5)",
+        "overwrite": {
+          "resource": "limited"
+        }
+      }
+    ]
+  },
+  {
+    "id": "githLineageGithzerai",
+    "name": "Githzerai",
+    "tags": [
+      "githLineage"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "charmedAdvantage",
+          "frightenedAdvantage"
+        ]
+      },
+      {
+        "type": "Reference",
+        "target": "shield",
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "resource": "limited"
+        }
+      },
+      {
+        "type": "Reference",
+        "target": "detectThoughts",
+        "condition": "$(meta.level >= 5)",
+        "overwrite": {
+          "resource": "limited"
+        }
+      }
+    ]
+  },
+  {
+    "id": "gith",
+    "name": "Gith",
+    "tags": [
+      "species"
+    ],
+    "description": "Planar travelers forged by ancestral psionic potential, divided into the martial Githyanki and the disciplined Githzerai.",
+    "type": "Folder",
+    "children": [
+      {
+        "id": "species",
+        "type": "Effect",
+        "target": "meta.species",
+        "operation": "set",
+        "value": "Gith"
+      },
+      {
+        "id": "githSpeed",
+        "type": "Effect",
+        "target": "attributes.movement.walk",
+        "operation": "set",
+        "value": 30
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "psychicResistance",
+          "chooseCaster"
+        ]
+      },
+      {
+        "id": "githPsionicsMageHand",
+        "type": "Reference",
+        "target": "mageHand",
+        "overwrite": {
+          "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration and is invisible. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nWhen you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.\n\nAs a Magic action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.\n\nThe hand can’t attack, activate magic items, or carry more than 10 pounds.\n"
+        }
+      },
+      {
+        "id": "githLineage",
+        "name": "Gith Lineage",
+        "type": "Slot",
+        "target": "githLineage",
+        "quantity": 1
       }
     ]
   },
