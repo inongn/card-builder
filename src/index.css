@@ -2644,7 +2644,7 @@ mdui-list-item[active] {
 }
 
 .card-vertical__media {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 3;
   width: 100%;
   background-size: cover;
   background-position: center top;
@@ -2668,10 +2668,10 @@ mdui-list-item[active] {
 .card-vertical__media-details {
   position: relative;
   z-index: 2;
-  padding: 12px 16px;
+  padding: var(--gap-md) var(--gap-md);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--gap-sm);
 }
 
 .card-vertical__media-details .card-vertical__headline {
@@ -2693,10 +2693,10 @@ mdui-list-item[active] {
 }
 
 .card-vertical__header-plain {
-  padding: 16px 20px;
+  padding: var(--gap-md) var(--gap-md);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--gap-sm);
 }
 
 .card-media-placeholder {
