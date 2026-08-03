@@ -517,6 +517,12 @@ blockquote {
   justify-content: space-between;
 }
 
+.print-subtitle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+}
+
 .card-subtitle {
   font-size: var(--mdui-typescale-body-small-size, 0.8rem);
   font-weight: 500;

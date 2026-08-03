@@ -155,11 +155,10 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                     <div className="main-card-title-row">
                         <div className="card-subtitle-container">
                             <span className="title-primary show-on-print">{char.meta.name}</span>
-                            <div className="card-subtitle-container show-on-print">
+                            <div className="print-subtitle-container show-on-print">
                                 <span className="card-subtitle">
                                     {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
                                 </span>
-                                <span className="subtitle-separator" aria-hidden="true"> • </span>
                                 <span className="card-subtitle">
                                     {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
                                 </span>
