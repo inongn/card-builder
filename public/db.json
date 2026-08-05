@@ -1452,7 +1452,7 @@
         "description": "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability."
       },
       {
-        "id": "primalKnowledgeTranform",
+        "id": "primalKnowledgeAcr",
         "type": "Effect",
         "form": "rage",
         "target": "skills.acrobatics.bonus",
