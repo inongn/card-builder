@@ -1,30 +1,20 @@
 id: hunter
 name: Hunter
-description: 'Stalk prey in the wilds, using your abilities as a Hunter to protect nature and people everywhere.'
+description: Stalk prey in the wilds, using your abilities as a Hunter to protect nature and people everywhere.
 tags:
   - rangerSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Hunter"
-  # Level 3: Hunter's Lore
   - id: huntersLore
     type: Extra
     name: Hunter's Lore
     target: huntersMark
-    description: "You know whether the creature has any Immunities, Resistances, or Vulnerabilities, and if it has any, you know what they are."
-
-  # Level 3: Hunter's Prey
+    description: You know whether the creature has any Immunities, Resistances, or Vulnerabilities, and if it has any, you know what they are.
   - id: huntersPrey
     type: Slot
     name: Hunter's Prey
     quantity: 1
     target: classOption OR huntersPrey
-
-  # Level 7: Defensive Tactics
   - id: defensiveTactics
     type: Slot
     name: Defensive Tactics

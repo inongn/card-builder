@@ -1,28 +1,22 @@
 id: assassin
 name: Assassin
-description: 'Use stealth, poison, and disguise to eliminate foes with deadly efficiency as a trained killer.'
+description: Use stealth, poison, and disguise to eliminate foes with deadly efficiency as a trained killer.
 tags:
   - rogueSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Assassin"
-  # Level 3: Assassinate — Initiative
   - type: Reference
-    target: [initiativeAdvantage, disguiseKit, poisonersKit]
-
-  # Level 3: Assassinate — Surprising Strikes
+    target:
+      - initiativeAdvantage
+      - disguiseKit
+      - poisonersKit
   - id: surprisingStrikes
     type: Extra
     name: Surprising Strike
     target: sneakAttack
-    description: "On a hit during the first round of combat, the target takes $(meta.level) extra damage."
-
+    description: On a hit during the first round of combat, the target takes $(meta.level) extra damage.
   - id: surprisingStrikesAttack
     type: Extra
     target: weaponAttack
     name: Surprising Strike
-    description: "During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn."
+    description: During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn.

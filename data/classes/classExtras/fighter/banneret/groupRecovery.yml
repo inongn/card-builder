@@ -1,0 +1,8 @@
+id: groupRecovery
+type: Extra
+target: secondWind
+name: Group Recovery
+description: |
+  When you use Second Wind, up to $(Math.max(1, stats.cha.mod)) allies within a 30-foot Emanation regain 1d4+$(meta.level) HP.
+
+  $(meta.level >= 7 ? "**Team Tactics.** Each chosen ally has Advantage on D20 Tests until the start of your next turn." : "")

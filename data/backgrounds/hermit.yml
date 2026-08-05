@@ -1,24 +1,20 @@
 id: hermit
 name: Hermit
-description: 'You lived in quiet solitude away from civilization, contemplating creation and wild mysteries.'
+description: You lived in quiet solitude away from civilization, contemplating creation and wild mysteries.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Hermit"
-- type: Reference
-  target:
-  - medicineProficiency
-  - religionProficiency
-  - herbalismKit
-  - healer
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - con
-  - wis
-  - cha
+  - type: Reference
+    target:
+      - medicineProficiency
+      - religionProficiency
+      - herbalismKit
+      - healer
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - con
+      - wis
+      - cha

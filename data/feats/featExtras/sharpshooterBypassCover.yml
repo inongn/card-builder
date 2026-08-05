@@ -1,0 +1,5 @@
+name: Bypass Cover
+type: Extra
+target: weaponAttack and ranged
+description: This attack ignores Half Cover and Three-Quarters Cover.
+id: sharpshooterBypassCover

@@ -1,33 +1,35 @@
 id: oathOfGenies
 name: Oath of the Noble Genies
-description: 'Pledge to noble Genies, channeling ancient elemental magic and wielding divine, elementally-infused armor.'
+description: Pledge to noble Genies, channeling ancient elemental magic and wielding divine, elementally-infused armor.
 tags:
   - paladinSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Noble Genies"
-
-  # Level 3: Genie Spells
   - type: Reference
-    target: [chromaticOrb, elementalism, thunderousSmite]
+    target:
+      - chromaticOrb
+      - elementalism
+      - thunderousSmite
   - type: Reference
     condition: $(meta.level >= 5)
-    target: [mirrorImage, phantasmalForce]
+    target:
+      - mirrorImage
+      - phantasmalForce
   - type: Reference
     condition: $(meta.level >= 9)
-    target: [fly, gaseousForm]
+    target:
+      - fly
+      - gaseousForm
   - type: Reference
     condition: $(meta.level >= 13)
-    target: [conjureMinorElementals, summonElemental]
+    target:
+      - conjureMinorElementals
+      - summonElemental
   - type: Reference
     condition: $(meta.level >= 17)
-    target: [banishingSmite, contactOtherPlane]
-
-  # Level 3: Elemental Smite
+    target:
+      - banishingSmite
+      - contactOtherPlane
   - id: elementalSmite
     type: Activity
     time: free action
@@ -41,25 +43,20 @@ children:
       * **Djinni's Escape:** You teleport to an unoccupied space within 30 feet and take on a semi-incorporeal form until the end of your next turn (Resistance to Bludgeoning, Piercing, Slashing damage; Immunity to Grappled, Prone, Restrained).
       * **Efreeti's Fury:** Target takes an extra 2d4 Fire damage, and fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it.
       * **Marid's Surge:** Target and each creature in a 10-foot Emanation make a DC $(attributes.spellcasting.save) Strength save or be pushed 15 feet away and have the Prone condition.
-
-  # Level 3: Genie's Splendor
   - id: geniesSplendorAC
     type: Effect
     target: attributes.ac.base
     operation: override
-    condition: "$(attributes.armor.type == 'none')"
-    value: "$(10 + stats.dex.mod + stats.cha.mod)"
-
+    condition: $(attributes.armor.type == 'none')
+    value: $(10 + stats.dex.mod + stats.cha.mod)
   - id: geniesSplendorSkill
     type: Slot
     name: Genie's Splendor Skill
     quantity: 1
-    target: "skill AND (id == 'acrobatics' OR id == 'intimidation' OR id == 'performance' OR id == 'persuasion')"
-
-  # Level 7: Aura of Elemental Shielding
+    target: skill AND (id == 'acrobatics' OR id == 'intimidation' OR id == 'performance' OR id == 'persuasion')
   - id: auraOfElementalShielding
     type: Extra
     target: auraOfProtection
     name: Aura of Elemental Shielding
     condition: $(meta.level >= 7)
-    description: "Choose one damage type: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection. At the start of each of your turns, you can change the damage type (no action required)."
+    description: 'Choose one damage type: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection. At the start of each of your turns, you can change the damage type (no action required).'

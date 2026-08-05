@@ -1,0 +1,7 @@
+id: beguilingTwist
+type: Activity
+name: Beguiling Twist
+time: reaction
+range: 120 feet
+duration: 1 minute
+description: When you or a creature you can see within 120 feet succeeds on a saving throw to avoid or end the Charmed or Frightened condition, you force a different creature you can see within 120 feet to make a DC $(attributes.spellcasting.save) Wisdom save. On a failure, the target is Charmed or Frightened (your choice) for 1 minute. The target repeats the save at the end of each of its turns, ending the effect on a success.

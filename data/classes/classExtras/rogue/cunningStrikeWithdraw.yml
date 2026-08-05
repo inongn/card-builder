@@ -1,0 +1,5 @@
+id: cunningStrikeWithdraw
+type: Extra
+name: 'Withdraw (Cost: 1d6)'
+target: cunningStrike
+description: Immediately after the attack, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.

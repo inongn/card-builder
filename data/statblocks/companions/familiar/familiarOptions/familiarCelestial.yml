@@ -1,0 +1,9 @@
+id: familiarCelestial
+type: Feature
+name: Celestial
+tags: [familiarOption]
+children:
+  - type: Effect
+    target: meta.familiarType
+    operation: set
+    value: Celestial

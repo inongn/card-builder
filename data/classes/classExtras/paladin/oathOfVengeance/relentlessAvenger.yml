@@ -1,0 +1,5 @@
+id: relentlessAvenger
+type: Extra
+target: opportunityAttack
+name: Relentless Avenger
+description: On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks.

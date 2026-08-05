@@ -1,0 +1,9 @@
+id: clairvoyantCombatant
+type: Activity
+duration: instantaneous
+range: self
+name: Clairvoyant Combatant
+time: free action
+resource: level1SpellSlot
+description: |
+  When you form a telepathic bond with a creature using your Awakened Mind, you force that creature to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the creature has Disadvantage on attack rolls against you, and you have Advantage on attack rolls against that creature for the duration of the bond.

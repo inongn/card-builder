@@ -1,0 +1,7 @@
+id: unfetteredMindTelepathy
+type: Activity
+time: free action
+duration: instantaneous
+name: Unfettered Mind
+range: 60 feet
+description: You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact up to $(Math.max(1, stats.wis.mod)) creatures.

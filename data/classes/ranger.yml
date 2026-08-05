@@ -1,47 +1,45 @@
 id: ranger
 name: Ranger
-description: 'Deadly wilderness scouts and trackers who combine martial skill with nature magic.'
+description: Deadly wilderness scouts and trackers who combine martial skill with nature magic.
 tags:
   - class
 type: Folder
 children:
-  # Core Ranger Traits
   - id: hitDie
     type: Attribute
     value: 10
-  - id: className
-    type: Effect
-    target: meta.class
-    operation: set
-    value: Ranger
   - id: weaponMastery
     type: Attribute
     value: true
   - type: Reference
-    value: [strSave, dexSave]
+    value:
+      - strSave
+      - dexSave
   - type: Reference
-    value: [simpleWeaponProficiency, martialWeaponProficiency]
+    value:
+      - simpleWeaponProficiency
+      - martialWeaponProficiency
   - type: Reference
-    value: [lightArmorTraining, mediumArmorTraining, shieldTraining]
+    value:
+      - lightArmorTraining
+      - mediumArmorTraining
+      - shieldTraining
   - id: rangerSkillProficiencies
     type: Slot
     name: Ranger Skill Proficiencies
     quantity: 3
     target: animalHandlingProficiency OR athleticsProficiency OR insightProficiency OR investigationProficiency OR natureProficiency OR perceptionProficiency OR stealthProficiency OR survivalProficiency
-
-  # Level 1: Spellcasting
   - type: Reference
-    target: [halfCaster, wisCaster]
+    target:
+      - halfCaster
+      - wisCaster
   - type: Slot
     id: rangerSpells
     name: Ranger Spells
-    target: "ranger NOT cantrip $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    target: 'ranger NOT cantrip $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
     variables:
-      maxLevel: "$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)"
+      maxLevel: '$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)'
     quantity: $(progression(2,3,4,5,6,6,7,7,9,9,10,10,11,11,12,12,14,14,15,15))
-
-  # Level 1: Favored Enemy (Hunter's Mark)
-
   - type: Resource
     name: Favored Enemy
     id: favoredEnemy
@@ -52,52 +50,38 @@ children:
     target: activities[id=huntersMark].resource
     operation: set
     value: favoredEnemy
-  # Level 2: Deft Explorer
   - id: deftExplorerExpertise
     type: Slot
     name: Deft Explorer Expertise
     quantity: 1
     target: skillExpertise
     condition: $(meta.level >= 2)
-
-  # Level 2: Fighting Style
   - id: fightingStyle
     type: Slot
     name: Fighting Style
     quantity: 1
     target: fightingStyle OR druidicWarrior
     condition: $(meta.level >= 2)
-
-  # Level 3: Ranger Subclass
   - id: rangerSubclass
     name: Ranger Subclass
     condition: $(meta.level >= 3)
     type: Slot
     target: rangerSubclass
-
-  # Weapon Mastery
   - id: masteryProperties
     type: Reference
     target: masteryProperties
-
-
-  # Level 4: Ability Score Improvement
   - id: level4feat
     name: Level 4 Feat
     type: Slot
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-
-  # Level 5: Extra Attack
   - id: extraAttack
     type: Extra
     target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
-
-  # Level 6: Roving
+    description: You can attack twice, instead of once, whenever you take the Attack action on your turn.
   - id: rovingSpeed
     type: Effect
     target: attributes.movement.walk
@@ -116,8 +100,6 @@ children:
     operation: set
     condition: $(meta.level >= 6)
     value: $(attributes.movement.walk)
-
-  # Level 8: Ability Score Improvement
   - id: level8feat
     name: Level 8 Feat
     type: Slot

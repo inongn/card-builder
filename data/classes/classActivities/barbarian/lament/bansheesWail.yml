@@ -1,0 +1,9 @@
+id: bansheesWail
+type: Activity
+name: Banshee's Wail
+time: bonus action
+range: self
+duration: Instantaneous
+resource: rage
+description: |
+  While your Rage is active, you let out a doleful wail. Each creature of your choice in a 30-foot Emanation originating from you must make a DC $(8 + stats.con.mod + attributes.prof) Constitution saving throw. On a failed save, a creature takes $(attributes.rageDamage)d12 Psychic damage and has the Deafened condition for 1 minute. On a successful save, it takes half as much damage only.

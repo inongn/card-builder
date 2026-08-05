@@ -1,0 +1,7 @@
+id: dreadAmbusherLeap
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+name: Ambusher's Leap
+description: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn.

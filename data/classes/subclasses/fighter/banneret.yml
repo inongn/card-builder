@@ -1,37 +1,29 @@
 id: banneret
 name: Banneret
-description: 'Rally allies to fight against evil as a paragon of valor, utilizing inspiring presence and diplomacy.'
+description: Rally allies to fight against evil as a paragon of valor, utilizing inspiring presence and diplomacy.
 type: Folder
 tags:
   - fighterSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Banneret"
-
-  # Level 3: Knightly Envoy
   - type: Reference
-    target: [comprehendLanguages, chaCaster]
+    target:
+      - comprehendLanguages
+      - chaCaster
     condition: $(meta.level >= 3)
     overwrite:
       time: 10 minutes
-
   - id: wellSpokenSkill
-    name: "Well Spoken Skill Proficiency"
+    name: Well Spoken Skill Proficiency
     type: Slot
     target: insightProficiency OR intimidationProficiency OR persuasionProficiency OR performanceProficiency
     quantity: 1
     condition: $(meta.level >= 3)
-
-  # Level 3: Group Recovery (with Level 7 Team Tactics integrated)
   - id: groupRecovery
     type: Extra
     target: secondWind
     condition: $(meta.level >= 3)
-    name: "Group Recovery"
+    name: Group Recovery
     description: |
       When you use Second Wind, up to $(Math.max(1, stats.cha.mod)) allies within a 30-foot Emanation regain 1d4+$(meta.level) HP.
-      
+
       $(meta.level >= 7 ? "**Team Tactics.** Each chosen ally has Advantage on D20 Tests until the start of your next turn." : "")

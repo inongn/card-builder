@@ -1,0 +1,8 @@
+id: projectedWard
+type: Activity
+duration: instantaneous
+time: reaction
+range: 30 feet
+name: Projected Ward
+target: arcaneWard
+description: When a creature that you can see within range takes damage, you cause your Arcane Ward to absorb that damage. If this damage reduces the ward to 0 Hit Points, the warded creature takes any remaining damage. If that creature has any Resistances or Vulnerabilities, apply them before reducing the ward's Hit Points.

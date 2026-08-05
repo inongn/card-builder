@@ -42,9 +42,21 @@ function highlightYAML(yaml) {
 }
 
 export default function PropertyExplorer({ library }) {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedType, setSelectedType] = useState('all');
-    const [selectedTag, setSelectedTag] = useState('all');
+    // Pending filter states
+    const [pendingSearchTerm, setPendingSearchTerm] = useState('');
+    const [pendingSelectedType, setPendingSelectedType] = useState('all');
+    const [pendingSelectedTag, setPendingSelectedTag] = useState('all');
+    const [pendingNodeScope, setPendingNodeScope] = useState('all'); // 'all', 'top', 'child'
+
+    // Applied filter state (only updated on "Filter" click)
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [appliedFilters, setAppliedFilters] = useState({
+        searchTerm: '',
+        selectedType: 'all',
+        selectedTag: 'all',
+        nodeScope: 'all'
+    });
+
     const [expandedPropertyId, setExpandedPropertyId] = useState(null);
     const [copiedId, setCopiedId] = useState(null);
     const [showRawYAML, setShowRawYAML] = useState({});
@@ -67,10 +79,10 @@ export default function PropertyExplorer({ library }) {
         const result = [];
         const seenIds = new Set();
 
-        const addPropertyAndChildren = (p, parentId = null) => {
+        const addPropertyAndChildren = (p, parentId = null, childIndex = 0) => {
             if (!p || typeof p !== 'object') return;
             
-            const propId = p.id || (p.name ? camelCase(p.name) : '');
+            const propId = p.id || (p.name ? camelCase(p.name) : (p.target ? `${String(p.target).replace(/[^a-zA-Z0-9_]/g, '_').slice(0, 30)}_${childIndex}` : `item_${childIndex}`));
             const fullId = parentId ? `${parentId}.${propId}` : propId;
             
             const pCopy = {
@@ -99,16 +111,16 @@ export default function PropertyExplorer({ library }) {
                 pCopy.target = pCopy.target || pCopy.id;
             }
 
-            const key = pCopy.fullId || pCopy.name;
+            const key = pCopy.fullId || pCopy.name || `anonymous_${Math.random()}`;
             if (key && !seenIds.has(key)) {
                 seenIds.add(key);
                 result.push(pCopy);
             }
 
             if (p.children && Array.isArray(p.children)) {
-                p.children.forEach(child => {
+                p.children.forEach((child, idx) => {
                     if (child && typeof child === 'object' && child.type !== 'Reference') {
-                        addPropertyAndChildren(child, fullId);
+                        addPropertyAndChildren(child, fullId, idx);
                     }
                 });
             }
@@ -140,8 +152,19 @@ export default function PropertyExplorer({ library }) {
         return Array.from(tags).sort();
     }, [allProperties]);
 
+    // Compute filtered list based on applied filters when loaded
     const filteredProperties = useMemo(() => {
+        if (!isLoaded) return [];
+
         let list = allProperties;
+        const { searchTerm, selectedType, selectedTag, nodeScope } = appliedFilters;
+
+        // Node scope filter
+        if (nodeScope === 'top') {
+            list = list.filter(p => !p.parentId);
+        } else if (nodeScope === 'child') {
+            list = list.filter(p => !!p.parentId);
+        }
         
         if (searchTerm) {
             const lowerSearch = searchTerm.toLowerCase();
@@ -176,7 +199,31 @@ export default function PropertyExplorer({ library }) {
         }
         
         return list.sort((a, b) => (a.name || a.id || '').localeCompare(b.name || b.id || ''));
-    }, [allProperties, searchTerm, selectedType, selectedTag]);
+    }, [allProperties, isLoaded, appliedFilters]);
+
+    const handleApplyFilter = () => {
+        setAppliedFilters({
+            searchTerm: pendingSearchTerm,
+            selectedType: pendingSelectedType,
+            selectedTag: pendingSelectedTag,
+            nodeScope: pendingNodeScope
+        });
+        setIsLoaded(true);
+    };
+
+    const handleResetFilters = () => {
+        setPendingSearchTerm('');
+        setPendingSelectedType('all');
+        setPendingSelectedTag('all');
+        setPendingNodeScope('all');
+        setAppliedFilters({
+            searchTerm: '',
+            selectedType: 'all',
+            selectedTag: 'all',
+            nodeScope: 'all'
+        });
+        setIsLoaded(false);
+    };
 
     const handleCopyYAML = async (p, e) => {
         if (e) e.stopPropagation();
@@ -220,56 +267,89 @@ export default function PropertyExplorer({ library }) {
             <div className="prop-filter-bar">
                 <mdui-text-field
                     label="Filter by name, ID or details..."
-                    value={searchTerm}
-                    onInput={(e) => setSearchTerm(e.target.value)}
+                    value={pendingSearchTerm}
+                    onInput={(e) => setPendingSearchTerm(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') handleApplyFilter();
+                    }}
                     clearable
                 >
                     <mdui-icon slot="icon" name="search"></mdui-icon>
                 </mdui-text-field>
                 <div className="prop-filter-row">
                     <mdui-select
-                        label="Filter Type"
-                        value={selectedType}
+                        label="Node Scope"
+                        value={pendingNodeScope}
                         class="flex-1"
                     >
-                        <mdui-menu-item value="all" onClick={() => setSelectedType('all')}>All Types</mdui-menu-item>
+                        <mdui-menu-item value="all" onClick={() => setPendingNodeScope('all')}>All Nodes</mdui-menu-item>
+                        <mdui-menu-item value="top" onClick={() => setPendingNodeScope('top')}>Top Level Only</mdui-menu-item>
+                        <mdui-menu-item value="child" onClick={() => setPendingNodeScope('child')}>Child Nodes Only</mdui-menu-item>
+                    </mdui-select>
+                    <mdui-select
+                        label="Filter Type"
+                        value={pendingSelectedType}
+                        class="flex-1"
+                    >
+                        <mdui-menu-item value="all" onClick={() => setPendingSelectedType('all')}>All Types</mdui-menu-item>
                         {uniqueTypes.map(t => (
-                            <mdui-menu-item key={t} value={t} onClick={() => setSelectedType(t)}>{t}</mdui-menu-item>
+                            <mdui-menu-item key={t} value={t} onClick={() => setPendingSelectedType(t)}>{t}</mdui-menu-item>
                         ))}
                     </mdui-select>
                     <mdui-select
                         label="Filter Tag"
-                        value={selectedTag}
+                        value={pendingSelectedTag}
                         class="flex-1"
                     >
-                        <mdui-menu-item value="all" onClick={() => setSelectedTag('all')}>All Tags</mdui-menu-item>
+                        <mdui-menu-item value="all" onClick={() => setPendingSelectedTag('all')}>All Tags</mdui-menu-item>
                         {uniqueTags.map(t => (
-                            <mdui-menu-item key={t} value={t} onClick={() => setSelectedTag(t)}>{t}</mdui-menu-item>
+                            <mdui-menu-item key={t} value={t} onClick={() => setPendingSelectedTag(t)}>{t}</mdui-menu-item>
                         ))}
                     </mdui-select>
+                </div>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
+                    <mdui-button
+                        variant="filled"
+                        icon="filter_list"
+                        onClick={handleApplyFilter}
+                        style={{ flex: 1 }}
+                    >
+                        Filter
+                    </mdui-button>
+                    {(isLoaded || pendingSearchTerm || pendingSelectedType !== 'all' || pendingSelectedTag !== 'all' || pendingNodeScope !== 'all') && (
+                        <mdui-button
+                            variant="outlined"
+                            icon="clear_all"
+                            onClick={handleResetFilters}
+                        >
+                            Reset
+                        </mdui-button>
+                    )}
                 </div>
             </div>
 
             {/* Found Properties Count */}
-            <div className="prop-results-meta">
-                <span>Found {filteredProperties.length} Properties</span>
-                {(selectedType !== 'all' || selectedTag !== 'all' || searchTerm) && (
-                    <span
-                        className="prop-results-clear"
-                        onClick={() => {
-                            setSearchTerm('');
-                            setSelectedType('all');
-                            setSelectedTag('all');
-                        }}
-                    >
+            {isLoaded ? (
+                <div className="prop-results-meta">
+                    <span>Found {filteredProperties.length} Properties</span>
+                    <span className="prop-results-clear" onClick={handleResetFilters}>
                         Clear Filters
                     </span>
-                )}
-            </div>
+                </div>
+            ) : (
+                <div className="prop-results-meta">
+                    <span>Set filter criteria above and click Filter</span>
+                </div>
+            )}
 
             {/* Property Cards List */}
             <div className="property-explorer-scrollable">
-                {filteredProperties.length === 0 ? (
+                {!isLoaded ? (
+                    <div className="prop-empty-state">
+                        <mdui-icon name="filter_alt" style={{ fontSize: '36px', opacity: 0.5, marginBottom: '8px' }}></mdui-icon>
+                        <div>Set filters above and click <strong>Filter</strong> to view properties.</div>
+                    </div>
+                ) : filteredProperties.length === 0 ? (
                     <div className="prop-empty-state">
                         No property items found matching your filters.
                     </div>
@@ -296,11 +376,9 @@ export default function PropertyExplorer({ library }) {
                                         <div className="prop-list-item__id">
                                             ID: {propId}
                                         </div>
-                                        {p.parentId && (
-                                            <div className="prop-list-item__tags">
-                                                Parent Scope: {p.parentId}
-                                            </div>
-                                        )}
+                                        <div className="prop-list-item__tags">
+                                            {p.parentId ? `Parent Scope: ${p.parentId}` : 'Top Level Node'}
+                                        </div>
                                     </div>
                                     <div className="prop-list-item__actions">
                                         <span className={getTypeBadgeClass(p.type)}>

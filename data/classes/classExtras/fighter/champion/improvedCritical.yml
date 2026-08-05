@@ -1,0 +1,5 @@
+id: improvedCritical
+name: Improved Critical
+type: Extra
+target: weaponAttack
+description: 'You score a Critical Hit on a roll of $(meta.level >= 15 ? ''18-20'' : ''19 or 20'').'

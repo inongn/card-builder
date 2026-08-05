@@ -2427,7 +2427,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'charmPerson'
+                        propertyId: 'compulsion'
                 },
                 {
                         path: [
@@ -2439,7 +2439,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'charmPerson'
                 },
                 {
                         path: [
@@ -2451,7 +2451,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'silence'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -2463,7 +2463,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'mirrorImage'
+                        propertyId: 'silence'
                 },
                 {
                         path: [
@@ -2475,7 +2475,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'compulsion'
+                        propertyId: 'mirrorImage'
                 },
                 {
                         path: [
@@ -4726,7 +4726,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'acrobaticsProficiency'
+                        propertyId: 'stealthProficiency'
                 },
                 {
                         path: [
@@ -4741,7 +4741,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'stealthProficiency'
+                        propertyId: 'acrobaticsProficiency'
                 },
                 {
                         path: [
@@ -8763,7 +8763,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'prayerOfHealing'
                 },
                 {
                         path: [
@@ -8775,7 +8775,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'lesserRestoration'
                 },
                 {
                         path: [
@@ -8787,7 +8787,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'prayerOfHealing'
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -25216,7 +25216,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_aberrant',
         name: 'Qal Mind',
         class: 'Sorcerer',
-        sub: 'Aberrant',
+        sub: 'Aberrant Sorcery',
         species: 'Dragonborn',
         background: 'Sage',
         level: 8,
@@ -25787,7 +25787,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_clockwork',
         name: 'Keth Meridian',
         class: 'Sorcerer',
-        sub: 'Clockwork',
+        sub: 'Clockwork Sorcery',
         species: 'Dwarf',
         background: 'Artisan',
         level: 8,
@@ -26300,7 +26300,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_draconic',
         name: 'Sylis Flame',
         class: 'Sorcerer',
-        sub: 'Draconic',
+        sub: 'Draconic Sorcery',
         species: 'Human',
         background: 'Noble',
         level: 8,
@@ -26897,7 +26897,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_wildMagic',
         name: 'Blythe Flux',
         class: 'Sorcerer',
-        sub: 'Wild Magic',
+        sub: 'Wild Magic Sorcery',
         species: 'Human',
         background: 'Charlatan',
         level: 8,
@@ -27477,7 +27477,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_shadow',
         name: 'Vesper Shadow',
         class: 'Sorcerer',
-        sub: 'Shadow',
+        sub: 'Shadow Sorcery',
         species: 'Human',
         background: 'Criminal',
         level: 8,
@@ -28003,7 +28003,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_demonic',
         name: 'Azazel Rift',
         class: 'Sorcerer',
-        sub: 'Demonic',
+        sub: 'Demonic Sorcery',
         species: 'Tiefling',
         background: 'Hermit',
         level: 8,
@@ -37077,7 +37077,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'mageArmor'
+                        propertyId: 'confusion'
                 },
                 {
                         path: [
@@ -37089,7 +37089,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mindSpike'
+                        propertyId: 'mageArmor'
                 },
                 {
                         path: [
@@ -37101,7 +37101,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'dissonantWhispers'
+                        propertyId: 'mindSpike'
                 },
                 {
                         path: [
@@ -37113,7 +37113,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'detectThoughts'
+                        propertyId: 'dissonantWhispers'
                 },
                 {
                         path: [
@@ -37125,7 +37125,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'levitate'
+                        propertyId: 'detectThoughts'
                 },
                 {
                         path: [
@@ -37137,7 +37137,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'levitate'
                 },
                 {
                         path: [
@@ -37149,7 +37149,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -37161,7 +37161,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'invisibility'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -37173,7 +37173,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'invisibility'
                 },
                 {
                         path: [
@@ -37185,7 +37185,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'fly'
                 },
                 {
                         path: [
@@ -37197,7 +37197,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'dimensionDoor'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -37209,7 +37209,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'confusion'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -38212,7 +38212,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'freedomOfMovement'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -38284,7 +38284,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'invisibility'
+                        propertyId: 'freedomOfMovement'
                 },
                 {
                         path: [
@@ -38296,7 +38296,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'invisibility'
                 },
                 {
                         path: [
@@ -38308,7 +38308,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'fly'
                 },
                 {
                         path: [
@@ -38320,7 +38320,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'dimensionDoor'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [

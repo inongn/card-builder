@@ -1,0 +1,15 @@
+id: magicalAmmunition
+type: Activity
+duration: instantaneous
+range: self
+name: Magical Ammunition
+time: action
+resource: secondWind
+description: |
+  You imbue a piece of nonmagical ammunition with one of the following properties and fire it at a solid surface within range. When the effect ends, the ammunition is destroyed.
+
+  **Darkening Shot.** Magical darkness fills a 15-foot Emanation originating from the ammunition for 1 minute. Nonmagical flames are extinguished, and creatures in the Emanation have a –5 penalty to Wisdom (Perception) checks and Passive Perception.
+
+  **Unlocking Shot.** A burst of magic fills a 15-foot Emanation. Any mundane lock, stuck, or barred object in the area is unlocked, unstuck or unbarred (limit one lock per object). A loud knock is audible up to 300 feet away.
+
+  **Vine Shot.** A 60-foot-long vine grows from the ammunition, lasting 10 minutes.

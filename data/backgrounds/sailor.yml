@@ -1,24 +1,20 @@
 id: sailor
 name: Sailor
-description: 'You braved ocean storms and foreign ports, forged by a life navigating swaying decks.'
+description: You braved ocean storms and foreign ports, forged by a life navigating swaying decks.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Sailor"
-- type: Reference
-  target:
-  - acrobaticsProficiency
-  - perceptionProficiency
-  - navigatorsTools
-  - tavernBrawler
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - str
-  - dex
-  - wis
+  - type: Reference
+    target:
+      - acrobaticsProficiency
+      - perceptionProficiency
+      - navigatorsTools
+      - tavernBrawler
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - str
+      - dex
+      - wis

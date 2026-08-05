@@ -1,34 +1,24 @@
 id: shadows
 name: Warrior of Shadow
-description: 'Practice stealth and subterfuge by harnessing Shadowfell power to hide, shadow-leap, and become wraithlike.'
+description: Practice stealth and subterfuge by harnessing Shadowfell power to hide, shadow-leap, and become wraithlike.
 tags:
   - monkSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Shadow"
-  # Level 3: Shadow Arts — Darkness
   - id: shadowArtsDarkness
     type: Reference
     target: darkness
     overwrite:
       resource: 2 focusPoints
-      
-  # Level 3: Shadow Arts — Darkvision
   - id: shadowArtsDarkvision
     type: Effect
     target: attributes.senses.darkvision
     operation: add
     value: 60
-
-  # Level 3: Shadow Arts — Shadowy Figments
   - type: Reference
-    target: [minorIllusion, wisCaster]
-
-  # Level 6: Shadow Step
+    target:
+      - minorIllusion
+      - wisCaster
   - id: shadowStep
     type: Activity
     name: Shadow Step
@@ -36,4 +26,4 @@ children:
     range: 60 feet
     duration: Instantaneous
     condition: $(meta.level >= 6)
-    description: "While entirely within Dim Light or Darkness, you teleport up to 60 feet to an unoccupied space you can see that is also in Dim Light or Darkness. You then have Advantage on the next melee attack you make before the end of the current turn."
+    description: While entirely within Dim Light or Darkness, you teleport up to 60 feet to an unoccupied space you can see that is also in Dim Light or Darkness. You then have Advantage on the next melee attack you make before the end of the current turn.

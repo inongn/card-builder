@@ -1,0 +1,8 @@
+id: stunningStrike
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+name: Stunning Strike
+resource: 1 focusPoints
+description: Once per turn when you hit with an attack, the target must make a DC $(attributes.monkSaveDC) Constitution saving throw. On a failed save, the target has the Stunned condition until the start of your next turn. On a success, the target's Speed is halved and the next attack roll against it has Advantage.

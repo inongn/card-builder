@@ -1,0 +1,8 @@
+id: guidedStrike
+type: Activity
+name: Guided Strike
+time: reaction
+range: 30 feet
+duration: Instantaneous
+resource: channelDivinity
+description: When you or a creature within range misses with an attack roll, you give that roll a +10 bonus, potentially causing it to hit.

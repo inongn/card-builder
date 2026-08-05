@@ -1,24 +1,20 @@
 id: scribe
 name: Scribe
-description: 'You trained in scriptoriums copying rare texts, developing meticulous precision and calligraphic skill.'
+description: You trained in scriptoriums copying rare texts, developing meticulous precision and calligraphic skill.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Scribe"
-- type: Reference
-  target:
-  - investigationProficiency
-  - perceptionProficiency
-  - calligraphersTools
-  - skilled
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - dex
-  - int
-  - wis
+  - type: Reference
+    target:
+      - investigationProficiency
+      - perceptionProficiency
+      - calligraphersTools
+      - skilled
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - dex
+      - int
+      - wis

@@ -1,0 +1,18 @@
+id: spiritChanneling
+type: Activity
+duration: instantaneous
+name: Spirit Channeling
+time: bonus action
+range: self
+resource: bardicInspiration
+description: |
+  You channel a specific spirit. You can unleash the spirit as a Magic Action.
+
+  * **1. Beloved.** The target regains Hit Points equal to 1d$(attributes.bardicDie) + $(stats.cha.mod).
+  * **2. Sharpshooter.** The target takes Force damage equal to 1d$(attributes.bardicDie) + $(stats.cha.mod).
+  * **3. Avenger.** Until the end of your next turn, any creature that hits the target with a melee attack roll takes Force damage equal to 1d$(attributes.bardicDie).
+  * **4. Renegade.** The target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see.
+  * **5. Fortune Teller.** The target has Advantage on D20 Tests until the start of your next turn.
+  * **6. Wayfarer.** The target gains Temporary Hit Points equal to 1d$(attributes.bardicDie) + $(meta.level). While it has these, its Speed increases by 10 feet.
+  $(meta.level >= 5 ? '* **7. Trickster.** The target makes a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failure, it takes Psychic damage equal to 2d$(attributes.bardicDie) and is Charmed until the start of your next turn. On a success, it takes half damage only.' : '')
+  $(meta.level >= 5 ? '* **8. Shade.** The target has the Invisible condition until the end of its next turn or until it attacks, deals damage, or casts a spell. When the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take Necrotic damage equal to 2d$(attributes.bardicDie).' : '')

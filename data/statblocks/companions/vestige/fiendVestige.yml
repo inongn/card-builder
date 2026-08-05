@@ -1,0 +1,34 @@
+type: Statblock
+name: "Fiend Vestige"
+tags: [vestigeCompanion]
+id: fiendVestige
+size: Small
+category: companion
+classification: Fiend
+ac: $(13 + stats.cha.mod)
+hp: $(4 + 4 * meta.level)
+movement:
+  walk: 5
+  fly: 30
+stats:
+  str: 1
+  dex: 14
+  con: 10
+  int: 15
+  wis: 15
+  cha: 16
+resistances: [Fire]
+immunities: [Charmed, Frightened, Prone]
+senses:
+  darkvision: 60
+languages: "Speaks the languages that you know"
+traits:
+  - name: Pact Bond
+    description: "Add your Proficiency Bonus to any ability check or saving throw the vestige makes."
+actions:
+  - name: Vestige's Strike
+    description: "_Melee or Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. or range 60 ft. _Hit:_ 1d6$(formatBonus(3 + stats.cha.mod)) Fire damage."
+bonusActions:
+  - name: Divine Power (1/Day)
+    description: |
+      **Fiendish Swap.** If you and the vestige are within 60 feet of each other, you both teleport, swapping places.

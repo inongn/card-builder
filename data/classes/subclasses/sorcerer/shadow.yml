@@ -1,37 +1,36 @@
 id: shadow
 name: Shadow Sorcery
-description: 'Draw magic from the Shadowfell to command darkness, wrap yourself in gloom, and summon foul beasts.'
+description: Draw magic from the Shadowfell to command darkness, wrap yourself in gloom, and summon foul beasts.
 tags:
   - sorcererSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Shadow"
-
-  # Level 3: Shadow Spells
   - type: Reference
-    target: [bane, darkness, inflictWounds, passWithoutTrace]
+    target:
+      - bane
+      - darkness
+      - inflictWounds
+      - passWithoutTrace
   - type: Reference
     condition: $(meta.level >= 5)
-    target: [hungerOfHadar, nondetection]
+    target:
+      - hungerOfHadar
+      - nondetection
   - type: Reference
     condition: $(meta.level >= 7)
-    target: [greaterInvisibility, phantasmalKiller]
+    target:
+      - greaterInvisibility
+      - phantasmalKiller
   - type: Reference
     condition: $(meta.level >= 9)
-    target: [contagion, creation]
-
-  # Level 3: Power of Shadow
+    target:
+      - contagion
+      - creation
   - id: eyesOfTheDark
     type: Effect
     target: attributes.senses.darkvision
     operation: set
     value: 120
-    
-
   - id: strengthOfTheGrave
     type: Activity
     time: free action
@@ -39,14 +38,11 @@ children:
     range: self
     uses: 1
     name: Strength of the Grave
-    description: "When you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw (DC 5 + damage taken). On a success, your Hit Points instead change to $(stats.cha.mod + meta.level)."
-
-  # Level 6: Beasts of Ill Omen
+    description: When you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw (DC 5 + damage taken). On a success, your Hit Points instead change to $(stats.cha.mod + meta.level).
   - id: beastsOfIllOmen
     type: Reference
     target: summonBeast
     condition: $(meta.level >= 6)
-
   - id: beastsOfIllOmenEffect
     type: Effect
     target: activities[summonBeastActivity].time

@@ -1,23 +1,14 @@
 id: phantom
 name: Phantom
-description: 'Slip between the living and dead, drawing on spectral power to strike with supernatural lethality.'
+description: Slip between the living and dead, drawing on spectral power to strike with supernatural lethality.
 tags:
   - rogueSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Phantom"
-
-  # Level 3: Wails from the Grave — Resource
   - id: wailsFromTheGraveResource
     name: Wails from the Grave
     type: Resource
-    quantity: "$(Math.max(1, stats.dex.mod))"
-
-  # Level 3: Wails from the Grave — Activity
+    quantity: $(Math.max(1, stats.dex.mod))
   - id: wailsFromTheGrave
     type: Activity
     name: Wails from the Grave
@@ -27,8 +18,6 @@ children:
     resource: wailsFromTheGraveResource
     description: |
       Immediately after you deal Sneak Attack damage to a creature on your turn, you target a second creature you can see within range. Roll $(Math.ceil(meta.level / 4))d6 and the second creature takes that much Necrotic damage as wails of the dead sound around it.
-
-  # Level 3: Whispers of the Dead — Activity
   - id: whispersOfTheDead
     type: Slot
     target: skillProficiency

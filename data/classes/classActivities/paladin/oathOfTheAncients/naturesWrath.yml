@@ -1,0 +1,8 @@
+id: naturesWrath
+type: Activity
+name: Nature's Wrath
+time: action
+range: 15 feet
+duration: 1 minute
+resource: channelDivinity
+description: You conjure spectral vines around nearby creatures. Each creature of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or have the Restrained condition for 1 minute. A Restrained creature repeats the save at the end of each of its turns, ending the effect on a success.

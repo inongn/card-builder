@@ -1,50 +1,37 @@
 id: necromancer
 name: Necromancer
-description: 'Explore the cosmic forces of life and death, draining life force and raising loyal undead thralls.'
+description: Explore the cosmic forces of life and death, draining life force and raising loyal undead thralls.
 tags:
   - wizardSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Necromancer"
-
-  # Level 3: Necromancy Spellbook
   - id: necroticResistance
     type: Reference
     target: necroticResistance
-
   - id: grimHarvest
     type: Activity
     time: free action
     duration: instantaneous
     range: self
     name: Grim Harvest
-    description: "When you cast a Necromancy spell using a spell slot, choose an Undead creature within 60 feet to regain 1+$(meta.level) Hit Points, plus the spell slot level."
-
-
+    description: When you cast a Necromancy spell using a spell slot, choose an Undead creature within 60 feet to regain 1+$(meta.level) Hit Points, plus the spell slot level.
   - id: overwhelmingNecrosis
     type: Extra
     target: necroticDamage
     condition: $(meta.level >= 6)
     name: Overwhelming Necrosis
-    description: "This spell ignores Resistance to Necrotic Damage."
-
-  # Level 6: Undead Thralls
+    description: This spell ignores Resistance to Necrotic Damage.
   - id: undeadThralls
     type: Reference
     target: animateDead
     condition: $(meta.level >= 6)
     overwrite:
       resource: limited
-
   - id: undeadThrallsDamageEffect
     type: Effect
     target: statblocks[classification=Undead].traits
     operation: push
     condition: $(meta.level >= 6)
     value:
-      name: "Withering Strike"
-      description: "Whenever the undead hits a creature with an attack roll, you deal an extra $(Math.max(1, stats.int.mod)) Necrotic damage."
+      name: Withering Strike
+      description: Whenever the undead hits a creature with an attack roll, you deal an extra $(Math.max(1, stats.int.mod)) Necrotic damage.

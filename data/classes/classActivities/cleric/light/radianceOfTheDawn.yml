@@ -1,0 +1,8 @@
+id: radianceOfTheDawn
+type: Activity
+name: Radiance of the Dawn
+time: action
+range: self
+duration: Instantaneous
+resource: channelDivinity
+description: You emit a flash of light in a 30-foot Emmanation originating from yourself. Any magical Darkness in the area is dispelled. Each creature of your choice in the area must make a DC $(attributes.spellcasting.save) Constitution saving throw, taking $(2)d10+$(meta.level) Radiant damage on a failed save, or half as much on a success.

@@ -1,0 +1,8 @@
+id: defensiveField
+type: Activity
+duration: instantaneous
+range: self
+name: Defensive Field
+time: bonus action
+description: |
+  While Bloodied, you can gain ($(meta.level)) Temporary Hit Points. You lose these Temporary Hit Points if you doff the armor.

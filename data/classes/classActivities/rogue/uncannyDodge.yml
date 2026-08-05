@@ -1,0 +1,7 @@
+id: uncannyDodge
+type: Activity
+name: Uncanny Dodge
+time: reaction
+range: self
+duration: Instantaneous
+description: When an attacker that you can see hits you with an attack roll, you halve the attack's damage against you (round down).

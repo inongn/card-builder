@@ -1,51 +1,46 @@
 id: circleOfTheMoon
 name: Circle of the Moon
-description: 'Draw on lunar magic to transform yourself into various beasts, changeable and powerful as the moon.'
+description: Draw on lunar magic to transform yourself into various beasts, changeable and powerful as the moon.
 type: Folder
 tags:
   - druidSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Moon"
-  # Level 3: Circle of the Moon Spells
   - type: Reference
-    target: [cureWounds, moonbeam, starryWisp]
+    target:
+      - cureWounds
+      - moonbeam
+      - starryWisp
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [conjureAnimals]
+    target:
+      - conjureAnimals
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [fountOfMoonlight]
+    target:
+      - fountOfMoonlight
     condition: $(meta.level >= 7)
-
-  # Level 3: Circle Forms (Modifies Wild Shape)
   - id: moonCircleFormsTHP
     type: Effect
     target: activities[id=wildShapeActivity].description["You gain $(meta.level * 2) Temporary Hit Points"]
     operation: replace
-    value: "You gain $(meta.level * 3) Temporary Hit Points"
+    value: You gain $(meta.level * 3) Temporary Hit Points
     condition: $(meta.level >= 3)
-
-  # Level 6: Improved Circle Forms
   - id: improvedCircleFormsRadiance
     type: Extra
     target: wildShapeActivity
     name: Lunar Radiance
-    description: "You can deal Radiant damage instead of the normal type."
+    description: You can deal Radiant damage instead of the normal type.
     condition: $(meta.level >= 6)
   - id: improvedCircleFormsToughness
     type: Extra
     target: wildShapeActivity
     name: Increased Toughness
-    description: "You can add $(stats.wis.mod) to your Constitution saving throws."
+    description: You can add $(stats.wis.mod) to your Constitution saving throws.
     condition: $(meta.level >= 6)
   - id: primalStrikeWildShape
     type: Effect
     target: statblocks[tags=wildShapeTemplate].actions
     operation: push
-    value: 
+    value:
       name: Multiattack
       description: The beast makes two Bestial Strike attacks.

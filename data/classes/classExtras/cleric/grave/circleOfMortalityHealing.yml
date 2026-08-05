@@ -1,0 +1,5 @@
+id: circleOfMortalityHealing
+type: Extra
+target: healingSpell OR channelDivinity
+name: Circle of Mortality
+description: When restoring Hit Points to a creature at 0 Hit Points, use the highest possible roll for each die.

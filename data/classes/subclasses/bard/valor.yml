@@ -1,16 +1,10 @@
 id: valor
 name: College of Valor
-description: 'Sing tales of the mighty in combat, preserving the memories of great heroes as a daring storyteller.'
+description: Sing tales of the mighty in combat, preserving the memories of great heroes as a daring storyteller.
 type: Folder
 tags:
   - bardSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Valor"
-  # Level 3: Combat Inspiration
   - id: combatInspirationExtra
     type: Extra
     name: Combat Inspiration
@@ -22,16 +16,15 @@ children:
       **Defense.** When hit by an attack roll, use a Reaction to roll the die and add the result to AC, potentially causing the attack to miss.
 
       **Offense.** When hitting with an attack roll, use a Reaction to roll the die and add the result to the damage roll.
-
-  # Level 3: Martial Training
   - type: Reference
     condition: $(meta.level >= 3)
-    target: [martialWeaponProficiency, mediumArmorTraining, shieldTraining]
-
-  # Level 6: Extra Attack
+    target:
+      - martialWeaponProficiency
+      - mediumArmorTraining
+      - shieldTraining
   - id: extraAttack
     type: Extra
     target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action."
+    description: You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action.

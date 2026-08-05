@@ -1,0 +1,5 @@
+id: mindInfiltrator
+type: Extra
+target: detectThoughts
+name: Mind Infiltrator
+description: If the target fails its Wisdom save against Read Thoughts, it does not know you are probing its mind.

@@ -1,0 +1,5 @@
+type: Extra
+target: graze AND (pactWeapon OR weaponMastery)
+id: graze
+name: Graze
+description: On a miss, deal $(attributes[local.classification].bonus) $(local.damageType) damage.

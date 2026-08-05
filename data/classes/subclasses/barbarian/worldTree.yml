@@ -1,23 +1,15 @@
 id: worldTree
 name: Path of the World Tree
-description: 'Connect with the cosmic World Tree through your Rage, drawing on its magic for vitality and travel.'
+description: Connect with the cosmic World Tree through your Rage, drawing on its magic for vitality and travel.
 tags:
   - barbarianSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "World Tree"
-  # Level 3: Vitality of the Tree — Vitality Surge
   - id: vitalitySurge
     type: Extra
     name: Vitality Surge
     target: rage
-    description: "Gain $(meta.level) Temporary Hit Points."
-
-  # Level 3: Vitality of the Tree — Life-Giving Force
+    description: Gain $(meta.level) Temporary Hit Points.
   - id: lifeGivingForce
     type: Activity
     name: Life-Giving Force
@@ -25,9 +17,7 @@ children:
     range: 10 feet
     duration: Instantaneous
     target: rage
-    description: "You tap into the life force of the World Tree. At the start of each of your turns while your Rage is active, choose a creature within range to gain $(attributes.rageDamage)d6 Temporary Hit Points. If any of these Temporary Hit Points remain when your Rage ends, they vanish."
-
-  # Level 6: Branches of the Tree
+    description: You tap into the life force of the World Tree. At the start of each of your turns while your Rage is active, choose a creature within range to gain $(attributes.rageDamage)d6 Temporary Hit Points. If any of these Temporary Hit Points remain when your Rage ends, they vanish.
   - id: branchesOfTheTree
     type: Activity
     name: Branches of the Tree
@@ -35,4 +25,4 @@ children:
     range: 30 feet
     duration: Instantaneous
     condition: $(meta.level >= 6)
-    description: "When a creature you can see starts its turn within range while your Rage is active, you summon spectral branches of the World Tree around it. The target must succeed on a DC $(8 + stats.str.mod + attributes.prof) Strength saving throw or be teleported to an unoccupied space you can see within 5 feet of yourself. After it teleports, you can reduce its Speed to 0 until the end of the current turn."
+    description: When a creature you can see starts its turn within range while your Rage is active, you summon spectral branches of the World Tree around it. The target must succeed on a DC $(8 + stats.str.mod + attributes.prof) Strength saving throw or be teleported to an unoccupied space you can see within 5 feet of yourself. After it teleports, you can reduce its Speed to 0 until the end of the current turn.

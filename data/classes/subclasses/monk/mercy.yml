@@ -1,20 +1,15 @@
 id: mercy
 name: Warrior of Mercy
-description: 'Manipulate life force as a masked wandering physician, acting as a faceless bringer of life and death.'
+description: Manipulate life force as a masked wandering physician, acting as a faceless bringer of life and death.
 tags:
   - monkSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Mercy"
-  # Level 3: Implements of Mercy
   - type: Reference
-    target: [insightProficiency, medicineProficiency, herbalismKit]
-
-  # Level 3: Hand of Harm
+    target:
+      - insightProficiency
+      - medicineProficiency
+      - herbalismKit
   - id: handOfHarm
     type: Activity
     time: free action
@@ -22,9 +17,7 @@ children:
     range: self
     name: Hand of Harm
     resource: 1 focusPoints
-    description: "Once per turn when you hit a creature with an Unarmed Strike and deal damage, you deal 1d$(attributes.martialArtsDie)+$(stats.wis.mod) extra Necrotic damage.$(meta.level >= 6 ? ' You can also give the target the Poisoned condition until the end of your next turn.' : '')"
-
-  # Level 3: Hand of Healing
+    description: 'Once per turn when you hit a creature with an Unarmed Strike and deal damage, you deal 1d$(attributes.martialArtsDie)+$(stats.wis.mod) extra Necrotic damage.$(meta.level >= 6 ? '' You can also give the target the Poisoned condition until the end of your next turn.'' : '''')'
   - id: handOfHealing
     type: Activity
     name: Hand of Healing
@@ -32,4 +25,4 @@ children:
     range: touch
     duration: Instantaneous
     resource: 1 focusPoints
-    description: "You touch a creature and restore 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points to it.$(meta.level >= 6 ? ' You can also end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned.' : '')"
+    description: 'You touch a creature and restore 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points to it.$(meta.level >= 6 ? '' You can also end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned.'' : '''')'

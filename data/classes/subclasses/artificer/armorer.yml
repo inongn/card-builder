@@ -1,17 +1,10 @@
 id: armorer
 name: Armorer
-description: 'Modify armor to function as a second skin, enhancing magic, attacks, and generating defense.'
+description: Modify armor to function as a second skin, enhancing magic, attacks, and generating defense.
 type: Folder
 tags:
   - artificerSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Armorer"
-
-  # Level 3: Tools of the Trade
   - id: armorerToolsOfTheTrade
     type: Extra
     name: Tools of the Trade
@@ -21,36 +14,42 @@ children:
 
       When you craft nonmagical or magic armor, the amount of time required to craft it is halved.
   - type: Reference
-    target: [heavyArmorTraining, smithsTools]
-
-  # Level 3: Armorer Spells
+    target:
+      - heavyArmorTraining
+      - smithsTools
   - type: Reference
-    target: [magicMissile, thunderwave]
+    target:
+      - magicMissile
+      - thunderwave
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [mirrorImage, shatter]
+    target:
+      - mirrorImage
+      - shatter
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [hypnoticPattern, lightningBolt]
+    target:
+      - hypnoticPattern
+      - lightningBolt
     condition: $(meta.level >= 9)
   - type: Reference
-    target: [fireShield, greaterInvisibility]
+    target:
+      - fireShield
+      - greaterInvisibility
     condition: $(meta.level >= 13)
   - type: Reference
-    target: [passwall, wallOfForce]
+    target:
+      - passwall
+      - wallOfForce
     condition: $(meta.level >= 17)
-
-  # Level 3: Armor Model Slot
   - id: armorModel
     name: Armor Model
     type: Slot
     target: armorModel
     condition: $(meta.level >= 3)
-
-  # Level 5: Extra Attack
   - id: extraAttack
     type: Extra
     target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice instead of once whenever you take the Attack action on your turn."
+    description: You can attack twice instead of once whenever you take the Attack action on your turn.

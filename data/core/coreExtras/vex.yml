@@ -1,0 +1,5 @@
+type: Extra
+target: vex AND (pactWeapon OR weaponMastery)
+id: vex
+name: Vex
+description: On a hit, you have Advantage on your next attack roll against the target before the end of your next turn.

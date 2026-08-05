@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Leatherworker's Tools
+target: attributes.tools
+id: leatherworkersTools
+name: Leatherworker's Tools

@@ -1,43 +1,35 @@
 id: mysticArts
 name: Warrior of the Mystic Arts
-description: 'Wield magic to supplement martial skill, harnessing supernatural focus to enhance magical and physical abilities.'
+description: Wield magic to supplement martial skill, harnessing supernatural focus to enhance magical and physical abilities.
 type: Folder
 tags:
   - monkSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Mystic Arts"
-
-  # Level 3: Spellcasting
   - type: Reference
-    target: [oneThirdCaster, wisCaster]
+    target:
+      - oneThirdCaster
+      - wisCaster
     condition: $(meta.level >= 3)
-
   - type: Slot
     id: mysticArtsCantrips
-    name: "Mystic Arts Cantrips"
+    name: Mystic Arts Cantrips
     target: sorcerer AND cantrip
     quantity: 2
     condition: $(meta.level >= 3)
     overwrite:
-      variables.classification: "spellcasting"
-      tags: ["monkSpell"]
-
+      variables.classification: spellcasting
+      tags:
+        - monkSpell
   - type: Slot
     id: mysticArtsPreparedSpells
-    name: "Mystic Arts Prepared Spells"
-    target: "sorcerer NOT class NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    name: Mystic Arts Prepared Spells
+    target: 'sorcerer NOT class NOT cantrip $(local.maxLevel < 9 ? ''NOT level9Spell'' : '''') $(local.maxLevel < 8 ? ''NOT level8Spell'' : '''') $(local.maxLevel < 7 ? ''NOT level7Spell'' : '''') $(local.maxLevel < 6 ? ''NOT level6Spell'' : '''') $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
     variables:
-      maxLevel: "$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)"
-    quantity: "$(meta.level >= 8 ? 6 : meta.level >= 7 ? 5 : meta.level >= 4 ? 4 : 3)"
+      maxLevel: '$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)'
+    quantity: '$(meta.level >= 8 ? 6 : meta.level >= 7 ? 5 : meta.level >= 4 ? 4 : 3)'
     condition: $(meta.level >= 3)
-
-  # Level 6: Mystic Fighting Style
   - type: Effect
     target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
     operation: replace
     condition: $(meta.level >= 6)
-    value: "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a cantrip."
+    value: instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a cantrip.

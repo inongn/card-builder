@@ -1,0 +1,18 @@
+id: influence
+name: Influence
+type: Activity
+time: action
+range: self
+duration: instantaneous
+description: |
+  You make a Wisdom or Charisma check to urge a creature or group of creatures to do something. 
+
+  **Deception ($(formatBonus(skills.deception.bonus))).** Lie
+
+  **Intimidation ($(formatBonus(skills.intimidation.bonus))).** Threaten
+
+  **Performance ($(formatBonus(skills.performance.bonus))).** Entertain
+
+  **Persuasion ($(formatBonus(skills.persuasion.bonus))).** Persuade
+
+  **Animal Handling ($(formatBonus(skills.animal_handling.bonus))).** Control or train a Beast

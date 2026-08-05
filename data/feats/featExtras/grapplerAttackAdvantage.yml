@@ -1,0 +1,5 @@
+type: Extra
+target: unarmed
+name: Attack Advantage
+description: You have Advantage on attack rolls against a creature Grappled by you.
+id: grapplerAttackAdvantage

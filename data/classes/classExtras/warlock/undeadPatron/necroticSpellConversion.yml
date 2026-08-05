@@ -1,0 +1,5 @@
+id: necroticSpellConversion
+type: Extra
+target: damageSpell NOT necroticDamage
+name: Arcane Necrosis
+description: You can change this spell's damage type to Necrotic.

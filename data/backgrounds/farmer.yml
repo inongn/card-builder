@@ -1,24 +1,20 @@
 id: farmer
 name: Farmer
-description: 'Years tending crops and livestock gave you patience, endurance, and deep respect for nature.'
+description: Years tending crops and livestock gave you patience, endurance, and deep respect for nature.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Farmer"
-- type: Reference
-  target:
-  - animalHandlingProficiency
-  - natureProficiency
-  - carpentersTools
-  - tough
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - str
-  - con
-  - wis
+  - type: Reference
+    target:
+      - animalHandlingProficiency
+      - natureProficiency
+      - carpentersTools
+      - tough
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - str
+      - con
+      - wis

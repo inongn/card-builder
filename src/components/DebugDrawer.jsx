@@ -183,8 +183,10 @@ export default function DebugDrawer({
         const drawer = drawerRef.current;
         if (!drawer) return;
 
-        const handleCloseEvent = () => {
-            if (onClose) onClose();
+        const handleCloseEvent = (e) => {
+            if (e.target === drawer && onClose) {
+                onClose();
+            }
         };
 
         drawer.addEventListener('close', handleCloseEvent);
@@ -271,6 +273,7 @@ export default function DebugDrawer({
                     <mdui-tab value="character" onClick={() => setActiveTab('character')}>Character</mdui-tab>
                     <mdui-tab value="recipe" onClick={() => setActiveTab('recipe')}>Recipe</mdui-tab>
                     <mdui-tab value="tree" onClick={() => setActiveTab('tree')}>Tree</mdui-tab>
+                    <mdui-tab value="properties" onClick={() => setActiveTab('explorer')}>Properties</mdui-tab>
                     <mdui-tab value="tools" onClick={() => setActiveTab('tools')}>Tools</mdui-tab>
                 </mdui-tabs>
 

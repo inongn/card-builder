@@ -1,0 +1,8 @@
+id: awakenedMind
+type: Activity
+name: Awakened Mind
+time: bonus action
+range: 30 feet
+duration: $(meta.level) minutes
+description: |
+  You form a telepathic connection between your mind and the mind of another. Choose one creature you can see within 30 feet of yourself. You and the chosen creature can communicate telepathically with each other while the two of you are within $(Math.max(1, stats.cha.mod)) miles of each other. To understand each other, you each must mentally use a language the other knows.

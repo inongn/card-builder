@@ -1,0 +1,8 @@
+id: psiPoweredLeap
+type: Activity
+time: bonus action
+range: self
+duration: Instantaneous
+name: Psi Powered Leap
+resource: psionicEnergyDice
+description: You gain a Fly Speed of $(attributes.movement.walk * 2) feet until the end of the current turn.

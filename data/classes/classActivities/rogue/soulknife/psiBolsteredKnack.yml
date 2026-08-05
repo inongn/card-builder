@@ -1,0 +1,8 @@
+id: psiBolsteredKnack
+type: Activity
+name: Psi-Bolstered Knack
+time: free action
+range: self
+duration: Instantaneous
+resource: psionicEnergyDice
+description: When you fail an ability check using a skill or tool with which you have proficiency, you add 1d$(attributes.psiDice) to the check, potentially turning failure into success. The charge is expended only if the roll then succeeds.

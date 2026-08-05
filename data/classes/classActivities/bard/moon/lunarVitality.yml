@@ -1,0 +1,8 @@
+id: lunarVitality
+type: Activity
+duration: instantaneous
+range: self
+name: Lunar Vitality
+time: free action
+resource: bardicInspiration
+description: Once per turn when you restore Hit Points to a creature with a spell, you increase the amount of Hit Points restored by 1d$(attributes.bardicDie). The creature's Speed also increases by 10 feet until the end of its next turn.

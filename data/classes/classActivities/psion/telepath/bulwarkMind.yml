@@ -1,0 +1,8 @@
+id: bulwarkMind
+type: Activity
+name: Bulwark Mind
+time: free action
+range: self
+duration: 10 minutes
+resource: psionicEnergyDice
+description: Enter a fortified state for 10 minutes. You gain Resistance to Psychic damage, and add 1d$(attributes.psiDice) to Intelligence, Wisdom, and Charisma saving throws.

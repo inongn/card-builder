@@ -1,0 +1,5 @@
+id: improvedCircleFormsToughness
+type: Extra
+target: wildShapeActivity
+name: Increased Toughness
+description: You can add $(stats.wis.mod) to your Constitution saving throws.

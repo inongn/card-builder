@@ -1,28 +1,24 @@
 id: circleOfTheTitan
 name: Circle of the Titan
-description: 'Channel cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing shock waves.'
+description: Channel cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing shock waves.
 type: Folder
 tags:
   - druidSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Titan"
-
-  # Level 3: Circle of the Titan Spells
   - type: Reference
-    target: [enlargereduce, thaumaturgy, thunderwave]
+    target:
+      - enlargereduce
+      - thaumaturgy
+      - thunderwave
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [fear]
+    target:
+      - fear
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [fireShield]
+    target:
+      - fireShield
     condition: $(meta.level >= 7)
-
-  # Level 3: Titan Form
   - id: titanForm
     type: Activity
     name: Titan Form
@@ -31,37 +27,32 @@ children:
     duration: 10 minutes
     resource: wildShape
     condition: $(meta.level >= 3)
-    description: "You adopt a Titan Form, choosing Behemoth, Leviathan, or Insectoid. You stay in Titan Form for 10 minutes. While in Titan Form, you can cast your Circle of the Titan spells without requiring Material components. Features that apply to your Beast forms also apply to your Titan Form."
-
+    description: You adopt a Titan Form, choosing Behemoth, Leviathan, or Insectoid. You stay in Titan Form for 10 minutes. While in Titan Form, you can cast your Circle of the Titan spells without requiring Material components. Features that apply to your Beast forms also apply to your Titan Form.
   - type: Reference
-    target: [titanForm]
+    target:
+      - titanForm
     condition: $(meta.level >= 3)
-
-  # Level 5: Multiattack
   - id: titanMultiattack
     type: Effect
     target: statblocks[tags=titanFormTemplate].traits
     operation: push
     condition: $(meta.level >= 5)
     value:
-      name: "Multiattack"
-      description: "You make two Rend attacks."
-
-  # Level 6: Dire Impact
+      name: Multiattack
+      description: You make two Rend attacks.
   - id: elementalRendEffect
     type: Effect
     target: statblocks[tags=titanFormTemplate].traits
     operation: push
     condition: $(meta.level >= 6)
     value:
-      name: "Elemental Rend"
-      description: "Whenever you hit with your Titan Form's Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type."
-
+      name: Elemental Rend
+      description: Whenever you hit with your Titan Form's Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type.
   - id: shockWaveEffect
     type: Effect
     target: statblocks[tags=titanFormTemplate].traits
     operation: push
     condition: $(meta.level >= 6)
     value:
-      name: "Shock Wave"
-      description: "Once per turn, immediately after you move at least half your Speed, you can create a shock wave in a 10-foot Emanation originating from yourself. Each creature in the Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or have the Prone condition."
+      name: Shock Wave
+      description: Once per turn, immediately after you move at least half your Speed, you can create a shock wave in a 10-foot Emanation originating from yourself. Each creature in the Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or have the Prone condition.

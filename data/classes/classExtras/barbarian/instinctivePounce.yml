@@ -1,0 +1,5 @@
+id: instinctivePounce
+type: Extra
+name: Instinctive Pounce
+target: rage
+description: As part of the Bonus Action you take to enter your Rage, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet.

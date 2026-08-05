@@ -1,0 +1,8 @@
+id: armorerToolsOfTheTrade
+type: Extra
+name: Tools of the Trade
+description: |
+  You gain training with Heavy armor.
+  You gain proficiency with Smith's Tools. If you already have this tool proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.
+
+  When you craft nonmagical or magic armor, the amount of time required to craft it is halved.

@@ -1,16 +1,10 @@
 id: openHand
 name: Warrior of the Open Hand
-description: 'Master unarmed combat with techniques to push, trip, and manipulate energy to protect against harm.'
+description: Master unarmed combat with techniques to push, trip, and manipulate energy to protect against harm.
 tags:
   - monkSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Open Hand"
-  # Level 3: Open Hand Technique
   - id: openHandTechnique
     type: Extra
     target: flurryOfBlows
@@ -23,9 +17,6 @@ children:
       - **Push**. The target must succeed on a DC $(attributes.monkSaveDC) Strength saving throw or be pushed up to 15 feet away from you.
 
       - **Topple**. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or have the Prone condition.
-    
-
-  # Level 6: Wholeness of Body
   - id: wholenessOfBody
     type: Activity
     name: Wholeness of Body
@@ -34,7 +25,7 @@ children:
     duration: Instantaneous
     condition: $(meta.level >= 6)
     resource: wholenessOfBody
-    description: "You channel your inner healing energy. Regain 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points."
+    description: You channel your inner healing energy. Regain 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points.
   - id: wholenessOfBody
     type: Resource
     name: Wholeness of Body

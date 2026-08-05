@@ -1,15 +1,10 @@
 id: circleOfTheLand
 name: Circle of the Land
-description: 'Safeguard ancient knowledge and rites as a mystic and sage, whispering primal secrets in Druidic.'
+description: Safeguard ancient knowledge and rites as a mystic and sage, whispering primal secrets in Druidic.
 tags:
   - druidSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Land"
   - id: circleOfTheLandType
     type: Slot
     name: Land Type

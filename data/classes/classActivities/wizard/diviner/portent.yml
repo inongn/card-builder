@@ -1,0 +1,7 @@
+id: portent
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+name: Portent
+description: 'Whenever you finish a Long Rest, glimpses on the future press on your awareness. Roll $(meta.level >= 14 ? ''3'' : ''2'')d20s and record the numbers rolled. You can replace any D20 Test made by you or a creature that you can see with one of these foretelling rolls. You must choose to do so before the roll, and you can replace a roll in this way only once per turn.'

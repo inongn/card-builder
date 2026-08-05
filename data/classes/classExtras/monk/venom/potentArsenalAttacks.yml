@@ -1,0 +1,5 @@
+id: potentArsenalAttacks
+type: Extra
+target: weaponAttack
+name: Potent Arsenal
+description: You can change the damage type to Acid.

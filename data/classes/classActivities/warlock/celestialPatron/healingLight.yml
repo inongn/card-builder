@@ -1,0 +1,8 @@
+id: healingLight
+type: Activity
+duration: instantaneous
+name: Healing Light
+time: bonus action
+range: 60 feet
+resource: healingLight
+description: Heal yourself or a creature you can see. The target regains 1d6 Hit Points per charge expeded, up to a maximum of $(Math.min(1, stats.cha.mod))d6 Hit Points.

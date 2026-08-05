@@ -1,0 +1,12 @@
+id: openHandTechnique
+type: Extra
+target: flurryOfBlows
+name: Open Hand Technique
+description: |
+  When you hit a creature with an attack, you impose one of the following effects on the target:
+
+  - **Addle**. The target can't make Opportunity Attacks until the start of its next turn.
+
+  - **Push**. The target must succeed on a DC $(attributes.monkSaveDC) Strength saving throw or be pushed up to 15 feet away from you.
+
+  - **Topple**. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or have the Prone condition.

@@ -1,0 +1,5 @@
+type: Extra
+target: push AND (pactWeapon OR weaponMastery)
+id: push
+name: Push
+description: On a hit, push the target up to 10 feet straight away from yourself.

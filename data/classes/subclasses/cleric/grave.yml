@@ -5,12 +5,6 @@ type: Folder
 tags:
   - clericSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Grave"
-
   # Level 3: Grave Domain Spells
   - type: Reference
     target: [detectEvilAndGood, falseLife, gentleRepose, rayOfEnfeeblement, spareTheDying]

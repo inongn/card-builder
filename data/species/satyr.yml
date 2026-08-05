@@ -1,31 +1,26 @@
 id: satyr
 name: Satyr
 tags:
-- species
-description: 'Fey revelers with goatlike legs whose music and magic thrive on unbridled joy.'
+  - species
+description: Fey revelers with goatlike legs whose music and magic thrive on unbridled joy.
 type: Folder
 children:
-- id: species
-  type: Effect
-  target: meta.species
-  operation: set
-  value: Satyr
-- type: Effect
-  target: attributes.movement.walk
-  operation: set
-  value: 35
-- type: Reference
-  target:
-  - persuasionProficiency
-  - friends
-  - chooseCaster
-- type: Reference
-  condition: $(meta.level >= 3)
-  target: charmPerson
-  overwrite:
+  - type: Effect
+    target: attributes.movement.walk
+    operation: set
+    value: 35
+  - type: Reference
+    target:
+      - persuasionProficiency
+      - friends
+      - chooseCaster
+  - type: Reference
+    condition: $(meta.level >= 3)
+    target: charmPerson
+    overwrite:
       tags: innateLR
-- type: Reference
-  condition: $(meta.level >= 5)
-  target: suggestion
-  overwrite:
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target: suggestion
+    overwrite:
       tags: innateLR

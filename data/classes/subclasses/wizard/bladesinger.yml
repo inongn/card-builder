@@ -1,17 +1,10 @@
 id: bladesinger
 name: Bladesinger
-description: 'Master a wizardry tradition mixing swordplay and dance to channel magic into your singing blades.'
+description: Master a wizardry tradition mixing swordplay and dance to channel magic into your singing blades.
 tags:
   - wizardSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Bladesinger"
-
-  # Level 3: Bladesong
   - id: bladesong
     type: Activity
     range: self
@@ -24,24 +17,20 @@ children:
         * **Agility:** You gain a +$(Math.min(1, stats.int.mod)) bonus to AC, your Speed increases by 10 feet, and gain Advantage on Acrobatics checks.
         * **Bladework:** Whenever you attack with a weapon with which you have proficiency, you can do so with a $(formatBonus(attributes.spellcasting.attack)) attack roll and a $(formatBonus(attributes.spellcasting.bonus)) damage bonus.
         * **Focus:** When you make a Constitution saving throw to maintain Concentration, you can add +$(Math.min(1, stats.int.mod)) to the total.
-
   - id: bladesong
     type: Resource
-    quantity:  (Math.max(1, stats.int.mod))
-
+    quantity: (Math.max(1, stats.int.mod))
   - type: Reference
-    target: [martialWeaponProficiency]
-
+    target:
+      - martialWeaponProficiency
   - id: bladesingerSkillProficiencies
     type: Slot
     name: Bladesinger Skill Proficiencies
     quantity: 1
     target: acrobaticsProficiency OR athleticsProficiency OR performanceProficiency OR persuasionProficiency
-
-  # Level 6: Extra Attack
   - id: extraAttack
     type: Extra
     target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action."
+    description: You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action.

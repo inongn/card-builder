@@ -1,0 +1,5 @@
+type: Extra
+target: cleave AND (pactWeapon OR weaponMastery)
+id: cleave
+name: Cleave
+description: On a hit, you can make another attack against a second creature within 5 feet of the first that is also within your reach.

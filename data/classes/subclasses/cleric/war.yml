@@ -1,30 +1,32 @@
 id: warDomain
 name: War Domain
-description: 'Excel in battle by tapping into the magic of war, inspiring others or offering violence as a prayer.'
+description: Excel in battle by tapping into the magic of war, inspiring others or offering violence as a prayer.
 type: Folder
 tags:
   - clericSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "War"
-  # Level 3: War Domain Spells
   - type: Reference
-    target: [guidingBolt, magicWeapon, shieldOfFaith, spiritualWeapon]
+    target:
+      - guidingBolt
+      - magicWeapon
+      - shieldOfFaith
+      - spiritualWeapon
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [crusadersMantle, spiritGuardians]
+    target:
+      - crusadersMantle
+      - spiritGuardians
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [fireShield, freedomOfMovement]
+    target:
+      - fireShield
+      - freedomOfMovement
     condition: $(meta.level >= 7)
   - type: Reference
-    target: [holdMonster, steelWindStrike]
+    target:
+      - holdMonster
+      - steelWindStrike
     condition: $(meta.level >= 9)
-
-  # Level 3: Guided Strike
   - id: guidedStrike
     type: Activity
     name: Guided Strike
@@ -33,9 +35,7 @@ children:
     duration: Instantaneous
     resource: channelDivinity
     condition: $(meta.level >= 3)
-    description: "When you or a creature within range misses with an attack roll, you give that roll a +10 bonus, potentially causing it to hit."
-
-  # Level 3: War Priest
+    description: When you or a creature within range misses with an attack roll, you give that roll a +10 bonus, potentially causing it to hit.
   - id: warPriest
     type: Activity
     name: War Priest
@@ -44,14 +44,12 @@ children:
     duration: Instantaneous
     resource: warPriest
     condition: $(meta.level >= 3)
-    description: "You make one attack with a weapon or an Unarmed Strike."
+    description: You make one attack with a weapon or an Unarmed Strike.
   - id: warPriest
     type: Resource
     name: War Priest
     quantity: $(Math.max(1, stats.wis.mod))
     condition: $(meta.level >= 3)
-
-  # Level 6: War God's Blessing
   - id: warGodsBlessingShield
     type: Effect
     target: activities[id=shieldOfFaith].resource

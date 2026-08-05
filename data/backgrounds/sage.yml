@@ -1,24 +1,20 @@
 id: sage
 name: Sage
-description: 'You spent long nights in ancient archives, devouring scrolls and mastering arcane lore.'
+description: You spent long nights in ancient archives, devouring scrolls and mastering arcane lore.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Sage"
-- type: Reference
-  target:
-  - arcanaProficiency
-  - historyProficiency
-  - calligraphersTools
-  - magicInitiateWizard
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - int
-  - wis
-  - con
+  - type: Reference
+    target:
+      - arcanaProficiency
+      - historyProficiency
+      - calligraphersTools
+      - magicInitiateWizard
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - int
+      - wis
+      - con

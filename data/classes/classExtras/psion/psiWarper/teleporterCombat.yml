@@ -1,0 +1,5 @@
+id: teleporterCombat
+type: Extra
+target: mistyStep
+name: Teleporter Combat
+description: You can cast one of your Psion cantrips with a casting time of an Action as part of this Bonus Action.

@@ -1,31 +1,21 @@
 id: spirits
 name: College of Spirits
-description: 'Commune with past spirits, channeling their stories and wisdom to perform wondrous magic.'
+description: Commune with past spirits, channeling their stories and wisdom to perform wondrous magic.
 type: Folder
 tags:
   - bardSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Spirits"
-
-  # Level 3: Channeler
   - type: Reference
     target: guidance
     condition: $(meta.level >= 3)
     overwrite:
       range: 60 feet
-
-  # Level 3: Spirits from Beyond
   - id: spiritsFromBeyond
     type: Extra
     target: bardicInspiration
     condition: $(meta.level >= 3)
-    name: "Spirits from Beyond"
-    description: "You call forth the powers of a random spirit. To determine the spirit you channel, roll the Bardic Inspiration die and refer to the Spirits from Beyond table. The spirit remains channeled until you unleash it or until you finish a Short or Long Rest."
-
+    name: Spirits from Beyond
+    description: You call forth the powers of a random spirit. To determine the spirit you channel, roll the Bardic Inspiration die and refer to the Spirits from Beyond table. The spirit remains channeled until you unleash it or until you finish a Short or Long Rest.
   - id: spiritChanneling
     type: Activity
     duration: instantaneous
@@ -45,23 +35,19 @@ children:
       * **6. Wayfarer.** The target gains Temporary Hit Points equal to 1d$(attributes.bardicDie) + $(meta.level). While it has these, its Speed increases by 10 feet.
       $(meta.level >= 5 ? '* **7. Trickster.** The target makes a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failure, it takes Psychic damage equal to 2d$(attributes.bardicDie) and is Charmed until the start of your next turn. On a success, it takes half damage only.' : '')
       $(meta.level >= 5 ? '* **8. Shade.** The target has the Invisible condition until the end of its next turn or until it attacks, deals damage, or casts a spell. When the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take Necrotic damage equal to 2d$(attributes.bardicDie).' : '')
-
-  # Level 6: Empowered Channeling
   - id: powerFromBeyondDamage
     type: Extra
     target: damageSpell
     condition: $(meta.level >= 6)
-    name: "Power from Beyond"
-    description: "Once per turn, you gain a 1d6 bonus to the spell's damage roll."
-
+    name: Power from Beyond
+    description: Once per turn, you gain a 1d6 bonus to the spell's damage roll.
   - id: powerFromBeyondHealing
     type: Extra
     target: healingSpell
     condition: $(meta.level >= 6)
-    name: "Power from Beyond"
-    description: "Once per turn, you gain a 1d6 bonus to the spell's healing roll."
-
-  # Level 6: Spiritual Manifestation
+    name: Power from Beyond
+    description: Once per turn, you gain a 1d6 bonus to the spell's healing roll.
   - type: Reference
-    target: [spiritGuardians]
+    target:
+      - spiritGuardians
     condition: $(meta.level >= 6)

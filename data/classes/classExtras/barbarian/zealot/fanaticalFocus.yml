@@ -1,0 +1,5 @@
+id: fanaticalFocus
+type: Extra
+name: Fanatical Focus
+target: rage
+description: Once per active Rage, if you fail a saving throw, you can reroll it with a $(formatBonus(attributes.rageDamage)) bonus. You must use the new roll.

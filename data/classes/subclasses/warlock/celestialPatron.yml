@@ -1,30 +1,34 @@
 id: celestialPatron
 name: Celestial Patron
-description: 'Draw power from the Upper Planes, forging a pact with heavenly entities to wield light and healing.'
+description: Draw power from the Upper Planes, forging a pact with heavenly entities to wield light and healing.
 tags:
   - warlockSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Celestial"
-  # Level 3: Celestial Spells
   - type: Reference
-    target: [aid, cureWounds, guidingBolt, lesserRestoration, light, sacredFlame]
+    target:
+      - aid
+      - cureWounds
+      - guidingBolt
+      - lesserRestoration
+      - light
+      - sacredFlame
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [daylight, revivify]
+    target:
+      - daylight
+      - revivify
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [guardianOfFaith, wallOfFire]
+    target:
+      - guardianOfFaith
+      - wallOfFire
     condition: $(meta.level >= 7)
   - type: Reference
-    target: [greaterRestoration, summonCelestial]
+    target:
+      - greaterRestoration
+      - summonCelestial
     condition: $(meta.level >= 9)
-
-  # Level 3: Healing Light
   - id: healingLight
     type: Activity
     duration: instantaneous
@@ -33,15 +37,13 @@ children:
     range: 60 feet
     resource: healingLight
     condition: $(meta.level >= 3)
-    description: "Heal yourself or a creature you can see. The target regains 1d6 Hit Points per charge expeded, up to a maximum of $(Math.min(1, stats.cha.mod))d6 Hit Points."
+    description: Heal yourself or a creature you can see. The target regains 1d6 Hit Points per charge expeded, up to a maximum of $(Math.min(1, stats.cha.mod))d6 Hit Points.
   - id: healingLight
     type: Resource
     name: Healing Light
     quantity: $(1 + meta.level)
     condition: $(meta.level >= 3)
     sr: 0
-
-  # Level 6: Radiant Soul
   - id: radiantSoulRes
     type: Reference
     target: radiantResistance
@@ -50,29 +52,29 @@ children:
     type: Effect
     target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d12"]
     operation: replace
-    value: "d12$(formatBonus(stats.cha.mod))"
+    value: d12$(formatBonus(stats.cha.mod))
     condition: $(meta.level >= 6)
   - id: radiantSoulD10
     type: Effect
     target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d10"]
     operation: replace
-    value: "d10$(formatBonus(stats.cha.mod))"
+    value: d10$(formatBonus(stats.cha.mod))
     condition: $(meta.level >= 6)
   - id: radiantSoulD8
     type: Effect
     target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d8"]
     operation: replace
-    value: "d8$(formatBonus(stats.cha.mod))"
+    value: d8$(formatBonus(stats.cha.mod))
     condition: $(meta.level >= 6)
   - id: radiantSoulD6
     type: Effect
     target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d6"]
     operation: replace
-    value: "d6$(formatBonus(stats.cha.mod))"
+    value: d6$(formatBonus(stats.cha.mod))
     condition: $(meta.level >= 6)
   - id: radiantSoulD4
     type: Effect
     target: activities[tags=damageSpell AND (tags=radiantDamage OR tags=fireDamage)].description["d4"]
     operation: replace
-    value: "d4$(formatBonus(stats.cha.mod))"
+    value: d4$(formatBonus(stats.cha.mod))
     condition: $(meta.level >= 6)

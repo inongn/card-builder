@@ -1,45 +1,41 @@
 id: psiWarper
 name: Psi Warper
-description: 'Tune psionic powers to manipulate space between objects, teleporting across battlefields and warping space.'
+description: Tune psionic powers to manipulate space between objects, teleporting across battlefields and warping space.
 type: Folder
 tags:
   - psionSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Psi Warper"
-
-  # Level 3: Psi Warper Spells
   - type: Reference
-    target: [expeditiousRetreat, featherFall, mistyStep, shatter]
+    target:
+      - expeditiousRetreat
+      - featherFall
+      - mistyStep
+      - shatter
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [blink, haste]
+    target:
+      - blink
+      - haste
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [banishment, dimensionDoor]
+    target:
+      - banishment
+      - dimensionDoor
     condition: $(meta.level >= 7)
-
   - id: teleportationMistyStep
     type: Effect
     target: activities[id=mistyStep].resource
     operation: set
     value: psionicEnergyDice
-  # Level 3: Warp Propel
   - id: warpPropel
     type: Extra
     target: telekineticPropel
     condition: $(meta.level >= 3)
     name: Warp Propel
-    description: "When a target fails its saving throw, instead of pushing it, you can teleport the target to an unoccupied horizontal space you can see within 30 feet of you."
-
-
-  # Level 6: Teleporter Combat
+    description: When a target fails its saving throw, instead of pushing it, you can teleport the target to an unoccupied horizontal space you can see within 30 feet of you.
   - id: teleporterCombat
     type: Extra
     target: mistyStep
     condition: $(meta.level >= 6)
     name: Teleporter Combat
-    description: "You can cast one of your Psion cantrips with a casting time of an Action as part of this Bonus Action."
+    description: You can cast one of your Psion cantrips with a casting time of an Action as part of this Bonus Action.

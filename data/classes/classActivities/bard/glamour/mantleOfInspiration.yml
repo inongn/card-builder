@@ -1,0 +1,8 @@
+id: mantleOfInspiration
+type: Activity
+duration: instantaneous
+range: self
+name: Mantle of Inspiration
+time: bonus action
+resource: bardicInspiration
+description: You provide $(2 * attributes.bardicDie) Temporary Hit Points to up to $(Math.max(1, stats.cha.mod)) creatures within 60 feet. Each can use its Reaction to move up to its Speed without provoking Opportunity Attacks.

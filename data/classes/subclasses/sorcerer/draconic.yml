@@ -1,16 +1,10 @@
 id: draconic
 name: Draconic Sorcery
-description: 'Wield innate magic granted by dragons, channeling their ancient power into devastating spells.'
+description: Wield innate magic granted by dragons, channeling their ancient power into devastating spells.
 type: Folder
 tags:
   - sorcererSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Draconic"
-  # Level 3: Draconic Resilience
   - id: draconicResilienceHP
     type: Effect
     target: attributes.hp
@@ -23,22 +17,28 @@ children:
     operation: set
     value: $(10 + stats.dex.mod + stats.cha.mod)
     condition: $(meta.level >= 3)
-
-  # Level 3: Draconic Spells
   - type: Reference
-    target: [alterSelf, chromaticOrb, command, dragonsBreath]
+    target:
+      - alterSelf
+      - chromaticOrb
+      - command
+      - dragonsBreath
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [fear, fly]
+    target:
+      - fear
+      - fly
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [arcaneEye, charmMonster]
+    target:
+      - arcaneEye
+      - charmMonster
     condition: $(meta.level >= 7)
   - type: Reference
-    target: [legendLore, summonDragon]
+    target:
+      - legendLore
+      - summonDragon
     condition: $(meta.level >= 9)
-
-  # Level 6: Elemental Affinity
   - id: elementalAffinity
     type: Slot
     name: Elemental Affinity

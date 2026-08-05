@@ -1,0 +1,7 @@
+id: spiritShield
+type: Activity
+name: Spirit Shield
+time: reaction
+range: 30 feet
+duration: Instantaneous
+description: While your Rage is active, when another creature you can see within range takes damage, you reduce that damage by $(attributes.rageDamage)d6.

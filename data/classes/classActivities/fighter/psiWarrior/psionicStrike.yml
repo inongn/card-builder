@@ -1,0 +1,8 @@
+id: psionicStrike
+type: Activity
+time: free action
+range: 30 feet
+duration: Instantaneous
+name: Psionic Strike
+resource: psionicEnergyDice
+description: When you hit a target with a weapon attack, you propel your weapon with psionic force. The target takes 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage.

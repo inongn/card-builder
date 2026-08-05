@@ -1,23 +1,18 @@
 id: minotaur
 name: Minotaur
 tags:
-- species
-description: 'Powerful horned humanoids with an uncanny sense of direction and relentless charge.'
+  - species
+description: Powerful horned humanoids with an uncanny sense of direction and relentless charge.
 type: Folder
 children:
-- id: species
-  type: Effect
-  target: meta.species
-  operation: set
-  value: Minotaur
-- id: labyrinthineRecall
-  type: Reference
-  target:
-  - survivalAdvantage
-  - charmedAdvantage
-  - frightenedAdvantage
-  - grappledAdvantage
-- type: Effect
-  target: attributes.movement.walk
-  operation: set
-  value: 35
+  - id: labyrinthineRecall
+    type: Reference
+    target:
+      - survivalAdvantage
+      - charmedAdvantage
+      - frightenedAdvantage
+      - grappledAdvantage
+  - type: Effect
+    target: attributes.movement.walk
+    operation: set
+    value: 35

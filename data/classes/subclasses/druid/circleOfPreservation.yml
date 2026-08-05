@@ -1,28 +1,27 @@
 id: circleOfPreservation
 name: Circle of Preservation
-description: 'Defend natural sanctuaries, revitalize damaged land, and protect allies from toxic or hostile elements.'
+description: Defend natural sanctuaries, revitalize damaged land, and protect allies from toxic or hostile elements.
 type: Folder
 tags:
   - druidSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Preservation"
-
-  # Level 3: Circle of Preservation Spells
   - type: Reference
-    target: [bless, lesserRestoration, protectionFromPoison, sanctuary]
+    target:
+      - bless
+      - lesserRestoration
+      - protectionFromPoison
+      - sanctuary
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [beaconOfHope, plantGrowth]
+    target:
+      - beaconOfHope
+      - plantGrowth
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [auraOfLife, deathWard]
+    target:
+      - auraOfLife
+      - deathWard
     condition: $(meta.level >= 7)
-
-  # Level 3: Preserved Land (with level 6 Improved Preservation integrated)
   - id: preservedLand
     type: Activity
     name: Preserved Land
@@ -33,22 +32,20 @@ children:
     condition: $(meta.level >= 3)
     description: |
       You fill a 15-foot Cube on the ground within range with revitalizing energy. It lasts for 1 minute, or until you are Incapacitated, die, or move more than 120 feet away.
-      
-      As a Bonus Action on subsequent turns, you can move the Cube up to 30 feet to another area within range.
-      
-      Whenever a creature ends its turn in the Cube, you can grant it one of the following:
-      
-      **Bolster.** The creature gains 1d4 + $(meta.level) Temporary Hit Points.
-      
-      **Purify.** You end the Frightened or Poisoned condition on the creature.
-      
-      $(meta.level >= 6 ? "**Fortify.** You and allies inside the Cube gain a +$(Math.max(1, stats.wis.mod)) bonus to Constitution saving throws." : "")
-      
-      $(meta.level >= 6 ? "**Reject.** When the Cube enters an enemy's space or an enemy enter or ends its turn in the Cube, they make a DC $(attributes.spellcasting.save) Wisdom save, taking 2d10 Radiant damage and having their Speed halved on a failure, or taking half damage on a success." : "")
 
-  # Level 3: Student of Preservation
+      As a Bonus Action on subsequent turns, you can move the Cube up to 30 feet to another area within range.
+
+      Whenever a creature ends its turn in the Cube, you can grant it one of the following:
+
+      **Bolster.** The creature gains 1d4 + $(meta.level) Temporary Hit Points.
+
+      **Purify.** You end the Frightened or Poisoned condition on the creature.
+
+      $(meta.level >= 6 ? "**Fortify.** You and allies inside the Cube gain a +$(Math.max(1, stats.wis.mod)) bonus to Constitution saving throws." : "")
+
+      $(meta.level >= 6 ? "**Reject.** When the Cube enters an enemy's space or an enemy enter or ends its turn in the Cube, they make a DC $(attributes.spellcasting.save) Wisdom save, taking 2d10 Radiant damage and having their Speed halved on a failure, or taking half damage on a success." : "")
   - id: studentOfPreservationTool
-    name: "Student of Preservation Tool Proficiency"
+    name: Student of Preservation Tool Proficiency
     type: Slot
     target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
     condition: $(meta.level >= 3)

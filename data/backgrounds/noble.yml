@@ -1,24 +1,20 @@
 id: noble
 name: Noble
-description: 'Raised among wealth and courtly politics, you learned leadership, etiquette, and privilege.'
+description: Raised among wealth and courtly politics, you learned leadership, etiquette, and privilege.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Noble"
-- type: Reference
-  target:
-  - historyProficiency
-  - persuasionProficiency
-  - gamingSet
-  - skilled
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - str
-  - int
-  - cha
+  - type: Reference
+    target:
+      - historyProficiency
+      - persuasionProficiency
+      - gamingSet
+      - skilled
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - str
+      - int
+      - cha

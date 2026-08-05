@@ -1,0 +1,5 @@
+id: foresightPropel
+type: Extra
+target: telekineticPropel
+name: Foresight Propel
+description: A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.

@@ -1,32 +1,32 @@
 id: barbarian
 name: Barbarian
-description: 'Fierce warriors fueled by primal rage, embodying the raw ferocity and stamina of nature.'
+description: Fierce warriors fueled by primal rage, embodying the raw ferocity and stamina of nature.
 tags:
   - class
 type: Folder
 children:
-  # Core Barbarian Traits
   - id: hitDie
     type: Attribute
     value: 12
-  - id: className
-    type: Effect
-    target: meta.class
-    operation: set
-    value: Barbarian
   - id: weaponMastery
     type: Attribute
     value: true
   - type: Reference
-    value: [strSave, conSave]
+    value:
+      - strSave
+      - conSave
   - type: Reference
-    value: [simpleWeaponProficiency, martialWeaponProficiency, lightArmorTraining, mediumArmorTraining, shieldTraining]
+    value:
+      - simpleWeaponProficiency
+      - martialWeaponProficiency
+      - lightArmorTraining
+      - mediumArmorTraining
+      - shieldTraining
   - id: barbarianSkillProficiencies
     type: Slot
     name: Barbarian Skill Proficiencies
     quantity: 2
     target: animalHandlingProficiency OR athleticsProficiency OR intimidationProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
-  # Level 1: Rage
   - id: rageDamage
     type: Attribute
     value: $(progression(2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,4,4,4,4,4))
@@ -39,21 +39,26 @@ children:
     resource: rage
     description: |
       You imbue yourself with primal power. While active, you gain the following benefits:
-      
+
       **Damage Resistance.** You have resistance to Bludgeoning, Piercing, and Slashing damage. 
-      
+
       **Rage Damage.** When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage. 
-      
+
       **Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.
   - id: rage
     type: Form
     name: Rage
     abbreviation: R
   - type: Reference
-    target: [bludgeoningResistance, piercingResistance, slashingResistance]
+    target:
+      - bludgeoningResistance
+      - piercingResistance
+      - slashingResistance
     form: rage
   - type: Reference
-    target: [strAdvantage, athleticsAdvantage]
+    target:
+      - strAdvantage
+      - athleticsAdvantage
     form: rage
   - id: rageDamageBonus
     type: Effect
@@ -66,26 +71,18 @@ children:
     name: Rage
     quantity: $(progression(2,2,3,3,3,4,4,4,4,4,4,5,5,5,5,5,6,6,6,6))
     sr: 1
-
-  # Level 1: Unarmored Defense
   - id: unarmoredDefense
     type: Effect
     target: attributes.ac
     operation: set
     value: $(10 + stats.dex.mod + stats.con.mod)
-
-  # Level 1: Weapon Mastery
   - id: masteryProperties
     type: Reference
     target: masteryProperties
-
-  # Level 2: Danger Sense
   - id: dangerSense
     type: Reference
     target: dexAdvantage
     condition: $(meta.level >= 2)
-
-  # Level 2: Reckless Attack
   - id: recklessAttack
     type: Activity
     time: free action
@@ -94,12 +91,10 @@ children:
     name: Reckless Attack
     condition: $(meta.level >= 2)
     description: |
-    
+
       When you make your first attack roll on your turn, you attack recklessly. You gain Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time.
 
       $(meta.level >= 9 ? "You can forgo Advantage on one Strength-based attack roll on your turn. If the chosen attack hits, the target takes an extra $(meta.level >= 17 ? '2d10' : '1d10') damage and you can cause $(meta.level > 17 ? 'two effects of your choice:' : 'one effect of your choice:')" : "")
-
-  # Level 3: Primal Knowledge
   - id: primalKnowledgeSkill
     type: Slot
     name: Primal Knowledge Skill Proficiency
@@ -111,60 +106,45 @@ children:
     name: Primal Knowledge
     target: rage
     condition: $(meta.level >= 3)
-    description: "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability."
+    description: You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability.
   - id: primalKnowledgeAcr
     type: Effect
     form: rage
     target: skills.acrobatics.bonus
     operation: set
     value: $(Math.floor(stats.str.mod + attributes.prof * skills.acrobatics.proficiency))
-
-
-  # Level 3: Barbarian Subclass
   - id: barbarianSubclass
     name: Barbarian Subclass
     condition: $(meta.level >= 3)
     type: Slot
     target: barbarianSubclass
-
-  # Level 4: Ability Score Improvement
   - id: level4feat
     name: Level 4 Feat
     type: Slot
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-
-  # Level 5: Extra Attack
   - id: extraAttack
     type: Extra
     target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."
-
-  # Level 5: Fast Movement
+    description: You can attack twice, instead of once, whenever you take the Attack action on your turn.
   - id: fastMovement
     type: Effect
     target: attributes.movement.walk
     operation: add
     condition: $(meta.level >= 5)
     value: 10
-
-  # Level 7: Feral Instinct
   - type: Reference
     target: initiativeAdvantage
     condition: $(meta.level >= 7)
-
-  # Level 7: Instinctive Pounce
   - id: instinctivePounce
     type: Extra
     name: Instinctive Pounce
     target: rage
     condition: $(meta.level >= 7)
-    description: "As part of the Bonus Action you take to enter your Rage, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet."
-
-  # Level 8: Ability Score Improvement
+    description: As part of the Bonus Action you take to enter your Rage, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet.
   - id: level8feat
     name: Level 8 Feat
     type: Slot

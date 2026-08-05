@@ -1,0 +1,8 @@
+id: inspiringMovement
+type: Activity
+name: Inspiring Movement
+time: reaction
+range: self
+duration: instantaneous
+resource: bardicInspiration
+description: When an enemy ends its turn within 5 feet of you, you move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks. Then one ally within 30 feet can also move up to half their Speed using their Reaction.

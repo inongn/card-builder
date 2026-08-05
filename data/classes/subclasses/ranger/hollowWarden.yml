@@ -1,33 +1,29 @@
 id: hollowWarden
 name: Hollow Warden
-description: 'Draw power from ancient horrors to grow bark armor and unleash nature''s primal, terrifying vengeance.'
+description: Draw power from ancient horrors to grow bark armor and unleash nature's primal, terrifying vengeance.
 tags:
   - rangerSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Hollow Warden"
-
-  # Level 3: Hollow Warden Spells
   - type: Reference
-    target: [wrathfulSmite]
+    target:
+      - wrathfulSmite
   - type: Reference
-    condition: $(meta.level >= 5)    
-    target: [alterSelf]
+    condition: $(meta.level >= 5)
+    target:
+      - alterSelf
   - type: Reference
     condition: $(meta.level >= 9)
-    target: [phantomSteed]
+    target:
+      - phantomSteed
   - type: Reference
     condition: $(meta.level >= 13)
-    target: [dominateBeast]
+    target:
+      - dominateBeast
   - type: Reference
     condition: $(meta.level >= 17)
-    target: [steelWindStrike]
-
-  # Level 3: Wrath of the Wild
+    target:
+      - steelWindStrike
   - id: wrathOfTheWild
     type: Activity
     range: self
@@ -40,18 +36,15 @@ children:
       * **Ancient Armor:** Gain a +$(meta.level >= 11 ? 2 : 1) bonus to AC.
       * **Prowling Retribution:** Immediately after a creature within 5 feet deals damage to you or an ally, you can make an Opportunity Attack against it.
       * **Unnerving Aura:** At transformation and at the start of your subsequent turns, each chosen creature in a 10-foot Emanation makes a DC $(attributes.spellcasting.save) Wisdom save or has the Frightened condition until the start of your next turn.
-
-  # Level 7: Hungering Might
   - id: hungeringMightConSaves
     type: Effect
     target: saves.constitution.bonus
     operation: add
     condition: $(meta.level >= 7)
     value: $(Math.max(1, stats.wis.mod))
-
   - id: hungeringMightHeal
     type: Extra
     target: wrathOfTheWild
     condition: $(meta.level >= 7)
     name: Hungering Might
-    description: "Once per turn when you hit a creature with an attack roll while transformed and Bloodied, you regain 1d10+$(Math.max(1, stats.wis.mod)) Hit Points."
+    description: Once per turn when you hit a creature with an attack roll while transformed and Bloodied, you regain 1d10+$(Math.max(1, stats.wis.mod)) Hit Points.

@@ -1,30 +1,31 @@
 id: demonic
 name: Demonic Sorcery
-description: 'Draw magic from a rift to the Abyss, tearing open ruptures to channel chaotic demonic power.'
+description: Draw magic from a rift to the Abyss, tearing open ruptures to channel chaotic demonic power.
 tags:
   - sorcererSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Demonic"
-
-  # Level 3: Demonic Spells
   - type: Reference
-    target: [bane, dissonantWhispers, spikeGrowth, web]
+    target:
+      - bane
+      - dissonantWhispers
+      - spikeGrowth
+      - web
   - type: Reference
     condition: $(meta.level >= 5)
-    target: [bestowCurse, dispelMagic]
+    target:
+      - bestowCurse
+      - dispelMagic
   - type: Reference
     condition: $(meta.level >= 7)
-    target: [giantInsect, hallucinatoryTerrain]
+    target:
+      - giantInsect
+      - hallucinatoryTerrain
   - type: Reference
     condition: $(meta.level >= 9)
-    target: [contactOtherPlane, modifyMemory]
-
-  # Level 3: Abyssal Rupture
+    target:
+      - contactOtherPlane
+      - modifyMemory
   - id: abyssalRupture
     type: Activity
     duration: instantaneous
@@ -35,8 +36,6 @@ children:
       When you use Innate Sorcery, a 10-foot-radius Abyssal sphere ruptures within 30 feet. At activation and as a Bonus Action on subsequent turns, choose:
       * **Demonic Lash:** Melee spell attack (+$(attributes.spellcasting.attack)) against a target within 5 ft of the rupture for 1d8 Slashing damage and pull up to 10 ft toward center.
       * **Terrifying Screams:** Each creature in the rupture makes a DC $(attributes.spellcasting.save) Wisdom save or takes 1d4 Psychic damage.
-
-  # Level 6: Abyssal Realm
   - id: abyssalRealm
     type: Activity
     time: free action

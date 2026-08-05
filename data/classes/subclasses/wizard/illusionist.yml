@@ -1,16 +1,10 @@
 id: illusionist
 name: Illusionist
-description: 'Specialize in magic that dazzles senses and tricks the mind, crafting illusions that seem utterly real.'
+description: Specialize in magic that dazzles senses and tricks the mind, crafting illusions that seem utterly real.
 type: Folder
 tags:
   - wizardSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Illusionist"
-  # Level 3: Improved Illusions
   - type: Reference
     target: minorIllusion
     condition: $(meta.level >= 3)
@@ -24,16 +18,16 @@ children:
     type: Effect
     target: activities[id=minorIllusion].time
     operation: set
-    value: "bonus action"
+    value: bonus action
     condition: $(meta.level >= 3)
   - id: improvedIllusionsExtra
     type: Extra
     name: Improved Illusions
     target: illusion
     condition: $(meta.level >= 3)
-    description: "You can cast this spell without Verbal components."
-
-  # Level 6: Phantasmal Creatures
+    description: You can cast this spell without Verbal components.
   - type: Reference
-    target: [summonBeast, summonFey]
+    target:
+      - summonBeast
+      - summonFey
     condition: $(meta.level >= 6)

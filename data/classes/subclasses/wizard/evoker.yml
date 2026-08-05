@@ -1,28 +1,19 @@
 id: evoker
 name: Evoker
-description: 'Create powerful elemental effects like searing flame and crackling lightning, blasting armies afar.'
+description: Create powerful elemental effects like searing flame and crackling lightning, blasting armies afar.
 type: Folder
 tags:
   - wizardSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Evoker"
-
-  # Level 3: Potent Cantrip
   - id: potentCantrip
     type: Extra
     name: Potent Cantrip
     target: cantrip AND damageSpell
     condition: $(meta.level >= 3)
-    description: "If the target succeeds on a saving throw against this cantrip, it takes half damage but suffers no additional effect."
-
-  # Level 6: Sculpt Spells
+    description: If the target succeeds on a saving throw against this cantrip, it takes half damage but suffers no additional effect.
   - id: sculptSpells
     type: Extra
     target: evocation AND saveSpell
     name: Sculpt Spells
     condition: $(meta.level >= 6)
-    description: "When you cast this spell, your allies automatically succeed on their saving throw and take no damage if they would normally take half."
+    description: When you cast this spell, your allies automatically succeed on their saving throw and take no damage if they would normally take half.

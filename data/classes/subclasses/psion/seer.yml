@@ -1,41 +1,37 @@
 id: seer
 name: Seer
-description: 'Master the stream of time and foresight, slipping through attacks, guiding allies, and altering outcomes.'
+description: Master the stream of time and foresight, slipping through attacks, guiding allies, and altering outcomes.
 type: Folder
 tags:
   - psionSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Seer"
-
-  # Level 3: Seer Spells
   - type: Reference
-    target: [detectEvilAndGood, findTraps, guidingBolt, huntersMark]
+    target:
+      - detectEvilAndGood
+      - findTraps
+      - guidingBolt
+      - huntersMark
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [augury, seeInvisibility]
+    target:
+      - augury
+      - seeInvisibility
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [arcaneEye, locateCreature]
+    target:
+      - arcaneEye
+      - locateCreature
     condition: $(meta.level >= 7)
-
-  # Level 3: Combat Precognition
   - id: precognitiveDefense
     type: Effect
     target: attributes.ac
     operation: set
     value: $(10 + stats.dex.mod + stats.int.mod)
     condition: $(meta.level >= 3)
-
   - id: splitSecondWarning
     type: Reference
     target: dexAdvantage
     condition: $(meta.level >= 3)
-
-  # Level 3: Instant Slip
   - id: instantSlip
     type: Activity
     name: Instant Slip
@@ -44,17 +40,13 @@ children:
     duration: Instantaneous
     resource: psionicEnergyDice
     condition: $(meta.level >= 3)
-    description: "When another creature damages you with an attack roll, reduce the damage by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))."
-
-  # Level 6: Foresight Propel
+    description: When another creature damages you with an attack roll, reduce the damage by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)).
   - id: foresightPropel
     type: Extra
     target: telekineticPropel
     condition: $(meta.level >= 6)
     name: Foresight Propel
-    description: "A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn."
-
-  # Level 6: Temporal Glitch
+    description: A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.
   - id: temporalGlitch
     type: Activity
     name: Temporal Glitch
@@ -63,4 +55,4 @@ children:
     duration: Instantaneous
     resource: psionicEnergyDice
     condition: $(meta.level >= 6)
-    description: "When you fail a Constitution saving throw to maintain Concentration, add 1d$(attributes.psiDice) to the roll, potentially turning a fail into a success. The Psionic Energy is expended only if the check succeeds."
+    description: When you fail a Constitution saving throw to maintain Concentration, add 1d$(attributes.psiDice) to the roll, potentially turning a fail into a success. The Psionic Energy is expended only if the check succeeds.

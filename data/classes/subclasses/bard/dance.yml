@@ -1,49 +1,34 @@
 id: dance
 name: College of Dance
-description: 'Harmonize with the whirling cosmos through agile, speedy, and graceful dances that weave magic.'
+description: Harmonize with the whirling cosmos through agile, speedy, and graceful dances that weave magic.
 type: Folder
 tags:
   - bardSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Dance"
-  # Level 3: Dazzling Footwork
-
   - id: dazzlingFootworkDance
     type: Reference
     target: performanceAdvantage
-
   - id: dazzlingFootworkAgileStrike
     type: Extra
     target: bardicInspiration or inspiringMovement
     name: Agile Strikes
     description: You can make one Unarmed Strike as part of this action.
-
-
   - id: martialArtsReplacementUnarmed
     type: Effect
     target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
     operation: replace
     value: 1d$(attributes.bardicDie)$(formatBonus(attributes.finesse.bonus))
     condition: $(meta.level >= 1)
-
   - id: unarmoredDefenseDance
     type: Effect
     target: attributes.ac
     operation: set
     value: $(10 + stats.dex.mod + stats.cha.mod)
-
   - id: martialArtsReplacementd4
     type: Effect
     target: activities[tags=unarmed and tags=weaponAttack].description["1d4"]
     operation: replace
     value: 1d$(attributes.bardicDie)
-
-
-  # Level 6: Inspiring Movement
   - id: inspiringMovement
     type: Activity
     name: Inspiring Movement
@@ -52,9 +37,7 @@ children:
     duration: instantaneous
     resource: bardicInspiration
     condition: $(meta.level >= 6)
-    description: "When an enemy ends its turn within 5 feet of you, you move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks. Then one ally within 30 feet can also move up to half their Speed using their Reaction."
-
-  # Level 6: Tandem Footwork
+    description: When an enemy ends its turn within 5 feet of you, you move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks. Then one ally within 30 feet can also move up to half their Speed using their Reaction.
   - id: tandemFootwork
     type: Activity
     time: free action
@@ -63,4 +46,4 @@ children:
     name: Tandem Footwork
     condition: $(meta.level >= 6)
     resource: bardicInspiration
-    description: "When you roll Initiative, you and each ally within 30 feet gain a 1d$(attributes.bardicDie) bonus to Initiative."
+    description: When you roll Initiative, you and each ally within 30 feet gain a 1d$(attributes.bardicDie) bonus to Initiative.

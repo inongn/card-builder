@@ -1,0 +1,8 @@
+id: warriorOfTheGods
+type: Activity
+name: Warrior of the Gods
+time: bonus action
+range: self
+duration: Instantaneous
+resource: warriorOfTheGods
+description: A divine entity helps ensure you can continue the fight. You regain 1d12 Hit Points per charge expended.

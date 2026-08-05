@@ -1,17 +1,10 @@
 id: ancestralGuardian
 name: Path of the Ancestral Guardian
-description: 'Commune with the spirits of your ancestors, calling them forth to shield allies and harass enemies.'
+description: Commune with the spirits of your ancestors, calling them forth to shield allies and harass enemies.
 type: Folder
 tags:
   - barbarianSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Ancestral Guardian"
-
-  # Level 3: Spiritual Protectors
   - id: spiritualProtectors
     type: Activity
     duration: instantaneous
@@ -21,14 +14,12 @@ children:
     condition: $(meta.level >= 3)
     description: |
       While your Rage is active, when you hit a creature with a weapon or an Unarmed Strike, you choose one of these effects:
-      
-      **Distract.** Until the start of your next turn, the target has Disadvantage on attack rolls against targets other than you or another Barbarian with this feature.
-      
-      **Protect.** Until the end of the target's next turn, the next time it hits a creature other than you with an attack roll, that creature has Resistance to the damage dealt by that attack.
-      
-      **Strike.** The target takes an extra 1d6 Acid, Cold, Fire, Force, Lightning, or Thunder damage (your choice).
 
-  # Level 6: Spirit Shield
+      **Distract.** Until the start of your next turn, the target has Disadvantage on attack rolls against targets other than you or another Barbarian with this feature.
+
+      **Protect.** Until the end of the target's next turn, the next time it hits a creature other than you with an attack roll, that creature has Resistance to the damage dealt by that attack.
+
+      **Strike.** The target takes an extra 1d6 Acid, Cold, Fire, Force, Lightning, or Thunder damage (your choice).
   - id: spiritShield
     type: Activity
     name: Spirit Shield
@@ -36,4 +27,4 @@ children:
     range: 30 feet
     duration: Instantaneous
     condition: $(meta.level >= 6)
-    description: "While your Rage is active, when another creature you can see within range takes damage, you reduce that damage by $(attributes.rageDamage)d6."
+    description: While your Rage is active, when another creature you can see within range takes damage, you reduce that damage by $(attributes.rageDamage)d6.

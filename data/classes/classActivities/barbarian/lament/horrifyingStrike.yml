@@ -1,0 +1,7 @@
+id: horrifyingStrike
+type: Activity
+duration: instantaneous
+range: self
+name: Horrifying Strike
+time: free action
+description: Once per turn when you hit a creature with a Strength-based attack roll while your Rage is active, you can force the target to make a DC $(8 + stats.con.mod + attributes.prof) Wisdom saving throw. On a failed save, the creature has the Frightened condition until the start of your next turn.

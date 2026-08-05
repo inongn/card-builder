@@ -1,0 +1,5 @@
+id: tacticalShift
+type: Extra
+target: secondWind
+name: Tactical Shift
+description: You can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.

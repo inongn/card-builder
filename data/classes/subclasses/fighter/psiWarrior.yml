@@ -1,15 +1,10 @@
 id: psiWarrior
 name: Psi Warrior
-description: 'Awaken the power of your mind to augment physical might, infusing weapon strikes with psionic power.'
+description: Awaken the power of your mind to augment physical might, infusing weapon strikes with psionic power.
 tags:
   - fighterSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Psi Warrior"
   - id: psionicEnergyDice
     type: Resource
     name: Psionic Energy

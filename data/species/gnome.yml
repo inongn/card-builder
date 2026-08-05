@@ -1,27 +1,22 @@
 id: gnome
 name: Gnome
 tags:
-- species
-description: 'Petite, inventive folk imbued with wild wonder, keen intellect, and natural magic.'
+  - species
+description: Petite, inventive folk imbued with wild wonder, keen intellect, and natural magic.
 type: Folder
 children:
-- id: species
-  type: Effect
-  target: meta.species
-  operation: set
-  value: Gnome
-- id: gnomeDarkvision
-  type: Effect
-  target: attributes.senses.darkvision
-  operation: set
-  value: 60
-- type: Reference
-  target:
-  - intAdvantage
-  - wisAdvantage
-  - chaAdvantage
-- id: gnomishLineage
-  name: Gnomish Lineage
-  type: Slot
-  target: gnomishLineage
-  quantity: 1
+  - id: gnomeDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 60
+  - type: Reference
+    target:
+      - intAdvantage
+      - wisAdvantage
+      - chaAdvantage
+  - id: gnomishLineage
+    name: Gnomish Lineage
+    type: Slot
+    target: gnomishLineage
+    quantity: 1

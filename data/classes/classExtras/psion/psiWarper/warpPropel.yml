@@ -1,0 +1,5 @@
+id: warpPropel
+type: Extra
+target: telekineticPropel
+name: Warp Propel
+description: When a target fails its saving throw, instead of pushing it, you can teleport the target to an unoccupied horizontal space you can see within 30 feet of you.

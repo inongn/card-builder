@@ -1,30 +1,32 @@
 id: clockwork
 name: Clockwork Sorcery
-description: 'Channel the cosmic force of order, utilizing clockwork magic from Mechanus to manipulate reality.'
+description: Channel the cosmic force of order, utilizing clockwork magic from Mechanus to manipulate reality.
 type: Folder
 tags:
   - sorcererSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Clockwork"
-  # Level 3: Clockwork Spells
   - type: Reference
-    target: [aid, alarm, lesserRestoration, protectionFromEvilAndGood]
+    target:
+      - aid
+      - alarm
+      - lesserRestoration
+      - protectionFromEvilAndGood
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [dispelMagic, protectionFromEnergy]
+    target:
+      - dispelMagic
+      - protectionFromEnergy
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [freedomOfMovement, summonConstruct]
+    target:
+      - freedomOfMovement
+      - summonConstruct
     condition: $(meta.level >= 7)
   - type: Reference
-    target: [greaterRestoration, wallOfForce]
+    target:
+      - greaterRestoration
+      - wallOfForce
     condition: $(meta.level >= 9)
-
-  # Level 3: Restore Balance
   - id: restoreBalance
     type: Activity
     duration: instantaneous
@@ -33,15 +35,13 @@ children:
     range: 60 feet
     condition: $(meta.level >= 3)
     resource: restoreBalance
-    description: "When a creature you can see rolls with Advantage or Disadvantage, you prevent the roll from being affected by it."
+    description: When a creature you can see rolls with Advantage or Disadvantage, you prevent the roll from being affected by it.
   - id: restoreBalance
     type: Resource
     name: Restore Balance
     quantity: $(Math.max(1, stats.cha.mod))
     condition: $(meta.level >= 3)
-    sr: 0 # Long Rest
-
-  # Level 6: Bastion of Law
+    sr: 0
   - id: bastionOfLaw
     type: Activity
     duration: instantaneous

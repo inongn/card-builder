@@ -1,0 +1,10 @@
+id: shadowShot
+summary: "Imbue an arrow with illusion to blind the target's vision."
+name: Shadow Shot
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+tags: [arcaneShotOption]
+resource: arcaneShot
+description: "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 1d6 Psychic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Wisdom saving throw or have the Blinded condition until the end of its next turn."

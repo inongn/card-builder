@@ -1,26 +1,21 @@
 id: battleMaster
 name: Battle Master
-description: 'Combine honed combat skills with academic study to master martial techniques passed down generations.'
+description: Combine honed combat skills with academic study to master martial techniques passed down generations.
 tags:
   - fighterSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Battle Master"
   - id: superiorityDie
     type: Attribute
-    value: "$(meta.level >= 18 ? 12 : meta.level >= 10 ? 10 : 8)"
+    value: '$(meta.level >= 18 ? 12 : meta.level >= 10 ? 10 : 8)'
   - id: superioritySave
     type: Attribute
-    value: "$(8 + attributes.prof + Math.max(stats.str.mod, stats.dex.mod))"
+    value: $(8 + attributes.prof + Math.max(stats.str.mod, stats.dex.mod))
   - id: maneuvers
     type: Slot
     name: Maneuvers
     target: classOption OR maneuver
-    quantity: "$(progression(0,0,3,3,3,3,5,5,5,7,7,7,7,7,9))"
+    quantity: $(progression(0,0,3,3,3,3,5,5,5,7,7,7,7,7,9))
   - id: studentOfWarSkill
     name: Student of War Skill Proficiency
     type: Slot
@@ -34,7 +29,7 @@ children:
   - id: superiorityDice
     name: Combat Superiority
     type: Resource
-    quantity: "$(meta.level >= 15 ? 6 : meta.level >= 7 ? 5 : 4)"
+    quantity: '$(meta.level >= 15 ? 6 : meta.level >= 7 ? 5 : 4)'
     sr: all
   - id: knowYourEnemy
     name: Know Your Enemy
@@ -44,4 +39,4 @@ children:
     range: 30 feet
     resource: superiorityDice
     condition: $(meta.level >= 7)
-    description: "You discern certain strengths and weaknesses of a creature you can see within range. You know whether that creature has any Immunities, Resistances, or Vulnerabilities, and if the creature has any, you know what they are."
+    description: You discern certain strengths and weaknesses of a creature you can see within range. You know whether that creature has any Immunities, Resistances, or Vulnerabilities, and if the creature has any, you know what they are.

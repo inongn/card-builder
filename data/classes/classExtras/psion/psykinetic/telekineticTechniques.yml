@@ -1,0 +1,11 @@
+id: telekineticTechniques
+type: Extra
+target: telekineticPropel
+name: Telekinetic Techniques
+description: |
+  You can roll 5d4 instead of expending a Psionic Energy Die.
+
+  When a target fails its saving throw, you can impose one of the following effects:
+  * **Boost.** The target's Speed increases by 10 feet until the start of your next turn.
+  * **Disorient.** The target cannot make Opportunity Attacks until the start of its next turn.
+  * **Telekinetic Bolt.** The target takes Force damage equal to the number rolled on the die.

@@ -1,23 +1,15 @@
 id: feyWanderer
 name: Fey Wanderer
-description: 'Embody a fey mystique to brighten hearts with joyful laughter and strike terror with martial prowess.'
+description: Embody a fey mystique to brighten hearts with joyful laughter and strike terror with martial prowess.
 tags:
   - rangerSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Fey Wanderer"
-  # Level 3: Dreadful Strikes
   - id: dreadfulStrikes
     type: Extra
     name: Dreadful Strikes
     target: weaponAttack
-    description: "On a hit, once per turn, deal an extra $(meta.level >= 11 ? '1d6' : '1d4') Psychic damage to the target."
-
-  # Level 3: Fey Wanderer Spells
+    description: 'On a hit, once per turn, deal an extra $(meta.level >= 11 ? ''1d6'' : ''1d4'') Psychic damage to the target.'
   - type: Reference
     target: charmPerson
   - type: Reference
@@ -32,45 +24,39 @@ children:
   - type: Reference
     target: mislead
     condition: $(meta.level >= 17)
-
-  # Level 3: Otherworldly Glamour
   - id: otherworldlyGlamourPRF
     type: Effect
     target: skills.performance.bonus
     operation: add
     value: $(stats.wis.mod)
     condition: $(meta.level >= 3)
-
   - id: otherworldlyGlamourDEC
     type: Effect
     target: skills.deception.bonus
     operation: add
     value: $(stats.wis.mod)
     condition: $(meta.level >= 3)
-
   - id: otherworldlyGlamourPER
     type: Effect
     target: skills.persuasion.bonus
     operation: add
     value: $(stats.wis.mod)
     condition: $(meta.level >= 3)
-
   - id: otherworldlyGlamourITM
     type: Effect
     target: skills.intimidation.bonus
     operation: add
     value: $(stats.wis.mod)
     condition: $(meta.level >= 3)
-
   - id: otherworldlyGlamourSkill
     type: Slot
     name: Otherworldly Glamour Skill
     quantity: 1
     target: deceptionProficiency OR performanceProficiency OR persuasionProficiency
-
-  # Level 7: Beguiling Twist
   - type: Reference
-    target: [charmedAdvantage, frightenedAdvantage]
+    target:
+      - charmedAdvantage
+      - frightenedAdvantage
     condition: $(meta.level >= 7)
   - id: beguilingTwist
     type: Activity
@@ -79,4 +65,4 @@ children:
     range: 120 feet
     duration: 1 minute
     condition: $(meta.level >= 7)
-    description: "When you or a creature you can see within 120 feet succeeds on a saving throw to avoid or end the Charmed or Frightened condition, you force a different creature you can see within 120 feet to make a DC $(attributes.spellcasting.save) Wisdom save. On a failure, the target is Charmed or Frightened (your choice) for 1 minute. The target repeats the save at the end of each of its turns, ending the effect on a success."
+    description: When you or a creature you can see within 120 feet succeeds on a saving throw to avoid or end the Charmed or Frightened condition, you force a different creature you can see within 120 feet to make a DC $(attributes.spellcasting.save) Wisdom save. On a failure, the target is Charmed or Frightened (your choice) for 1 minute. The target repeats the save at the end of each of its turns, ending the effect on a success.

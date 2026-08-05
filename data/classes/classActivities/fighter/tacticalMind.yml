@@ -1,0 +1,8 @@
+id: tacticalMind
+type: Activity
+range: self
+duration: Instantaneous
+resource: secondWind
+time: free action
+name: Tactical Mind
+description: When you fail an ability check, you push yourself toward success. Add 1d10 to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn't expended.

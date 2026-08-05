@@ -1,30 +1,32 @@
 id: lightDomain
 name: Light Domain
-description: 'Emphasize the divine power of blazing fire and revelation, burning away darkness and chasing away lies.'
+description: Emphasize the divine power of blazing fire and revelation, burning away darkness and chasing away lies.
 type: Folder
 tags:
   - clericSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Light"
-  # Level 3: Light Domain Spells
   - type: Reference
-    target: [burningHands, faerieFire, scorchingRay, seeInvisibility]
+    target:
+      - burningHands
+      - faerieFire
+      - scorchingRay
+      - seeInvisibility
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [daylight, fireball]
+    target:
+      - daylight
+      - fireball
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [arcaneEye, wallOfFire]
+    target:
+      - arcaneEye
+      - wallOfFire
     condition: $(meta.level >= 7)
   - type: Reference
-    target: [flameStrike, scrying]
+    target:
+      - flameStrike
+      - scrying
     condition: $(meta.level >= 9)
-
-  # Level 3: Radiance of the Dawn
   - id: radianceOfTheDawn
     type: Activity
     name: Radiance of the Dawn
@@ -33,9 +35,7 @@ children:
     duration: Instantaneous
     resource: channelDivinity
     condition: $(meta.level >= 3)
-    description: "You emit a flash of light in a 30-foot Emmanation originating from yourself. Any magical Darkness in the area is dispelled. Each creature of your choice in the area must make a DC $(attributes.spellcasting.save) Constitution saving throw, taking $(2)d10+$(meta.level) Radiant damage on a failed save, or half as much on a success."
-
-  # Level 3: Warding Flare
+    description: You emit a flash of light in a 30-foot Emmanation originating from yourself. Any magical Darkness in the area is dispelled. Each creature of your choice in the area must make a DC $(attributes.spellcasting.save) Constitution saving throw, taking $(2)d10+$(meta.level) Radiant damage on a failed save, or half as much on a success.
   - id: wardingFlare
     type: Activity
     name: Warding Flare
@@ -51,5 +51,5 @@ children:
     type: Resource
     name: Warding Flare
     quantity: $(Math.max(1, stats.wis.mod))
-    sr: "$(meta.level >= 6 ? 'all' : 0)"
+    sr: '$(meta.level >= 6 ? ''all'' : 0)'
     condition: $(meta.level >= 3)

@@ -1,0 +1,5 @@
+id: telekineticThrust
+type: Extra
+target: psionicStrike
+name: Telekinetic Thrust
+description: The target must succeed on a DC $(8+ attributes.prof + stats.int.mod) Strength saving throw. On a failed save, you can give the target the Prone condition or transport it up to 10 feet horizontally.

@@ -1,23 +1,17 @@
 id: gloomStalker
 name: Gloom Stalker
-description: 'Feel at home in the darkest places, wielding Shadowfell magic to combat enemies lurking in darkness.'
+description: Feel at home in the darkest places, wielding Shadowfell magic to combat enemies lurking in darkness.
 tags:
   - rangerSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Gloom Stalker"
-  # Level 3: Dread Ambusher
   - id: dreadAmbusherLeap
     type: Activity
     time: free action
     duration: instantaneous
     range: self
     name: Ambusher's Leap
-    description: "At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn."
+    description: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn.
   - id: dreadfulStrike
     type: Activity
     time: free action
@@ -25,7 +19,7 @@ children:
     range: self
     name: Dreadful Strike
     resource: dreadfulStrike
-    description: "Once per turn when you attack a creature and hit it with a weapon, you deal an extra $(meta.level >= 11 ? '2d8' : '2d6') Psychic damage. $(meta.level >= 11 ? 'Additionally, you can cause one of the following effects:' : '')"
+    description: 'Once per turn when you attack a creature and hit it with a weapon, you deal an extra $(meta.level >= 11 ? ''2d8'' : ''2d6'') Psychic damage. $(meta.level >= 11 ? ''Additionally, you can cause one of the following effects:'' : '''')'
   - id: dreadfulStrike
     type: Resource
     name: Dreadful Strike
@@ -35,8 +29,6 @@ children:
     target: attributes.initiative
     operation: add
     value: $(stats.wis.mod)
-
-  # Level 3: Gloom Stalker Spells
   - type: Reference
     target: disguiseSelf
   - type: Reference
@@ -51,8 +43,6 @@ children:
   - type: Reference
     target: seeming
     condition: $(meta.level >= 17)
-
-  # Level 3: Umbral Sight
   - id: umbralSightDarkvision
     type: Effect
     target: attributes.senses.darkvision
@@ -64,9 +54,7 @@ children:
     duration: instantaneous
     range: self
     name: Umbral Sight
-    description: "While entirely in Darkness, you have the Invisible condition to any creature that relies on Darkvision to see you in that Darkness."
-
-  # Level 7: Iron Mind
+    description: While entirely in Darkness, you have the Invisible condition to any creature that relies on Darkvision to see you in that Darkness.
   - id: ironMind
     type: Slot
     name: Iron Mind

@@ -1,0 +1,8 @@
+id: conjureUndead
+type: Activity
+duration: instantaneous
+range: self
+name: Conjure Undead
+time: bonus action
+resource: channelDivinity
+description: You summon $(Math.max(1, Math.ceil(stats.cha.mod / 2))) Undead (Skeleton or Zombie). They appear within 30 feet, share your Initiative count taking their turn immediately after yours, obey your verbal commands, and last for 1 minute or until dissolved.

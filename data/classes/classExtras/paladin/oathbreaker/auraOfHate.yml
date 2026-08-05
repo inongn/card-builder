@@ -1,0 +1,5 @@
+id: auraOfHate
+type: Extra
+target: auraOfProtection
+name: Aura of Hate
+description: When you, or any friendly Fiend or Undead in your Aura of Protection, hit with a melee attack, the attack deals an extra $(stats.cha.mod) Necrotic damage.

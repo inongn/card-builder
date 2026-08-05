@@ -1,47 +1,40 @@
 id: leonin
 name: Leonin
 tags:
-- species
-description: 'Fierce, golden-furred hunters who value pride, martial prowess, and fierce independence.'
+  - species
+description: Fierce, golden-furred hunters who value pride, martial prowess, and fierce independence.
 type: Folder
 children:
-- id: species
-  type: Effect
-  target: meta.species
-  operation: set
-  value: Leonin
-- type: Effect
-  target: attributes.movement.walk
-  operation: set
-  value: 30
-- type: Activity
-  range: 10 feet
-  time: bonus action
-  name: Daunting Roar
-  description: You let out a terrifying roar. Each creature of your choice within
-    range must succeed on a DC $(attributes.prof + 8 + stats.con.mod) Wisdom saving
-    throw or have Disadvantage on attack rolls and saving throws until the end of your next turn.
-  resource: dauntingRoar
-  id: dauntingRoar
-- type: Resource
-  name: Daunting Roar
-  id: dauntingRoar
-  quantity: $(attributes.prof)
-- type: Slot
-  name: Leonin Prowess Skill Proficiency
-  id: leoninSkillProficiency
-  target: survivalProficiency, perceptionProficiency, stealthProficiency
-- id: leoninDarkvision
-  type: Effect
-  target: attributes.senses.darkvision
-  operation: set
-  value: 60
-- id: feralPounce
-  type: Extra
-  target: unarmed
-  name: Pounce
-  description: "Once per turn, you can use both the Damage and Shove options."
-- type: Effect
-  target: activities[tags=unarmed].description["Bludgeoning"]
-  operation: replace
-  value: "Slashing"
+  - type: Effect
+    target: attributes.movement.walk
+    operation: set
+    value: 30
+  - type: Activity
+    range: 10 feet
+    time: bonus action
+    name: Daunting Roar
+    description: You let out a terrifying roar. Each creature of your choice within range must succeed on a DC $(attributes.prof + 8 + stats.con.mod) Wisdom saving throw or have Disadvantage on attack rolls and saving throws until the end of your next turn.
+    resource: dauntingRoar
+    id: dauntingRoar
+  - type: Resource
+    name: Daunting Roar
+    id: dauntingRoar
+    quantity: $(attributes.prof)
+  - type: Slot
+    name: Leonin Prowess Skill Proficiency
+    id: leoninSkillProficiency
+    target: survivalProficiency, perceptionProficiency, stealthProficiency
+  - id: leoninDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 60
+  - id: feralPounce
+    type: Extra
+    target: unarmed
+    name: Pounce
+    description: Once per turn, you can use both the Damage and Shove options.
+  - type: Effect
+    target: activities[tags=unarmed].description["Bludgeoning"]
+    operation: replace
+    value: Slashing

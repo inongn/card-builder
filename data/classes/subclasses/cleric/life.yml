@@ -1,38 +1,38 @@
 id: lifeDomain
 name: Life Domain
-description: 'Tap into the positive energy of the multiverse as a master of healing, using life force to cure.'
+description: Tap into the positive energy of the multiverse as a master of healing, using life force to cure.
 type: Folder
 tags:
   - clericSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Life"
-  # Level 3: Disciple of Life
   - id: discipleOfLife
     type: Extra
     name: Disciple of Life
     target: healingSpell
     condition: $(meta.level >= 3)
-    description: "The creature regains an additional $(2+(stats.wis.mod)) Hit Points."
-
-  # Level 3: Life Domain Spells
+    description: The creature regains an additional $(2+(stats.wis.mod)) Hit Points.
   - type: Reference
-    target: [aid, bless, cureWounds, lesserRestoration]
+    target:
+      - aid
+      - bless
+      - cureWounds
+      - lesserRestoration
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [massHealingWord, revivify]
+    target:
+      - massHealingWord
+      - revivify
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [auraOfLife, deathWard]
+    target:
+      - auraOfLife
+      - deathWard
     condition: $(meta.level >= 7)
   - type: Reference
-    target: [greaterRestoration, massCureWounds]
+    target:
+      - greaterRestoration
+      - massCureWounds
     condition: $(meta.level >= 9)
-
-  # Level 3: Preserve Life
   - id: preserveLife
     type: Activity
     name: Preserve Life
@@ -41,12 +41,10 @@ children:
     duration: Instantaneous
     resource: channelDivinity
     condition: $(meta.level >= 3)
-    description: "You evoke healing energy to restore up to $(5 * meta.level) Hit Points. Choose Bloodied creatures within range and divide the points among them. This can't restore a creature to more than half its Hit Point maximum."
-
-  # Level 6: Blessed Healer
+    description: You evoke healing energy to restore up to $(5 * meta.level) Hit Points. Choose Bloodied creatures within range and divide the points among them. This can't restore a creature to more than half its Hit Point maximum.
   - id: blessedHealer
     type: Extra
     name: Blessed Healer
     target: healingSpell
     condition: $(meta.level >= 6)
-    description: "If you cast this on another creature, you regain $(2+(stats.wis.mod)) Hit Points."
+    description: If you cast this on another creature, you regain $(2+(stats.wis.mod)) Hit Points.

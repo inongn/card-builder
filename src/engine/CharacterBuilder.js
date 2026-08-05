@@ -617,10 +617,48 @@ export class CharacterBuilder {
 
     /**
      * Find the display name of the active subclass by traversing the tree
+    /**
+     * Clean subclass display names by stripping standard prefixes and suffixes
+     * e.g. "Path of the Ancestral Guardian" -> "Ancestral Guardian", "War Domain" -> "War"
+     */
+    cleanSubclassName(name) {
+        if (!name || typeof name !== 'string') return name;
+
+        let clean = name.trim();
+
+        // Prefixes to remove (case-insensitive)
+        const prefixes = [
+            /^Path of (the )?/i,
+            /^College of (the )?/i,
+            /^Circle of (the )?/i,
+            /^Warrior of (the )?/i,
+            /^Oath of (the )?/i,
+            /^Patron (the )?/i,
+            /^(the )?Patron of (the )?/i
+        ];
+
+        for (const prefix of prefixes) {
+            clean = clean.replace(prefix, '');
+        }
+
+        // Suffixes / standalone words to remove (e.g. " Domain", " Patron")
+        clean = clean
+            .replace(/\s+Domain$/i, '')
+            .replace(/^Domain\s+/i, '')
+            .replace(/\s+Patron$/i, '')
+            .replace(/^Patron\s+/i, '')
+            .trim();
+
+        return clean;
+    }
+
+    /**
+     * Find the display name of the active subclass by traversing the tree
      * for a filled slot whose tags include a *Subclass tag.
      */
     getSubclassName() {
-        return this._findSubclassInNode(this.propertyTree);
+        const raw = this._findSubclassInNode(this.propertyTree);
+        return this.cleanSubclassName(raw);
     }
 
     _findSubclassInNode(node) {
@@ -636,6 +674,51 @@ export class CharacterBuilder {
             if (found) return found;
         }
         return null;
+    }
+
+    /**
+     * Synchronize character metadata (species, background, class, sub) from filled slots in the property tree
+     */
+    syncSlotMetadata() {
+        if (!this.characterData) return;
+        if (!this.characterData.meta) this.characterData.meta = {};
+
+        const findFilledSlotName = (node, key) => {
+            if (!node || !node.children) return null;
+            for (const child of node.children) {
+                if (child.type === 'Slot' && child.filled) {
+                    const filledTags = child.filled.tags || [];
+                    const slotTarget = child.target || child.id || '';
+                    const slotId = child.id || '';
+
+                    const isMatch = (
+                        slotId === key ||
+                        slotTarget === key ||
+                        filledTags.includes(key) ||
+                        (key === 'sub' && filledTags.some(t => typeof t === 'string' && t.endsWith('Subclass')))
+                    );
+
+                    if (isMatch) {
+                        return child.filled.displayName || child.filled.name || child.filled.id || null;
+                    }
+                }
+                const found = findFilledSlotName(child, key);
+                if (found) return found;
+            }
+            return null;
+        };
+
+        const species = findFilledSlotName(this.propertyTree, 'species');
+        if (species) this.characterData.meta.species = species;
+
+        const background = findFilledSlotName(this.propertyTree, 'background');
+        if (background) this.characterData.meta.background = background;
+
+        const cls = findFilledSlotName(this.propertyTree, 'class');
+        if (cls) this.characterData.meta.class = cls;
+
+        const sub = findFilledSlotName(this.propertyTree, 'sub');
+        if (sub) this.characterData.meta.sub = this.cleanSubclassName(sub);
     }
 
     /**
@@ -804,6 +887,9 @@ export class CharacterBuilder {
 
         // 4. Update labels and descriptions
         this.refreshTreeLabels();
+
+        // Implicit metadata binding: sync species, background, class, and sub from active filled slots
+        this.syncSlotMetadata();
 
         // 5. Perform two-pass validation for slot selections
         const inherentIds = new Set();

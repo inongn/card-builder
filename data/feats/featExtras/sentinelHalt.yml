@@ -1,0 +1,5 @@
+name: Halt
+type: Extra
+target: opportunityAttack
+description: On a hit, the target's Speed becomes 0 for the rest of the current turn.
+id: sentinelHalt

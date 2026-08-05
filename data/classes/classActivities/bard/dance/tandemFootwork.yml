@@ -1,0 +1,8 @@
+id: tandemFootwork
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+name: Tandem Footwork
+resource: bardicInspiration
+description: When you roll Initiative, you and each ally within 30 feet gain a 1d$(attributes.bardicDie) bonus to Initiative.

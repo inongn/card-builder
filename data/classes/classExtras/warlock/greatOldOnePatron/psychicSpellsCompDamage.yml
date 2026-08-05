@@ -1,0 +1,5 @@
+id: psychicSpellsCompDamage
+type: Extra
+target: warlock AND (enchantment OR illusion) AND damageSpell
+name: Psychic Spells
+description: You can cast this spell without Verbal or Somatic components and change the damage type to Psychic.

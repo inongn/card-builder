@@ -1,0 +1,5 @@
+type: Activity
+name: War Bond
+time: bonus action
+id: warBond
+description: You summon your bonded weapon, causing it to teleport instantly to your hand. You can't be disarmed of that weapon unless you have the Incapacitated condition.

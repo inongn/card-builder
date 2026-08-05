@@ -1,23 +1,19 @@
 id: oathOfVengeance
 name: Oath of Vengeance
-description: 'Make a solemn commitment to hunt down and relentlessly punish those who have committed grievously evil acts.'
+description: Make a solemn commitment to hunt down and relentlessly punish those who have committed grievously evil acts.
 tags:
   - paladinSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Vengeance"
-  # Level 3: Oath of Vengeance Spells
   - type: Reference
-    target: [bane, huntersMark]
+    target:
+      - bane
+      - huntersMark
   - type: Reference
-    target: [holdPerson, mistyStep]
+    target:
+      - holdPerson
+      - mistyStep
     condition: $(meta.level >= 5)
-
-  # Level 3: Vow of Enmity
   - id: vowOfEnmity
     type: Activity
     name: Vow of Enmity
@@ -25,12 +21,10 @@ children:
     range: 30 feet
     duration: 1 minute
     resource: channelDivinity
-    description: "When you take the Attack action, you utter a vow of enmity against a creature you can see within range. You have Advantage on attack rolls against the creature for the duration or until you use this feature again. If the creature drops to 0 Hit Points before the vow ends, you can transfer the vow to a different creature within 30 feet of yourself (no action required)."
-
-  # Level 7: Relentless Avenger
+    description: When you take the Attack action, you utter a vow of enmity against a creature you can see within range. You have Advantage on attack rolls against the creature for the duration or until you use this feature again. If the creature drops to 0 Hit Points before the vow ends, you can transfer the vow to a different creature within 30 feet of yourself (no action required).
   - id: relentlessAvenger
     type: Extra
     target: opportunityAttack
     name: Relentless Avenger
     condition: $(meta.level >= 7)
-    description: "On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks."
+    description: On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks.

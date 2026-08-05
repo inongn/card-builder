@@ -1,0 +1,8 @@
+id: fortifyingSoul
+type: Activity
+duration: instantaneous
+name: Fortifying Soul
+time: action
+range: self
+uses: 1
+description: You bolster your allies in addition to yourself. Choose up to $(Math.max(1, stats.wis.mod)) creatures you can see. Each chosen creature regains 1d10+$(meta.level) Hit Points and has Advantage on saving throws to avoid or end the Frightened condition for 1 hour.

@@ -1,0 +1,5 @@
+id: psychicSpellsDamage
+type: Extra
+target: warlock AND damageSpell NOT (enchantment OR illusion)
+name: Psychic Spells
+description: You can change the damage type to Psychic.

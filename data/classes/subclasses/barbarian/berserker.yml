@@ -1,23 +1,15 @@
 id: berserker
 name: Path of the Berserker
-description: 'Direct your Rage toward violence, thrilling in untrammeled fury and the chaos of battle.'
+description: Direct your Rage toward violence, thrilling in untrammeled fury and the chaos of battle.
 tags:
   - barbarianSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Berserker"
-  # Level 3: Frenzy
   - id: frenzy
     type: Extra
     name: Frenzy
     target: recklessAttack
-    description: "While your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
-
-  # Level 6: Mindless Rage
+    description: While your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack.
   - id: mindlessRageCharmed
     type: Reference
     target: charmedImmunity

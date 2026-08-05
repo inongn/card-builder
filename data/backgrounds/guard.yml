@@ -1,24 +1,20 @@
 id: guard
 name: Guard
-description: 'You spent long watches on city walls, trained to spot marauders and keep urban order.'
+description: You spent long watches on city walls, trained to spot marauders and keep urban order.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Guard"
-- type: Reference
-  target:
-  - athleticsProficiency
-  - perceptionProficiency
-  - gamingSet
-  - alert
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - str
-  - int
-  - wis
+  - type: Reference
+    target:
+      - athleticsProficiency
+      - perceptionProficiency
+      - gamingSet
+      - alert
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - str
+      - int
+      - wis

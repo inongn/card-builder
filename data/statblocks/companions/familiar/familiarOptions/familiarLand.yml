@@ -1,0 +1,9 @@
+id: familiarLand
+type: Feature
+name: Land (climb speed)
+tags: [familiarOption]
+children:
+  - type: Effect
+    target: meta.familiarEnvironment
+    operation: set
+    value: Land

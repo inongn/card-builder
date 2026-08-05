@@ -1,0 +1,9 @@
+id: chainShirt
+name: Chain Shirt
+type: Folder
+tags: [mediumArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(13 + Math.min(2, stats.dex.mod))

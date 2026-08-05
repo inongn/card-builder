@@ -1,46 +1,41 @@
 id: sorcerer
 name: Sorcerer
-description: 'Spellcasters carrying innate magic in their bloodline, twisting raw arcana at will.'
+description: Spellcasters carrying innate magic in their bloodline, twisting raw arcana at will.
 tags:
   - class
 type: Folder
 children:
-  # Core Sorcerer Traits
   - id: hitDie
     type: Attribute
     value: 6
-  - id: className
-    type: Effect
-    target: meta.class
-    operation: set
-    value: Sorcerer
   - type: Reference
-    value: [conSave, chaSave]
+    value:
+      - conSave
+      - chaSave
   - type: Reference
-    value: [simpleWeaponProficiency]
+    value:
+      - simpleWeaponProficiency
   - id: sorcererSkillProficiencies
     type: Slot
     name: Sorcerer Skill Proficiencies
     quantity: 2
     target: arcanaProficiency OR deceptionProficiency OR insightProficiency OR intimidationProficiency OR persuasionProficiency OR religionProficiency
-
-  # Level 1: Spellcasting
   - type: Reference
-    target: [fullCaster, chaCaster]
+    target:
+      - fullCaster
+      - chaCaster
   - type: Slot
     id: sorcererCantrips
     name: Sorcerer Cantrips
     target: cantrip AND sorcerer
-    quantity: "$(meta.level >= 10 ? 6 : meta.level >= 4 ? 5 : 4)"
+    quantity: '$(meta.level >= 10 ? 6 : meta.level >= 4 ? 5 : 4)'
   - type: Slot
     id: sorcererPreparedSpells
     name: Sorcerer Prepared Spells
-    target: "sorcerer NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    target: 'sorcerer NOT cantrip $(local.maxLevel < 9 ? ''NOT level9Spell'' : '''') $(local.maxLevel < 8 ? ''NOT level8Spell'' : '''') $(local.maxLevel < 7 ? ''NOT level7Spell'' : '''') $(local.maxLevel < 6 ? ''NOT level6Spell'' : '''') $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
     variables:
-      maxLevel: "$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)"
+      maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
     quantity: $(progression(2,4,6,7,9,10,11,12,14,15,16,16,17,17,18,18,19,20,21,22))
-
-  # Level 1: Innate Sorcery
   - id: innateSorcery
     type: Activity
     range: self
@@ -59,39 +54,28 @@ children:
     name: Innate Sorcery
     quantity: 2
     condition: $(meta.level >= 1)
-
-  # Level 2: Font of Magic
   - id: sorceryPoints
     type: Resource
     name: Sorcery Points
     quantity: $(meta.level)
     condition: $(meta.level >= 2)
-
-
-  # Level 3: Sorcerer Subclass
   - id: sorcererSubclass
     name: Sorcerer Subclass
     condition: $(meta.level >= 3)
     type: Slot
     target: sorcererSubclass
-
-  # Level 2: Metamagic
   - id: metamagic
     type: Slot
     name: Metamagic
     target: metamagic OR classOption
-    quantity: "$(meta.level >= 17 ? 6 : meta.level >= 10 ? 4 : 2)"
+    quantity: '$(meta.level >= 17 ? 6 : meta.level >= 10 ? 4 : 2)'
     condition: $(meta.level >= 2)
-
-  # Level 4: Ability Score Improvement
   - id: level4feat
     name: Level 4 Feat
     type: Slot
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-
-  # Level 8: Ability Score Improvement
   - id: level8feat
     name: Level 8 Feat
     type: Slot

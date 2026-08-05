@@ -1,16 +1,10 @@
 id: wildMagic
 name: Wild Magic Sorcery
-description: 'Channel the underlying chaos of creation, unleashing unpredictable raw magic in spectacular bursts.'
+description: Channel the underlying chaos of creation, unleashing unpredictable raw magic in spectacular bursts.
 type: Folder
 tags:
   - sorcererSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Wild Magic"
-  # Level 3: Wild Magic Surge
   - id: wildMagicSurge
     type: Activity
     time: free action
@@ -18,9 +12,7 @@ children:
     range: self
     name: Wild Magic Surge
     condition: $(meta.level >= 3)
-    description: "Your spellcasting unleashes surges of untamed magic. Once per turn, roll 1d20 immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table."
-
-  # Level 3: Tides of Chaos
+    description: Your spellcasting unleashes surges of untamed magic. Once per turn, roll 1d20 immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table.
   - id: tidesOfChaos
     type: Activity
     time: free action
@@ -33,8 +25,6 @@ children:
       Once you do so, you must cast a Sorcerer spell with a spell slot or finish a Long Rest before you can use this feature again.
 
       If you do cast a Sorcerer spell with a spell slot before you finish a Long Rest, you automatically roll on the Wild Magic Surge table.
-
-  # Level 6: Bend Luck
   - id: bendLuck
     type: Activity
     duration: instantaneous
@@ -44,4 +34,3 @@ children:
     condition: $(meta.level >= 6)
     resource: 1 sorceryPoints
     description: You twist fate using your wild magic. Immediately after another creature you can see rolls the d20 for a D20 Test, roll 1d4 and apply the number rolled as a bonus or penalty (your choice) to the d20 roll.
-

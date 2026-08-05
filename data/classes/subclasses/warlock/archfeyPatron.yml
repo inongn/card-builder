@@ -1,30 +1,32 @@
 id: archfeyPatron
 name: Archfey Patron
-description: 'Draw power from the Feywild, making a pact with a powerful archfey to weave beguiling, mirthful magic.'
+description: Draw power from the Feywild, making a pact with a powerful archfey to weave beguiling, mirthful magic.
 tags:
   - warlockSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Archfey"
-  # Level 3: Archfey Spells
   - type: Reference
-    target: [calmEmotions, faerieFire, phantasmalForce, sleep]
+    target:
+      - calmEmotions
+      - faerieFire
+      - phantasmalForce
+      - sleep
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [blink, plantGrowth]
+    target:
+      - blink
+      - plantGrowth
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [dominateBeast, greaterInvisibility]
+    target:
+      - dominateBeast
+      - greaterInvisibility
     condition: $(meta.level >= 7)
   - type: Reference
-    target: [dominatePerson, seeming]
+    target:
+      - dominatePerson
+      - seeming
     condition: $(meta.level >= 9)
-
-  # Level 3: Steps of the Fey  
   - id: mistyStep
     type: Reference
     target: mistyStep
@@ -34,29 +36,23 @@ children:
         In addition, you can choose one of the following additional effects:
 
         **Refreshing Step.** You or a creature within 10 feet of yourself gains 1d10 Temporary Hit Points.
-        
+
         **Taunting Step.** Creatures within 5 feet of the space you left must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have Disadvantage on attacks against creatures other than you until the start of your next turn.
-        
+
         $(meta.level >= 6 ? "**Disappearing Step.** You have the invisible condition until the start of your next turn or until immediately after you attack or cast a spell." : "")
-        
+
         $(meta.level >= 6 ? "**Dreadful Step.** Creatures within 5 feet of the space you left or the space you appear in must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or take 2d10 Psychic damage." : "")
-
-
-  # Level 3: Steps of the Fey  
   - id: mistyStepUses
     type: Effect
     target: activities[id=mistyStep].resource
     operation: set
     value: stepsOfTheFey
-
   - id: stepsOfTheFey
     type: Resource
     name: Steps of the Fey
     quantity: $(Math.max(1, stats.cha.mod))
     sr: all
     condition: $(meta.level >= 3)
-
-  # Level 6: Misty Escape — separate reaction Activity
   - id: mistyEscape
     type: Activity
     name: Misty Escape
@@ -64,4 +60,4 @@ children:
     range: self
     duration: instantaneous
     condition: $(meta.level >= 6)
-    description: "When you take damage, you cast Misty Step."
+    description: When you take damage, you cast Misty Step.

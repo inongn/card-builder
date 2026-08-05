@@ -1,0 +1,5 @@
+type: Extra
+target: topple AND (pactWeapon OR weaponMastery)
+id: topple
+name: Topple
+description: On a hit, the target must succeed a DC $(8 + attributes.prof + attributes[local.classification].bonus) Constitution saving throw or have the Prone condition.

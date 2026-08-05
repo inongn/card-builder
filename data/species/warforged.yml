@@ -1,47 +1,42 @@
 id: warforged
 name: Warforged
 tags:
-- species
-description: 'Mechanical beings, infused with alchemical fluids and wooden-metal bodies capable of pain and emotion.'
+  - species
+description: Mechanical beings, infused with alchemical fluids and wooden-metal bodies capable of pain and emotion.
 type: Folder
 children:
-- id: species
-  type: Effect
-  target: meta.species
-  operation: set
-  value: Warforged
-- id: speed
-  type: Effect
-  target: attributes.movement.walk
-  operation: set
-  value: 30
-- type: Reference
-  target:
-  - poisonResistance
-  - poisonedAdvantage
-- id: integratedProtection
-  type: Effect
-  target: attributes.ac
-  name: Integrated Protection
-  operation: add
-  value: 1
-- id: sentrysRest
-  type: Extra
-  target: longRest
-  name: Sentry's Rest
-  description: You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious.
-- id: specializedDesignSkill
-  name: Specialized Design Skill Proficiency
-  type: Slot
-  target: skillProficiency
-  quantity: 1
-- id: specializedDesignTool
-  name: Specialized Design Tool Proficiency
-  type: Slot
-  target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
-  quantity: 1
-- id: tireless
-  type: Extra
-  target: longRest
-  name: Tireless
-  description: You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation.
+  - id: speed
+    type: Effect
+    target: attributes.movement.walk
+    operation: set
+    value: 30
+  - type: Reference
+    target:
+      - poisonResistance
+      - poisonedAdvantage
+  - id: integratedProtection
+    type: Effect
+    target: attributes.ac
+    name: Integrated Protection
+    operation: add
+    value: 1
+  - id: sentrysRest
+    type: Extra
+    target: longRest
+    name: Sentry's Rest
+    description: You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious.
+  - id: specializedDesignSkill
+    name: Specialized Design Skill Proficiency
+    type: Slot
+    target: skillProficiency
+    quantity: 1
+  - id: specializedDesignTool
+    name: Specialized Design Tool Proficiency
+    type: Slot
+    target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
+    quantity: 1
+  - id: tireless
+    type: Extra
+    target: longRest
+    name: Tireless
+    description: You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation.

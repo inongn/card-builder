@@ -1,0 +1,5 @@
+id: expertDivination
+type: Extra
+target: divination NOT cantrip NOT level1Spell
+name: Expert Divination
+description: You regain an expended spell slot. The spell slot can be of a level lower than the slot you used, but no higher than 5th level.

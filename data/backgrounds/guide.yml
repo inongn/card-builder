@@ -1,24 +1,20 @@
 id: guide
 name: Guide
-description: 'You grew up exploring untamed wilds, guiding travelers through perilous frontiers.'
+description: You grew up exploring untamed wilds, guiding travelers through perilous frontiers.
 tags:
-- background
+  - background
 type: Folder
 children:
-- type: Effect
-  target: meta.background
-  operation: set
-  value: "Guide"
-- type: Reference
-  target:
-  - stealthProficiency
-  - survivalProficiency
-  - cartographersTools
-  - magicInitiateDruid
-- type: Effect
-  target: attributes.originEligible
-  operation: push
-  value:
-  - dex
-  - con
-  - wis
+  - type: Reference
+    target:
+      - stealthProficiency
+      - survivalProficiency
+      - cartographersTools
+      - magicInitiateDruid
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - dex
+      - con
+      - wis

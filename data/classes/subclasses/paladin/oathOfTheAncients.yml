@@ -1,16 +1,10 @@
 id: oathOfTheAncients
 name: Oath of the Ancients
-description: 'Cherish the light, loving the beautiful and life-giving things of the world above all other principles.'
+description: Cherish the light, loving the beautiful and life-giving things of the world above all other principles.
 tags:
   - paladinSubclass
 type: Folder
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Ancients"
-  # Level 3: Nature's Wrath
   - id: naturesWrath
     type: Activity
     name: Nature's Wrath
@@ -18,28 +12,34 @@ children:
     range: 15 feet
     duration: 1 minute
     resource: channelDivinity
-    description: "You conjure spectral vines around nearby creatures. Each creature of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or have the Restrained condition for 1 minute. A Restrained creature repeats the save at the end of each of its turns, ending the effect on a success."
-
-  # Level 3: Oath of the Ancients Spells
+    description: You conjure spectral vines around nearby creatures. Each creature of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or have the Restrained condition for 1 minute. A Restrained creature repeats the save at the end of each of its turns, ending the effect on a success.
   - type: Reference
-    target: [ensnaringStrike, speakWithAnimals]
+    target:
+      - ensnaringStrike
+      - speakWithAnimals
   - type: Reference
-    target: [mistyStep, moonbeam]
+    target:
+      - mistyStep
+      - moonbeam
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [plantGrowth, protectionFromEnergy]
+    target:
+      - plantGrowth
+      - protectionFromEnergy
     condition: $(meta.level >= 9)
   - type: Reference
-    target: [iceStorm, stoneskin]
+    target:
+      - iceStorm
+      - stoneskin
     condition: $(meta.level >= 13)
   - type: Reference
-    target: [communeWithNature, treeStride]
+    target:
+      - communeWithNature
+      - treeStride
     condition: $(meta.level >= 17)
-
-  # Level 7: Aura of Warding
   - id: auraOfWarding
     type: Extra
     name: Aura of Warding
     target: auraOfProtection
     condition: $(meta.level >= 7)
-    description: "Ancient magic lies so heavily upon you that it forms an eldritch ward, blunting energy from beyond the Material Plane. You and your allies have Resistance to Necrotic, Psychic, and Radiant damage."
+    description: Ancient magic lies so heavily upon you that it forms an eldritch ward, blunting energy from beyond the Material Plane. You and your allies have Resistance to Necrotic, Psychic, and Radiant damage.

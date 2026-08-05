@@ -1,42 +1,34 @@
 id: orc
 name: Orc
 tags:
-- species
-description: 'Strong, driven warriors endowed with Gruumsh''s endurance, unyielding grit, and darkvision.'
+  - species
+description: Strong, driven warriors endowed with Gruumsh's endurance, unyielding grit, and darkvision.
 type: Folder
 children:
-- id: species
-  type: Effect
-  target: meta.species
-  operation: set
-  value: Orc
-- id: adrenalineRush
-  type: Activity
-  duration: instantaneous
-  name: Adrenaline Rush
-  time: bonus action
-  range: self
-  resource: adrenalineRush
-  description: 'You take the Dash action. When you do so, you gain $(attributes.prof)
-    Temporary Hit Points.
-
-    '
-- id: adrenalineRush
-  type: Resource
-  name: Adrenaline Rush
-  quantity: $(attributes.prof)
-  sr: all
-- id: orcDarkvision
-  type: Effect
-  target: attributes.senses.darkvision
-  operation: set
-  value: 120
-- id: relentlessEndurance
-  type: Activity
-  time: free action
-  duration: instantaneous
-  range: self
-  name: Relentless Endurance
-  description: When you are reduced to 0 Hit Points but not killed outright, you can
-    drop to 1 Hit Point instead.
-  resource: limited
+  - id: adrenalineRush
+    type: Activity
+    duration: instantaneous
+    name: Adrenaline Rush
+    time: bonus action
+    range: self
+    resource: adrenalineRush
+    description: |
+      You take the Dash action. When you do so, you gain $(attributes.prof) Temporary Hit Points.
+  - id: adrenalineRush
+    type: Resource
+    name: Adrenaline Rush
+    quantity: $(attributes.prof)
+    sr: all
+  - id: orcDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 120
+  - id: relentlessEndurance
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Relentless Endurance
+    description: When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead.
+    resource: limited

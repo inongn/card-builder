@@ -1,27 +1,22 @@
 id: human
 name: Human
 tags:
-- species
-description: 'Ambitious and resourceful mortals whose diverse talents drive them across every realm.'
+  - species
+description: Ambitious and resourceful mortals whose diverse talents drive them across every realm.
 type: Folder
 children:
-- id: species
-  type: Effect
-  target: meta.species
-  operation: set
-  value: Human
-- id: resourceful
-  type: Extra
-  target: longRest
-  name: Resourceful
-  description: You gain Heroic Inspiration.
-- id: skillful
-  name: Skillful Skill Proficiency
-  type: Slot
-  target: skillProficiency
-  quantity: 1
-- id: versatile
-  name: Versatile
-  type: Slot
-  target: originFeat
-  quantity: 1
+  - id: resourceful
+    type: Extra
+    target: longRest
+    name: Resourceful
+    description: You gain Heroic Inspiration.
+  - id: skillful
+    name: Skillful Skill Proficiency
+    type: Slot
+    target: skillProficiency
+    quantity: 1
+  - id: versatile
+    name: Versatile
+    type: Slot
+    target: originFeat
+    quantity: 1

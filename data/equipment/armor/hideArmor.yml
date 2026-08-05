@@ -1,0 +1,9 @@
+id: hideArmor
+name: Hide Armor
+type: Folder
+tags: [mediumArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(12 + Math.min(2, stats.dex.mod))

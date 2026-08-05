@@ -1,0 +1,7 @@
+id: branchesOfTheTree
+type: Activity
+name: Branches of the Tree
+time: reaction
+range: 30 feet
+duration: Instantaneous
+description: When a creature you can see starts its turn within range while your Rage is active, you summon spectral branches of the World Tree around it. The target must succeed on a DC $(8 + stats.str.mod + attributes.prof) Strength saving throw or be teleported to an unoccupied space you can see within 5 feet of yourself. After it teleports, you can reduce its Speed to 0 until the end of the current turn.

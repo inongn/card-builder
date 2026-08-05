@@ -1,19 +1,14 @@
 id: glamour
 name: College of Glamour
-description: 'Weave threads of Feywild beauty and terror into your performances to cloak yourself in majesty.'
+description: Weave threads of Feywild beauty and terror into your performances to cloak yourself in majesty.
 type: Folder
 tags:
   - bardSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Glamour"
-  # Level 3: Beguiling Magic
   - type: Reference
-    target: [charmPerson, mirrorImage]
-    
+    target:
+      - charmPerson
+      - mirrorImage
   - id: beguilingMagic
     type: Activity
     time: free action
@@ -22,9 +17,7 @@ children:
     condition: $(meta.level >= 3)
     resource: bardicInspiration
     duration: 1 minute
-    description: "After casting an Enchantment or Illusion spell using a spell slot, you force a creature within 60 feet to make a Wisdom save. On a failure, it has the Charmed or Frightened condition (your choice)."
-
-  # Level 3: Mantle of Inspiration
+    description: After casting an Enchantment or Illusion spell using a spell slot, you force a creature within 60 feet to make a Wisdom save. On a failure, it has the Charmed or Frightened condition (your choice).
   - id: mantleOfInspiration
     type: Activity
     duration: instantaneous
@@ -33,13 +26,10 @@ children:
     time: bonus action
     resource: bardicInspiration
     condition: $(meta.level >= 3)
-    description: "You provide $(2 * attributes.bardicDie) Temporary Hit Points to up to $(Math.max(1, stats.cha.mod)) creatures within 60 feet. Each can use its Reaction to move up to its Speed without provoking Opportunity Attacks."
-
-  # Level 6: Mantle of Majesty
+    description: You provide $(2 * attributes.bardicDie) Temporary Hit Points to up to $(Math.max(1, stats.cha.mod)) creatures within 60 feet. Each can use its Reaction to move up to its Speed without provoking Opportunity Attacks.
   - type: Reference
     target: command
     condition: $(meta.level >= 6)
-
   - id: mantleOfMajesty
     type: Activity
     range: self
@@ -50,5 +40,5 @@ children:
     resource: limited
     description: |
       You cast Command without expending a spell slot and assume an unearthly appearance for the duration. 
-      
+
       While active, you can cast Command as a Bonus Action without expending a spell slot. Any creature Charmed by you automatically fails its save against this Command.

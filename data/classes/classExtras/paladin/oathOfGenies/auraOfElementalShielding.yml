@@ -1,0 +1,5 @@
+id: auraOfElementalShielding
+type: Extra
+target: auraOfProtection
+name: Aura of Elemental Shielding
+description: 'Choose one damage type: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection. At the start of each of your turns, you can change the damage type (no action required).'

@@ -1,92 +1,82 @@
 id: shaper
 name: Shaper
-description: 'Manifest raw mental mass, ectoplasm, and psionic constructs from the Astral Plane to fight alongside you.'
+description: Manifest raw mental mass, ectoplasm, and psionic constructs from the Astral Plane to fight alongside you.
 type: Folder
 tags:
   - psionSubclass
 children:
-  - id: subclassName
-    type: Effect
-    target: meta.sub
-    operation: set
-    value: "Shaper"
-
-  # Level 3: Shaper Spells
   - type: Reference
-    target: [summonBeast, cureWounds, findFamiliar, unseenServant]
+    target:
+      - summonBeast
+      - cureWounds
+      - findFamiliar
+      - unseenServant
     condition: $(meta.level >= 3)
   - type: Reference
-    target: [summonFey, summonAstralEntity]
+    target:
+      - summonFey
+      - summonAstralEntity
     condition: $(meta.level >= 5)
   - type: Reference
-    target: [summonAberration, summonElemental]
+    target:
+      - summonAberration
+      - summonElemental
     condition: $(meta.level >= 7)
-
   - id: astralShapingBeast
     type: Effect
     target: activities[id=summonBeast].resource
     operation: set
     value: psionicEnergyDice
     condition: $(meta.level >= 3)
-
   - id: astralShapingFey
     type: Effect
     target: activities[id=summonFey].resource
     operation: set
     value: psionicEnergyDice
     condition: $(meta.level >= 5)
-
   - id: astralShapingAstral
     type: Effect
     target: activities[id=summonAstralEntity].resource
     operation: set
     value: psionicEnergyDice
     condition: $(meta.level >= 5)
-
   - id: astralShapingAberration
     type: Effect
     target: activities[id=summonAberration].resource
     operation: set
     value: psionicEnergyDice
     condition: $(meta.level >= 7)
-
   - id: astralShapingElemental
     type: Effect
     target: activities[id=summonElemental].resource
     operation: set
     value: psionicEnergyDice
     condition: $(meta.level >= 7)
-
-  # Level 3: Ectoplasmic Shift
   - id: ectoplasmicShiftPropel
     type: Extra
     target: telekineticPropel
     condition: $(meta.level >= 3)
     name: Ectoplasmic Shift
-    description: "When targeting a creature summoned by your Psion spells, you do not need to expend a Psionic Energy Die, and you can move the target up to 15 feet or swap it for another summon."
-
-  # Level 6: Empowered Servitor (Implemented as Effects on Summon Statblocks)
+    description: When targeting a creature summoned by your Psion spells, you do not need to expend a Psionic Energy Die, and you can move the target up to 15 feet or swap it for another summon.
   - id: empoweredServitorHp
     type: Effect
     target: statblocks[tags=summon].hp
     operation: add
     condition: $(meta.level >= 6)
     value: $(meta.level * 2)
-
   - id: empoweredServitorPsionicStrike
     type: Effect
     target: statblocks[tags=summon].traits
     operation: push
     condition: $(meta.level >= 6)
     value:
-      name: "Psionic Strike"
-      description: "The summon's attacks deal an extra $(Math.max(1, stats.int.mod)) Psychic damage."
-
+      name: Psionic Strike
+      description: The summon's attacks deal an extra $(Math.max(1, stats.int.mod)) Psychic damage.
   - id: empoweredServitorPsionicStrike
     type: Effect
     target: statblocks[tags=summon].traits
     operation: push
     condition: $(meta.level >= 6)
     value:
-      name: "Harmonic Conduit"
-      description: "You can cast spells through the summon."
+      name: Harmonic Conduit
+      description: You can cast spells through the summon.

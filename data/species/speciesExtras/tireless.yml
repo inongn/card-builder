@@ -1,0 +1,5 @@
+id: tireless
+type: Extra
+target: longRest
+name: Tireless
+description: You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation.

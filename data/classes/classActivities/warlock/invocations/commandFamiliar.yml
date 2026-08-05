@@ -1,0 +1,7 @@
+id: commandFamiliar
+type: Activity
+duration: instantaneous
+range: self
+time: bonus action
+name: Command Familiar
+description: You command the familiar to make an attack.
