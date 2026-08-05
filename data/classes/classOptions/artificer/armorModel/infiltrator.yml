@@ -7,6 +7,7 @@ tags:
 children:
   - id: lightningLauncher
     type: Activity
+    duration: instantaneous
     name: "Lightning Launcher"
     time: action
     range: 90 feet
@@ -35,6 +36,8 @@ children:
 
   - id: perfectedInfiltratorFlight
     type: Activity
+    duration: instantaneous
+    range: self
     name: Perfected Infiltrator Flight
     time: bonus action
     resource: perfectedInfiltratorFlightResource

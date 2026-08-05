@@ -35,16 +35,18 @@ children:
   # Level 3: Eldritch Cannon
   - id: eldritchCannonFlamethrower
     type: Activity
-    name: "Eldritch Cannon: Flamethrower"
+    duration: instantaneous
+    name: "Flamethrower"
     time: bonus action
     range: self
     condition: $(meta.level >= 3)
     description: |
-      The cannon exhales fire in a 15-foot Cone. Each creature in that area makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking $(meta.level >= 9 ? '3d8' : '2d8') Fire damage on a failed save or half as much on a successful one. Flammable objects in the Cone start burning.
+      Your cannon exhales fire in a 15-foot Cone. Each creature in that area makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking $(meta.level >= 9 ? '3d8' : '2d8') Fire damage on a failed save or half as much on a successful one. Flammable objects in the Cone start burning.
 
   - id: eldritchCannonForceBallista
     type: Activity
-    name: "Eldritch Cannon: Force Ballista"
+    duration: instantaneous
+    name: "Force Ballista"
     time: bonus action
     range: 120 feet
     condition: $(meta.level >= 3)
@@ -53,12 +55,13 @@ children:
 
   - id: eldritchCannonProtector
     type: Activity
-    name: "Eldritch Cannon: Protector"
+    duration: instantaneous
+    name: "Protector"
     time: bonus action
     range: 10 feet
     condition: $(meta.level >= 3)
     description: |
-      The cannon emits a burst of positive energy that grants itself and each creature of your choice within range gains $(meta.level >= 9 ? '2d8' : '1d8')$(formatBonus(stats.int.mod)) Temporary Hit Points.
+      Your cannon emits a burst of positive energy that grants itself and each creature of your choice within range gains $(meta.level >= 9 ? '2d8' : '1d8')$(formatBonus(stats.int.mod)) Temporary Hit Points.
 
   # Level 5: Arcane Firearm
   - type: Effect

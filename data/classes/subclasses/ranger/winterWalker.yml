@@ -46,6 +46,7 @@ children:
   # Level 7: Fortifying Soul
   - id: fortifyingSoul
     type: Activity
+    duration: instantaneous
     name: Fortifying Soul
     time: action
     range: self

@@ -8,7 +8,7 @@ range: 30 feet
 duration: 8 hours
 summary: "You bolster your allies with toughness and extra hit points."
 description: |
-  Choose up to three creatures within range. Each target’s Hit Point maximum and current Hit Points increase by 5 for the duration.
+  Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration.
 extra:
   - name: Using a Higher-Level Spell Slot
-    description: Each target’s Hit Points increase by 5 for each spell slot level above 2.
+    description: Each target's Hit Points increase by 5 for each spell slot level above 2.

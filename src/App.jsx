@@ -75,10 +75,10 @@ function debounce(fn, delay) {
 const loadAndSortCharacters = () => {
     const savedRaw = localStorage.getItem('saved_characters');
     const saved = JSON.parse(savedRaw || '[]');
-    
+
     // Remove all previous sample characters to ensure fresh reload
     const userCharacters = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
-    
+
     const enabledRaw = localStorage.getItem('sample_characters_enabled');
     const isEnabled = enabledRaw !== 'false';
 
@@ -103,7 +103,7 @@ const loadAndSortCharacters = () => {
         });
         merged = [...userCharacters, ...freshSamples];
     }
-    
+
     // Sort by lastPlayed desc, then timestamp desc
     merged.sort((a, b) => {
         const timeA = a.lastPlayed || a.timestamp || '';
@@ -440,6 +440,7 @@ export default function App() {
                 handleToggleSampleCharacters={handleToggleSampleCharacters}
                 savedCharacters={savedCharacters}
                 setSavedCharacters={setSavedCharacters}
+                width={"1200px"}
             />
 
             <mdui-layout-main className="app-main-layout">
@@ -478,6 +479,7 @@ export default function App() {
                         isDarkMode={isDarkMode}
                         loadedCharacterId={loadedCharacterId}
                         handleDeleteSaved={handleDeleteSaved}
+                        onToggleDebug={() => setIsDebugOpen(prev => !prev)}
                     />
                 )}
                 {activeTab === 'print' && (

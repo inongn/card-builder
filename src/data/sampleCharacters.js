@@ -475,8 +475,7 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ],
-                        value: 1
+                        ]
                 },
                 {
                         path: [
@@ -635,17 +634,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'actor'
                 }
         ]
 }
@@ -3133,7 +3121,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8Feat'
                                 }
                         ],
-                        propertyId: 'athlete'
+                        propertyId: 'actor'
                 }
         ]
 }
@@ -3634,7 +3622,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level4Feat'
                                 }
                         ],
-                        propertyId: 'chef'
+                        propertyId: 'athlete'
                 },
                 {
                         path: [
@@ -5923,7 +5911,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'crossbowExpert'
+                        propertyId: 'chef'
                 }
         ]
 }
@@ -9421,7 +9409,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'defensiveDuelist'
+                        propertyId: 'crossbowExpert'
                 }
         ]
 }
@@ -9993,7 +9981,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'dualWielder'
+                        propertyId: 'defensiveDuelist'
                 }
         ]
 }
@@ -12468,7 +12456,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -12733,6 +12722,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'level6feat'
+                                }
+                        ],
+                        propertyId: 'dualWielder'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level8feat'
                                 }
                         ],
@@ -12896,7 +12896,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -13176,6 +13177,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'level6feat'
+                                }
+                        ],
+                        propertyId: 'grappler'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level8feat'
                                 }
                         ],
@@ -13325,7 +13337,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -13594,6 +13607,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'level6feat'
+                                }
+                        ],
+                        propertyId: 'lightlyArmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level8feat'
                                 }
                         ],
@@ -13743,7 +13767,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -13978,6 +14003,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'level6feat'
+                                }
+                        ],
+                        propertyId: 'mageSlayer'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level8feat'
                                 }
                         ],
@@ -14127,7 +14163,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -14521,6 +14558,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'level6feat'
+                                }
+                        ],
+                        propertyId: 'mediumArmorMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level8feat'
                                 }
                         ],
@@ -14691,7 +14739,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -14898,6 +14947,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'telepathic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level6feat'
+                                }
+                        ],
+                        propertyId: 'moderatelyArmored'
                 },
                 {
                         path: [
@@ -15449,7 +15509,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'grappler'
+                        propertyId: 'mountedCombatant'
                 }
         ]
 }
@@ -15767,7 +15827,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'lightlyArmored'
+                        propertyId: 'piercer'
                 }
         ]
 }
@@ -19420,7 +19480,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'mediumArmorMaster'
+                        propertyId: 'poisoner'
                 }
         ]
 }
@@ -19847,7 +19907,52 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'moderatelyArmored'
+                        propertyId: 'ritualCaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'tensersFloatingDisk'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'unseenServant'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'alarm'
                 }
         ]
 }
@@ -19985,7 +20090,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -20370,7 +20476,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'piercer'
+                        propertyId: 'abilityScoreImprovement'
                 }
         ]
 }
@@ -22354,7 +22460,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -22612,7 +22719,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level8feat'
                                 }
                         ],
-                        propertyId: 'poisoner'
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -23036,7 +23143,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'tensersFloatingDisk'
+                        propertyId: 'arcaneLock'
                 },
                 {
                         path: [
@@ -23051,7 +23158,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'unseenServant'
+                        propertyId: 'cloudOfDaggers'
                 },
                 {
                         path: [
@@ -23066,7 +23173,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'arcaneLock'
+                        propertyId: 'crownOfMadness'
                 },
                 {
                         path: [
@@ -23081,7 +23188,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'cloudOfDaggers'
+                        propertyId: 'darkness'
                 },
                 {
                         path: [
@@ -23096,7 +23203,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'crownOfMadness'
+                        propertyId: 'detectThoughts'
                 },
                 {
                         path: [
@@ -25479,7 +25586,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mindSpike'
+                        propertyId: 'seeInvisibility'
                 },
                 {
                         path: [
@@ -25551,7 +25658,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'darkness'
+                        propertyId: 'dragonsBreath'
                 },
                 {
                         path: [
@@ -25563,7 +25670,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'phantasmalForce'
+                        propertyId: 'knock'
                 },
                 {
                         path: [
@@ -25575,7 +25682,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'dragonsBreath'
+                        propertyId: 'levitate'
                 },
                 {
                         path: [
@@ -25587,7 +25694,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'knock'
+                        propertyId: 'mindSpike'
                 },
                 {
                         path: [
@@ -25599,7 +25706,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'levitate'
+                        propertyId: 'phantasmalForce'
                 },
                 {
                         path: [
@@ -26090,7 +26197,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'seeInvisibility'
+                        propertyId: 'spiderClimb'
                 },
                 {
                         path: [
@@ -26102,7 +26209,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'spiderClimb'
+                        propertyId: 'tashasMindWhip'
                 },
                 {
                         path: [
@@ -26114,7 +26221,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'tashasMindWhip'
+                        propertyId: 'blink'
                 },
                 {
                         path: [
@@ -26126,7 +26233,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'blink'
+                        propertyId: 'clairvoyance'
                 },
                 {
                         path: [
@@ -26659,7 +26766,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'clairvoyance'
+                        propertyId: 'counterspell'
                 },
                 {
                         path: [
@@ -26671,7 +26778,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'counterspell'
+                        propertyId: 'enemiesAbound'
                 },
                 {
                         path: [
@@ -26683,7 +26790,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'enemiesAbound'
+                        propertyId: 'gaseousForm'
                 },
                 {
                         path: [
@@ -26695,7 +26802,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'gaseousForm'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -27267,7 +27374,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'intellectFortress'
                 },
                 {
                         path: [
@@ -27279,7 +27386,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'lightningBolt'
                 },
                 {
                         path: [
@@ -27291,7 +27398,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'intellectFortress'
+                        propertyId: 'majorImage'
                 },
                 {
                         path: [
@@ -27303,7 +27410,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'lightningBolt'
+                        propertyId: 'slow'
                 },
                 {
                         path: [
@@ -27793,7 +27900,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'majorImage'
+                        propertyId: 'stinkingCloud'
                 },
                 {
                         path: [
@@ -27805,7 +27912,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'slow'
+                        propertyId: 'telekineticCrush'
                 },
                 {
                         path: [
@@ -27817,7 +27924,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'stinkingCloud'
+                        propertyId: 'tongues'
                 },
                 {
                         path: [
@@ -27829,7 +27936,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'telekineticCrush'
+                        propertyId: 'vampiricTouch'
                 },
                 {
                         path: [
@@ -28284,7 +28391,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'banishment'
+                        propertyId: 'charmMonster'
                 },
                 {
                         path: [
@@ -28308,7 +28415,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'tongues'
+                        propertyId: 'waterBreathing'
                 },
                 {
                         path: [
@@ -28320,7 +28427,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'vampiricTouch'
+                        propertyId: 'waterWalk'
                 },
                 {
                         path: [
@@ -28332,7 +28439,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'waterBreathing'
+                        propertyId: 'banishment'
                 },
                 {
                         path: [
@@ -28344,7 +28451,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'waterWalk'
+                        propertyId: 'blight'
                 },
                 {
                         path: [
@@ -29978,7 +30085,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'charmMonster'
+                        propertyId: 'hallucinatoryTerrain'
                 },
                 {
                         path: [
@@ -30014,7 +30121,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'blight'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -30542,7 +30649,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'dimensionDoor'
+                        propertyId: 'raulothimsPsychicLance'
                 },
                 {
                         path: [
@@ -30554,7 +30661,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'hallucinatoryTerrain'
+                        propertyId: 'bane'
                 },
                 {
                         path: [
@@ -30566,7 +30673,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'raulothimsPsychicLance'
+                        propertyId: 'charmPerson'
                 },
                 {
                         path: [
@@ -31115,7 +31222,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'summonAberration'
+                        propertyId: 'armsOfHadar'
                 },
                 {
                         path: [
@@ -31127,7 +31234,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'armsOfHadar'
+                        propertyId: 'comprehendLanguages'
                 },
                 {
                         path: [
@@ -31207,18 +31314,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'eldritchInvocations',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'eldritchSmite'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'warlockSubclass'
                                 }
                         ],
@@ -31255,7 +31350,7 @@ export const SAMPLE_CHARACTERS = [
         name: 'Elysia Relic',
         class: 'Warlock',
         sub: 'Vestige',
-        species: 'Aasimar',
+        species: 'Tiefling',
         background: 'Acolyte',
         level: 8,
         image: 'subclass_headshot/vestigepatron.webp',
@@ -31460,7 +31555,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'species'
                                 }
                         ],
-                        propertyId: 'aasimar'
+                        propertyId: 'tiefling'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'species'
+                                },
+                                {
+                                        id: 'fiendishLegacy'
+                                }
+                        ],
+                        propertyId: 'fiendishLegacyAbyssal'
                 },
                 {
                         path: [
@@ -31498,7 +31604,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mending'
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -31652,7 +31758,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -31749,18 +31855,6 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'eldritchMind'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'eldritchInvocations',
-                                        slotIndex: 5
-                                }
-                        ],
-                        propertyId: 'eldritchSmite'
                 },
                 {
                         path: [

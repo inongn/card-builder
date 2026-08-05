@@ -16,6 +16,8 @@ children:
     
   - id: beguilingMagic
     type: Activity
+    time: free action
+    range: self
     name: Beguiling Magic
     condition: $(meta.level >= 3)
     resource: bardicInspiration
@@ -25,6 +27,8 @@ children:
   # Level 3: Mantle of Inspiration
   - id: mantleOfInspiration
     type: Activity
+    duration: instantaneous
+    range: self
     name: Mantle of Inspiration
     time: bonus action
     resource: bardicInspiration
@@ -38,6 +42,7 @@ children:
 
   - id: mantleOfMajesty
     type: Activity
+    range: self
     name: Mantle of Majesty
     time: bonus action
     duration: Concentration, up to 1 minute

@@ -7,6 +7,7 @@ tags:
 children:
   - id: thunderPulse
     type: Activity
+    duration: instantaneous
     name: "Thunder Pulse"
     time: action
     range: 5 feet
@@ -18,6 +19,8 @@ children:
 
   - id: defensiveField
     type: Activity
+    duration: instantaneous
+    range: self
     name: Defensive Field
     time: bonus action
     description: |
@@ -31,6 +34,7 @@ children:
 
   - id: perfectedGuardianReaction
     type: Activity
+    duration: instantaneous
     name: Perfected Guardian Reaction
     time: reaction
     range: 30 feet

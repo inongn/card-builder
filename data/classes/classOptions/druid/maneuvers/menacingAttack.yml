@@ -3,5 +3,8 @@ summary: "Deal extra damage and frighten the target."
 name: Menacing Attack
 tags: [maneuver]
 type: Activity
+time: free action
+duration: instantaneous
+range: self
 resource: superiorityDice
-description: When you hit a creature with an attack roll, you attempt to frighten the target. Add 1d$(attributes.superiorityDie) to the attack’s damage roll. The target must succeed on a DC $(attributes.superioritySave) Wisdom saving throw or have the Frightened condition until the end of your next turn.
+description: When you hit a creature with an attack roll, you attempt to frighten the target. Add 1d$(attributes.superiorityDie) to the attack's damage roll. The target must succeed on a DC $(attributes.superioritySave) Wisdom saving throw or have the Frightened condition until the end of your next turn.

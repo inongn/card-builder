@@ -3,7 +3,7 @@ name: "Fiend Vestige"
 tags: [vestigeCompanion]
 id: fiendVestige
 size: Small
-category: summon
+category: companion
 classification: Fiend
 ac: $(13 + stats.cha.mod)
 hp: $(4 + 4 * meta.level)
@@ -27,7 +27,7 @@ traits:
     description: "Add your Proficiency Bonus to any ability check or saving throw the vestige makes."
 actions:
   - name: Vestige's Strike
-    description: "_Melee or Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. or range 60 ft. _Hit:_ 1d6+3$(formatBonus(stats.cha.mod)) Fire damage."
+    description: "_Melee or Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. or range 60 ft. _Hit:_ 1d6$(formatBonus(3 + stats.cha.mod)) Fire damage."
 bonusActions:
   - name: Divine Power (1/Day)
     description: |

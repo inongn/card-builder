@@ -30,6 +30,8 @@ children:
   # Level 6: Horrifying Strike
   - id: horrifyingStrike
     type: Activity
+    duration: instantaneous
+    range: self
     name: Horrifying Strike
     time: free action
     condition: $(meta.level >= 6)

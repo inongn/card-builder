@@ -27,6 +27,7 @@ children:
   # Level 3: Healing Light
   - id: healingLight
     type: Activity
+    duration: instantaneous
     name: Healing Light
     time: bonus action
     range: 60 feet
@@ -35,7 +36,7 @@ children:
     description: "Heal yourself or a creature you can see. The target regains 1d6 Hit Points per charge expeded, up to a maximum of $(Math.min(1, stats.cha.mod))d6 Hit Points."
   - id: healingLight
     type: Resource
-    name: Healing Light Dice
+    name: Healing Light
     quantity: $(1 + meta.level)
     condition: $(meta.level >= 3)
     sr: 0

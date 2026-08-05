@@ -408,7 +408,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             ].map((info, idx) => {
                                 let displayData = [];
                                 if (Array.isArray(info.data)) {
-                                    displayData = info.data;
+                                    displayData = [...info.data];
                                 } else if (info.data && typeof info.data === 'object') {
                                     displayData = Object.entries(info.data)
                                         .filter(([k, v]) => v && !(info.label === 'Movement' && k === 'walk'))
@@ -418,7 +418,6 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                             return `${label} (${v}${unit})`;
                                         });
                                 }
-
                                 if (displayData.length === 0) return null;
 
                                 return (

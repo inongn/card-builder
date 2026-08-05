@@ -1,6 +1,7 @@
 id: opportunityAttack
 name: Opportunity Attack
 type: Activity
+duration: instantaneous
 time: reaction
 range: self
 description: |

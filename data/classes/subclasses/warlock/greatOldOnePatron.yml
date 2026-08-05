@@ -33,7 +33,7 @@ children:
     duration: $(meta.level) minutes
     condition: $(meta.level >= 3)
     description: |
-      You form a telepathic connection between your mind and the mind of another. As a Bonus Action, choose one creature you can see within 30 feet of yourself. You and the chosen creature can communicate telepathically with each other while the two of you are within $(Math.max(1, stats.cha.mod)) miles of each other. To understand each other, you each must mentally use a language the other knows.
+      You form a telepathic connection between your mind and the mind of another. Choose one creature you can see within 30 feet of yourself. You and the chosen creature can communicate telepathically with each other while the two of you are within $(Math.max(1, stats.cha.mod)) miles of each other. To understand each other, you each must mentally use a language the other knows.
 
   # Level 3: Psychic Spells
   - id: psychicSpellsDamage
@@ -58,6 +58,8 @@ children:
   # Level 6: Clairvoyant Combatant
   - id: clairvoyantCombatant
     type: Activity
+    duration: instantaneous
+    range: self
     name: Clairvoyant Combatant
     time: free action
     resource: level1SpellSlot

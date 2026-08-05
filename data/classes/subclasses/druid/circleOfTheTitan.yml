@@ -55,7 +55,7 @@ children:
     condition: $(meta.level >= 6)
     value:
       name: "Elemental Rend"
-      description: "Whenever you hit with your Titan Form’s Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type."
+      description: "Whenever you hit with your Titan Form's Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type."
 
   - id: shockWaveEffect
     type: Effect

@@ -22,6 +22,7 @@ children:
   quantity: 1
 - id: largeForm
   type: Activity
+  range: self
   name: Large Form
   time: bonus action
   duration: 10 minutes

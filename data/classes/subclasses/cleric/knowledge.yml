@@ -47,6 +47,7 @@ children:
   # Level 3: Mind Magic
   - id: mindMagic
     type: Activity
+    duration: instantaneous
     name: Mind Magic
     time: action
     range: self
@@ -57,6 +58,8 @@ children:
   # Level 6: Unfettered Mind
   - id: unfetteredMindTelepathy
     type: Activity
+    time: free action
+    duration: instantaneous
     name: Unfettered Mind
     range: 60 feet
     condition: $(meta.level >= 6)

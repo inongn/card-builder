@@ -1,7 +1,7 @@
 type: Statblock
 name: Reanimated Companion
 id: reanimatedCompanion
-category: summon
+category: companion
 tags: [summon]
 size: Medium
 classification: Undead
@@ -30,4 +30,4 @@ traits:
 actions:
   - name: Dreadful Swipe
     id: dreadfulSwipe
-    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d4 + $(stats.int.mod) Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn."
+    description: "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d4$(formatBonus(stats.int.mod)) Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn."

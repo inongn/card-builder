@@ -14,6 +14,8 @@ children:
   # Level 3: Spiritual Protectors
   - id: spiritualProtectors
     type: Activity
+    duration: instantaneous
+    range: self
     name: Spiritual Protectors
     time: free action
     condition: $(meta.level >= 3)
@@ -22,7 +24,7 @@ children:
       
       **Distract.** Until the start of your next turn, the target has Disadvantage on attack rolls against targets other than you or another Barbarian with this feature.
       
-      **Protect.** Until the end of the target’s next turn, the next time it hits a creature other than you with an attack roll, that creature has Resistance to the damage dealt by that attack.
+      **Protect.** Until the end of the target's next turn, the next time it hits a creature other than you with an attack roll, that creature has Resistance to the damage dealt by that attack.
       
       **Strike.** The target takes an extra 1d6 Acid, Cold, Fire, Force, Lightning, or Thunder damage (your choice).
 

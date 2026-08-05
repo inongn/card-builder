@@ -8,4 +8,4 @@ range: self
 duration: Instantaneous
 resource: psionicEnergyDice
 description: |
-  When you take the Study action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the die is expended.
+  When you take the Study action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.

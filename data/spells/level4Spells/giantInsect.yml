@@ -13,7 +13,7 @@ children:
     description: |
       You summon a giant centipede.
 
-      >**Armor Class** 11 + the spell’s level
+      >**Armor Class** 11 + the spell's level
       >
       >**Hit Points** 30 + 10 for each spell level above 4
       >
@@ -33,13 +33,13 @@ children:
       >
       >---
       >
-      >***Multiattack.*** The insect makes a number of attacks equal to half this spell’s level (round down).
+      >***Multiattack.*** The insect makes a number of attacks equal to half this spell's level (round down).
       >
-      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell’s level Piercing damage plus 1d4 Poison damage.
+      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell's level Piercing damage plus 1d4 Poison damage.
       >
       >---
       >
-      >***(Bonus Action) Venomous Spew.*** _Constitution Saving Throw:_ $(attributes.spellcasting.save) DC, one creature the insect can see within 10 feet. _Failure:_ The target has the Poisoned condition until the start of the insect’s next turn.
+      >***(Bonus Action) Venomous Spew.*** _Constitution Saving Throw:_ $(attributes.spellcasting.save) DC, one creature the insect can see within 10 feet. _Failure:_ The target has the Poisoned condition until the start of the insect's next turn.
   - type: Activity
     name: "Giant Insect: Spider"
     time: action
@@ -50,7 +50,7 @@ children:
     description: |
       You summon a giant spider.
 
-      >**Armor Class** 11 + the spell’s level
+      >**Armor Class** 11 + the spell's level
       >
       >**Hit Points** 30 + 10 for each spell level above 4
       >
@@ -70,11 +70,11 @@ children:
       >
       >---
       >
-      >***Multiattack.*** The insect makes a number of attacks equal to half this spell’s level (round down).
+      >***Multiattack.*** The insect makes a number of attacks equal to half this spell's level (round down).
       >
-      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell’s level Piercing damage plus 1d4 Poison damage.
+      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell's level Piercing damage plus 1d4 Poison damage.
       >
-      >***Web Bolt.*** _Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 60 ft. _Hit:_ 1d10$(formatBonus(stats.str.mod)) + the spell’s level Bludgeoning damage, and the target’s Speed is reduced to 0 until the start of the insect’s next turn.
+      >***Web Bolt.*** _Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 60 ft. _Hit:_ 1d10$(formatBonus(stats.str.mod)) + the spell's level Bludgeoning damage, and the target's Speed is reduced to 0 until the start of the insect's next turn.
   - type: Activity
     name: "Giant Insect: Wasp"
     time: action
@@ -85,7 +85,7 @@ children:
     description: |
       You summon a giant wasp.
 
-      >**Armor Class** 11 + the spell’s level
+      >**Armor Class** 11 + the spell's level
       >
       >**Hit Points** 30 + 10 for each spell level above 4
       >
@@ -105,6 +105,6 @@ children:
       >
       >---
       >
-      >***Multiattack.*** The insect makes a number of attacks equal to half this spell’s level (round down).
+      >***Multiattack.*** The insect makes a number of attacks equal to half this spell's level (round down).
       >
-      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell’s level Piercing damage plus 1d4 Poison damage.
+      >***Poison Jab.*** _Melee Weapon Attack:_ $(attributes.spellcasting.attack) to hit, reach 10 ft. _Hit:_ 1d6$(formatBonus(stats.str.mod)) + the spell's level Piercing damage plus 1d4 Poison damage.

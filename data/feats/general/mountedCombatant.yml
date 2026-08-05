@@ -13,6 +13,9 @@ children:
     value: 1
   - name: Mounted Combatant
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     description: |
       While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount.
 

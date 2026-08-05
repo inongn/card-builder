@@ -5,6 +5,9 @@ type: Folder
 children:
   - id: frostsChill
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Frost's Chill
     description: When you hit a target with an attack roll and deal damage to it, you also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.
     resource: giantAncestry

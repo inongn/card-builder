@@ -46,6 +46,22 @@ children:
       
       **Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.
   - id: rage
+    type: Form
+    name: Rage
+    abbreviation: R
+  - type: Reference
+    target: [bludgeoningResistance, piercingResistance, slashingResistance]
+    form: rage
+  - type: Reference
+    target: [strAdvantage, athleticsAdvantage]
+    form: rage
+  - id: rageDamageBonus
+    type: Effect
+    target: attributes.melee.bonus
+    operation: add
+    value: $(attributes.rageDamage)
+    form: rage
+  - id: rage
     type: Resource
     name: Rage
     quantity: $(progression(2,2,3,3,3,4,4,4,4,4,4,5,5,5,5,5,6,6,6,6))
@@ -72,6 +88,9 @@ children:
   # Level 2: Reckless Attack
   - id: recklessAttack
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Reckless Attack
     condition: $(meta.level >= 2)
     description: |
@@ -93,7 +112,14 @@ children:
     target: rage
     condition: $(meta.level >= 3)
     description: "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability."
-  
+  - id: primalKnowledgeAcr
+    type: Effect
+    form: rage
+    target: skills.acrobatics.bonus
+    operation: set
+    value: $(Math.floor(stats.str.mod + attributes.prof * skills.acrobatics.proficiency))
+
+
   # Level 3: Barbarian Subclass
   - id: barbarianSubclass
     name: Barbarian Subclass
@@ -136,7 +162,7 @@ children:
     name: Instinctive Pounce
     target: rage
     condition: $(meta.level >= 7)
-    description: "As part of the Bonus Action you take to enter your Rage, move up to $(attributes.movement.walk/2) feet."
+    description: "As part of the Bonus Action you take to enter your Rage, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet."
 
   # Level 8: Ability Score Improvement
   - id: level8feat

@@ -123,6 +123,7 @@ children:
   # ==========================================
   - id: countercharm
     type: Activity
+    duration: instantaneous
     name: Countercharm
     time: reaction
     range: 30 feet

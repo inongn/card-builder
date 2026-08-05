@@ -29,14 +29,11 @@ children:
   - type: Slot
     id: mysticArtsPreparedSpells
     name: "Mystic Arts Prepared Spells"
-    target: "sorcerer NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
+    target: "sorcerer NOT class NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')"
     variables:
       maxLevel: "$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)"
     quantity: "$(meta.level >= 8 ? 6 : meta.level >= 7 ? 5 : meta.level >= 4 ? 4 : 3)"
     condition: $(meta.level >= 3)
-    overwrite:
-      variables.classification: "spellcasting"
-      tags: ["monkSpell"]
 
   # Level 6: Mystic Fighting Style
   - type: Effect

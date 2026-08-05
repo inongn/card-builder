@@ -5,6 +5,7 @@ type: Folder
 children:
   - id: stonesEndurance
     type: Activity
+    duration: instantaneous
     name: Stone's Endurance
     time: reaction
     range: self

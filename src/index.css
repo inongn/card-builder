@@ -1424,7 +1424,6 @@ mdui-list-item::part(description) {
    ========================================================================== */
 
 .debug-yaml-container {
-  height: 100%;
   display: flex;
   flex-direction: column;
   background: rgb(var(--mdui-color-surface));
@@ -1438,7 +1437,7 @@ mdui-list-item::part(description) {
   border: 1px solid rgb(var(--mdui-color-outline-variant));
   border-radius: var(--mdui-shape-corner-medium);
   background: rgb(var(--mdui-color-surface-container-low));
-  overflow: hidden;
+  max-height: calc(100vh - 230px) !important;
 }
 
 .debug-code-toolbar {
@@ -1459,10 +1458,11 @@ mdui-list-item::part(description) {
 .debug-code-content-wrapper {
   display: flex;
   flex: 1;
-  overflow: auto;
   font-family: 'Fira Code', 'Roboto Mono', 'Courier New', Courier, monospace;
   font-size: 13px;
   line-height: 1.6;
+  overflow: auto;
+  align-items: flex-start;
 }
 
 .debug-code-gutter {
@@ -1471,8 +1471,7 @@ mdui-list-item::part(description) {
   color: rgb(var(--mdui-color-outline));
   text-align: right;
   user-select: none;
-  border-right: 1px solid rgb(var(--mdui-color-outline-variant));
-  min-width: 32px;
+  width: 32px;
 }
 
 .debug-code-line-number {
@@ -1483,9 +1482,10 @@ mdui-list-item::part(description) {
   margin: 0;
   padding: var(--space-3) var(--space-4);
   flex: 1;
-  overflow-x: auto;
   white-space: pre;
   color: rgb(var(--mdui-color-on-surface));
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 .debug-search-match {
@@ -1563,7 +1563,6 @@ mdui-list-item::part(description) {
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-4) var(--space-5);
-  border-bottom: 1px solid rgb(var(--mdui-color-outline-variant));
 }
 
 .debug-drawer__title {
@@ -1575,7 +1574,6 @@ mdui-list-item::part(description) {
 .debug-drawer__content {
   flex: 1;
   padding: var(--space-4) var(--space-5) var(--space-5);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -1665,7 +1663,6 @@ mdui-list-item::part(description) {
 .debug-search-field {
   flex: 1;
   max-width: 280px;
-  height: 36px;
 }
 
 .debug-copy-icon--copied {
@@ -1673,11 +1670,19 @@ mdui-list-item::part(description) {
 }
 
 /* Debug drawer panel sizing — applied via class to mdui-navigation-drawer */
-.debug-drawer-panel {
-  width: 600px;
-  max-width: 100vw;
-  height: 100vh;
+mdui-navigation-drawer::part(panel) {
   z-index: 10000;
+  width: 30vw;
+  max-height: calc(100vh - 64px);
+}
+
+mdui-navigation-drawer[mobile]::part(panel) {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  border-radius: 0 !important;
+  padding-top: 64px;
+  position: fixed;
+  max-height: 100vh;
 }
 
 /* Debug tabs bar padding */
@@ -1735,7 +1740,6 @@ mdui-list-item::part(description) {
 .debug-search-field {
   flex: 1;
   max-width: 280px;
-  height: 36px;
 }
 
 .debug-copy-icon--copied {

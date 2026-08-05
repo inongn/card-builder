@@ -200,6 +200,7 @@ export class CharacterBuilder {
                             priority: effectiveNode.priority !== undefined ? effectiveNode.priority : prop.priority,
                             variables: contentVars,
                             condition: finalCondition,
+                            form: effectiveNode.form || prop.form,
                             // We consumed the ignore flag to decide the condition, now force check
                             ignoreCondition: false,
                             expanded: true
@@ -282,7 +283,9 @@ export class CharacterBuilder {
             resources: [],
             features: [],
             activities: [],
-            statblocks: []
+            statblocks: [],
+            forms: {},
+            transformations: {}
         };
     }
 
@@ -874,8 +877,12 @@ export class CharacterBuilder {
         const allProperties = [];
         this.collectAllProperties(this.propertyTree, allProperties);
 
+        // Separate base properties from form-scoped properties
+        const baseProperties = allProperties.filter(p => !p.form || p.type === 'Form');
+        const formProperties = allProperties.filter(p => p.form && p.type !== 'Form');
+
         // Group properties by pipeline stage
-        const byStage = this.groupPropertiesByStage(allProperties);
+        const byStage = this.groupPropertiesByStage(baseProperties);
 
         // Process each stage in order
         const numStages = PIPELINE_STAGES.length;
@@ -922,6 +929,75 @@ export class CharacterBuilder {
             // changes made by Foundation (level), Attributes (proficiencies), and Effects (weapons).
             if (stage.name === 'Attributes' || isFinalStage) {
                 this.syncVisibility(this.propertyTree, evaluator);
+            }
+        }
+
+        // Process Form Transformations
+        if (this.characterData.transformations) {
+            const evaluator = new ExpressionEvaluator(this.characterData);
+            for (const [formId, trans] of Object.entries(this.characterData.transformations)) {
+                const scopedProps = formProperties.filter(p => p.form === formId);
+                for (const prop of scopedProps) {
+                    if (prop.condition && !prop.ignoreCondition) {
+                        const res = evaluator.evaluate(prop.condition, prop.variables || {});
+                        if (!res || (typeof res === 'string' && res.includes('$('))) continue;
+                    }
+
+                    if (prop.type === 'Effect') {
+                        const target = prop.target || '';
+                        const val = evaluator.evaluate(prop.value, prop.variables || {});
+
+                        if (target.startsWith('saves.')) {
+                            const parts = target.split('.');
+                            const saveKey = parts[1];
+                            const field = parts[2];
+                            if (!trans.saves[saveKey]) trans.saves[saveKey] = {};
+                            trans.saves[saveKey][field] = val;
+                        } else if (target.startsWith('skills.')) {
+                            const parts = target.split('.');
+                            const skillKey = parts[1];
+                            const field = parts[2];
+                            if (!trans.skills[skillKey]) trans.skills[skillKey] = {};
+                            trans.skills[skillKey][field] = val;
+                            if (field === 'stat' && this.characterData.skills[skillKey]) {
+                                const statMod = this.characterData.stats[val]?.mod || 0;
+                                const profBonus = (this.characterData.attributes.prof || 0) * (this.characterData.skills[skillKey].proficiency || 0);
+                                trans.skills[skillKey].bonus = Math.floor(statMod + profBonus);
+                            }
+                        } else if (target === 'attributes.resistances') {
+                            if (Array.isArray(val)) {
+                                trans.attributes.resistances.push(...val);
+                            } else if (val) {
+                                trans.attributes.resistances.push(val);
+                            }
+                        } else if (target === 'attributes.immunities') {
+                            if (Array.isArray(val)) {
+                                trans.attributes.immunities.push(...val);
+                            } else if (val) {
+                                trans.attributes.immunities.push(val);
+                            }
+                        } else if (target === 'attributes.melee.bonus') {
+                            trans.attributes.melee = trans.attributes.melee || {};
+                            trans.attributes.melee.bonus = typeof val === 'number' ? val : parseInt(val, 10) || 0;
+                        }
+                    } else if (prop.type === 'Extra') {
+                        trans.extras.push({
+                            id: prop.id,
+                            name: evaluator.evaluate(prop.name, prop.variables || {}),
+                            target: prop.target,
+                            description: evaluator.evaluate(prop.description, prop.variables || {}),
+                            form: formId
+                        });
+                    } else if (prop.type === 'Activity') {
+                        trans.activities.push({
+                            id: prop.id,
+                            name: evaluator.evaluate(prop.name, prop.variables || {}),
+                            form: formId
+                        });
+                    }
+                }
+
+                this.characterData.transformations[formId] = trans;
             }
         }
     }
@@ -974,7 +1050,14 @@ export class CharacterBuilder {
 
         const currentAncestry = [
             ...inheritedAncestry,
-            { id: node.id, type: node.type, tags: Array.isArray(node.tags) ? node.tags : (node.tags ? [node.tags] : []) }
+            {
+                id: node.id,
+                type: node.type,
+                tags: Array.isArray(node.tags) ? node.tags : (node.tags ? [node.tags] : []),
+                filledTags: node.filled?.tags
+                    ? (Array.isArray(node.filled.tags) ? node.filled.tags : [node.filled.tags])
+                    : []
+            }
         ];
 
         // SMART PRUNING: Respect visibility calculated in previous passes
@@ -1322,6 +1405,27 @@ export class CharacterBuilder {
         const scope = prop.variables || {};
 
         switch (type) {
+            case 'Form':
+                {
+                    const formId = prop.id || prop.form;
+                    if (formId) {
+                        if (!this.characterData.transformations) this.characterData.transformations = {};
+                        if (!this.characterData.transformations[formId]) {
+                            this.characterData.transformations[formId] = {
+                                id: formId,
+                                name: evaluator.evaluate(prop.name || formId, scope),
+                                abbreviation: evaluator.evaluate(prop.abbreviation || formId.charAt(0).toUpperCase(), scope),
+                                saves: {},
+                                skills: {},
+                                attributes: { resistances: [], immunities: [] },
+                                activities: [],
+                                extras: []
+                            };
+                        }
+                    }
+                }
+                break;
+
             case 'Meta':
                 // Use id for meta key (e.g., 'level', 'class')
                 const metaKey = (prop.id || '').replace(/^ui\./i, '').toLowerCase();

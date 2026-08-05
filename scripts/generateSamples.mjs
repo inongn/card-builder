@@ -276,7 +276,17 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
 //   inputs: partial input override {path, value}[]
 //   prefs: {slotId: [preferredPropertyId, ...]} - slot fill preferences
 
-const LEVEL = 8;
+const args = process.argv.slice(2);
+const levelArg = args.find(a => a.startsWith('--level=') || a.match(/^\d+$/));
+let parsedLevel = 8;
+if (levelArg) {
+    if (levelArg.startsWith('--level=')) {
+        parsedLevel = parseInt(levelArg.split('=')[1], 10);
+    } else {
+        parsedLevel = parseInt(levelArg, 10);
+    }
+}
+const LEVEL = isNaN(parsedLevel) ? 8 : parsedLevel;
 
 const CHARACTERS = [
 
@@ -1035,8 +1045,8 @@ const CHARACTERS = [
         id: 'sample_warlock_vestige',
         name: 'Elysia Relic',
         class: 'Warlock', sub: 'Vestige',
-        species: 'Aasimar', background: 'acolyte',
-        speciesId: 'aasimar', classId: 'warlock', subcId: 'vestigePatron',
+        species: 'Tiefling', background: 'acolyte',
+        speciesId: 'tiefling', classId: 'warlock', subcId: 'vestigePatron',
         str: 1, dex: 3, con: 4, int: 2, wis: 2, cha: 7,
         prefs: { warlockSubclass: ['vestigePatron'] }
     },

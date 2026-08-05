@@ -3,6 +3,8 @@ summary: "Add a maneuver die to your AC while moving."
 name: Evasive Footwork
 tags: [maneuver]
 type: Activity
+duration: instantaneous
+range: self
 time: bonus action
 resource: superiorityDice
 description: You take the Disengage action and add 1d$(attributes.superiorityDie) to your AC until the start of your next turn.

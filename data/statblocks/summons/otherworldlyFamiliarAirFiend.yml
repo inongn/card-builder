@@ -3,10 +3,10 @@ name: "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
 tags: [familiar]
 id: otherworldlyFamiliarAirFiend
 size: Tiny
-category: summon
+category: companion
 classification: Fiend
-ac: "$(10 + (attributes.spellcasting.maxLevel || 1))"
-hp: "$(2 + 2 * (attributes.spellcasting.maxLevel || 1))"
+ac: "$(10 + (local.maxLevel || 1))"
+hp: "$(2 + 2 * (local.maxLevel || 1))"
 movement:
   walk: 30
   fly: 30
@@ -27,4 +27,4 @@ traits:
     description: When you cast a spell with a range of touch, the familiar can deliver the spell with its touch. To do so, the familiar must be within 120 feet of you.
 actions:
   - name: Otherworldly Scratch
-    description: "_Melee Spell Attack:_ your Spell Attack Modifier to hit, reach 5 ft., one target. _Hit:_ 1 + $(attributes.spellcasting.maxLevel || 1) Necrotic damage."
+    description: "_Melee Spell Attack:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft., one target. _Hit:_ $(1 + (local.maxLevel || 1)) Necrotic damage."

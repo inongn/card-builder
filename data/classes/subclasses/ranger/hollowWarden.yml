@@ -1,6 +1,6 @@
 id: hollowWarden
 name: Hollow Warden
-description: 'Draw power from ancient horrors to grow bark armor and unleash nature’s primal, terrifying vengeance.'
+description: 'Draw power from ancient horrors to grow bark armor and unleash nature''s primal, terrifying vengeance.'
 tags:
   - rangerSubclass
 type: Folder
@@ -30,6 +30,7 @@ children:
   # Level 3: Wrath of the Wild
   - id: wrathOfTheWild
     type: Activity
+    range: self
     name: Wrath of the Wild
     time: bonus action
     duration: 1 minute

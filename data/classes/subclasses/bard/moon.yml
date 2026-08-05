@@ -21,6 +21,8 @@ children:
 
   - id: lunarVitality
     type: Activity
+    duration: instantaneous
+    range: self
     name: Lunar Vitality
     time: free action
     resource: bardicInspiration

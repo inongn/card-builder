@@ -5,6 +5,7 @@ type: Folder
 children:
   - id: stormsThunder
     type: Activity
+    duration: instantaneous
     name: Storm's Thunder
     time: reaction
     range: 60 feet

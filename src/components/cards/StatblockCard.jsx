@@ -130,7 +130,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                         </div>
                         {actions.map((action, i) => (
                             <div key={i}>
-                                <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ p: 'span' }}>{action.description}</ReactMarkdown>
+                                <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{action.description}</ReactMarkdown>
                             </div>
                         ))}
                     </div>

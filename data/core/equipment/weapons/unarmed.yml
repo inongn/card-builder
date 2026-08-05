@@ -1,6 +1,7 @@
 id: unarmed
 name: "Unarmed Strike"
 type: Activity
+duration: instantaneous
 tags: [simple, melee, unarmed, weaponAttack, bludgeoningDamage]
 time: action
 range: 5 feet

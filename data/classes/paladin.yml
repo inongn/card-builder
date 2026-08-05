@@ -120,6 +120,8 @@ children:
   # Level 6: Aura of Protection
   - id: auraOfProtection
     type: Activity
+    time: free action
+    duration: instantaneous
     name: Aura of Protection
     range: "$(meta.level >= 18 ? 30 : 10) feet"
     condition: $(meta.level >= 6)

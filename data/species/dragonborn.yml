@@ -36,6 +36,7 @@ children:
   value: 60
 - id: draconicFlight
   type: Activity
+  range: self
   name: Draconic Flight
   time: bonus action
   duration: 10 minutes

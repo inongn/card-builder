@@ -14,15 +14,17 @@ children:
   - id: frenzy
     type: Extra
     name: Frenzy
-    target: rage
-    description: "If you use Reckless Attack while your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
+    target: recklessAttack
+    description: "While your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with a Strength-based attack."
 
   # Level 6: Mindless Rage
   - id: mindlessRageCharmed
     type: Reference
     target: charmedImmunity
+    form: rage
     condition: $(meta.level >= 6)
   - id: mindlessRageFrightened
     type: Reference
     target: frightenedImmunity
+    form: rage
     condition: $(meta.level >= 6)

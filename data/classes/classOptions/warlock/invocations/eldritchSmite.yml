@@ -10,6 +10,7 @@ type: Folder
 children:
   - id: eldritchSmiteActivity
     type: Activity
+    range: self
     name: Eldritch Smite
     time: free action
     condition: $(attributes.pactOfTheBlade == true)

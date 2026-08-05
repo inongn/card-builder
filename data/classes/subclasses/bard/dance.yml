@@ -22,17 +22,13 @@ children:
     name: Agile Strikes
     description: You can make one Unarmed Strike as part of this action.
 
-  - id: dexterousAttacksBonus
-    type: Effect
-    target: activities[tags=weaponAttack and tags=unarmed].description["$(formatBonus(attributes.melee.bonus))"]
-    operation: replace
-    value: "$(formatBonus(attributes.finesse.bonus))"
 
-  - id: dexterousAttacksRoll
+  - id: martialArtsReplacementUnarmed
     type: Effect
-    target: activities[tags=weaponAttack and tags=unarmed].description["$(formatBonus(attributes.melee.attack))"]
+    target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
     operation: replace
-    value: "$(formatBonus(attributes.finesse.attack))"
+    value: 1d$(attributes.bardicDie)$(formatBonus(attributes.finesse.bonus))
+    condition: $(meta.level >= 1)
 
   - id: unarmoredDefenseDance
     type: Effect
@@ -56,11 +52,14 @@ children:
     duration: instantaneous
     resource: bardicInspiration
     condition: $(meta.level >= 6)
-    description: "When an enemy ends its turn within 5 feet of you, you move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks. Then one ally within 30 feet can also move up to half their Speed using their Reaction."
+    description: "When an enemy ends its turn within 5 feet of you, you move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks. Then one ally within 30 feet can also move up to half their Speed using their Reaction."
 
   # Level 6: Tandem Footwork
   - id: tandemFootwork
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Tandem Footwork
     condition: $(meta.level >= 6)
     resource: bardicInspiration

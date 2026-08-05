@@ -43,6 +43,7 @@ children:
   # Level 1: Innate Sorcery
   - id: innateSorcery
     type: Activity
+    range: self
     name: Innate Sorcery
     time: bonus action
     duration: 1 minute

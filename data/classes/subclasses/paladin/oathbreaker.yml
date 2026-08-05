@@ -30,6 +30,8 @@ children:
   # Level 3: Conjure Undead
   - id: conjureUndead
     type: Activity
+    duration: instantaneous
+    range: self
     name: Conjure Undead
     time: bonus action
     resource: channelDivinity
@@ -42,9 +44,12 @@ children:
   # Level 3: Dreadful Aspect
   - id: dreadfulAspect
     type: Activity
+    time: free action
+    range: self
     name: Dreadful Aspect
     resource: channelDivinity
-    description: "Immediately after you cast Divine Smite, you cause each chosen creature in a 30-foot Emanation to make a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for 1 minute (repeating save at end of each of its turns)."
+    duration: 1 minute
+    description: "Immediately after you cast Divine Smite, you cause each chosen creature in a 30-foot Emanation to make a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for the duration (repeating save at end of each of its turns)."
 
   # Level 7: Aura of Hate
   - id: auraOfHate

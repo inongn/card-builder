@@ -3,4 +3,7 @@ name: Multiattack Defense
 summary: "Attacks from a creature hit you with have Disadvantage for the rest of the turn."
 tags: [defensiveTactics]
 type: Activity
+time: free action
+duration: instantaneous
+range: self
 description: "When a creature hits you with an attack roll, that creature has Disadvantage on all other attack rolls against you this turn."

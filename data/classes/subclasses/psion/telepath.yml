@@ -39,7 +39,7 @@ children:
     duration: Instantaneous
     resource: psionicEnergyDice
     condition: $(meta.level >= 3)
-    description: "When a creature within range hits with an attack roll, subtract 1d$(attributes.psiDice) from the attack roll, potentially causing it to miss. The die is expended only if the target misses."
+    description: "When a creature within range hits with an attack roll, subtract 1d$(attributes.psiDice) from the attack roll, potentially causing it to miss. The charge is expended only if the target misses."
 
   # Level 6: Bulwark Mind
   - id: bulwarkMind

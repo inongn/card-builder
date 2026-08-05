@@ -5,6 +5,7 @@ type: Folder
 children:
   - id: cloudsJaunt
     type: Activity
+    duration: instantaneous
     name: Cloud's Jaunt
     time: bonus action
     range: 30 feet

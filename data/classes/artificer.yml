@@ -57,7 +57,7 @@ children:
     quantity: "$(meta.level >= 6 ? 3 : 2)"
     target: "createFoodAndWater OR leomundsSecretChest OR waterBreathing OR darkvision OR fabricate OR spiritualWeapon OR ropeTrick OR sending OR shield OR detectMagic OR findTraps OR bless OR magicWeapon $(meta.level >= 6 ? 'OR mageArmor OR passWithoutTrace OR enhanceAbility OR foresight OR seeInvisibility OR fear OR thunderwave OR waterWalk' : '')"
     overwrite:
-      resource: null
+      resource: limited
   
   
   # Level 3: Artificer Subclass
@@ -79,6 +79,7 @@ children:
   # Level 7: Flash of Genius
   - id: flashOfGenius
     type: Activity
+    duration: instantaneous
     time: reaction
     name: Flash of Genius
     range: 30 feet

@@ -39,6 +39,7 @@ children:
 
   - id: boneBlade
     type: Activity
+    duration: instantaneous
     name: "Bone Blade"
     time: action
     range: 5 feet
@@ -49,6 +50,7 @@ children:
 
   - id: fleshMaul
     type: Activity
+    duration: instantaneous
     name: "Flesh Maul"
     time: action
     range: 5 feet
@@ -59,6 +61,7 @@ children:
 
   - id: visceraLauncher
     type: Activity
+    duration: instantaneous
     name: "Viscera Launcher"
     time: action
     range: 30 feet

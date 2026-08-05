@@ -27,6 +27,7 @@ children:
   # Level 3: Restore Balance
   - id: restoreBalance
     type: Activity
+    duration: instantaneous
     name: Restore Balance
     time: reaction
     range: 60 feet
@@ -43,6 +44,7 @@ children:
   # Level 6: Bastion of Law
   - id: bastionOfLaw
     type: Activity
+    duration: instantaneous
     name: Bastion of Law
     time: action
     range: 30 feet

@@ -1,7 +1,7 @@
 type: Statblock
 name: "$(meta.beastcompanionname || local.name || 'Wild Shape Form')"
 id: wildShapeForm
-category: wildshape
+category: wildShape
 tags: [wildshape]
 size: "$(local.size || 'Medium')"
 classification: "$(local.classification || 'Beast')"

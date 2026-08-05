@@ -29,13 +29,14 @@ children:
   # Level 3: Starry Form
   - id: starryForm
     type: Activity
+    range: self
     name: Starry Form
     time: bonus action
     duration: 10 minutes
     resource: wildShape
     condition: $(meta.level >= 3)
     description: |
-      You take on a starry form. While in your starry form, you retain your game statistics, but your body becomes luminous, your joints glimmer like stars, and glowing lines connect them as on a star chart. This form sheds Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. $(meta.level >= 14 ? "Additionally, you have resistance to bludgeoning, piercing, and slashing damage." : "")
+      You take on a starry form. While in your starry form, you retain your game statistics, but your body becomes luminous, your joints glimmer like stars, and glowing lines connect them as on a star chart. This form sheds Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. 
 
       Whenever you assume your starry form, choose which of the following constellations glimmers on your body; your choice gives you certain benefits while in the form.
 
@@ -48,6 +49,7 @@ children:
   # Level 6: Cosmic Omen
   - id: cosmicOmen
     type: Activity
+    duration: instantaneous
     name: Cosmic Omen
     time: reaction
     range: 30 feet

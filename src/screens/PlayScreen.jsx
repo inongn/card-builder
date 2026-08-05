@@ -10,7 +10,7 @@ import 'mdui/components/menu.js';
 import 'mdui/components/dropdown.js';
 import 'mdui/components/menu-item.js';
 
-export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode, loadedCharacterId, handleDeleteSaved }) => {
+export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode, loadedCharacterId, handleDeleteSaved, onToggleDebug }) => {
     const mainCardRef = React.useRef(null);
     const asideRef = React.useRef(null);
     const charImage = characterData?.meta?.image ? getAssetUrl(characterData.meta.image) : undefined;
@@ -93,7 +93,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
 
             if (hasTag('primalcompanion') || hasTag('steed') || hasTag('familiar')) {
                 groups.companions.push(sb);
-            } else if (hasTag('wildshape') || hasTag('wildShape')) {
+            } else if (hasTag('titanFormTemplate') || hasTag('wildShapeTemplate')) {
                 groups.wildshapes.push(sb);
             } else {
                 groups.summons.push(sb);
@@ -144,6 +144,10 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
                         <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
                             {isDarkMode ? 'Light Mode' : 'Dark Mode'}
                         </mdui-menu-item>
+                        <mdui-menu-item icon={'bug_report'} onClick={onToggleDebug}>
+                            Debug
+                        </mdui-menu-item>
+
                     </mdui-menu>
                 </mdui-dropdown>
             </mdui-top-app-bar>

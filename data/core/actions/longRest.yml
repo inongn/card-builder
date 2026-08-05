@@ -1,4 +1,5 @@
 type: Activity
+duration: instantaneous
 id: longRest
 range: self
 time: 8 hours

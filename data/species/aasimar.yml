@@ -34,6 +34,7 @@ children:
   target: lightSpell
 - id: celestialRevelation
   type: Activity
+  range: self
   name: Celestial Revelation
   time: bonus action
   duration: 1 minute

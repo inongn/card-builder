@@ -29,6 +29,7 @@ children:
   # Level 3: Sacred Weapon
   - id: sacredWeapon
     type: Activity
+    range: self
     name: Sacred Weapon
     time: free action
     duration: 10 minutes

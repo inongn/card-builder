@@ -117,6 +117,7 @@ const EnhancedCodeViewer = ({ code, filename }) => {
                 <mdui-text-field
                     label="Search inside code..."
                     value={search}
+                    variant="outlined"
                     onInput={(e) => setSearch(e.target.value)}
                     clearable
                     class="debug-search-field"
@@ -143,6 +144,7 @@ const EnhancedCodeViewer = ({ code, filename }) => {
                         <span key={ln} className="debug-code-line-number">{ln}</span>
                     ))}
                 </div>
+
                 <pre className="debug-code-pre" dangerouslySetInnerHTML={{ __html: highlightedHtml }} />
             </div>
         </div>
@@ -263,15 +265,13 @@ export default function DebugDrawer({
                     <mdui-button-icon icon="close" onClick={onClose}></mdui-button-icon>
                 </div>
 
-                <mdui-divider></mdui-divider>
 
                 {/* Tabs */}
                 <mdui-tabs value={activeTab} class="debug-tabs">
                     <mdui-tab value="character" onClick={() => setActiveTab('character')}>Character</mdui-tab>
                     <mdui-tab value="recipe" onClick={() => setActiveTab('recipe')}>Recipe</mdui-tab>
                     <mdui-tab value="tree" onClick={() => setActiveTab('tree')}>Tree</mdui-tab>
-                    <mdui-tab value="explorer" onClick={() => setActiveTab('explorer')}>Explorer</mdui-tab>
-                    <mdui-tab value="tools" onClick={() => setActiveTab('tools')}>Stats &amp; Tools</mdui-tab>
+                    <mdui-tab value="tools" onClick={() => setActiveTab('tools')}>Tools</mdui-tab>
                 </mdui-tabs>
 
                 {/* Content Area */}

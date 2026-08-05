@@ -1,6 +1,6 @@
 id: circleOfTheSea
 name: Circle of the Sea
-description: 'Draw on the tempestuous forces of oceans and storms, embodying nature’s wrath or mystical unity.'
+description: 'Draw on the tempestuous forces of oceans and storms, embodying nature''s wrath or mystical unity.'
 type: Folder
 tags:
   - druidSubclass
@@ -25,6 +25,7 @@ children:
   # Level 3: Wrath of the Sea (Activation)
   - id: wrathOfTheSea
     type: Activity
+    range: self
     name: Wrath of the Sea
     time: bonus action
     duration: 10 minutes

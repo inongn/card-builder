@@ -2,6 +2,9 @@ id: beguilingShot
 summary: "Imbue an arrow with enchantment to charm a target and distract foes."
 name: Beguiling Shot
 type: Activity
+time: free action
+duration: instantaneous
+range: self
 tags: [arcaneShotOption]
 resource: arcaneShot
 description: "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 2d6 Psychic damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Wisdom saving throw or have the Charmed condition until the start of your next turn (treating you or one of your allies within 30 feet of it as the charmer)."

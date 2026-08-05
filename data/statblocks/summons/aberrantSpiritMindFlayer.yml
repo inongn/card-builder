@@ -20,9 +20,9 @@ senses:
   darkvision: 60
 traits:
   - name: Whispering Aura
-    description: "At the start of each of the spirit’s turns, the spirit emits psionic energy if it doesn’t have the Incapacitated condition. _Wisdom Saving Throw:_ DC $(attributes.spellcasting.save), each creature (other than you) within 5 feet of the spirit. _Failure:_ 2d6 Psychic damage."
+    description: "At the start of each of the spirit's turns, the spirit emits psionic energy if it doesn't have the Incapacitated condition. _Wisdom Saving Throw:_ DC $(attributes.spellcasting.save), each creature (other than you) within 5 feet of the spirit. _Failure:_ 2d6 Psychic damage."
 actions:
   - name: Multiattack
     description: "The spirit makes $(Math.floor((local.maxLevel || 4) / 2)) Psychic Slam attacks."
   - name: Psychic Slam
-    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(stats.str.mod)) + $(local.maxLevel || 4) Psychic damage."
+    description: "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(3 + (local.maxLevel || 4))) Psychic damage."

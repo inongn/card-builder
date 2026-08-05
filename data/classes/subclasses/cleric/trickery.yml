@@ -46,7 +46,7 @@ children:
     description: |
       You create a visual illusion of yourself in an unoccupied space you can see within range. The illusion is animated and mimics your expressions and gestures. While it persists, you gain the following benefits:
       
-      **Cast Spells.** You can cast spells as though you were in the illusion’s space, but you must use your own senses.
+      **Cast Spells.** You can cast spells as though you were in the illusion's space, but you must use your own senses.
       
       **Distract.** When you$(meta.level >= 17 ? ' or your allies' : '') and the illusion are within 5 feet of a creature, attack rolls against it have Advantage.
       

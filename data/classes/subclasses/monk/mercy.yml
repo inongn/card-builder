@@ -17,6 +17,9 @@ children:
   # Level 3: Hand of Harm
   - id: handOfHarm
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Hand of Harm
     resource: 1 focusPoints
     description: "Once per turn when you hit a creature with an Unarmed Strike and deal damage, you deal 1d$(attributes.martialArtsDie)+$(stats.wis.mod) extra Necrotic damage.$(meta.level >= 6 ? ' You can also give the target the Poisoned condition until the end of your next turn.' : '')"

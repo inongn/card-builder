@@ -3,6 +3,8 @@ summary: "Use your reaction to strike back when an enemy misses you."
 name: Riposte
 tags: [maneuver]
 type: Activity
+duration: instantaneous
+range: self
 time: reaction
 resource: superiorityDice
-description: When a creature misses you with a melee attack roll, you make a melee attack roll with a weapon or an Unarmed Strike against the creature. If you hit, add 1d$(attributes.superiorityDie) to the attack’s damage.
+description: When a creature misses you with a melee attack roll, you make a melee attack roll with a weapon or an Unarmed Strike against the creature. If you hit, add 1d$(attributes.superiorityDie) to the attack's damage.

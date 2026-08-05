@@ -1,7 +1,7 @@
 export const PIPELINE_STAGES = [
     {
         name: 'Foundation',
-        types: ['Input', 'Stat'],
+        types: ['Input', 'Stat', 'Form'],
         conditionTiming: 'apply',   // Check conditions when applying
         evaluateAfter: true          // Run expression evaluation after this stage
     },

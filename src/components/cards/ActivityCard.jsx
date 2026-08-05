@@ -190,6 +190,17 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
         const ancestry = activity.sourceAncestry || [];
         const allAncestryTags = ancestry.flatMap(a => (a.tags || []).map(t => String(t).toLowerCase()));
         const allAncestryIds = ancestry.map(a => String(a.id || '').toLowerCase());
+        const allAncestryFilledTags = ancestry.flatMap(a => (a.filledTags || []).map(t => String(t).toLowerCase()));
+
+        // Check isFeat first — a feat benefit should be labeled as such even when the feat
+        // was granted via a species trait (human Versatile) or a class feature/invocation
+        // (Lessons of the First Ones). Without this, the species/class ancestor check fires first.
+        const isFeat = tags.some(t => String(t).toLowerCase().includes('feat')) ||
+            allAncestryTags.some(t => t.includes('feat')) ||
+            allAncestryFilledTags.some(t => t.includes('feat')) ||
+            allAncestryIds.some(id => id.includes('feat'));
+
+        if (isFeat) return 'Feat Benefit';
 
         const isSpecies = tags.some(t => String(t).toLowerCase() === 'species') ||
             allAncestryTags.includes('species') ||
@@ -202,12 +213,6 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
             allAncestryIds.some(id => id.includes('subclass'));
 
         if (isSubclass) return 'Subclass Feature';
-
-        const isFeat = tags.some(t => String(t).toLowerCase().includes('feat')) ||
-            allAncestryTags.some(t => t.includes('feat')) ||
-            allAncestryIds.some(id => id.includes('feat'));
-
-        if (isFeat) return 'Feat Benefit';
 
         const isClass = tags.some(t => String(t).toLowerCase() === 'class') ||
             allAncestryTags.includes('class') ||

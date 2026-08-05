@@ -40,6 +40,7 @@ children:
 
   - id: joltToLife
     type: Activity
+    duration: instantaneous
     name: "Jolt to Life"
     time: action
     range: touch

@@ -52,6 +52,7 @@ children:
   # Command Primal Companion
   - id: commandVestige
     type: Activity
+    duration: instantaneous
     time: bonus action
     range: 60 feet
     name: Command Vestige

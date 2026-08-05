@@ -27,6 +27,7 @@ children:
   # Level 3: Dark One's Blessing
   - id: darkOnesBlessing
     type: Activity
+    range: self
     name: Dark One's Blessing
     time: free action
     duration: instantaneous
@@ -37,11 +38,13 @@ children:
   # Level 6: Dark One's Own Luck
   - id: darkOnesOwnLuck
     type: Activity
+    duration: instantaneous
+    range: self
     name: Dark One's Own Luck
     time: free action
     resource: darkOnesOwnLuck
     condition: $(meta.level >= 6)
-    description: You call on your fiendish patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add 1d10 to your roll. You can do so after seeing the roll but before any of the roll’s effects occur.
+    description: You call on your fiendish patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add 1d10 to your roll. You can do so after seeing the roll but before any of the roll's effects occur.
 
   - id: darkOnesOwnLuck
     type: Resource
@@ -61,6 +64,8 @@ children:
   # Level 14: Hurl Through Hell
   - id: hurlThroughHell
     type: Activity
+    duration: instantaneous
+    range: self
     name: Hurl Through Hell
     time: free action
     resource: level1SpellSlot
@@ -68,6 +73,6 @@ children:
     description: |
       Once per turn when you hit a creature with an attack roll, you try to instantly transport the target through the Lower Planes. The target must succeed on DC $(attributes.spellcasting.save) Charisma saving throw, or the target disappears and hurtles through a nightmare landscape. 
       
-      The target takes 8d10 Psychic damage if it isn’t a Fiend, and it has the Incapacitated condition until the end of your next turn, when it returns to the space it previously occupied or the nearest unoccupied space.
+      The target takes 8d10 Psychic damage if it isn't a Fiend, and it has the Incapacitated condition until the end of your next turn, when it returns to the space it previously occupied or the nearest unoccupied space.
 
       

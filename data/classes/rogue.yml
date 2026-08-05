@@ -40,6 +40,9 @@ children:
     value: $(progression(1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10))
   - id: sneakAttack
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Sneak Attack
     description: |
       Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one creature you hit with an attack roll if you have Advantage on the roll or at least one of your allies is within 5 feet of the target.
@@ -91,6 +94,9 @@ children:
   # Level 5: Cunning Strike
   - id: cunningStrike
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Cunning Strike
     condition: $(meta.level >= 5)
     description: "When you deal Sneak Attack damage to a creature, you can choose to spend dice from the Sneak Attack to create one of the following effects:"
@@ -115,7 +121,7 @@ children:
     name: "Withdraw (Cost: 1d6)"
     target: cunningStrike
     condition: $(meta.level >= 5)
-    description: "Immediately after the attack, move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
+    description: "Immediately after the attack, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks."
 
 
 

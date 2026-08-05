@@ -23,4 +23,4 @@ actions:
   - name: Multiattack
     description: "The spirit makes $(Math.floor((local.maxLevel || 3) / 2)) Grave Bolt attacks."
   - name: Grave Bolt
-    description: "_Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 150 ft. _Hit:_ 2d4$(formatBonus(stats.dex.mod)) + $(local.maxLevel || 3) Necrotic damage."
+    description: "_Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, range 150 ft. _Hit:_ 2d4$(formatBonus(3 + (local.maxLevel || 3))) Necrotic damage."

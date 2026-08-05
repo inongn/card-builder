@@ -8,6 +8,7 @@ type: Folder
 children:
 - id: battleMedic
   type: Activity
+  duration: instantaneous
   name: Battle Medic
   time: action
   range: 5 feet

@@ -14,11 +14,14 @@ children:
   # Level 3: Arcane Ward
   - id: arcaneWard
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Arcane Ward
     condition: $(meta.level >= 3)
     resource: limited
     description: |
-      When you cast an Abjuration spell with a spell slot, you weave magic around yourself for protection. You simultaneously use a strand of the spell's magic to create a ward with $(2 * meta.level + stats.int.mod) Hit Points that lasts until you finish a Long Rest. Whenever you take damage, the ward takes the damage instead, and if you have any Resistances or Vulnerabilities, apply them before reducing the ward’s Hit Points. If the damage reduces the ward to 0 Hit Points, you take any remaining damage. While the ward has 0 Hit Points, it can’t absorb damage, but its magic remains. 
+      When you cast an Abjuration spell with a spell slot, you weave magic around yourself for protection. You simultaneously use a strand of the spell's magic to create a ward with $(2 * meta.level + stats.int.mod) Hit Points that lasts until you finish a Long Rest. Whenever you take damage, the ward takes the damage instead, and if you have any Resistances or Vulnerabilities, apply them before reducing the ward''s Hit Points. If the damage reduces the ward to 0 Hit Points, you take any remaining damage. While the ward has 0 Hit Points, it can''t absorb damage, but its magic remains. 
       
       Whenever you cast an Abjuration spell with a spell slot, the ward regains a number of Hit Points equal to twice the level of the spell slot. Alternatively, as a Bonus Action, you can expend a spell slot, and the ward regains a number of Hit Points equal to twice the level of the spell slot expended.
 
@@ -26,6 +29,7 @@ children:
   # Level 6: Projected Ward
   - id: projectedWard
     type: Activity
+    duration: instantaneous
     time: reaction
     range: 30 feet
     name: Projected Ward

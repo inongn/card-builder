@@ -47,6 +47,7 @@ children:
   # Level 3: Path to the Grave
   - id: pathToTheGrave
     type: Activity
+    duration: instantaneous
     name: Path to the Grave
     time: bonus action
     range: 30 feet
@@ -54,7 +55,7 @@ children:
     condition: $(meta.level >= 3)
     description: "You curse a creature within range. Until the start of your next turn, it has Disadvantage on attack rolls and saving throws. The curse ends early when you or an ally hits the target, making the attack deal extra Necrotic or Radiant damage (your choice) equal to $(meta.level)."
 
-  # Level 6: Sentinel at Death’s Door
+  # Level 6: Sentinel at Death's Door
   - id: sentinelAtDeathsDoor
     type: Resource
     name: Sentinel at Death's Door

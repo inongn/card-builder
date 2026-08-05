@@ -12,6 +12,7 @@ children:
   value: Orc
 - id: adrenalineRush
   type: Activity
+  duration: instantaneous
   name: Adrenaline Rush
   time: bonus action
   range: self
@@ -32,6 +33,9 @@ children:
   value: 120
 - id: relentlessEndurance
   type: Activity
+  time: free action
+  duration: instantaneous
+  range: self
   name: Relentless Endurance
   description: When you are reduced to 0 Hit Points but not killed outright, you can
     drop to 1 Hit Point instead.

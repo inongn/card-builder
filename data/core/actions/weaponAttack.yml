@@ -1,6 +1,7 @@
 id: weaponAttack
 name: "$(local.name)"
 type: Activity
+duration: instantaneous
 tags: [$(local.category), $(local.classification), $(local.mastery), $(local.property), weaponAttack, $(local.damageType)Damage, $(local.name)]
 time: action
 range: $(local.range)

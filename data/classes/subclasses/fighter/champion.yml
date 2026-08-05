@@ -24,7 +24,7 @@ children:
     type: Extra
     target: weaponAttack
     condition: $(meta.level >= 3)
-    description: "On a Critical Hit, you can move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks."
+    description: "On a Critical Hit, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks."
   - id: additionalFightingStyle
     name: Additional Fighting Style
     type: Slot

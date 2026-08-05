@@ -17,6 +17,7 @@ children:
     target: circleLand OR classOption
   - id: landsAid
     type: Activity
+    duration: instantaneous
     name: Land's Aid
     time: action
     range: 60 feet

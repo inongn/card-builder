@@ -20,6 +20,7 @@ children:
   # Level 3: Cutting Words
   - id: cuttingWords
     type: Activity
+    duration: instantaneous
     name: Cutting Words
     time: reaction
     range: 60 feet

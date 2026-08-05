@@ -39,6 +39,7 @@ children:
   - id: knowYourEnemy
     name: Know Your Enemy
     type: Activity
+    duration: instantaneous
     time: bonus action
     range: 30 feet
     resource: superiorityDice

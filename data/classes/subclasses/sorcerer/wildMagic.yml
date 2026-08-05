@@ -13,6 +13,9 @@ children:
   # Level 3: Wild Magic Surge
   - id: wildMagicSurge
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Wild Magic Surge
     condition: $(meta.level >= 3)
     description: "Your spellcasting unleashes surges of untamed magic. Once per turn, roll 1d20 immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table."
@@ -20,6 +23,9 @@ children:
   # Level 3: Tides of Chaos
   - id: tidesOfChaos
     type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
     name: Tides of Chaos
     condition: $(meta.level >= 3)
     description: |
@@ -31,6 +37,7 @@ children:
   # Level 6: Bend Luck
   - id: bendLuck
     type: Activity
+    duration: instantaneous
     name: Bend Luck
     time: reaction
     range: 60 feet

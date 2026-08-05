@@ -16,6 +16,7 @@ children:
     target: mageHand
   - name: Telekinetic Shove
     type: Activity
+    duration: instantaneous
     id: telekineticShove
     time: bonus action
     range: 30 feet

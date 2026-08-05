@@ -39,6 +39,7 @@ children:
   # Level 3: Peerless Athlete
   - id: peerlessAthlete
     type: Activity
+    range: self
     name: Peerless Athlete
     time: bonus action
     duration: 1 hour

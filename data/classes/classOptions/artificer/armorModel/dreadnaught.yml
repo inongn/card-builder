@@ -7,6 +7,7 @@ tags:
 children:
   - id: forceDemolisher
     type: Activity
+    duration: instantaneous
     name: "Force Demolisher"
     time: action
     range: 10 feet
@@ -23,11 +24,12 @@ children:
 
   - id: giantStature
     type: Activity
+    duration: instantaneous
+    range: self
     name: Giant Stature
     time: bonus action
     resource: giantStatureResource
     description: |
       As a Bonus Action, you transform and enlarge your armor for 1 minute. For the duration:
       - Your reach increases by $(meta.level >= 15 ? '10' : '5') feet.
-      - If you are smaller than Large, you become Large (at level 15, you can choose to become Large or Huge).
-      - At level 15, you have Advantage on Strength checks and Strength saving throws.
+      - If you are smaller than Large, you become Large.

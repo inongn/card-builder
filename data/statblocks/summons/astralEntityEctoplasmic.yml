@@ -27,4 +27,4 @@ actions:
   - name: Multiattack
     description: "The spirit makes $(Math.floor((local.maxLevel || 3) / 2)) Ectoplasmic Splash attacks."
   - name: Ectoplasmic Splash
-    description: "_Ranged Attack Roll:_ $(attributes.spellcasting.attack) to hit, range 30 ft. _Hit:_ 1d6 + 3 + $(local.maxLevel || 3) Psychic damage. _Hit or Miss:_ Each creature in a 5-foot Emanation originating from and including the target has its Speed reduced by 5 feet until the end of its next turn."
+    description: "_Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, range 30 ft. _Hit:_ 1d6$(formatBonus(3 + (local.maxLevel || 3))) Psychic damage. _Hit or Miss:_ Each creature in a 5-foot Emanation originating from and including the target has its Speed reduced by 5 feet until the end of its next turn."

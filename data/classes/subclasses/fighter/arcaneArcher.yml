@@ -51,6 +51,8 @@ children:
   # Level 7: Curving Shot
   - id: curvingShot
     type: Activity
+    duration: instantaneous
+    range: self
     name: Curving Shot
     time: bonus action
     condition: $(meta.level >= 7)
@@ -58,6 +60,8 @@ children:
 
   - id: magicalAmmunition
     type: Activity
+    duration: instantaneous
+    range: self
     name: Magical Ammunition
     time: action
     resource: secondWind

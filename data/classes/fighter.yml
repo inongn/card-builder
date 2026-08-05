@@ -70,7 +70,7 @@ children:
     resource: secondWind
     time: free action
     name: Tactical Mind
-    description: When you fail an ability check, you push yourself toward success. Add 1d10 to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn’t expended.
+    description: When you fail an ability check, you push yourself toward success. Add 1d10 to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn't expended.
   - id: fighterSubclass
     name: Fighter Subclass
     condition: $(meta.level >= 3)
@@ -87,13 +87,19 @@ children:
     target: secondWind
     condition: $(meta.level >= 5)
     name: Tactical Shift
-    description: You can move up to $(attributes.movement.walk/2) feet without provoking Opportunity Attacks.
+    description: You can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
   - id: extraAttack
     type: Extra
     target: weaponAttack
     condition: $(meta.level >= 5)
     name: Extra Attack
     description: "You can attack $(meta.level >= 20 ? 'four times' : meta.level >= 11 ? 'three times' : 'twice'), instead of once, whenever you take the Attack action on your turn."
+  - id: level6feat
+    name: Level 6 Feat
+    type: Slot
+    condition: $(meta.level >= 6)
+    quantity: 1
+    target: feat
   - id: level8feat
     name: Level 8 Feat
     type: Slot
