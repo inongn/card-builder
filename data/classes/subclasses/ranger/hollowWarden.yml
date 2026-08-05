@@ -24,27 +24,16 @@ children:
     condition: $(meta.level >= 17)
     target:
       - steelWindStrike
-  - id: wrathOfTheWild
-    type: Activity
-    range: self
-    name: Wrath of the Wild
-    time: bonus action
-    duration: 1 minute
-    resource: favoredEnemy
-    description: |
-      You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. You gain the following benefits for the duration:
-      * **Ancient Armor:** Gain a +$(meta.level >= 11 ? 2 : 1) bonus to AC.
-      * **Prowling Retribution:** Immediately after a creature within 5 feet deals damage to you or an ally, you can make an Opportunity Attack against it.
-      * **Unnerving Aura:** At transformation and at the start of your subsequent turns, each chosen creature in a 10-foot Emanation makes a DC $(attributes.spellcasting.save) Wisdom save or has the Frightened condition until the start of your next turn.
+  - type: Reference
+    target:
+      - wrathOfTheWild
   - id: hungeringMightConSaves
     type: Effect
     target: saves.constitution.bonus
     operation: add
     condition: $(meta.level >= 7)
     value: $(Math.max(1, stats.wis.mod))
-  - id: hungeringMightHeal
-    type: Extra
-    target: wrathOfTheWild
+  - type: Reference
+    target:
+      - hungeringMightHeal
     condition: $(meta.level >= 7)
-    name: Hungering Might
-    description: Once per turn when you hit a creature with an attack roll while transformed and Bloodied, you regain 1d10+$(Math.max(1, stats.wis.mod)) Hit Points.

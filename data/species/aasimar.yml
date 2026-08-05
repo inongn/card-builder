@@ -14,30 +14,12 @@ children:
     target: attributes.senses.darkvision
     operation: set
     value: 60
-  - id: healingHands
-    type: Activity
-    name: Healing Hands
-    time: action
-    range: touch
-    duration: Instantaneous
-    resource: limited
-    description: |
-      You touch a creature and roll $(attributes.prof)d4. The creature regains Hit Points equal to the total rolled.
+  - type: Reference
+    target:
+      - healingHands
   - type: Reference
     target: lightSpell
-  - id: celestialRevelation
-    type: Activity
-    range: self
-    name: Celestial Revelation
-    time: bonus action
-    duration: 1 minute
-    resource: limited
+  - type: Reference
+    target:
+      - celestialRevelation
     condition: $(meta.level >= 3)
-    description: |
-      You transform. The transformation lasts for the duration or until you end it (no action required). Once on each of your turns before it ends, you can deal $(attributes.prof) extra damage to one target when you deal damage to it with an attack or a spell; the damage is Necrotic for Necrotic Shroud or Radiant for Heavenly Wings and Inner Radiance.
-
-      **Heavenly Wings.** You have a Fly Speed of $(attributes.movement.walk) until the transformation ends.
-
-      **Inner Radiance.** You shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. At the end of each of your turns, each creature within 10 feet of you takes $(attributes.prof) Radiant damage.
-
-      **Necrotic Shroud.** Creatures other than your allies within 10 feet of you must succeed on a DC $(attributes.prof + 8 + stats.cha.mod) Charisma saving throw or have the Frightened condition until the end of your next turn.

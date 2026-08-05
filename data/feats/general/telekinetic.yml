@@ -1,5 +1,5 @@
 id: telekinetic
-summary: "Learn invisible Mage Hand and telekinetically shove foes or allies."
+summary: Learn invisible Mage Hand and telekinetically shove foes or allies.
 name: Telekinetic
 tags:
   - feat
@@ -14,10 +14,6 @@ children:
   - name: Psionic Talent
     type: Reference
     target: mageHand
-  - name: Telekinetic Shove
-    type: Activity
-    duration: instantaneous
-    id: telekineticShove
-    time: bonus action
-    range: 30 feet
-    description: 'You try to telekinetically shove one creature you can see within range. The target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Strength saving throw or be moved 5 feet toward or away from you. A creature can willingly fail this save.'
+  - type: Reference
+    target:
+      - telekineticShove

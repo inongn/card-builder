@@ -63,13 +63,9 @@ children:
   - id: martialArtsFlag
     type: Attribute
     value: true
-  - id: bonusUnarmedStrike
-    type: Activity
-    name: Bonus Unarmed Strike
-    time: bonus action
-    range: 5 feet
-    duration: Instantaneous
-    description: You make one Unarmed Strike.
+  - type: Reference
+    target:
+      - bonusUnarmedStrike
   - id: unarmoredDefense
     type: Effect
     target: attributes.ac
@@ -84,51 +80,28 @@ children:
   - id: monkSaveDC
     type: Attribute
     value: $(8 + stats.wis.mod + attributes.prof)
-  - id: flurryOfBlows
-    type: Activity
-    name: Flurry of Blows
-    time: bonus action
-    range: self
-    duration: Instantaneous
-    resource: 1 focusPoints
+  - type: Reference
+    target:
+      - flurryOfBlows
     condition: $(meta.level >= 2)
-    description: 'You make $(meta.level >= 10 ? ''three'' : ''two'') Unarmed Strikes.'
-  - id: patientDefense
-    type: Activity
-    name: Patient Defense
-    time: bonus action
-    range: self
-    resource: 1 focusPoints
-    duration: Instantaneous
+  - type: Reference
+    target:
+      - patientDefense
     condition: $(meta.level >= 2)
-    description: 'You take both the Disengage and Dodge actions$(meta.level >= 10 ? '' and gain '' + (2) + ''d'' + attributes.martialArtsDie + '' Temporary Hit Points'' : '''').'
-  - id: stepOfTheWind
-    type: Activity
-    name: Step of the Wind
-    time: bonus action
-    range: self
-    resource: 1 focusPoints
-    duration: Instantaneous
+  - type: Reference
+    target:
+      - stepOfTheWind
     condition: $(meta.level >= 2)
-    description: 'You take both the Disengage and Dash actions, and your jump distance is doubled for the turn.$(meta.level >= 10 ? '' You can also move a willing creature (Large or smaller) within 5 feet with you until the end of your turn without provoking Opportunity Attacks.'' : '''')'
   - id: unarmoredMovement
     type: Effect
     target: attributes.movement.walk
     operation: add
     condition: $(meta.level >= 2)
     value: $(progression(0,10,10,10,10,15,15,15,15,20,20,20,20,25,25,25,25,30,30,30))
-  - id: deflectAttacks
-    type: Activity
-    name: Deflect Attacks
-    time: reaction
-    range: self
-    duration: Instantaneous
-    resource: 1 focusPoints
+  - type: Reference
+    target:
+      - deflectAttacks
     condition: $(meta.level >= 3)
-    description: |
-      When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). 
-
-      If you reduce the damage to 0, the Focus Point is expended and you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.
   - id: monkSubclass
     name: Monk Subclass
     condition: $(meta.level >= 3)
@@ -140,29 +113,18 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - id: slowFall
-    type: Activity
-    name: Slow Fall
-    time: reaction
-    range: self
-    duration: Instantaneous
+  - type: Reference
+    target:
+      - slowFall
     condition: $(meta.level >= 4)
-    description: When you fall, you reduce any fall damage you take by $(meta.level * 5).
-  - id: extraAttack
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - extraAttack
     condition: $(meta.level >= 5)
-    name: Extra Attack
-    description: You can attack twice, instead of once, whenever you take the Attack action on your turn.
-  - id: stunningStrike
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Stunning Strike
+  - type: Reference
+    target:
+      - stunningStrike
     condition: $(meta.level >= 5)
-    resource: 1 focusPoints
-    description: Once per turn when you hit with an attack, the target must make a DC $(attributes.monkSaveDC) Constitution saving throw. On a failed save, the target has the Stunned condition until the start of your next turn. On a success, the target's Speed is halved and the next attack roll against it has Advantage.
   - id: empoweredStrikesBludgeoning
     type: Effect
     target: activities[tags=weaponAttack and tags=bludgeoningDamage].description["Bludgeoning"]
@@ -181,14 +143,10 @@ children:
     operation: replace
     condition: $(meta.level >= 6)
     value: Force
-  - id: evasion
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Evasion
+  - type: Reference
+    target:
+      - evasion
     condition: $(meta.level >= 7)
-    description: When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed and only half damage if you fail. You can't use this if you have the Incapacitated condition.
   - id: level8feat
     name: Level 8 Feat
     type: Slot

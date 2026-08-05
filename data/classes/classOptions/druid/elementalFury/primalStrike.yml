@@ -1,17 +1,15 @@
 id: primalStrike
-summary: "Infuse weapon and beast strikes with extra elemental damage."
+summary: Infuse weapon and beast strikes with extra elemental damage.
 name: Primal Strike
-tags: [elementalFury]
+tags:
+  - elementalFury
 type: Folder
 children:
-  - id: primalStrikeWeapon
-    type: Extra
-    target: weaponAttack
-    name: Primal Strike
-    description: |
-      On a hit, the target takes an additional $(meta.level >= 15 ? "2d8" : "1d8") Cold, Fire, Lightning, or Thunder damage.
+  - type: Reference
+    target:
+      - primalStrikeWeapon
   - id: primalStrikeWildShape
     type: Effect
     target: statblocks[wildShapeTemplate].actions["damage"]
     operation: replace
-    value: "damage + 1d8 Cold, Fire, Lightning or Thunder damage"
+    value: damage + 1d8 Cold, Fire, Lightning or Thunder damage

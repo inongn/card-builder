@@ -5,12 +5,10 @@ type: Folder
 tags:
   - clericSubclass
 children:
-  - id: discipleOfLife
-    type: Extra
-    name: Disciple of Life
-    target: healingSpell
+  - type: Reference
+    target:
+      - discipleOfLife
     condition: $(meta.level >= 3)
-    description: The creature regains an additional $(2+(stats.wis.mod)) Hit Points.
   - type: Reference
     target:
       - aid
@@ -33,18 +31,11 @@ children:
       - greaterRestoration
       - massCureWounds
     condition: $(meta.level >= 9)
-  - id: preserveLife
-    type: Activity
-    name: Preserve Life
-    time: action
-    range: 30 feet
-    duration: Instantaneous
-    resource: channelDivinity
+  - type: Reference
+    target:
+      - preserveLife
     condition: $(meta.level >= 3)
-    description: You evoke healing energy to restore up to $(5 * meta.level) Hit Points. Choose Bloodied creatures within range and divide the points among them. This can't restore a creature to more than half its Hit Point maximum.
-  - id: blessedHealer
-    type: Extra
-    name: Blessed Healer
-    target: healingSpell
+  - type: Reference
+    target:
+      - blessedHealer
     condition: $(meta.level >= 6)
-    description: If you cast this on another creature, you regain $(2+(stats.wis.mod)) Hit Points.

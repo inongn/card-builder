@@ -30,19 +30,9 @@ children:
     target:
       - banishingSmite
       - contactOtherPlane
-  - id: elementalSmite
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Elemental Smite
-    resource: channelDivinity
-    description: |
-      Immediately after you cast Divine Smite, you invoke one of the following effects:
-      * **Dao's Crush:** Earth rises up around the target of your Divine Smite. The target has the Grappled condition (escape DC $(attributes.spellcasting.save)). While Grappled, the target has the Restrained condition.
-      * **Djinni's Escape:** You teleport to an unoccupied space within 30 feet and take on a semi-incorporeal form until the end of your next turn (Resistance to Bludgeoning, Piercing, Slashing damage; Immunity to Grappled, Prone, Restrained).
-      * **Efreeti's Fury:** Target takes an extra 2d4 Fire damage, and fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it.
-      * **Marid's Surge:** Target and each creature in a 10-foot Emanation make a DC $(attributes.spellcasting.save) Strength save or be pushed 15 feet away and have the Prone condition.
+  - type: Reference
+    target:
+      - elementalSmite
   - id: geniesSplendorAC
     type: Effect
     target: attributes.ac.base
@@ -54,9 +44,7 @@ children:
     name: Genie's Splendor Skill
     quantity: 1
     target: skill AND (id == 'acrobatics' OR id == 'intimidation' OR id == 'performance' OR id == 'persuasion')
-  - id: auraOfElementalShielding
-    type: Extra
-    target: auraOfProtection
-    name: Aura of Elemental Shielding
+  - type: Reference
+    target:
+      - auraOfElementalShielding
     condition: $(meta.level >= 7)
-    description: 'Choose one damage type: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection. At the start of each of your turns, you can change the damage type (no action required).'

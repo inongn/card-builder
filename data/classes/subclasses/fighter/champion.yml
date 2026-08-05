@@ -5,23 +5,19 @@ tags:
   - fighterSubclass
 type: Folder
 children:
-  - id: improvedCritical
-    name: Improved Critical
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - improvedCritical
     condition: $(meta.level >= 3)
-    description: 'You score a Critical Hit on a roll of $(meta.level >= 15 ? ''18-20'' : ''19 or 20'').'
   - type: Reference
     target:
       - initiativeAdvantage
       - athleticsAdvantage
     condition: $(meta.level >= 3)
-  - id: remarkableAthlete
-    name: Remarkable Athlete
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - remarkableAthlete
     condition: $(meta.level >= 3)
-    description: On a Critical Hit, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
   - id: additionalFightingStyle
     name: Additional Fighting Style
     type: Slot

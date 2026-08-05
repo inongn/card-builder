@@ -22,28 +22,10 @@ children:
       - auraOfLife
       - deathWard
     condition: $(meta.level >= 7)
-  - id: preservedLand
-    type: Activity
-    name: Preserved Land
-    time: bonus action
-    range: 120 feet
-    duration: 1 minute
-    resource: wildShape
+  - type: Reference
+    target:
+      - preservedLand
     condition: $(meta.level >= 3)
-    description: |
-      You fill a 15-foot Cube on the ground within range with revitalizing energy. It lasts for 1 minute, or until you are Incapacitated, die, or move more than 120 feet away.
-
-      As a Bonus Action on subsequent turns, you can move the Cube up to 30 feet to another area within range.
-
-      Whenever a creature ends its turn in the Cube, you can grant it one of the following:
-
-      **Bolster.** The creature gains 1d4 + $(meta.level) Temporary Hit Points.
-
-      **Purify.** You end the Frightened or Poisoned condition on the creature.
-
-      $(meta.level >= 6 ? "**Fortify.** You and allies inside the Cube gain a +$(Math.max(1, stats.wis.mod)) bonus to Constitution saving throws." : "")
-
-      $(meta.level >= 6 ? "**Reject.** When the Cube enters an enemy's space or an enemy enter or ends its turn in the Cube, they make a DC $(attributes.spellcasting.save) Wisdom save, taking 2d10 Radiant damage and having their Speed halved on a failure, or taking half damage on a success." : "")
   - id: studentOfPreservationTool
     name: Student of Preservation Tool Proficiency
     type: Slot

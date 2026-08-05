@@ -1,5 +1,5 @@
 id: durable
-summary: "Gain rapid recovery and bonus healing when expending hit dice."
+summary: Gain rapid recovery and bonus healing when expending hit dice.
 name: Durable
 tags:
   - feat
@@ -14,9 +14,6 @@ children:
   - name: Defy Death
     type: Reference
     target: deathSaveAdvantage
-  - name: Speedy Recovery
-    type: Activity
-    duration: instantaneous
-    range: self
-    time: bonus action
-    description: You can expend one of your Hit Dice, roll the die, and regain a number of Hit Points equal to the roll.
+  - type: Reference
+    target:
+      - durableSpeedyRecovery

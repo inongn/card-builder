@@ -5,15 +5,11 @@ type: Folder
 tags:
   - wizardSubclass
 children:
-  - id: potentCantrip
-    type: Extra
-    name: Potent Cantrip
-    target: cantrip AND damageSpell
+  - type: Reference
+    target:
+      - potentCantrip
     condition: $(meta.level >= 3)
-    description: If the target succeeds on a saving throw against this cantrip, it takes half damage but suffers no additional effect.
-  - id: sculptSpells
-    type: Extra
-    target: evocation AND saveSpell
-    name: Sculpt Spells
+  - type: Reference
+    target:
+      - sculptSpells
     condition: $(meta.level >= 6)
-    description: When you cast this spell, your allies automatically succeed on their saving throw and take no damage if they would normally take half.

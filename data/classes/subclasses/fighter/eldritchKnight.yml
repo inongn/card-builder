@@ -21,12 +21,10 @@ children:
     variables:
       maxLevel: '$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)'
     quantity: $(progression(0,0,3,4,4,4,5,6,6,7,8,8,9,10,10,11,11,11,12,13))
-  - type: Activity
-    name: War Bond
-    time: bonus action
+  - type: Reference
+    target:
+      - warBond
     condition: $(meta.level >= 3)
-    id: warBond
-    description: You summon your bonded weapon, causing it to teleport instantly to your hand. You can't be disarmed of that weapon unless you have the Incapacitated condition.
   - type: Effect
     target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
     operation: replace

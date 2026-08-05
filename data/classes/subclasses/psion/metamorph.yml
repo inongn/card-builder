@@ -22,67 +22,27 @@ children:
       - polymorph
       - stoneskin
     condition: $(meta.level >= 7)
-  - id: mutableForm
-    type: Activity
-    name: Mutable Form
-    time: bonus action
-    range: self
-    duration: 1 minute
-    resource: psionicEnergyDice
+  - type: Reference
+    target:
+      - mutableForm
     condition: $(meta.level >= 3)
-    description: |
-      You psionically stretch your limbs for 1 minute and gain Temporary Hit Points equal to 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)). While active, you gain the following benefits:
-      * **Reach.** Your reach increases by 5 feet.
-      * **Speed.** Your Speed increases by 5 feet.
-      * **Touch.** When you cast a spell that has a range of Touch and a casting time of an Action, its range becomes 10 feet.
-  - id: boneBlade
-    type: Activity
-    duration: instantaneous
-    name: Bone Blade
-    time: action
-    range: 5 feet
-    tags:
-      - weaponAttack
-      - attack
-      - melee
+  - type: Reference
+    target:
+      - boneBlade
     condition: $(meta.level >= 3)
-    description: |
-      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack against a creature. On a hit, the target takes 1d8$(formatBonus(stats.int.mod)) Piercing damage. You have advantage on this attack roll if an unincapacitated ally is within 5 feet of the target.
-  - id: fleshMaul
-    type: Activity
-    duration: instantaneous
-    name: Flesh Maul
-    time: action
-    range: 5 feet
-    tags:
-      - weaponAttack
-      - attack
-      - melee
+  - type: Reference
+    target:
+      - fleshMaul
     condition: $(meta.level >= 3)
-    description: |
-      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack against a creature. On a hit, the target takes 1d10$(formatBonus(stats.int.mod)) Bludgeoning damage and the target has Disadvantage on its next Strength or Constitution saving throw before the start of its next turn.
-  - id: visceraLauncher
-    type: Activity
-    duration: instantaneous
-    name: Viscera Launcher
-    time: action
-    range: 30 feet
-    tags:
-      - weaponAttack
-      - attack
-      - ranged
+  - type: Reference
+    target:
+      - visceraLauncher
     condition: $(meta.level >= 3)
-    description: |
-      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack against a creature. On a hit, the target takes 1d6$(formatBonus(stats.int.mod)) Acid damage. Once per turn, deal an extra 1d6 Acid damage.
-  - id: extraAttack
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - extraAttack
     condition: $(meta.level >= 6)
-    name: Extra Attack
-    description: You can attack twice instead of once whenever you take the Attack action on your turn. You can cast one of your Psion cantrips that has a casting time of an action in place of one of those attacks.
-  - id: fleshWarper
-    type: Extra
-    target: mutableForm
+  - type: Reference
+    target:
+      - fleshWarper
     condition: $(meta.level >= 6)
-    name: Flesh Warper
-    description: Expend an additional Psionic Energy to gain a +2 bonus to AC while active.

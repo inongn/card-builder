@@ -53,11 +53,7 @@ children:
     quantity: $(Math.max(1, stats.cha.mod))
     sr: all
     condition: $(meta.level >= 3)
-  - id: mistyEscape
-    type: Activity
-    name: Misty Escape
-    time: reaction
-    range: self
-    duration: instantaneous
+  - type: Reference
+    target:
+      - mistyEscape
     condition: $(meta.level >= 6)
-    description: When you take damage, you cast Misty Step.

@@ -27,15 +27,11 @@ children:
     target: activities[id=mistyStep].resource
     operation: set
     value: psionicEnergyDice
-  - id: warpPropel
-    type: Extra
-    target: telekineticPropel
+  - type: Reference
+    target:
+      - warpPropel
     condition: $(meta.level >= 3)
-    name: Warp Propel
-    description: When a target fails its saving throw, instead of pushing it, you can teleport the target to an unoccupied horizontal space you can see within 30 feet of you.
-  - id: teleporterCombat
-    type: Extra
-    target: mistyStep
+  - type: Reference
+    target:
+      - teleporterCombat
     condition: $(meta.level >= 6)
-    name: Teleporter Combat
-    description: You can cast one of your Psion cantrips with a casting time of an Action as part of this Bonus Action.

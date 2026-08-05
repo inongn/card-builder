@@ -25,17 +25,18 @@ children:
     operation: replace
     value: You gain $(meta.level * 3) Temporary Hit Points
     condition: $(meta.level >= 3)
-  - id: improvedCircleFormsRadiance
-    type: Extra
-    target: wildShapeActivity
-    name: Lunar Radiance
-    description: You can deal Radiant damage instead of the normal type.
+  - type: Effect
+    target: statblocks[tags=wildShapeTemplate].traits
+    operation: push
+    value: 
+      - name: Lunar Radiance
+        description: You can deal Radiant damage instead of the normal type.
+      - name: Increased Toughness
+        description: You can add $(stats.wis.mod) to your Constitution saving throws.
     condition: $(meta.level >= 6)
-  - id: improvedCircleFormsToughness
-    type: Extra
-    target: wildShapeActivity
-    name: Increased Toughness
-    description: You can add $(stats.wis.mod) to your Constitution saving throws.
+  - type: Reference
+    target:
+      - improvedCircleFormsToughness
     condition: $(meta.level >= 6)
   - id: primalStrikeWildShape
     type: Effect

@@ -30,14 +30,9 @@ children:
     name: Paladin Skill Proficiencies
     quantity: 2
     target: athleticsProficiency OR insightProficiency OR intimidationProficiency OR medicineProficiency OR persuasionProficiency OR religionProficiency
-  - id: layOnHands
-    type: Activity
-    name: Lay On Hands
-    time: bonus action
-    range: touch
-    duration: Instantaneous
-    resource: layOnHands
-    description: 'You touch a creature (which could be yourself) and restore 5 Hit Points to it per charge expended. $(meta.level >= 14 ? ''You can also expend a charge to remove one or more of the following conditions from the creature: Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned.'' : '''')'
+  - type: Reference
+    target:
+      - layOnHands
   - id: layOnHands
     type: Resource
     name: Lay On Hands
@@ -76,38 +71,27 @@ children:
     quantity: '$(meta.level >= 11 ? 3 : 2)'
     sr: 1
     condition: $(meta.level >= 3)
-  - id: divineSense
-    type: Activity
-    name: Divine Sense
-    time: bonus action
-    range: 60 feet
-    duration: 10 minutes
-    resource: channelDivinity
+  - type: Reference
+    target:
+      - divineSense
     condition: $(meta.level >= 3)
-    description: You open your awareness to detect Celestials, Fiends, and Undead. For the duration or until you have the Incapacitated condition, you know the location of any creature of those types within range, and you know its creature type. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow spell.
   - id: level4feat
     name: Level 4 Feat
     type: Slot
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - id: extraAttack
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - extraAttack
     condition: $(meta.level >= 5)
-    name: Extra Attack
-    description: You can attack twice, instead of once, whenever you take the Attack action on your turn.
   - type: Reference
     target: findSteed
     condition: $(meta.level >= 5)
-  - id: auraOfProtection
-    type: Activity
-    time: free action
-    duration: instantaneous
-    name: Aura of Protection
-    range: '$(meta.level >= 18 ? 30 : 10) feet'
+  - type: Reference
+    target:
+      - auraOfProtection
     condition: $(meta.level >= 6)
-    description: You radiate a protective, unseeable aura. The aura is inactive while you have the Incapacitated condition. You and your allies in the aura gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws.
   - id: level8feat
     name: Level 8 Feat
     type: Slot

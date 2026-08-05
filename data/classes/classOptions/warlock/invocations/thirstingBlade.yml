@@ -1,5 +1,5 @@
 id: thirstingBlade
-summary: "Attack twice with your pact weapon whenever you take the Attack action."
+summary: Attack twice with your pact weapon whenever you take the Attack action.
 name: Thirsting Blade
 tags:
   - eldritchInvocation
@@ -8,9 +8,7 @@ prerequisite: Pact of the Blade
 prerequisiteCondition: $(attributes.pactOfTheBlade == true)
 type: Folder
 children:
-  - id: extraAttack
-    type: Extra
+  - type: Reference
+    target:
+      - extraAttack
     condition: $(attributes.pactOfTheBlade == true)
-    target: weaponAttack AND pactWeapon
-    name: Extra Attack
-    description: "You can attack twice, instead of once, whenever you take the Attack action on your turn."

@@ -1,5 +1,0 @@
-type: Extra
-target: sap AND (pactWeapon OR weaponMastery)
-id: sap
-name: Sap
-description: On a hit, the target has Disadvantage on its next attack roll before the start of your next turn.

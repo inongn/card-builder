@@ -52,12 +52,10 @@ children:
     operation: set
     value: psionicEnergyDice
     condition: $(meta.level >= 7)
-  - id: ectoplasmicShiftPropel
-    type: Extra
-    target: telekineticPropel
+  - type: Reference
+    target:
+      - ectoplasmicShiftPropel
     condition: $(meta.level >= 3)
-    name: Ectoplasmic Shift
-    description: When targeting a creature summoned by your Psion spells, you do not need to expend a Psionic Energy Die, and you can move the target up to 15 feet or swap it for another summon.
   - id: empoweredServitorHp
     type: Effect
     target: statblocks[tags=summon].hp

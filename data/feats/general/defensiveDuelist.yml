@@ -1,5 +1,5 @@
 id: defensiveDuelist
-summary: "Use your reaction with a finesse weapon to boost AC against an incoming strike."
+summary: Use your reaction with a finesse weapon to boost AC against an incoming strike.
 name: Defensive Duelist
 tags:
   - feat
@@ -11,9 +11,6 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Parry
-    type: Activity
-    duration: instantaneous
-    range: self
-    time: reaction
-    description: 'When you are hit with an attack, you add $(attributes.prof) to your Armor Class, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn.'
+  - type: Reference
+    target:
+      - defensiveDuelistParry

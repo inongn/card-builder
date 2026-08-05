@@ -28,16 +28,10 @@ children:
     name: Psionic Energy
     sr: 1
     quantity: $(progression(4,4,4,4,6,6,6,6,8,8,8,8,10,10,10,10,12,12,12,12))
-  - id: telekineticPropel
-    type: Activity
-    name: Telekinetic Propel
-    time: bonus action
-    range: 30 feet
-    duration: Instantaneous
+  - type: Reference
+    target:
+      - telekineticPropel
     condition: $(meta.level >= 1)
-    resource: psionicEnergyDice
-    description: |
-      Choose a Large or smaller creature other than you within range. The target must make a DC $(attributes.spellcasting.save) Strength saving throw. On a failed save, it is moved 5d$(attributes.psiDice) feet straight toward or away from you.
   - id: subtleTelekinesis
     type: Reference
     target: mageHand

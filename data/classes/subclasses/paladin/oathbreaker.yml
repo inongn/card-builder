@@ -29,30 +29,18 @@ children:
     target:
       - contagion
       - steelWindStrike
-  - id: conjureUndead
-    type: Activity
-    duration: instantaneous
-    range: self
-    name: Conjure Undead
-    time: bonus action
-    resource: channelDivinity
-    description: You summon $(Math.max(1, Math.ceil(stats.cha.mod / 2))) Undead (Skeleton or Zombie). They appear within 30 feet, share your Initiative count taking their turn immediately after yours, obey your verbal commands, and last for 1 minute or until dissolved.
+  - type: Reference
+    target:
+      - conjureUndead
   - type: Reference
     target:
       - skeleton
       - zombie
     condition: $(meta.level >= 3)
-  - id: dreadfulAspect
-    type: Activity
-    time: free action
-    range: self
-    name: Dreadful Aspect
-    resource: channelDivinity
-    duration: 1 minute
-    description: Immediately after you cast Divine Smite, you cause each chosen creature in a 30-foot Emanation to make a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for the duration (repeating save at end of each of its turns).
-  - id: auraOfHate
-    type: Extra
-    target: auraOfProtection
+  - type: Reference
+    target:
+      - dreadfulAspect
+  - type: Reference
+    target:
+      - auraOfHate
     condition: $(meta.level >= 7)
-    name: Aura of Hate
-    description: When you, or any friendly Fiend or Undead in your Aura of Protection, hit with a melee attack, the attack deals an extra $(stats.cha.mod) Necrotic damage.

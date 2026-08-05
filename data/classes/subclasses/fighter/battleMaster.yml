@@ -31,12 +31,7 @@ children:
     type: Resource
     quantity: '$(meta.level >= 15 ? 6 : meta.level >= 7 ? 5 : 4)'
     sr: all
-  - id: knowYourEnemy
-    name: Know Your Enemy
-    type: Activity
-    duration: instantaneous
-    time: bonus action
-    range: 30 feet
-    resource: superiorityDice
+  - type: Reference
+    target:
+      - knowYourEnemy
     condition: $(meta.level >= 7)
-    description: You discern certain strengths and weaknesses of a creature you can see within range. You know whether that creature has any Immunities, Resistances, or Vulnerabilities, and if the creature has any, you know what they are.

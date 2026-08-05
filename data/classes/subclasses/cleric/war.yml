@@ -27,24 +27,14 @@ children:
       - holdMonster
       - steelWindStrike
     condition: $(meta.level >= 9)
-  - id: guidedStrike
-    type: Activity
-    name: Guided Strike
-    time: reaction
-    range: 30 feet
-    duration: Instantaneous
-    resource: channelDivinity
+  - type: Reference
+    target:
+      - guidedStrike
     condition: $(meta.level >= 3)
-    description: When you or a creature within range misses with an attack roll, you give that roll a +10 bonus, potentially causing it to hit.
-  - id: warPriest
-    type: Activity
-    name: War Priest
-    time: bonus action
-    range: self
-    duration: Instantaneous
-    resource: warPriest
+  - type: Reference
+    target:
+      - warPriest
     condition: $(meta.level >= 3)
-    description: You make one attack with a weapon or an Unarmed Strike.
   - id: warPriest
     type: Resource
     name: War Priest

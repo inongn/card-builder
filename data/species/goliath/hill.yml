@@ -1,16 +1,12 @@
 id: giantAncestryHill
 name: Hill Giant
-tags: [giantAncestry]
+tags:
+  - giantAncestry
 type: Folder
 children:
-  - id: hillsTumble
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Hill's Tumble
-    description: When you hit a Large or smaller creature with an attack roll and deal damage to it, you give that target the Prone condition.
-    resource: giantAncestry
+  - type: Reference
+    target:
+      - hillsTumble
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

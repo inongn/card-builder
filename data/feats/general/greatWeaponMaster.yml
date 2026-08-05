@@ -1,5 +1,5 @@
 id: greatWeaponMaster
-summary: "Unleash heavy power attacks and gain bonus strikes on critical hits."
+summary: Unleash heavy power attacks and gain bonus strikes on critical hits.
 name: Great Weapon Master
 tags:
   - feat
@@ -16,8 +16,6 @@ children:
     target: activities[tags=weaponAttack and tags=melee and tags=twoHanded].description["$(formatBonus(attributes.melee.bonus))"]
     operation: replace
     value: $(formatBonus(attributes.melee.bonus+attributes.prof))
-  - id: hew
-    name: Hew
-    type: Extra
-    target: weaponAttack and melee and twoHanded
-    description: "On a Critical Hit, or when you reduce a creature to 0 Hit Points, make another attack."
+  - type: Reference
+    target:
+      - hew

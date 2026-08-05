@@ -33,16 +33,10 @@ children:
     operation: replace
     condition: $(meta.level >= 5)
     value: 'instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Primal Companion beast to take the Beast''s Strike action$(meta.level >= 11 ? '' twice'' : '''').'
-  - id: commandPrimalCompanion
-    type: Activity
-    duration: instantaneous
-    time: bonus action
-    range: 60 feet
-    name: Command Companion
-    description: You command your Primal Companion beast to take an action. The beast acts during your turn and can move and use its Reaction on its own, but only takes the Dodge action unless you command it.
-  - id: exceptionalTraining
-    type: Extra
-    name: Exceptional Training
-    target: commandPrimalCompanion
+  - type: Reference
+    target:
+      - commandPrimalCompanion
+  - type: Reference
+    target:
+      - exceptionalTraining
     condition: $(meta.level >= 7)
-    description: You can also command the beast to take the Dash, Disengage, Dodge, or Help action using its Bonus Action. Whenever it hits with an attack roll and deals damage, it can deal your choice of Force damage or its normal damage type.

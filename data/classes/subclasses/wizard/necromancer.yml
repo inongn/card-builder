@@ -8,19 +8,13 @@ children:
   - id: necroticResistance
     type: Reference
     target: necroticResistance
-  - id: grimHarvest
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Grim Harvest
-    description: When you cast a Necromancy spell using a spell slot, choose an Undead creature within 60 feet to regain 1+$(meta.level) Hit Points, plus the spell slot level.
-  - id: overwhelmingNecrosis
-    type: Extra
-    target: necroticDamage
+  - type: Reference
+    target:
+      - grimHarvest
+  - type: Reference
+    target:
+      - overwhelmingNecrosis
     condition: $(meta.level >= 6)
-    name: Overwhelming Necrosis
-    description: This spell ignores Resistance to Necrotic Damage.
   - id: undeadThralls
     type: Reference
     target: animateDead

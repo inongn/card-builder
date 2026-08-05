@@ -35,33 +35,20 @@ children:
   - id: sneakAttackDice
     type: Attribute
     value: $(progression(1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10))
-  - id: sneakAttack
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Sneak Attack
-    description: |
-      Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one creature you hit with an attack roll if you have Advantage on the roll or at least one of your allies is within 5 feet of the target.
+  - type: Reference
+    target:
+      - sneakAttack
   - id: masteryProperties
     type: Reference
     target: masteryProperties
-  - id: cunningAction
-    type: Activity
-    name: Cunning Action
+  - type: Reference
+    target:
+      - cunningAction
     condition: $(meta.level >= 2)
-    time: bonus action
-    range: self
-    duration: Instantaneous
-    description: You take the Dash, Disengage, or Hide action.
-  - id: steadyAim
-    type: Activity
-    name: Steady Aim
+  - type: Reference
+    target:
+      - steadyAim
     condition: $(meta.level >= 3)
-    time: bonus action
-    range: self
-    duration: Instantaneous
-    description: You give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved during this turn, and after you use it, your Speed is 0 until the end of the current turn.
   - id: rogueSubclass
     name: Rogue Subclass
     condition: $(meta.level >= 3)
@@ -73,56 +60,40 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - id: cunningStrike
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Cunning Strike
+  - type: Reference
+    target:
+      - cunningStrike
     condition: $(meta.level >= 5)
-    description: 'When you deal Sneak Attack damage to a creature, you can choose to spend dice from the Sneak Attack to create one of the following effects:'
   - id: cunningStrikeSave
     type: Attribute
     condition: $(meta.level >= 5)
     value: $(8 + stats.dex.mod + attributes.prof)
-  - id: cunningStrikePoison
-    type: Extra
-    name: 'Poison (Cost: 1d6)'
-    target: cunningStrike
+  - type: Reference
+    target:
+      - cunningStrikePoison
     condition: $(meta.level >= 5)
-    description: The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw or have the Poisoned condition for 1 minute. At the end of each of its turns, the poisoned target repeats the save, ending the effect on a success.
-  - id: cunningStrikeTrip
-    type: Extra
-    name: 'Trip (Cost: 1d6)'
-    target: cunningStrike
+  - type: Reference
+    target:
+      - cunningStrikeTrip
     condition: $(meta.level >= 5)
-    description: If the target is Large or smaller, it must succeed on a DC $(attributes.cunningStrikeSave) Dexterity saving throw or have the Prone condition.
-  - id: cunningStrikeWithdraw
-    type: Extra
-    name: 'Withdraw (Cost: 1d6)'
-    target: cunningStrike
+  - type: Reference
+    target:
+      - cunningStrikeWithdraw
     condition: $(meta.level >= 5)
-    description: Immediately after the attack, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
-  - id: uncannyDodge
-    type: Activity
-    name: Uncanny Dodge
+  - type: Reference
+    target:
+      - uncannyDodge
     condition: $(meta.level >= 5)
-    time: reaction
-    range: self
-    duration: Instantaneous
-    description: When an attacker that you can see hits you with an attack roll, you halve the attack's damage against you (round down).
   - id: rogueExpertise2
     type: Slot
     name: Expertise
     quantity: 2
     target: skillExpertise
     condition: $(meta.level >= 6)
-  - id: evasion
-    type: Extra
-    name: Evasion
-    target: dexSave
+  - type: Reference
+    target:
+      - evasion
     condition: $(meta.level >= 7)
-    description: When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed and only half damage if you fail. You can't use this if you have the Incapacitated condition.
   - id: reliableTalent
     type: Effect
     target: skills[proficiency>=1].min

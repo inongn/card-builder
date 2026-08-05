@@ -5,27 +5,13 @@ tags:
   - monkSubclass
 type: Folder
 children:
-  - id: openHandTechnique
-    type: Extra
-    target: flurryOfBlows
-    name: Open Hand Technique
-    description: |
-      When you hit a creature with an attack, you impose one of the following effects on the target:
-
-      - **Addle**. The target can't make Opportunity Attacks until the start of its next turn.
-
-      - **Push**. The target must succeed on a DC $(attributes.monkSaveDC) Strength saving throw or be pushed up to 15 feet away from you.
-
-      - **Topple**. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or have the Prone condition.
-  - id: wholenessOfBody
-    type: Activity
-    name: Wholeness of Body
-    time: bonus action
-    range: self
-    duration: Instantaneous
+  - type: Reference
+    target:
+      - openHandTechnique
+  - type: Reference
+    target:
+      - wholenessOfBody
     condition: $(meta.level >= 6)
-    resource: wholenessOfBody
-    description: You channel your inner healing energy. Regain 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points.
   - id: wholenessOfBody
     type: Resource
     name: Wholeness of Body

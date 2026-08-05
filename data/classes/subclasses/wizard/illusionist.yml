@@ -20,12 +20,10 @@ children:
     operation: set
     value: bonus action
     condition: $(meta.level >= 3)
-  - id: improvedIllusionsExtra
-    type: Extra
-    name: Improved Illusions
-    target: illusion
+  - type: Reference
+    target:
+      - improvedIllusionsExtra
     condition: $(meta.level >= 3)
-    description: You can cast this spell without Verbal components.
   - type: Reference
     target:
       - summonBeast

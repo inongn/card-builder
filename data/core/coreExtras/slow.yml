@@ -1,5 +1,0 @@
-type: Extra
-target: slow AND (pactWeapon OR weaponMastery)
-id: slow
-name: Slow
-description: On a hit, the target's speed is reduced by 10 feet.

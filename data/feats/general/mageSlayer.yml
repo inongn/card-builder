@@ -1,5 +1,5 @@
 id: mageSlayer
-summary: "Punish spellcasters in close proximity and disrupt their concentration."
+summary: Punish spellcasters in close proximity and disrupt their concentration.
 name: Mage Slayer
 tags:
   - feat
@@ -11,10 +11,9 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Concentration Breaker
-    type: Extra
-    target: weaponAttack or attackSpell
-    description: On a hit, the target has Disadvantage on any saving throw it makes to maintain Concentration.
+  - type: Reference
+    target:
+      - mageSlayerConcentrationBreaker
   - name: Guarded Mind
     type: Activity
     time: free action

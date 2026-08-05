@@ -67,15 +67,10 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - id: flashOfGenius
-    type: Activity
-    duration: instantaneous
-    time: reaction
-    name: Flash of Genius
-    range: 30 feet
+  - type: Reference
+    target:
+      - flashOfGenius
     condition: $(meta.level >= 7)
-    description: When you or a creature you can see within range fails an ability check or a saving throw, add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed.
-    resource: flashOfGeniusResource
   - id: flashOfGeniusResource
     name: Flash of Genius
     type: Resource

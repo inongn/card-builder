@@ -7,22 +7,12 @@ type: Folder
 children:
   - type: Reference
     target: frightenedAdvantage
-  - id: halflingNimbleness
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Halfling Nimbleness
-    description: You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.
-  - id: luck
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Luck
-    description: When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.
-  - id: naturallyStealthy
-    type: Extra
-    target: hide
-    name: Naturally Stealthy
-    description: You can Hide even when you are obscured only by a creature that is at least one size larger than you.
+  - type: Reference
+    target:
+      - halflingNimbleness
+  - type: Reference
+    target:
+      - luck
+  - type: Reference
+    target:
+      - naturallyStealthy

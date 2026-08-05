@@ -43,23 +43,14 @@ children:
       - banishment
       - confusion
     condition: $(meta.level >= 7)
-  - id: mindMagic
-    type: Activity
-    duration: instantaneous
-    name: Mind Magic
-    time: action
-    range: self
-    resource: channelDivinity
+  - type: Reference
+    target:
+      - mindMagic
     condition: $(meta.level >= 3)
-    description: 'You cast one of the following spells without expending a spell slot or requiring Material components: *Comprehend Languages*, *Detect Magic*, *Detect Thoughts*, *Identify*, or *Mind Spike*.'
-  - id: unfetteredMindTelepathy
-    type: Activity
-    time: free action
-    duration: instantaneous
-    name: Unfettered Mind
-    range: 60 feet
+  - type: Reference
+    target:
+      - unfetteredMindTelepathy
     condition: $(meta.level >= 6)
-    description: You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact up to $(Math.max(1, stats.wis.mod)) creatures.
   - type: Reference
     target: intSave
     condition: $(meta.level >= 6)

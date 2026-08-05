@@ -9,36 +9,18 @@ children:
     target:
       - charmPerson
       - mirrorImage
-  - id: beguilingMagic
-    type: Activity
-    time: free action
-    range: self
-    name: Beguiling Magic
+  - type: Reference
+    target:
+      - beguilingMagic
     condition: $(meta.level >= 3)
-    resource: bardicInspiration
-    duration: 1 minute
-    description: After casting an Enchantment or Illusion spell using a spell slot, you force a creature within 60 feet to make a Wisdom save. On a failure, it has the Charmed or Frightened condition (your choice).
-  - id: mantleOfInspiration
-    type: Activity
-    duration: instantaneous
-    range: self
-    name: Mantle of Inspiration
-    time: bonus action
-    resource: bardicInspiration
+  - type: Reference
+    target:
+      - mantleOfInspiration
     condition: $(meta.level >= 3)
-    description: You provide $(2 * attributes.bardicDie) Temporary Hit Points to up to $(Math.max(1, stats.cha.mod)) creatures within 60 feet. Each can use its Reaction to move up to its Speed without provoking Opportunity Attacks.
   - type: Reference
     target: command
     condition: $(meta.level >= 6)
-  - id: mantleOfMajesty
-    type: Activity
-    range: self
-    name: Mantle of Majesty
-    time: bonus action
-    duration: Concentration, up to 1 minute
+  - type: Reference
+    target:
+      - mantleOfMajesty
     condition: $(meta.level >= 6)
-    resource: limited
-    description: |
-      You cast Command without expending a spell slot and assume an unearthly appearance for the duration. 
-
-      While active, you can cast Command as a Bonus Action without expending a spell slot. Any creature Charmed by you automatically fails its save against this Command.

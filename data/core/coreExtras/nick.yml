@@ -1,5 +1,0 @@
-type: Extra
-target: nick AND (pactWeapon OR weaponMastery)
-id: nick
-name: Nick
-description: You can make the additional attack of the Light property as part of the Attack action instead of as a Bonus Action.

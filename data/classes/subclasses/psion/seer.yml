@@ -32,27 +32,15 @@ children:
     type: Reference
     target: dexAdvantage
     condition: $(meta.level >= 3)
-  - id: instantSlip
-    type: Activity
-    name: Instant Slip
-    time: reaction
-    range: self
-    duration: Instantaneous
-    resource: psionicEnergyDice
+  - type: Reference
+    target:
+      - instantSlip
     condition: $(meta.level >= 3)
-    description: When another creature damages you with an attack roll, reduce the damage by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)).
-  - id: foresightPropel
-    type: Extra
-    target: telekineticPropel
+  - type: Reference
+    target:
+      - foresightPropel
     condition: $(meta.level >= 6)
-    name: Foresight Propel
-    description: A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.
-  - id: temporalGlitch
-    type: Activity
-    name: Temporal Glitch
-    time: reaction
-    range: self
-    duration: Instantaneous
-    resource: psionicEnergyDice
+  - type: Reference
+    target:
+      - temporalGlitch
     condition: $(meta.level >= 6)
-    description: When you fail a Constitution saving throw to maintain Concentration, add 1d$(attributes.psiDice) to the roll, potentially turning a fail into a success. The Psionic Energy is expended only if the check succeeds.

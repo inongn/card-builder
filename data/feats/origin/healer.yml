@@ -1,24 +1,14 @@
 id: healer
-summary: "Use healer kits to restore hit points and stabilize dying allies."
+summary: Use healer kits to restore hit points and stabilize dying allies.
 name: Healer
 tags:
-- feat
-- originFeat
+  - feat
+  - originFeat
 type: Folder
 children:
-- id: battleMedic
-  type: Activity
-  duration: instantaneous
-  name: Battle Medic
-  time: action
-  range: 5 feet
-  description: 'You tend to a creature within range. That creature can expend one
-    of its Hit Point Dice, and you then roll that die. The creature regains Hit Points
-    equal to the roll plus a $(attributes.prof) Bonus.
-
-    '
-- id: healingRerolls
-  type: Extra
-  target: healingSpell
-  name: Healing Rerolls
-  description: You can reroll the die if it rolls a 1, and you must use the new roll.
+  - type: Reference
+    target:
+      - battleMedic
+  - type: Reference
+    target:
+      - healingRerolls

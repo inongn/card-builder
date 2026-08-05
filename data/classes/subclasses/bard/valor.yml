@@ -5,26 +5,17 @@ type: Folder
 tags:
   - bardSubclass
 children:
-  - id: combatInspirationExtra
-    type: Extra
-    name: Combat Inspiration
-    target: bardicInspiration
+  - type: Reference
+    target:
+      - combatInspirationExtra
     condition: $(meta.level >= 3)
-    description: |
-      A creature with a Bardic Inspiration die from you can also use it in one of the following ways:
-
-      **Defense.** When hit by an attack roll, use a Reaction to roll the die and add the result to AC, potentially causing the attack to miss.
-
-      **Offense.** When hitting with an attack roll, use a Reaction to roll the die and add the result to the damage roll.
   - type: Reference
     condition: $(meta.level >= 3)
     target:
       - martialWeaponProficiency
       - mediumArmorTraining
       - shieldTraining
-  - id: extraAttack
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - extraAttack
     condition: $(meta.level >= 5)
-    name: Extra Attack
-    description: You can attack twice, instead of once, whenever you take the Attack action on your turn. You can replace one attack with a cantrip that has a casting time of an action.

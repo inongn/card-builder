@@ -76,12 +76,10 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - id: extraAttack
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - extraAttack
     condition: $(meta.level >= 5)
-    name: Extra Attack
-    description: You can attack twice, instead of once, whenever you take the Attack action on your turn.
   - id: rovingSpeed
     type: Effect
     target: attributes.movement.walk

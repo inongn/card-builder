@@ -33,14 +33,9 @@ children:
     name: Fighting Style
     type: Slot
     target: fightingStyle
-  - id: secondWind
-    name: Second Wind
-    description: You draw on a well of physical and mental stamina. Regain 1d10+$(meta.level) Hit Points.
-    type: Activity
-    resource: secondWind
-    time: bonus action
-    duration: Instantaneous
-    range: self
+  - type: Reference
+    target:
+      - secondWind
   - id: masteryProperties
     type: Reference
     target: masteryProperties
@@ -49,30 +44,20 @@ children:
     type: Resource
     quantity: $(progression(2,2,2,3,3,3,3,3,3,4,4,4))
     sr: 1
-  - id: actionSurge
-    name: Action Surge
-    type: Activity
-    description: When you take an action, you push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
+  - type: Reference
+    target:
+      - actionSurge
     condition: $(meta.level >= 2)
-    range: self
-    time: free action
-    duration: Instantaneous
-    resource: actionSurge
   - id: actionSurge
     type: Resource
     condition: $(meta.level >= 2)
     name: Action Surge
     quantity: $(progression(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2))
     sr: all
-  - id: tacticalMind
-    type: Activity
+  - type: Reference
+    target:
+      - tacticalMind
     condition: $(meta.level >= 2)
-    range: self
-    duration: Instantaneous
-    resource: secondWind
-    time: free action
-    name: Tactical Mind
-    description: When you fail an ability check, you push yourself toward success. Add 1d10 to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn't expended.
   - id: fighterSubclass
     name: Fighter Subclass
     condition: $(meta.level >= 3)
@@ -84,18 +69,14 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - id: tacticalShift
-    type: Extra
-    target: secondWind
+  - type: Reference
+    target:
+      - tacticalShift
     condition: $(meta.level >= 5)
-    name: Tactical Shift
-    description: You can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
-  - id: extraAttack
-    type: Extra
-    target: weaponAttack
+  - type: Reference
+    target:
+      - extraAttack
     condition: $(meta.level >= 5)
-    name: Extra Attack
-    description: 'You can attack $(meta.level >= 20 ? ''four times'' : meta.level >= 11 ? ''three times'' : ''twice''), instead of once, whenever you take the Attack action on your turn.'
   - id: level6feat
     name: Level 6 Feat
     type: Slot

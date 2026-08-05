@@ -26,25 +26,10 @@ children:
     target:
       - contactOtherPlane
       - modifyMemory
-  - id: abyssalRupture
-    type: Activity
-    duration: instantaneous
-    range: self
-    name: Abyssal Rupture
-    time: free action
-    description: |
-      When you use Innate Sorcery, a 10-foot-radius Abyssal sphere ruptures within 30 feet. At activation and as a Bonus Action on subsequent turns, choose:
-      * **Demonic Lash:** Melee spell attack (+$(attributes.spellcasting.attack)) against a target within 5 ft of the rupture for 1d8 Slashing damage and pull up to 10 ft toward center.
-      * **Terrifying Screams:** Each creature in the rupture makes a DC $(attributes.spellcasting.save) Wisdom save or takes 1d4 Psychic damage.
-  - id: abyssalRealm
-    type: Activity
-    time: free action
-    duration: instantaneous
-    range: self
-    name: Abyssal Realm
+  - type: Reference
+    target:
+      - abyssalRupture
+  - type: Reference
+    target:
+      - abyssalRealm
     condition: $(meta.level >= 6)
-    description: |
-      When you spend at least 1 Sorcery Point as part of a Magic action or a Bonus Action on your turn, you can pull influence from the Abyss. When you do, you create a 10-foot Emanation originating from you, or you fill the Sphere of your Abyssal Rupture with magic from one of the following layers of the Abyss:
-      * **Gaping Maw's Frenzy.** Designate a direction that is horizontal to you. Each creature in the area that fails a DC $(attributes.spellcasting.save) Charisma saving throw must use as much of its movement as possible to move in that direction at the start of its next turn, taking the safest route.
-      * **Maze of Azzatar.** Each creature in the area makes a DC $(attributes.spellcasting.save) Intelligence saving throw. On a failed save, you gain the benefits of the Invisible condition against the target until the start of your next turn.
-      * **Slime Pits' Haze.** Each creature in the area makes a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the target has your choice of the Charmed or Poisoned condition until the start of your next turn.

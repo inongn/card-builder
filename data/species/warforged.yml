@@ -20,11 +20,9 @@ children:
     name: Integrated Protection
     operation: add
     value: 1
-  - id: sentrysRest
-    type: Extra
-    target: longRest
-    name: Sentry's Rest
-    description: You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious.
+  - type: Reference
+    target:
+      - sentrysRest
   - id: specializedDesignSkill
     name: Specialized Design Skill Proficiency
     type: Slot
@@ -35,8 +33,6 @@ children:
     type: Slot
     target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
     quantity: 1
-  - id: tireless
-    type: Extra
-    target: longRest
-    name: Tireless
-    description: You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation.
+  - type: Reference
+    target:
+      - tireless

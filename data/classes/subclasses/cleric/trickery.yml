@@ -5,14 +5,10 @@ type: Folder
 tags:
   - clericSubclass
 children:
-  - id: blessingOfTheTrickster
-    type: Activity
-    name: Blessing of the Trickster
-    time: action
-    range: 30 feet
-    duration: 8 hours
+  - type: Reference
+    target:
+      - blessingOfTheTrickster
     condition: $(meta.level >= 3)
-    description: You grant Advantage on Dexterity (Stealth) checks to yourself or a willing creature. The effect lasts until you finish a Long Rest or use this feature again.
   - type: Reference
     target:
       - charmPerson
@@ -35,19 +31,7 @@ children:
       - dominatePerson
       - modifyMemory
     condition: $(meta.level >= 9)
-  - id: invokeDuplicity
-    type: Activity
-    name: Invoke Duplicity
-    time: bonus action
-    range: 30 feet
-    duration: 1 minute
-    resource: channelDivinity
+  - type: Reference
+    target:
+      - invokeDuplicity
     condition: $(meta.level >= 3)
-    description: |
-      You create a visual illusion of yourself in an unoccupied space you can see within range. The illusion is animated and mimics your expressions and gestures. While it persists, you gain the following benefits:
-
-      **Cast Spells.** You can cast spells as though you were in the illusion's space, but you must use your own senses.
-
-      **Distract.** When you$(meta.level >= 17 ? ' or your allies' : '') and the illusion are within 5 feet of a creature, attack rolls against it have Advantage.
-
-      **Move.** As a Bonus Action, move the illusion up to 30 feet to a space within 120 feet of you.$(meta.level >= 6 ? ' You can teleport to swap places with it.' : '')

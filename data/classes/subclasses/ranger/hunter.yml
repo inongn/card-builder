@@ -5,11 +5,9 @@ tags:
   - rangerSubclass
 type: Folder
 children:
-  - id: huntersLore
-    type: Extra
-    name: Hunter's Lore
-    target: huntersMark
-    description: You know whether the creature has any Immunities, Resistances, or Vulnerabilities, and if it has any, you know what they are.
+  - type: Reference
+    target:
+      - huntersLore
   - id: huntersPrey
     type: Slot
     name: Hunter's Prey

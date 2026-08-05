@@ -1,5 +1,5 @@
 id: shieldMaster
-summary: "Use your shield to shove foes and block directional spell damage."
+summary: Use your shield to shove foes and block directional spell damage.
 name: Shield Master
 tags:
   - feat
@@ -12,15 +12,9 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Shield Bash
-    type: Activity
-    duration: instantaneous
-    time: bonus action
-    range: 5 feet
-    description: If you attack a creature on your turn, you try to shove that creature with your Shield. The target must succeed on a DC $(8+attributes.prof+stats.str.mod) Strength saving throw or be knocked prone.
-  - name: Interpose Shield
-    type: Activity
-    duration: instantaneous
-    range: self
-    time: reaction
-    description: If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you take no damage if you succeed on the saving throw.
+  - type: Reference
+    target:
+      - shieldMasterShieldBash
+  - type: Reference
+    target:
+      - shieldMasterInterposeShield

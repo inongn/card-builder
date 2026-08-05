@@ -5,21 +5,14 @@ type: Folder
 tags:
   - bardSubclass
 children:
-  - id: inspiredEclipse
-    type: Extra
-    target: bardicInspiration
+  - type: Reference
+    target:
+      - inspiredEclipse
     condition: $(meta.level >= 3)
-    name: Inspired Eclipse
-    description: You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell.
-  - id: lunarVitality
-    type: Activity
-    duration: instantaneous
-    range: self
-    name: Lunar Vitality
-    time: free action
-    resource: bardicInspiration
+  - type: Reference
+    target:
+      - lunarVitality
     condition: $(meta.level >= 3)
-    description: Once per turn when you restore Hit Points to a creature with a spell, you increase the amount of Hit Points restored by 1d$(attributes.bardicDie). The creature's Speed also increases by 10 feet until the end of its next turn.
   - type: Slot
     id: primalLoreCantrip
     name: Primal Lore Cantrip
@@ -40,15 +33,7 @@ children:
     target:
       - moonbeam
     condition: $(meta.level >= 6)
-  - id: blessingOfMoonlight
-    type: Activity
-    name: Blessing of Moonlight
-    time: action
-    range: self
-    duration: concentration, up to 1 minute
-    resource: limited
+  - type: Reference
+    target:
+      - blessingOfMoonlight
     condition: $(meta.level >= 6)
-    description: |
-      You cast Moonbeam, and you modify it so that you glow faintly while the spell is active. 
-
-      While glowing, you shed Dim Light out to 5 feet, and whenever a creature fails its saving throw against the effects of this Moonbeam, another creature of your choice that you can see within 60 feet of yourself regains 2d4 Hit Points.
