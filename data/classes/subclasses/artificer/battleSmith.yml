@@ -40,3 +40,9 @@ children:
     target:
       - extraAttack
     condition: $(meta.level >= 5)
+  - id: battleSmithExtraAttack
+    type: Effect
+    target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    operation: replace
+    condition: $(meta.level >= 5)
+    value: "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Steel Defender to take an action in its stat block."
