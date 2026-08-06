@@ -1,5 +1,5 @@
 id: warCaster
-summary: "Maintain spell concentration effortlessly and cast spells as opportunity attacks."
+summary: Maintain spell concentration effortlessly and cast spells as opportunity attacks.
 name: War Caster
 tags:
   - feat
@@ -14,7 +14,6 @@ children:
   - name: Concentration
     type: Reference
     target: concentrationAdvantage
-  - name: Reactive Spell
-    type: Extra
-    target: opportunityAttack
-    description: You can cast a spell rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature.
+  - type: Reference
+    target:
+      - warCasterReactiveSpell

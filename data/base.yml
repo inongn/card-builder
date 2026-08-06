@@ -394,7 +394,7 @@ children:
 
 
   - type: Reference
-    reference: [weaponProperties, extraProperties, unarmed, opportunityAttack, dash, disengage, hide, ready, search, influence, help, dodge, study]
+    reference: [weaponProperties, extraProperties, unarmed, opportunityAttack, dash, disengage, hide, ready, search, influence, help, dodge, study, shortRest, longRest]
 
   - type: Resource
     id: hitDice

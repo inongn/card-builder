@@ -1919,11 +1919,6 @@ mdui-navigation-drawer[mobile]::part(panel) {
    PRINT & PREVIEW
    ========================================================================== */
 
-.print-content {
-  width: 100%;
-  scale: clamp(0.3, 95vw / 11in, 1);
-  transform-origin: top left;
-}
 
 .print-mode .print-view {
   display: block;
@@ -1939,14 +1934,24 @@ mdui-navigation-drawer[mobile]::part(panel) {
   grid-column: span 3;
 }
 
+.print-mode .print-page-wrapper {
+  width: 100%;
+  max-width: 11in;
+  margin: 0 auto var(--space-5) auto;
+  aspect-ratio: 11 / 8.5;
+  position: relative;
+}
+
 .print-mode .print-page {
   width: 11in;
   height: 8.5in;
   padding: 0.25in;
-  margin: 0 auto var(--space-5) auto;
   box-sizing: border-box;
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   page-break-after: always;
@@ -2108,7 +2113,17 @@ mdui-navigation-drawer[mobile]::part(panel) {
     overflow: visible !important;
   }
 
+  .print-page-wrapper {
+    width: 11in !important;
+    height: 8.5in !important;
+    max-width: none !important;
+    margin: 0 !important;
+    aspect-ratio: auto !important;
+  }
+
   .print-page {
+    position: relative !important;
+    transform: none !important;
     margin: 0 !important;
     padding: 0.25in !important;
     box-sizing: border-box !important;

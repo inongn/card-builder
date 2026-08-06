@@ -11,10 +11,9 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Potent Poison
-    type: Extra
-    target: poisonDamage
-    description: This damage ignores resistance to Poison damage.
+  - type: Reference
+    target:
+      - poisonerPotentPoison
   - type: Reference
     target:
       - poisonerBrewPoison

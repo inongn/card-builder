@@ -1,5 +1,5 @@
 id: pactOfTheChainFolder
-summary: "Gain an upgraded imp, pseudodragon, quasit, or sprite familiar."
+summary: Gain an upgraded imp, pseudodragon, quasit, or sprite familiar.
 name: Pact of the Chain
 tags:
   - eldritchInvocation
@@ -10,8 +10,6 @@ children:
     value: true
   - type: Reference
     target: findFamiliar
-  - type: Extra
-    target: weaponAttack
-    description: You can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.
-    name: Pact of the Chain
-    
+  - type: Reference
+    target:
+      - pactOfTheChainExtra

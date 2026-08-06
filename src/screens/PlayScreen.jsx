@@ -56,9 +56,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
         };
 
         characterData.activities.forEach((activity) => {
-            if (activity.tags && activity.tags.includes('restActivity')) {
-                return;
-            }
+
 
             const id = (activity.id || '').toLowerCase();
             if (coreIds.includes(id)) {

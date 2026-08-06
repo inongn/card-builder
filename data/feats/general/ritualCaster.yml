@@ -1,5 +1,5 @@
 id: ritualCaster
-summary: "Learn and cast utility ritual spells from a ritual book."
+summary: Learn and cast utility ritual spells from a ritual book.
 name: Ritual Caster
 tags:
   - feat
@@ -16,7 +16,6 @@ children:
     target: level1Spell and ritual
     id: ritualCasterSpells
     quantity: $(attributes.prof)
-  - name: Quick Ritual
-    type: Extra
-    target: ritual
-    description: You can cast this spell using its regular casting time rather than the extended time for a Ritual. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a Long Rest.
+  - type: Reference
+    target:
+      - ritualCasterQuickRitual

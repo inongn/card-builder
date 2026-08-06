@@ -1046,7 +1046,9 @@
           "influence",
           "help",
           "dodge",
-          "study"
+          "study",
+          "shortRest",
+          "longRest"
         ]
       },
       {
@@ -3840,20 +3842,6 @@
     "description": "Each Undead that fails its saving throw takes $(Math.max(1, stats.wis.mod))d8 Radiant damage. This damage doesn't end the turn effect."
   },
   {
-    "id": "improvedCircleFormsRadiance",
-    "type": "Extra",
-    "target": "wildShapeActivity",
-    "name": "Lunar Radiance",
-    "description": "You can deal Radiant damage instead of the normal type."
-  },
-  {
-    "id": "improvedCircleFormsToughness",
-    "type": "Extra",
-    "target": "wildShapeActivity",
-    "name": "Increased Toughness",
-    "description": "You can add $(stats.wis.mod) to your Constitution saving throws."
-  },
-  {
     "id": "primalStrikeWeapon",
     "type": "Extra",
     "target": "weaponAttack",
@@ -4152,6 +4140,13 @@
     "target": "eldritchBlast",
     "condition": "$(meta.level >= 2)",
     "description": "When you hit a Large or smaller creature, you can push it up to 10 feet straight away from you."
+  },
+  {
+    "id": "pactOfTheChainExtra",
+    "name": "Pact of the Chain",
+    "type": "Extra",
+    "target": "weaponAttack",
+    "description": "You can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction."
   },
   {
     "id": "arcaneNecrosis",
@@ -5558,10 +5553,10 @@
         "target": "findFamiliar"
       },
       {
-        "type": "Extra",
-        "target": "weaponAttack",
-        "description": "You can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.",
-        "name": "Pact of the Chain"
+        "type": "Reference",
+        "target": [
+          "pactOfTheChainExtra"
+        ]
       }
     ]
   },
@@ -12529,56 +12524,56 @@
     "children": [
       {
         "type": "Extra",
-        "target": "graze AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND graze AND (pactWeapon OR weaponMastery)",
         "id": "graze",
         "name": "Graze",
         "description": "On a miss, deal $(attributes[local.classification].bonus) $(local.damageType) damage."
       },
       {
         "type": "Extra",
-        "target": "slow AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND slow AND (pactWeapon OR weaponMastery)",
         "id": "slow",
         "name": "Slow",
         "description": "On a hit, the target's speed is reduced by 10 feet."
       },
       {
         "type": "Extra",
-        "target": "nick AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND nick AND (pactWeapon OR weaponMastery)",
         "id": "nick",
         "name": "Nick",
         "description": "You can make the additional attack of the Light property as part of the Attack action instead of as a Bonus Action."
       },
       {
         "type": "Extra",
-        "target": "cleave AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND cleave AND (pactWeapon OR weaponMastery)",
         "id": "cleave",
         "name": "Cleave",
         "description": "On a hit, you can make another attack against a second creature within 5 feet of the first that is also within your reach."
       },
       {
         "type": "Extra",
-        "target": "push AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND push AND (pactWeapon OR weaponMastery)",
         "id": "push",
         "name": "Push",
         "description": "On a hit, push the target up to 10 feet straight away from yourself."
       },
       {
         "type": "Extra",
-        "target": "topple AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND topple AND (pactWeapon OR weaponMastery)",
         "id": "topple",
         "name": "Topple",
         "description": "On a hit, the target must succeed a DC $(8 + attributes.prof + attributes[local.classification].bonus) Constitution saving throw or have the Prone condition."
       },
       {
         "type": "Extra",
-        "target": "sap AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND sap AND (pactWeapon OR weaponMastery)",
         "id": "sap",
         "name": "Sap",
         "description": "On a hit, the target has Disadvantage on its next attack roll before the start of your next turn."
       },
       {
         "type": "Extra",
-        "target": "vex AND (pactWeapon OR weaponMastery)",
+        "target": "weaponAttack AND vex AND (pactWeapon OR weaponMastery)",
         "id": "vex",
         "name": "Vex",
         "description": "On a hit, you have Advantage on your next attack roll against the target before the end of your next turn."
@@ -16779,13 +16774,10 @@
         ]
       },
       {
-        "name": "Guarded Mind",
-        "type": "Activity",
-        "time": "free action",
-        "duration": "instantaneous",
-        "range": "self",
-        "resource": "limited",
-        "description": "If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead."
+        "type": "Reference",
+        "target": [
+          "mageSlayerGuardedMind"
+        ]
       }
     ]
   },
@@ -16863,12 +16855,10 @@
         "value": 1
       },
       {
-        "name": "Mounted Combatant",
-        "type": "Activity",
-        "time": "free action",
-        "duration": "instantaneous",
-        "range": "self",
-        "description": "While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount.\n\nIf your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw and only half damage if it fails. For your mount to gain this benefit, you must be riding it, and neither of you can have the Incapacitated condition.\n\nWhile you're riding a mount that isn't Incapacitated, you can force an attack that hits the mount to hit you instead if you don't have the Incapacitated condition.\n"
+        "type": "Reference",
+        "target": [
+          "mountedCombatantMountedCombatant"
+        ]
       }
     ]
   },
@@ -16955,10 +16945,10 @@
         "value": 1
       },
       {
-        "name": "Potent Poison",
-        "type": "Extra",
-        "target": "poisonDamage",
-        "description": "This damage ignores resistance to Poison damage."
+        "type": "Reference",
+        "target": [
+          "poisonerPotentPoison"
+        ]
       },
       {
         "type": "Reference",
@@ -16986,10 +16976,10 @@
         "value": 1
       },
       {
-        "name": "Reactive Strike",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "You can make an Opportunity Attack when a creature enters your reach."
+        "type": "Reference",
+        "target": [
+          "polearmMasterReactiveStrike"
+        ]
       },
       {
         "type": "Reference",
@@ -17050,10 +17040,10 @@
         "quantity": "$(attributes.prof)"
       },
       {
-        "name": "Quick Ritual",
-        "type": "Extra",
-        "target": "ritual",
-        "description": "You can cast this spell using its regular casting time rather than the extended time for a Ritual. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a Long Rest."
+        "type": "Reference",
+        "target": [
+          "ritualCasterQuickRitual"
+        ]
       }
     ]
   },
@@ -17075,16 +17065,16 @@
         "value": 1
       },
       {
-        "name": "Halt",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "On a hit, the target's Speed becomes 0 for the rest of the current turn."
+        "type": "Reference",
+        "target": [
+          "sentinelHalt"
+        ]
       },
       {
-        "name": "Guardian",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "You can make an Opportunity Attack when a creature takes the Disengage action or hits a target other than you with an attack."
+        "type": "Reference",
+        "target": [
+          "sentinelGuardian"
+        ]
       }
     ]
   },
@@ -17142,22 +17132,22 @@
         "value": 1
       },
       {
-        "name": "Bypass Cover",
-        "type": "Extra",
-        "target": "weaponAttack and ranged",
-        "description": "This attack ignores Half Cover and Three-Quarters Cover."
+        "type": "Reference",
+        "target": [
+          "sharpshooterBypassCover"
+        ]
       },
       {
-        "name": "Firing in Melee",
-        "type": "Extra",
-        "target": "weaponAttack and ranged",
-        "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on this attack."
+        "type": "Reference",
+        "target": [
+          "sharpshooterFiringInMelee"
+        ]
       },
       {
-        "name": "Precision Shot",
-        "type": "Extra",
-        "target": "weaponAttack and ranged",
-        "description": "On a hit, the target takes $(attributes.prof) extra damage. You can use this benefit only once per turn."
+        "type": "Reference",
+        "target": [
+          "sharpshooterPrecisionShot"
+        ]
       }
     ]
   },
@@ -17317,10 +17307,10 @@
         "value": 30
       },
       {
-        "name": "Agile Movement",
-        "type": "Extra",
-        "target": "dash",
-        "description": "Difficult Terrain doesn't cost you extra movement."
+        "type": "Reference",
+        "target": [
+          "speedyAgileMovement"
+        ]
       }
     ]
   },
@@ -17342,16 +17332,16 @@
         "value": 1
       },
       {
-        "name": "Bypass Cover",
-        "type": "Extra",
-        "target": "attackSpell",
-        "description": "This attack ignores Half Cover and Three-Quarters Cover."
+        "type": "Reference",
+        "target": [
+          "spellSniperBypassCover"
+        ]
       },
       {
-        "name": "Casting in Melee",
-        "type": "Extra",
-        "target": "attackSpell",
-        "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on this attack."
+        "type": "Reference",
+        "target": [
+          "spellSniperCastingInMelee"
+        ]
       },
       {
         "name": "Increased Range",
@@ -17447,10 +17437,10 @@
         "target": "concentrationAdvantage"
       },
       {
-        "name": "Reactive Spell",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "You can cast a spell rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature."
+        "type": "Reference",
+        "target": [
+          "warCasterReactiveSpell"
+        ]
       }
     ]
   },

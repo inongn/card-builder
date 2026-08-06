@@ -1,5 +1,5 @@
 id: speedy
-summary: "Increase movement speed and ignore difficult terrain penalty when dashing."
+summary: Increase movement speed and ignore difficult terrain penalty when dashing.
 name: Speedy
 tags:
   - feat
@@ -16,7 +16,6 @@ children:
     target: attributes.movement.walk
     operation: add
     value: 30
-  - name: Agile Movement
-    type: Extra
-    target: dash
-    description: Difficult Terrain doesn't cost you extra movement. 
+  - type: Reference
+    target:
+      - speedyAgileMovement

@@ -1,5 +1,5 @@
 id: spellSniper
-summary: "Double spell range, ignore cover, and learn a offensive cantrip."
+summary: Double spell range, ignore cover, and learn a offensive cantrip.
 name: Spell Sniper
 tags:
   - feat
@@ -11,14 +11,12 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Bypass Cover
-    type: Extra
-    target: attackSpell
-    description: This attack ignores Half Cover and Three-Quarters Cover.
-  - name: Casting in Melee
-    type: Extra
-    target: attackSpell
-    description: Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.
+  - type: Reference
+    target:
+      - spellSniperBypassCover
+  - type: Reference
+    target:
+      - spellSniperCastingInMelee
   - name: Increased Range
     type: Effect
     target: activities[tags=attackSpell].range

@@ -1,5 +1,5 @@
 id: sharpshooter
-summary: "Master long-range marksmanship to bypass cover and strike distant targets."
+summary: Master long-range marksmanship to bypass cover and strike distant targets.
 name: Sharpshooter
 tags:
   - feat
@@ -11,15 +11,12 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - name: Bypass Cover
-    type: Extra
-    target: weaponAttack and ranged
-    description: This attack ignores Half Cover and Three-Quarters Cover.
-  - name: Firing in Melee
-    type: Extra
-    target: weaponAttack and ranged
-    description: Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.
-  - name: Precision Shot
-    type: Extra
-    target: weaponAttack and ranged
-    description: On a hit, the target takes $(attributes.prof) extra damage. You can use this benefit only once per turn.
+  - type: Reference
+    target:
+      - sharpshooterBypassCover
+  - type: Reference
+    target:
+      - sharpshooterFiringInMelee
+  - type: Reference
+    target:
+      - sharpshooterPrecisionShot
