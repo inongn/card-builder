@@ -7531,6 +7531,14 @@
           "extraAttack"
         ],
         "condition": "$(meta.level >= 5)"
+      },
+      {
+        "id": "battleSmithExtraAttack",
+        "type": "Effect",
+        "target": "activities[tags=weaponAttack].extra[\"instead of once, whenever you take the Attack action on your turn.\"]",
+        "operation": "replace",
+        "condition": "$(meta.level >= 5)",
+        "value": "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Steel Defender to take an action in its stat block."
       }
     ]
   },
@@ -19421,7 +19429,7 @@
     "time": "action",
     "range": "120 feet",
     "duration": "instantaneous",
-    "summary": "You hurl a mote of fire at a creature or an object within range.",
+    "summary": "You hurl a mote of fire at a creature or an object.",
     "description": "You hurl a mote of fire at a creature or an object within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d10 Fire damage. A flammable object hit by this spell starts burning if it isn't being worn or carried.\n"
   },
   {
@@ -24094,6 +24102,7 @@
       "forceDamage"
     ],
     "type": "Activity",
+    "resource": "level3SpellSlot",
     "time": "action",
     "range": "120 feet",
     "duration": "Instantaneous",

@@ -641,12 +641,14 @@ export class CharacterBuilder {
             clean = clean.replace(prefix, '');
         }
 
-        // Suffixes / standalone words to remove (e.g. " Domain", " Patron")
+        // Suffixes / standalone words to remove (e.g. " Domain", " Patron", " Sorcery")
         clean = clean
             .replace(/\s+Domain$/i, '')
             .replace(/^Domain\s+/i, '')
             .replace(/\s+Patron$/i, '')
             .replace(/^Patron\s+/i, '')
+            .replace(/\s+Sorcery$/i, '')
+            .replace(/^Sorcery\s+/i, '')
             .trim();
 
         return clean;

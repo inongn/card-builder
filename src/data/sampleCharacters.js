@@ -25216,7 +25216,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_aberrant',
         name: 'Qal Mind',
         class: 'Sorcerer',
-        sub: 'Aberrant Sorcery',
+        sub: 'Aberrant',
         species: 'Dragonborn',
         background: 'Sage',
         level: 8,
@@ -25787,7 +25787,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_clockwork',
         name: 'Keth Meridian',
         class: 'Sorcerer',
-        sub: 'Clockwork Sorcery',
+        sub: 'Clockwork',
         species: 'Dwarf',
         background: 'Artisan',
         level: 8,
@@ -26300,7 +26300,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_draconic',
         name: 'Sylis Flame',
         class: 'Sorcerer',
-        sub: 'Draconic Sorcery',
+        sub: 'Draconic',
         species: 'Human',
         background: 'Noble',
         level: 8,
@@ -26897,7 +26897,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_wildMagic',
         name: 'Blythe Flux',
         class: 'Sorcerer',
-        sub: 'Wild Magic Sorcery',
+        sub: 'Wild Magic',
         species: 'Human',
         background: 'Charlatan',
         level: 8,
@@ -27477,7 +27477,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_shadow',
         name: 'Vesper Shadow',
         class: 'Sorcerer',
-        sub: 'Shadow Sorcery',
+        sub: 'Shadow',
         species: 'Human',
         background: 'Criminal',
         level: 8,
@@ -27912,7 +27912,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'telekineticCrush'
+                        propertyId: 'tongues'
                 },
                 {
                         path: [
@@ -27924,7 +27924,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'tongues'
+                        propertyId: 'vampiricTouch'
                 },
                 {
                         path: [
@@ -27936,7 +27936,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'vampiricTouch'
+                        propertyId: 'waterBreathing'
                 },
                 {
                         path: [
@@ -28003,7 +28003,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_demonic',
         name: 'Azazel Rift',
         class: 'Sorcerer',
-        sub: 'Demonic Sorcery',
+        sub: 'Demonic',
         species: 'Tiefling',
         background: 'Hermit',
         level: 8,
@@ -28391,7 +28391,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'charmMonster'
+                        propertyId: 'confusion'
                 },
                 {
                         path: [
@@ -28415,7 +28415,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'waterBreathing'
+                        propertyId: 'waterWalk'
                 },
                 {
                         path: [
@@ -28427,7 +28427,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'waterWalk'
+                        propertyId: 'banishment'
                 },
                 {
                         path: [
@@ -28439,7 +28439,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'banishment'
+                        propertyId: 'blight'
                 },
                 {
                         path: [
@@ -28451,7 +28451,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'blight'
+                        propertyId: 'charmMonster'
                 },
                 {
                         path: [
@@ -37077,7 +37077,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'confusion'
+                        propertyId: 'freedomOfMovement'
                 },
                 {
                         path: [
@@ -38236,7 +38236,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'greaterInvisibility'
+                        propertyId: 'lifeInversionField'
                 },
                 {
                         path: [
@@ -38272,7 +38272,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'lifeInversionField'
+                        propertyId: 'locateCreature'
                 },
                 {
                         path: [
@@ -38284,7 +38284,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'freedomOfMovement'
+                        propertyId: 'greaterInvisibility'
                 },
                 {
                         path: [
