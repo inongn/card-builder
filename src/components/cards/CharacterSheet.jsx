@@ -181,7 +181,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
             </div>
 
             {/* Ability Scores */}
-            <div className="main-card-row">
+            <div className="main-card-row stat-box-row hide-on-print">
                 {Object.entries(char.stats).map(([key, value]) => (
                     <mdui-card variant="filled" className="inner-card main-card-box stat-box" key={key}>
                         <div className="text-secondary">{key.toUpperCase()}</div>
@@ -375,19 +375,26 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                         <div className="list-item resource-list-item" key={i}>
                                             <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
                                             <div className="text-primary">{res.name || res.id}</div>
-                                            <div className="resource-dots" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
-                                                {Array(q).fill(0).map((_, j) => {
-                                                    const isUsed = j < usedCount;
-                                                    return (
-                                                        <mdui-icon
-                                                            key={j}
-                                                            name={isUsed ? 'square' : 'crop_square'}
-                                                            class={`icon-small icon-rotated ${isPlayMode ? 'resource-dot-interactive' : ''} ${isUsed ? 'used' : ''}`}
-                                                            onClick={() => handleToggleResourceDot(resKey, j)}
-                                                        ></mdui-icon>
-                                                    );
-                                                })}
-                                            </div>
+                                            {isPlayMode ? (
+                                                <>
+                                                    <div className="resource-dots hide-on-print" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
+                                                        {Array(q).fill(0).map((_, j) => {
+                                                            const isUsed = j < usedCount;
+                                                            return (
+                                                                <mdui-icon
+                                                                    key={j}
+                                                                    name={isUsed ? 'square' : 'crop_square'}
+                                                                    class={`icon-small icon-rotated ${isPlayMode ? 'resource-dot-interactive' : ''} ${isUsed ? 'used' : ''}`}
+                                                                    onClick={() => handleToggleResourceDot(resKey, j)}
+                                                                ></mdui-icon>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                    <div className="text-secondary resource-total show-on-print">{q}</div>
+                                                </>
+                                            ) : (
+                                                <div className="text-secondary resource-total">{q}</div>
+                                            )}
                                         </div>
                                     );
                                 })}

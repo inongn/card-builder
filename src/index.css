@@ -2058,6 +2058,28 @@ mdui-navigation-drawer[mobile]::part(panel) {
   color: rgb(60, 60, 60);
 }
 
+.print-mode .stat-box-row {
+  display: none !important;
+}
+
+.print-mode .saves-list {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-rows: none !important;
+  grid-auto-flow: row !important;
+}
+
+.print-mode .resource-dots {
+  display: none !important;
+}
+
+.print-mode .resource-total {
+  display: block !important;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #111 !important;
+}
+
 /* ==========================================================================
    PRINT-ONLY OVERRIDES
    ========================================================================== */
@@ -3085,7 +3107,7 @@ mdui-list-item.card-vertical-item::part(container) {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   grid-template-rows: 1fr !important;
-  gap: 0.25in !important;
+  gap: 0 !important;
   height: 100% !important;
   width: 100% !important;
   overflow: hidden !important;
@@ -3102,49 +3124,184 @@ mdui-list-item.card-vertical-item::part(container) {
   grid-column: 2 / span 1 !important;
   grid-row: 1 / span 1 !important;
   height: 100% !important;
-  overflow-y: auto !important;
+  /* Never scroll — clips at page boundary like a physical page */
+  overflow: hidden !important;
   border: 1px solid #ccc !important;
-  border-radius: 12px !important;
-  padding: 12px !important;
+  border-radius: 0 !important;
+  padding: 10px 12px !important;
   background: white !important;
   color: black !important;
   box-sizing: border-box !important;
 }
 
+/* Container: tight gap between categories */
 .print-mode .activity-sheet-print-slot .activity-sheet-container {
-  gap: 10px;
+  gap: 6px !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .print-mode .activity-sheet-print-slot .aside-card-group {
-  margin-bottom: 8px;
+  margin-bottom: 0 !important;
 }
 
+/* Category label — subtle rule underneath */
 .print-mode .activity-sheet-print-slot .title-primary {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #444;
-  margin-bottom: 4px;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #555 !important;
+  margin-bottom: 2px !important;
+  padding-bottom: 2px !important;
+  border-bottom: 1px solid #ccc !important;
+}
+
+/* Print-style list: no card backgrounds, no borders, no border-radius.
+   Each item is a plain row separated by a hairline rule. */
+.print-mode .activity-sheet-print-slot .activity-sheet-list {
+  gap: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .print-mode .activity-sheet-print-slot .activity-sheet-item {
-  padding: 4px 8px;
-  background: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  margin-bottom: 4px;
+  padding: 2px 4px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  gap: 6px !important;
+  /* Disable web hover transition */
+  transition: none !important;
+}
+
+.print-mode .activity-sheet-print-slot .activity-sheet-item:last-child {
+  border-bottom: none !important;
+}
+
+/* No hover highlight in print context */
+.print-mode .activity-sheet-print-slot .activity-sheet-item:hover {
+  background: transparent !important;
+  border-color: transparent !important;
+  border-bottom-color: #e8e8e8 !important;
 }
 
 .print-mode .activity-sheet-print-slot .activity-sheet-content {
-  font-size: 0.78rem;
-  line-height: 1.35;
-  color: #111;
+  font-size: 0.75rem !important;
+  line-height: 1.3 !important;
+  color: #111 !important;
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+
+/* Icon stays small and neutral */
+.print-mode .activity-sheet-print-slot .activity-sheet-icon {
+  margin-top: 1px !important;
+}
+
+/* Cap resource icons to a compact size — keep their color */
+.print-mode .activity-sheet-print-slot .activity-sheet-icon mdui-icon {
+  font-size: 14px !important;
+}
+
+/* Suppress colored text only — leave icon colors alone */
+.print-mode .activity-sheet-print-slot .activity-sheet-content,
+.print-mode .activity-sheet-print-slot .activity-sheet-line,
+.print-mode .activity-sheet-print-slot .activity-sheet-line span,
+.print-mode .activity-sheet-print-slot .activity-sheet-line p,
+.print-mode .activity-sheet-print-slot .activity-sheet-line strong {
+  color: #111 !important;
+}
+
+/* Italic is fine; just no accent color on em */
+.print-mode .activity-sheet-print-slot .activity-sheet-line em {
+  color: #444 !important;
+}
+
+/* ── Overflow continuation pages ─────────────────────────────── */
+.print-mode .activity-overflow-slot {
+  height: 100% !important;
+  overflow: hidden !important;
+  padding: 10px 16px !important;
+  box-sizing: border-box !important;
+  background: white !important;
+  color: black !important;
+  columns: 2 !important;
+  column-gap: 16px !important;
+  column-fill: auto !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-container {
+  gap: 6px !important;
+}
+
+.print-mode .activity-overflow-slot .aside-card-group {
+  break-inside: avoid !important;
+  margin-bottom: 0 !important;
+}
+
+.print-mode .activity-overflow-slot .title-primary {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #555 !important;
+  margin-bottom: 2px !important;
+  padding-bottom: 2px !important;
+  border-bottom: 1px solid #ccc !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-list {
+  gap: 0 !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-item {
+  padding: 2px 4px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  gap: 6px !important;
+  transition: none !important;
+  break-inside: avoid !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-item:last-child {
+  border-bottom: none !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-item:hover {
+  background: transparent !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-content {
+  font-size: 0.75rem !important;
+  line-height: 1.3 !important;
+  color: #111 !important;
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-content span,
+.print-mode .activity-overflow-slot .activity-sheet-content p,
+.print-mode .activity-overflow-slot .activity-sheet-content strong {
+  color: #111 !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-content em {
+  color: #444 !important;
+}
+
+.print-mode .activity-overflow-slot .activity-sheet-icon mdui-icon {
+  font-size: 14px !important;
 }
 
 @media print {
   .print-mode .activity-sheet-print-slot {
     overflow: hidden !important;
-    border-color: #999 !important;
+  }
+  .print-mode .activity-overflow-slot {
+    overflow: hidden !important;
   }
 }

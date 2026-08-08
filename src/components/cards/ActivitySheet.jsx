@@ -29,7 +29,7 @@ export const renderResourceIcon = (activity, char) => {
   return renderIcon('atWill', false);
 };
 
-export const ActivitySheetItem = memo(({ activity, char }) => {
+export const ActivitySheetItem = memo(({ activity, char, printMode = false }) => {
   if (!activity) return null;
 
   const formattedLine = formatActivityMechanic(activity, char);
@@ -38,11 +38,11 @@ export const ActivitySheetItem = memo(({ activity, char }) => {
   const markdownComponents = {
     p: ({ children }) => (
       <span className="activity-sheet-line">
-        {processDiceInChildren(children, true, activity.name)}
+        {processDiceInChildren(children, !printMode, activity.name)}
       </span>
     ),
     span: ({ children }) => (
-      <span>{processDiceInChildren(children, true, activity.name)}</span>
+      <span>{processDiceInChildren(children, !printMode, activity.name)}</span>
     )
   };
 
@@ -61,7 +61,7 @@ export const ActivitySheetItem = memo(({ activity, char }) => {
 });
 
 export const groupActivities = (activities = []) => {
-  const coreIds = ['dash', 'disengage', 'hide', 'dodge', 'help', 'ready', 'study', 'search', 'influence'];
+  const coreIds = [];
   const groups = {
     'core': [],
     'action': [],
@@ -90,7 +90,7 @@ export const groupActivities = (activities = []) => {
   return groups;
 };
 
-export const ActivitySheet = memo(({ groupedActivities, characterData }) => {
+export const ActivitySheet = memo(({ groupedActivities, characterData, printMode = false }) => {
   const effectiveGroups = React.useMemo(() => {
     if (groupedActivities) return groupedActivities;
     return groupActivities(characterData?.activities || []);
@@ -115,7 +115,7 @@ export const ActivitySheet = memo(({ groupedActivities, characterData }) => {
             <div className="title-primary">{label}</div>
             <div className="activity-sheet-list">
               {activities.map((item, idx) => (
-                <ActivitySheetItem key={`${item.id || 'act'}-${idx}`} activity={item} char={characterData} />
+                <ActivitySheetItem key={`${item.id || 'act'}-${idx}`} activity={item} char={characterData} printMode={printMode} />
               ))}
             </div>
           </div>

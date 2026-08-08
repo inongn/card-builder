@@ -13,6 +13,7 @@ tags:
 type: Activity
 time: action
 range: 120 feet
+resource: level3SpellSlot
 duration: Instantaneous
 description: >
   You create a field of crushing telekinetic force in a 30-foot Cube within

@@ -1036,19 +1036,7 @@
         "reference": [
           "weaponProperties",
           "extraProperties",
-          "unarmed",
-          "opportunityAttack",
-          "dash",
-          "disengage",
-          "hide",
-          "ready",
-          "search",
-          "influence",
-          "help",
-          "dodge",
-          "study",
-          "shortRest",
-          "longRest"
+          "unarmed"
         ]
       },
       {
@@ -1644,14 +1632,8 @@
     "description": "When you or a creature you can see within range fails an ability check or a saving throw, add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed.",
     "resource": "flashOfGeniusResource",
     "mechanic": {
-      "pattern": "save",
-      "save": {
-        "ability": "dex",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
-        "failure": {
-          "text": "When you or a creature you can see within range fails an ability check or a saving throw, add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed."
-        }
-      }
+      "pattern": "utility",
+      "text": "When you or a creature you can see within range fails an ability check or a saving throw, add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed."
     }
   },
   {
@@ -2239,14 +2221,8 @@
     "resource": "psionicEnergyDice",
     "description": "When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result.\n",
     "mechanic": {
-      "pattern": "save",
-      "save": {
-        "ability": "dex",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
-        "failure": {
-          "text": "When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result."
-        }
-      }
+      "pattern": "utility",
+      "text": "When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result.\n"
     }
   },
   {
@@ -2299,14 +2275,8 @@
     "resource": "psionicEnergyDice",
     "description": "When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell.\n",
     "mechanic": {
-      "pattern": "save",
-      "save": {
-        "ability": "dex",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
-        "failure": {
-          "text": "When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell."
-        }
-      }
+      "pattern": "utility",
+      "text": "When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell.\n"
     }
   },
   {
@@ -2323,11 +2293,7 @@
     "resource": "psionicEnergyDice",
     "description": "When you make an attack roll against a creature and miss, you can roll 1d$(attributes.psiDice) and add the number rolled to the attack roll, potentially turning the miss into a hit. If this causes the attack to hit, the charge is expended.\n",
     "mechanic": {
-      "pattern": "attack",
-      "attack": {
-        "classification": "melee",
-        "type": "weapon"
-      },
+      "pattern": "utility",
       "text": "When you make an attack roll against a creature and miss, you can roll 1d$(attributes.psiDice) and add the number rolled to the attack roll, potentially turning the miss into a hit. If this causes the attack to hit, the charge is expended."
     }
   },
@@ -2366,7 +2332,7 @@
       "pattern": "save",
       "save": {
         "ability": "wis",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
+        "dc": "$(attributes.spellcasting.save)",
         "failure": {
           "text": "Immediately after a creature you can see hits you with an attack roll, you reduce the damage you take from the attack by an amount equal to two times the number rolled on 1d$(attributes.psiDice) + $(stats.int.mod) (minimum 2). In addition, you force the attacker to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the target takes Psychic damage equal to the amount of damage reduced."
         }
@@ -2387,14 +2353,8 @@
     "resource": "psionicEnergyDice",
     "description": "At the start of your turn, you gain Immunity to the Charmed and Frightened conditions and Advantage on Intelligence saving throws until the start of your next turn. If you are Charmed or Frightened when you use this discipline, the condition ends on you.\n\nWhen you use Psionic Guards, you can also use a different Psionic Discipline this turn.\n",
     "mechanic": {
-      "pattern": "save",
-      "save": {
-        "ability": "int",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
-        "failure": {
-          "text": "At the start of your turn, you gain Immunity to the Charmed and Frightened conditions and Advantage on Intelligence saving throws until the start of your next turn. If you are Charmed or Frightened when you use this discipline, the condition ends on you."
-        }
-      }
+      "pattern": "utility",
+      "text": "At the start of your turn, you gain Immunity to the Charmed and Frightened conditions and Advantage on Intelligence saving throws until the start of your next turn. If you are Charmed or Frightened when you use this discipline, the condition ends on you."
     }
   },
   {
@@ -2411,11 +2371,7 @@
     "resource": "psionicEnergyDice",
     "description": "At the start of your turn, roll 1d$(attributes.psiDice) and record the number rolled. You gain the following benefits for 1 minute or until you have the Incapacitated condition:\n* **Bypassing Psionics.** Damage from your weapon attacks, Psion spells, and Psion features ignores Resistance to Psychic damage.\n* **Attack Mode.** Once per turn, when you deal Psychic damage to one or more creatures, you can replace the number rolled on one of the damage dice with the number recorded when you activated this Psionic Discipline.\n\nWhen you use Sharpened Mind, you can also use a different Psionic Discipline this turn.\n",
     "mechanic": {
-      "pattern": "attack",
-      "attack": {
-        "classification": "melee",
-        "type": "weapon"
-      },
+      "pattern": "utility",
       "text": "At the start of your turn, roll 1d$(attributes.psiDice) and record the number rolled. You gain the following benefits for 1 minute or until you have the Incapacitated condition:"
     }
   },
@@ -2446,7 +2402,7 @@
       "pattern": "save",
       "save": {
         "ability": "str",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
+        "dc": "$(attributes.spellcasting.save)",
         "failure": {
           "text": "Choose a Large or smaller creature other than you within range. The target must make a DC $(attributes.spellcasting.save) Strength saving throw. On a failed save, it is moved 5d$(attributes.psiDice) feet straight toward or away from you."
         }
@@ -2466,11 +2422,7 @@
     "range": "self",
     "description": "Opportunity Attacks have Disadvantage against you.",
     "mechanic": {
-      "pattern": "attack",
-      "attack": {
-        "classification": "melee",
-        "type": "weapon"
-      },
+      "pattern": "utility",
       "text": "Opportunity Attacks have Disadvantage against you."
     }
   },
@@ -2487,11 +2439,7 @@
     "range": "self",
     "description": "When a creature hits you with an attack roll, that creature has Disadvantage on all other attack rolls against you this turn.",
     "mechanic": {
-      "pattern": "attack",
-      "attack": {
-        "classification": "melee",
-        "type": "weapon"
-      },
+      "pattern": "utility",
       "text": "When a creature hits you with an attack roll, that creature has Disadvantage on all other attack rolls against you this turn."
     }
   },
@@ -2648,14 +2596,8 @@
     "resource": "1 sorceryPoints",
     "description": "When you cast a spell that has a duration of 1 minute or longer, you double its duration to a maximum duration of 24 hours. If the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration.",
     "mechanic": {
-      "pattern": "save",
-      "save": {
-        "ability": "dex",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
-        "failure": {
-          "text": "When you cast a spell that has a duration of 1 minute or longer, you double its duration to a maximum duration of 24 hours. If the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration."
-        }
-      }
+      "pattern": "utility",
+      "text": "When you cast a spell that has a duration of 1 minute or longer, you double its duration to a maximum duration of 24 hours. If the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration."
     }
   },
   {
@@ -2668,14 +2610,8 @@
     "resource": "2 sorceryPoints",
     "description": "When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell.",
     "mechanic": {
-      "pattern": "save",
-      "save": {
-        "ability": "dex",
-        "dc": "$(attributes.spellcasting.save || attributes.monkSaveDC || 15)",
-        "failure": {
-          "text": "When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell."
-        }
-      }
+      "pattern": "utility",
+      "text": "When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell."
     }
   },
   {
@@ -2702,11 +2638,7 @@
     "resource": "1 sorceryPoints",
     "description": "If you make an attack roll for a spell and miss, you reroll the d20, and you must use the new roll.\n\nYou can use Seeking Spell even if you've already used a different Metamagic option during the casting of the spell.\n",
     "mechanic": {
-      "pattern": "attack",
-      "attack": {
-        "classification": "melee",
-        "type": "weapon"
-      },
+      "pattern": "utility",
       "text": "If you make an attack roll for a spell and miss, you reroll the d20, and you must use the new roll."
     }
   },
@@ -2829,11 +2761,7 @@
     "name": "Command Familiar",
     "description": "You command the familiar to make an attack.",
     "mechanic": {
-      "pattern": "attack",
-      "attack": {
-        "classification": "melee",
-        "type": "weapon"
-      },
+      "pattern": "utility",
       "text": "You command the familiar to make an attack."
     }
   },
@@ -19981,6 +19909,7 @@
     "type": "Activity",
     "time": "action",
     "range": "120 feet",
+    "resource": "level3SpellSlot",
     "duration": "Instantaneous",
     "description": "You create a field of crushing telekinetic force in a 30-foot Cube within range. Each creature in the area makes a DC $(attributes.spellcasting.save) Strength saving throw. On a failed save, a target takes 5d6 Force damage and has the Prone condition. On a successful save, a target takes half as much damage only.\n",
     "mechanic": {

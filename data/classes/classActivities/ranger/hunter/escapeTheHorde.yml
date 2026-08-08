@@ -9,8 +9,5 @@ duration: instantaneous
 range: self
 description: Opportunity Attacks have Disadvantage against you.
 mechanic:
-  pattern: attack
-  attack:
-    classification: melee
-    type: weapon
+  pattern: utility
   text: Opportunity Attacks have Disadvantage against you.

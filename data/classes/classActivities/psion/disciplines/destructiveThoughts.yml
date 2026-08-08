@@ -11,9 +11,6 @@ resource: psionicEnergyDice
 description: |
   When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: $(attributes.spellcasting.save || attributes.monkSaveDC || 15)
-    failure:
-      text: When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result.
+  pattern: utility
+  text: |
+    When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result.
