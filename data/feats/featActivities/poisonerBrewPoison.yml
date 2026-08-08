@@ -10,6 +10,7 @@ mechanic:
   mode: succession
   blocks:
     - pattern: utility
+      text: You craft $(attributes.prof) doses of poison. You can apply a dose to a weapon or piece of ammunition as a Bonus Action. When a creature takes damage from the poisoned item, that creature must succeed on the following save.
     - pattern: save
       save:
         ability: con

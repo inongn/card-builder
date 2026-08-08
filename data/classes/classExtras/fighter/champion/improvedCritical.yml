@@ -1,4 +1,4 @@
 id: improvedCritical
 name: Improved Critical
 type: Trait
-description: 'You score a Critical Hit on a roll of $(meta.level >= 15 ? ''18-20'' : ''19 or 20'').'
+description: "You score a Critical Hit on a roll of 19 or 20. Then, you can move $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet."

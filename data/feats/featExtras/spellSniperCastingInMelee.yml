@@ -1,5 +1,4 @@
 name: Casting in Melee
-type: Extra
-target: attackSpell
-description: Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.
+type: Trait
+description: Being within 5 feet of an enemy doesn't impose Disadvantage on your spell attack rolls.
 id: spellSniperCastingInMelee

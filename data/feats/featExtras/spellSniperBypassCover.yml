@@ -1,5 +1,4 @@
 name: Bypass Cover
-type: Extra
-target: attackSpell
-description: This attack ignores Half Cover and Three-Quarters Cover.
+type: Trait
+description: Your spell attacks ignore Half Cover and Three-Quarters Cover.
 id: spellSniperBypassCover

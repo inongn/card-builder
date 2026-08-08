@@ -1,5 +1,4 @@
 id: healingRerolls
-type: Extra
-target: healingSpell
+type: Trait
 name: Healing Rerolls
-description: You can reroll the die if it rolls a 1, and you must use the new roll.
+description: You can reroll healing once per turn.

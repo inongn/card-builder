@@ -1,9 +1,9 @@
 id: fastCrafting
 type: Activity
+time: 1 hour
+duration: instantaneous
 range: self
 name: Fast Crafting
-time: free action
-duration: Instantaneous
 description: |
   When you finish a Long Rest, you craft one piece of gear from the Fast Crafting table, provided you have the Artisan's Tools associated with that item and have proficiency with those tools. The item lasts until you finish another Long Rest, at which point the item falls apart.
 
@@ -24,5 +24,3 @@ description: |
   Weaver's Tools - Basket, Rope, Net, Tent; 
 
   Woodcarver's Tools - Club, Greatclub, Quarterstaff.
-mechanic:
-  pattern: utility

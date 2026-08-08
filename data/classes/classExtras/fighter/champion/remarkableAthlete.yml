@@ -1,4 +1,0 @@
-id: remarkableAthlete
-name: Remarkable Athlete
-type: Trait
-description: On a Critical Hit, you can move $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet.

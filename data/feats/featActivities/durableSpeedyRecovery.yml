@@ -6,10 +6,3 @@ resource: hitDice
 time: bonus action
 description: You can expend one of your Hit Dice, roll the die, and regain a number of Hit Points equal to the roll.
 id: durableSpeedyRecovery
-mechanic:
-  pattern: healing
-  healing:
-    dice:
-      count: 1
-      sides: $(attributes.hitDie)
-    type: hitPoints

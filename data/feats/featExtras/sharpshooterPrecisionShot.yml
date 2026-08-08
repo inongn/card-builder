@@ -1,5 +1,6 @@
 name: Precision Shot
-type: Extra
-target: weaponAttack and ranged
-description: On a hit, the target takes $(attributes.prof) extra damage. You can use this benefit only once per turn.
+type: Effect
+target: activities[tags=weaponAttack and tags=ranged].mechanic.damage.dice.bonus
+operation: add
+value: $(attributes.prof)
 id: sharpshooterPrecisionShot

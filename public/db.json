@@ -2915,13 +2915,7 @@
     "id": "improvedCritical",
     "name": "Improved Critical",
     "type": "Trait",
-    "description": "You score a Critical Hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
-  },
-  {
-    "id": "remarkableAthlete",
-    "name": "Remarkable Athlete",
-    "type": "Trait",
-    "description": "On a Critical Hit, you can move $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet."
+    "description": "You score a Critical Hit on a roll of 19 or 20. Then, you can move $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet."
   },
   {
     "id": "tacticalShift",
@@ -6012,13 +6006,6 @@
         "condition": "$(meta.level >= 3)"
       },
       {
-        "type": "Reference",
-        "target": [
-          "remarkableAthlete"
-        ],
-        "condition": "$(meta.level >= 3)"
-      },
-      {
         "id": "additionalFightingStyle",
         "name": "Additional Fighting Style",
         "type": "Slot",
@@ -6956,7 +6943,7 @@
     "id": "extraAttack",
     "type": "Trait",
     "name": "Extra Attack",
-    "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
+    "description": "You can attack twice per turn."
   },
   {
     "id": "extraProperties",
@@ -10801,18 +10788,11 @@
     "range": "5 feet",
     "description": "You tend to a creature within range. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains Hit Points equal to the roll plus a $(attributes.prof) Bonus.\n",
     "mechanic": {
-      "pattern": "healing",
-      "healing": {
-        "dice": {
-          "count": 1,
-          "sides": 8,
-          "bonus": "$(attributes.prof)"
-        },
-        "type": "hitPoints"
-      },
+      "pattern": "utility",
       "target": {
         "type": "touch"
-      }
+      },
+      "text": "Creature expends one Hit Point Die. Roll that die; creature regains HP equal to roll + $(attributes.prof)."
     }
   },
   {
@@ -10845,18 +10825,7 @@
     "duration": "instantaneous",
     "range": "self",
     "time": "1 hour",
-    "description": "You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.\n",
-    "mechanic": {
-      "pattern": "healing",
-      "healing": {
-        "dice": {
-          "count": 0,
-          "sides": 0,
-          "bonus": "$(attributes.prof)"
-        },
-        "type": "tempHitPoints"
-      }
-    }
+    "description": "You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.\n"
   },
   {
     "name": "Replenishing Meal",
@@ -10865,10 +10834,7 @@
     "range": "self",
     "time": "free action",
     "description": "When you finish a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for $(4 + attributes.prof) creatures. Any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.",
-    "id": "chefReplenishingMeal",
-    "mechanic": {
-      "pattern": "utility"
-    }
+    "id": "chefReplenishingMeal"
   },
   {
     "name": "Parry",
@@ -10891,41 +10857,25 @@
     "resource": "hitDice",
     "time": "bonus action",
     "description": "You can expend one of your Hit Dice, roll the die, and regain a number of Hit Points equal to the roll.",
-    "id": "durableSpeedyRecovery",
-    "mechanic": {
-      "pattern": "healing",
-      "healing": {
-        "dice": {
-          "count": 1,
-          "sides": "$(attributes.hitDie)"
-        },
-        "type": "hitPoints"
-      }
-    }
+    "id": "durableSpeedyRecovery"
   },
   {
     "id": "encouragingSong",
     "type": "Activity",
+    "time": "10 minutes",
     "range": "self",
+    "duration": "instantaneous",
     "name": "Encouraging Song",
-    "time": "free action",
-    "duration": "Instantaneous",
-    "description": "When you finish a Short or Long Rest, you play a song on a Musical Instrument with which you have proficiency and give Heroic Inspiration to $(attributes.prof) allies who hear the song.",
-    "mechanic": {
-      "pattern": "utility"
-    }
+    "description": "When you finish a Short or Long Rest, you play a song on a Musical Instrument with which you have proficiency and give Heroic Inspiration to $(attributes.prof) allies who hear the song."
   },
   {
     "id": "fastCrafting",
     "type": "Activity",
+    "time": "1 hour",
+    "duration": "instantaneous",
     "range": "self",
     "name": "Fast Crafting",
-    "time": "free action",
-    "duration": "Instantaneous",
-    "description": "When you finish a Long Rest, you craft one piece of gear from the Fast Crafting table, provided you have the Artisan's Tools associated with that item and have proficiency with those tools. The item lasts until you finish another Long Rest, at which point the item falls apart.\n\n**Fast Crafting table:**\n\nCarpenter's Tools - Ladder, Torch; \n\nLeatherworker's Tools - Case, Pouch; \n\nMason's Tools - Block and Tackle; \n\nPotter's Tools - Jug, Lamp; \n\nSmith's Tools - Ball Bearings, Bucket, Caltrops, Grappling Hook, Iron Pot; \n\nTinker's Tools - Bell, Shovel, Tinder Box; \n\nWeaver's Tools - Basket, Rope, Net, Tent; \n\nWoodcarver's Tools - Club, Greatclub, Quarterstaff.\n",
-    "mechanic": {
-      "pattern": "utility"
-    }
+    "description": "When you finish a Long Rest, you craft one piece of gear from the Fast Crafting table, provided you have the Artisan's Tools associated with that item and have proficiency with those tools. The item lasts until you finish another Long Rest, at which point the item falls apart.\n\n**Fast Crafting table:**\n\nCarpenter's Tools - Ladder, Torch; \n\nLeatherworker's Tools - Case, Pouch; \n\nMason's Tools - Block and Tackle; \n\nPotter's Tools - Jug, Lamp; \n\nSmith's Tools - Ball Bearings, Bucket, Caltrops, Grappling Hook, Iron Pot; \n\nTinker's Tools - Bell, Shovel, Tinder Box; \n\nWeaver's Tools - Basket, Rope, Net, Tent; \n\nWoodcarver's Tools - Club, Greatclub, Quarterstaff.\n"
   },
   {
     "name": "Damage Reduction",
@@ -10983,7 +10933,8 @@
     "resource": "luckPoints",
     "mechanic": {
       "pattern": "utility",
-      "trigger": "When you roll a d20 for a D20 Test or a creature attacks you"
+      "trigger": "When you roll a d20 for a D20 Test or a creature attacks you",
+      "text": "Give yourself Advantage on your roll, or impose Disadvantage on the attacker's roll."
     }
   },
   {
@@ -10997,20 +10948,15 @@
     "id": "mageSlayerGuardedMind",
     "mechanic": {
       "pattern": "utility",
-      "trigger": "When you fail an Int, Wis, or Cha saving throw"
+      "trigger": "When you fail an Int, Wis, or Cha saving throw",
+      "text": "Cause yourself to succeed on the saving throw instead."
     }
   },
   {
     "name": "Mounted Combatant",
-    "type": "Activity",
-    "time": "free action",
-    "duration": "instantaneous",
-    "range": "self",
+    "type": "Trait",
     "description": "While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount.\n\nIf your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw and only half damage if it fails. For your mount to gain this benefit, you must be riding it, and neither of you can have the Incapacitated condition.\n\nWhile you're riding a mount that isn't Incapacitated, you can force an attack that hits the mount to hit you instead if you don't have the Incapacitated condition.\n",
-    "id": "mountedCombatantMountedCombatant",
-    "mechanic": {
-      "pattern": "utility"
-    }
+    "id": "mountedCombatantMountedCombatant"
   },
   {
     "name": "Brew Poison",
@@ -11024,7 +10970,8 @@
       "mode": "succession",
       "blocks": [
         {
-          "pattern": "utility"
+          "pattern": "utility",
+          "text": "You craft $(attributes.prof) doses of poison. You can apply a dose to a weapon or piece of ammunition as a Bonus Action. When a creature takes damage from the poisoned item, that creature must succeed on the following save."
         },
         {
           "pattern": "save",
@@ -11103,7 +11050,8 @@
     "id": "shieldMasterInterposeShield",
     "mechanic": {
       "pattern": "utility",
-      "trigger": "Subjected to a Dex save for half damage"
+      "trigger": "When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage",
+      "text": "You take no damage if you succeed on the saving throw."
     }
   },
   {
@@ -11220,10 +11168,9 @@
   },
   {
     "id": "healingRerolls",
-    "type": "Extra",
-    "target": "healingSpell",
+    "type": "Trait",
     "name": "Healing Rerolls",
-    "description": "You can reroll the die if it rolls a 1, and you must use the new roll."
+    "description": "You can reroll healing once per turn."
   },
   {
     "id": "hew",
@@ -11234,8 +11181,7 @@
   },
   {
     "name": "Concentration Breaker",
-    "type": "Extra",
-    "target": "weaponAttack or attackSpell",
+    "type": "Trait",
     "description": "On a hit, the target has Disadvantage on any saving throw it makes to maintain Concentration.",
     "id": "mageSlayerConcentrationBreaker"
   },
@@ -11275,14 +11221,6 @@
     "id": "ritualCasterQuickRitual"
   },
   {
-    "id": "savageAttackerExtra",
-    "summary": "Reroll weapon damage dice once per turn and take the higher total.",
-    "name": "Savage Attacker",
-    "type": "Extra",
-    "target": "weaponAttack",
-    "description": "On a hit, roll the damage dice twice and use either roll against the target."
-  },
-  {
     "name": "Guardian",
     "type": "Extra",
     "target": "opportunityAttack",
@@ -11312,9 +11250,10 @@
   },
   {
     "name": "Precision Shot",
-    "type": "Extra",
-    "target": "weaponAttack and ranged",
-    "description": "On a hit, the target takes $(attributes.prof) extra damage. You can use this benefit only once per turn.",
+    "type": "Effect",
+    "target": "activities[tags=weaponAttack and tags=ranged].mechanic.damage.dice.bonus",
+    "operation": "add",
+    "value": "$(attributes.prof)",
     "id": "sharpshooterPrecisionShot"
   },
   {
@@ -11333,30 +11272,26 @@
   },
   {
     "name": "Sniper",
-    "type": "Extra",
+    "type": "Trait",
     "id": "sniper",
-    "target": "weaponAttack OR spellAttack",
     "description": "On a miss, while hidden, making the attack roll doesn't reveal your location."
   },
   {
     "name": "Agile Movement",
-    "type": "Extra",
-    "target": "dash",
-    "description": "Difficult Terrain doesn't cost you extra movement.",
+    "type": "Trait",
+    "description": "Difficult Terrain doesn't cost you extra movement when Dashing.",
     "id": "speedyAgileMovement"
   },
   {
     "name": "Bypass Cover",
-    "type": "Extra",
-    "target": "attackSpell",
-    "description": "This attack ignores Half Cover and Three-Quarters Cover.",
+    "type": "Trait",
+    "description": "Your spell attacks ignore Half Cover and Three-Quarters Cover.",
     "id": "spellSniperBypassCover"
   },
   {
     "name": "Casting in Melee",
-    "type": "Extra",
-    "target": "attackSpell",
-    "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.",
+    "type": "Trait",
+    "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on your spell attack rolls.",
     "id": "spellSniperCastingInMelee"
   },
   {
@@ -11726,7 +11661,7 @@
       },
       {
         "type": "Effect",
-        "target": "activities[tags=weaponAttack].extra[\"You do not add your Ability Modifier to the attack's damage roll\"].description",
+        "target": "activities[tags=weaponAttack and tags=crossbow].extra[\"You do not add your Ability Modifier to the attack's damage roll\"].description",
         "operation": "replace",
         "value": ""
       }
@@ -11959,9 +11894,9 @@
       {
         "name": "Heavy Weapon Mastery",
         "type": "Effect",
-        "target": "activities[tags=weaponAttack and tags=melee and tags=twoHanded].description[\"$(formatBonus(attributes.melee.bonus))\"]",
-        "operation": "replace",
-        "value": "$(formatBonus(attributes.melee.bonus+attributes.prof))"
+        "target": "activities[tags=weaponAttack and tags=heavy].mechanic.damage.dice.bonus",
+        "operation": "add",
+        "value": "$(attributes.prof)"
       },
       {
         "type": "Reference",
@@ -12394,12 +12329,6 @@
         "target": "level1Spell and ritual",
         "id": "ritualCasterSpells",
         "quantity": "$(attributes.prof)"
-      },
-      {
-        "type": "Reference",
-        "target": [
-          "ritualCasterQuickRitual"
-        ]
       }
     ]
   },
@@ -14382,7 +14311,7 @@
     "id": "halflingNimbleness",
     "type": "Trait",
     "name": "Halfling Nimbleness",
-    "description": "You can move through the space of any creature that is a size larger than you, but you can't stop in the same space."
+    "description": "You can move through the space of any creature that is a size larger than you."
   },
   {
     "id": "healingHands",
@@ -14440,7 +14369,7 @@
     "id": "luck",
     "type": "Trait",
     "name": "Luck",
-    "description": "When you roll a 1 on a D20 Test, you can reroll the die."
+    "description": "You can reroll any 1 on a D20."
   },
   {
     "id": "relentlessEndurance",
@@ -14511,7 +14440,7 @@
     "id": "naturallyStealthy",
     "type": "Trait",
     "name": "Naturally Stealthy",
-    "description": "You can Hide even when you are obscured only by a creature that is at least one size larger than you."
+    "description": "You can Hide when obscured by a creature at least one size larger than you."
   },
   {
     "id": "resourceful",

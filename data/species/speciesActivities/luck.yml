@@ -1,4 +1,4 @@
 id: luck
 type: Trait
 name: Luck
-description: When you roll a 1 on a D20 Test, you can reroll the die.
+description: You can reroll any 1 on a D20.

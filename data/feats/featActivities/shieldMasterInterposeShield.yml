@@ -7,4 +7,5 @@ description: If you're subjected to an effect that allows you to make a Dexterit
 id: shieldMasterInterposeShield
 mechanic:
   pattern: utility
-  trigger: Subjected to a Dex save for half damage
+  trigger: When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage
+  text: You take no damage if you succeed on the saving throw.

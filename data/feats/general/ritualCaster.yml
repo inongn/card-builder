@@ -16,6 +16,3 @@ children:
     target: level1Spell and ritual
     id: ritualCasterSpells
     quantity: $(attributes.prof)
-  - type: Reference
-    target:
-      - ritualCasterQuickRitual

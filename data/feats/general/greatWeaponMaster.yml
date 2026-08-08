@@ -13,9 +13,9 @@ children:
     value: 1
   - name: Heavy Weapon Mastery
     type: Effect
-    target: activities[tags=weaponAttack and tags=melee and tags=twoHanded].description["$(formatBonus(attributes.melee.bonus))"]
-    operation: replace
-    value: $(formatBonus(attributes.melee.bonus+attributes.prof))
+    target: activities[tags=weaponAttack and tags=heavy].mechanic.damage.dice.bonus
+    operation: add
+    value: $(attributes.prof)
   - type: Reference
     target:
       - hew

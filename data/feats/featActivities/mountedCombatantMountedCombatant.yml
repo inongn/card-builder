@@ -1,8 +1,5 @@
 name: Mounted Combatant
-type: Activity
-time: free action
-duration: instantaneous
-range: self
+type: Trait
 description: |
   While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount.
 
@@ -10,5 +7,3 @@ description: |
 
   While you're riding a mount that isn't Incapacitated, you can force an attack that hits the mount to hit you instead if you don't have the Incapacitated condition.
 id: mountedCombatantMountedCombatant
-mechanic:
-  pattern: utility
