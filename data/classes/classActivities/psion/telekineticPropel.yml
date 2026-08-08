@@ -13,4 +13,7 @@ mechanic:
     ability: str
     dc: $(attributes.spellcasting.save)
     failure:
-      text: Choose a Large or smaller creature other than you within range. The target must make a DC $(attributes.spellcasting.save) Strength saving throw. On a failed save, it is moved 5d$(attributes.psiDice) feet straight toward or away from you.
+      text: Target is moved 5d$(attributes.psiDice) feet straight toward or away from you.
+  target:
+    type: single
+    range: 30 feet

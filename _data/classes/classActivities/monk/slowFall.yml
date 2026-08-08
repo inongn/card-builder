@@ -1,7 +1,0 @@
-id: slowFall
-type: Activity
-name: Slow Fall
-time: reaction
-range: self
-duration: Instantaneous
-description: When you fall, you reduce any fall damage you take by $(meta.level * 5).

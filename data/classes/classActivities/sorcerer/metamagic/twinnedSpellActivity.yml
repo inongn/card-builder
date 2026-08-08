@@ -8,4 +8,4 @@ resource: 1 sorceryPoints
 description: When you cast a spell, such as Charm Person, that can be cast with a higher-level spell slot to target an additional creature, you increase the spell's effective level by 1.
 mechanic:
   pattern: utility
-  text: When you cast a spell, such as Charm Person, that can be cast with a higher-level spell slot to target an additional creature, you increase the spell's effective level by 1.
+  text: Increase a single-target spell's effective level by 1, targeting a second creature.

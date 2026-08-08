@@ -25,10 +25,3 @@ children:
     target: attributes.senses.darkvision
     operation: set
     value: 60
-  - type: Reference
-    target:
-      - feralPounce
-  - type: Effect
-    target: activities[tags=unarmed].description["Bludgeoning"]
-    operation: replace
-    value: Slashing

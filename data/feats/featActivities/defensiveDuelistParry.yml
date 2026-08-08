@@ -8,4 +8,3 @@ id: defensiveDuelistParry
 mechanic:
   pattern: utility
   trigger: When hit with a melee attack
-  text: Add $(attributes.prof) to AC against melee attacks until start of your next turn.

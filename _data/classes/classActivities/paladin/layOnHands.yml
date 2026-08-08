@@ -1,8 +1,0 @@
-id: layOnHands
-type: Activity
-name: Lay On Hands
-time: bonus action
-range: touch
-duration: Instantaneous
-resource: layOnHands
-description: 'You touch a creature (which could be yourself) and restore 5 Hit Points to it per charge expended. $(meta.level >= 14 ? ''You can also expend a charge to remove one or more of the following conditions from the creature: Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned.'' : '''')'

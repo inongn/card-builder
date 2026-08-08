@@ -9,22 +9,13 @@ tags:
 time: bonus action
 range: self
 duration: 1 hour
-summary: >-
-  Protective frost surrounds you, granting temporary hit points and cold
-  retaliatory damage.
-description: >
-  Protective magical frost surrounds you. You gain 5 Temporary Hit Points. If a
-  creature hits you with a melee attack roll before the spell ends, the creature
-  takes 5 Cold damage. The spell ends early if you have no Temporary Hit Points.
+summary: Protective frost surrounds you, granting temporary hit points and cold retaliatory damage.
+description: |
+  Protective magical frost surrounds you. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll before the spell ends, the creature takes 5 Cold damage. The spell ends early if you have no Temporary Hit Points.
 extra:
   - name: Using a Higher-Level Spell Slot
-    description: >-
-      The Temporary Hit Points and the Cold damage both increase by 5 for each
-      spell slot level above 1.
+    description: The Temporary Hit Points and the Cold damage both increase by 5 for each spell slot level above 1.
 mechanic:
   pattern: utility
-  text: >-
-    Gain 5 Temporary Hit Points. While active, any creature hitting you with a
-    melee attack takes 5 Cold damage.
   target:
     type: self

@@ -14,9 +14,11 @@ mechanic:
     failure:
       damage:
         dice:
-          count: 2
+          count: "$(meta.level >= 9 ? 3 : 2)"
           sides: 8
         type: fire
+    success:
+      text: Half damage
   target:
     type: aoe
     aoe:

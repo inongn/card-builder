@@ -8,10 +8,9 @@ description: When you hit a target with an attack roll and deal damage to it, yo
 resource: giantAncestry
 mechanic:
   pattern: utility
-  trigger: When you hit a target with an attack roll and deal damage to it
+  trigger: When you hit a target with an attack roll
   damage:
     dice:
       count: 1
       sides: 6
     type: cold
-  text: Reduce target's Speed by 10 feet until start of your next turn.

@@ -9,4 +9,4 @@ description: |
 mechanic:
   pattern: utility
   trigger: When a creature leaves your reach
-  text: You make one melee attack with a weapon or an Unarmed Strike against the target. The attack occurs right before the creature leaves your reach.
+  text: Make one melee attack

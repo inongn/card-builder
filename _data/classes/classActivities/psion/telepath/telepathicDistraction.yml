@@ -1,8 +1,0 @@
-id: telepathicDistraction
-type: Activity
-name: Telepathic Distraction
-time: reaction
-range: 30 feet
-duration: Instantaneous
-resource: psionicEnergyDice
-description: When a creature within range hits with an attack roll, subtract 1d$(attributes.psiDice) from the attack roll, potentially causing it to miss. The charge is expended only if the target misses.

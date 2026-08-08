@@ -12,10 +12,10 @@ mechanic:
     ability: wis
     dc: $(attributes.spellcasting.save)
     failure:
-      condition: frightened
-      text: Frightened and must flee for 1 minute
+      text: Target has the Frightened and Incapacitated conditions and must flee.
   target:
     type: aoe
     aoe:
       shape: emanation
       size: 30
+    filter: undead

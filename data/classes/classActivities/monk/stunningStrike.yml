@@ -18,7 +18,7 @@ mechanic:
     ability: con
     dc: $(attributes.monkSaveDC)
     failure:
-      text: Target has the Stunned condition until the start of your next turn.
+      text: Target has the Stunned condition.
     success:
       text: Target Speed is halved and next attack roll against it has Advantage.
   target:

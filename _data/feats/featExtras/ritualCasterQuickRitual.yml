@@ -1,5 +1,0 @@
-name: Quick Ritual
-type: Extra
-target: ritual
-description: You can cast this spell using its regular casting time rather than the extended time for a Ritual. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a Long Rest.
-id: ritualCasterQuickRitual

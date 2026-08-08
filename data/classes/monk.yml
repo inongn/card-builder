@@ -16,6 +16,7 @@ children:
     value:
       - simpleWeaponProficiency
       - lightWeaponProficiency
+      - unarmed
   - id: monkSkillProficiencies
     type: Slot
     name: Monk Skill Proficiencies
@@ -31,35 +32,29 @@ children:
     value: $(progression(6,6,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
   - id: martialArtsReplacementUnarmed
     type: Effect
-    target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
-    operation: replace
-    value: 1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))
+    target: activities[tags=unarmed].mechanic.attack
+    operation: set
+    value: 
+      classification: finesse
+      type: unarmed
+      bonus: $(attributes.finesse.attack)
     condition: $(meta.level >= 1)
-  - id: martialArtsReplacementd4
+  - id: martialArtsReplacementUnarmedDamage
     type: Effect
-    target: activities[tags=melee and tags=weaponAttack].description["1d4"]
-    operation: replace
-    value: 1d$(attributes.martialArtsDie)
-  - id: martialArtsReplacementd6
+    target: activities[tags=unarmed].mechanic.damage.dice
+    operation: set
+    value: 
+      count: 1
+      sides: $(attributes.martialArtsDie)
+      bonus: $(Math.max(1, attributes.finesse.bonus))
+    
+  - id: martialArtsReplacementWeaponDamage
     type: Effect
-    target: activities[tags=melee and tags=weaponAttack].description["1d6"]
-    operation: replace
-    value: 1d$(attributes.martialArtsDie)
-  - id: martialArtsReplacementd8
-    type: Effect
-    target: activities[tags=melee and tags=weaponAttack].description["1d8"]
-    operation: replace
-    value: 1d$(attributes.martialArtsDie)
-  - id: martialArtsReplacementd10
-    type: Effect
-    target: activities[tags=melee and tags=weaponAttack].description["1d10"]
-    operation: replace
-    value: 1d$(attributes.martialArtsDie)
-  - id: martialArtsReplacementd12
-    type: Effect
-    target: activities[tags=melee and tags=weaponAttack].description["1d12"]
-    operation: replace
-    value: 1d$(attributes.martialArtsDie)
+    target: activities[(tags=simple or tags=light) and tags=weaponAttack].mechanic.damage.dice.sides
+    operation: set
+    value: $(attributes.martialArtsDie)
+    condition: $(meta.level >= 1)
+
   - id: martialArtsFlag
     type: Attribute
     value: true
@@ -125,24 +120,12 @@ children:
     target:
       - stunningStrike
     condition: $(meta.level >= 5)
-  - id: empoweredStrikesBludgeoning
+  - id: martialArtsEmpoweredStrikes
     type: Effect
-    target: activities[tags=weaponAttack and tags=bludgeoningDamage].description["Bludgeoning"]
-    operation: replace
+    target: activities[tags=unarmed].mechanic.damage.type
+    operation: set
     condition: $(meta.level >= 6)
-    value: Force
-  - id: empoweredStrikesPiercing
-    type: Effect
-    target: activities[tags=weaponAttack and tags=piercingDamage].description["Piercing"]
-    operation: replace
-    condition: $(meta.level >= 6)
-    value: Force
-  - id: empoweredStrikesSlashing
-    type: Effect
-    target: activities[tags=weaponAttack and tags=slashingDamage].description["Slashing"]
-    operation: replace
-    condition: $(meta.level >= 6)
-    value: Force
+    value: force
   - type: Reference
     target:
       - evasion

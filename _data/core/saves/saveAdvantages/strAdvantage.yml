@@ -1,6 +1,0 @@
-type: Effect
-target: saves.strength.adv
-operation: set
-value: true
-id: strAdvantage
-name: Str Advantage

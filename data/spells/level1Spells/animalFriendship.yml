@@ -32,3 +32,4 @@ mechanic:
   target:
     type: single
     range: $(range)
+    filter: beast 

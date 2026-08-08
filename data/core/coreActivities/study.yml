@@ -18,4 +18,3 @@ description: |
   **Religion ($(formatBonus(skills.religion.bonus))).** Deities, religious hierarchies and rites, holy symbols, cults, and certain creatures (Celestials, Fiends, and Undead)
 mechanic:
   pattern: utility
-  text: Make an Intelligence check (Arcana, History, Investigation, Nature, or Religion) to recall knowledge.

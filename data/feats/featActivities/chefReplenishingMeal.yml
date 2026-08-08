@@ -7,4 +7,3 @@ description: When you finish a Short Rest, you can cook special food if you have
 id: chefReplenishingMeal
 mechanic:
   pattern: utility
-  text: Cook meal for $(4 + attributes.prof) creatures. Eating creatures spending Hit Dice regain extra 1d8 HP.

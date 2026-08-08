@@ -1,5 +1,0 @@
-id: vitalitySurge
-type: Extra
-name: Vitality Surge
-target: rage
-description: Gain $(meta.level) Temporary Hit Points.

@@ -47,27 +47,10 @@ children:
       - eldritchCannonProtector
     condition: $(meta.level >= 3)
   - type: Effect
-    target: activities[tags=artificer AND tags=damageSpell].description["d12"]
-    operation: replace
-    value: d12+1d8
-    condition: $(meta.level >= 5)
-  - type: Effect
-    target: activities[tags=artificer AND tags=damageSpell].description["d10"]
-    operation: replace
-    value: d10+1d8
-    condition: $(meta.level >= 5)
-  - type: Effect
-    target: activities[(tags=artificer AND tags=damageSpell)OR thunderwave OR shatter].description["d8"]
-    operation: replace
-    value: d8+1d8
-    condition: $(meta.level >= 5)
-  - type: Effect
-    target: activities[(tags=artificer AND tags=damageSpell)OR scorchingRay].description["d6"]
-    operation: replace
-    value: d6+1d8
-    condition: $(meta.level >= 5)
-  - type: Effect
-    target: activities[(tags=artificer AND tags=damageSpell)].description["d4"]
-    operation: replace
-    value: d4+1d8
+    target: activities[(tags=artificer AND tags=damageSpell) OR thunderwave OR shatter OR scorchingRay].mechanic.damage.extraDice
+    operation: push
+    value:
+      count: 1
+      sides: 8
+      bonus: 0
     condition: $(meta.level >= 5)

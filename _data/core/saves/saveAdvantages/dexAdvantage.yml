@@ -1,6 +1,0 @@
-type: Effect
-target: saves.dexterity.adv
-operation: set
-value: true
-id: dexAdvantage
-name: Dex Advantage

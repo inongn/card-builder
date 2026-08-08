@@ -1,8 +1,7 @@
 id: hordeBreaker
 summary: Make an extra weapon attack against another creature adjacent to your target.
 name: Horde Breaker
-type: Extra
-target: weaponAttack
+type: Trait
 description: Once per turn, you can make another attack against a different creature that is within 5 feet of the target, that is within the weapon's range, and that you haven't attacked this turn.
 tags:
   - huntersPrey

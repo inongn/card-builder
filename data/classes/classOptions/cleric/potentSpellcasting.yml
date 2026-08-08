@@ -6,22 +6,6 @@ tags:
   - blessedStrikes
 children:
   - type: Effect
-    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d12"]
-    operation: replace
-    value: d12$(formatBonus(stats.wis.mod))
-  - type: Effect
-    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d10"]
-    operation: replace
-    value: d10$(formatBonus(stats.wis.mod))
-  - type: Effect
-    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d8"]
-    operation: replace
-    value: d8$(formatBonus(stats.wis.mod))
-  - type: Effect
-    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d6"]
-    operation: replace
-    value: d6$(formatBonus(stats.wis.mod))
-  - type: Effect
-    target: activities[tags=cantrip AND tags=cleric AND tags=damageSpell].description["d4"]
-    operation: replace
-    value: d4$(formatBonus(stats.wis.mod))
+    target: activities[tags=cantrip AND tags=damageSpell].mechanic.damage.dice.bonus
+    operation: add
+    value: $(stats.wis.mod)

@@ -15,18 +15,17 @@ description: |
   **Necrotic Shroud.** Creatures other than your allies within 10 feet of you must succeed on a DC $(attributes.prof + 8 + stats.cha.mod) Charisma saving throw or have the Frightened condition until the end of your next turn.
 mechanic:
   mode: choice
+  text: >-
+    You transform. While transformed you deal $(attributes.prof) extra Necrotic or Radiant
+    damage to one target when you deal damage to it with an attack or a spell.
+    Additionally, choose one of the following:
   blocks:
     - name: Heavenly Wings
       pattern: utility
-      text: Transform for 1 min. Fly Speed equal to Walk Speed. Deal $(attributes.prof) extra Radiant damage once per turn.
+      text: You have a Fly Speed of $(attributes.movement.walk) feet.
     - name: Inner Radiance
       pattern: utility
-      target:
-        type: aoe
-        aoe:
-          shape: emanation
-          size: 10
-      text: Transform for 1 min. Shed light. Creatures within 10 ft take $(attributes.prof) Radiant damage at end of your turns.
+      text: At the end of each of your turns, each creature within 10 feet of you takes $(attributes.prof) Radiant damage.
     - name: Necrotic Shroud
       pattern: save
       save:

@@ -1,7 +1,0 @@
-id: cunningAction
-type: Activity
-name: Cunning Action
-time: bonus action
-range: self
-duration: Instantaneous
-description: You take the Dash, Disengage, or Hide action.

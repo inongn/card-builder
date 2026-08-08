@@ -1,8 +1,7 @@
 id: colossusSlayer
 summary: Deal extra damage once per turn to creatures below their hit point max.
 name: Colossus Slayer
-type: Extra
-target: weaponAttack
+type: Trait
 description: On a hit, once per turn, if the target is missing any of its Hit Points, the target takes an extra 1d8 damage.
 tags:
   - huntersPrey

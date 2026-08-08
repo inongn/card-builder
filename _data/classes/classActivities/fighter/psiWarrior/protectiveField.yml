@@ -1,8 +1,0 @@
-id: protectiveField
-type: Activity
-time: reaction
-range: 30 feet
-duration: Instantaneous
-name: Protective Field
-resource: psionicEnergyDice
-description: When you or another creature you can see within range takes damage, you create a momentary shield of telekinetic force. Reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)).

@@ -8,4 +8,4 @@ duration: Instantaneous
 description: 'You take both the Disengage and Dash actions, and your jump distance is doubled for the turn.$(meta.level >= 10 ? '' You can also move a willing creature (Large or smaller) within 5 feet with you until the end of your turn without provoking Opportunity Attacks.'' : '''')'
 mechanic:
   pattern: utility
-  text: Take the Disengage and Dash actions as a Bonus Action, and double your Jump distance.
+  text: "Take the Disengage and Dash actions; jump distance is doubled$(meta.level >= 10 ? ', and you can bring a willing creature within 5 feet with you' : '')."

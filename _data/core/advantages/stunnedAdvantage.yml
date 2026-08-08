@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Stunned
-target: attributes.advantages
-id: stunnedAdvantage
-name: Stunned Advantage

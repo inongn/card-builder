@@ -8,4 +8,3 @@ id: shieldMasterInterposeShield
 mechanic:
   pattern: utility
   trigger: Subjected to a Dex save for half damage
-  text: Take no damage on a successful save.

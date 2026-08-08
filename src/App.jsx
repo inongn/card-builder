@@ -434,6 +434,43 @@ export default function App() {
         }
     }, [sampleCharactersEnabled]);
 
+    const handleLoadDebugAllActivities = useCallback(() => {
+        if (!library || !builder) return;
+        const allActs = [];
+        for (const [id, prop] of library.properties) {
+            if (prop && prop.type === 'Activity') {
+                allActs.push({
+                    ...prop,
+                    id: prop.id || id,
+                    name: prop.name || prop.id || id,
+                    time: prop.time || 'free action',
+                    range: prop.range || 'self',
+                    duration: prop.duration || 'instantaneous',
+                    tags: prop.tags || []
+                });
+            }
+        }
+
+        const debugChar = {
+            ...builder.getCharacterData(),
+            meta: {
+                name: 'All Activities (Debug)',
+                class: 'Wizard',
+                sub: 'Archmage',
+                species: 'Elf',
+                level: 20
+            },
+            activities: allActs
+        };
+
+        setCharacterData(debugChar);
+        setLoadedCharacterId('debug_all_activities');
+        setUseActivitySheet(true);
+        localStorage.setItem('use_activity_sheet', 'true');
+        setActiveTab('play');
+        setIsDebugOpen(false);
+    }, [library, builder]);
+
     const [isDebugOpen, setIsDebugOpen] = useState(false);
 
     if (loading) return null;
@@ -453,6 +490,7 @@ export default function App() {
                 setSavedCharacters={setSavedCharacters}
                 useActivitySheet={useActivitySheet}
                 onToggleActivitySheet={handleToggleActivitySheet}
+                onLoadDebugAllActivities={handleLoadDebugAllActivities}
                 width={"1200px"}
             />
 

@@ -1,8 +1,0 @@
-id: sentinelAtDeathsDoor
-type: Activity
-name: Sentinel at Death's Door
-time: reaction
-range: 60 feet
-duration: Instantaneous
-resource: sentinelAtDeathsDoor
-description: When you or a Bloodied creature within range is hit with an attack roll, you use your Reaction to halve that attack's damage. If the attack was a Critical Hit, its Critical Hit effects are canceled.

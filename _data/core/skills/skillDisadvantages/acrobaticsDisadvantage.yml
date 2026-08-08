@@ -1,6 +1,0 @@
-type: Effect
-target: skills.acrobatics.dis
-operation: set
-value: true
-id: acrobaticsDisadvantage
-name: Acrobatics Disadvantage

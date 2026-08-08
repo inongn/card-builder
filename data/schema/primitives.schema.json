@@ -96,7 +96,16 @@
           "required": ["shape", "size"],
           "additionalProperties": false
         },
-        "range": { "$ref": "#/$defs/NumberOrExpression" }
+        "range": { "$ref": "#/$defs/NumberOrExpression" },
+        "filter": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
+        }
       },
       "additionalProperties": false
     },

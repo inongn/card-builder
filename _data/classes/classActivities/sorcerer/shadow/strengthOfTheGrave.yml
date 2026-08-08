@@ -1,8 +1,0 @@
-id: strengthOfTheGrave
-type: Activity
-time: free action
-duration: instantaneous
-range: self
-uses: 1
-name: Strength of the Grave
-description: When you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw (DC 5 + damage taken). On a success, your Hit Points instead change to $(stats.cha.mod + meta.level).

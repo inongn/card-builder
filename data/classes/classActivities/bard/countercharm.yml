@@ -4,14 +4,9 @@ duration: instantaneous
 name: Countercharm
 time: reaction
 range: 30 feet
-description: >
-  When you or an ally within range fails a saving throw, against an effect that
-  applies the Charmed or Frightened condition, you use musical notes or words of
-  power to disrupt its mind-influencing effect. Cause the save to be rerolled,
-  and the new roll has Advantage.
+description: |
+  When you or an ally within range fails a saving throw, against an effect that applies the Charmed or Frightened condition, you use musical notes or words of power to disrupt its mind-influencing effect. Cause the save to be rerolled, and the new roll has Advantage.
 mechanic:
   pattern: utility
-  trigger: >-
-    When you or an ally within 30 feet fails a saving throw against Charmed or
-    Frightened
-  text: Cause the save to be rerolled with Advantage.
+  trigger: When you or an ally fails a saving throw against Charmed or Frightened
+  text: Reroll the save with Advantage.

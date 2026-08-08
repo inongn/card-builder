@@ -1,5 +1,0 @@
-id: psychicSpellsComp
-type: Extra
-target: warlock AND (enchantment OR illusion) NOT (damageSpell)
-name: Psychic Spells
-description: You can cast this spell without Verbal or Somatic components.

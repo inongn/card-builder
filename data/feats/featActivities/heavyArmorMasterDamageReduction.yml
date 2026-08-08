@@ -8,4 +8,3 @@ id: heavyArmorMasterDamageReduction
 mechanic:
   pattern: utility
   trigger: When you're hit by an attack
-  text: Reduce Bludgeoning, Piercing, or Slashing damage taken by $(attributes.prof).

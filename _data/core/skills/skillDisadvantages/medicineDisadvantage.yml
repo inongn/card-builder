@@ -1,6 +1,0 @@
-type: Effect
-target: skills.medicine.dis
-operation: set
-value: true
-id: medicineDisadvantage
-name: Medicine Disadvantage

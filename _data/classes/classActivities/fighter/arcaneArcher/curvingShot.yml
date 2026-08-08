@@ -1,7 +1,0 @@
-id: curvingShot
-type: Activity
-duration: instantaneous
-range: self
-name: Curving Shot
-time: bonus action
-description: If you miss a ranged attack roll with ammunition, you redirect the shot. Make a new attack roll against a creature you can see within 60 feet of the original target.

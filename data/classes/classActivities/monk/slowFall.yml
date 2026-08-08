@@ -7,4 +7,5 @@ duration: Instantaneous
 description: When you fall, you reduce any fall damage you take by $(meta.level * 5).
 mechanic:
   pattern: utility
-  text: When you fall, you reduce any fall damage you take by $(meta.level * 5).
+  trigger: When you fall
+  text: Reduce fall damage by $(meta.level * 5).

@@ -1,6 +1,0 @@
-type: Effect
-operation: set
-value: true
-target: attributes.proficiencies.lightArmor
-id: lightArmorTraining
-name: Light Armor Training

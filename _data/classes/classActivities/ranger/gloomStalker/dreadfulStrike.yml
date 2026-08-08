@@ -1,8 +1,0 @@
-id: dreadfulStrike
-type: Activity
-time: free action
-duration: instantaneous
-range: self
-name: Dreadful Strike
-resource: dreadfulStrike
-description: 'Once per turn when you attack a creature and hit it with a weapon, you deal an extra $(meta.level >= 11 ? ''2d8'' : ''2d6'') Psychic damage. $(meta.level >= 11 ? ''Additionally, you can cause one of the following effects:'' : '''')'

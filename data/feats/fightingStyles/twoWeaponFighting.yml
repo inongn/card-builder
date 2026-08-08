@@ -1,9 +1,14 @@
 tags:
-- fightingStyle
-type: Effect
-target: activities[tags=weaponAttack].extra["You do not add your Ability Modifier to the attack's damage roll."]
-operation: replace
-value: ""
-name: Two Weapon Fighting
-summary: "Add your ability modifier to off-hand weapon damage attacks."
+  - fightingStyle
+type: Activity
+subtype: Fighting Style Feature
+time: bonus action
+range: self
+duration: instantaneous
 id: twoWeaponFighting
+name: Two-Weapon Fighting
+summary: Make an additional attack with a Light weapon.
+description: When you take the Attack action on your turn and attack with a Light weapon, you can make one attack with a different Light weapon as a Bonus Action.
+mechanic:
+  pattern: utility
+  text: When you take the Attack action on your turn and attack with a Light weapon, you can make one attack with a different Light weapon.

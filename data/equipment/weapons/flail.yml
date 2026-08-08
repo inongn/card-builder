@@ -12,8 +12,9 @@ tags:
   - bludgeoningDamage
   - flail
 description: >-
-  You strike with your Flail. Make a $(formatBonus(attributes.melee.attack))
-  attack against the target. On a hit, the target takes damage.
+  You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus))
+  attack against the target. On a hit, the target takes $(formatDice(mechanic.damage.dice))
+  $(capitalize(mechanic.damage.type)) damage.
 mechanic:
   pattern: attack
   attack:

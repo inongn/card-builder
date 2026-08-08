@@ -1,8 +1,0 @@
-id: cuttingWords
-type: Activity
-duration: instantaneous
-name: Cutting Words
-time: reaction
-range: 60 feet
-resource: bardicInspiration
-description: When a creature that you can see makes a damage roll, ability check, or attack roll, you use your wit to suppernaturally distract, confuse or otherwise sap its confidence and competence. The target substracts 1d$(attributes.bardicDie) from the roll.

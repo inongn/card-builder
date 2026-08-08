@@ -1,8 +1,0 @@
-id: titanFormActivity
-type: Activity
-name: Titan Form
-time: bonus action
-range: self
-duration: 10 minutes
-resource: wildShape
-description: You adopt a Titan Form, choosing Behemoth, Leviathan, or Insectoid. You stay in Titan Form for 10 minutes. While in Titan Form, you can cast your Circle of the Titan spells without requiring Material components. Features that apply to your Beast forms also apply to your Titan Form.

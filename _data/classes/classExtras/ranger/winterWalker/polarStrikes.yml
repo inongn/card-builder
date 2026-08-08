@@ -1,5 +1,0 @@
-id: polarStrikes
-type: Extra
-target: weaponAttack
-name: Polar Strikes
-description: 'Once per turn when you hit with a weapon attack, you deal an extra $(meta.level >= 11 ? ''1d6'' : ''1d4'') Cold damage. This damage ignores Resistances.'

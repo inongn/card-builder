@@ -31,3 +31,4 @@ mechanic:
   target:
     type: single
     range: 60 feet
+  trigger: you see a creature within 60 feet of yourself casting a spell

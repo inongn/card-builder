@@ -1,8 +1,0 @@
-id: lifeGivingForce
-type: Activity
-name: Life-Giving Force
-time: free action
-range: 10 feet
-duration: Instantaneous
-target: rage
-description: You tap into the life force of the World Tree. At the start of each of your turns while your Rage is active, choose a creature within range to gain $(attributes.rageDamage)d6 Temporary Hit Points. If any of these Temporary Hit Points remain when your Rage ends, they vanish.

@@ -4,10 +4,8 @@ time: free action
 duration: instantaneous
 range: self
 name: Sneak Attack
-description: >
-  Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one
-  creature you hit with an attack roll if you have Advantage on the roll or at
-  least one of your allies is within 5 feet of the target.
+description: |
+  Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one creature you hit with an attack roll if you have Advantage on the roll or at least one of your allies is within 5 feet of the target.
 mechanic:
   pattern: utility
   trigger: When you hit with an attack roll
@@ -16,4 +14,3 @@ mechanic:
       count: $(attributes.sneakAttackDice)
       sides: 6
       bonus: 0
-  text: Deal an extra $(attributes.sneakAttackDice)d6 damage once per turn.

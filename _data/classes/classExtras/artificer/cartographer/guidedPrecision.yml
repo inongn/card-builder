@@ -1,8 +1,0 @@
-id: guidedPrecision
-type: Extra
-name: Guided Precision
-target: faerieFire
-description: |
-  Once per turn, whenever you cast a spell from your Cartographer Spells list or hit a creature affected by your Faerie Fire with an attack roll, you can add $(Math.max(1, stats.int.mod)) to one damage roll of the spell or attack.
-
-  In addition, taking damage can't cause you to lose Concentration on Faerie Fire.

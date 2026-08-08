@@ -7,4 +7,4 @@ name: Command Familiar
 description: You command the familiar to make an attack.
 mechanic:
   pattern: utility
-  text: You command the familiar to make an attack.
+  text: "You command your familiar to make an attack."

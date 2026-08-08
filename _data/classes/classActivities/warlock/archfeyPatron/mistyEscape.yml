@@ -1,7 +1,0 @@
-id: mistyEscape
-type: Activity
-name: Misty Escape
-time: reaction
-range: self
-duration: instantaneous
-description: When you take damage, you cast Misty Step.

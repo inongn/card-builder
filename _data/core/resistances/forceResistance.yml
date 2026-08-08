@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - damageResistance
-operation: push
-value: Force Damage
-target: attributes.resistances
-id: forceResistance
-name: Force Resistance

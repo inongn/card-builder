@@ -1,8 +1,0 @@
-id: warPriest
-type: Activity
-name: War Priest
-time: bonus action
-range: self
-duration: Instantaneous
-resource: warPriest
-description: You make one attack with a weapon or an Unarmed Strike.

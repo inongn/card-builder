@@ -1,0 +1,20 @@
+id: protectionFromPoison
+type: Activity
+name: Protection from Poison
+resource: level2SpellSlot
+tags:
+  - level2Spell
+  - abjuration
+  - artificer
+  - cleric
+  - druid
+  - paladin
+  - ranger
+time: action
+range: touch
+duration: 1 hour
+summary: You neutralize poison and grant resistance to poison damage.
+description: |
+  You touch a creature and end the Poisoned condition on it. For the duration, the target has Advantage on saving throws to avoid or end the Poisoned condition, and it has Resistance to Poison damage.
+mechanic:
+  pattern: utility

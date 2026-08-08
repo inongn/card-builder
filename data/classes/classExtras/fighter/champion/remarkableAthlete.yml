@@ -1,5 +1,4 @@
 id: remarkableAthlete
 name: Remarkable Athlete
-type: Extra
-target: weaponAttack
-description: On a Critical Hit, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
+type: Trait
+description: On a Critical Hit, you can move $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet.

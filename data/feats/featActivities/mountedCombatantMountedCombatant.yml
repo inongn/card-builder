@@ -12,4 +12,3 @@ description: |
 id: mountedCombatantMountedCombatant
 mechanic:
   pattern: utility
-  text: Advantage on melee attacks against smaller unmounted targets; mount takes 0/half damage on Dex save; redirect attack hitting mount to yourself.

@@ -1,8 +1,0 @@
-id: flurryOfBlows
-type: Activity
-name: Flurry of Blows
-time: bonus action
-range: self
-duration: Instantaneous
-resource: 1 focusPoints
-description: 'You make $(meta.level >= 10 ? ''three'' : ''two'') Unarmed Strikes.'

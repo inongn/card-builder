@@ -167,7 +167,8 @@ export default function DebugDrawer({
     savedCharacters,
     setSavedCharacters,
     useActivitySheet,
-    onToggleActivitySheet
+    onToggleActivitySheet,
+    onLoadDebugAllActivities
 }) {
     const drawerRef = useRef(null);
     const [activeTab, setActiveTab] = useState('character');
@@ -312,6 +313,21 @@ export default function DebugDrawer({
                                     onClick={onToggleActivitySheet}
                                 >
                                     {useActivitySheet ? 'Single Line Activity Sheet (Active)' : 'Standard Activity Cards (Active)'}
+                                </mdui-button>
+                            </mdui-card>
+
+                            {/* Debug All Activities */}
+                            <mdui-card variant="outlined" class="debug-section-card">
+                                <div className="debug-section-title">Debug All Activities</div>
+                                <div className="debug-section-desc">
+                                    Load a debug character containing all {library ? Array.from(library.properties.values()).filter(p => p && p.type === 'Activity').length : 0} activities from the property library into your character view.
+                                </div>
+                                <mdui-button
+                                    variant="filled"
+                                    icon="auto_stories"
+                                    onClick={onLoadDebugAllActivities}
+                                >
+                                    Load Debug Character (All Activities)
                                 </mdui-button>
                             </mdui-card>
 

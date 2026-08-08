@@ -1,8 +1,0 @@
-id: dreadfulAspect
-type: Activity
-time: free action
-range: self
-name: Dreadful Aspect
-resource: channelDivinity
-duration: 1 minute
-description: Immediately after you cast Divine Smite, you cause each chosen creature in a 30-foot Emanation to make a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for the duration (repeating save at end of each of its turns).

@@ -1,8 +1,0 @@
-id: handOfHealing
-type: Activity
-name: Hand of Healing
-time: action
-range: touch
-duration: Instantaneous
-resource: 1 focusPoints
-description: 'You touch a creature and restore 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points to it.$(meta.level >= 6 ? '' You can also end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned.'' : '''')'

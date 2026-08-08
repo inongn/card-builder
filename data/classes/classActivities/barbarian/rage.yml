@@ -15,4 +15,11 @@ description: |
   **Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.
 mechanic:
   pattern: utility
-  text: Gain resistance to Bludgeoning, Piercing, Slashing damage; +$(attributes.rageDamage) damage on Strength attacks; Advantage on Strength checks/saves.
+  text: You imbue yourself with primal power.
+extra:
+  - name: Damage Resistance
+    description: You have resistance to Bludgeoning, Piercing, and Slashing damage.
+  - name: Rage Damage
+    description: When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage.
+  - name: Strength Advantage
+    description: You have Advantage on Strength checks and Strength saving throws.

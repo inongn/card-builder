@@ -12,4 +12,4 @@ description: |
 mechanic:
   pattern: utility
   trigger: When an attack hits you
-  text: Reduce damage by 1d10+$(stats.dex.mod + meta.level). If reduced to 0, redirect attack.
+  text: Reduce damage by 1d10+$(stats.dex.mod + meta.level). If reduced to 0, redirect force as 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage.

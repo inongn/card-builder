@@ -10,7 +10,7 @@ mechanic:
   pattern: healing
   healing:
     dice:
-      count: 1
+      count: "$(meta.level >= 9 ? 2 : 1)"
       sides: 8
       bonus: $(stats.int.mod)
     type: tempHitPoints

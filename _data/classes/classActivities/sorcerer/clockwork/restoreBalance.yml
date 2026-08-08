@@ -1,8 +1,0 @@
-id: restoreBalance
-type: Activity
-duration: instantaneous
-name: Restore Balance
-time: reaction
-range: 60 feet
-resource: restoreBalance
-description: When a creature you can see rolls with Advantage or Disadvantage, you prevent the roll from being affected by it.

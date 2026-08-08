@@ -1,6 +1,0 @@
-type: Effect
-target: skills.persuasion.adv
-operation: set
-value: true
-id: persuasionAdvantage
-name: Persuasion Advantage

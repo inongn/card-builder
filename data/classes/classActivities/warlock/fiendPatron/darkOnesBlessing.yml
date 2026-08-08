@@ -16,4 +16,4 @@ mechanic:
       sides: 0
       bonus: $(meta.level + stats.cha.mod)
     type: tempHitPoints
-  trigger: When you or an ally within 10 feet reduces an enemy to 0 Hit Points
+  trigger: When you or a nearby ally reduces an enemy to 0 Hit Points

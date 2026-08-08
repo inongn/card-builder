@@ -1,8 +1,0 @@
-id: elementalBurst
-type: Activity
-name: Elemental Burst
-time: action
-range: 120 feet
-duration: Instantaneous
-resource: 2 focusPoints
-description: You cause elemental energy to burst in a 20-foot-radius Sphere. Choose Acid, Cold, Fire, Lightning, or Thunder. Each creature in the Sphere must make a DC $(attributes.monkSaveDC) Dexterity saving throw, taking 3d$(attributes.martialArtsDie) damage of the chosen type on a failure or half as much on a success.

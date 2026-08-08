@@ -11,10 +11,4 @@ description: |
   Once within the next hour when the creature fails a D20 Test, the creature can roll the die and add the number rolled to the d20, potentially turning the failure into a success. A creature can have only one Bardic Inspiration die at a time.
 mechanic:
   pattern: utility
-  dice:
-    count: 1
-    sides: 6
-  target:
-    type: single
-    range: 60 feet
-  text: Target adds 1d6 (or 1d8/1d10) to one ability check, attack roll, or saving throw.
+  text: Grant a creature a Bardic Inspiration die (d$(attributes.bardicDie)). When the creature fails a D20 Test, it can roll the die and add the number rolled to the d20.

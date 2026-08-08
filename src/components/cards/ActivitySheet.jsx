@@ -15,8 +15,8 @@ export const renderResourceIcon = (activity, char) => {
     if (!resId) continue;
     const lowerId = String(resId).toLowerCase();
     if (lowerId.includes('spellslot')) {
-      const hasSpecific = char?.resources?.some(r => (r.id || '').toLowerCase() === lowerId || (r.name || '').toLowerCase() === lowerId);
-      const hasPact = char?.resources?.some(r => r.id === 'pactMagicSpellSlot');
+      const hasSpecific = char?.resources ? char.resources.some(r => (r.id || '').toLowerCase() === lowerId || (r.name || '').toLowerCase() === lowerId) : true;
+      const hasPact = char?.resources ? char.resources.some(r => r.id === 'pactMagicSpellSlot') : false;
       if (hasSpecific || hasPact) {
         return renderIcon(resId, false);
       }
@@ -25,8 +25,8 @@ export const renderResourceIcon = (activity, char) => {
     }
   }
 
-  // Default at-will icon if no specific resource
-  return renderIcon('atWill', false);
+  // No specific resource — return null (no icon for at-will activities)
+  return null;
 };
 
 export const ActivitySheetItem = memo(({ activity, char, printMode = false }) => {
@@ -37,9 +37,14 @@ export const ActivitySheetItem = memo(({ activity, char, printMode = false }) =>
 
   const markdownComponents = {
     p: ({ children }) => (
-      <span className="activity-sheet-line">
+      <div className="activity-sheet-line">
         {processDiceInChildren(children, !printMode, activity.name)}
-      </span>
+      </div>
+    ),
+    blockquote: ({ children }) => (
+      <div className="activity-sheet-extra">
+        {children}
+      </div>
     ),
     span: ({ children }) => (
       <span>{processDiceInChildren(children, !printMode, activity.name)}</span>
@@ -48,9 +53,11 @@ export const ActivitySheetItem = memo(({ activity, char, printMode = false }) =>
 
   return (
     <div className="activity-sheet-item">
-      <div className="activity-sheet-icon">
-        {resourceIcon}
-      </div>
+      {resourceIcon && (
+        <div className="activity-sheet-icon">
+          {resourceIcon}
+        </div>
+      )}
       <div className="activity-sheet-content">
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
           {formattedLine}
@@ -59,6 +66,22 @@ export const ActivitySheetItem = memo(({ activity, char, printMode = false }) =>
     </div>
   );
 });
+
+// Sort activities within a group: no resource first, then by first resource id
+export const sortByResource = (activities = []) =>
+  [...activities].sort((a, b) => {
+    const getRes = (act) => {
+      const raw = act.resource || act.resources;
+      const list = Array.isArray(raw) ? raw : (raw ? [raw] : []);
+      return list[0] ? String(list[0]).toLowerCase() : '';
+    };
+    const ra = getRes(a);
+    const rb = getRes(b);
+    if (!ra && !rb) return 0;
+    if (!ra) return -1;
+    if (!rb) return 1;
+    return ra.localeCompare(rb);
+  });
 
 export const groupActivities = (activities = []) => {
   const coreIds = [];
@@ -85,6 +108,11 @@ export const groupActivities = (activities = []) => {
     } else {
       groups['other'].push(activity);
     }
+  });
+
+  // Sub-sort each group by resource (no resource first)
+  Object.keys(groups).forEach(key => {
+    groups[key] = sortByResource(groups[key]);
   });
 
   return groups;

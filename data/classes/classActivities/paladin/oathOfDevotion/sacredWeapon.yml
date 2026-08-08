@@ -11,4 +11,4 @@ description: |
   The weapon also emits Bright Light in a 20-foot radius and Dim Light 20 feet beyond that. You can end this effect early (no action required). This effect also ends if you aren't carrying the weapon.
 mechanic:
   pattern: utility
-  text: Add +$(stats.cha.mod) to attack rolls with chosen weapon for 1 minute.
+  text: Imbue a held Melee weapon with positive energy; add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls with it, and its damage type becomes Radiant. It emits Bright Light.

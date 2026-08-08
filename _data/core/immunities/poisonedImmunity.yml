@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-target: attributes.immunities
-value: Poisoned
-id: poisonedImmunity
-name: Poisoned Immunity

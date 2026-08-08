@@ -1,5 +1,0 @@
-id: surprisingStrikes
-type: Extra
-name: Surprising Strike
-target: sneakAttack
-description: On a hit during the first round of combat, the target takes $(meta.level) extra damage.

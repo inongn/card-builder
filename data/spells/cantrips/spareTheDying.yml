@@ -11,11 +11,9 @@ time: action
 range: 15 feet
 duration: instantaneous
 summary: You touch a dying creature to stabilize it.
-description: >
-  Choose a creature within range that has 0 Hit Points and isn't dead. The
-  creature becomes Stable.
+description: |
+  Choose a creature within range that has 0 Hit Points and isn't dead. The creature becomes Stable.
 mechanic:
   pattern: utility
-  text: A living creature at 0 Hit Points becomes Stable.
   target:
     type: touch

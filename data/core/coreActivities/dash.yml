@@ -8,4 +8,3 @@ description: |
   You gain extra movement for the current turn. Your Speed increases by $(attributes.movement.walk).
 mechanic:
   pattern: utility
-  text: Gain extra movement for the current turn equal to your Speed.

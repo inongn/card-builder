@@ -4,12 +4,7 @@ name: Steady Aim
 time: bonus action
 range: self
 duration: Instantaneous
-description: >-
-  You give yourself Advantage on your next attack roll on the current turn. You
-  can use this only if you haven't moved during this turn, and after you use it,
-  your Speed is 0 until the end of the current turn.
+description: You give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved during this turn, and after you use it, your Speed is 0 until the end of the current turn.
 mechanic:
   pattern: utility
-  text: >-
-    Give yourself Advantage on your next attack roll on the current turn (Speed
-    becomes 0).
+  text: Gain Advantage on your next attack roll. Your Speed becomes 0.

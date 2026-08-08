@@ -36,7 +36,7 @@ mechanic:
         type: fire
     success:
       text: Takes half damage
-  trigger: You take damage from a creature within 60 feet
+  trigger: You take damage from a creature
   target:
     type: single
     range: 60 feet

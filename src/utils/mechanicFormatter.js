@@ -24,6 +24,77 @@ export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export function formatDamageType(typeVal, evalStr) {
+  if (!typeVal) return '';
+  const rawList = Array.isArray(typeVal) ? typeVal : [typeVal];
+  const formatted = rawList.map(t => capitalize(evalStr(t))).filter(Boolean);
+  if (formatted.length === 0) return '';
+  if (formatted.length === 1) return formatted[0];
+  if (formatted.length === 2) return `${formatted[0]} or ${formatted[1]}`;
+  return `${formatted.slice(0, -1).join(', ')}, or ${formatted[formatted.length - 1]}`;
+}
+
+export function formatFilterText(filterVal, evalStr, plural = false) {
+  if (!filterVal) return plural ? 'creatures' : 'creature';
+  const rawList = Array.isArray(filterVal) ? filterVal : [filterVal];
+  const formattedList = rawList.map(f => evalStr(f)).filter(Boolean);
+  if (formattedList.length === 0) return plural ? 'creatures' : 'creature';
+
+  return formattedList.map(s => {
+    const evalS = String(s).trim();
+    if (plural) {
+      const lower = evalS.toLowerCase();
+      if (lower === 'creature') return 'creatures';
+      if (lower === 'undead') return 'Undead';
+      if (lower.endsWith('s')) return capitalize(evalS);
+      return `${capitalize(evalS)}s`;
+    }
+    return capitalize(evalS);
+  }).join(' or ');
+}
+
+export function formatTargetText(targetObj, formattedRange, evalStr, isAttack = false) {
+  if (!targetObj) return '';
+  const cleanRange = formattedRange.replace(/^(range|reach)\s*/i, '').trim();
+
+  const filterSingular = formatFilterText(targetObj.filter, evalStr, false);
+  const filterPlural = formatFilterText(targetObj.filter, evalStr, true);
+
+  if (targetObj.aoe) {
+    const shape = capitalize(evalStr(targetObj.aoe.shape || 'sphere'));
+    const size = evalStr(targetObj.aoe.size || '');
+    let rangePart = '';
+    if (cleanRange.toLowerCase() === 'self') {
+      rangePart = ' centered on you';
+    } else if (cleanRange) {
+      rangePart = ` centered on a point within ${cleanRange}`;
+    }
+    return `, each ${filterSingular} in a ${size}-foot-radius ${shape}${rangePart}`;
+  }
+
+  const type = (evalStr(targetObj.type) || '').toLowerCase();
+  const countRaw = targetObj.count !== undefined ? evalStr(targetObj.count) : '';
+  const countNum = parseInt(countRaw, 10);
+
+  if (type === 'multiple' || type === 'multi' || (!isNaN(countNum) && countNum > 1)) {
+    const cntStr = countRaw || String(countNum);
+    const noun = targetObj.filter
+      ? (cntStr === '1' ? filterSingular : filterPlural)
+      : (cntStr === '1' ? 'target' : 'targets');
+    return `, up to ${cntStr} ${noun}`;
+  }
+
+  if (isAttack) {
+    return '';
+  }
+
+  if (cleanRange && cleanRange.toLowerCase() !== 'self') {
+    return `, one ${filterSingular} within ${cleanRange}`;
+  }
+
+  return '';
+}
+
 /**
  * Formats a single mechanic block or multi-block into Markdown string representation
  */
@@ -77,16 +148,8 @@ export function formatBlock(block, activity, evaluator, scope) {
   const rangeVal = block.target?.range || activity.range || '';
   const formattedRange = formatDistance(evalStr(rangeVal));
 
-  // If there's a trigger, format as Trigger-Response
-  if (trigger) {
-    let responseText = text;
-    if (pattern === 'attack' && block.damage) {
-      const dDice = formatDiceObj(block.damage.dice);
-      const dType = block.damage.type ? capitalize(evalStr(block.damage.type)) : '';
-      responseText = `the target takes an extra ${dDice} ${dType} damage.`.replace(/\s+/g, ' ');
-    }
-    return `_Trigger_: ${trigger}. _Response_: ${responseText || text}`;
-  }
+  // Build main body for the pattern first
+  let mainBody = '';
 
   // 1. ATTACK PATTERN
   if (pattern === 'attack' && block.attack) {
@@ -97,80 +160,107 @@ export function formatBlock(block, activity, evaluator, scope) {
 
     let hitText = '';
     if (block.damage) {
-      const dDice = formatDiceObj(block.damage.dice);
-      const dType = block.damage.type ? capitalize(evalStr(block.damage.type)) : '';
-      hitText = `_Hit_: ${dDice} ${dType} damage.`.replace(/\s+/g, ' ');
+      const dmgList = Array.isArray(block.damage) ? block.damage : [block.damage];
+      const parts = dmgList.map(d => {
+        const dDice = formatDiceObj(d.dice);
+        const dType = formatDamageType(d.type, evalStr);
+        const typeStr = dType ? ` ${dType}` : '';
+        return `${dDice}${typeStr} damage`.trim();
+      }).filter(Boolean);
+      if (parts.length > 0) {
+        hitText = `_Hit_: ${parts.join(' plus ')}.`.replace(/\s+/g, ' ');
+      }
     }
+
+    const targetDesc = formatTargetText(block.target, formattedRange, evalStr, true);
 
     const rangeOutput = formattedRange.startsWith('reach') || formattedRange.startsWith('range')
       ? formattedRange
       : `range ${formattedRange}`;
 
     const rawRange = rangeOutput.replace(/\.+$/, '');
-    const line = `_${classif} Attack Roll_: ${bonusStr}, ${rawRange}. ${hitText}${text ? ` ${text}` : ''}`;
-    return line.trim();
+    mainBody = `_${classif} Attack Roll_: ${bonusStr}, ${rawRange}${targetDesc}. ${hitText}${text ? ` ${text}` : ''}`;
   }
 
   // 2. SAVE PATTERN
-  if (pattern === 'save' && block.save) {
+  else if (pattern === 'save' && block.save) {
     const abilityKey = (evalStr(block.save.ability) || 'dex').toLowerCase();
     const fullAbility = ABILITY_NAMES[abilityKey] || capitalize(abilityKey);
     const dcVal = evalStr(block.save.dc || '$(attributes.spellcasting.save)');
 
-    let targetDesc = '';
-    if (block.target?.aoe) {
-      const shape = capitalize(evalStr(block.target.aoe.shape || 'sphere'));
-      const size = evalStr(block.target.aoe.size || '');
-      const cleanRange = formattedRange.replace(/^(range|reach)\s*/i, '').trim();
-      let rangePart = '';
-      if (cleanRange.toLowerCase() === 'self') {
-        rangePart = ' centered on you';
-      } else if (cleanRange) {
-        rangePart = ` centered on a point within ${cleanRange}`;
-      }
-      targetDesc = `, each creature in a ${size}-foot-radius ${shape}${rangePart}`;
-    } else {
-      const cleanRange = formattedRange.replace(/^(range|reach)\s*/i, '').trim();
-      if (cleanRange && cleanRange.toLowerCase() !== 'self') {
-        targetDesc = `, one creature within ${cleanRange}`;
-      }
-    }
+    const targetDesc = formatTargetText(block.target, formattedRange, evalStr);
 
     let failText = '';
     if (block.save.failure) {
       if (block.save.failure.damage) {
-        const dDice = formatDiceObj(block.save.failure.damage.dice);
-        const dType = block.save.failure.damage.type ? capitalize(evalStr(block.save.failure.damage.type)) : '';
-        const addText = block.save.failure.text ? ` ${evalStr(block.save.failure.text)}` : '';
-        failText = ` _Failure_: ${dDice} ${dType} damage.${addText}`.replace(/\s+/g, ' ');
+        const dmgList = Array.isArray(block.save.failure.damage) ? block.save.failure.damage : [block.save.failure.damage];
+        const parts = dmgList.map(d => {
+          const dDice = formatDiceObj(d.dice);
+          const dType = formatDamageType(d.type, evalStr);
+          const typeStr = dType ? ` ${dType}` : '';
+          return `${dDice}${typeStr} damage`.trim();
+        }).filter(Boolean);
+        if (parts.length > 0) {
+          const addText = block.save.failure.text ? ` ${evalStr(block.save.failure.text)}` : '';
+          failText = ` _Failure_: ${parts.join(' plus ')}.${addText}`.replace(/\s+/g, ' ');
+        }
       } else if (block.save.failure.text) {
         failText = ` _Failure_: ${evalStr(block.save.failure.text)}`;
       }
     }
 
-    const line = `_${fullAbility} Saving Throw_: DC ${dcVal}${targetDesc}.${failText}${text ? ` ${text}` : ''}`.replace(/\.\./g, '.');
-    return line.trim();
+    let successText = '';
+    if (block.save.success?.text) {
+      const sText = evalStr(block.save.success.text);
+      successText = ` _Success_: ${capitalize(sText)}.`;
+    }
+
+    mainBody = `_${fullAbility} Saving Throw_: DC ${dcVal}${targetDesc}.${failText}${successText}${text ? ` ${text}` : ''}`.replace(/\.\./g, '.');
   }
 
   // 3. HEALING PATTERN
-  if (pattern === 'healing' && block.healing) {
-    const targetType = block.target?.type || activity.range || 'self';
-    let targetLabel = 'Self';
-    if (targetType.toLowerCase() === 'touch') targetLabel = 'Touch';
-    else if (targetType.toLowerCase() !== 'self') targetLabel = capitalize(targetType);
+  else if (pattern === 'healing' && block.healing) {
+    const targetDesc = formatTargetText(block.target, formattedRange, evalStr);
+    const targetLabel = targetDesc ? targetDesc.replace(/^,\s*/, '') : 'Self';
 
     const diceStr = formatDiceObj(block.healing.dice);
     const typeLabel = block.healing.type === 'tempHitPoints' ? 'Temporary Hit Points' : 'Hit Points';
-    const line = `_Healing_: ${targetLabel}, ${diceStr} ${typeLabel}.${text ? ` ${text}` : ''}`;
-    return line.trim();
+    mainBody = `_Healing_: ${targetLabel}, ${diceStr} ${typeLabel}.${text ? ` ${text}` : ''}`;
   }
 
   // 4. UTILITY PATTERN
-  if (pattern === 'utility') {
-    return text.trim();
+  else if (pattern === 'utility') {
+    let extraDamage = '';
+    if (block.damage) {
+      const dDice = formatDiceObj(block.damage.dice);
+      const dType = formatDamageType(block.damage.type, evalStr);
+      const typeStr = dType ? ` ${dType}` : '';
+      extraDamage = `Deal ${dDice}${typeStr} damage. `;
+    }
+
+    const effectiveText = text.trim() || (activity.summary ? evalStr(activity.summary).trim() : '');
+    let rangeText = '';
+
+    const rawRange = evalStr(block.target?.range || activity.range || '').trim();
+    if (rawRange && !/^self$/i.test(rawRange)) {
+      rangeText = ` _Range_: ${capitalize(rawRange)}.`;
+    }
+
+    const textPart = `${extraDamage}${effectiveText}`.trim();
+    mainBody = `${textPart}${rangeText}`.trim();
   }
 
-  return text || '';
+  else {
+    mainBody = text || '';
+  }
+
+  // If there's a trigger, prefix as Response - [Pattern Header]:
+  if (trigger) {
+    const cleanBody = mainBody.trim().replace(/\.$/, '');
+    return `_Trigger_: ${trigger}. _Response_: ${cleanBody}.`;
+  }
+
+  return mainBody.trim();
 }
 
 /**
@@ -184,30 +274,77 @@ export function formatActivityMechanic(activity, characterData) {
   const name = activity.name || activity.id || '';
   const mechanic = activity.mechanic;
 
+  // Helper to format extra entries
+  const formatExtras = () => {
+    if (!activity.extra) return '';
+    const rawExtras = Array.isArray(activity.extra) ? activity.extra : [activity.extra];
+    const extraParts = rawExtras.map(item => {
+      if (!item) return '';
+      if (typeof item === 'object') {
+        const rawName = item.name || '';
+        if (rawName === 'Using a Higher-Level Spell Slot') return '';
+        const evaluatedName = rawName ? evaluator.evaluate(rawName, scope) : '';
+        if (evaluatedName === 'Using a Higher-Level Spell Slot') return '';
+        const title = evaluatedName ? `_${evaluatedName}_: ` : '';
+        const body = item.description ? evaluator.evaluate(item.description, scope) : '';
+        return `${title}${body}`.trim();
+      }
+      const evaluatedStr = evaluator.evaluate(String(item), scope).trim();
+      if (evaluatedStr === 'Using a Higher-Level Spell Slot') return '';
+      return evaluatedStr;
+    }).filter(Boolean);
+
+    if (extraParts.length === 0) return '';
+    return '\n\n' + extraParts.map(e => `> ${e}`).join('\n\n');
+  };
+
+  const formatDurationSuffix = () => {
+    const rawDur = activity.duration ? evaluator.evaluate(String(activity.duration), scope) : '';
+    if (!rawDur || typeof rawDur !== 'string') return '';
+    const cleanDur = rawDur.trim();
+    if (/^instantaneous$/i.test(cleanDur) || cleanDur === '') return '';
+
+    const concMatch = cleanDur.match(/concentration(?:,\s*|\s+)?(?:up to\s+)?(.+)/i);
+    if (concMatch) {
+      const length = concMatch[1].trim();
+      return ` _Concentration_: Up to ${length}.`;
+    }
+
+    return ` _Duration_: ${capitalize(cleanDur)}.`;
+  };
+
+  const durSuffix = formatDurationSuffix();
+  const extraSuffix = formatExtras();
+  const fullSuffix = `${durSuffix}${extraSuffix}`;
+
   // Fallback if mechanic is missing
   if (!mechanic) {
     const fallbackText = (activity.description || activity.summary || '').split('\n')[0].trim();
-    return `**${name}.** ${fallbackText}`;
+    return `**${name}.** ${fallbackText}${fullSuffix}`;
   }
 
   // Multi-block handling
   if (mechanic.mode) {
     const blocks = Array.isArray(mechanic.blocks) ? mechanic.blocks : [];
     if (mechanic.mode === 'choice') {
-      const choices = blocks.map(b => {
-        const title = b.name ? `**${b.name}** ` : '';
+      const preamble = mechanic.text
+        ? evaluator.evaluate(String(mechanic.text), scope).trim()
+        : '';
+      const preamblePart = preamble ? ` ${preamble}` : '';
+      const choiceLines = blocks.map(b => {
+        const title = b.name ? `**${b.name}**: ` : '';
         const content = formatBlock(b, activity, evaluator, scope);
-        return `${title}${content}`;
-      }).join('; ');
-      return `**${name}.** Choose one: ${choices}`;
+        return `> ${title}${content}`;
+      }).join('\n\n');
+      return `**${name}.**${preamblePart}${fullSuffix}\n\n${choiceLines}`;
     } else {
       // succession
       const contentParts = blocks.map(b => formatBlock(b, activity, evaluator, scope)).filter(Boolean);
-      return `**${name}.** ${contentParts.join(' ')}`;
+      return `**${name}.** ${contentParts.join(' ')}${fullSuffix}`;
     }
   }
 
   // Single block handling
   const content = formatBlock(mechanic, activity, evaluator, scope);
-  return `**${name}.** ${content}`;
+  return `**${name}.** ${content}${fullSuffix}`;
 }

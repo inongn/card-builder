@@ -14,8 +14,11 @@ mechanic:
     bonus: $(attributes.spellcasting.attack)
   damage:
     dice:
-      count: 2
+      count: "$(meta.level >= 9 ? 3 : 2)"
       sides: 8
       bonus: 0
     type: force
   text: On hit, push target 5 feet away.
+  target:
+    type: single
+    range: 120 feet

@@ -8,4 +8,4 @@ resource: 2 sorceryPoints
 description: When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell.
 mechanic:
   pattern: utility
-  text: When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell.
+  text: One target of a save-forcing spell has Disadvantage on saves against it.

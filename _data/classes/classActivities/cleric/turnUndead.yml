@@ -1,8 +1,0 @@
-id: turnUndead
-type: Activity
-name: Turn Undead
-time: action
-range: 30 feet
-duration: 1 minute
-resource: channelDivinity
-description: You present your Holy Symbol and censure Undead creatures. Each Undead of your choice within range must make a DC $(attributes.spellcasting.save) Wisdom saving throw. If the creature fails its save, it has the Frightened and Incapacitated conditions. It tries to move as far from you as it can on its turns. The effect ends early if it takes any damage, if you have the Incapacitated condition, or if you die.

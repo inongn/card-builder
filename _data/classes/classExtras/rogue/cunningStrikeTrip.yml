@@ -1,5 +1,0 @@
-id: cunningStrikeTrip
-type: Extra
-name: 'Trip (Cost: 1d6)'
-target: cunningStrike
-description: If the target is Large or smaller, it must succeed on a DC $(attributes.cunningStrikeSave) Dexterity saving throw or have the Prone condition.

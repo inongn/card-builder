@@ -34,5 +34,6 @@ mechanic:
       bonus: 0
     type: fire
   target:
-    type: single
+    type: multiple
+    count: 3
     range: 120 feet

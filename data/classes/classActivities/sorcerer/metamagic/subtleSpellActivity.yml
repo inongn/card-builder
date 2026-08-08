@@ -8,4 +8,4 @@ resource: 1 sorceryPoints
 description: When you cast a spell, you cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell.
 mechanic:
   pattern: utility
-  text: When you cast a spell, you cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell.
+  text: Cast a spell without Verbal, Somatic, or Material components (except consumed or costly ones).

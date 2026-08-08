@@ -1,8 +1,0 @@
-id: psychicWhispers
-type: Activity
-name: Psychic Whispers
-time: action
-range: self
-duration: Varies
-resource: psionicEnergyDice
-description: You choose up to $(attributes.prof) creatures you can see. For 1d$(attributes.psiDice) hours, the chosen creatures can speak telepathically to you, and you can speak telepathically with them. To send or receive a message (no action required), you and the other creature must be within 1 mile of each other. A creature can end the telepathic connection at any time (no action required).

@@ -8,4 +8,4 @@ duration: Instantaneous
 description: 'You take both the Disengage and Dodge actions$(meta.level >= 10 ? '' and gain '' + (2) + ''d'' + attributes.martialArtsDie + '' Temporary Hit Points'' : '''').'
 mechanic:
   pattern: utility
-  text: Take the Disengage action and Dodge action as a Bonus Action.
+  text: "Take the Disengage and Dodge actions$(meta.level >= 10 ? ', and gain 2d' + attributes.martialArtsDie + ' Temporary Hit Points' : '')."

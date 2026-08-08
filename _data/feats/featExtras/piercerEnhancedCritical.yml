@@ -1,5 +1,0 @@
-name: Enhanced Critical
-type: Extra
-target: weaponAttack AND piercingDamage
-description: On a Critical Hit, you can roll one additional damage die.
-id: piercerEnhancedCritical

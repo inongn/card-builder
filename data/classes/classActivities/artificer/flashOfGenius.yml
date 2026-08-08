@@ -8,4 +8,5 @@ description: When you or a creature you can see within range fails an ability ch
 resource: flashOfGeniusResource
 mechanic:
   pattern: utility
-  text: When you or a creature you can see within range fails an ability check or a saving throw, add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed.
+  trigger: When you or a creature you can see fails an ability check or saving throw
+  text: Add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed.

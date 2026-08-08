@@ -19,12 +19,7 @@ mechanic:
           sides: 10
         type: $(attributes.draconicAncestryDamage || 'fire')
     success:
-      damage:
-        dice:
-          count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
-          sides: 10
-        type: $(attributes.draconicAncestryDamage || 'fire')
-      text: Takes half damage
+      text: half damage
   target:
     type: aoe
     aoe:

@@ -1,5 +1,0 @@
-id: circleOfMortalityPull
-type: Extra
-target: weaponAttack OR damageSpell
-name: Pull of Death
-description: 'Once per turn, on a hit to a creature that is missing any Hit Points, you deal an extra 1d$(meta.level >= 11 ? 6 : 4) Necrotic damage.'

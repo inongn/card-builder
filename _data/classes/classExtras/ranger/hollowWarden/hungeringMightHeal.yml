@@ -1,5 +1,0 @@
-id: hungeringMightHeal
-type: Extra
-target: wrathOfTheWild
-name: Hungering Might
-description: Once per turn when you hit a creature with an attack roll while transformed and Bloodied, you regain 1d10+$(Math.max(1, stats.wis.mod)) Hit Points.

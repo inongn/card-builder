@@ -15,10 +15,8 @@ mechanic:
   blocks:
     - name: Assist Ability Check
       pattern: utility
-      text: Chosen ally has Advantage on next ability check with chosen skill or tool before start of your next turn.
     - name: Assist Attack Roll
       pattern: utility
       target:
         type: single
         range: 5 feet
-      text: Give Advantage to the next attack roll by an ally against enemy within 5 feet before start of your next turn.

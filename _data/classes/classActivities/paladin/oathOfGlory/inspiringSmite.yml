@@ -1,8 +1,0 @@
-id: inspiringSmite
-type: Activity
-name: Inspiring Smite
-time: free action
-range: 30 feet
-duration: Instantaneous
-resource: channelDivinity
-description: Immediately after you cast Divine Smite, you distribute Temporary Hit Points to creatures of your choice within range, which can include you. The total number of Temporary Hit Points equals 2d8$(formatBonus(meta.level)), divided among the chosen creatures however you like.

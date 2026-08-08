@@ -12,4 +12,3 @@ mechanic:
   target:
     type: single
     range: 5 feet
-  text: Reduce damage dealt by 1d10+$(attributes.prof).

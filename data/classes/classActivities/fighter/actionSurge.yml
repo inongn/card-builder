@@ -8,4 +8,4 @@ duration: Instantaneous
 resource: actionSurge
 mechanic:
   pattern: utility
-  text: Take one additional action on your turn.
+  text: Take one additional action, except the Magic action.

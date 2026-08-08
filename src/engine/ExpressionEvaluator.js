@@ -7,6 +7,37 @@ import { formatBonus } from './helpers.js';
 const EXPRESSION_CACHE = new Map();
 const MAX_CACHE_SIZE = 2000;
 
+export function formatDice(dice) {
+    if (!dice) return '';
+    if (typeof dice === 'string' || typeof dice === 'number') {
+        return String(dice);
+    }
+    if (typeof dice === 'object') {
+        const count = dice.count !== undefined && dice.count !== null ? String(dice.count).trim() : '';
+        const sides = dice.sides !== undefined && dice.sides !== null ? String(dice.sides).trim() : '';
+
+        let bonusStr = '';
+        if (dice.bonus !== undefined && dice.bonus !== null) {
+            const rawBns = dice.bonus;
+            const numBns = typeof rawBns === 'number' ? rawBns : Number(rawBns);
+            if (!isNaN(numBns) && numBns !== 0) {
+                bonusStr = formatBonus(numBns);
+            } else if (typeof rawBns === 'string' && rawBns !== '' && rawBns !== '0') {
+                bonusStr = rawBns.startsWith('+') || rawBns.startsWith('-') ? rawBns : `+${rawBns}`;
+            }
+        }
+
+        if (count && sides && Number(sides) > 0) {
+            return `${count}d${sides}${bonusStr}`;
+        } else if (bonusStr) {
+            return bonusStr.replace(/^\+/, '');
+        } else if (count) {
+            return String(count);
+        }
+    }
+    return '';
+}
+
 function getCachedFunction(expr) {
     if (EXPRESSION_CACHE.has(expr)) {
         return EXPRESSION_CACHE.get(expr);
@@ -14,7 +45,7 @@ function getCachedFunction(expr) {
 
     try {
         const fn = new Function(
-            'stats', 'attributes', 'meta', 'skills', 'saves', 'activities', 'progression', 'local', 'formatBonus', 'formatObject', 'capitalize',
+            'stats', 'attributes', 'meta', 'skills', 'saves', 'activities', 'progression', 'local', 'formatBonus', 'formatObject', 'capitalize', 'formatDice', 'mechanic',
             `return ${expr}`
         );
 
@@ -233,7 +264,9 @@ export class ExpressionEvaluator {
                     effectiveScope,
                     formatBonus,
                     this.formatObject.bind(this),
-                    this.capitalize.bind(this)
+                    this.capitalize.bind(this),
+                    formatDice,
+                    effectiveScope.mechanic || {}
                 );
 
                 if (val === undefined || (typeof val === 'number' && isNaN(val)) || (typeof val === 'string' && val.includes('$('))) {

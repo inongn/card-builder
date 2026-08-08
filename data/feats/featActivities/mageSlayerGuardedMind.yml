@@ -9,4 +9,3 @@ id: mageSlayerGuardedMind
 mechanic:
   pattern: utility
   trigger: When you fail an Int, Wis, or Cha saving throw
-  text: Succeed on the saving throw instead.

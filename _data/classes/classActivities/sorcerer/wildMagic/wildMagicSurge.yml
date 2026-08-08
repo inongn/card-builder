@@ -1,7 +1,0 @@
-id: wildMagicSurge
-type: Activity
-time: free action
-duration: instantaneous
-range: self
-name: Wild Magic Surge
-description: Your spellcasting unleashes surges of untamed magic. Once per turn, roll 1d20 immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table.

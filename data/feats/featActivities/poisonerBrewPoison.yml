@@ -10,7 +10,6 @@ mechanic:
   mode: succession
   blocks:
     - pattern: utility
-      text: Craft $(attributes.prof) doses of poison for 50 GP and 1 hour. Apply to weapon/ammo as Bonus Action.
     - pattern: save
       save:
         ability: con

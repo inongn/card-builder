@@ -47,7 +47,7 @@ mechanic:
       count: 3
       sides: 8
       bonus: 0
-    type: acid
+    type: [acid, fire, lightning, thunder, cold]
   target:
     type: single
     range: 90 feet

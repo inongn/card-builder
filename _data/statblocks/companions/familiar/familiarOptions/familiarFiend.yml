@@ -1,9 +1,0 @@
-id: familiarFiend
-type: Feature
-name: Fiend
-tags: [familiarOption]
-children:
-  - type: Effect
-    target: meta.familiarType
-    operation: set
-    value: Fiend

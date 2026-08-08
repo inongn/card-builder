@@ -1,8 +1,0 @@
-id: pathToTheGrave
-type: Activity
-duration: instantaneous
-name: Path to the Grave
-time: bonus action
-range: 30 feet
-resource: channelDivinity
-description: You curse a creature within range. Until the start of your next turn, it has Disadvantage on attack rolls and saving throws. The curse ends early when you or an ally hits the target, making the attack deal extra Necrotic or Radiant damage (your choice) equal to $(meta.level).

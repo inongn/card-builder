@@ -1,9 +1,0 @@
-id: wailsFromTheGrave
-type: Activity
-name: Wails from the Grave
-time: free action
-range: 30 feet
-duration: Instantaneous
-resource: wailsFromTheGraveResource
-description: |
-  Immediately after you deal Sneak Attack damage to a creature on your turn, you target a second creature you can see within range. Roll $(Math.ceil(meta.level / 4))d6 and the second creature takes that much Necrotic damage as wails of the dead sound around it.

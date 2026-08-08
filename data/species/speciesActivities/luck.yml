@@ -1,11 +1,4 @@
 id: luck
-type: Activity
-time: free action
-duration: instantaneous
-range: self
+type: Trait
 name: Luck
-description: When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.
-mechanic:
-  pattern: utility
-  trigger: When you roll a 1 on the d20 of a D20 Test
-  text: Reroll the die and use the new roll.
+description: When you roll a 1 on a D20 Test, you can reroll the die.

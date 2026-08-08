@@ -11,4 +11,5 @@ mechanic:
   dice:
     count: 1
     sides: 10
-  text: Add 1d10 to a failed ability check.
+  trigger: When you fail an ability check
+  text: Add 1d10 to the ability check, potentially turning it into a success.

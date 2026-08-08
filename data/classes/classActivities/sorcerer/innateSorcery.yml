@@ -4,19 +4,12 @@ range: self
 name: Innate Sorcery
 time: bonus action
 duration: 1 minute
-description: >
-  You unleash simmering magic within yourself. For the duration, you gain the
-  following benefits:
-
+description: |
+  You unleash simmering magic within yourself. For the duration, you gain the following benefits:
   *   The spell save DC of your Sorcerer spells increases by 1.
-
   *   You have Advantage on the attack rolls of Sorcerer spells you cast.
-
-  $(meta.level >= 7 ? "*   You can use up to two Metamagic options on each spell
-  you cast." : "")
+  $(meta.level >= 7 ? "*   You can use up to two Metamagic options on each spell you cast." : "")
 resource: innateSorcery
 mechanic:
   pattern: utility
-  text: >-
-    Increase spell save DC by 1 and gain Advantage on Sorcerer spell attack
-    rolls for 1 minute.
+  text: "Your Sorcerer spell save DC increases by 1, and you have Advantage on Sorcerer spell attack rolls$(meta.level >= 7 ? '; you can apply two Metamagic options per spell' : '')."

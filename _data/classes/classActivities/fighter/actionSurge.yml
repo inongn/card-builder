@@ -1,8 +1,0 @@
-id: actionSurge
-name: Action Surge
-type: Activity
-description: When you take an action, you push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
-range: self
-time: free action
-duration: Instantaneous
-resource: actionSurge

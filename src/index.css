@@ -519,8 +519,9 @@ blockquote {
 
 .print-subtitle-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: right;
+  gap: var(--gap-sm);
 }
 
 .card-subtitle {
@@ -728,6 +729,14 @@ blockquote {
   justify-content: space-between;
 }
 
+.resource-total {
+  border-radius: var(--mdui-shape-corner-small);
+  display: flex;
+  margin-left: auto;
+  justify-items: end;
+  direction: rtl;
+}
+
 .resource-dots {
   display: grid;
   margin-left: auto;
@@ -741,6 +750,26 @@ blockquote {
   grid-template-columns: auto 1fr;
   justify-items: end;
   gap: var(--space-3);
+}
+
+.list-item.trait-list-item {
+  display: block;
+  line-height: 1.5;
+}
+
+
+
+.list-item.trait-list-item .trait-name,
+.list-item.trait-list-item .trait-description {
+  display: inline;
+}
+
+.list-item.trait-list-item .trait-name {
+  font-weight: 600;
+}
+
+.list-item.trait-list-item .trait-name::after {
+  content: '. ';
 }
 
 .list-item.weapon-item {
@@ -2015,7 +2044,8 @@ mdui-navigation-drawer[mobile]::part(panel) {
 .print-mode .card-description,
 .print-mode .card-content {
   font-size: inherit !important;
-  font-family: "Roboto Condensed", sans-serif !important;
+  font-family: 'Google Sans Flex', sans-serif !important;
+  font-stretch: 90% !important;
 }
 
 .print-mode .card-description-paragraph {}
@@ -2040,7 +2070,7 @@ mdui-navigation-drawer[mobile]::part(panel) {
 }
 
 .print-mode .show-on-print {
-  display: block !important;
+  display: flex !important;
 }
 
 .print-mode .hide-on-print {
@@ -2595,6 +2625,7 @@ mdui-navigation-drawer[mobile]::part(panel) {
 .hero-card,
 .inner-card,
 .pseudo-card,
+.activity-sheet-item,
 mdui-list-item,
 .featured-hero-banner,
 .ability-card,
@@ -3088,7 +3119,6 @@ mdui-list-item.card-vertical-item::part(container) {
 
 .activity-sheet-line p {
   margin: 0;
-  display: inline;
 }
 
 .activity-sheet-line em {
@@ -3098,6 +3128,11 @@ mdui-list-item.card-vertical-item::part(container) {
 
 .activity-sheet-line strong {
   font-weight: 700;
+}
+
+.activity-sheet-extra {
+  margin-left: 14px;
+  margin-top: 2px;
 }
 
 /* ==========================================================================
@@ -3192,7 +3227,14 @@ mdui-list-item.card-vertical-item::part(container) {
   font-size: 0.75rem !important;
   line-height: 1.3 !important;
   color: #111 !important;
-  font-family: "Roboto Condensed", sans-serif !important;
+  font-family: 'Google Sans Flex', sans-serif !important;
+  font-stretch: 90% !important;
+}
+
+.print-mode .trait-list-item {
+  font-size: 0.8rem !important;
+  line-height: 1.3 !important;
+  color: #111 !important;
 }
 
 /* Icon stays small and neutral */
@@ -3280,7 +3322,8 @@ mdui-list-item.card-vertical-item::part(container) {
   font-size: 0.75rem !important;
   line-height: 1.3 !important;
   color: #111 !important;
-  font-family: "Roboto Condensed", sans-serif !important;
+  font-family: 'Google Sans Flex', sans-serif !important;
+  font-stretch: 90% !important;
 }
 
 .print-mode .activity-overflow-slot .activity-sheet-content span,
@@ -3301,6 +3344,7 @@ mdui-list-item.card-vertical-item::part(container) {
   .print-mode .activity-sheet-print-slot {
     overflow: hidden !important;
   }
+
   .print-mode .activity-overflow-slot {
     overflow: hidden !important;
   }

@@ -5,14 +5,11 @@ name: Adrenaline Rush
 time: bonus action
 range: self
 resource: adrenalineRush
-description: >
-  You take the Dash action. When you do so, you gain $(attributes.prof)
-  Temporary Hit Points.
+description: |
+  You take the Dash action. When you do so, you gain $(attributes.prof) Temporary Hit Points.
 mechanic:
   mode: succession
   blocks:
-    - pattern: utility
-      text: Take the Dash action.
     - pattern: healing
       healing:
         dice:

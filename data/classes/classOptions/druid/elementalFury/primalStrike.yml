@@ -12,4 +12,4 @@ children:
     type: Effect
     target: statblocks[wildShapeTemplate].actions["damage"]
     operation: replace
-    value: damage + 1d8 Cold, Fire, Lightning or Thunder damage
+    value: damage plus 1d8 Cold, Fire, Lightning or Thunder damage

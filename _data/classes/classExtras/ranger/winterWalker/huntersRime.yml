@@ -1,5 +1,0 @@
-id: huntersRime
-type: Extra
-target: huntersMark
-name: Hunter's Rime
-description: You gain 1d10+$(meta.level) Temporary Hit Points. Additionally, a creature marked by your Hunter's Mark can't take the Disengage action.

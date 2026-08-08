@@ -12,4 +12,3 @@ description: |
   When the trigger occurs, you can either take your Reaction right after the trigger finishes or ignore the trigger.
 mechanic:
   pattern: utility
-  text: Set a perceivable trigger to take a Reaction action or move up to your Speed before the start of your next turn.

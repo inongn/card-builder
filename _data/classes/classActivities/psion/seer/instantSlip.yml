@@ -1,8 +1,0 @@
-id: instantSlip
-type: Activity
-name: Instant Slip
-time: reaction
-range: self
-duration: Instantaneous
-resource: psionicEnergyDice
-description: When another creature damages you with an attack roll, reduce the damage by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)).

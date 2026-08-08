@@ -145,7 +145,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
     if (!char) return null;
 
-    const hitDiceQuantity = char.resources.find(r => r.id === 'hitDice' || r.name === 'Hit Dice')?.quantity || char.meta.level;
+    const hitDiceQuantity = char?.resources?.find(r => r.id === 'hitDice' || r.name === 'Hit Dice')?.quantity || char?.meta?.level || 1;
 
     return (
         <div ref={ref} className={`main-card ${className || ''}`}>
@@ -402,16 +402,30 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                         </mdui-card>
                     )}
 
+                    {/* Traits List */}
+                    {char.traits && char.traits.length > 0 && (
+                        <mdui-card variant="filled" className="inner-card">
+                            <div className="main-card-list">
+                                {char.traits.map((trait, i) => (
+                                    <div className="list-item trait-list-item" key={trait.id || i}>
+                                        <span className="trait-name">{trait.name}</span>
+                                        <span className=" trait-description">{trait.description}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </mdui-card>
+                    )}
+
                     {/* Passive Info List */}
                     <mdui-card variant="filled" className="inner-card info-card">
                         <div className="main-card-list">
                             {[
-                                { label: 'Senses', data: char.attributes.senses },
-                                { label: 'Movement', data: char.attributes.movement },
-                                { label: 'Resistances', data: char.attributes.resistances },
-                                { label: 'Advantages', data: char.attributes.advantages },
-                                { label: 'Immunities', data: char.attributes.immunities },
-                                { label: 'Tools', data: char.attributes.tools }
+                                { label: 'Senses', data: char?.attributes?.senses },
+                                { label: 'Movement', data: char?.attributes?.movement },
+                                { label: 'Resistances', data: char?.attributes?.resistances },
+                                { label: 'Advantages', data: char?.attributes?.advantages },
+                                { label: 'Immunities', data: char?.attributes?.immunities },
+                                { label: 'Tools', data: char?.attributes?.tools }
                             ].map((info, idx) => {
                                 let displayData = [];
                                 if (Array.isArray(info.data)) {

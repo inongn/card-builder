@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
-import { ActivitySheet, groupActivities } from '../components/cards/ActivitySheet';
+import { ActivitySheet, groupActivities, sortByResource } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
 import 'mdui/components/button.js';
 
@@ -12,7 +12,7 @@ const sortActivitiesByCategory = (activities = []) => {
     const sorted = [];
     categoryOrder.forEach(key => {
         if (grouped[key] && grouped[key].length > 0) {
-            sorted.push(...grouped[key]);
+            sorted.push(...sortByResource(grouped[key]));
         }
     });
     return sorted;

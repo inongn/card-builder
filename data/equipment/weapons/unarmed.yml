@@ -12,9 +12,9 @@ tags:
   - unarmed
   - bludgeoningDamage
 description: >-
-  You strike with your Unarmed Strike. Make a
-  $(formatBonus(attributes.melee.attack)) attack against the target. On a hit,
-  the target takes damage.
+  You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus))
+  attack against the target. On a hit, the target takes $(formatDice(mechanic.damage.dice))
+  $(capitalize(mechanic.damage.type)) damage.
 mechanic:
   pattern: attack
   attack:
@@ -23,10 +23,10 @@ mechanic:
     bonus: $(attributes.melee.attack)
   damage:
     dice:
-      count: 1
-      sides: 6
-      bonus: $(attributes.melee.bonus)
-    type: slashing
+      count: 0
+      sides: 0
+      bonus: $(Math.max(1,attributes.melee.bonus))
+    type: Bludgeoning
   target:
     type: single
     range: 5 feet

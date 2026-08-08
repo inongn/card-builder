@@ -1,7 +1,7 @@
 import React from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
-import { ActivitySheet } from '../components/cards/ActivitySheet';
+import { ActivitySheet, sortByResource } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
 import { getAssetUrl } from '../data/artworkData';
 import 'mdui/components/button.js';
@@ -73,6 +73,11 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
             } else {
                 groups['other'].push(activity);
             }
+        });
+
+        // Sub-sort each group by resource (no resource first)
+        Object.keys(groups).forEach(key => {
+            groups[key] = sortByResource(groups[key]);
         });
 
         return groups;

@@ -9,4 +9,3 @@ resource: luckPoints
 mechanic:
   pattern: utility
   trigger: When you roll a d20 for a D20 Test or a creature attacks you
-  text: Gain Advantage on your roll or impose Disadvantage on attacker.

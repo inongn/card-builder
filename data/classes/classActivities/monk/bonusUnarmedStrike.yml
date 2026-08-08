@@ -2,9 +2,9 @@ id: bonusUnarmedStrike
 type: Activity
 name: Bonus Unarmed Strike
 time: bonus action
-range: 5 feet
+range: self
 duration: Instantaneous
 description: You make one Unarmed Strike.
 mechanic:
   pattern: utility
-  text: You make one Unarmed Strike.
+  text: Make one Unarmed Strike.

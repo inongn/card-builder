@@ -1,8 +1,0 @@
-id: temporalGlitch
-type: Activity
-name: Temporal Glitch
-time: reaction
-range: self
-duration: Instantaneous
-resource: psionicEnergyDice
-description: When you fail a Constitution saving throw to maintain Concentration, add 1d$(attributes.psiDice) to the roll, potentially turning a fail into a success. The Psionic Energy is expended only if the check succeeds.

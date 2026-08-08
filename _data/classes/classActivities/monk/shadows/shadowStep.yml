@@ -1,7 +1,0 @@
-id: shadowStep
-type: Activity
-name: Shadow Step
-time: bonus action
-range: 60 feet
-duration: Instantaneous
-description: While entirely within Dim Light or Darkness, you teleport up to 60 feet to an unoccupied space you can see that is also in Dim Light or Darkness. You then have Advantage on the next melee attack you make before the end of the current turn.
