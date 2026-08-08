@@ -11,6 +11,8 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - type: Reference
-    target:
-      - mountedCombatantMountedCombatant
+  - name: Mounted Combatant
+    type: Trait
+    description: |
+      While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount.
+    id: mountedCombatantMountedCombatant

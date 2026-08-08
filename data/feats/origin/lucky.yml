@@ -11,6 +11,15 @@ children:
     name: Luck Points
     quantity: $(attributes.prof)
     sr: 0
-  - type: Reference
-    target:
-      - luckyAdvantage
+  - id: luckyAdvantage
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Luck
+    description: When you roll a d20 for a D20 Test, or a creature rolls a d20 for an attack roll against you, give yourself Advantage on the roll, or impose Disadvantage on the roll, respectively.
+    resource: luckPoints
+    mechanic:
+      pattern: utility
+      trigger: When you roll a d20 for a D20 Test or a creature attacks you
+      text: Give yourself Advantage on your roll, or impose Disadvantage on the attacker's roll.

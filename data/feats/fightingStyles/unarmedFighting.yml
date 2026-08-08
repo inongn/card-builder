@@ -5,14 +5,18 @@ summary: Enhance unarmed strike damage and deal extra damage to grappled targets
 children:
   - type: Reference
     target:
-      - unarmedFightingUnarmedFighting
       - unarmed
+  - type: Extra
+    target: unarmed
+    name: Unarmed Fighting
+    description: At the start of each of your turns, you can deal 1d4 Bludgeoning damage to one creature grappled by you.
+    id: unarmedFightingUnarmedFighting
   - type: Effect
     target: activities[tags=unarmed].mechanic.damage.dice
     operation: set
     value:
       count: 1
-      sides: "$(attributes.shieldEquipped == true ? 6 : 8)"
+      sides: '$(attributes.shieldEquipped == true ? 6 : 8)'
       bonus: $(attributes.melee.bonus)
 id: unarmedFighting
 name: Unarmed Fighting

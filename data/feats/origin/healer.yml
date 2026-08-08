@@ -6,9 +6,20 @@ tags:
   - originFeat
 type: Folder
 children:
-  - type: Reference
-    target:
-      - battleMedic
-  - type: Reference
-    target:
-      - healingRerolls
+  - id: battleMedic
+    type: Activity
+    duration: instantaneous
+    name: Battle Medicine
+    time: action
+    range: 5 feet
+    description: |
+      You tend to a creature within range. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains Hit Points equal to the roll plus a $(attributes.prof) Bonus.
+    mechanic:
+      pattern: utility
+      target:
+        type: touch
+      text: Target expends one Hit Point Die. Roll that die; creature regains HP equal to roll + $(attributes.prof).
+  - id: healingRerolls
+    type: Trait
+    name: Healing Rerolls
+    description: You can reroll healing once per turn.

@@ -5,9 +5,10 @@ tags:
 description: Ambitious and resourceful mortals whose diverse talents drive them across every realm.
 type: Folder
 children:
-  - type: Reference
-    target:
-      - resourceful
+  - id: resourceful
+    type: Trait
+    name: Resourceful
+    description: You gain Heroic Inspiration at the end of a Long Rest.
   - id: skillful
     name: Skillful Skill Proficiency
     type: Slot

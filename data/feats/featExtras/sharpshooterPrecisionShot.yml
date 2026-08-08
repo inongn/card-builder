@@ -1,6 +1,0 @@
-name: Precision Shot
-type: Effect
-target: activities[tags=weaponAttack and tags=ranged].mechanic.damage.dice.bonus
-operation: add
-value: $(attributes.prof)
-id: sharpshooterPrecisionShot

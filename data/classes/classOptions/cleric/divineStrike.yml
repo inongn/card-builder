@@ -5,6 +5,15 @@ type: Folder
 tags:
   - blessedStrikes
 children:
-  - type: Reference
-    target:
-      - divineStrikeExtra
+  - id: divineStrikeExtra
+    type: Effect
+    target: activities[tags=weaponAttack].mechanic.damage
+    operation: push
+    value:
+      dice:
+        count: 1
+        sides: 8
+        bonus: 0
+      type:
+        - necrotic
+        - radiant

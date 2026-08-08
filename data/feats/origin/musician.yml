@@ -6,6 +6,10 @@ tags:
   - originFeat
 type: Folder
 children:
-  - type: Reference
-    target:
-      - encouragingSong
+  - id: encouragingSong
+    type: Activity
+    time: 10 minutes
+    range: self
+    duration: instantaneous
+    name: Encouraging Song
+    description: When you finish a Short or Long Rest, you play a song on a Musical Instrument with which you have proficiency and give Heroic Inspiration to $(attributes.prof) allies who hear the song.

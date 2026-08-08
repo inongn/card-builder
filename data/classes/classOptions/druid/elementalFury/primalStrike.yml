@@ -5,9 +5,20 @@ tags:
   - elementalFury
 type: Folder
 children:
-  - type: Reference
-    target:
-      - primalStrikeWeapon
+  - id: primalStrikeWeapon
+    type: Effect
+    target: activities[tags=weaponAttack].mechanic.damage
+    operation: push
+    value:
+      dice:
+        count: 1
+        sides: 8
+        bonus: 0
+      type:
+        - cold
+        - fire
+        - lightning
+        - thunder
   - id: primalStrikeWildShape
     type: Effect
     target: statblocks[wildShapeTemplate].actions["damage"]

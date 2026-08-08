@@ -5,6 +5,14 @@ type: Folder
 tags:
   - metamagic
 children:
-  - type: Reference
-    target:
-      - quickenedSpellActivity
+  - id: quickenedSpellActivity
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Quickened Spell
+    resource: 2 sorceryPoints
+    description: When you cast a spell that has a casting time of an action, you change the casting time to a Bonus Action for this casting. You can't modify a spell in this way if you've already cast a level 1+ spell on the current turn, nor can you cast a level 1+ spell on this turn after modifying a spell in this way.
+    mechanic:
+      pattern: utility
+      text: Change a spell's casting time from an action to a Bonus Action.

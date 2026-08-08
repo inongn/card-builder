@@ -30,9 +30,31 @@ children:
   - id: rageDamage
     type: Attribute
     value: $(progression(2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,4,4,4,4,4))
-  - type: Reference
-    target:
-      - rage
+  - id: rage
+    type: Activity
+    name: Rage
+    time: bonus action
+    range: self
+    duration: 10 minutes
+    resource: rage
+    description: |
+      You imbue yourself with primal power. While active, you gain the following benefits:
+
+      **Damage Resistance.** You have resistance to Bludgeoning, Piercing, and Slashing damage. 
+
+      **Rage Damage.** When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage. 
+
+      **Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.
+    mechanic:
+      pattern: utility
+      text: You imbue yourself with primal power.
+    extra:
+      - name: Damage Resistance
+        description: You have resistance to Bludgeoning, Piercing, and Slashing damage.
+      - name: Rage Damage
+        description: When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage.
+      - name: Strength Advantage
+        description: You have Advantage on Strength checks and Strength saving throws.
   - id: rage
     type: Form
     name: Rage
@@ -71,9 +93,21 @@ children:
     type: Reference
     target: dexAdvantage
     condition: $(meta.level >= 2)
-  - type: Reference
-    target:
-      - recklessAttack
+  - id: recklessAttack
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Reckless Attack
+    description: |
+
+      When you make your first attack roll on your turn, you attack recklessly. You gain Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time.
+
+      $(meta.level >= 9 ? "You can forgo Advantage on one Strength-based attack roll on your turn. If the chosen attack hits, the target takes an extra $(meta.level >= 17 ? '2d10' : '1d10') damage and you can cause $(meta.level > 17 ? 'two effects of your choice:' : 'one effect of your choice:')" : "")
+    mechanic:
+      pattern: utility
+      trigger: When you make your first attack
+      text: You gain Advantage on attack rolls using Strength, but attack rolls against you have Advantage.
     condition: $(meta.level >= 2)
   - id: primalKnowledgeSkill
     type: Slot
@@ -81,9 +115,11 @@ children:
     condition: $(meta.level >= 3)
     quantity: 1
     target: animalHandlingProficiency OR athleticsProficiency OR intimidationProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
-  - type: Reference
-    target:
-      - primalKnowledge
+  - id: primalKnowledge
+    type: Extra
+    name: Primal Knowledge
+    target: rage
+    description: You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability.
     condition: $(meta.level >= 3)
   - id: primalKnowledgeAcr
     type: Effect
@@ -115,9 +151,11 @@ children:
   - type: Reference
     target: initiativeAdvantage
     condition: $(meta.level >= 7)
-  - type: Reference
-    target:
-      - instinctivePounce
+  - id: instinctivePounce
+    type: Extra
+    name: Instinctive Pounce
+    target: rage
+    description: As part of the Bonus Action you take to enter your Rage, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet.
     condition: $(meta.level >= 7)
   - id: level8feat
     name: Level 8 Feat

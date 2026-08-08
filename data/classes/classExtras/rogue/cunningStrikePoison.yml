@@ -1,5 +1,0 @@
-id: cunningStrikePoison
-type: Extra
-name: 'Poison (Cost: 1d6)'
-target: cunningStrike
-description: The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw or have the Poisoned condition for 1 minute. At the end of each of its turns, the poisoned target repeats the save, ending the effect on a success.

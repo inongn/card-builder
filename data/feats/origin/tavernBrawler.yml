@@ -6,9 +6,13 @@ tags:
   - originFeat
 type: Folder
 children:
-  - type: Reference
-    target:
-      - damageRerolls
-  - type: Reference
-    target:
-      - tavernBrawlerPush
+  - id: damageRerolls
+    type: Extra
+    target: unarmed
+    name: Damage Rerolls
+    description: You can reroll the damage die if it rolls a 1, and you must use the new roll.
+  - id: tavernBrawlerPush
+    type: Extra
+    target: unarmed
+    name: Push
+    description: On a hit, you can push the target 5 feet away from you.

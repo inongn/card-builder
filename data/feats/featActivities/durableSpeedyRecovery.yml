@@ -1,8 +1,0 @@
-name: Speedy Recovery
-type: Activity
-duration: instantaneous
-range: self
-resource: hitDice
-time: bonus action
-description: You can expend one of your Hit Dice, roll the die, and regain a number of Hit Points equal to the roll.
-id: durableSpeedyRecovery

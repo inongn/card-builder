@@ -11,12 +11,14 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - type: Reference
-    target:
-      - spellSniperBypassCover
-  - type: Reference
-    target:
-      - spellSniperCastingInMelee
+  - name: Bypass Cover
+    type: Trait
+    description: Your spell attacks ignore Half Cover and Three-Quarters Cover.
+    id: spellSniperBypassCover
+  - name: Casting in Melee
+    type: Trait
+    description: Being within 5 feet of an enemy doesn't impose Disadvantage on your spell attack rolls.
+    id: spellSniperCastingInMelee
   - name: Increased Range
     type: Effect
     target: activities[tags=attackSpell].range

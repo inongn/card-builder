@@ -11,9 +11,13 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - type: Reference
-    target:
-      - piercerPuncture
-  - type: Reference
-    target:
-      - piercerEnhancedCritical
+  - id: piercerPuncture
+    name: Puncture
+    type: Extra
+    target: weaponAttack AND piercingDamage
+    description: On a hit, you can reroll one of the attack's damage dice, and you must use the new roll.
+  - id: piercerEnhancedCritical
+    name: Enhanced Critical
+    type: Extra
+    target: weaponAttack AND piercingDamage
+    description: On a Critical Hit, you can roll one additional damage die.

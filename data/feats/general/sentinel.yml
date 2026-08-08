@@ -11,9 +11,13 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - type: Reference
-    target:
-      - sentinelHalt
-  - type: Reference
-    target:
-      - sentinelGuardian
+  - name: Halt
+    type: Extra
+    target: opportunityAttack
+    description: On a hit, the target's Speed becomes 0 for the rest of the current turn.
+    id: sentinelHalt
+  - name: Guardian
+    type: Extra
+    target: opportunityAttack
+    description: You can make an Opportunity Attack when a creature takes the Disengage action or hits a target other than you with an attack.
+    id: sentinelGuardian

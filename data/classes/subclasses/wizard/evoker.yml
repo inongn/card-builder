@@ -5,11 +5,13 @@ type: Folder
 tags:
   - wizardSubclass
 children:
-  - type: Reference
-    target:
-      - potentCantrip
+  - id: potentCantrip
+    type: Trait
+    name: Potent Cantrip
+    description: When you miss or a creature succeeds on its saving throw against a damage-dealing cantrip, it deals half damage to the target.
     condition: $(meta.level >= 3)
-  - type: Reference
-    target:
-      - sculptSpells
+  - id: sculptSpells
+    type: Trait
+    name: Sculpt Spells
+    description: When you cast a spell that requires a Saving Throw, your allies automatically succeed on their saving throw and take no damage if they would normally take half.
     condition: $(meta.level >= 6)

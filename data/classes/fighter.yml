@@ -33,9 +33,24 @@ children:
     name: Fighting Style
     type: Slot
     target: fightingStyle
-  - type: Reference
-    target:
-      - secondWind
+  - id: secondWind
+    name: Second Wind
+    description: You draw on a well of physical and mental stamina. Regain 1d10+$(meta.level) Hit Points.
+    type: Activity
+    resource: secondWind
+    time: bonus action
+    duration: Instantaneous
+    range: self
+    mechanic:
+      pattern: healing
+      healing:
+        dice:
+          count: 1
+          sides: 10
+          bonus: $(meta.level)
+        type: hitPoints
+      target:
+        type: self
   - id: masteryProperties
     type: Reference
     target: masteryProperties
@@ -44,9 +59,17 @@ children:
     type: Resource
     quantity: $(progression(2,2,2,3,3,3,3,3,3,4,4,4))
     sr: 1
-  - type: Reference
-    target:
-      - actionSurge
+  - id: actionSurge
+    name: Action Surge
+    type: Activity
+    description: When you take an action, you push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
+    range: self
+    time: free action
+    duration: Instantaneous
+    resource: actionSurge
+    mechanic:
+      pattern: utility
+      text: Take one additional action, except the Magic action.
     condition: $(meta.level >= 2)
   - id: actionSurge
     type: Resource
@@ -54,9 +77,21 @@ children:
     name: Action Surge
     quantity: $(progression(0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2))
     sr: all
-  - type: Reference
-    target:
-      - tacticalMind
+  - id: tacticalMind
+    type: Activity
+    range: self
+    duration: Instantaneous
+    resource: secondWind
+    time: free action
+    name: Tactical Mind
+    description: When you fail an ability check, you push yourself toward success. Add 1d10 to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn't expended.
+    mechanic:
+      pattern: utility
+      dice:
+        count: 1
+        sides: 10
+      trigger: When you fail an ability check
+      text: Add 1d10 to the ability check, potentially turning it into a success.
     condition: $(meta.level >= 2)
   - id: fighterSubclass
     name: Fighter Subclass
@@ -69,9 +104,11 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - type: Reference
-    target:
-      - tacticalShift
+  - id: tacticalShift
+    type: Extra
+    target: secondWind
+    name: Tactical Shift
+    description: You can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
     condition: $(meta.level >= 5)
   - type: Reference
     target:

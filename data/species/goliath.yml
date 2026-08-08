@@ -15,9 +15,18 @@ children:
     type: Slot
     target: giantAncestry
     quantity: 1
-  - type: Reference
-    target:
-      - largeForm
+  - id: largeForm
+    type: Activity
+    range: self
+    name: Large Form
+    time: bonus action
+    duration: 10 minutes
+    resource: limited
+    description: |
+      You change your size to Large if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet.
+    mechanic:
+      pattern: utility
+      text: You change your size to Large if you're in a big enough space. You have Advantage on Strength checks, and your Speed increases by 10 feet.
     condition: $(meta.level >= 5)
   - id: powerfulBuildGrappled
     type: Reference

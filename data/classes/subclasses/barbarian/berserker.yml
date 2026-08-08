@@ -5,9 +5,11 @@ tags:
   - barbarianSubclass
 type: Folder
 children:
-  - type: Reference
-    target:
-      - frenzy
+  - id: frenzy
+    type: Extra
+    name: Frenzy
+    target: recklessAttack
+    description: While your Rage is active, you deal extra $(attributes.rageDamage)d6 extra damage to the first target you hit on your turn with Reckless Attack.
   - id: mindlessRageCharmed
     type: Reference
     target: charmedImmunity

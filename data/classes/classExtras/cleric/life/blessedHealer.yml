@@ -1,4 +1,0 @@
-id: blessedHealer
-type: Trait
-name: Blessed Healer
-description: If you cast this on another creature, you regain $(2+(stats.wis.mod)) Hit Points.

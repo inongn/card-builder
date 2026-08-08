@@ -7,12 +7,15 @@ type: Folder
 children:
   - type: Reference
     target: frightenedAdvantage
-  - type: Reference
-    target:
-      - halflingNimbleness
-  - type: Reference
-    target:
-      - luck
-  - type: Reference
-    target:
-      - naturallyStealthy
+  - id: halflingNimbleness
+    type: Trait
+    name: Halfling Nimbleness
+    description: You can move through the space of any creature that is a size larger than you.
+  - id: luck
+    type: Trait
+    name: Luck
+    description: You can reroll any 1 on a D20.
+  - id: naturallyStealthy
+    type: Trait
+    name: Naturally Stealthy
+    description: You can Hide when obscured by a creature at least one size larger than you.

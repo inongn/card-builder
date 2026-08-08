@@ -13,9 +13,18 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - type: Reference
-    target:
-      - chefReplenishingMeal
-  - type: Reference
-    target:
-      - chefBolsteringTreats
+  - name: Replenishing Meal
+    type: Activity
+    duration: instantaneous
+    range: self
+    time: free action
+    description: When you finish a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for $(4 + attributes.prof) creatures. Any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.
+    id: chefReplenishingMeal
+  - id: chefBolsteringTreats
+    name: Bolstering Treats
+    type: Activity
+    duration: instantaneous
+    range: self
+    time: 1 hour
+    description: |
+      You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.

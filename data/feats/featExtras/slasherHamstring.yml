@@ -1,6 +1,0 @@
-id: slasherHamstring
-name: Hamstring
-type: Extra
-target: weaponAttack AND slashingDamage
-description: "On a hit, the target's Speed is reduced by 10 feet until the start of your next turn."
-

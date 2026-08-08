@@ -33,9 +33,20 @@ children:
     type: Resource
     name: Bardic Inspiration
     quantity: $(Math.max(1, stats.cha.mod))
-  - type: Reference
-    target:
-      - bardicInspiration
+  - id: bardicInspiration
+    type: Activity
+    name: Bardic Inspiration
+    time: bonus action
+    range: 60 feet
+    duration: 1 hour
+    resource: bardicInspiration
+    description: |
+      You inspire another creature within range who can see or hear you. The creature gains one of your Bardic Inspiration dice (d$(attributes.bardicDie)).
+
+      Once within the next hour when the creature fails a D20 Test, the creature can roll the die and add the number rolled to the d20, potentially turning the failure into a success. A creature can have only one Bardic Inspiration die at a time.
+    mechanic:
+      pattern: utility
+      text: Grant a creature a Bardic Inspiration die (d$(attributes.bardicDie)). When the creature fails a D20 Test, it can roll the die and add the number rolled to the d20.
   - id: spellcasting
     type: Reference
     target:
@@ -92,9 +103,18 @@ children:
     target: feat
     quantity: 1
     condition: $(meta.level >= 4)
-  - type: Reference
-    target:
-      - countercharm
+  - id: countercharm
+    type: Activity
+    duration: instantaneous
+    name: Countercharm
+    time: reaction
+    range: 30 feet
+    description: |
+      When you or an ally within range fails a saving throw, against an effect that applies the Charmed or Frightened condition, you use musical notes or words of power to disrupt its mind-influencing effect. Cause the save to be rerolled, and the new roll has Advantage.
+    mechanic:
+      pattern: utility
+      trigger: When you or an ally fails a saving throw against Charmed or Frightened
+      text: Reroll the save with Advantage.
     condition: $(meta.level >= 7)
   - id: level8Feat
     name: Level 8 Feat

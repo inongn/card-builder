@@ -5,9 +5,10 @@ tags:
   - fighterSubclass
 type: Folder
 children:
-  - type: Reference
-    target:
-      - improvedCritical
+  - id: improvedCritical
+    name: Improved Critical
+    type: Trait
+    description: You score a Critical Hit on a roll of 19 or 20. Then, you can move $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet.
     condition: $(meta.level >= 3)
   - type: Reference
     target:

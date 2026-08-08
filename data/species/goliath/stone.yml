@@ -4,9 +4,18 @@ tags:
   - giantAncestry
 type: Folder
 children:
-  - type: Reference
-    target:
-      - stonesEndurance
+  - id: stonesEndurance
+    type: Activity
+    duration: instantaneous
+    name: Stone's Endurance
+    time: reaction
+    range: self
+    resource: giantAncestry
+    description: When you take damage, reduce it by 1d12$(formatBonus(stats.con.mod)).
+    mechanic:
+      pattern: utility
+      trigger: When you take damage
+      text: Reduce it by 1d12+$(stats.con.mod)
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

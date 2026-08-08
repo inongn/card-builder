@@ -4,9 +4,17 @@ tags:
   - giantAncestry
 type: Folder
 children:
-  - type: Reference
-    target:
-      - cloudsJaunt
+  - id: cloudsJaunt
+    type: Activity
+    duration: instantaneous
+    name: Cloud's Jaunt
+    time: bonus action
+    range: self
+    resource: giantAncestry
+    description: You magically teleport up to 30 feet to an unoccupied space you can see.
+    mechanic:
+      pattern: utility
+      text: You magically teleport up to 30 feet to an unoccupied space you can see.
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

@@ -5,9 +5,25 @@ tags:
 description: Strong, driven warriors endowed with Gruumsh's endurance, unyielding grit, and darkvision.
 type: Folder
 children:
-  - type: Reference
-    target:
-      - adrenalineRush
+  - id: adrenalineRush
+    type: Activity
+    duration: instantaneous
+    name: Adrenaline Rush
+    time: bonus action
+    range: self
+    resource: adrenalineRush
+    description: |
+      You take the Dash action. When you do so, you gain $(attributes.prof) Temporary Hit Points.
+    mechanic:
+      mode: succession
+      blocks:
+        - pattern: healing
+          healing:
+            dice:
+              count: 0
+              sides: 0
+              bonus: $(attributes.prof)
+            type: tempHitPoints
   - id: adrenalineRush
     type: Resource
     name: Adrenaline Rush
@@ -18,6 +34,15 @@ children:
     target: attributes.senses.darkvision
     operation: set
     value: 120
-  - type: Reference
-    target:
-      - relentlessEndurance
+  - id: relentlessEndurance
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Relentless Endurance
+    description: When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead.
+    resource: limited
+    mechanic:
+      pattern: utility
+      trigger: When reduced to 0 Hit Points but not killed outright
+      text: drop to 1 Hit Point instead

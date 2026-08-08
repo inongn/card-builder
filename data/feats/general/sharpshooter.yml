@@ -11,12 +11,19 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - type: Reference
-    target:
-      - sharpshooterBypassCover
-  - type: Reference
-    target:
-      - sharpshooterFiringInMelee
-  - type: Reference
-    target:
-      - sharpshooterPrecisionShot
+  - name: Bypass Cover
+    type: Extra
+    target: weaponAttack and ranged
+    description: This attack ignores Half Cover and Three-Quarters Cover.
+    id: sharpshooterBypassCover
+  - name: Firing in Melee
+    type: Extra
+    target: weaponAttack and ranged
+    description: Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.
+    id: sharpshooterFiringInMelee
+  - name: Precision Shot
+    type: Effect
+    target: activities[tags=weaponAttack and tags=ranged].mechanic.damage.dice.bonus
+    operation: add
+    value: $(attributes.prof)
+    id: sharpshooterPrecisionShot

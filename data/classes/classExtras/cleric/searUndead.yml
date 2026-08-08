@@ -1,5 +1,0 @@
-id: searUndead
-type: Extra
-name: Sear Undead
-target: turnUndead
-description: Each Undead that fails its saving throw takes $(Math.max(1, stats.wis.mod))d8 Radiant damage. This damage doesn't end the turn effect.

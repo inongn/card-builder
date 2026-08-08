@@ -29,10 +29,23 @@ children:
       - commune
       - flameStrike
     condition: $(meta.level >= 17)
-  - type: Reference
-    target:
-      - sacredWeapon
-  - type: Reference
-    target:
-      - auraOfDevotion
+  - id: sacredWeapon
+    type: Activity
+    range: self
+    name: Sacred Weapon
+    time: free action
+    duration: 10 minutes
+    resource: channelDivinity
+    description: |
+      When you take the Attack action, you imbue one Melee weapon that you are holding with positive energy. For the duration or until you use this feature again, you add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls you make with that weapon, and each time you hit with it, you cause it to deal its normal damage type or Radiant damage. 
+
+      The weapon also emits Bright Light in a 20-foot radius and Dim Light 20 feet beyond that. You can end this effect early (no action required). This effect also ends if you aren't carrying the weapon.
+    mechanic:
+      pattern: utility
+      text: Imbue a held Melee weapon with positive energy; add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls with it, and its damage type becomes Radiant. It emits Bright Light.
+  - id: auraOfDevotion
+    type: Extra
+    name: Aura of Devotion
+    target: auraOfProtection
+    description: You and your allies have Immunity to the Charmed condition. If a Charmed ally enters the aura, that condition has no effect on that ally while there.
     condition: $(meta.level >= 7)

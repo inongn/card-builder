@@ -5,9 +5,33 @@ tags:
 description: Descendants of metallic and chromatic dragons with scaly skin and elemental breath weapons.
 type: Folder
 children:
-  - type: Reference
-    target:
-      - breathWeapon
+  - id: breathWeapon
+    type: Activity
+    name: Breath Weapon
+    time: action
+    range: self
+    duration: Instantaneous
+    resource: breathWeapon
+    description: |
+      You exhale magical energy in a 15-foot Cone or a 30-foot Line (5 feet wide). Each creature in that area must make a DC $(8 + stats.con.mod + attributes.prof) Dexterity saving throw. On a failed save, a creature takes $(meta.level >= 17 ? '4' : meta.level >= 11 ? '3' : meta.level >= 5 ? '2' : '1')d10 $(attributes.dragonicAncestryDamage) damage. On a successful save, a creature takes half as much damage.
+    mechanic:
+      pattern: save
+      save:
+        ability: dex
+        dc: $(8 + stats.con.mod + attributes.prof)
+        failure:
+          damage:
+            dice:
+              count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+              sides: 10
+            type: $(attributes.draconicAncestryDamage || 'fire')
+        success:
+          text: half damage
+      target:
+        type: aoe
+        aoe:
+          shape: cone
+          size: 15
   - id: breathWeapon
     type: Resource
     name: Breath Weapon
@@ -18,9 +42,18 @@ children:
     target: attributes.senses.darkvision
     operation: set
     value: 60
-  - type: Reference
-    target:
-      - draconicFlight
+  - id: draconicFlight
+    type: Activity
+    range: self
+    name: Draconic Flight
+    time: bonus action
+    duration: 10 minutes
+    resource: limited
+    description: |
+      You sprout spectral wings on your back for 10 minutes or until you retract them (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed of $(attributes.movement.walk) feet.
+    mechanic:
+      pattern: utility
+      text: You gain a Fly Speed of $(attributes.movement.walk) feet.
     condition: $(meta.level >= 5)
   - id: draconicAncestry
     name: Draconic Ancestry

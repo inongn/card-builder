@@ -4,9 +4,22 @@ tags:
   - giantAncestry
 type: Folder
 children:
-  - type: Reference
-    target:
-      - stormsThunder
+  - id: stormsThunder
+    type: Activity
+    duration: instantaneous
+    name: Storm's Thunder
+    time: reaction
+    range: 60 feet
+    resource: giantAncestry
+    description: When you take damage from a creature within range, deal 1d8 Thunder damage to that creature.
+    mechanic:
+      pattern: utility
+      trigger: When you take damage from a creature
+      damage:
+        dice:
+          count: 1
+          sides: 8
+        type: thunder
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

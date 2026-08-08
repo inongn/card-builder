@@ -1,9 +1,0 @@
-id: discipleOfLife
-name: Disciple of Life
-type: Folder
-description: The creature regains an additional $(2+(stats.wis.mod)) Hit Points.
-children:
-  - type: Effect
-    target: activities[tags=healingSpell].mechanic.healing.dice.bonus
-    operation: add
-    value: $(2+(stats.wis.mod))

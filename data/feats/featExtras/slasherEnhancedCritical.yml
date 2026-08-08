@@ -1,6 +1,0 @@
-id: slasherEnhancedCritical
-name: Enhanced Critical
-type: Extra
-target: weaponAttack AND slashingDamage
-description: "On a Critical Hit, the target has Disadvantage on all attack rolls until the start of the next turn."
-

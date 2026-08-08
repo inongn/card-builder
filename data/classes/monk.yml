@@ -34,7 +34,7 @@ children:
     type: Effect
     target: activities[tags=unarmed].mechanic.attack
     operation: set
-    value: 
+    value:
       classification: finesse
       type: unarmed
       bonus: $(attributes.finesse.attack)
@@ -43,24 +43,29 @@ children:
     type: Effect
     target: activities[tags=unarmed].mechanic.damage.dice
     operation: set
-    value: 
+    value:
       count: 1
       sides: $(attributes.martialArtsDie)
       bonus: $(Math.max(1, attributes.finesse.bonus))
-    
   - id: martialArtsReplacementWeaponDamage
     type: Effect
     target: activities[(tags=simple or tags=light) and tags=weaponAttack].mechanic.damage.dice.sides
     operation: set
     value: $(attributes.martialArtsDie)
     condition: $(meta.level >= 1)
-
   - id: martialArtsFlag
     type: Attribute
     value: true
-  - type: Reference
-    target:
-      - bonusUnarmedStrike
+  - id: bonusUnarmedStrike
+    type: Activity
+    name: Bonus Unarmed Strike
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    description: You make one Unarmed Strike.
+    mechanic:
+      pattern: utility
+      text: Make one Unarmed Strike.
   - id: unarmoredDefense
     type: Effect
     target: attributes.ac
@@ -75,17 +80,41 @@ children:
   - id: monkSaveDC
     type: Attribute
     value: $(8 + stats.wis.mod + attributes.prof)
-  - type: Reference
-    target:
-      - flurryOfBlows
+  - id: flurryOfBlows
+    type: Activity
+    name: Flurry of Blows
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    resource: 1 focusPoints
+    description: 'You make $(meta.level >= 10 ? ''three'' : ''two'') Unarmed Strikes.'
+    mechanic:
+      pattern: utility
+      text: 'Make $(meta.level >= 10 ? ''three'' : ''two'') Unarmed Strikes.'
     condition: $(meta.level >= 2)
-  - type: Reference
-    target:
-      - patientDefense
+  - id: patientDefense
+    type: Activity
+    name: Patient Defense
+    time: bonus action
+    range: self
+    resource: 1 focusPoints
+    duration: Instantaneous
+    description: 'You take both the Disengage and Dodge actions$(meta.level >= 10 ? '' and gain '' + (2) + ''d'' + attributes.martialArtsDie + '' Temporary Hit Points'' : '''').'
+    mechanic:
+      pattern: utility
+      text: 'Take the Disengage and Dodge actions$(meta.level >= 10 ? '', and gain 2d'' + attributes.martialArtsDie + '' Temporary Hit Points'' : '''').'
     condition: $(meta.level >= 2)
-  - type: Reference
-    target:
-      - stepOfTheWind
+  - id: stepOfTheWind
+    type: Activity
+    name: Step of the Wind
+    time: bonus action
+    range: self
+    resource: 1 focusPoints
+    duration: Instantaneous
+    description: 'You take both the Disengage and Dash actions, and your jump distance is doubled for the turn.$(meta.level >= 10 ? '' You can also move a willing creature (Large or smaller) within 5 feet with you until the end of your turn without provoking Opportunity Attacks.'' : '''')'
+    mechanic:
+      pattern: utility
+      text: 'Take the Disengage and Dash actions; jump distance is doubled$(meta.level >= 10 ? '', and you can bring a willing creature within 5 feet with you'' : '''').'
     condition: $(meta.level >= 2)
   - id: unarmoredMovement
     type: Effect
@@ -93,9 +122,21 @@ children:
     operation: add
     condition: $(meta.level >= 2)
     value: $(progression(0,10,10,10,10,15,15,15,15,20,20,20,20,25,25,25,25,30,30,30))
-  - type: Reference
-    target:
-      - deflectAttacks
+  - id: deflectAttacks
+    type: Activity
+    name: Deflect Attacks
+    time: reaction
+    range: self
+    duration: Instantaneous
+    resource: 1 focusPoints
+    description: |
+      When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). 
+
+      If you reduce the damage to 0, the Focus Point is expended and you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.
+    mechanic:
+      pattern: utility
+      trigger: When an attack hits you
+      text: Reduce damage by 1d10+$(stats.dex.mod + meta.level). If reduced to 0, redirect force as 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage.
     condition: $(meta.level >= 3)
   - id: monkSubclass
     name: Monk Subclass
@@ -108,17 +149,42 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - type: Reference
-    target:
-      - slowFall
+  - id: slowFall
+    type: Activity
+    name: Slow Fall
+    time: reaction
+    range: self
+    duration: Instantaneous
+    description: When you fall, you reduce any fall damage you take by $(meta.level * 5).
+    mechanic:
+      pattern: utility
+      trigger: When you fall
+      text: Reduce fall damage by $(meta.level * 5).
     condition: $(meta.level >= 4)
   - type: Reference
     target:
       - extraAttack
     condition: $(meta.level >= 5)
-  - type: Reference
-    target:
-      - stunningStrike
+  - id: stunningStrike
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Stunning Strike
+    resource: 1 focusPoints
+    description: Once per turn when you hit with an attack, the target must make a DC $(attributes.monkSaveDC) Constitution saving throw. On a failed save, the target has the Stunned condition until the start of your next turn. On a success, the target's Speed is halved and the next attack roll against it has Advantage.
+    mechanic:
+      pattern: save
+      trigger: When you hit a creature with an attack
+      save:
+        ability: con
+        dc: $(attributes.monkSaveDC)
+        failure:
+          text: Target has the Stunned condition.
+        success:
+          text: Target Speed is halved and next attack roll against it has Advantage.
+      target:
+        type: single
     condition: $(meta.level >= 5)
   - id: martialArtsEmpoweredStrikes
     type: Effect
@@ -126,9 +192,10 @@ children:
     operation: set
     condition: $(meta.level >= 6)
     value: force
-  - type: Reference
-    target:
-      - evasion
+  - id: evasionMonk
+    type: Trait
+    name: Evasion
+    description: When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed and only half damage if you fail. 
     condition: $(meta.level >= 7)
   - id: level8feat
     name: Level 8 Feat

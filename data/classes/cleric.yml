@@ -50,13 +50,64 @@ children:
     quantity: '$(meta.level >= 18 ? 4 : meta.level >= 6 ? 3 : 2)'
     sr: 1
     condition: $(meta.level >= 2)
-  - type: Reference
-    target:
-      - divineSpark
+  - id: divineSpark
+    type: Activity
+    name: Divine Spark
+    time: action
+    range: 30 feet
+    duration: Instantaneous
+    resource: channelDivinity
+    description: 'You point your Holy Symbol at another creature you can see. Roll $(meta.level >= 18 ? ''4d8'' : meta.level >= 13 ? ''3d8'' : meta.level >= 7 ? ''2d8'' : ''1d8'')$(formatBonus(stats.wis.mod)). You either restore Hit Points to the creature equal to that total or force the creature to make a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the creature takes Necrotic or Radiant damage (your choice) equal to that total. On a successful save, the creature takes half as much damage (round down).'
+    mechanic:
+      mode: choice
+      text: 'Choose one of the following:'
+      blocks:
+        - pattern: healing
+          healing:
+            dice:
+              count: 1
+              sides: 8
+              bonus: $(stats.wis.mod)
+            type: hitPoints
+          target:
+            type: single
+        - pattern: save
+          save:
+            ability: con
+            dc: $(attributes.spellcasting.save)
+            failure:
+              damage:
+                dice:
+                  count: 1
+                  sides: 8
+                  bonus: $(stats.wis.mod)
+                type:
+                  - radiant
+                  - necrotic
+          target:
+            type: single
     condition: $(meta.level >= 2)
-  - type: Reference
-    target:
-      - turnUndead
+  - id: turnUndead
+    type: Activity
+    name: Turn Undead
+    time: action
+    range: 30 feet
+    duration: 1 minute
+    resource: channelDivinity
+    description: You present your Holy Symbol and censure Undead creatures. Each Undead of your choice within range must make a DC $(attributes.spellcasting.save) Wisdom saving throw. If the creature fails its save, it has the Frightened and Incapacitated conditions. It tries to move as far from you as it can on its turns. The effect ends early if it takes any damage, if you have the Incapacitated condition, or if you die.
+    mechanic:
+      pattern: save
+      save:
+        ability: wis
+        dc: $(attributes.spellcasting.save)
+        failure:
+          text: Target has the Frightened and Incapacitated conditions and must flee.
+      target:
+        type: aoe
+        aoe:
+          shape: emanation
+          size: 30
+        filter: undead
     condition: $(meta.level >= 2)
   - id: clericSubclass
     name: Cleric Subclass
@@ -69,9 +120,11 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 4)
-  - type: Reference
-    target:
-      - searUndead
+  - id: searUndead
+    type: Extra
+    name: Sear Undead
+    target: turnUndead
+    description: Each Undead that fails its saving throw takes $(Math.max(1, stats.wis.mod))d8 Radiant damage. This damage doesn't end the turn effect.
     condition: $(meta.level >= 5)
   - id: blessedStrikes
     type: Slot

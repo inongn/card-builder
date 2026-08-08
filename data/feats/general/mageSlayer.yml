@@ -11,9 +11,19 @@ children:
     target: attributes.asiPoolLimit
     operation: add
     value: 1
-  - type: Reference
-    target:
-      - mageSlayerConcentrationBreaker
-  - type: Reference
-    target:
-      - mageSlayerGuardedMind
+  - name: Concentration Breaker
+    type: Trait
+    description: On a hit, the target has Disadvantage on any saving throw it makes to maintain Concentration.
+    id: mageSlayerConcentrationBreaker
+  - name: Guarded Mind
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    resource: limited
+    description: If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead.
+    id: mageSlayerGuardedMind
+    mechanic:
+      pattern: utility
+      trigger: When you fail an Int, Wis, or Cha saving throw
+      text: Cause yourself to succeed on the saving throw instead.

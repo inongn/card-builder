@@ -1,6 +1,0 @@
-id: crusherEnhancedCritical
-name: Enhanced Critical
-type: Extra
-target: weaponAttack AND bludgeoningDamage
-description: "On a Critical Hit, attack rolls against the target have Advantage until the start of your next turn."
-

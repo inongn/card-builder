@@ -16,6 +16,7 @@ children:
     target: attributes.movement.walk
     operation: add
     value: 30
-  - type: Reference
-    target:
-      - speedyAgileMovement
+  - name: Agile Movement
+    type: Trait
+    description: Difficult Terrain doesn't cost you extra movement when Dashing.
+    id: speedyAgileMovement
