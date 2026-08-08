@@ -3268,6 +3268,7 @@ mdui-list-item.card-vertical-item::part(container) {
   padding: 10px 16px !important;
   box-sizing: border-box !important;
   background: white !important;
+
   color: black !important;
   columns: 2 !important;
   column-gap: 16px !important;
@@ -3276,6 +3277,9 @@ mdui-list-item.card-vertical-item::part(container) {
 
 .print-mode .activity-overflow-slot .activity-sheet-container {
   gap: 6px !important;
+  border: 1px solid #ccc !important;
+  height: 100%;
+
 }
 
 .print-mode .activity-overflow-slot .aside-card-group {

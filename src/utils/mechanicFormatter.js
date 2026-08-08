@@ -88,7 +88,15 @@ export function formatTargetText(targetObj, formattedRange, evalStr, isAttack = 
     return '';
   }
 
-  if (cleanRange && cleanRange.toLowerCase() !== 'self') {
+  if (cleanRange) {
+    const lowerRange = cleanRange.toLowerCase();
+    if (lowerRange === 'self') {
+      return '';
+    }
+    // Handle Touch targets cleanly ("one creature you touch")
+    if (lowerRange === 'touch') {
+      return `, one ${filterSingular} you touch`;
+    }
     return `, one ${filterSingular} within ${cleanRange}`;
   }
 
