@@ -3,6 +3,7 @@ name: Telekinetic Crush
 summary: "Crush a target with massive telekinetic force."
 tags: [level3Spell, transmutation, psion, sorcerer, warlock, saveSpell, damageSpell, forceDamage]
 type: Activity
+resource; level3SpellSlot
 time: action
 range: 120 feet
 duration: Instantaneous
