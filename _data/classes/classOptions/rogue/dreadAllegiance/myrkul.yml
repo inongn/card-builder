@@ -1,0 +1,10 @@
+id: myrkulPact
+name: Aspect of Mortality
+summary: "Gain necrotic resistance and learn the Chill Touch cantrip."
+tags: [dreadAllegiance]
+type: Folder
+children:
+  - type: Reference
+    target: necroticResistance
+  - type: Reference
+    target: [chillTouch]

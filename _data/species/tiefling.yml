@@ -1,0 +1,21 @@
+id: tiefling
+name: Tiefling
+tags:
+  - species
+description: Mortals carrying a fiendish heritage that sparks supernatural power and planar resistance.
+type: Folder
+children:
+  - id: tieflingDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 60
+  - id: fiendishLegacy
+    name: Fiendish Legacy
+    type: Slot
+    target: fiendishLegacy
+    quantity: 1
+  - type: Reference
+    target:
+      - thaumaturgy
+      - chooseCaster

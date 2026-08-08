@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Glassblower's Tools
+target: attributes.tools
+id: glassblowersTools
+name: Glassblower's Tools

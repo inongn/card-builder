@@ -1,0 +1,54 @@
+id: moon
+name: College of the Moon
+description: Draw inspiration from lunar phases, blending moonlit secrets with martial and druidic magic.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  - id: inspiredEclipse
+    type: Extra
+    target: bardicInspiration
+    name: Inspired Eclipse
+    description: You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell.
+    condition: $(meta.level >= 3)
+  - id: lunarVitality
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Lunar Vitality
+    time: free action
+    resource: bardicInspiration
+    description: Once per turn when you restore Hit Points to a creature with a spell, you increase the amount of Hit Points restored by 1d$(attributes.bardicDie). The creature's Speed also increases by 10 feet until the end of its next turn.
+    condition: $(meta.level >= 3)
+  - type: Slot
+    id: primalLoreCantrip
+    name: Primal Lore Cantrip
+    target: druid AND cantrip
+    quantity: 1
+    condition: $(meta.level >= 3)
+    overwrite:
+      variables.classification: spellcasting
+      tags:
+        - bardSpell
+  - type: Slot
+    id: primalLoreProficiency
+    name: Primal Lore Skill Proficiency
+    target: animalHandlingProficiency OR insightProficiency OR medicineProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
+    quantity: 1
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - moonbeam
+    condition: $(meta.level >= 6)
+  - id: blessingOfMoonlight
+    type: Activity
+    name: Blessing of Moonlight
+    time: action
+    range: self
+    duration: concentration, up to 1 minute
+    resource: limited
+    description: |
+      You cast Moonbeam, and you modify it so that you glow faintly while the spell is active. 
+
+      While glowing, you shed Dim Light out to 5 feet, and whenever a creature fails its saving throw against the effects of this Moonbeam, another creature of your choice that you can see within 60 feet of yourself regains 2d4 Hit Points.
+    condition: $(meta.level >= 6)

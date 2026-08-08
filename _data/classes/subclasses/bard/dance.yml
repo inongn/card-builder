@@ -1,0 +1,49 @@
+id: dance
+name: College of Dance
+description: Harmonize with the whirling cosmos through agile, speedy, and graceful dances that weave magic.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  - id: dazzlingFootworkDance
+    type: Reference
+    target: performanceAdvantage
+  - id: dazzlingFootworkAgileStrike
+    type: Extra
+    target: bardicInspiration or inspiringMovement
+    name: Agile Strikes
+    description: You can make one Unarmed Strike as part of this action.
+  - id: martialArtsReplacementUnarmed
+    type: Effect
+    target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
+    operation: replace
+    value: 1d$(attributes.bardicDie)$(formatBonus(attributes.finesse.bonus))
+    condition: $(meta.level >= 1)
+  - id: unarmoredDefenseDance
+    type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(10 + stats.dex.mod + stats.cha.mod)
+  - id: martialArtsReplacementd4
+    type: Effect
+    target: activities[tags=unarmed and tags=weaponAttack].description["1d4"]
+    operation: replace
+    value: 1d$(attributes.bardicDie)
+  - id: inspiringMovement
+    type: Activity
+    name: Inspiring Movement
+    time: reaction
+    range: self
+    duration: instantaneous
+    resource: bardicInspiration
+    description: When an enemy ends its turn within 5 feet of you, you move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks. Then one ally within 30 feet can also move up to half their Speed using their Reaction.
+    condition: $(meta.level >= 6)
+  - id: tandemFootwork
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Tandem Footwork
+    resource: bardicInspiration
+    description: When you roll Initiative, you and each ally within 30 feet gain a 1d$(attributes.bardicDie) bonus to Initiative.
+    condition: $(meta.level >= 6)

@@ -1,0 +1,10 @@
+summary: Honestly and graciously convince someone of something.
+tags:
+  - charisma
+  - skillProficiency
+type: Effect
+target: skills.persuasion.proficiency
+operation: set
+value: 1
+id: persuasionProficiency
+name: Persuasion

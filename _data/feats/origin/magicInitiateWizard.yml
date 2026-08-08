@@ -1,0 +1,23 @@
+tags:
+- feat
+- originFeat
+type: Folder
+summary: "Learn arcane cantrips and a 1st-level wizard spell."
+children:
+- type: Reference
+  target: data.core.spellcasting.chooseCaster
+  quantity: 1
+- type: Slot
+  id: magicInitiateWizardCantrips
+  name: Wizard Initiate Cantrips
+  quantity: 2
+  target: wizard AND cantrip
+- type: Slot
+  id: magicInitiateWizardPreparedSpell
+  name: Wizard Initiate Spell
+  target: wizard AND level1Spell
+  quantity: 1
+  overwrite:
+    resource: limited
+id: magicInitiateWizard
+name: Wizard Initiate

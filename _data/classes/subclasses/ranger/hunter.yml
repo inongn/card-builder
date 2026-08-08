@@ -1,0 +1,23 @@
+id: hunter
+name: Hunter
+description: Stalk prey in the wilds, using your abilities as a Hunter to protect nature and people everywhere.
+tags:
+  - rangerSubclass
+type: Folder
+children:
+  - id: huntersLore
+    type: Extra
+    name: Hunter's Lore
+    target: huntersMark
+    description: You know whether the creature has any Immunities, Resistances, or Vulnerabilities, and if it has any, you know what they are.
+  - id: huntersPrey
+    type: Slot
+    name: Hunter's Prey
+    quantity: 1
+    target: classOption OR huntersPrey
+  - id: defensiveTactics
+    type: Slot
+    name: Defensive Tactics
+    quantity: 1
+    target: classOption OR defensiveTactics
+    condition: $(meta.level >= 7)

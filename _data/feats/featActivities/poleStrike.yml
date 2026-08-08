@@ -1,0 +1,7 @@
+id: poleStrike
+name: Pole Strike
+type: Activity
+time: bonus action
+range: self
+duration: instantaneous
+description: You make a $(formatBonus(attributes.melee.bonus)) attack with the opposite end of a polearm weapon. On a hit, deal 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage.

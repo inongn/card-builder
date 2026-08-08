@@ -1,0 +1,47 @@
+id: circleOfTheMoon
+name: Circle of the Moon
+description: Draw on lunar magic to transform yourself into various beasts, changeable and powerful as the moon.
+type: Folder
+tags:
+  - druidSubclass
+children:
+  - type: Reference
+    target:
+      - cureWounds
+      - moonbeam
+      - starryWisp
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - conjureAnimals
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - fountOfMoonlight
+    condition: $(meta.level >= 7)
+  - id: moonCircleFormsTHP
+    type: Effect
+    target: activities[id=wildShapeActivity].description["You gain $(meta.level * 2) Temporary Hit Points"]
+    operation: replace
+    value: You gain $(meta.level * 3) Temporary Hit Points
+    condition: $(meta.level >= 3)
+  - type: Effect
+    target: statblocks[tags=wildShapeTemplate].traits
+    operation: push
+    value: 
+      - name: Lunar Radiance
+        description: You can deal Radiant damage instead of the normal type.
+      - name: Increased Toughness
+        description: You can add $(stats.wis.mod) to your Constitution saving throws.
+    condition: $(meta.level >= 6)
+  - type: Reference
+    target:
+      - improvedCircleFormsToughness
+    condition: $(meta.level >= 6)
+  - id: primalStrikeWildShape
+    type: Effect
+    target: statblocks[tags=wildShapeTemplate].actions
+    operation: push
+    value:
+      name: Multiattack
+      description: The beast makes two Bestial Strike attacks.

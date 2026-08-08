@@ -1,0 +1,10 @@
+id: draconicAncestryGreen
+name: Green Dragon
+tags: [draconicAncestry]
+type: Folder
+children:
+  - type: Reference
+    target: poisonResistance
+  - type: Attribute
+    id: dragonicAncestryDamage
+    value: Poison

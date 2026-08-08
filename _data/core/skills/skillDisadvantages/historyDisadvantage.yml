@@ -1,0 +1,6 @@
+type: Effect
+target: skills.history.dis
+operation: set
+value: true
+id: historyDisadvantage
+name: History Disadvantage

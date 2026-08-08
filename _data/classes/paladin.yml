@@ -1,0 +1,114 @@
+id: paladin
+name: Paladin
+description: Holy warriors bound by sacred oaths, smiting evil with radiant power and protective auras.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 10
+  - id: weaponMastery
+    type: Attribute
+    value: true
+  - type: Reference
+    value:
+      - wisSave
+      - chaSave
+  - type: Reference
+    value:
+      - simpleWeaponProficiency
+      - martialWeaponProficiency
+  - type: Reference
+    value:
+      - lightArmorTraining
+      - mediumArmorTraining
+      - heavyArmorTraining
+      - shieldTraining
+  - id: paladinSkillProficiencies
+    type: Slot
+    name: Paladin Skill Proficiencies
+    quantity: 2
+    target: athleticsProficiency OR insightProficiency OR intimidationProficiency OR medicineProficiency OR persuasionProficiency OR religionProficiency
+  - id: layOnHands
+    type: Activity
+    name: Lay On Hands
+    time: bonus action
+    range: touch
+    duration: Instantaneous
+    resource: layOnHands
+    description: 'You touch a creature (which could be yourself) and restore 5 Hit Points to it per charge expended. $(meta.level >= 14 ? ''You can also expend a charge to remove one or more of the following conditions from the creature: Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned.'' : '''')'
+  - id: layOnHands
+    type: Resource
+    name: Lay On Hands
+    quantity: $(meta.level)
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties
+  - type: Reference
+    target:
+      - halfCaster
+      - chaCaster
+  - type: Slot
+    name: Paladin Spells
+    id: paladinSpells
+    target: 'paladin NOT cantrip $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
+    variables:
+      maxLevel: '$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)'
+    quantity: $(progression(2,3,4,5,6,6,7,7,9,9,10,10,11,11,12,12,14,14,15,15))
+  - id: fightingStyle
+    type: Slot
+    name: Fighting Style
+    quantity: 1
+    target: fightingStyle OR blessedWarrior
+    condition: $(meta.level >= 2)
+  - type: Reference
+    target: divineSmite
+    condition: $(meta.level >= 2)
+  - id: paladinSubclass
+    name: Paladin Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: paladinSubclass
+  - id: channelDivinity
+    type: Resource
+    name: Channel Divinity
+    quantity: '$(meta.level >= 11 ? 3 : 2)'
+    sr: 1
+    condition: $(meta.level >= 3)
+  - id: divineSense
+    type: Activity
+    name: Divine Sense
+    time: bonus action
+    range: 60 feet
+    duration: 10 minutes
+    resource: channelDivinity
+    description: You open your awareness to detect Celestials, Fiends, and Undead. For the duration or until you have the Incapacitated condition, you know the location of any creature of those types within range, and you know its creature type. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow spell.
+    condition: $(meta.level >= 3)
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target: findSteed
+    condition: $(meta.level >= 5)
+  - id: auraOfProtection
+    type: Activity
+    time: free action
+    duration: instantaneous
+    name: Aura of Protection
+    range: '$(meta.level >= 18 ? 30 : 10) feet'
+    description: You radiate a protective, unseeable aura. The aura is inactive while you have the Incapacitated condition. You and your allies in the aura gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws.
+    condition: $(meta.level >= 6)
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)

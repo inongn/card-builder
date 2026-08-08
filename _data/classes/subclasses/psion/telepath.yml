@@ -1,0 +1,73 @@
+id: telepath
+name: Telepath
+description: Master tactics in the landscape of the mind, bolstering mental defenses of allies and probing thoughts undetected.
+type: Folder
+tags:
+  - psionSubclass
+children:
+  - type: Reference
+    target:
+      - bane
+      - command
+      - detectThoughts
+      - mindSpike
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - counterspell
+      - slow
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - compulsion
+      - confusion
+    condition: $(meta.level >= 7)
+  - id: mindInfiltrator
+    type: Extra
+    target: detectThoughts
+    name: Mind Infiltrator
+    description: If the target fails its Wisdom save against Read Thoughts, it does not know you are probing its mind.
+    condition: $(meta.level >= 3)
+  - id: telepathicDistraction
+    type: Activity
+    name: Telepathic Distraction
+    time: reaction
+    range: 30 feet
+    duration: Instantaneous
+    resource: psionicEnergyDice
+    description: When a creature within range hits with an attack roll, subtract 1d$(attributes.psiDice) from the attack roll, potentially causing it to miss. The charge is expended only if the target misses.
+    condition: $(meta.level >= 3)
+  - id: bulwarkMind
+    type: Activity
+    name: Bulwark Mind
+    time: free action
+    range: self
+    duration: 10 minutes
+    resource: psionicEnergyDice
+    description: Enter a fortified state for 10 minutes. You gain Resistance to Psychic damage, and add 1d$(attributes.psiDice) to Intelligence, Wisdom, and Charisma saving throws.
+    condition: $(meta.level >= 6)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=psion AND tags=damageSpell].description["d12"]
+    operation: replace
+    value: d12$(formatBonus(stats.int.mod))
+    condition: $(meta.level >= 6)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=psion AND tags=damageSpell].description["d10"]
+    operation: replace
+    value: d10$(formatBonus(stats.int.mod))
+    condition: $(meta.level >= 6)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=psion AND tags=damageSpell].description["d8"]
+    operation: replace
+    value: d8$(formatBonus(stats.int.mod))
+    condition: $(meta.level >= 6)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=psion AND tags=damageSpell].description["d6"]
+    operation: replace
+    value: d6$(formatBonus(stats.int.mod))
+    condition: $(meta.level >= 6)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=psion AND tags=damageSpell].description["d4"]
+    operation: replace
+    value: d4$(formatBonus(stats.int.mod))
+    condition: $(meta.level >= 6)

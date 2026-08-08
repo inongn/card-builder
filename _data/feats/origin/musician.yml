@@ -1,0 +1,11 @@
+id: musician
+summary: Perform music during rests to grant allies inspiration.
+name: Musician
+tags:
+  - feat
+  - originFeat
+type: Folder
+children:
+  - type: Reference
+    target:
+      - encouragingSong

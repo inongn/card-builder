@@ -1,0 +1,21 @@
+id: circleOfTheLand
+name: Circle of the Land
+description: Safeguard ancient knowledge and rites as a mystic and sage, whispering primal secrets in Druidic.
+tags:
+  - druidSubclass
+type: Folder
+children:
+  - id: circleOfTheLandType
+    type: Slot
+    name: Land Type
+    quantity: 1
+    target: circleLand OR classOption
+  - id: landsAid
+    type: Activity
+    duration: instantaneous
+    name: Land's Aid
+    time: action
+    range: 60 feet
+    resource: wildShape
+    description: |
+      Vitality-giving flowers and life-draining thorns appear in a point you choose within range. Each creature in a 10-foot-radius Sphere centered on that point makes a DC $(attributes.spellcasting.save) Constitution saving throw, taking $(meta.level >= 14 ? '4d6' : meta.level >= 10 ? '3d6' : '2d6') Necrotic damage on a failed save or half as much damage on a successful one. One creature of your choice in that area regains $(meta.level >= 14 ? '4d6' : meta.level >= 10 ? '3d6' : '2d6') Hit Points.

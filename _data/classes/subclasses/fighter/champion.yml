@@ -1,0 +1,30 @@
+id: champion
+name: Champion
+description: Focus on martial prowess and relentless pursuit of victory to deal devastating blows and garner glory.
+tags:
+  - fighterSubclass
+type: Folder
+children:
+  - id: improvedCritical
+    name: Improved Critical
+    type: Extra
+    target: weaponAttack
+    description: 'You score a Critical Hit on a roll of $(meta.level >= 15 ? ''18-20'' : ''19 or 20'').'
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - initiativeAdvantage
+      - athleticsAdvantage
+    condition: $(meta.level >= 3)
+  - id: remarkableAthlete
+    name: Remarkable Athlete
+    type: Extra
+    target: weaponAttack
+    description: On a Critical Hit, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
+    condition: $(meta.level >= 3)
+  - id: additionalFightingStyle
+    name: Additional Fighting Style
+    type: Slot
+    target: fightingStyle
+    condition: $(meta.level >= 7)
+    quantity: 1

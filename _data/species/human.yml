@@ -1,0 +1,20 @@
+id: human
+name: Human
+tags:
+  - species
+description: Ambitious and resourceful mortals whose diverse talents drive them across every realm.
+type: Folder
+children:
+  - type: Reference
+    target:
+      - resourceful
+  - id: skillful
+    name: Skillful Skill Proficiency
+    type: Slot
+    target: skillProficiency
+    quantity: 1
+  - id: versatile
+    name: Versatile
+    type: Slot
+    target: originFeat
+    quantity: 1

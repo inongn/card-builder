@@ -1,0 +1,10 @@
+id: piercingShot
+summary: "Imbue an arrow to transform into a line of piercing force."
+name: Piercing Shot
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+tags: [arcaneShotOption]
+resource: arcaneShot
+description: "You don't make an attack roll for the attack. Instead, the ammunition shoots forward in a 30-foot Line (1 foot wide) originating from you, then vanishes, ignoring cover. Each creature in the Line must make a DC $(8 + stats.int.mod + attributes.prof) Dexterity saving throw, taking weapon damage plus 2d6 Piercing damage on a failure, or half as much on a success."

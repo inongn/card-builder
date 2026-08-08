@@ -1,0 +1,10 @@
+id: telekineticFling
+type: Activity
+name: Telekinetic Fling
+tags: [evocation, cantrip, psion, attackSpell, damageSpell, forceDamage]
+time: action
+range: 60 feet
+duration: instantaneous
+summary: "You wreathe a small object in psionic energy and launch it at a target."
+description: |
+  Choose one nonmagical object weighing 1 to 5 pounds within 10 feet of you that isn't being worn or carried to wreathe in psionic energy and fire at a creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d10 Force damage. On a hit or miss, the object falls to the ground undamaged.

@@ -1,0 +1,45 @@
+id: oathOfTheAncients
+name: Oath of the Ancients
+description: Cherish the light, loving the beautiful and life-giving things of the world above all other principles.
+tags:
+  - paladinSubclass
+type: Folder
+children:
+  - id: naturesWrath
+    type: Activity
+    name: Nature's Wrath
+    time: action
+    range: 15 feet
+    duration: 1 minute
+    resource: channelDivinity
+    description: You conjure spectral vines around nearby creatures. Each creature of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or have the Restrained condition for 1 minute. A Restrained creature repeats the save at the end of each of its turns, ending the effect on a success.
+  - type: Reference
+    target:
+      - ensnaringStrike
+      - speakWithAnimals
+  - type: Reference
+    target:
+      - mistyStep
+      - moonbeam
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - plantGrowth
+      - protectionFromEnergy
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - iceStorm
+      - stoneskin
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target:
+      - communeWithNature
+      - treeStride
+    condition: $(meta.level >= 17)
+  - id: auraOfWarding
+    type: Extra
+    name: Aura of Warding
+    target: auraOfProtection
+    description: Ancient magic lies so heavily upon you that it forms an eldritch ward, blunting energy from beyond the Material Plane. You and your allies have Resistance to Necrotic, Psychic, and Radiant damage.
+    condition: $(meta.level >= 7)

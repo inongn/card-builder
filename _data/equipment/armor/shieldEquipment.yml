@@ -1,0 +1,15 @@
+id: shieldEquipment
+name: Shield
+type: Folder
+tags: [shieldEquipment, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: add
+    value: 2
+    id: shieldAC
+  - type: Effect
+    target: attributes.shieldEquipped
+    operation: set
+    value: true
+    id: shieldFlag

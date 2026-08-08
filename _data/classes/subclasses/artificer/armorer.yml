@@ -1,0 +1,53 @@
+id: armorer
+name: Armorer
+description: Modify armor to function as a second skin, enhancing magic, attacks, and generating defense.
+type: Folder
+tags:
+  - artificerSubclass
+children:
+  - id: armorerToolsOfTheTrade
+    type: Extra
+    name: Tools of the Trade
+    description: |
+      You gain training with Heavy armor.
+      You gain proficiency with Smith's Tools. If you already have this tool proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.
+
+      When you craft nonmagical or magic armor, the amount of time required to craft it is halved.
+  - type: Reference
+    target:
+      - heavyArmorTraining
+      - smithsTools
+  - type: Reference
+    target:
+      - magicMissile
+      - thunderwave
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - mirrorImage
+      - shatter
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - hypnoticPattern
+      - lightningBolt
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - fireShield
+      - greaterInvisibility
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target:
+      - passwall
+      - wallOfForce
+    condition: $(meta.level >= 17)
+  - id: armorModel
+    name: Armor Model
+    type: Slot
+    target: armorModel
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)

@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Carpenter's Tools
+target: attributes.tools
+id: carpentersTools
+name: Carpenter's Tools

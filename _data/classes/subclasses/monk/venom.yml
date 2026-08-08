@@ -1,0 +1,54 @@
+id: venom
+name: Warrior of Venom
+description: Harvest blood toxins to coat weapons in debilitating poison and use toxic touches to sedate or charm.
+type: Folder
+tags:
+  - monkSubclass
+children:
+  - id: envenomWeapon
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Envenom Weapon
+    time: free action
+    resource: 1 focusPoints
+    description: |
+      You coat your Monk weapon in toxin. For 1 minute or until you hit a creature with it, the next creature taking damage from the weapon is subjected to one of the following:
+
+      **Slowing Toxin.** The target's Speed is halved, it can't take Reactions, and it can take either an action or a Bonus Action on its turn, not both. These effects last until the start of your next turn.
+
+      **Venom.** The target takes Poison damage equal to two rolls of your Martial Arts die (2d$(attributes.martialArtsDie)).
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: poisonersKit
+    condition: $(meta.level >= 3)
+  - id: potentArsenal
+    type: Extra
+    target:
+      - envenomWeapon
+      - toxicTouch
+    name: Potent Arsenal
+    description: You can change the damage type to Acid.
+    condition: $(meta.level >= 3)
+  - id: potentArsenalAttacks
+    type: Extra
+    target: weaponAttack
+    name: Potent Arsenal
+    description: You can change the damage type to Acid.
+    condition: $(meta.level >= 3)
+  - id: toxicTouch
+    type: Activity
+    name: Toxic Touch
+    time: action
+    range: touch
+    duration: 1 minute
+    resource: 1 focusPoints
+    description: |
+      You touch a creature. The target must succeed on a DC $(attributes.monkSaveDC) Constitution saving throw or have the Poisoned condition for 1 minute. While Poisoned in this way, it suffers one of the following:
+
+      **Intoxicant.** The target has the Charmed condition until you or your allies deal damage to it.
+
+      **Sedative.** The target has the Unconscious condition. Another creature can use an action to shake it awake.
+
+      **Truth Serum.** The target can't knowingly tell a lie.
+    condition: $(meta.level >= 6)

@@ -1,0 +1,28 @@
+type: Folder
+children:
+  - type: Reference
+    reference: level1SpellSlot
+    overwrite:
+      quantity: $(progression(0, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4))
+  - type: Reference
+    reference: level2SpellSlot
+    condition: $(meta.level >= 5)
+    overwrite:
+      quantity: $(progression(0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
+  - type: Reference
+    reference: level3SpellSlot
+    condition: $(meta.level >= 9)
+    overwrite:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3))
+  - type: Reference
+    reference: level4SpellSlot
+    condition: $(meta.level >= 13)
+    overwrite:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 3))
+  - type: Reference
+    reference: level5SpellSlot
+    condition: $(meta.level >= 17)
+    overwrite:
+      quantity: $(progression(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2))
+id: halfCaster
+name: Half Caster

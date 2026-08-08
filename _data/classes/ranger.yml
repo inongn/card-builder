@@ -1,0 +1,106 @@
+id: ranger
+name: Ranger
+description: Deadly wilderness scouts and trackers who combine martial skill with nature magic.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 10
+  - id: weaponMastery
+    type: Attribute
+    value: true
+  - type: Reference
+    value:
+      - strSave
+      - dexSave
+  - type: Reference
+    value:
+      - simpleWeaponProficiency
+      - martialWeaponProficiency
+  - type: Reference
+    value:
+      - lightArmorTraining
+      - mediumArmorTraining
+      - shieldTraining
+  - id: rangerSkillProficiencies
+    type: Slot
+    name: Ranger Skill Proficiencies
+    quantity: 3
+    target: animalHandlingProficiency OR athleticsProficiency OR insightProficiency OR investigationProficiency OR natureProficiency OR perceptionProficiency OR stealthProficiency OR survivalProficiency
+  - type: Reference
+    target:
+      - halfCaster
+      - wisCaster
+  - type: Slot
+    id: rangerSpells
+    name: Ranger Spells
+    target: 'ranger NOT cantrip $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
+    variables:
+      maxLevel: '$(meta.level >= 17 ? 5 : meta.level >= 13 ? 4 : meta.level >= 9 ? 3 : meta.level >= 5 ? 2 : 1)'
+    quantity: $(progression(2,3,4,5,6,6,7,7,9,9,10,10,11,11,12,12,14,14,15,15))
+  - type: Resource
+    name: Favored Enemy
+    id: favoredEnemy
+    quantity: $(progression(2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6))
+  - type: Reference
+    target: huntersMark
+  - type: Effect
+    target: activities[id=huntersMark].resource
+    operation: set
+    value: favoredEnemy
+  - id: deftExplorerExpertise
+    type: Slot
+    name: Deft Explorer Expertise
+    quantity: 1
+    target: skillExpertise
+    condition: $(meta.level >= 2)
+  - id: fightingStyle
+    type: Slot
+    name: Fighting Style
+    quantity: 1
+    target: fightingStyle OR druidicWarrior
+    condition: $(meta.level >= 2)
+  - id: rangerSubclass
+    name: Ranger Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: rangerSubclass
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)
+  - id: rovingSpeed
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    condition: $(meta.level >= 6)
+    value: 10
+  - id: rovingClimb
+    type: Effect
+    target: attributes.movement.climb
+    operation: set
+    condition: $(meta.level >= 6)
+    value: $(attributes.movement.walk)
+  - id: rovingSwim
+    type: Effect
+    target: attributes.movement.swim
+    operation: set
+    condition: $(meta.level >= 6)
+    value: $(attributes.movement.walk)
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)

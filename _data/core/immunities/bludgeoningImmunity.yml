@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+target: attributes.immunities
+value: Bludgeoning Damage
+id: bludgeoningImmunity
+name: Bludgeoning Immunity

@@ -1,0 +1,15 @@
+id: heightenedSpell
+summary: Impose disadvantage on a target's first saving throw against your spell.
+name: Heightened Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - id: heightenedSpellActivity
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Heightened Spell
+    resource: 2 sorceryPoints
+    description: When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell.

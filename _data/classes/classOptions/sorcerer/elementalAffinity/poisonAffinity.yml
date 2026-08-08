@@ -1,0 +1,29 @@
+id: poisonAffinity
+name: Poison Affinity
+summary: "Gain poison resistance and add Charisma modifier to poison damage spells."
+type: Folder
+tags:
+  - elementalAffinity
+children:
+  - type: Reference
+    target: poisonResistance
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=poisonDamage].description["d12"]
+    operation: replace
+    value: "d12$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=poisonDamage].description["d10"]
+    operation: replace
+    value: "d10$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=poisonDamage].description["d8"]
+    operation: replace
+    value: "d8$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=poisonDamage].description["d6"]
+    operation: replace
+    value: "d6$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=poisonDamage].description["d4"]
+    operation: replace
+    value: "d4$(formatBonus(stats.cha.mod))"

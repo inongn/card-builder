@@ -1,0 +1,51 @@
+id: psykinetic
+name: Psykinetic
+description: Mold psionic force like a malleable tool, erecting sturdy barriers and striking with the force of a battering ram.
+type: Folder
+tags:
+  - psionSubclass
+children:
+  - type: Reference
+    target:
+      - cloudOfDaggers
+      - levitate
+      - shield
+      - thunderwave
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - slow
+      - telekineticCrush
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - otilukesResilientSphere
+      - stoneShape
+    condition: $(meta.level >= 7)
+  - id: telekineticTechniques
+    type: Extra
+    target: telekineticPropel
+    name: Telekinetic Techniques
+    description: |
+      You can roll 5d4 instead of expending a Psionic Energy Die.
+
+      When a target fails its saving throw, you can impose one of the following effects:
+      * **Boost.** The target's Speed increases by 10 feet until the start of your next turn.
+      * **Disorient.** The target cannot make Opportunity Attacks until the start of its next turn.
+      * **Telekinetic Bolt.** The target takes Force damage equal to the number rolled on the die.
+    condition: $(meta.level >= 3)
+  - id: destructiveTrance
+    type: Activity
+    name: Destructive Trance
+    time: free action
+    range: self
+    duration: 10 minutes
+    resource: psionicEnergyDice
+    description: Enter a destructive state for the duration. You gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell.
+    condition: $(meta.level >= 6)
+  - id: reboundingField
+    type: Extra
+    target: shield
+    name: Rebounding Field
+    description: The attacker must make a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage on a failed save, or half on a success. You gain Temporary Hit Points equal to the damage dealt.
+    condition: $(meta.level >= 6)

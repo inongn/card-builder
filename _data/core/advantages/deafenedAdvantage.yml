@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: Deafened
+target: attributes.advantages
+id: deafenedAdvantage
+name: Deafened Advantage

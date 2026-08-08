@@ -1,0 +1,8 @@
+type: Effect
+tags:
+  - tool
+operation: push
+value: Gaming Set
+target: attributes.tools
+id: gamingSet
+name: Gaming Set

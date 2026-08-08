@@ -1,0 +1,10 @@
+id: graspingShot
+summary: "Imbue an arrow with nature magic to snare a target in brambles."
+name: Grasping Shot
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+tags: [arcaneShotOption]
+resource: arcaneShot
+description: "When you hit a creature with an attack roll using a weapon with the Ammunition property, you deal an extra 1d6 Slashing damage and the target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Strength saving throw or have the Restrained condition for 1 minute. The target or another creature can use an action to make a Strength (Athletics) check against the DC to end the condition."

@@ -1,0 +1,88 @@
+id: artillerist
+name: Artillerist
+description: Specialize in using magic to hurl energy, projectiles, and deadly explosions on the battlefield.
+type: Folder
+tags:
+  - artificerSubclass
+children:
+  - type: Reference
+    target:
+      - woodcarversTools
+      - martialWeaponProficiency
+  - type: Reference
+    target:
+      - shield
+      - thunderwave
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - scorchingRay
+      - shatter
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - fireball
+      - windWall
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - iceStorm
+      - wallOfFire
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target:
+      - coneOfCold
+      - wallOfForce
+    condition: $(meta.level >= 17)
+  - id: eldritchCannonFlamethrower
+    type: Activity
+    duration: instantaneous
+    name: Flamethrower
+    time: bonus action
+    range: self
+    description: |
+      Your cannon exhales fire in a 15-foot Cone. Each creature in that area makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking $(meta.level >= 9 ? '3d8' : '2d8') Fire damage on a failed save or half as much on a successful one. Flammable objects in the Cone start burning.
+    condition: $(meta.level >= 3)
+  - id: eldritchCannonForceBallista
+    type: Activity
+    duration: instantaneous
+    name: Force Ballista
+    time: bonus action
+    range: 120 feet
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack originating from the cannon at one creature or object within range. On a hit, the target takes $(meta.level >= 9 ? '3d8' : '2d8') Force damage, and if the target is a creature, it is pushed up to 5 feet away from the cannon.
+    condition: $(meta.level >= 3)
+  - id: eldritchCannonProtector
+    type: Activity
+    duration: instantaneous
+    name: Protector
+    time: bonus action
+    range: 10 feet
+    description: |
+      Your cannon emits a burst of positive energy that grants itself and each creature of your choice within range gains $(meta.level >= 9 ? '2d8' : '1d8')$(formatBonus(stats.int.mod)) Temporary Hit Points.
+    condition: $(meta.level >= 3)
+  - type: Effect
+    target: activities[tags=artificer AND tags=damageSpell].description["d12"]
+    operation: replace
+    value: d12+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[tags=artificer AND tags=damageSpell].description["d10"]
+    operation: replace
+    value: d10+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=artificer AND tags=damageSpell)OR thunderwave OR shatter].description["d8"]
+    operation: replace
+    value: d8+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=artificer AND tags=damageSpell)OR scorchingRay].description["d6"]
+    operation: replace
+    value: d6+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=artificer AND tags=damageSpell)].description["d4"]
+    operation: replace
+    value: d4+1d8
+    condition: $(meta.level >= 5)

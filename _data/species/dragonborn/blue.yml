@@ -1,0 +1,10 @@
+id: draconicAncestryBlue
+name: Blue Dragon
+tags: [draconicAncestry]
+type: Folder
+children:
+  - type: Reference
+    target: lightningResistance
+  - type: Attribute
+    id: dragonicAncestryDamage
+    value: Lightning

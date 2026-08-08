@@ -1,0 +1,12 @@
+id: masterOfMyriadForms
+summary: "Cast Alter Self at will without expending spell slots."
+name: Master of Myriad Forms
+tags:
+  - eldritchInvocation
+condition: $(meta.level >= 5)
+type: Folder
+children:
+  - type: Reference
+    target: alterSelf
+    overwrite:
+      resource: null

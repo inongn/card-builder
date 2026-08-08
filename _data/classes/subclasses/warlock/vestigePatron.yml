@@ -1,0 +1,47 @@
+id: vestigePatron
+name: Vestige Patron
+description: Draw power from a ghostly vestige of a lost god, manifesting a companion to channel divine magic.
+tags:
+  - warlockSubclass
+type: Folder
+children:
+  - id: vestigeCompanion
+    type: Slot
+    name: Vestige Companion
+    quantity: 1
+    target: classOption OR vestigeCompanion
+  - id: vestigeCompanionName
+    type: Input
+    name: Vestige Companion Name
+    inputType: text
+    label: Vestige Companion Name
+  - type: Effect
+    target: statblocks[undeadVestige].name
+    operation: set
+    value: '$(meta.beastcompanionname ? meta.beastcompanionname: ''Undead Vestige'')'
+  - type: Effect
+    target: statblocks[celestialVestige].name
+    operation: set
+    value: '$(meta.beastcompanionname ? meta.beastcompanionname: ''Celestial Vestige'')'
+  - type: Effect
+    target: statblocks[fiendVestige].name
+    operation: set
+    value: '$(meta.beastcompanionname ? meta.beastcompanionname: ''Fiend Vestige'')'
+  - id: vestigeDomainChoice
+    type: Slot
+    name: Vestige Domain
+    quantity: 1
+    target: vestigeType OR classOption
+  - id: vestigeCompanionExtraAttack
+    type: Effect
+    target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    operation: replace
+    condition: $(meta.level >= 5)
+    value: instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Vestige to take an action in its stat block.
+  - id: commandVestige
+    type: Activity
+    duration: instantaneous
+    time: bonus action
+    range: 60 feet
+    name: Command Vestige
+    description: You command your Vestige to take an action. The vestige acts during your turn and can move and use its Reaction on its own, but only takes the Dodge action unless you command it.

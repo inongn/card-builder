@@ -1,0 +1,14 @@
+id: lightHammer
+name: Light Hammer
+type: Reference
+target: weaponAttack
+tags: [light, simple]
+variables:
+  name: Light Hammer
+  mastery: nick
+  damageRoll: 1d4
+  damageType: bludgeoning
+  range: 20 feet
+  classification: thrown
+  category: simple
+  property: light

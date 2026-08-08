@@ -1,0 +1,6 @@
+type: Effect
+target: saves.charisma.adv
+operation: set
+value: true
+id: chaAdvantage
+name: Cha Advantage

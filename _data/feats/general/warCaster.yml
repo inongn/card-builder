@@ -1,0 +1,19 @@
+id: warCaster
+summary: Maintain spell concentration effortlessly and cast spells as opportunity attacks.
+name: War Caster
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Concentration
+    type: Reference
+    target: concentrationAdvantage
+  - type: Reference
+    target:
+      - warCasterReactiveSpell

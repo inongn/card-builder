@@ -1,0 +1,14 @@
+id: gnomishLineageRockGnome
+name: Rock Gnome
+tags:
+  - gnomishLineage
+type: Folder
+children:
+  - type: Reference
+    target:
+      - mending
+      - prestidigitation
+      - chooseCaster
+  - type: Reference
+    target:
+      - clockworkDevice

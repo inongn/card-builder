@@ -1,0 +1,7 @@
+type: Effect
+target: skills.history.proficiency
+operation: set
+condition: $(skills.history.proficiency < 0.5)
+value: 0.5
+id: historyHalfProficiency
+name: History Half Proficiency

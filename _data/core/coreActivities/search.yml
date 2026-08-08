@@ -1,0 +1,16 @@
+id: search
+name: Search
+type: Activity
+time: action
+range: self
+duration: instantaneous
+description: |
+  You make a Wisdom check to discern something that isn't obvious. 
+
+  **Insight ($(formatBonus(skills.insight.bonus))).** Creature's state of mind
+
+  **Medicine ($(formatBonus(skills.medicine.bonus))).** Creature's ailment or cause of death
+
+  **Perception ($(formatBonus(skills.perception.bonus))).** Concealed creature or object
+
+  **Survival ($(formatBonus(skills.survival.bonus))).** Tracks or food

@@ -1,0 +1,39 @@
+id: wildHeart
+name: Path of the Wild Heart
+description: Communicate with animals and channel supernatural might as your Rage deepens your primal connection.
+tags:
+  - barbarianSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - beastSense
+      - speakWithAnimals
+      - wisCaster
+  - id: rageOfTheWilds
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Rage of the Wilds
+    description: 'Your Rage taps into the primal power of animals. When you activate your Rage, you gain one of the following options of your choice:'
+  - id: rageOfTheWildsBear
+    type: Extra
+    name: Bear
+    target: rageOfTheWilds
+    description: While your Rage is active, you have Resistance to every damage type except Force, Necrotic, Psychic, and Radiant.
+  - id: rageOfTheWildsEagle
+    type: Extra
+    name: Eagle
+    target: rageOfTheWilds
+    description: When you activate your Rage, take the Disengage and Dash actions as part of that Bonus Action. While your Rage is active, you can take a Bonus Action to take both of those actions.
+  - id: rageOfTheWildsWolf
+    type: Extra
+    name: Wolf
+    target: rageOfTheWilds
+    description: While your Rage is active, your allies have Advantage on attack rolls against any enemy of yours within 5 feet of you.
+  - id: aspectOfTheWilds
+    type: Slot
+    target: classOption OR aspectOfTheWilds
+    name: Aspect of the Wilds
+    condition: $(meta.level >= 6)

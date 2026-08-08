@@ -1,0 +1,30 @@
+id: oathOfVengeance
+name: Oath of Vengeance
+description: Make a solemn commitment to hunt down and relentlessly punish those who have committed grievously evil acts.
+tags:
+  - paladinSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - bane
+      - huntersMark
+  - type: Reference
+    target:
+      - holdPerson
+      - mistyStep
+    condition: $(meta.level >= 5)
+  - id: vowOfEnmity
+    type: Activity
+    name: Vow of Enmity
+    time: free action
+    range: 30 feet
+    duration: 1 minute
+    resource: channelDivinity
+    description: When you take the Attack action, you utter a vow of enmity against a creature you can see within range. You have Advantage on attack rolls against the creature for the duration or until you use this feature again. If the creature drops to 0 Hit Points before the vow ends, you can transfer the vow to a different creature within 30 feet of yourself (no action required).
+  - id: relentlessAvenger
+    type: Extra
+    target: opportunityAttack
+    name: Relentless Avenger
+    description: On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks.
+    condition: $(meta.level >= 7)

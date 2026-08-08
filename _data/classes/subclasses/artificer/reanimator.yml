@@ -1,0 +1,60 @@
+id: reanimator
+name: Reanimator
+description: Stitch together servants from corpses, transforming the dark art of necromancy into a grim science.
+type: Folder
+tags:
+  - artificerSubclass
+children:
+  - type: Reference
+    target:
+      - falseLife
+      - spareTheDying
+      - witchBolt
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - blindnessdeafness
+      - enhanceAbility
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - animateDead
+      - lightningBolt
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - blight
+      - deathWard
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target:
+      - antilifeShell
+      - raiseDead
+    condition: $(meta.level >= 17)
+  - type: Reference
+    target:
+      - alchemistsTools
+  - id: joltToLifeResource
+    type: Resource
+    name: Jolt to Life
+    quantity: $(Math.max(1, stats.int.mod))
+    condition: $(meta.level >= 3)
+  - id: joltToLife
+    type: Activity
+    duration: instantaneous
+    name: Jolt to Life
+    time: action
+    range: touch
+    resource: joltToLifeResource
+    description: |
+      Revive a target with Spare the Dying. The target regains $(meta.level) Hit Points.
+
+      Additionally, each creature of your choice in a 10-foot Emanation originating from the target makes a DC $(attributes.spellcasting.save) Dexterity saving throw. On a failed save, it takes $(meta.level >= 17 ? '4d4' : meta.level >= 11 ? '3d4' : '2d4') Lightning damage, or half as much on a successful one.
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: reanimatedCompanion
+  - id: strangeModifications
+    name: Strange Modifications
+    type: Slot
+    target: strangeModifications or classoption
+    condition: $(meta.level >= 5)

@@ -1,0 +1,135 @@
+id: rogue
+name: Rogue
+description: Cunning tricksters who rely on stealth, precision, and vulnerability to strike effectively.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 8
+  - id: weaponMastery
+    type: Attribute
+    value: true
+  - type: Reference
+    value:
+      - dexSave
+      - intSave
+  - type: Reference
+    value:
+      - simpleWeaponProficiency
+      - lightWeaponProficiency
+      - finesseWeaponProficiency
+      - lightArmorTraining
+      - thievesTools
+  - id: rogueSkillProficiencies
+    type: Slot
+    name: Rogue Skill Proficiencies
+    quantity: 4
+    target: acrobaticsProficiency OR athleticsProficiency OR deceptionProficiency OR insightProficiency OR intimidationProficiency OR investigationProficiency OR perceptionProficiency OR persuasionProficiency OR sleightOfHandProficiency OR stealthProficiency
+  - id: rogueExpertise1
+    type: Slot
+    name: Expertise
+    quantity: 2
+    target: skillExpertise
+  - id: sneakAttackDice
+    type: Attribute
+    value: $(progression(1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10))
+  - id: sneakAttack
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Sneak Attack
+    description: |
+      Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one creature you hit with an attack roll if you have Advantage on the roll or at least one of your allies is within 5 feet of the target.
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties
+  - id: cunningAction
+    type: Activity
+    name: Cunning Action
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    description: You take the Dash, Disengage, or Hide action.
+    condition: $(meta.level >= 2)
+  - id: steadyAim
+    type: Activity
+    name: Steady Aim
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    description: You give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved during this turn, and after you use it, your Speed is 0 until the end of the current turn.
+    condition: $(meta.level >= 3)
+  - id: rogueSubclass
+    name: Rogue Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: rogueSubclass
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - id: cunningStrike
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Cunning Strike
+    description: 'When you deal Sneak Attack damage to a creature, you can choose to spend dice from the Sneak Attack to create one of the following effects:'
+    condition: $(meta.level >= 5)
+  - id: cunningStrikeSave
+    type: Attribute
+    condition: $(meta.level >= 5)
+    value: $(8 + stats.dex.mod + attributes.prof)
+  - id: cunningStrikePoison
+    type: Extra
+    name: 'Poison (Cost: 1d6)'
+    target: cunningStrike
+    description: The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw or have the Poisoned condition for 1 minute. At the end of each of its turns, the poisoned target repeats the save, ending the effect on a success.
+    condition: $(meta.level >= 5)
+  - id: cunningStrikeTrip
+    type: Extra
+    name: 'Trip (Cost: 1d6)'
+    target: cunningStrike
+    description: If the target is Large or smaller, it must succeed on a DC $(attributes.cunningStrikeSave) Dexterity saving throw or have the Prone condition.
+    condition: $(meta.level >= 5)
+  - id: cunningStrikeWithdraw
+    type: Extra
+    name: 'Withdraw (Cost: 1d6)'
+    target: cunningStrike
+    description: Immediately after the attack, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
+    condition: $(meta.level >= 5)
+  - id: uncannyDodge
+    type: Activity
+    name: Uncanny Dodge
+    time: reaction
+    range: self
+    duration: Instantaneous
+    description: When an attacker that you can see hits you with an attack roll, you halve the attack's damage against you (round down).
+    condition: $(meta.level >= 5)
+  - id: rogueExpertise2
+    type: Slot
+    name: Expertise
+    quantity: 2
+    target: skillExpertise
+    condition: $(meta.level >= 6)
+  - type: Reference
+    target:
+      - evasion
+    condition: $(meta.level >= 7)
+  - id: reliableTalent
+    type: Effect
+    target: skills[proficiency>=1].min
+    operation: set
+    value: 10
+    condition: $(meta.level >= 7)
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)

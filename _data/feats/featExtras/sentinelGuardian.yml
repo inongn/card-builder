@@ -1,0 +1,5 @@
+name: Guardian
+type: Extra
+target: opportunityAttack
+description: You can make an Opportunity Attack when a creature takes the Disengage action or hits a target other than you with an attack.
+id: sentinelGuardian

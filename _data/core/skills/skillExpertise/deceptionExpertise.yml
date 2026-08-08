@@ -1,0 +1,11 @@
+summary: Tell a convincing lie, or wear a disguise convincingly.
+type: Effect
+tags:
+  - charisma
+  - skillExpertise
+target: skills.deception.proficiency
+operation: set
+condition: $(skills.deception.proficiency > .5)
+value: 2
+id: deceptionExpertise
+name: Deception

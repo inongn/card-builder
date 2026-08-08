@@ -1,0 +1,14 @@
+id: temperateLand
+summary: "Adapt your circle magic to lush forests and temperate wilderness."
+name: Temperate Land
+tags: [circleLand]
+type: Folder
+children:
+  - type: Reference
+    target: [mistyStep, shockingGrasp, sleep]
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target: lightningBolt
+  - type: Reference
+    condition: $(meta.level >= 7)
+    target: freedomOfMovement

@@ -1,0 +1,45 @@
+id: soulknife
+name: Soulknife
+description: Strike with your mind, channeling innate psionic power to cut through physical and psychic barriers.
+tags:
+  - rogueSubclass
+type: Folder
+children:
+  - id: psionicEnergyDice
+    type: Resource
+    name: Psionic Energy
+    sr: 1
+    quantity: $(progression(0,0,4,4,6,6,6,6,8,8,8,8,10,10,10,10,12,12,12,12))
+  - id: psiDice
+    type: Attribute
+    value: $(progression(0,0,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
+  - id: psiBolsteredKnack
+    type: Activity
+    name: Psi-Bolstered Knack
+    time: free action
+    range: self
+    duration: Instantaneous
+    resource: psionicEnergyDice
+    description: When you fail an ability check using a skill or tool with which you have proficiency, you add 1d$(attributes.psiDice) to the check, potentially turning failure into success. The charge is expended only if the roll then succeeds.
+  - id: psychicWhispers
+    type: Activity
+    name: Psychic Whispers
+    time: action
+    range: self
+    duration: Varies
+    resource: psionicEnergyDice
+    description: You choose up to $(attributes.prof) creatures you can see. For 1d$(attributes.psiDice) hours, the chosen creatures can speak telepathically to you, and you can speak telepathically with them. To send or receive a message (no action required), you and the other creature must be within 1 mile of each other. A creature can end the telepathic connection at any time (no action required).
+  - id: psychicBlade
+    type: Activity
+    name: Psychic Blade
+    time: action
+    range: 60 feet
+    duration: Instantaneous
+    tags:
+      - weaponAttack
+      - vex
+      - attack
+    description: |
+      You manifest a shimmering blade of psychic energy and strike at a target within range. Make a $(formatBonus(stats.dex.mod + attributes.prof)) attack. On a hit, the target takes 1d6$(formatBonus(stats.dex.mod)) Psychic damage. The blade vanishes immediately after it hits or misses, leaving no mark.
+
+      After you attack with the blade on your turn, you can make a melee or ranged attack with a second psychic blade as a Bonus Action on the same turn. The damage die of this bonus attack is 1d4 instead of 1d6.

@@ -1,0 +1,6 @@
+type: Effect
+operation: set
+value: true
+target: attributes.proficiencies.lightWeapons
+id: lightWeaponProficiency
+name: Light Weapon Proficiency

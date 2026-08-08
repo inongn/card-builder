@@ -1,0 +1,6 @@
+type: Effect
+target: skills.investigation.dis
+operation: set
+value: true
+id: investigationDisadvantage
+name: Investigation Disadvantage

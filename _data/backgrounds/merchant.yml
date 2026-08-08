@@ -1,0 +1,20 @@
+id: merchant
+name: Merchant
+description: You learned the flow of trade, buying and selling goods across busy markets and caravans.
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - animalHandlingProficiency
+      - persuasionProficiency
+      - navigatorsTools
+      - lucky
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - con
+      - int
+      - cha

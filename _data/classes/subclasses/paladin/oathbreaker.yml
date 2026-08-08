@@ -1,0 +1,58 @@
+id: oathbreaker
+name: Oathbreaker
+description: Break your sacred vows to pursue dark ambitions, extinguishing the light in your heart for demonic power.
+tags:
+  - paladinSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - hellishRebuke
+      - witchBolt
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target:
+      - crownOfMadness
+      - darkness
+  - type: Reference
+    condition: $(meta.level >= 9)
+    target:
+      - fear
+      - summonUndead
+  - type: Reference
+    condition: $(meta.level >= 13)
+    target:
+      - blight
+      - phantasmalKiller
+  - type: Reference
+    condition: $(meta.level >= 17)
+    target:
+      - contagion
+      - steelWindStrike
+  - id: conjureUndead
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Conjure Undead
+    time: bonus action
+    resource: channelDivinity
+    description: You summon $(Math.max(1, Math.ceil(stats.cha.mod / 2))) Undead (Skeleton or Zombie). They appear within 30 feet, share your Initiative count taking their turn immediately after yours, obey your verbal commands, and last for 1 minute or until dissolved.
+  - type: Reference
+    target:
+      - skeleton
+      - zombie
+    condition: $(meta.level >= 3)
+  - id: dreadfulAspect
+    type: Activity
+    time: free action
+    range: self
+    name: Dreadful Aspect
+    resource: channelDivinity
+    duration: 1 minute
+    description: Immediately after you cast Divine Smite, you cause each chosen creature in a 30-foot Emanation to make a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Frightened condition for the duration (repeating save at end of each of its turns).
+  - id: auraOfHate
+    type: Extra
+    target: auraOfProtection
+    name: Aura of Hate
+    description: When you, or any friendly Fiend or Undead in your Aura of Protection, hit with a melee attack, the attack deals an extra $(stats.cha.mod) Necrotic damage.
+    condition: $(meta.level >= 7)

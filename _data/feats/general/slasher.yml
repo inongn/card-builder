@@ -1,0 +1,19 @@
+id: slasher
+summary: Slashing strikes slow enemies and weaken their retaliatory attacks.
+name: Slasher
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Reference
+    target:
+      - slasherHamstring
+  - type: Reference
+    target:
+      - slasherEnhancedCritical

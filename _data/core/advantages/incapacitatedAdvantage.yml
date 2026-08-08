@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: Incapacitated
+target: attributes.advantages
+id: incapacitatedAdvantage
+name: Incapacitated Advantage

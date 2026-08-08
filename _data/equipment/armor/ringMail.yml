@@ -1,0 +1,11 @@
+id: ringMail
+name: Ring Mail
+type: Folder
+tags: [heavyArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: 14
+  - type: Reference
+    target: stealthDisadvantage

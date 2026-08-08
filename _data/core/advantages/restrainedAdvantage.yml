@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: Restrained
+target: attributes.advantages
+id: restrainedAdvantage
+name: Restrained Advantage

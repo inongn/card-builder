@@ -1,0 +1,65 @@
+id: knowledgeDomain
+name: Knowledge Domain
+description: Value learning and information, using divine insights to uncover secrets and influence minds.
+type: Folder
+tags:
+  - clericSubclass
+children:
+  - id: blessingsOfKnowledgeTools
+    name: Blessings of Knowledge Tool Proficiency
+    type: Slot
+    target: tool NOT gamingSet NOT musicalInstrument NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
+    quantity: 1
+    condition: $(meta.level >= 3)
+  - id: blessingsOfKnowledgeSkills
+    name: Blessings of Knowledge Skill Proficiencies
+    type: Slot
+    target: arcanaProficiency OR historyProficiency OR natureProficiency OR religionProficiency
+    quantity: 2
+    condition: $(meta.level >= 3)
+  - id: blessingsOfKnowledgeExpertise
+    name: Blessings of Knowledge Expertises
+    type: Slot
+    target: arcanaExpertise OR historyExpertise OR natureExpertise OR religionExpertise
+    quantity: 2
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - command
+      - comprehendLanguages
+      - detectMagic
+      - detectThoughts
+      - identify
+      - mindSpike
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - dispelMagic
+      - nondetection
+      - tongues
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - banishment
+      - confusion
+    condition: $(meta.level >= 7)
+  - id: mindMagic
+    type: Activity
+    duration: instantaneous
+    name: Mind Magic
+    time: action
+    range: self
+    resource: channelDivinity
+    description: 'You cast one of the following spells without expending a spell slot or requiring Material components: *Comprehend Languages*, *Detect Magic*, *Detect Thoughts*, *Identify*, or *Mind Spike*.'
+    condition: $(meta.level >= 3)
+  - id: unfetteredMindTelepathy
+    type: Activity
+    time: free action
+    duration: instantaneous
+    name: Unfettered Mind
+    range: 60 feet
+    description: You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact up to $(Math.max(1, stats.wis.mod)) creatures.
+    condition: $(meta.level >= 6)
+  - type: Reference
+    target: intSave
+    condition: $(meta.level >= 6)

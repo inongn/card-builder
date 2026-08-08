@@ -1,0 +1,13 @@
+id: tough
+summary: "Increase maximum hit points substantially at every level."
+name: Tough
+tags:
+- feat
+- originFeat
+type: Folder
+children:
+- id: toughHP
+  type: Effect
+  target: attributes.hp
+  operation: add
+  value: $(2 * meta.level)

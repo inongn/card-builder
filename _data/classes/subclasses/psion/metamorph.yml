@@ -1,0 +1,86 @@
+id: metamorph
+name: Metamorph
+description: Psychically sculpt life and flesh, molding your body into the ultimate weapon and vessel for psionic power.
+type: Folder
+tags:
+  - psionSubclass
+children:
+  - type: Reference
+    target:
+      - alterSelf
+      - cureWounds
+      - inflictWounds
+      - lesserRestoration
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - auraOfVitality
+      - haste
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - polymorph
+      - stoneskin
+    condition: $(meta.level >= 7)
+  - id: mutableForm
+    type: Activity
+    name: Mutable Form
+    time: bonus action
+    range: self
+    duration: 1 minute
+    resource: psionicEnergyDice
+    description: |
+      You psionically stretch your limbs for 1 minute and gain Temporary Hit Points equal to 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)). While active, you gain the following benefits:
+      * **Reach.** Your reach increases by 5 feet.
+      * **Speed.** Your Speed increases by 5 feet.
+      * **Touch.** When you cast a spell that has a range of Touch and a casting time of an Action, its range becomes 10 feet.
+    condition: $(meta.level >= 3)
+  - id: boneBlade
+    type: Activity
+    duration: instantaneous
+    name: Bone Blade
+    time: action
+    range: 5 feet
+    tags:
+      - weaponAttack
+      - attack
+      - melee
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack against a creature. On a hit, the target takes 1d8$(formatBonus(stats.int.mod)) Piercing damage. You have advantage on this attack roll if an unincapacitated ally is within 5 feet of the target.
+    condition: $(meta.level >= 3)
+  - id: fleshMaul
+    type: Activity
+    duration: instantaneous
+    name: Flesh Maul
+    time: action
+    range: 5 feet
+    tags:
+      - weaponAttack
+      - attack
+      - melee
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack against a creature. On a hit, the target takes 1d10$(formatBonus(stats.int.mod)) Bludgeoning damage and the target has Disadvantage on its next Strength or Constitution saving throw before the start of its next turn.
+    condition: $(meta.level >= 3)
+  - id: visceraLauncher
+    type: Activity
+    duration: instantaneous
+    name: Viscera Launcher
+    time: action
+    range: 30 feet
+    tags:
+      - weaponAttack
+      - attack
+      - ranged
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof)) attack against a creature. On a hit, the target takes 1d6$(formatBonus(stats.int.mod)) Acid damage. Once per turn, deal an extra 1d6 Acid damage.
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 6)
+  - id: fleshWarper
+    type: Extra
+    target: mutableForm
+    name: Flesh Warper
+    description: Expend an additional Psionic Energy to gain a +2 bonus to AC while active.
+    condition: $(meta.level >= 6)

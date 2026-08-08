@@ -1,0 +1,18 @@
+id: elementalAdept
+summary: "Bypass elemental resistance and empower spells of a chosen damage type."
+name: Elemental Adept
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Energy Mastery
+    type: Slot
+    id: energyMastery
+    quantity: 1
+    target: acidResistance OR coldResistance OR fireResistance OR lightningResistance or thunderResistance OR elementalAdeptFeatResistance

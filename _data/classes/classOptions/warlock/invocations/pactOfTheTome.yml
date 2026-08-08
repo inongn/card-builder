@@ -1,0 +1,20 @@
+id: pactOfTheTomeFolder
+summary: "Gain a grimoire containing three cantrips from any spell list."
+name: Pact of the Tome
+tags:
+  - eldritchInvocation
+type: Attribute
+children:
+  - id: pactOfTheTome
+    type: Attribute
+    value: true
+  - id: tomeCantrips
+    type: Slot
+    name: Tome Cantrips
+    target: cantrip
+    quantity: 3
+  - id: tomeRituals
+    type: Slot
+    name: Tome Rituals
+    target: level1Spell AND ritual
+    quantity: 2

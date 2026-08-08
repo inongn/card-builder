@@ -1,0 +1,18 @@
+id: halfling
+name: Halfling
+tags:
+  - species
+description: Small, nimble folk blessed with extraordinary luck, bravery, and a love for hearth and home.
+type: Folder
+children:
+  - type: Reference
+    target: frightenedAdvantage
+  - type: Reference
+    target:
+      - halflingNimbleness
+  - type: Reference
+    target:
+      - luck
+  - type: Reference
+    target:
+      - naturallyStealthy

@@ -1,0 +1,20 @@
+id: eldritchSmite
+summary: Expend a spell slot to deal extra force damage and knock a target prone.
+name: Eldritch Smite
+tags:
+  - eldritchInvocation
+condition: $(meta.level >= 5)
+prerequisite: Pact of the Blade
+prerequisiteCondition: $(attributes.pactOfTheBlade == true)
+type: Folder
+children:
+  - id: eldritchSmiteActivity
+    type: Activity
+    range: self
+    name: Eldritch Smite
+    time: free action
+    duration: instantaneous
+    resource:
+      - pactMagicSpellSlot
+    description: Once per turn when you hit a creature with your pact weapon, the target takes an extra 1d8 Force damage, plus another 1d8 per level of the spell slot. You can knock the target Prone if it is Huge or smaller.
+    condition: $(attributes.pactOfTheBlade == true)

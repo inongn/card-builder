@@ -1,0 +1,191 @@
+id: monk
+name: Monk
+description: Ascetic martial artists who harness inner focus to strike with lightning speed and precision.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 8
+  - type: Reference
+    value:
+      - strSave
+      - dexSave
+  - type: Reference
+    value:
+      - simpleWeaponProficiency
+      - lightWeaponProficiency
+  - id: monkSkillProficiencies
+    type: Slot
+    name: Monk Skill Proficiencies
+    quantity: 2
+    target: acrobaticsProficiency OR athleticsProficiency OR historyProficiency OR insightProficiency OR religionProficiency OR stealthProficiency
+  - id: monkToolProficiency
+    type: Slot
+    name: Monk Tool Proficiency
+    quantity: 1
+    target: tool NOT gamingSet NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
+  - id: martialArtsDie
+    type: Attribute
+    value: $(progression(6,6,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
+  - id: martialArtsReplacementUnarmed
+    type: Effect
+    target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))
+    condition: $(meta.level >= 1)
+  - id: martialArtsReplacementd4
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d4"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd6
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d6"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd8
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d8"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd10
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d10"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd12
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d12"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsFlag
+    type: Attribute
+    value: true
+  - id: bonusUnarmedStrike
+    type: Activity
+    name: Bonus Unarmed Strike
+    time: bonus action
+    range: 5 feet
+    duration: Instantaneous
+    description: You make one Unarmed Strike.
+  - id: unarmoredDefense
+    type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(10 + stats.dex.mod + stats.wis.mod)
+  - id: focusPoints
+    type: Resource
+    condition: $(meta.level >= 2)
+    name: Focus Points
+    quantity: $(progression(0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))
+    sr: all
+  - id: monkSaveDC
+    type: Attribute
+    value: $(8 + stats.wis.mod + attributes.prof)
+  - id: flurryOfBlows
+    type: Activity
+    name: Flurry of Blows
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    resource: 1 focusPoints
+    description: 'You make $(meta.level >= 10 ? ''three'' : ''two'') Unarmed Strikes.'
+    condition: $(meta.level >= 2)
+  - id: patientDefense
+    type: Activity
+    name: Patient Defense
+    time: bonus action
+    range: self
+    resource: 1 focusPoints
+    duration: Instantaneous
+    description: 'You take both the Disengage and Dodge actions$(meta.level >= 10 ? '' and gain '' + (2) + ''d'' + attributes.martialArtsDie + '' Temporary Hit Points'' : '''').'
+    condition: $(meta.level >= 2)
+  - id: stepOfTheWind
+    type: Activity
+    name: Step of the Wind
+    time: bonus action
+    range: self
+    resource: 1 focusPoints
+    duration: Instantaneous
+    description: 'You take both the Disengage and Dash actions, and your jump distance is doubled for the turn.$(meta.level >= 10 ? '' You can also move a willing creature (Large or smaller) within 5 feet with you until the end of your turn without provoking Opportunity Attacks.'' : '''')'
+    condition: $(meta.level >= 2)
+  - id: unarmoredMovement
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    condition: $(meta.level >= 2)
+    value: $(progression(0,10,10,10,10,15,15,15,15,20,20,20,20,25,25,25,25,30,30,30))
+  - id: deflectAttacks
+    type: Activity
+    name: Deflect Attacks
+    time: reaction
+    range: self
+    duration: Instantaneous
+    resource: 1 focusPoints
+    description: |
+      When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). 
+
+      If you reduce the damage to 0, the Focus Point is expended and you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.
+    condition: $(meta.level >= 3)
+  - id: monkSubclass
+    name: Monk Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: monkSubclass
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - id: slowFall
+    type: Activity
+    name: Slow Fall
+    time: reaction
+    range: self
+    duration: Instantaneous
+    description: When you fall, you reduce any fall damage you take by $(meta.level * 5).
+    condition: $(meta.level >= 4)
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)
+  - id: stunningStrike
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Stunning Strike
+    resource: 1 focusPoints
+    description: Once per turn when you hit with an attack, the target must make a DC $(attributes.monkSaveDC) Constitution saving throw. On a failed save, the target has the Stunned condition until the start of your next turn. On a success, the target's Speed is halved and the next attack roll against it has Advantage.
+    condition: $(meta.level >= 5)
+  - id: empoweredStrikesBludgeoning
+    type: Effect
+    target: activities[tags=weaponAttack and tags=bludgeoningDamage].description["Bludgeoning"]
+    operation: replace
+    condition: $(meta.level >= 6)
+    value: Force
+  - id: empoweredStrikesPiercing
+    type: Effect
+    target: activities[tags=weaponAttack and tags=piercingDamage].description["Piercing"]
+    operation: replace
+    condition: $(meta.level >= 6)
+    value: Force
+  - id: empoweredStrikesSlashing
+    type: Effect
+    target: activities[tags=weaponAttack and tags=slashingDamage].description["Slashing"]
+    operation: replace
+    condition: $(meta.level >= 6)
+    value: Force
+  - type: Reference
+    target:
+      - evasion
+    condition: $(meta.level >= 7)
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)

@@ -1,0 +1,14 @@
+id: tashasMindWhip
+type: Activity
+name: Mind Whip
+resource: level2SpellSlot
+tags: [level2Spell, enchantment, psion, sorcerer, wizard, saveSpell, damageSpell, psychicDamage]
+time: action
+range: 90 feet
+duration: instantaneous
+summary: "You psychically lash out at a creature, restricting its actions and dealing psychic damage."
+description: |
+  You psychically lash out at one creature you can see within range. The target must make a DC $(attributes.spellcasting.save) Intelligence saving throw. On a failed save, the target takes 3d6 Psychic damage and can't make Opportunity Attacks until the end of its next turn. On its next turn, it must choose whether it gets a move, an action, or a Bonus Action; it gets only one of the three. On a successful save, the target takes half as much damage only.
+extra:
+  - name: Using a Higher-Level Spell Slot
+    description: You can target one additional creature for each spell slot level above 2.
