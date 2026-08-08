@@ -1,0 +1,14 @@
+id: lightCrossbow
+name: Light Crossbow
+type: Reference
+target: weaponAttack
+tags: [twoHanded, simple]
+variables:
+  name: Light Crossbow
+  mastery: slow
+  damageRoll: 1d8
+  damageType: piercing
+  range: 80 feet
+  classification: ranged
+  category: simple
+  property: twoHanded

@@ -1,0 +1,11 @@
+summary: Jump farther than normal, stay afloat in rough water, or break something.
+type: Effect
+tags:
+  - strength
+  - skillExpertise
+target: skills.athletics.proficiency
+operation: set
+condition: $(skills.athletics.proficiency > .5)
+value: 2
+id: athleticsExpertise
+name: Athletics

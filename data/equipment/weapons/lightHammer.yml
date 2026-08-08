@@ -1,14 +1,33 @@
 id: lightHammer
 name: Light Hammer
-type: Reference
-target: weaponAttack
-tags: [light, simple]
-variables:
-  name: Light Hammer
-  mastery: nick
-  damageRoll: 1d4
-  damageType: bludgeoning
-  range: 20 feet
-  classification: thrown
-  category: simple
-  property: light
+type: Activity
+time: action
+range: 20 feet
+duration: instantaneous
+tags:
+  - simple
+  - melee
+  - nick
+  - light
+  - weaponAttack
+  - bludgeoningDamage
+  - lightHammer
+description: >-
+  You strike with your Light Hammer. Make a
+  $(formatBonus(attributes.melee.attack)) attack against the target. On a hit,
+  the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+    bonus: $(attributes.melee.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 4
+      bonus: $(attributes.melee.bonus)
+    type: bludgeoning
+  target:
+    type: single
+    range: 20 feet

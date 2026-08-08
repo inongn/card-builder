@@ -1,14 +1,31 @@
 id: whip
 name: Whip
-type: Reference
-target: weaponAttack
-tags: [martial]
-variables:
-  name: Whip
-  mastery: slow
-  damageRoll: 1d4
-  damageType: slashing
-  range: 5 feet
-  classification: finesse
-  category: martial
-  property: ''
+type: Activity
+time: action
+range: 5 feet
+duration: instantaneous
+tags:
+  - martial
+  - finesse
+  - slow
+  - weaponAttack
+  - slashingDamage
+  - whip
+description: >-
+  You strike with your Whip. Make a $(formatBonus(attributes.finesse.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: finesse
+    type: weapon
+    bonus: $(attributes.finesse.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 4
+      bonus: $(attributes.finesse.bonus)
+    type: slashing
+  target:
+    type: single
+    range: 5 feet

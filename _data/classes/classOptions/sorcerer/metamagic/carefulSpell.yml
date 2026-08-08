@@ -1,0 +1,10 @@
+id: carefulSpell
+summary: Protect chosen allies from taking full damage from area spells.
+name: Careful Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - type: Reference
+    target:
+      - carefulSpellActivity

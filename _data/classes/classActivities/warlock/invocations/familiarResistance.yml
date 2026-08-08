@@ -1,0 +1,7 @@
+id: familiarResistance
+type: Activity
+duration: instantaneous
+range: self
+time: reaction
+name: Familiar Resistance
+description: When the familiar takes damage, you can take a Reaction to grant it Resistance against that damage.

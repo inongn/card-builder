@@ -124,7 +124,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                                             src={heroImage}
                                             alt={featuredCharacter.name}
                                             className="featured-hero__img"
-                                            fetchpriority="high"
+                                            fetchPriority="high"
                                             decoding="async"
                                         />
                                     ) : (

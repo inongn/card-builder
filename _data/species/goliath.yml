@@ -1,0 +1,24 @@
+id: goliath
+name: Goliath
+tags:
+  - species
+description: Towering descendants of giants who command supernatural martial boons and sudden growth.
+type: Folder
+children:
+  - id: goliathSpeed
+    type: Effect
+    target: attributes.movement.walk
+    operation: set
+    value: 35
+  - id: giantAncestry
+    name: Giant Ancestry
+    type: Slot
+    target: giantAncestry
+    quantity: 1
+  - type: Reference
+    target:
+      - largeForm
+    condition: $(meta.level >= 5)
+  - id: powerfulBuildGrappled
+    type: Reference
+    target: grappledAdvantage

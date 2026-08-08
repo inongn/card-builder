@@ -1,0 +1,5 @@
+id: reboundingField
+type: Extra
+target: shield
+name: Rebounding Field
+description: The attacker must make a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage on a failed save, or half on a success. You gain Temporary Hit Points equal to the damage dealt.

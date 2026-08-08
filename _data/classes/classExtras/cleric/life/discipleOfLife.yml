@@ -1,0 +1,5 @@
+id: discipleOfLife
+type: Extra
+name: Disciple of Life
+target: healingSpell
+description: The creature regains an additional $(2+(stats.wis.mod)) Hit Points.

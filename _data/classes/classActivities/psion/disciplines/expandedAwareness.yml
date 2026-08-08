@@ -1,0 +1,11 @@
+id: expandedAwareness
+name: Expanded Awareness
+summary: "Add a Psionic Energy Die to a Search ability check."
+tags: [psionicDiscipline]
+type: Activity
+time: free action
+range: self
+duration: Instantaneous
+resource: psionicEnergyDice
+description: |
+  When you take the Search action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.

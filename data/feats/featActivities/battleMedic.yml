@@ -6,3 +6,13 @@ time: action
 range: 5 feet
 description: |
   You tend to a creature within range. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains Hit Points equal to the roll plus a $(attributes.prof) Bonus.
+mechanic:
+  pattern: healing
+  healing:
+    dice:
+      count: 1
+      sides: 8
+      bonus: $(attributes.prof)
+    type: hitPoints
+  target:
+    type: touch

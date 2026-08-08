@@ -1,0 +1,11 @@
+id: hurlThroughHell
+type: Activity
+duration: instantaneous
+range: self
+name: Hurl Through Hell
+time: free action
+resource: level1SpellSlot
+description: |
+  Once per turn when you hit a creature with an attack roll, you try to instantly transport the target through the Lower Planes. The target must succeed on DC $(attributes.spellcasting.save) Charisma saving throw, or the target disappears and hurtles through a nightmare landscape. 
+
+  The target takes 8d10 Psychic damage if it isn't a Fiend, and it has the Incapacitated condition until the end of your next turn, when it returns to the space it previously occupied or the nearest unoccupied space.

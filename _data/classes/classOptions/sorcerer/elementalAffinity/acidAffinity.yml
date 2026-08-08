@@ -1,0 +1,29 @@
+id: acidAffinity
+name: Acid Affinity
+summary: "Gain acid resistance and add Charisma modifier to acid damage spells."
+type: Folder
+tags:
+  - elementalAffinity
+children:
+  - type: Reference
+    target: acidResistance
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=acidDamage].description["d12"]
+    operation: replace
+    value: "d12$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=acidDamage].description["d10"]
+    operation: replace
+    value: "d10$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=acidDamage].description["d8"]
+    operation: replace
+    value: "d8$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=acidDamage].description["d6"]
+    operation: replace
+    value: "d6$(formatBonus(stats.cha.mod))"
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=acidDamage].description["d4"]
+    operation: replace
+    value: "d4$(formatBonus(stats.cha.mod))"

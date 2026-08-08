@@ -1,0 +1,6 @@
+type: Effect
+target: skills.religion.dis
+operation: set
+value: true
+id: religionDisadvantage
+name: Religion Disadvantage

@@ -1,0 +1,23 @@
+id: magicInitiateDruid
+summary: "Learn nature cantrips and a 1st-level druid spell."
+name: Druid Initiate
+tags:
+- feat
+- originFeat
+type: Folder
+children:
+- type: Reference
+  target: data.core.spellcasting.chooseCaster
+  quantity: 1
+- type: Slot
+  id: magicInitiateDruidCantrips
+  name: Druid Initiate Cantrips
+  quantity: 2
+  target: druid AND cantrip
+- type: Slot
+  id: magicInitiateDruidPreparedSpell
+  name: Druid Initiate Spell
+  target: druid AND level1Spell
+  quantity: 1
+  overwrite:
+    resource: limited

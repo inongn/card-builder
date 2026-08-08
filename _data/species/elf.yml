@@ -1,0 +1,29 @@
+id: elf
+name: Elf
+tags:
+  - species
+description: Magical, long-lived beings born of the Feywild who rest in a trance rather than sleep.
+type: Folder
+children:
+  - id: elfDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 60
+  - id: elvenLineage
+    name: Elven Lineage
+    type: Slot
+    target: elvenLineage
+    quantity: 1
+  - type: Reference
+    target:
+      - charmedAdvantage
+      - chooseCaster
+  - id: keenSenses
+    name: Keen Senses
+    type: Slot
+    target: insightProficiency OR perceptionProficiency OR survivalProficiency
+    quantity: 1
+  - type: Reference
+    target:
+      - trance

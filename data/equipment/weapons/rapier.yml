@@ -1,14 +1,31 @@
 id: rapier
 name: Rapier
-type: Reference
-target: weaponAttack
-tags: [martial]
-variables:
-  name: Rapier
-  mastery: vex
-  damageRoll: 1d8
-  damageType: piercing
-  range: 5 feet
-  classification: finesse
-  category: martial
-  property: ''
+type: Activity
+time: action
+range: 5 feet
+duration: instantaneous
+tags:
+  - martial
+  - finesse
+  - vex
+  - weaponAttack
+  - piercingDamage
+  - rapier
+description: >-
+  You strike with your Rapier. Make a $(formatBonus(attributes.finesse.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: finesse
+    type: weapon
+    bonus: $(attributes.finesse.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 8
+      bonus: $(attributes.finesse.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 5 feet

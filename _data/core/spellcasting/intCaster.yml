@@ -1,0 +1,21 @@
+type: Folder
+hidden: true
+children:
+  - type: Effect
+    target: attributes.spellcasting.save
+    operation: set
+    value: $(8 + attributes.prof + stats.int.mod)
+  - type: Effect
+    target: attributes.spellcasting.attack
+    operation: set
+    value: $(attributes.prof + stats.int.mod)
+  - type: Effect
+    target: attributes.spellcasting.mod
+    operation: set
+    value: $(stats.int.mod)
+  - type: Effect
+    target: attributes.spellcasting.bonus
+    operation: set
+    value: $(stats.int.mod)
+id: intCaster
+name: Int Caster

@@ -2,11 +2,24 @@ id: blur
 type: Activity
 name: Blur
 resource: level2SpellSlot
-tags: [level2Spell, illusion, artificer, sorcerer, wizard]
+tags:
+  - level2Spell
+  - illusion
+  - artificer
+  - sorcerer
+  - wizard
 time: action
 range: self
 duration: concentration, up to 1 minute
-summary: "Your body becomes blurred, imposing disadvantage on attack rolls against you."
-description: |
-  Your body becomes blurred. For the duration, any creature has Disadvantage on attack rolls against you. An attacker is immune to this effect if it perceives you with Blindsight or Truesight.
-
+summary: Your body becomes blurred, imposing disadvantage on attack rolls against you.
+description: >
+  Your body becomes blurred. For the duration, any creature has Disadvantage on
+  attack rolls against you. An attacker is immune to this effect if it perceives
+  you with Blindsight or Truesight.
+mechanic:
+  pattern: utility
+  text: >-
+    Attack rolls against you have Disadvantage unless attacker doesn't rely on
+    sight.
+  target:
+    type: self

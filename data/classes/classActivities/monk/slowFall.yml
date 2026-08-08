@@ -5,3 +5,6 @@ time: reaction
 range: self
 duration: Instantaneous
 description: When you fall, you reduce any fall damage you take by $(meta.level * 5).
+mechanic:
+  pattern: utility
+  text: When you fall, you reduce any fall damage you take by $(meta.level * 5).

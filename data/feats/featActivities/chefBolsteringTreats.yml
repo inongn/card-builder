@@ -1,7 +1,16 @@
+id: chefBolsteringTreats
 name: Bolstering Treats
 type: Activity
 duration: instantaneous
 range: self
 time: 1 hour
-description: You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.
-id: chefBolsteringTreats
+description: |
+  You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.
+mechanic:
+  pattern: healing
+  healing:
+    dice:
+      count: 0
+      sides: 0
+      bonus: $(attributes.prof)
+    type: tempHitPoints

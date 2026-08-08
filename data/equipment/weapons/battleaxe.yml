@@ -1,14 +1,31 @@
 id: battleaxe
 name: Battleaxe
-type: Reference
-target: weaponAttack
-tags: [martial]
-variables:
-  name: Battleaxe
-  mastery: topple
-  damageRoll: "$(attributes.shieldEquipped == true ? '1d8' : '1d10')"
-  damageType: slashing
-  range: 5 feet
-  classification: melee
-  category: martial
-  property: ''
+type: Activity
+time: action
+range: 5 feet
+duration: instantaneous
+tags:
+  - martial
+  - melee
+  - topple
+  - weaponAttack
+  - slashingDamage
+  - battleaxe
+description: >-
+  You strike with your Battleaxe. Make a $(formatBonus(attributes.melee.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+    bonus: $(attributes.melee.attack)
+  damage:
+    dice:
+      count: 1
+      sides: '$(attributes.shieldEquipped == true ? 8 : 10)'
+      bonus: $(attributes.melee.bonus)
+    type: slashing
+  target:
+    type: single
+    range: 5 feet

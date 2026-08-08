@@ -1,0 +1,8 @@
+id: wholenessOfBody
+type: Activity
+name: Wholeness of Body
+time: bonus action
+range: self
+duration: Instantaneous
+resource: wholenessOfBody
+description: You channel your inner healing energy. Regain 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points.

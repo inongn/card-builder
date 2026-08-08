@@ -1,0 +1,14 @@
+id: flail
+name: Flail
+type: Reference
+target: weaponAttack
+tags: [martial]
+variables:
+  name: Flail
+  mastery: sap
+  damageRoll: 1d8
+  damageType: bludgeoning
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: ''

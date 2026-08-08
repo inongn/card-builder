@@ -1,7 +1,8 @@
 id: biofeedback
 name: Biofeedback
-summary: "Gain Temporary Hit Points when casting Necromancy or Transmutation spells."
-tags: [psionicDiscipline]
+summary: Gain Temporary Hit Points when casting Necromancy or Transmutation spells.
+tags:
+  - psionicDiscipline
 type: Activity
 time: free action
 range: self
@@ -9,3 +10,8 @@ duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   When you cast a Psion spell of the Necromancy or Transmutation school, you gain 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Temporary Hit Points per charge expended.
+mechanic:
+  pattern: healing
+  healing:
+    type: hitPoints
+    text: When you cast a Psion spell of the Necromancy or Transmutation school, you gain 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Temporary Hit Points per charge expended.

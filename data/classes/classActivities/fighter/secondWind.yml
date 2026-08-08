@@ -6,3 +6,13 @@ resource: secondWind
 time: bonus action
 duration: Instantaneous
 range: self
+mechanic:
+  pattern: healing
+  healing:
+    dice:
+      count: 1
+      sides: 10
+      bonus: $(meta.level)
+    type: hitPoints
+  target:
+    type: self

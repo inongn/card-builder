@@ -1,0 +1,53 @@
+id: fiendPatron
+name: Fiend Patron
+description: Draw power from the Lower Planes, forging a dark bargain with a demon lord or archdevil.
+tags:
+  - warlockSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - burningHands
+      - command
+      - scorchingRay
+      - suggestion
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - fireball
+      - stinkingCloud
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - fireShield
+      - wallOfFire
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - geas
+      - insectPlague
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - darkOnesBlessing
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - darkOnesOwnLuck
+    condition: $(meta.level >= 6)
+  - id: darkOnesOwnLuck
+    type: Resource
+    name: Dark One's Own Luck
+    quantity: $(Math.max(1, stats.cha.mod))
+    condition: $(meta.level >= 6)
+    sr: 0
+  - id: fiendishResilience
+    type: Slot
+    target: shortRest OR longRest
+    name: Fiendish Resilience
+    description: Choose one damage type (other than Force). You have Resistance to it.
+    condition: $(meta.level >= 10)
+  - type: Reference
+    target:
+      - hurlThroughHell
+    condition: $(meta.level >= 14)

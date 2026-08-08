@@ -1,0 +1,5 @@
+name: Reactive Spell
+type: Extra
+target: opportunityAttack
+description: You can cast a spell rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature.
+id: warCasterReactiveSpell

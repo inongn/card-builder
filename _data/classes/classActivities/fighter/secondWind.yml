@@ -1,0 +1,8 @@
+id: secondWind
+name: Second Wind
+description: You draw on a well of physical and mental stamina. Regain 1d10+$(meta.level) Hit Points.
+type: Activity
+resource: secondWind
+time: bonus action
+duration: Instantaneous
+range: self

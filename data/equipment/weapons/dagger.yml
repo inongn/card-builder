@@ -1,13 +1,32 @@
 id: dagger
 name: Dagger
-type: Reference
-target: weaponAttack
-tags: [light, simple]
-variables:
-  name: Dagger
-  mastery: nick
-  damageRoll: 1d4
-  damageType: piercing
-  range: 20 feet
-  classification: finesse
-  property: light
+type: Activity
+time: action
+range: 20 feet
+duration: instantaneous
+tags:
+  - simple
+  - finesse
+  - nick
+  - light
+  - weaponAttack
+  - piercingDamage
+  - dagger
+description: >-
+  You strike with your Dagger. Make a $(formatBonus(attributes.finesse.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: finesse
+    type: weapon
+    bonus: $(attributes.finesse.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 4
+      bonus: $(attributes.finesse.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 20 feet

@@ -1,7 +1,8 @@
 id: devilishTongue
 name: Devilish Tongue
-summary: "Add a Psionic Energy Die to an Influence ability check."
-tags: [psionicDiscipline]
+summary: Add a Psionic Energy Die to an Influence ability check.
+tags:
+  - psionicDiscipline
 type: Activity
 time: free action
 range: self
@@ -9,3 +10,6 @@ duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   When you take the Influence action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.
+mechanic:
+  pattern: utility
+  text: Add a Psionic Energy Die to an Influence ability check.

@@ -1,0 +1,24 @@
+id: lore
+name: College of Lore
+description: Collect spells and secrets from diverse sources, uncovering ancient knowledge and mystical rites.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  - id: bonusProficiencies
+    name: Bonus Proficiencies
+    type: Slot
+    target: skillProficiency
+    quantity: 3
+  - type: Reference
+    target:
+      - cuttingWords
+    condition: $(meta.level >= 3)
+  - id: magicalDiscoveries
+    name: Magical Discoveries
+    type: Slot
+    target: '(cleric OR druid OR wizard) NOT class NOT cantrip $(local.maxLevel < 9 ? ''NOT level9Spell'' : '''') $(local.maxLevel < 8 ? ''NOT level8Spell'' : '''') $(local.maxLevel < 7 ? ''NOT level7Spell'' : '''') $(local.maxLevel < 6 ? ''NOT level6Spell'' : '''') $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
+    variables:
+      maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
+    quantity: 2
+    condition: $(meta.level >= 6)

@@ -1,0 +1,155 @@
+id: monk
+name: Monk
+description: Ascetic martial artists who harness inner focus to strike with lightning speed and precision.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 8
+  - type: Reference
+    value:
+      - strSave
+      - dexSave
+  - type: Reference
+    value:
+      - simpleWeaponProficiency
+      - lightWeaponProficiency
+  - id: monkSkillProficiencies
+    type: Slot
+    name: Monk Skill Proficiencies
+    quantity: 2
+    target: acrobaticsProficiency OR athleticsProficiency OR historyProficiency OR insightProficiency OR religionProficiency OR stealthProficiency
+  - id: monkToolProficiency
+    type: Slot
+    name: Monk Tool Proficiency
+    quantity: 1
+    target: tool NOT gamingSet NOT thievesTools NOT poisonersKit NOT navigatorsTools NOT herbalismKit NOT forgeryKit NOT disguiseKit OR artisansToolsProficiency
+  - id: martialArtsDie
+    type: Attribute
+    value: $(progression(6,6,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
+  - id: martialArtsReplacementUnarmed
+    type: Effect
+    target: activities[tags=unarmed].description["$(Math.max(1, 1+attributes.melee.bonus))"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)$(formatBonus(attributes.finesse.bonus))
+    condition: $(meta.level >= 1)
+  - id: martialArtsReplacementd4
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d4"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd6
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d6"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd8
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d8"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd10
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d10"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsReplacementd12
+    type: Effect
+    target: activities[tags=melee and tags=weaponAttack].description["1d12"]
+    operation: replace
+    value: 1d$(attributes.martialArtsDie)
+  - id: martialArtsFlag
+    type: Attribute
+    value: true
+  - type: Reference
+    target:
+      - bonusUnarmedStrike
+  - id: unarmoredDefense
+    type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(10 + stats.dex.mod + stats.wis.mod)
+  - id: focusPoints
+    type: Resource
+    condition: $(meta.level >= 2)
+    name: Focus Points
+    quantity: $(progression(0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))
+    sr: all
+  - id: monkSaveDC
+    type: Attribute
+    value: $(8 + stats.wis.mod + attributes.prof)
+  - type: Reference
+    target:
+      - flurryOfBlows
+    condition: $(meta.level >= 2)
+  - type: Reference
+    target:
+      - patientDefense
+    condition: $(meta.level >= 2)
+  - type: Reference
+    target:
+      - stepOfTheWind
+    condition: $(meta.level >= 2)
+  - id: unarmoredMovement
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    condition: $(meta.level >= 2)
+    value: $(progression(0,10,10,10,10,15,15,15,15,20,20,20,20,25,25,25,25,30,30,30))
+  - type: Reference
+    target:
+      - deflectAttacks
+    condition: $(meta.level >= 3)
+  - id: monkSubclass
+    name: Monk Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: monkSubclass
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - type: Reference
+    target:
+      - slowFall
+    condition: $(meta.level >= 4)
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - stunningStrike
+    condition: $(meta.level >= 5)
+  - id: empoweredStrikesBludgeoning
+    type: Effect
+    target: activities[tags=weaponAttack and tags=bludgeoningDamage].description["Bludgeoning"]
+    operation: replace
+    condition: $(meta.level >= 6)
+    value: Force
+  - id: empoweredStrikesPiercing
+    type: Effect
+    target: activities[tags=weaponAttack and tags=piercingDamage].description["Piercing"]
+    operation: replace
+    condition: $(meta.level >= 6)
+    value: Force
+  - id: empoweredStrikesSlashing
+    type: Effect
+    target: activities[tags=weaponAttack and tags=slashingDamage].description["Slashing"]
+    operation: replace
+    condition: $(meta.level >= 6)
+    value: Force
+  - type: Reference
+    target:
+      - evasion
+    condition: $(meta.level >= 7)
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)

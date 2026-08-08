@@ -1,0 +1,20 @@
+id: acolyte
+name: Acolyte
+description: You devoted your youth to temple service, learning sacred rites and channeling divine favor.
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - insightProficiency
+      - religionProficiency
+      - calligraphersTools
+      - magicInitiateCleric
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - int
+      - wis
+      - cha

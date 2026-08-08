@@ -5,3 +5,6 @@ duration: instantaneous
 range: self
 name: Halfling Nimbleness
 description: You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.
+mechanic:
+  pattern: utility
+  text: Move through the space of any creature a size larger than you.

@@ -165,7 +165,9 @@ export default function DebugDrawer({
     sampleCharactersEnabled,
     handleToggleSampleCharacters,
     savedCharacters,
-    setSavedCharacters
+    setSavedCharacters,
+    useActivitySheet,
+    onToggleActivitySheet
 }) {
     const drawerRef = useRef(null);
     const [activeTab, setActiveTab] = useState('character');
@@ -298,6 +300,21 @@ export default function DebugDrawer({
 
                     {activeTab === 'tools' && (
                         <div className="debug-settings-list">
+                            {/* Activity Sheet Toggle */}
+                            <mdui-card variant="outlined" class="debug-section-card">
+                                <div className="debug-section-title">Activity Sheet View</div>
+                                <div className="debug-section-desc">
+                                    Replace standard activity cards in the play screen with a single-line activity sheet formatted dynamically from the mechanic schema.
+                                </div>
+                                <mdui-button
+                                    variant={useActivitySheet ? 'filled' : 'outlined'}
+                                    icon={useActivitySheet ? 'view_headline' : 'view_agenda'}
+                                    onClick={onToggleActivitySheet}
+                                >
+                                    {useActivitySheet ? 'Single Line Activity Sheet (Active)' : 'Standard Activity Cards (Active)'}
+                                </mdui-button>
+                            </mdui-card>
+
                             {/* Samples Control */}
                             <mdui-card variant="outlined" class="debug-section-card">
                                 <div className="debug-section-title">Sample Characters</div>

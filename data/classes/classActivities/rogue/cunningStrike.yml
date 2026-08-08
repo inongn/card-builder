@@ -5,3 +5,6 @@ duration: instantaneous
 range: self
 name: Cunning Strike
 description: 'When you deal Sneak Attack damage to a creature, you can choose to spend dice from the Sneak Attack to create one of the following effects:'
+mechanic:
+  pattern: utility
+  text: Spend Sneak Attack dice to apply Poison, Trip, Withdraw, or Disarm effects.

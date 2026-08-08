@@ -1,0 +1,12 @@
+id: chainMail
+name: Chain Mail
+type: Folder
+tags: [heavyArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: 16
+  - type: Reference
+    target: stealthDisadvantage
+    

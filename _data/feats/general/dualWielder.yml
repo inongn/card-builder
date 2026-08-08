@@ -1,0 +1,16 @@
+type: Folder
+summary: "Wield dual weapons more effectively and gain a defense boost."
+name: Dual Wielder
+tags:
+- feat
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Effect
+    target: activities[tags=weaponAttack].extra["with a Light weapon"]
+    operation: replace
+    value: "with a weapon"
+id: dualWielder

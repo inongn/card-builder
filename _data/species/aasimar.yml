@@ -1,0 +1,25 @@
+id: aasimar
+name: Aasimar
+tags:
+  - species
+description: Mortals who carry a spark of the Upper Planes, bringing light, healing, and celestial fury.
+type: Folder
+children:
+  - type: Reference
+    target:
+      - necroticResistance
+      - radiantResistance
+  - id: aasimarDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 60
+  - type: Reference
+    target:
+      - healingHands
+  - type: Reference
+    target: lightSpell
+  - type: Reference
+    target:
+      - celestialRevelation
+    condition: $(meta.level >= 3)

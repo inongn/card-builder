@@ -1,7 +1,8 @@
 id: sharpenedMind
 name: Sharpened Mind
-summary: "Ignore Psychic resistance and substitute a recorded Psionic die roll on damage once per turn."
-tags: [psionicDiscipline]
+summary: Ignore Psychic resistance and substitute a recorded Psionic die roll on damage once per turn.
+tags:
+  - psionicDiscipline
 type: Activity
 time: free action
 range: self
@@ -13,3 +14,9 @@ description: |
   * **Attack Mode.** Once per turn, when you deal Psychic damage to one or more creatures, you can replace the number rolled on one of the damage dice with the number recorded when you activated this Psionic Discipline.
 
   When you use Sharpened Mind, you can also use a different Psionic Discipline this turn.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+  text: 'At the start of your turn, roll 1d$(attributes.psiDice) and record the number rolled. You gain the following benefits for 1 minute or until you have the Incapacitated condition:'

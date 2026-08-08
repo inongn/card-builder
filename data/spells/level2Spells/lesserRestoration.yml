@@ -2,11 +2,24 @@ id: lesserRestoration
 type: Activity
 name: Lesser Restoration
 resource: level2SpellSlot
-tags: [level2Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger]
+tags:
+  - level2Spell
+  - abjuration
+  - artificer
+  - bard
+  - cleric
+  - druid
+  - paladin
+  - ranger
 time: bonus action
 range: touch
 duration: instantaneous
-summary: "You cure a disease or condition affecting a creature."
-description: |
-  You touch a creature and end one condition on it: Blinded, Deafened, Paralyzed, or Poisoned.
-
+summary: You cure a disease or condition affecting a creature.
+description: >
+  You touch a creature and end one condition on it: Blinded, Deafened,
+  Paralyzed, or Poisoned.
+mechanic:
+  pattern: utility
+  text: Cure one disease or condition (Blindness, Deafness, Paralysis, or Poison).
+  target:
+    type: touch

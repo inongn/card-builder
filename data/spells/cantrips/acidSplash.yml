@@ -1,11 +1,41 @@
 id: acidSplash
 type: Activity
 name: Acid Splash
-tags: [evocation, cantrip, artificer, sorcerer, wizard, saveSpell, damageSpell, acidDamage]
+tags:
+  - evocation
+  - cantrip
+  - artificer
+  - sorcerer
+  - wizard
+  - saveSpell
+  - damageSpell
+  - acidDamage
 time: action
 range: 60 feet
 duration: instantaneous
-summary: "You hurl a bubble of acid that bursts into a damaging splash."
-description: |
-  You create an acidic bubble at a point within range, where it explodes in a 5-foot-radius Sphere. Each creature in that Sphere must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Acid damage.
-
+summary: You hurl a bubble of acid that bursts into a damaging splash.
+description: >
+  You create an acidic bubble at a point within range, where it explodes in a
+  5-foot-radius Sphere. Each creature in that Sphere must succeed on a DC
+  $(attributes.spellcasting.save) Dexterity saving throw or take $(meta.level >=
+  17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Acid damage.
+mechanic:
+  pattern: save
+  save:
+    ability: dex
+    dc: $(attributes.spellcasting.save)
+    failure:
+      damage:
+        dice:
+          count: >-
+            $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2
+            : 1)
+          sides: 6
+          bonus: 0
+        type: acid
+  target:
+    type: aoe
+    aoe:
+      shape: sphere
+      size: 5
+    range: $(range)

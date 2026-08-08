@@ -1,0 +1,15 @@
+id: primalStrike
+summary: Infuse weapon and beast strikes with extra elemental damage.
+name: Primal Strike
+tags:
+  - elementalFury
+type: Folder
+children:
+  - type: Reference
+    target:
+      - primalStrikeWeapon
+  - id: primalStrikeWildShape
+    type: Effect
+    target: statblocks[wildShapeTemplate].actions["damage"]
+    operation: replace
+    value: damage + 1d8 Cold, Fire, Lightning or Thunder damage

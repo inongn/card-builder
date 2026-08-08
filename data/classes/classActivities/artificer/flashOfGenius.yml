@@ -6,3 +6,10 @@ name: Flash of Genius
 range: 30 feet
 description: When you or a creature you can see within range fails an ability check or a saving throw, add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed.
 resource: flashOfGeniusResource
+mechanic:
+  pattern: save
+  save:
+    ability: dex
+    dc: $(attributes.spellcasting.save || attributes.monkSaveDC || 15)
+    failure:
+      text: When you or a creature you can see within range fails an ability check or a saving throw, add $(Math.floor(stats.int.mod, 1)) to the roll, potentially causing it to succeed.

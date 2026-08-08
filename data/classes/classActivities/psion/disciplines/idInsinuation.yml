@@ -1,7 +1,8 @@
 id: idInsinuation
 name: Id Insinuation
-summary: "Subtract half a Psionic Energy Die roll from a target's save against your Enchantment or Illusion spells."
-tags: [psionicDiscipline]
+summary: Subtract half a Psionic Energy Die roll from a target's save against your Enchantment or Illusion spells.
+tags:
+  - psionicDiscipline
 type: Activity
 time: free action
 range: Varies
@@ -9,3 +10,10 @@ duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell.
+mechanic:
+  pattern: save
+  save:
+    ability: dex
+    dc: $(attributes.spellcasting.save || attributes.monkSaveDC || 15)
+    failure:
+      text: When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell.

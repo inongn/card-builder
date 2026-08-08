@@ -7,3 +7,6 @@ duration: instantaneous
 resource:
   - pactMagicSpellSlot
 description: Once per turn when you hit a creature with your pact weapon, the target takes an extra 1d8 Force damage, plus another 1d8 per level of the spell slot. You can knock the target Prone if it is Huge or smaller.
+mechanic:
+  pattern: utility
+  text: Once per turn when you hit a creature with your pact weapon, the target takes an extra 1d8 Force damage, plus another 1d8 per level of the spell slot. You can knock the target Prone if it is Huge or smaller.

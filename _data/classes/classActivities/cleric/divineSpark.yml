@@ -1,0 +1,8 @@
+id: divineSpark
+type: Activity
+name: Divine Spark
+time: action
+range: 30 feet
+duration: Instantaneous
+resource: channelDivinity
+description: 'You point your Holy Symbol at another creature you can see. Roll $(meta.level >= 18 ? ''4d8'' : meta.level >= 13 ? ''3d8'' : meta.level >= 7 ? ''2d8'' : ''1d8'')$(formatBonus(stats.wis.mod)). You either restore Hit Points to the creature equal to that total or force the creature to make a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the creature takes Necrotic or Radiant damage (your choice) equal to that total. On a successful save, the creature takes half as much damage (round down).'

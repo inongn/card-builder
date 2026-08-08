@@ -1,0 +1,10 @@
+summary: Recall lore about terrain, plants, animals, and weather.
+tags:
+  - intelligence
+  - skillProficiency
+type: Effect
+target: skills.nature.proficiency
+operation: set
+value: 1
+id: natureProficiency
+name: Nature

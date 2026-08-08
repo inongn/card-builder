@@ -1,14 +1,32 @@
 id: shortbow
 name: Shortbow
-type: Reference
-target: weaponAttack
-tags: [simple, twoHanded]
-variables:
-  name: Shortbow
-  mastery: vex
-  damageRoll: 1d6
-  damageType: piercing
-  range: 80 feet
-  classification: ranged
-  category: simple
-  property: twoHanded
+type: Activity
+time: action
+range: 80 feet
+duration: instantaneous
+tags:
+  - simple
+  - ranged
+  - vex
+  - twoHanded
+  - weaponAttack
+  - piercingDamage
+  - shortbow
+description: >-
+  You strike with your Shortbow. Make a $(formatBonus(attributes.ranged.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 6
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 80 feet

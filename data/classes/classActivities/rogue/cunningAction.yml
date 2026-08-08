@@ -5,3 +5,6 @@ time: bonus action
 range: self
 duration: Instantaneous
 description: You take the Dash, Disengage, or Hide action.
+mechanic:
+  pattern: utility
+  text: Take the Dash, Disengage, or Hide action as a Bonus Action.

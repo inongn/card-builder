@@ -6,3 +6,11 @@ range: self
 name: Fire's Burn
 description: When you hit a target with an attack roll and deal damage to it, you also deal 1d10 Fire damage to that target.
 resource: giantAncestry
+mechanic:
+  pattern: utility
+  trigger: When you hit a target with an attack roll and deal damage to it
+  damage:
+    dice:
+      count: 1
+      sides: 10
+    type: fire

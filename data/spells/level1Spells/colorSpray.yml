@@ -2,11 +2,32 @@ id: colorSpray
 type: Activity
 name: Color Spray
 resource: level1SpellSlot
-tags: [level1Spell, illusion, bard, sorcerer, wizard, saveSpell]
+tags:
+  - level1Spell
+  - illusion
+  - bard
+  - sorcerer
+  - wizard
+  - saveSpell
 time: action
 range: self
 duration: instantaneous
-summary: "You launch a dazzling array of flashing lights to blind targets."
-description: |
-  You launch a dazzling array of flashing, colorful light. Each creature in a 15-foot Cone originating from you must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or have the Blinded condition until the end of your next turn.
-
+summary: You launch a dazzling array of flashing lights to blind targets.
+description: >
+  You launch a dazzling array of flashing, colorful light. Each creature in a
+  15-foot Cone originating from you must succeed on a DC
+  $(attributes.spellcasting.save) Constitution saving throw or have the Blinded
+  condition until the end of your next turn.
+mechanic:
+  pattern: save
+  save:
+    ability: con
+    dc: $(attributes.spellcasting.save)
+    failure:
+      text: Targets have Blinded condition until end of your next turn.
+  target:
+    type: aoe
+    aoe:
+      shape: cone
+      size: 15
+    range: $(range)

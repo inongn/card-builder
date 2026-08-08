@@ -1,14 +1,32 @@
 id: musket
 name: Musket
-type: Reference
-target: weaponAttack
-tags: [twoHanded, martial]
-variables:
-  name: Musket
-  mastery: slow
-  damageRoll: 1d12
-  damageType: piercing
-  range: 40 feet
-  classification: ranged
-  category: martial
-  property: twoHanded
+type: Activity
+time: action
+range: 40 feet
+duration: instantaneous
+tags:
+  - martial
+  - ranged
+  - slow
+  - twoHanded
+  - weaponAttack
+  - piercingDamage
+  - musket
+description: >-
+  You strike with your Musket. Make a $(formatBonus(attributes.ranged.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 12
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 40 feet

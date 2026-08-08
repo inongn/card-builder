@@ -1,0 +1,15 @@
+id: evoker
+name: Evoker
+description: Create powerful elemental effects like searing flame and crackling lightning, blasting armies afar.
+type: Folder
+tags:
+  - wizardSubclass
+children:
+  - type: Reference
+    target:
+      - potentCantrip
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - sculptSpells
+    condition: $(meta.level >= 6)

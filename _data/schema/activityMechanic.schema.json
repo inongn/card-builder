@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "activityMechanic.schema.json",
+  "title": "Activity Mechanic Schema",
+  "description": "JSON Schema for schematized D&D 5e / custom RPG activity mechanics.",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/$defs/SinglePatternBlock" },
+    { "$ref": "#/$defs/MultiBlockMechanic" }
+  ],
+  "$defs": {
+    "AttackPatternBlock": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "trigger": { "type": "string" },
+        "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
+        "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "pattern": { "type": "string", "const": "attack" },
+        "attack": { "$ref": "primitives.schema.json#/$defs/AttackSpec" },
+        "damage": {
+          "oneOf": [
+            { "$ref": "primitives.schema.json#/$defs/DamageEntry" },
+            {
+              "type": "array",
+              "items": { "$ref": "primitives.schema.json#/$defs/DamageEntry" }
+            }
+          ]
+        },
+        "text": { "type": "string" }
+      },
+      "required": ["pattern", "attack"],
+      "additionalProperties": false
+    },
+    "SavePatternBlock": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "trigger": { "type": "string" },
+        "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
+        "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "pattern": { "type": "string", "const": "save" },
+        "save": { "$ref": "primitives.schema.json#/$defs/SaveSpec" },
+        "text": { "type": "string" }
+      },
+      "required": ["pattern", "save"],
+      "additionalProperties": false
+    },
+    "HealingPatternBlock": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "trigger": { "type": "string" },
+        "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
+        "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "pattern": { "type": "string", "const": "healing" },
+        "healing": { "$ref": "primitives.schema.json#/$defs/HealingEntry" },
+        "text": { "type": "string" }
+      },
+      "required": ["pattern", "healing"],
+      "additionalProperties": false
+    },
+    "UtilityPatternBlock": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "trigger": { "type": "string" },
+        "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
+        "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "pattern": { "type": "string", "const": "utility" },
+        "damage": {
+          "oneOf": [
+            { "$ref": "primitives.schema.json#/$defs/DamageEntry" },
+            {
+              "type": "array",
+              "items": { "$ref": "primitives.schema.json#/$defs/DamageEntry" }
+            }
+          ]
+        },
+        "dice": { "$ref": "primitives.schema.json#/$defs/DiceFormula" },
+        "text": { "type": "string" }
+      },
+      "required": ["pattern"],
+      "additionalProperties": false
+    },
+    "SinglePatternBlock": {
+      "oneOf": [
+        { "$ref": "#/$defs/AttackPatternBlock" },
+        { "$ref": "#/$defs/SavePatternBlock" },
+        { "$ref": "#/$defs/HealingPatternBlock" },
+        { "$ref": "#/$defs/UtilityPatternBlock" }
+      ]
+    },
+    "MultiBlockMechanic": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["succession", "choice"],
+          "default": "succession"
+        },
+        "blocks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SinglePatternBlock" },
+          "minItems": 1
+        }
+      },
+      "required": ["blocks"],
+      "additionalProperties": false
+    }
+  }
+}

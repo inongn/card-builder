@@ -3018,3 +3018,133 @@ mdui-list-item.card-vertical-item::part(container) {
     cursor: default !important;
   }
 }
+
+/* Activity Sheet Single-Line Mechanics View */
+.activity-sheet-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.activity-sheet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.activity-sheet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 12px;
+  background-color: var(--card-bg, rgba(var(--mdui-color-surface-container), 0.7));
+  border: 1px solid rgba(var(--mdui-color-outline-variant), 0.5);
+  border-radius: var(--mdui-shape-corner-medium, 12px);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.activity-sheet-item:hover {
+  background-color: var(--card-bg-hover, rgba(var(--mdui-color-surface-container-high), 0.9));
+  border-color: rgba(var(--mdui-color-primary), 0.4);
+}
+
+.activity-sheet-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.activity-sheet-content {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgb(var(--mdui-color-on-surface));
+}
+
+.activity-sheet-line p {
+  margin: 0;
+  display: inline;
+}
+
+.activity-sheet-line em {
+  font-style: italic;
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.activity-sheet-line strong {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   ACTIVITY SHEET 2X1 PRINT GRID MODE
+   ========================================================================== */
+.print-mode .print-grid.activity-sheet-2x1-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows: 1fr !important;
+  gap: 0.25in !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.print-mode .activity-sheet-2x1-grid .main-card-print-slot {
+  grid-column: 1 / span 1 !important;
+  grid-row: 1 / span 1 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.print-mode .activity-sheet-print-slot {
+  grid-column: 2 / span 1 !important;
+  grid-row: 1 / span 1 !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  border: 1px solid #ccc !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  background: white !important;
+  color: black !important;
+  box-sizing: border-box !important;
+}
+
+.print-mode .activity-sheet-print-slot .activity-sheet-container {
+  gap: 10px;
+}
+
+.print-mode .activity-sheet-print-slot .aside-card-group {
+  margin-bottom: 8px;
+}
+
+.print-mode .activity-sheet-print-slot .title-primary {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.print-mode .activity-sheet-print-slot .activity-sheet-item {
+  padding: 4px 8px;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.print-mode .activity-sheet-print-slot .activity-sheet-content {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #111;
+}
+
+@media print {
+  .print-mode .activity-sheet-print-slot {
+    overflow: hidden !important;
+    border-color: #999 !important;
+  }
+}

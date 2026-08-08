@@ -1,0 +1,5 @@
+id: divineStrikeExtra
+type: Extra
+name: Divine Strike
+target: weaponAttack
+description: 'Once per turn, the target takes an extra $(meta.level >= 14 ? ''2d8'' : ''1d8'') Necrotic or Radiant damage.'

@@ -1,0 +1,28 @@
+type: Statblock
+name: Zombie
+tags: [summon, zombieTemplate]
+id: zombie
+size: Medium
+category: summon
+classification: Undead
+ac: 8
+hp: 22
+movement:
+  walk: 20
+stats:
+  str: 13
+  dex: 6
+  con: 16
+  int: 3
+  wis: 6
+  cha: 5
+immunities: [Poison, Exhaustion, Poisoned]
+senses:
+  darkvision: 60
+languages: "understands the languages it knew in life but can't speak"
+traits:
+  - name: Undead Fortitude
+    description: "If damage reduces the zombie to 0 Hit Points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is Radiant or from a Critical Hit. On a success, the zombie drops to 1 Hit Point instead."
+actions:
+  - name: Slam
+    description: "_Melee Attack Roll:_ +3 to hit, reach 5 ft. _Hit:_ 1d6+1 Bludgeoning damage."

@@ -1,11 +1,34 @@
 id: chillTouch
 type: Activity
 name: Chill Touch
-tags: [necromancy, cantrip, sorcerer, warlock, wizard]
+tags:
+  - necromancy
+  - cantrip
+  - sorcerer
+  - warlock
+  - wizard
 time: action
 range: touch
 duration: instantaneous
-summary: "You channel skeletal cold to strike a target and hamper its healing."
-description: |
-  Channeling the chill of the grave, make a $(formatBonus(attributes.spellcasting.attack)) melee spell attack against a target within reach. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d10 Necrotic damage, and it can't regain Hit Points until the end of your next turn.
-
+summary: You channel skeletal cold to strike a target and hamper its healing.
+description: >
+  Channeling the chill of the grave, make a
+  $(formatBonus(attributes.spellcasting.attack)) melee spell attack against a
+  target within reach. On a hit, the target takes $(meta.level >= 17 ? 4 :
+  meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d10 Necrotic damage, and it
+  can't regain Hit Points until the end of your next turn.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: spell
+    bonus: $(attributes.spellcasting.attack)
+  damage:
+    dice:
+      count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+      sides: 10
+      bonus: 0
+    type: necrotic
+  text: Target cannot regain hit points until the end of your next turn.
+  target:
+    type: touch

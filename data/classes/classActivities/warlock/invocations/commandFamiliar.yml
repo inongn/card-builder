@@ -5,3 +5,9 @@ range: self
 time: bonus action
 name: Command Familiar
 description: You command the familiar to make an attack.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+  text: You command the familiar to make an attack.

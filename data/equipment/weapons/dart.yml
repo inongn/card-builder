@@ -1,14 +1,31 @@
 id: dart
 name: Dart
-type: Reference
-target: weaponAttack
-tags: [simple]
-variables:
-  name: Dart
-  mastery: vex
-  damageRoll: 1d4
-  damageType: piercing
-  range: 20 feet
-  classification: ranged
-  category: simple
-  property: ''
+type: Activity
+time: action
+range: 20 feet
+duration: instantaneous
+tags:
+  - simple
+  - ranged
+  - vex
+  - weaponAttack
+  - piercingDamage
+  - dart
+description: >-
+  You strike with your Dart. Make a $(formatBonus(attributes.ranged.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 4
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 20 feet

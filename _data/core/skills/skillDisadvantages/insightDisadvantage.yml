@@ -1,0 +1,6 @@
+type: Effect
+target: skills.insight.dis
+operation: set
+value: true
+id: insightDisadvantage
+name: Insight Disadvantage

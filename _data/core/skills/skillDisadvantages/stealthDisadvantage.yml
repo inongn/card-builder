@@ -1,0 +1,6 @@
+type: Effect
+target: skills.stealth.dis
+operation: set
+value: true
+id: stealthDisadvantage
+name: Stealth Disadvantage

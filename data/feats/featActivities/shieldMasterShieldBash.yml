@@ -5,3 +5,15 @@ time: bonus action
 range: 5 feet
 description: If you attack a creature on your turn, you try to shove that creature with your Shield. The target must succeed on a DC $(8+attributes.prof+stats.str.mod) Strength saving throw or be knocked prone.
 id: shieldMasterShieldBash
+mechanic:
+  pattern: save
+  trigger: When you attack a creature on your turn
+  save:
+    ability: str
+    dc: $(8 + attributes.prof + stats.str.mod)
+    failure:
+      condition: prone
+      text: Knocked Prone
+  target:
+    type: single
+    range: 5 feet

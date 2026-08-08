@@ -14,3 +14,6 @@ description: |
   **Perception ($(formatBonus(skills.perception.bonus))).** Concealed creature or object
 
   **Survival ($(formatBonus(skills.survival.bonus))).** Tracks or food
+mechanic:
+  pattern: utility
+  text: Make a Wisdom check (Insight, Medicine, Perception, or Survival) to discern non-obvious details.

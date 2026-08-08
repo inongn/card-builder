@@ -1,0 +1,10 @@
+id: heightenedSpell
+summary: Impose disadvantage on a target's first saving throw against your spell.
+name: Heightened Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - type: Reference
+    target:
+      - heightenedSpellActivity

@@ -5,3 +5,6 @@ time: bonus action
 range: 5 feet
 duration: Instantaneous
 description: You make one Unarmed Strike.
+mechanic:
+  pattern: utility
+  text: You make one Unarmed Strike.

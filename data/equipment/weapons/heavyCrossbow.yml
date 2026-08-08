@@ -1,14 +1,33 @@
 id: heavyCrossbow
 name: Heavy Crossbow
-type: Reference
-target: weaponAttack
-tags: [twoHanded, martial]
-variables:
-  name: Heavy Crossbow
-  mastery: push
-  damageRoll: 1d10
-  damageType: piercing
-  range: 100 feet
-  classification: ranged
-  category: martial
-  property: twoHanded
+type: Activity
+time: action
+range: 100 feet
+duration: instantaneous
+tags:
+  - martial
+  - ranged
+  - push
+  - twoHanded
+  - weaponAttack
+  - piercingDamage
+  - heavyCrossbow
+description: >-
+  You strike with your Heavy Crossbow. Make a
+  $(formatBonus(attributes.ranged.attack)) attack against the target. On a hit,
+  the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 10
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 100 feet

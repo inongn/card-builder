@@ -1,14 +1,31 @@
 id: blowgun
 name: Blowgun
-type: Reference
-target: weaponAttack
-tags: [martial]
-variables:
-  name: Blowgun
-  mastery: vex
-  damageRoll: 1
-  damageType: piercing
-  range: 25 feet
-  classification: ranged
-  category: martial
-  property: ''
+type: Activity
+time: action
+range: 25 feet
+duration: instantaneous
+tags:
+  - martial
+  - ranged
+  - vex
+  - weaponAttack
+  - piercingDamage
+  - blowgun
+description: >-
+  You strike with your Blowgun. Make a $(formatBonus(attributes.ranged.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 6
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 25 feet

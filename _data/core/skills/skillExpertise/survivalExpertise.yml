@@ -1,0 +1,11 @@
+summary: Follow tracks, forage, find a trail, or avoid natural hazards.
+type: Effect
+tags:
+  - wisdom
+  - skillExpertise
+target: skills.survival.proficiency
+operation: set
+condition: $(skills.survival.proficiency > .5)
+value: 2
+id: survivalExpertise
+name: Survival

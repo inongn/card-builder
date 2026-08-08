@@ -2,11 +2,21 @@ id: mistyStep
 type: Activity
 name: Misty Step
 resource: level2SpellSlot
-tags: [level2Spell, conjuration, sorcerer, warlock, wizard]
+tags:
+  - level2Spell
+  - conjuration
+  - sorcerer
+  - warlock
+  - wizard
 time: bonus action
 range: self
 duration: instantaneous
-summary: "In a swirl of silver mist, you teleport to an unoccupied space you can see."
-description: |
-  Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space you can see.
-
+summary: In a swirl of silver mist, you teleport to an unoccupied space you can see.
+description: >
+  Briefly surrounded by silvery mist, you teleport up to 30 feet to an
+  unoccupied space you can see.
+mechanic:
+  pattern: utility
+  text: Teleport up to 30 feet to an unoccupied space you can see.
+  target:
+    type: self

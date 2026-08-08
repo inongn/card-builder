@@ -1,0 +1,10 @@
+id: empoweredSpell
+summary: Reroll damage dice on a spell to maximize your damage output.
+name: Empowered Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - type: Reference
+    target:
+      - empoweredSpellActivity

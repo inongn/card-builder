@@ -1,0 +1,10 @@
+summary: Act, tell a story, perform music, or dance.
+tags:
+  - charisma
+  - skillProficiency
+type: Effect
+target: skills.performance.proficiency
+operation: set
+value: 1
+id: performanceProficiency
+name: Performance

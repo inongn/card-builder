@@ -1,0 +1,14 @@
+id: aridLand
+summary: "Adapt your circle magic to desert and sun-scorched environments."
+name: Arid Land
+tags: [circleLand]
+type: Folder
+children:
+  - type: Reference
+    target: [blur, burningHands, fireBolt]
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target: fireball
+  - type: Reference
+    condition: $(meta.level >= 7)
+    target: blight

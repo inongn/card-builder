@@ -6,3 +6,11 @@ time: reaction
 range: self
 resource: giantAncestry
 description: When you take damage, reduce it by 1d12$(formatBonus(stats.con.mod)).
+mechanic:
+  pattern: utility
+  trigger: When you take damage
+  text: Reduce damage taken by 1d12$(formatBonus(stats.con.mod)).
+  dice:
+    count: 1
+    sides: 12
+    bonus: $(stats.con.mod)

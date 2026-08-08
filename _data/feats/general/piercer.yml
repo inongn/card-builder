@@ -1,0 +1,19 @@
+id: piercer
+summary: Reroll piercing damage dice and deal lethal critical piercing damage.
+name: Piercer
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Reference
+    target:
+      - piercerPuncture
+  - type: Reference
+    target:
+      - piercerEnhancedCritical

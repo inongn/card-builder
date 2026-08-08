@@ -1,0 +1,10 @@
+id: transmutedSpell
+name: Transmuted Spell
+summary: Change the elemental damage type of a spell to another elemental damage type.
+type: Folder
+tags:
+  - metamagic
+children:
+  - type: Reference
+    target:
+      - transmutedSpellActivity

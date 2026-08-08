@@ -1,0 +1,76 @@
+id: psion
+name: Psion
+description: Masters of psionic power who weave magic and extraordinary powers through the raw force of their minds.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 6
+  - type: Reference
+    target:
+      - intSave
+      - wisSave
+  - type: Reference
+    target:
+      - simpleWeaponProficiency
+  - id: psionSkillProficiencies
+    type: Slot
+    name: Psion Skill Proficiencies
+    quantity: 2
+    target: arcanaProficiency OR insightProficiency OR intimidationProficiency OR investigationProficiency OR medicineProficiency OR perceptionProficiency OR persuasionProficiency
+  - id: psiDice
+    type: Attribute
+    value: $(progression(6,6,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
+  - id: psionicEnergyDice
+    type: Resource
+    name: Psionic Energy
+    sr: 1
+    quantity: $(progression(4,4,4,4,6,6,6,6,8,8,8,8,10,10,10,10,12,12,12,12))
+  - type: Reference
+    target:
+      - telekineticPropel
+    condition: $(meta.level >= 1)
+  - id: subtleTelekinesis
+    type: Reference
+    target: mageHand
+  - type: Reference
+    target:
+      - fullCaster
+      - intCaster
+  - id: psionCantrips
+    type: Slot
+    name: Psion Cantrips
+    target: cantrip AND psion
+    quantity: '$(meta.level >= 10 ? 4 : meta.level >= 4 ? 3 : 2)'
+  - id: psionPreparedSpells
+    type: Slot
+    name: Psion Prepared Spells
+    target: 'psion NOT cantrip $(local.maxLevel < 9 ? ''NOT level9Spell'' : '''') $(local.maxLevel < 8 ? ''NOT level8Spell'' : '''') $(local.maxLevel < 7 ? ''NOT level7Spell'' : '''') $(local.maxLevel < 6 ? ''NOT level6Spell'' : '''') $(local.maxLevel < 5 ? ''NOT level5Spell'' : '''') $(local.maxLevel < 4 ? ''NOT level4Spell'' : '''') $(local.maxLevel < 3 ? ''NOT level3Spell'' : '''') $(local.maxLevel < 2 ? ''NOT level2Spell'' : '''')'
+    variables:
+      maxLevel: '$(meta.level >= 17 ? 9 : meta.level >= 15 ? 8 : meta.level >= 13 ? 7 : meta.level >= 11 ? 6 : meta.level >= 9 ? 5 : meta.level >= 7 ? 4 : meta.level >= 5 ? 3 : meta.level >= 3 ? 2 : 1)'
+    quantity: $(progression(4,5,6,7,9,10,11,12,14,15,16,16,17,17,18,18,19,20,21,22))
+  - id: psionicDiscipline
+    type: Slot
+    name: Psionic Discipline
+    target: psionicDiscipline OR classOption
+    quantity: '$(meta.level >= 17 ? 6 : meta.level >= 13 ? 5 : meta.level >= 10 ? 4 : meta.level >= 5 ? 3 : 2)'
+    condition: $(meta.level >= 2)
+  - id: psionSubclass
+    name: Psion Subclass
+    type: Slot
+    target: psionSubclass
+    condition: $(meta.level >= 3)
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)

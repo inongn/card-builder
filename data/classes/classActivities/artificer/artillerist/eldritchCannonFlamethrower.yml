@@ -6,3 +6,19 @@ time: bonus action
 range: self
 description: |
   Your cannon exhales fire in a 15-foot Cone. Each creature in that area makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking $(meta.level >= 9 ? '3d8' : '2d8') Fire damage on a failed save or half as much on a successful one. Flammable objects in the Cone start burning.
+mechanic:
+  pattern: save
+  save:
+    ability: dex
+    dc: $(attributes.spellcasting.save)
+    failure:
+      damage:
+        dice:
+          count: 2
+          sides: 8
+        type: fire
+  target:
+    type: aoe
+    aoe:
+      shape: cone
+      size: 15

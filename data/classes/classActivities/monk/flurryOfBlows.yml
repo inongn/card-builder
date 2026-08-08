@@ -6,3 +6,6 @@ range: self
 duration: Instantaneous
 resource: 1 focusPoints
 description: 'You make $(meta.level >= 10 ? ''three'' : ''two'') Unarmed Strikes.'
+mechanic:
+  pattern: utility
+  text: Make two (or three at level 10+) Unarmed Strikes as a Bonus Action.

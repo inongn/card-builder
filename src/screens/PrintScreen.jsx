@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
+import { ActivitySheet } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
 import 'mdui/components/button.js';
 
-export const PrintScreen = ({ char, onNavigate }) => {
+export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
     if (!char) return null;
 
     const containerRef = useRef(null);
@@ -32,6 +33,52 @@ export const PrintScreen = ({ char, onNavigate }) => {
         return () => observer.disconnect();
     }, []);
 
+    if (useActivitySheet) {
+        // Activity Sheet Mode: 2x1 Grid
+        // First slot: CharacterSheet, Second slot: ActivitySheet (list of activities line by line)
+        const statblocks = (char.statblocks || []).map(sb => ({ ...sb, _isStatblock: true }));
+
+        return (
+            <div className="container print-screen">
+                <mdui-top-app-bar scroll-behavior="hide" variant="small">
+                    <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
+                    <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                    <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
+                </mdui-top-app-bar>
+
+                <div className="content print-content print-mode" ref={containerRef}>
+                    <div className="print-page-wrapper">
+                        <div className="print-page first-page activity-sheet-print-page" style={{ transform: scale < 1 ? `scale(${scale})` : undefined }}>
+                            <div className="print-grid activity-sheet-2x1-grid">
+                                <div className="main-card-print-slot">
+                                    <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} />
+                                </div>
+                                <div className="activity-sheet-print-slot">
+                                    <ActivitySheet characterData={char} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {statblocks.length > 0 && (
+                        <div className="print-page-wrapper">
+                            <div className="print-page" style={{ transform: scale < 1 ? `scale(${scale})` : undefined }}>
+                                <div className="print-grid">
+                                    {statblocks.map((card, cardIdx) => (
+                                        <div key={cardIdx} className="action-card-print-slot">
+                                            <StatblockCard statblock={card} variant="static" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // Standard Activity Card Mode (3x2 Grid)
     const activities = (char.activities || []).filter(act => !act.tags || !act.tags.includes('restActivity'));
     const statblocks = (char.statblocks || []).map(sb => ({ ...sb, _isStatblock: true }));
     const allCards = [...activities, ...statblocks];
@@ -46,16 +93,11 @@ export const PrintScreen = ({ char, onNavigate }) => {
 
     return (
         <div className="container print-screen">
-
             <mdui-top-app-bar scroll-behavior="hide" variant="small">
                 <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
                 <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
             </mdui-top-app-bar>
-
-
-            <div className="header-nav">
-            </div>
 
             <div className="content print-content print-mode" ref={containerRef}>
                 <div className="print-page-wrapper">

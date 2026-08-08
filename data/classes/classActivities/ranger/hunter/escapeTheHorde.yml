@@ -1,9 +1,16 @@
 id: escapeTheHorde
 name: Escape the Horde
-summary: "Opportunity Attacks have Disadvantage against you."
-tags: [defensiveTactics]
+summary: Opportunity Attacks have Disadvantage against you.
+tags:
+  - defensiveTactics
 type: Activity
 time: free action
 duration: instantaneous
 range: self
-description: "Opportunity Attacks have Disadvantage against you."
+description: Opportunity Attacks have Disadvantage against you.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+  text: Opportunity Attacks have Disadvantage against you.

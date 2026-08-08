@@ -1,0 +1,24 @@
+id: shadowTouched
+summary: "Learn Invisibility and an illusion/necromancy spell with free daily castings."
+name: Shadow Touched
+tags:
+  - feat
+  - generalFeat
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - name: Shadow Magic Spell
+    id: shadowMagicSpell
+    type: Slot
+    target: level1Spell AND (illusion OR necromancy)
+    overwrite:
+      resource: limited
+  - name: Invisibility
+    type: Reference
+    target: invisibility
+    overwrite:
+      resource: limited

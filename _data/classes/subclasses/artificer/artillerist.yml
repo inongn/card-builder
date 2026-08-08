@@ -1,0 +1,73 @@
+id: artillerist
+name: Artillerist
+description: Specialize in using magic to hurl energy, projectiles, and deadly explosions on the battlefield.
+type: Folder
+tags:
+  - artificerSubclass
+children:
+  - type: Reference
+    target:
+      - woodcarversTools
+      - martialWeaponProficiency
+  - type: Reference
+    target:
+      - shield
+      - thunderwave
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - scorchingRay
+      - shatter
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - fireball
+      - windWall
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - iceStorm
+      - wallOfFire
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target:
+      - coneOfCold
+      - wallOfForce
+    condition: $(meta.level >= 17)
+  - type: Reference
+    target:
+      - eldritchCannonFlamethrower
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - eldritchCannonForceBallista
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - eldritchCannonProtector
+    condition: $(meta.level >= 3)
+  - type: Effect
+    target: activities[tags=artificer AND tags=damageSpell].description["d12"]
+    operation: replace
+    value: d12+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[tags=artificer AND tags=damageSpell].description["d10"]
+    operation: replace
+    value: d10+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=artificer AND tags=damageSpell)OR thunderwave OR shatter].description["d8"]
+    operation: replace
+    value: d8+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=artificer AND tags=damageSpell)OR scorchingRay].description["d6"]
+    operation: replace
+    value: d6+1d8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=artificer AND tags=damageSpell)].description["d4"]
+    operation: replace
+    value: d4+1d8
+    condition: $(meta.level >= 5)

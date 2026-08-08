@@ -1,0 +1,18 @@
+id: investmentOfTheChainMaster
+summary: Enhance your familiar with flying/swimming speed and boosted attacks.
+name: Investment of the Chain Master
+tags:
+  - eldritchInvocation
+condition: $(meta.level >= 5)
+prerequisite: Pact of the Chain
+prerequisiteCondition: $(attributes.pactOfTheChain == true)
+type: Folder
+children:
+  - type: Reference
+    target:
+      - commandFamiliar
+    condition: $(attributes.pactOfTheChain == true)
+  - type: Reference
+    target:
+      - familiarResistance
+    condition: $(attributes.pactOfTheChain == true)

@@ -1,14 +1,32 @@
 id: club
 name: Club
-type: Reference
-target: weaponAttack
-tags: [light, simple]
-variables:
-  name: Club
-  mastery: slow
-  damageRoll: 1d4
-  damageType: bludgeoning
-  range: 5 feet
-  classification: melee
-  category: simple
-  property: light
+type: Activity
+time: action
+range: 5 feet
+duration: instantaneous
+tags:
+  - simple
+  - melee
+  - slow
+  - light
+  - weaponAttack
+  - bludgeoningDamage
+  - club
+description: >-
+  You strike with your Club. Make a $(formatBonus(attributes.melee.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+    bonus: $(attributes.melee.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 4
+      bonus: $(attributes.melee.bonus)
+    type: bludgeoning
+  target:
+    type: single
+    range: 5 feet

@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "primitives.schema.json",
+  "title": "Activity Mechanic Primitives",
+  "description": "Reusable JSON Schema primitive definitions for D&D 5e / custom RPG activity mechanics.",
+  "$defs": {
+    "NumberOrExpression": {
+      "oneOf": [
+        { "type": "number" },
+        { "type": "string" }
+      ]
+    },
+    "DiceFormula": {
+      "type": "object",
+      "properties": {
+        "count": { "$ref": "#/$defs/NumberOrExpression" },
+        "sides": { "$ref": "#/$defs/NumberOrExpression" },
+        "bonus": { "$ref": "#/$defs/NumberOrExpression" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "DamageEntry": {
+      "type": "object",
+      "properties": {
+        "dice": {
+          "oneOf": [
+            { "$ref": "#/$defs/DiceFormula" },
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  { "$ref": "#/$defs/DiceFormula" },
+                  { "type": "string" }
+                ]
+              }
+            }
+          ]
+        },
+        "type": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
+        },
+        "text": { "type": "string" },
+        "condition": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "HealingEntry": {
+      "type": "object",
+      "properties": {
+        "dice": {
+          "oneOf": [
+            { "$ref": "#/$defs/DiceFormula" },
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  { "$ref": "#/$defs/DiceFormula" },
+                  { "type": "string" }
+                ]
+              }
+            }
+          ]
+        },
+        "type": {
+          "type": "string"
+        },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "TargetSpec": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "count": { "$ref": "#/$defs/NumberOrExpression" },
+        "aoe": {
+          "type": "object",
+          "properties": {
+            "shape": {
+              "type": "string"
+            },
+            "size": { "$ref": "#/$defs/NumberOrExpression" },
+            "height": { "$ref": "#/$defs/NumberOrExpression" }
+          },
+          "required": ["shape", "size"],
+          "additionalProperties": false
+        },
+        "range": { "$ref": "#/$defs/NumberOrExpression" }
+      },
+      "additionalProperties": false
+    },
+    "AttackSpec": {
+      "type": "object",
+      "properties": {
+        "classification": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "bonus": { "$ref": "#/$defs/NumberOrExpression" }
+      },
+      "additionalProperties": false
+    },
+    "SaveOutcome": {
+      "type": "object",
+      "properties": {
+        "damage": {
+          "oneOf": [
+            { "$ref": "#/$defs/DamageEntry" },
+            {
+              "type": "array",
+              "items": { "$ref": "#/$defs/DamageEntry" }
+            }
+          ]
+        },
+        "text": { "type": "string" },
+        "condition": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "SaveSpec": {
+      "type": "object",
+      "properties": {
+        "ability": {
+          "type": "string"
+        },
+        "dc": { "$ref": "#/$defs/NumberOrExpression" },
+        "failure": { "$ref": "#/$defs/SaveOutcome" },
+        "success": { "$ref": "#/$defs/SaveOutcome" }
+      },
+      "additionalProperties": false
+    },
+    "ScalingEntry": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "base": { "$ref": "#/$defs/NumberOrExpression" },
+        "damageBonus": {
+          "oneOf": [
+            { "$ref": "#/$defs/DiceFormula" },
+            { "type": "string" }
+          ]
+        },
+        "countBonus": { "$ref": "#/$defs/NumberOrExpression" },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

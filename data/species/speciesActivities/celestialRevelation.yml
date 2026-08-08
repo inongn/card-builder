@@ -13,3 +13,29 @@ description: |
   **Inner Radiance.** You shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. At the end of each of your turns, each creature within 10 feet of you takes $(attributes.prof) Radiant damage.
 
   **Necrotic Shroud.** Creatures other than your allies within 10 feet of you must succeed on a DC $(attributes.prof + 8 + stats.cha.mod) Charisma saving throw or have the Frightened condition until the end of your next turn.
+mechanic:
+  mode: choice
+  blocks:
+    - name: Heavenly Wings
+      pattern: utility
+      text: Transform for 1 min. Fly Speed equal to Walk Speed. Deal $(attributes.prof) extra Radiant damage once per turn.
+    - name: Inner Radiance
+      pattern: utility
+      target:
+        type: aoe
+        aoe:
+          shape: emanation
+          size: 10
+      text: Transform for 1 min. Shed light. Creatures within 10 ft take $(attributes.prof) Radiant damage at end of your turns.
+    - name: Necrotic Shroud
+      pattern: save
+      save:
+        ability: cha
+        dc: $(attributes.prof + 8 + stats.cha.mod)
+        failure:
+          text: Creatures within 10 ft gain Frightened condition until end of next turn
+      target:
+        type: aoe
+        aoe:
+          shape: emanation
+          size: 10

@@ -1,0 +1,9 @@
+id: leatherArmor
+name: Leather Armor
+type: Folder
+tags: [lightArmor, item]
+children:
+  - type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(stats.dex.mod + 10)

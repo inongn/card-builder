@@ -16,3 +16,6 @@ description: |
   **Persuasion ($(formatBonus(skills.persuasion.bonus))).** Persuade
 
   **Animal Handling ($(formatBonus(skills.animal_handling.bonus))).** Control or train a Beast
+mechanic:
+  pattern: utility
+  text: Make a Wisdom or Charisma check (Deception, Intimidation, Performance, Persuasion, or Animal Handling) to urge a creature.

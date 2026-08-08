@@ -2,13 +2,41 @@ id: thunderousSmite
 type: Activity
 name: Thunderous Smite
 resource: level1SpellSlot
-tags: [level1Spell, evocation, paladin, saveSpell, damageSpell, thunderDamage]
+tags:
+  - level1Spell
+  - evocation
+  - paladin
+  - saveSpell
+  - damageSpell
+  - thunderDamage
 time: bonus action
 range: self
 duration: instantaneous
-summary: "Your strike rings with thunder that knocks a target back."
-description: |
-  Immediately after hitting a target with a Melee weapon or an Unarmed Strike, your strike rings with thunder that is audible within 300 feet of you, and the target takes an extra 2d6 Thunder damage from the attack. Additionally, if the target is a creature, it must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be pushed 10 feet away from you and have the Prone condition.
+summary: Your strike rings with thunder that knocks a target back.
+description: >
+  Immediately after hitting a target with a Melee weapon or an Unarmed Strike,
+  your strike rings with thunder that is audible within 300 feet of you, and the
+  target takes an extra 2d6 Thunder damage from the attack. Additionally, if the
+  target is a creature, it must succeed on a DC $(attributes.spellcasting.save)
+  Strength saving throw or be pushed 10 feet away from you and have the Prone
+  condition.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d6 for each spell slot level above 1.
+mechanic:
+  pattern: save
+  save:
+    ability: str
+    dc: $(attributes.spellcasting.save)
+    failure:
+      damage:
+        dice:
+          count: 2
+          sides: 6
+          bonus: 0
+        type: thunder
+      text: Pushed 10 feet away and falls Prone.
+  trigger: Immediately after hitting a target with a Melee weapon or an Unarmed Strike
+  target:
+    type: single
+    range: $(range)

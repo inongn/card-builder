@@ -1,0 +1,20 @@
+id: soldier
+name: Soldier
+description: Trained for battlefield combat, you carry martial discipline and war memories into every fight.
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - athleticsProficiency
+      - intimidationProficiency
+      - savageAttacker
+      - gamingSet
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - str
+      - dex
+      - con

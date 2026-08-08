@@ -1,0 +1,14 @@
+id: tavernBrawler
+summary: Excel in brawling, improvised weapons, and swift grappling.
+name: Tavern Brawler
+tags:
+  - feat
+  - originFeat
+type: Folder
+children:
+  - type: Reference
+    target:
+      - damageRerolls
+  - type: Reference
+    target:
+      - tavernBrawlerPush

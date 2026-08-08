@@ -1,14 +1,31 @@
 id: pistol
 name: Pistol
-type: Reference
-target: weaponAttack
-tags: [martial]
-variables:
-  name: Pistol
-  mastery: vex
-  damageRoll: 1d10
-  damageType: piercing
-  range: 30 feet
-  classification: ranged
-  category: martial
-  property: ''
+type: Activity
+time: action
+range: 30 feet
+duration: instantaneous
+tags:
+  - martial
+  - ranged
+  - vex
+  - weaponAttack
+  - piercingDamage
+  - pistol
+description: >-
+  You strike with your Pistol. Make a $(formatBonus(attributes.ranged.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 10
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 30 feet

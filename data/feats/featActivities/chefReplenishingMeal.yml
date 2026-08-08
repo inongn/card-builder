@@ -5,3 +5,6 @@ range: self
 time: free action
 description: When you finish a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for $(4 + attributes.prof) creatures. Any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.
 id: chefReplenishingMeal
+mechanic:
+  pattern: utility
+  text: Cook meal for $(4 + attributes.prof) creatures. Eating creatures spending Hit Dice regain extra 1d8 HP.

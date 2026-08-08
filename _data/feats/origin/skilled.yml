@@ -1,0 +1,13 @@
+id: skilled
+summary: "Gain proficiency in three skills or tools of your choice."
+name: Skilled
+tags:
+- feat
+- originFeat
+type: Folder
+children:
+- type: Slot
+  quantity: 3
+  id: skilledSkillProficiency
+  name: Skilled Skill Proficiency
+  target: skillProficiency

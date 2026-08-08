@@ -2,13 +2,61 @@ id: iceKnife
 type: Activity
 name: Ice Knife
 resource: level1SpellSlot
-tags: [level1Spell, conjuration, druid, sorcerer, wizard, saveSpell, attackSpell, damageSpell, piercingDamage, coldDamage]
+tags:
+  - level1Spell
+  - conjuration
+  - druid
+  - sorcerer
+  - wizard
+  - saveSpell
+  - attackSpell
+  - damageSpell
+  - piercingDamage
+  - coldDamage
 time: action
 range: 60 feet
 duration: instantaneous
-summary: "You fling a shard of ice that pierces a target and explodes into cold shards."
-description: |
-  You create a shard of ice and fling it at one creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes 1d10 Piercing damage. Hit or miss, the shard then explodes. The target and each creature within 5 feet of it must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take 2d6 Cold damage.
+summary: You fling a shard of ice that pierces a target and explodes into cold shards.
+description: >
+  You create a shard of ice and fling it at one creature within range. Make a
+  $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the
+  target. On a hit, the target takes 1d10 Piercing damage. Hit or miss, the
+  shard then explodes. The target and each creature within 5 feet of it must
+  succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take
+  2d6 Cold damage.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The Cold damage increases by 1d6 for each spell slot level above 1.
+mechanic:
+  mode: succession
+  blocks:
+    - pattern: attack
+      attack:
+        classification: ranged
+        type: spell
+        bonus: $(attributes.spellcasting.attack)
+      damage:
+        dice:
+          count: 1
+          sides: 10
+          bonus: 0
+        type: piercing
+      target:
+        type: single
+        range: 60 feet
+    - pattern: save
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+        failure:
+          damage:
+            dice:
+              count: 2
+              sides: 6
+              bonus: 0
+            type: cold
+      target:
+        type: aoe
+        aoe:
+          shape: sphere
+          size: 5

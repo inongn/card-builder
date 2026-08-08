@@ -139,6 +139,17 @@ export default function App() {
         const enabledRaw = localStorage.getItem('sample_characters_enabled');
         return enabledRaw !== 'false';
     });
+    const [useActivitySheet, setUseActivitySheet] = useState(() => {
+        return localStorage.getItem('use_activity_sheet') === 'true';
+    });
+
+    const handleToggleActivitySheet = useCallback(() => {
+        setUseActivitySheet(prev => {
+            const next = !prev;
+            localStorage.setItem('use_activity_sheet', String(next));
+            return next;
+        });
+    }, []);
 
     // Sync theme to document element
     useEffect(() => {
@@ -440,6 +451,8 @@ export default function App() {
                 handleToggleSampleCharacters={handleToggleSampleCharacters}
                 savedCharacters={savedCharacters}
                 setSavedCharacters={setSavedCharacters}
+                useActivitySheet={useActivitySheet}
+                onToggleActivitySheet={handleToggleActivitySheet}
                 width={"1200px"}
             />
 
@@ -480,12 +493,14 @@ export default function App() {
                         loadedCharacterId={loadedCharacterId}
                         handleDeleteSaved={handleDeleteSaved}
                         onToggleDebug={() => setIsDebugOpen(prev => !prev)}
+                        useActivitySheet={useActivitySheet}
                     />
                 )}
                 {activeTab === 'print' && (
                     <PrintScreen
                         char={characterData}
                         onNavigate={handleNavigate}
+                        useActivitySheet={useActivitySheet}
                     />
                 )}
             </mdui-layout-main>

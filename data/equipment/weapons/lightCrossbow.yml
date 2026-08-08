@@ -1,14 +1,33 @@
 id: lightCrossbow
 name: Light Crossbow
-type: Reference
-target: weaponAttack
-tags: [twoHanded, simple]
-variables:
-  name: Light Crossbow
-  mastery: slow
-  damageRoll: 1d8
-  damageType: piercing
-  range: 80 feet
-  classification: ranged
-  category: simple
-  property: twoHanded
+type: Activity
+time: action
+range: 80 feet
+duration: instantaneous
+tags:
+  - simple
+  - ranged
+  - slow
+  - twoHanded
+  - weaponAttack
+  - piercingDamage
+  - lightCrossbow
+description: >-
+  You strike with your Light Crossbow. Make a
+  $(formatBonus(attributes.ranged.attack)) attack against the target. On a hit,
+  the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 8
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 80 feet

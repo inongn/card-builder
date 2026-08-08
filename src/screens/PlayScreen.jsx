@@ -1,6 +1,7 @@
 import React from 'react';
 import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
+import { ActivitySheet } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
 import { getAssetUrl } from '../data/artworkData';
 import 'mdui/components/button.js';
@@ -10,7 +11,7 @@ import 'mdui/components/menu.js';
 import 'mdui/components/dropdown.js';
 import 'mdui/components/menu-item.js';
 
-export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode, loadedCharacterId, handleDeleteSaved, onToggleDebug }) => {
+export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode, loadedCharacterId, handleDeleteSaved, onToggleDebug, useActivitySheet }) => {
     const mainCardRef = React.useRef(null);
     const asideRef = React.useRef(null);
     const charImage = characterData?.meta?.image ? getAssetUrl(characterData.meta.image) : undefined;
@@ -155,20 +156,24 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
                     <CharacterSheet char={characterData} ref={mainCardRef} className="main-card" onNavigate={onNavigate} />
                 </div>
                 <div className="play-content-aside" ref={asideRef}>
-                    {activityCategories.map(({ key, label }) => {
-                        const activities = groupedActivities[key];
-                        if (activities.length === 0) return null;
-                        return (
-                            <div key={key} className="aside-card-group">
-                                <div className="title-primary">{label}</div>
-                                <mdui-collapse accordion>
-                                    {activities.map((item, i) => (
-                                        <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} char={characterData} />
-                                    ))}
-                                </mdui-collapse>
-                            </div>
-                        );
-                    })}
+                    {useActivitySheet ? (
+                        <ActivitySheet groupedActivities={groupedActivities} characterData={characterData} />
+                    ) : (
+                        activityCategories.map(({ key, label }) => {
+                            const activities = groupedActivities[key];
+                            if (activities.length === 0) return null;
+                            return (
+                                <div key={key} className="aside-card-group">
+                                    <div className="title-primary">{label}</div>
+                                    <mdui-collapse accordion>
+                                        {activities.map((item, i) => (
+                                            <ActivityCard key={`${item.id || 'activity'}-${i}`} activity={item} char={characterData} />
+                                        ))}
+                                    </mdui-collapse>
+                                </div>
+                            );
+                        })
+                    )}
 
                     {hasStatblocks && (
                         <>

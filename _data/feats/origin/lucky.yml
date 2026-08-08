@@ -1,0 +1,16 @@
+id: lucky
+summary: Expend luck points to gain advantage on rolls or impose disadvantage on foes.
+name: Lucky
+tags:
+  - feat
+  - originFeat
+type: Folder
+children:
+  - id: luckPoints
+    type: Resource
+    name: Luck Points
+    quantity: $(attributes.prof)
+    sr: 0
+  - type: Reference
+    target:
+      - luckyAdvantage

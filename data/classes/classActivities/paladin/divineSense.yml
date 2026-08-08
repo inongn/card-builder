@@ -6,3 +6,11 @@ range: 60 feet
 duration: 10 minutes
 resource: channelDivinity
 description: You open your awareness to detect Celestials, Fiends, and Undead. For the duration or until you have the Incapacitated condition, you know the location of any creature of those types within range, and you know its creature type. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow spell.
+mechanic:
+  pattern: utility
+  target:
+    type: aoe
+    aoe:
+      shape: emanation
+      size: 60
+  text: Detect location of celestial, fiend, or undead within 60 feet.

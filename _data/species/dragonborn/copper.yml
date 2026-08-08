@@ -1,0 +1,10 @@
+id: draconicAncestryCopper
+name: Copper Dragon
+tags: [draconicAncestry]
+type: Folder
+children:
+  - type: Reference
+    target: acidResistance
+  - type: Attribute
+    id: dragonicAncestryDamage
+    value: Acid

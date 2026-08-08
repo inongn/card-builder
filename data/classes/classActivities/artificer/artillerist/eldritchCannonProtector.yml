@@ -6,3 +6,16 @@ time: bonus action
 range: 10 feet
 description: |
   Your cannon emits a burst of positive energy that grants itself and each creature of your choice within range gains $(meta.level >= 9 ? '2d8' : '1d8')$(formatBonus(stats.int.mod)) Temporary Hit Points.
+mechanic:
+  pattern: healing
+  healing:
+    dice:
+      count: 1
+      sides: 8
+      bonus: $(stats.int.mod)
+    type: tempHitPoints
+  target:
+    type: aoe
+    aoe:
+      shape: emanation
+      size: 10

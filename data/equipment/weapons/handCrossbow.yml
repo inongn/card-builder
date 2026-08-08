@@ -1,14 +1,33 @@
 id: handCrossbow
 name: Hand Crossbow
-type: Reference
-target: weaponAttack
-tags: [light, martial]
-variables:
-  name: Hand Crossbow
-  mastery: vex
-  damageRoll: 1d6
-  damageType: piercing
-  range: 30 feet
-  classification: ranged
-  category: martial
-  property: light
+type: Activity
+time: action
+range: 30 feet
+duration: instantaneous
+tags:
+  - martial
+  - ranged
+  - vex
+  - light
+  - weaponAttack
+  - piercingDamage
+  - handCrossbow
+description: >-
+  You strike with your Hand Crossbow. Make a
+  $(formatBonus(attributes.ranged.attack)) attack against the target. On a hit,
+  the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 6
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 30 feet

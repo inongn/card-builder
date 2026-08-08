@@ -2,13 +2,34 @@ id: aid
 type: Activity
 name: Aid
 resource: level2SpellSlot
-tags: [level2Spell, abjuration, artificer, bard, cleric, druid, paladin, ranger]
+tags:
+  - level2Spell
+  - abjuration
+  - artificer
+  - bard
+  - cleric
+  - druid
+  - paladin
+  - ranger
 time: action
 range: 30 feet
 duration: 8 hours
-summary: "You bolster your allies with toughness and extra hit points."
-description: |
-  Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration.
+summary: You bolster your allies with toughness and extra hit points.
+description: >
+  Choose up to three creatures within range. Each target's Hit Point maximum and
+  current Hit Points increase by 5 for the duration.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: Each target's Hit Points increase by 5 for each spell slot level above 2.
+mechanic:
+  pattern: healing
+  healing:
+    dice:
+      count: 0
+      sides: 0
+      bonus: 5
+    type: hitPoints
+  text: Three targets gain 5 Current and Max Hit Points.
+  target:
+    type: single
+    range: 30 feet

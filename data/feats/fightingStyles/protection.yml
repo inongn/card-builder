@@ -1,13 +1,18 @@
 tags:
-- fightingStyle
+  - fightingStyle
 type: Activity
 subtype: Fighting Style Feature
 time: reaction
 range: 5 feet
 duration: Instantaneous
 id: protection
-summary: "Use your reaction to impose disadvantage on attacks against nearby allies."
+summary: Use your reaction to impose disadvantage on attacks against nearby allies.
 name: Protection
-description: When a creature you can see attacks a target other than you, you impose
-  Disadvantage on the triggering attack roll and all other attack rolls against the
-  target until the start of your next turn.
+description: When a creature you can see attacks a target other than you, you impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn.
+mechanic:
+  pattern: utility
+  trigger: When a creature attacks a target within 5 feet other than you
+  target:
+    type: single
+    range: 5 feet
+  text: Impose Disadvantage on triggering attack roll and attacks against target until start of next turn.

@@ -1,0 +1,9 @@
+id: banePact
+name: Aspect of Tyranny
+tags: [dreadAllegiance]
+type: Folder
+children:
+  - type: Reference
+    target: psychicResistance
+  - type: Reference
+    target: [minorIllusion]

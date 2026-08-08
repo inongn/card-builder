@@ -1,0 +1,5 @@
+id: blessedHealer
+type: Extra
+name: Blessed Healer
+target: healingSpell
+description: If you cast this on another creature, you regain $(2+(stats.wis.mod)) Hit Points.

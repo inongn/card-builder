@@ -1,14 +1,32 @@
 id: halberd
 name: Halberd
-type: Reference
-target: weaponAttack
-tags: [twoHanded, martial]
-variables:
-  name: Halberd
-  mastery: cleave
-  damageRoll: 1d10
-  damageType: slashing
-  range: 5 feet
-  classification: melee
-  category: martial
-  property: twoHanded
+type: Activity
+time: action
+range: 5 feet
+duration: instantaneous
+tags:
+  - martial
+  - melee
+  - cleave
+  - twoHanded
+  - weaponAttack
+  - slashingDamage
+  - halberd
+description: >-
+  You strike with your Halberd. Make a $(formatBonus(attributes.melee.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+    bonus: $(attributes.melee.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 10
+      bonus: $(attributes.melee.bonus)
+    type: slashing
+  target:
+    type: single
+    range: 5 feet

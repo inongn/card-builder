@@ -1,0 +1,11 @@
+id: otherworldlyLeap
+summary: "Cast Jump on yourself at will without expending spell slots."
+name: Otherworldly Leap
+tags:
+  - eldritchInvocation
+type: Folder
+children:
+  - type: Reference
+    target: jump
+    overwrite:
+      resource: null

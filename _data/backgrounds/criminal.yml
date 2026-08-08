@@ -1,0 +1,20 @@
+id: criminal
+name: Criminal
+description: You learned to survive in dark alleyways through picking pockets, burglary, and street smarts.
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - sleightOfHandProficiency
+      - stealthProficiency
+      - thievesTools
+      - alert
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - dex
+      - con
+      - int

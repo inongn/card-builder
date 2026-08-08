@@ -6,3 +6,9 @@ time: bonus action
 range: 30 feet
 resource: giantAncestry
 description: You magically teleport up to 30 feet to an unoccupied space you can see.
+mechanic:
+  pattern: utility
+  target:
+    type: single
+    range: 30 feet
+  text: Teleport up to 30 feet to an unoccupied space you can see.

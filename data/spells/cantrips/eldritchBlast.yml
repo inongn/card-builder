@@ -1,11 +1,35 @@
 id: eldritchBlast
 type: Activity
 name: Eldritch Blast
-tags: [evocation, cantrip, warlock, attackSpell, damageSpell, forceDamage]
+tags:
+  - evocation
+  - cantrip
+  - warlock
+  - attackSpell
+  - damageSpell
+  - forceDamage
 time: action
 range: 120 feet
 duration: instantaneous
-summary: "A beam of crackling energy lances toward a target."
-description: |
-  You hurl $(meta.level >= 5 ? (meta.level >= 17 ? 'four' : meta.level >= 11 ? 'three' : 'two') + ' beams' : 'a beam') of crackling energy. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack $(meta.level >= 5 ? 'for each beam' : 'against one creature or object in range'). On a hit, the target takes 1d10 Force damage.
-
+summary: A beam of crackling energy lances toward a target.
+description: >
+  You hurl $(meta.level >= 5 ? (meta.level >= 17 ? 'four' : meta.level >= 11 ?
+  'three' : 'two') + ' beams' : 'a beam') of crackling energy. Make a
+  $(formatBonus(attributes.spellcasting.attack)) ranged spell attack
+  $(meta.level >= 5 ? 'for each beam' : 'against one creature or object in
+  range'). On a hit, the target takes 1d10 Force damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: spell
+    bonus: $(attributes.spellcasting.attack)
+  damage:
+    dice:
+      count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+      sides: 10
+      bonus: 0
+    type: force
+  target:
+    type: single
+    range: 120 feet

@@ -1,0 +1,18 @@
+id: guardianModel
+name: Guardian
+summary: Optimize armor model for front-line defense, thunder pulse strikes, and temporary hit points.
+type: Folder
+tags:
+  - armorModel
+children:
+  - type: Reference
+    target:
+      - thunderPulse
+  - type: Reference
+    target:
+      - defensiveField
+  - id: perfectedGuardianReactionResource
+    type: Resource
+    name: Perfected Guardian Reaction Uses
+    quantity: $(Math.max(1, stats.int.mod))
+    condition: $(meta.level >= 15)

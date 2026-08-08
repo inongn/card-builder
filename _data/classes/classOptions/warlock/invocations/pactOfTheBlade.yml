@@ -1,0 +1,12 @@
+id: pactOfTheBladeFolder
+summary: "Summon or bind a magical pact weapon in your hand."
+name: Pact of the Blade
+tags:
+  - eldritchInvocation
+type: Folder
+children:
+  - id: pactOfTheBlade
+    type: Attribute
+    value: true
+  - type: Reference
+    target: masteryProperties

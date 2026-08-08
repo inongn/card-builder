@@ -1,0 +1,34 @@
+id: leonin
+name: Leonin
+tags:
+  - species
+description: Fierce, golden-furred hunters who value pride, martial prowess, and fierce independence.
+type: Folder
+children:
+  - type: Effect
+    target: attributes.movement.walk
+    operation: set
+    value: 30
+  - type: Reference
+    target:
+      - dauntingRoar
+  - type: Resource
+    name: Daunting Roar
+    id: dauntingRoar
+    quantity: $(attributes.prof)
+  - type: Slot
+    name: Leonin Prowess Skill Proficiency
+    id: leoninSkillProficiency
+    target: survivalProficiency, perceptionProficiency, stealthProficiency
+  - id: leoninDarkvision
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 60
+  - type: Reference
+    target:
+      - feralPounce
+  - type: Effect
+    target: activities[tags=unarmed].description["Bludgeoning"]
+    operation: replace
+    value: Slashing

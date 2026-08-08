@@ -1,0 +1,9 @@
+id: familiarWater
+type: Feature
+name: Water (swim speed)
+tags: [familiarOption]
+children:
+  - type: Effect
+    target: meta.familiarEnvironment
+    operation: set
+    value: Water

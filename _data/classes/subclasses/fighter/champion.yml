@@ -1,0 +1,26 @@
+id: champion
+name: Champion
+description: Focus on martial prowess and relentless pursuit of victory to deal devastating blows and garner glory.
+tags:
+  - fighterSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - improvedCritical
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - initiativeAdvantage
+      - athleticsAdvantage
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - remarkableAthlete
+    condition: $(meta.level >= 3)
+  - id: additionalFightingStyle
+    name: Additional Fighting Style
+    type: Slot
+    target: fightingStyle
+    condition: $(meta.level >= 7)
+    quantity: 1

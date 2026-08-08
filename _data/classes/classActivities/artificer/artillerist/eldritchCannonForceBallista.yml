@@ -1,0 +1,8 @@
+id: eldritchCannonForceBallista
+type: Activity
+duration: instantaneous
+name: Force Ballista
+time: bonus action
+range: 120 feet
+description: |
+  Make a $(formatBonus(stats.int.mod + attributes.prof)) attack originating from the cannon at one creature or object within range. On a hit, the target takes $(meta.level >= 9 ? '3d8' : '2d8') Force damage, and if the target is a creature, it is pushed up to 5 feet away from the cannon.

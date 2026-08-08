@@ -1,0 +1,127 @@
+id: barbarian
+name: Barbarian
+description: Fierce warriors fueled by primal rage, embodying the raw ferocity and stamina of nature.
+tags:
+  - class
+type: Folder
+children:
+  - id: hitDie
+    type: Attribute
+    value: 12
+  - id: weaponMastery
+    type: Attribute
+    value: true
+  - type: Reference
+    value:
+      - strSave
+      - conSave
+  - type: Reference
+    value:
+      - simpleWeaponProficiency
+      - martialWeaponProficiency
+      - lightArmorTraining
+      - mediumArmorTraining
+      - shieldTraining
+  - id: barbarianSkillProficiencies
+    type: Slot
+    name: Barbarian Skill Proficiencies
+    quantity: 2
+    target: animalHandlingProficiency OR athleticsProficiency OR intimidationProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
+  - id: rageDamage
+    type: Attribute
+    value: $(progression(2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,4,4,4,4,4))
+  - type: Reference
+    target:
+      - rage
+  - id: rage
+    type: Form
+    name: Rage
+    abbreviation: R
+  - type: Reference
+    target:
+      - bludgeoningResistance
+      - piercingResistance
+      - slashingResistance
+    form: rage
+  - type: Reference
+    target:
+      - strAdvantage
+      - athleticsAdvantage
+    form: rage
+  - id: rageDamageBonus
+    type: Effect
+    target: attributes.melee.bonus
+    operation: add
+    value: $(attributes.rageDamage)
+    form: rage
+  - id: rage
+    type: Resource
+    name: Rage
+    quantity: $(progression(2,2,3,3,3,4,4,4,4,4,4,5,5,5,5,5,6,6,6,6))
+    sr: 1
+  - id: unarmoredDefense
+    type: Effect
+    target: attributes.ac
+    operation: set
+    value: $(10 + stats.dex.mod + stats.con.mod)
+  - id: masteryProperties
+    type: Reference
+    target: masteryProperties
+  - id: dangerSense
+    type: Reference
+    target: dexAdvantage
+    condition: $(meta.level >= 2)
+  - type: Reference
+    target:
+      - recklessAttack
+    condition: $(meta.level >= 2)
+  - id: primalKnowledgeSkill
+    type: Slot
+    name: Primal Knowledge Skill Proficiency
+    condition: $(meta.level >= 3)
+    quantity: 1
+    target: animalHandlingProficiency OR athleticsProficiency OR intimidationProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
+  - type: Reference
+    target:
+      - primalKnowledge
+    condition: $(meta.level >= 3)
+  - id: primalKnowledgeAcr
+    type: Effect
+    form: rage
+    target: skills.acrobatics.bonus
+    operation: set
+    value: $(Math.floor(stats.str.mod + attributes.prof * skills.acrobatics.proficiency))
+  - id: barbarianSubclass
+    name: Barbarian Subclass
+    condition: $(meta.level >= 3)
+    type: Slot
+    target: barbarianSubclass
+  - id: level4feat
+    name: Level 4 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 4)
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)
+  - id: fastMovement
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    condition: $(meta.level >= 5)
+    value: 10
+  - type: Reference
+    target: initiativeAdvantage
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - instinctivePounce
+    condition: $(meta.level >= 7)
+  - id: level8feat
+    name: Level 8 Feat
+    type: Slot
+    quantity: 1
+    target: feat
+    condition: $(meta.level >= 8)

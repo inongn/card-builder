@@ -1,0 +1,10 @@
+summary: Recall lore about spells, magic items, and the planes of existence.
+tags:
+  - intelligence
+  - skillProficiency
+type: Effect
+target: skills.arcana.proficiency
+operation: set
+value: 1
+id: arcanaProficiency
+name: Arcana

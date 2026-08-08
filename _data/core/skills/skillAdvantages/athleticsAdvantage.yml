@@ -1,0 +1,6 @@
+type: Effect
+target: skills.athletics.adv
+operation: set
+value: true
+id: athleticsAdvantage
+name: Athletics Advantage

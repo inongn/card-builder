@@ -5,3 +5,7 @@ range: self
 time: reaction
 description: If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you take no damage if you succeed on the saving throw.
 id: shieldMasterInterposeShield
+mechanic:
+  pattern: utility
+  trigger: Subjected to a Dex save for half damage
+  text: Take no damage on a successful save.

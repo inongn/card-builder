@@ -5,3 +5,13 @@ id: telekineticShove
 time: bonus action
 range: 30 feet
 description: You try to telekinetically shove one creature you can see within range. The target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Strength saving throw or be moved 5 feet toward or away from you. A creature can willingly fail this save.
+mechanic:
+  pattern: save
+  save:
+    ability: str
+    dc: $(8 + stats.int.mod + attributes.prof)
+    failure:
+      text: Moved 5 feet toward or away from you
+  target:
+    type: single
+    range: 30 feet

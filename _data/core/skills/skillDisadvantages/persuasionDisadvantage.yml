@@ -1,0 +1,6 @@
+type: Effect
+target: skills.persuasion.dis
+operation: set
+value: true
+id: persuasionDisadvantage
+name: Persuasion Disadvantage

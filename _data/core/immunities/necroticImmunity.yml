@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+target: attributes.immunities
+value: Necrotic Damage
+id: necroticImmunity
+name: Necrotic Immunity

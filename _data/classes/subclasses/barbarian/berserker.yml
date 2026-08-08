@@ -1,0 +1,20 @@
+id: berserker
+name: Path of the Berserker
+description: Direct your Rage toward violence, thrilling in untrammeled fury and the chaos of battle.
+tags:
+  - barbarianSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - frenzy
+  - id: mindlessRageCharmed
+    type: Reference
+    target: charmedImmunity
+    form: rage
+    condition: $(meta.level >= 6)
+  - id: mindlessRageFrightened
+    type: Reference
+    target: frightenedImmunity
+    form: rage
+    condition: $(meta.level >= 6)

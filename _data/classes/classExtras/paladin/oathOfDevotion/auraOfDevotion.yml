@@ -1,0 +1,5 @@
+id: auraOfDevotion
+type: Extra
+name: Aura of Devotion
+target: auraOfProtection
+description: You and your allies have Immunity to the Charmed condition. If a Charmed ally enters the aura, that condition has no effect on that ally while there.

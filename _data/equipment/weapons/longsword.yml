@@ -1,0 +1,14 @@
+id: longsword
+name: Longsword
+type: Reference
+target: weaponAttack
+tags: [martial]
+variables:
+  name: Longsword
+  mastery: sap
+  damageRoll: "$(attributes.shieldEquipped == true ? '1d8' : '1d10')"
+  damageType: slashing
+  range: 5 feet
+  classification: melee
+  category: martial
+  property: ''

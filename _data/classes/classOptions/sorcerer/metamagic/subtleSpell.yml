@@ -1,0 +1,10 @@
+id: subtleSpell
+summary: Cast a spell without needing verbal or somatic components.
+name: Subtle Spell
+type: Folder
+tags:
+  - metamagic
+children:
+  - type: Reference
+    target:
+      - subtleSpellActivity

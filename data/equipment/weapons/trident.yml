@@ -1,14 +1,31 @@
 id: trident
 name: Trident
-type: Reference
-target: weaponAttack
-tags: [martial]
-variables:
-  name: Trident
-  mastery: topple
-  damageRoll: "$(attributes.shieldEquipped == true ? '1d8' : '1d10')"
-  damageType: piercing
-  range: 20 feet
-  classification: thrown
-  category: martial
-  property: ''
+type: Activity
+time: action
+range: 20 feet
+duration: instantaneous
+tags:
+  - martial
+  - melee
+  - topple
+  - weaponAttack
+  - piercingDamage
+  - trident
+description: >-
+  You strike with your Trident. Make a $(formatBonus(attributes.melee.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+    bonus: $(attributes.melee.attack)
+  damage:
+    dice:
+      count: 1
+      sides: '$(attributes.shieldEquipped == true ? 8 : 10)'
+      bonus: $(attributes.melee.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 20 feet

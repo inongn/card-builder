@@ -1,0 +1,14 @@
+id: polarLand
+summary: "Adapt your circle magic to icy, frost-covered environments."
+name: Polar Land
+tags: [circleLand]
+type: Folder
+children:
+  - type: Reference
+    target: [fogCloud, holdPerson, rayOfFrost]
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target: sleetStorm
+  - type: Reference
+    condition: $(meta.level >= 7)
+    target: iceStorm

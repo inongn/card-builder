@@ -2,13 +2,34 @@ id: compulsion
 type: Activity
 name: Compulsion
 resource: level4SpellSlot
-tags: [level4Spell, enchantment, bard, saveSpell, psion]
+tags:
+  - level4Spell
+  - enchantment
+  - bard
+  - saveSpell
+  - psion
 time: action
 range: 30 feet
 duration: concentration, up to 1 minute
-summary: "You compel creatures in an area to move in a designated direction."
-description: |
-  Each creature of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition until the spell ends.
+summary: You compel creatures in an area to move in a designated direction.
+description: >
+  Each creature of your choice that you can see within range must succeed on a
+  DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed
+  condition until the spell ends.
 
-  For the duration, you can take a Bonus Action to designate a direction that is horizontal to you. Each Charmed target must use as much of its movement as possible to move in that direction on its next turn, taking the safest route. After moving in this way, a target repeats the save, ending the spell on itself on a success.
 
+  For the duration, you can take a Bonus Action to designate a direction that is
+  horizontal to you. Each Charmed target must use as much of its movement as
+  possible to move in that direction on its next turn, taking the safest route.
+  After moving in this way, a target repeats the save, ending the spell on
+  itself on a success.
+mechanic:
+  pattern: save
+  save:
+    ability: wis
+    dc: $(attributes.spellcasting.save)
+    failure:
+      text: Target must use its movement to move in a designated direction.
+  target:
+    type: single
+    range: 30 feet

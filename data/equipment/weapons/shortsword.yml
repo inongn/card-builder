@@ -1,14 +1,33 @@
 id: shortsword
 name: Shortsword
-type: Reference
-target: weaponAttack
-tags: [light, martial]
-variables:
-  name: Shortsword
-  mastery: vex
-  damageRoll: 1d6
-  damageType: piercing
-  range: 5 feet
-  classification: finesse
-  category: martial
-  property: light
+type: Activity
+time: action
+range: 5 feet
+duration: instantaneous
+tags:
+  - martial
+  - finesse
+  - vex
+  - light
+  - weaponAttack
+  - piercingDamage
+  - shortsword
+description: >-
+  You strike with your Shortsword. Make a
+  $(formatBonus(attributes.finesse.attack)) attack against the target. On a hit,
+  the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: finesse
+    type: weapon
+    bonus: $(attributes.finesse.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 6
+      bonus: $(attributes.finesse.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 5 feet

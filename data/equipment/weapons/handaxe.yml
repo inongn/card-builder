@@ -1,14 +1,32 @@
 id: handaxe
 name: Handaxe
-type: Reference
-target: weaponAttack
-tags: [light, simple]
-variables:
-  name: Handaxe
-  mastery: vex
-  damageRoll: 1d6
-  damageType: slashing
-  range: 20 feet
-  classification: thrown
-  category: simple
-  property: light
+type: Activity
+time: action
+range: 20 feet
+duration: instantaneous
+tags:
+  - simple
+  - melee
+  - vex
+  - light
+  - weaponAttack
+  - slashingDamage
+  - handaxe
+description: >-
+  You strike with your Handaxe. Make a $(formatBonus(attributes.melee.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: melee
+    type: weapon
+    bonus: $(attributes.melee.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 6
+      bonus: $(attributes.melee.bonus)
+    type: slashing
+  target:
+    type: single
+    range: 20 feet

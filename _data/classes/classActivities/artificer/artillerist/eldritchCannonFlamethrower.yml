@@ -1,0 +1,8 @@
+id: eldritchCannonFlamethrower
+type: Activity
+duration: instantaneous
+name: Flamethrower
+time: bonus action
+range: self
+description: |
+  Your cannon exhales fire in a 15-foot Cone. Each creature in that area makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking $(meta.level >= 9 ? '3d8' : '2d8') Fire damage on a failed save or half as much on a successful one. Flammable objects in the Cone start burning.

@@ -1,14 +1,32 @@
 id: longbow
 name: Longbow
-type: Reference
-target: weaponAttack
-tags: [twoHanded, martial]
-variables:
-  name: Longbow
-  mastery: slow
-  damageRoll: 1d8
-  damageType: piercing
-  range: 150 feet
-  classification: ranged
-  category: martial
-  property: twoHanded
+type: Activity
+time: action
+range: 150 feet
+duration: instantaneous
+tags:
+  - martial
+  - ranged
+  - slow
+  - twoHanded
+  - weaponAttack
+  - piercingDamage
+  - longbow
+description: >-
+  You strike with your Longbow. Make a $(formatBonus(attributes.ranged.attack))
+  attack against the target. On a hit, the target takes damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: ranged
+    type: weapon
+    bonus: $(attributes.ranged.attack)
+  damage:
+    dice:
+      count: 1
+      sides: 8
+      bonus: $(attributes.ranged.bonus)
+    type: piercing
+  target:
+    type: single
+    range: 150 feet

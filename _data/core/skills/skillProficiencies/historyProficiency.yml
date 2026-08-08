@@ -1,0 +1,10 @@
+summary: Recall lore about historical events, people, nations, and cultures.
+tags:
+  - intelligence
+  - skillProficiency
+type: Effect
+target: skills.history.proficiency
+operation: set
+value: 1
+id: historyProficiency
+name: History

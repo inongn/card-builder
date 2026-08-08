@@ -1,0 +1,20 @@
+id: shieldMaster
+summary: Use your shield to shove foes and block directional spell damage.
+name: Shield Master
+tags:
+  - feat
+  - generalFeat
+condition: $(attributes.proficiencies.includes("shieldTraining"))
+type: Folder
+children:
+  - name: Ability Score Increase
+    type: Effect
+    target: attributes.asiPoolLimit
+    operation: add
+    value: 1
+  - type: Reference
+    target:
+      - shieldMasterShieldBash
+  - type: Reference
+    target:
+      - shieldMasterInterposeShield

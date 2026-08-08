@@ -1,9 +1,28 @@
 id: weaponAttack
-name: "$(local.name)"
+name: $(local.name)
 type: Activity
 duration: instantaneous
-tags: [$(local.category), $(local.classification), $(local.mastery), $(local.property), weaponAttack, $(local.damageType)Damage, $(local.name)]
+tags:
+  - $(local.category)
+  - $(local.classification)
+  - $(local.mastery)
+  - $(local.property)
+  - weaponAttack
+  - $(local.damageType)Damage
+  - $(local.name)
 time: action
 range: $(local.range)
 description: |
   You strike with your weapon. Make a $(formatBonus(attributes[local.classification].attack)) attack against the target. On a hit, the target takes $(local.damageRoll)$(formatBonus(attributes[local.classification].bonus)) $(capitalize(local.damageType)) damage.
+mechanic:
+  pattern: attack
+  attack:
+    classification: $(local.classification)
+    type: weapon
+    bonus: $(attributes[local.classification].attack)
+  damage:
+    dice: $(local.damageRoll)$(formatBonus(attributes[local.classification].bonus))
+    type: $(local.damageType)
+  target:
+    type: single
+    range: $(local.range)

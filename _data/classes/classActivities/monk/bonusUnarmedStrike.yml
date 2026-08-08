@@ -1,0 +1,7 @@
+id: bonusUnarmedStrike
+type: Activity
+name: Bonus Unarmed Strike
+time: bonus action
+range: 5 feet
+duration: Instantaneous
+description: You make one Unarmed Strike.

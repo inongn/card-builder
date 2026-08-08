@@ -5,3 +5,11 @@ duration: instantaneous
 name: Aura of Protection
 range: '$(meta.level >= 18 ? 30 : 10) feet'
 description: You radiate a protective, unseeable aura. The aura is inactive while you have the Incapacitated condition. You and your allies in the aura gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws.
+mechanic:
+  pattern: utility
+  target:
+    type: aoe
+    aoe:
+      shape: emanation
+      size: '$(meta.level >= 18 ? 30 : 10)'
+  text: You and allies in aura gain +$(Math.max(1, stats.cha.mod)) to saving throws.

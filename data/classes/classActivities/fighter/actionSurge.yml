@@ -6,3 +6,6 @@ range: self
 time: free action
 duration: Instantaneous
 resource: actionSurge
+mechanic:
+  pattern: utility
+  text: Take one additional action on your turn.

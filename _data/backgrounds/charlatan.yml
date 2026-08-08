@@ -1,0 +1,20 @@
+id: charlatan
+name: Charlatan
+description: You mastered the art of tavern scams, selling comforting lies and forged goods to the gullible.
+tags:
+  - background
+type: Folder
+children:
+  - type: Reference
+    target:
+      - deceptionProficiency
+      - sleightOfHandProficiency
+      - forgeryKit
+      - skilled
+  - type: Effect
+    target: attributes.originEligible
+    operation: push
+    value:
+      - dex
+      - con
+      - cha

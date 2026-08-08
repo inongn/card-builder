@@ -1,0 +1,6 @@
+type: Effect
+operation: push
+value: Invisible
+target: attributes.advantages
+id: invisibleAdvantage
+name: Invisible Advantage
