@@ -284,7 +284,6 @@ export class CharacterBuilder {
             features: [],
             activities: [],
             statblocks: [],
-            traits: [],
             forms: {},
             transformations: {}
         };
@@ -642,12 +641,14 @@ export class CharacterBuilder {
             clean = clean.replace(prefix, '');
         }
 
-        // Suffixes / standalone words to remove (e.g. " Domain", " Patron")
+        // Suffixes / standalone words to remove (e.g. " Domain", " Patron", " Sorcery")
         clean = clean
             .replace(/\s+Domain$/i, '')
             .replace(/^Domain\s+/i, '')
             .replace(/\s+Patron$/i, '')
             .replace(/^Patron\s+/i, '')
+            .replace(/\s+Sorcery$/i, '')
+            .replace(/^Sorcery\s+/i, '')
             .trim();
 
         return clean;
@@ -1694,24 +1695,6 @@ export class CharacterBuilder {
                     this.characterData.statblocks.push(statblockObj);
                 }
                 break;
-
-            case 'Trait':
-                {
-                    const traitScope = prop.variables || {};
-                    const evaluatedName = evaluator.evaluate(prop.name, traitScope);
-                    const evaluatedDescription = evaluator.evaluate(prop.description, traitScope);
-
-                    // Avoid duplicate traits by id
-                    const traitId = prop.id || evaluatedName;
-                    if (!this.characterData.traits.some(t => t.id === traitId)) {
-                        this.characterData.traits.push({
-                            id: traitId,
-                            name: evaluatedName,
-                            description: evaluatedDescription
-                        });
-                    }
-                }
-                break;
         }
     }
 
@@ -1746,8 +1729,9 @@ export class CharacterBuilder {
         // This resolves local.treeVars but keeps $(characterVars) "LIVE" for final evaluation passes.
         const dynamicValue = evaluator.bakeVariables(value, scope);
 
-        if (operation === 'set' && substring) {
-            // Handled via substring replacement below
+        if (operation === 'set' && !substring) {
+            this.setFieldWithPriority(evaluatedTarget, dynamicValue, priority, evaluator);
+            return;
         }
 
         // Resolve target paths (multi-match support)
@@ -1765,36 +1749,28 @@ export class CharacterBuilder {
             }
 
             switch (operation) {
-                case 'set':
-                    if (substring) {
-                        const targetStr = String(current[finalKey] ?? '');
-                        current[finalKey] = targetStr.replaceAll(substring, String(evaluatedValue ?? ''));
-                    } else {
-                        current[finalKey] = dynamicValue;
-                    }
-                    break;
                 case 'add':
-                    {
-                        const curVal = current[finalKey];
-                        const isCurString = typeof curVal === 'string';
-                        const isValString = typeof dynamicValue === 'string';
-                        
-                        if (isCurString && curVal.includes('$')) {
-                            const addStr = (isValString && dynamicValue.includes('$')) ? dynamicValue : evaluatedValue;
-                            current[finalKey] = `$(${curVal} + ${addStr})`;
-                        } else if (isValString && dynamicValue.includes('$')) {
-                            const baseVal = (curVal !== undefined && curVal !== null && curVal !== '') ? curVal : 0;
-                            current[finalKey] = `$(${baseVal} + ${dynamicValue})`;
-                        } else if (isCurString && curVal.match(/^(\d+)\s+feet$/i)) {
-                            const feetMatch = curVal.match(/^(\d+)\s+feet$/i);
+                    // Check if target is currently an expression string
+                    if (typeof current[finalKey] === 'string' && current[finalKey].includes('$')) {
+                        // Wrap with $() to ensure the math is evaluated in subsequent passes
+                        current[finalKey] = `$(${current[finalKey]} + ${evaluatedValue})`;
+                    } else if (typeof current[finalKey] === 'string') {
+                        // Check if the string is in the format "<n> feet"
+                        const feetMatch = current[finalKey].match(/^(\d+)\s+feet$/i);
+                        if (feetMatch) {
                             const currentFeet = Number(feetMatch[1]);
                             const addVal = Number(evaluatedValue || 0);
                             current[finalKey] = `${currentFeet + addVal} feet`;
                         } else {
-                            const currentVal = Number(curVal || 0);
+                            // Not a recognized format, treat as 0 and convert to number
                             const addVal = Number(evaluatedValue || 0);
-                            current[finalKey] = currentVal + addVal;
+                            current[finalKey] = addVal;
                         }
+                    } else {
+                        // Force numeric addition to prevent string concatenation
+                        const currentVal = Number(current[finalKey] || 0);
+                        const addVal = Number(evaluatedValue || 0);
+                        current[finalKey] = currentVal + addVal;
                     }
                     break;
                 case 'softSet':
@@ -1819,10 +1795,7 @@ export class CharacterBuilder {
                         // Helper to get normalized representation for comparison
                         const getNormalizedExtraString = (item) => {
                             if (typeof item === 'object' && item !== null) {
-                                if ('name' in item || 'description' in item) {
-                                    return `**${item.name || ''}.** ${item.description || ''}`.trim().toLowerCase();
-                                }
-                                return JSON.stringify(item).toLowerCase();
+                                return `**${item.name || ''}.** ${item.description || ''}`.trim().toLowerCase();
                             }
                             return String(item).trim().toLowerCase();
                         };
@@ -1836,14 +1809,6 @@ export class CharacterBuilder {
                         if (newItems.length > 0) {
                             current[finalKey] = [...existing, ...newItems];
                         }
-                    }
-                    break;
-                case 'append':
-                    {
-                        const targetScope = { ...scope, ...current };
-                        const valToAppend = evaluator.evaluate(dynamicValue, targetScope);
-                        const existingVal = current[finalKey] ? String(current[finalKey]) : '';
-                        current[finalKey] = existingVal ? `${existingVal}\n${valToAppend}` : String(valToAppend);
                     }
                     break;
                 case 'replace':
@@ -1896,17 +1861,7 @@ export class CharacterBuilder {
         if (typeof obj !== 'object' || obj === null) return false;
         let modified = false;
 
-        let currentScope = obj.variables ? { ...scope, ...obj.variables } : scope;
-        if (obj.mechanic) {
-            currentScope = { ...currentScope, mechanic: obj.mechanic };
-        }
-
-        // Evaluate mechanic child object first so its properties (e.g. bonus, dice) are evaluated
-        if (obj.mechanic && typeof obj.mechanic === 'object') {
-            if (this._evaluateRecursive(obj.mechanic, evaluator, currentScope, lazy)) {
-                modified = true;
-            }
-        }
+        const currentScope = obj.variables ? { ...scope, ...obj.variables } : scope;
 
         for (const key in obj) {
             if (['id', 'type', 'subtype', 'variables'].includes(key)) continue;
@@ -1921,7 +1876,7 @@ export class CharacterBuilder {
                     obj[key] = result;
                     modified = true;
                 }
-            } else if (typeof obj[key] === 'object' && key !== 'mechanic') {
+            } else if (typeof obj[key] === 'object') {
                 if (this._evaluateRecursive(obj[key], evaluator, currentScope, lazy)) {
                     modified = true;
                 }
