@@ -14,13 +14,8 @@ time: action
 range: 150 feet
 duration: instantaneous
 summary: A bright streak flashes forth and blossoms into a fiery explosion.
-description: >
-  A bright streak flashes from you to a point you choose within range and then
-  blossoms with a low roar into a fiery explosion. Each creature in a
-  20-foot-radius Sphere centered on that point makes a DC
-  $(attributes.spellcasting.save) Dexterity saving throw, taking 8d6 Fire damage
-  on a failed save or half as much damage on a successful one.
-
+description: |
+  A bright streak flashes from you to a point you choose within range and then blossoms with a low roar into a fiery explosion. Each creature in a 20-foot-radius Sphere centered on that point makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 8d6 Fire damage on a failed save or half as much damage on a successful one.
 
   Flammable objects in the area that aren't being worn or carried start burning.
 extra:
@@ -31,18 +26,22 @@ mechanic:
   save:
     ability: dex
     dc: $(attributes.spellcasting.save)
-    failure:
-      damage:
-        dice:
-          count: 8
-          sides: 6
-          bonus: 0
-        type: fire
-    success:
-      text: Takes half damage
   target:
-    type: aoe
+    type: area
     aoe:
       shape: sphere
       size: 20
-    range: 150 feet
+    range: $(range)
+  failure:
+    type: damage
+    dice:
+      count: 8
+      sides: 6
+    damageType: fire
+  success:
+    halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failure.dice.count
+        add: 1

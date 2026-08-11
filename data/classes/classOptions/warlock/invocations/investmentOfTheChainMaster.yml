@@ -15,9 +15,6 @@ children:
     time: bonus action
     name: Command Familiar
     description: You command the familiar to make an attack.
-    mechanic:
-      pattern: utility
-      text: You command your familiar to make an attack.
     condition: $(attributes.pactOfTheChain == true)
   - id: familiarResistance
     type: Activity
@@ -27,7 +24,13 @@ children:
     name: Familiar Resistance
     description: When the familiar takes damage, you can take a Reaction to grant it Resistance against that damage.
     mechanic:
-      pattern: utility
-      trigger: When your familiar takes damage
-      text: Grant your familiar Resistance against that damage.
+      pattern: automatic
+      trigger:
+        text: when the familiar takes damage
+      target:
+        type: text
+        text: familiar
+      payloads:
+        - type: text
+          text: grant it Resistance against that damage
     condition: $(attributes.pactOfTheChain == true)

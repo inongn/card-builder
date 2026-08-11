@@ -17,4 +17,7 @@ description: |
 
   False Aura (Object). You change the way the target appears to spells and magical effects that detect magical auras, such as Detect Magic. You can make a nonmagical object appear magical, make a magic item appear nonmagical, or change the object's aura so that it appears to belong to a school of magic you choose.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: $(summary)

@@ -16,13 +16,8 @@ time: action
 range: 30 feet
 duration: 1 hour
 summary: You charm a humanoid to regard you as a friendly acquaintance.
-description: >
-  One Humanoid you can see within range makes a DC
-  $(attributes.spellcasting.save) Wisdom saving throw. It does so with Advantage
-  if you or your allies are fighting it. On a failed save, the target has the
-  Charmed condition until the spell ends or until you or your allies damage it.
-  The Charmed creature is Friendly to you. When the spell ends, the target knows
-  it was Charmed by you.
+description: |
+  One Humanoid you can see within range makes a DC $(attributes.spellcasting.save) Wisdom saving throw. It does so with Advantage if you or your allies are fighting it. On a failed save, the target has the Charmed condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: You can target one additional creature for each spell slot level above 1.
@@ -31,8 +26,16 @@ mechanic:
   save:
     ability: wis
     dc: $(attributes.spellcasting.save)
-    failure:
-      text: Target is Charmed for 1 hour.
   target:
     type: single
+    filter: humanoid
     range: $(range)
+  failure:
+    type: condition
+    condition: charmed
+    end: take_damage
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

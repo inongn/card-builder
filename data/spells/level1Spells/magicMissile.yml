@@ -17,8 +17,20 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The spell creates one more dart for each spell slot level above 1.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: multiple
     count: 3
-    range: 120 feet
+    range: $(range)
+  payloads:
+    type: damage
+    dice:
+      count: 1
+      sides: 4
+      bonus: 1
+    damageType: force
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

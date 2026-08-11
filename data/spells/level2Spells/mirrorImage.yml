@@ -21,6 +21,8 @@ description: |
 
   A creature is unaffected by this spell if it has the Blinded condition, Blindsight, or Truesight.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: self
+    range: $(range)
+  text: three illusory duplicates appear. Each time a creature hits you with an attack roll, roll a d6 for each of your remaining duplicates. If any of the d6s rolls a 3 or higher, one of the duplicates is hit instead of you, and the duplicate is destroyed. The duplicates otherwise ignore all other damage and effects. The spell ends when all three duplicates are destroyed

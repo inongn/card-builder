@@ -17,28 +17,22 @@ time: action
 range: self
 duration: instantaneous
 summary: You create a burst of thunderous noise that damages nearby targets.
-description: >
-  Each creature in a 5-foot Emanation originating from you must succeed on a DC
-  $(attributes.spellcasting.save) Constitution saving throw or take $(meta.level
-  >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Thunder damage.
-  The spell's thunderous sound can be heard up to 100 feet away.
+description: |
+  Each creature in a 5-foot Emanation originating from you must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Thunder damage. The spell's thunderous sound can be heard up to 100 feet away.
 mechanic:
   pattern: save
   save:
     ability: con
     dc: $(attributes.spellcasting.save)
-    failure:
-      damage:
-        dice:
-          count: >-
-            $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2
-            : 1)
-          sides: 6
-          bonus: 0
-        type: thunder
   target:
-    type: aoe
+    type: area
     aoe:
       shape: emanation
       size: 5
     range: $(range)
+  failure:
+    type: damage
+    dice:
+      count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+      sides: 6
+    damageType: thunder

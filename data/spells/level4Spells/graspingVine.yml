@@ -24,16 +24,25 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The number of creatures the vine can grapple increases by one for each spell slot level above 4.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 4
-          sides: 8
-          bonus: 0
-        type: bludgeoning
+  pattern: attack
+  attack:
+    classification: ranged
+    type: spell
+    bonus: $(attributes.spellcasting.attack)
   target:
     type: single
+    range: $(range)
+  hit:
+    - type: damage
+      dice:
+        count: 4
+        sides: 8
+      damageType: bludgeoning
+    - type: movement
+      movementType: forced
+      direction: pull
+      distance: 30
+    - type: condition
+      condition: grappled
+  repeat:
+    action: bonus_action

@@ -7,14 +7,14 @@ type: Folder
 children:
   - id: primalStrikeWeapon
     type: Effect
-    target: activities[tags=weaponAttack].mechanic.damage
+    target: activities[tags=weaponAttack].mechanic.hit
     operation: push
     value:
+      type: damage
       dice:
         count: 1
         sides: 8
-        bonus: 0
-      type:
+      damageType:
         - cold
         - fire
         - lightning

@@ -27,4 +27,5 @@ children:
       - feySpiritMirthful
       - feySpiritTricksy
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

@@ -18,16 +18,14 @@ description: |
 
   On a failed save, the target has Disadvantage on Strength-based D20 Tests for the duration. During that time, it also subtracts 1d8 from all its damage rolls. The target repeats the save at the end of each of its turns, ending the spell on a success.
 mechanic:
-  pattern: save
-  save:
-    ability: con
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 1
-          sides: 8
-          bonus: 0
-        type: untyped
+  pattern: attack
+  attack:
+    classification: ranged
+    type: spell
+    bonus: $(attributes.spellcasting.attack)
   target:
     type: single
+    range: $(range)
+  hit:
+    type: text
+    text: the target deals only half damage with Strength-based weapon attacks until the spell ends

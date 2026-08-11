@@ -10,16 +10,10 @@ time: bonus action
 range: 60 feet
 duration: concentration, up to 1 minute
 summary: You create a floating spectral weapon to strike nearby foes.
-description: >
-  You create a floating, spectral force that resembles a weapon of your choice
-  and lasts for the duration. The force appears within range in a space of your
-  choice, and you can immediately make one melee spell attack against one
-  creature within 5 feet of the force. On a hit, the target takes Force damage
-  equal to 1d8$(formatBonus(attributes.spellcasting.bonus)).
+description: |
+  You create a floating, spectral force that resembles a weapon of your choice and lasts for the duration. The force appears within range in a space of your choice, and you can immediately make one melee spell attack against one creature within 5 feet of the force. On a hit, the target takes Force damage equal to 1d8$(formatBonus(attributes.spellcasting.bonus)).
 
-
-  As a Bonus Action on your later turns, you can move the force up to 20 feet
-  and repeat the attack against a creature within 5 feet of it.
+  As a Bonus Action on your later turns, you can move the force up to 20 feet and repeat the attack against a creature within 5 feet of it.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d8 for every slot level above 2.
@@ -29,12 +23,20 @@ mechanic:
     classification: melee
     type: spell
     bonus: $(attributes.spellcasting.attack)
-  damage:
+  target:
+    type: single
+    range: $(range)
+  hit:
+    type: damage
     dice:
       count: 1
       sides: 8
       bonus: $(attributes.spellcasting.bonus)
-    type: force
-  target:
-    type: single
-    range: 60 feet
+    damageType: force
+  repeat:
+    action: bonus_action
+  upcast:
+    resourceStep: 2
+    modifications:
+      - path: hit.dice.count
+        add: 1

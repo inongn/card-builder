@@ -24,15 +24,22 @@ mechanic:
   pattern: save
   save:
     ability: int
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 3
-          sides: 6
-          bonus: 0
-        type: psychic
-    success:
-      text: Takes half as much damage
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    range: $(range)
+  failure:
+    - type: damage
+      dice:
+        count: 3
+        sides: 6
+      damageType: psychic
+    - type: text
+      text: until the end of its next turn, the target can't make reactions and must choose between a move, action, or bonus action
+  success:
+    halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

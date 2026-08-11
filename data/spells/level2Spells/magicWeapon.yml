@@ -20,4 +20,7 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The bonus increases to +2 with a level 3–5 spell slot. The bonus increases to +3 with a level 6+ spell slot.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: weapon becomes magical and gains a +1 bonus to attack and damage rolls

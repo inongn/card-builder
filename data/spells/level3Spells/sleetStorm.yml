@@ -18,14 +18,28 @@ description: |
 
   Ground in the Cylinder is Difficult Terrain. When a creature enters the Cylinder for the first time on a turn or starts its turn there, it must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or have the Prone condition and lose Concentration.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: ''
-    failure:
-      text: |-
-        Until the spell ends, sleet falls in a 40-foot-tall, 20-foot-radius Cylinder centered on a point you choose within range. The area is Heavily Obscured, and exposed flames in the area are doused.
-
-        G...
-  target:
-    type: area
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: cylinder
+          size: 40
+      difficultTerrain: true
+      obscured: true
+      text: freezing rain and sleet
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - enter_area
+          - start_turn
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: condition
+        condition: prone

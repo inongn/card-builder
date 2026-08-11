@@ -19,4 +19,11 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d8 for each spell slot level above 4.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: area
+    aoe:
+      shape: emanation
+      size: 15
+    range: $(range)
+  text: any attack you make deals an extra 2d8 damage (Acid, Cold, Fire, or Lightning) when you hit a creature in the Emanation, and enemies treat the area as Difficult Terrain

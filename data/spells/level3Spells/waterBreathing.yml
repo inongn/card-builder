@@ -15,12 +15,12 @@ time: action
 range: 30 feet
 duration: 24 hours
 summary: You grant up to ten creatures the ability to breathe underwater.
-description: >
-  This spell grants up to ten willing creatures of your choice within range the
-  ability to breathe underwater until the spell ends. Affected creatures also
-  retain their normal mode of respiration.
+description: |
+  This spell grants up to ten willing creatures of your choice within range the ability to breathe underwater until the spell ends. Affected creatures also retain their normal mode of respiration.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
-    type: single
-    range: 30 feet
+    type: multiple
+    count: 10
+    range: $(range)
+  text: gain the ability to breathe underwater for 24 hours

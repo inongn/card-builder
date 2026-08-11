@@ -13,11 +13,19 @@ children:
     value: 1
   - id: piercerPuncture
     name: Puncture
-    type: Extra
-    target: weaponAttack AND piercingDamage
-    description: On a hit, you can reroll one of the attack's damage dice, and you must use the new roll.
+    type: Effect
+    target: activities[tags=weaponAttack AND tags=piercingDamage].mechanic.hit
+    operation: push
+    value:
+      type: text
+      text: you can reroll one of the damage dice
   - id: piercerEnhancedCritical
     name: Enhanced Critical
-    type: Extra
-    target: weaponAttack AND piercingDamage
-    description: On a Critical Hit, you can roll one additional damage die.
+    type: Effect
+    target: activities[tags=weaponAttack AND tags=piercingDamage].mechanic.crit
+    operation: push
+    value:
+      type: damage
+      dice:
+        count: 1
+        sides: $(local.damageDiceSides || 6)

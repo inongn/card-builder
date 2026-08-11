@@ -16,5 +16,3 @@ description: |
   **Nature ($(formatBonus(skills.nature.bonus))).** Terrain, flora, weather, and certain creatures (Beasts, Dragons, Oozes, and Plants)
 
   **Religion ($(formatBonus(skills.religion.bonus))).** Deities, religious hierarchies and rites, holy symbols, cults, and certain creatures (Celestials, Fiends, and Undead)
-mechanic:
-  pattern: utility

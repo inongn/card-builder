@@ -22,18 +22,37 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d8 for each spell slot level above 4.
 mechanic:
-  pattern: save
-  save:
-    ability: wis
-    dc: ''
-    failure:
-      damage:
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: emanation
+          size: 10
+        range: $(range)
+      text: fey spirits
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - enter_area
+          - end_turn
+      save:
+        ability: wis
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: damage
         dice:
-          count: 5
+          count: 3
           sides: 8
-          bonus: 0
-        type: force
-    success:
-      text: Takes half as much damage
-  target:
-    type: area
+        damageType: force
+      success:
+        halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].failure.dice.count
+        add: 1

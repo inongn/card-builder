@@ -23,4 +23,12 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: You can target one additional creature for each spell slot level above 2. You can choose a different ability for each target.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: target gains Advantage on ability checks for a chosen attribute
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

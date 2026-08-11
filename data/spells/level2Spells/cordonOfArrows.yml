@@ -21,16 +21,7 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The amount of ammunition that can be affected increases by two for each spell slot level above 2.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 2
-          sides: 4
-          bonus: 0
-        type: piercing
+  pattern: automatic
   target:
-    type: single
+    type: touch
+  text: $(summary)

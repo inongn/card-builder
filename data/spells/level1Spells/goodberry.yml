@@ -17,4 +17,5 @@ description: |
 
   Uneaten berries disappear when the spell ends.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: Ten berries appear in your hand; a creature can use a Bonus Action to eat a berry to restore 1 Hit Point.

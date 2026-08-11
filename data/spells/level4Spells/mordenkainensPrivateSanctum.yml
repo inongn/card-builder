@@ -33,4 +33,11 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: You can increase the size of the Cube by 100 feet for each spell slot level above 4.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: area
+    aoe:
+      shape: cube
+      size: 100
+    range: $(range)
+  text: $(summary)

@@ -15,6 +15,11 @@ summary: You touch an unarmored creature to grant a protective magical forcefiel
 description: |
   You touch a willing creature who isn't wearing armor. Until the spell ends, the target's base AC becomes 13 plus its Dexterity modifier. The spell ends early if the target dons armor.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: touch
+  payloads:
+    type: statModifier
+    stat: ac
+    value: $(13 + stats.dex.mod)
+    operation: set

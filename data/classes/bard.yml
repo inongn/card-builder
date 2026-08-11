@@ -45,8 +45,13 @@ children:
 
       Once within the next hour when the creature fails a D20 Test, the creature can roll the die and add the number rolled to the d20, potentially turning the failure into a success. A creature can have only one Bardic Inspiration die at a time.
     mechanic:
-      pattern: utility
-      text: Grant a creature a Bardic Inspiration die (d$(attributes.bardicDie)). When the creature fails a D20 Test, it can roll the die and add the number rolled to the d20.
+      pattern: automatic
+      target:
+        type: single
+        range: $(range)
+      payloads:
+        type: text
+        text: gains one of your Bardic Inspiration dice (1d$(attributes.bardicDie)). Once within the next hour when the target fails a D20 Test, the target can roll the die and add the number rolled to the d20
   - id: spellcasting
     type: Reference
     target:
@@ -112,9 +117,14 @@ children:
     description: |
       When you or an ally within range fails a saving throw, against an effect that applies the Charmed or Frightened condition, you use musical notes or words of power to disrupt its mind-influencing effect. Cause the save to be rerolled, and the new roll has Advantage.
     mechanic:
-      pattern: utility
-      trigger: When you or an ally fails a saving throw against Charmed or Frightened
-      text: Reroll the save with Advantage.
+      pattern: automatic
+      trigger:
+        text: When you or an ally within range fails a saving throw against an effect that applies the Charmed or Frightened condition
+      target:
+        inherit: trigger
+      payloads:
+        type: text
+        text: reroll the saving throw with Advantage
     condition: $(meta.level >= 7)
   - id: level8Feat
     name: Level 8 Feat

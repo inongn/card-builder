@@ -17,6 +17,7 @@ summary: You touch a creature that died within the last minute to return it to l
 description: |
   You touch a creature that has died within the last minute. That creature revives with 1 Hit Point. This spell can't revive a creature that has died of old age, nor does it restore any missing body parts.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: touch
+  text: returns a creature that died within the last minute to life with 1 Hit Point

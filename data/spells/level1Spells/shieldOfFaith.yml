@@ -14,7 +14,12 @@ summary: A shimmering field of protective magic grants +2 AC to a target.
 description: |
   A shimmering field surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: single
-    range: 60 feet
+    range: $(range)
+  payloads:
+    type: statModifier
+    stat: ac
+    value: 2
+    operation: add

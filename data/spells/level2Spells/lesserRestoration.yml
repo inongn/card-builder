@@ -18,6 +18,7 @@ summary: You cure a disease or condition affecting a creature.
 description: |
   You touch a creature and end one condition on it: Blinded, Deafened, Paralyzed, or Poisoned.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: touch
+  text: ends one disease or condition (Blinded, Deafened, Paralyzed, or Poisoned) on the target

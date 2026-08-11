@@ -16,5 +16,5 @@ summary: You ward yourself against weapon attacks.
 description: |
   Whenever a creature makes an attack roll against you before the spell ends, the attacker subtracts 1d4 from the attack roll.
 mechanic:
-  pattern: utility
-  trigger: You are hit by an attack roll
+  pattern: automatic
+  text: $(description)

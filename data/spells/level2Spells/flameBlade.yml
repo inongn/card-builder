@@ -7,7 +7,7 @@ tags:
   - evocation
   - druid
   - sorcerer
-time: bonus action
+time: action
 range: self
 duration: concentration, up to 10 minutes
 summary: You evoke a fiery blade of light in your hand.
@@ -21,4 +21,31 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d6 for each spell slot level above 2.
 mechanic:
-  pattern: utility
+  mode: succession
+  blocks:
+    - pattern: automatic
+      target:
+        type: self
+        range: $(range)
+      text: you evoke a fiery blade in your free hand that lasts for the duration. You can take the following Action while the blade persists
+    - pattern: attack
+      name: Flame Blade Strike
+      attack:
+        classification: melee
+        type: spell
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: 5 feet
+      hit:
+        type: damage
+        dice:
+          count: 3
+          sides: 6
+          bonus: $(attributes.spellcasting.bonus)
+        damageType: fire
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].hit.dice.count
+        add: 1

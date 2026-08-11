@@ -33,8 +33,18 @@ mechanic:
   pattern: save
   save:
     ability: wis
-    dc: ''
-    failure:
-      text: Each creature in a 10-foot-radius Sphere centered on a point you choose within range must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw, or that target can't take Bonus Action...
+    dc: $(attributes.spellcasting.save)
   target:
     type: area
+    aoe:
+      shape: sphere
+      size: 10
+    range: $(range)
+  failure:
+    type: text
+    text: targets act randomly on their turns (d10 roll for movement/action behavior)
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.aoe.size
+        add: 5

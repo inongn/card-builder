@@ -5,7 +5,7 @@
   "description": "Reusable JSON Schema primitive definitions for D&D 5e / custom RPG activity mechanics.",
   "$defs": {
     "NumberOrExpression": {
-      "oneOf": [
+      "anyOf": [
         { "type": "number" },
         { "type": "string" }
       ]
@@ -20,17 +20,27 @@
       },
       "additionalProperties": false
     },
+    "RollModifierFormula": {
+      "type": "object",
+      "properties": {
+        "count": { "$ref": "#/$defs/NumberOrExpression" },
+        "sides": { "$ref": "#/$defs/NumberOrExpression" },
+        "bonus": { "$ref": "#/$defs/NumberOrExpression" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
     "DamageEntry": {
       "type": "object",
       "properties": {
         "dice": {
-          "oneOf": [
+          "anyOf": [
             { "$ref": "#/$defs/DiceFormula" },
             { "type": "string" },
             {
               "type": "array",
               "items": {
-                "oneOf": [
+                "anyOf": [
                   { "$ref": "#/$defs/DiceFormula" },
                   { "type": "string" }
                 ]
@@ -39,7 +49,7 @@
           ]
         },
         "type": {
-          "oneOf": [
+          "anyOf": [
             { "type": "string" },
             {
               "type": "array",
@@ -47,8 +57,8 @@
             }
           ]
         },
-        "text": { "type": "string" },
-        "condition": { "type": "string" }
+        "min": { "$ref": "#/$defs/NumberOrExpression" },
+        "text": { "type": "string" }
       },
       "additionalProperties": false
     },
@@ -56,15 +66,17 @@
       "type": "object",
       "properties": {
         "dice": {
-          "oneOf": [
+          "anyOf": [
             { "$ref": "#/$defs/DiceFormula" },
             { "type": "string" },
+            { "type": "number" },
             {
               "type": "array",
               "items": {
-                "oneOf": [
+                "anyOf": [
                   { "$ref": "#/$defs/DiceFormula" },
-                  { "type": "string" }
+                  { "type": "string" },
+                  { "type": "number" }
                 ]
               }
             }
@@ -72,6 +84,12 @@
         },
         "type": {
           "type": "string"
+        },
+        "pool": {
+          "anyOf": [
+            { "type": "boolean" },
+            { "$ref": "#/$defs/NumberOrExpression" }
+          ]
         },
         "text": { "type": "string" }
       },
@@ -82,6 +100,10 @@
       "properties": {
         "type": {
           "type": "string"
+        },
+        "inherit": {
+          "type": "string",
+          "enum": ["prev_step", "trigger"]
         },
         "count": { "$ref": "#/$defs/NumberOrExpression" },
         "aoe": {
@@ -98,7 +120,7 @@
         },
         "range": { "$ref": "#/$defs/NumberOrExpression" },
         "filter": {
-          "oneOf": [
+          "anyOf": [
             { "type": "string" },
             {
               "type": "array",
@@ -122,22 +144,126 @@
       },
       "additionalProperties": false
     },
-    "SaveOutcome": {
+    "TriggerEventEnum": {
+      "type": "string",
+      "enum": [
+        "make_attack",
+        "hit_with_attack",
+        "miss_with_attack",
+        "be_hit",
+        "make_save",
+        "fail_save",
+        "make_check",
+        "fail_check",
+        "roll_initiative",
+        "roll_damage",
+        "land_crit",
+        "drop_enemy_zero",
+        "on_cast",
+        "enter_area",
+        "start_turn",
+        "end_turn",
+        "leave_area",
+        "move_within_range",
+        "area_moves_into_space",
+        "move_into_space",
+        "custom"
+      ]
+    },
+    "TriggerSpec": {
       "type": "object",
       "properties": {
-        "damage": {
-          "oneOf": [
-            { "$ref": "#/$defs/DamageEntry" },
+        "event": {
+          "anyOf": [
+            { "$ref": "#/$defs/TriggerEventEnum" },
             {
               "type": "array",
-              "items": { "$ref": "#/$defs/DamageEntry" }
+              "items": { "$ref": "#/$defs/TriggerEventEnum" }
             }
           ]
         },
-        "text": { "type": "string" },
-        "condition": { "type": "string" }
+        "attackFilter": { "$ref": "#/$defs/AttackSpec" },
+        "saveFilter": {
+          "type": "object",
+          "properties": {
+            "ability": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              ]
+            },
+            "dc": { "$ref": "#/$defs/NumberOrExpression" }
+          },
+          "additionalProperties": false
+        },
+        "checkFilter": {
+          "type": "object",
+          "properties": {
+            "ability": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              ]
+            },
+            "skill": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "damageFilter": {
+          "type": "object",
+          "properties": {
+            "damageType": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              ]
+            },
+            "classification": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "text": { "type": "string" }
       },
       "additionalProperties": false
+    },
+    "Trigger": {
+      "anyOf": [
+        { "type": "string" },
+        { "$ref": "#/$defs/TriggerSpec" }
+      ]
+    },
+    "SaveSuccessOutcome": {
+      "type": "object",
+      "properties": {
+        "halfDamage": { "type": "boolean" },
+        "endOnSuccess": { "type": "boolean" },
+        "payloads": { "$ref": "#/$defs/PayloadList" },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "SaveOutcome": {
+      "anyOf": [
+        { "$ref": "#/$defs/PayloadList" },
+        { "$ref": "#/$defs/SaveSuccessOutcome" }
+      ]
     },
     "SaveSpec": {
       "type": "object",
@@ -145,9 +271,7 @@
         "ability": {
           "type": "string"
         },
-        "dc": { "$ref": "#/$defs/NumberOrExpression" },
-        "failure": { "$ref": "#/$defs/SaveOutcome" },
-        "success": { "$ref": "#/$defs/SaveOutcome" }
+        "dc": { "$ref": "#/$defs/NumberOrExpression" }
       },
       "additionalProperties": false
     },
@@ -159,7 +283,7 @@
         },
         "base": { "$ref": "#/$defs/NumberOrExpression" },
         "damageBonus": {
-          "oneOf": [
+          "anyOf": [
             { "$ref": "#/$defs/DiceFormula" },
             { "type": "string" }
           ]
@@ -168,6 +292,362 @@
         "text": { "type": "string" }
       },
       "additionalProperties": false
+    },
+    "ConditionEnum": {
+      "type": "string",
+      "enum": [
+        "blinded",
+        "charmed",
+        "deafened",
+        "exhaustion",
+        "frightened",
+        "grappled",
+        "incapacitated",
+        "invisible",
+        "paralyzed",
+        "petrified",
+        "poisoned",
+        "prone",
+        "restrained",
+        "stunned",
+        "unconscious"
+      ]
+    },
+    "DamagePayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "damage" },
+        "dice": {
+          "anyOf": [
+            { "$ref": "#/$defs/DiceFormula" },
+            { "type": "string" },
+            { "type": "number" },
+            {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  { "$ref": "#/$defs/DiceFormula" },
+                  { "type": "string" },
+                  { "type": "number" }
+                ]
+              }
+            }
+          ]
+        },
+        "damageType": {
+          "anyOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
+        },
+        "min": { "$ref": "#/$defs/NumberOrExpression" },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "ConditionPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "condition" },
+        "condition": {
+          "anyOf": [
+            { "$ref": "#/$defs/ConditionEnum" },
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  { "$ref": "#/$defs/ConditionEnum" },
+                  { "type": "string" }
+                ]
+              }
+            }
+          ]
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "take_damage",
+                "repeat_save_on_damage",
+                "action_check",
+                "turn_repeat_save",
+                "end_of_next_turn",
+                "end_of_your_next_turn",
+                "end_of_its_next_turn"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "text": { "type": "string" }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "TargetRollEnum": {
+      "type": "string",
+      "enum": [
+        "attack",
+        "check",
+        "save",
+        "dmg",
+        "trigger"
+      ]
+    },
+    "RollModifierPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "rollModifier" },
+        "modifierType": {
+          "type": "string",
+          "enum": [
+            "advantage",
+            "disadvantage",
+            "add",
+            "subtract",
+            "attacksAgainstAdvantage",
+            "attacksAgainstDisadvantage"
+          ]
+        },
+        "targetRolls": {
+          "anyOf": [
+            { "$ref": "#/$defs/TargetRollEnum" },
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  { "$ref": "#/$defs/TargetRollEnum" },
+                  { "type": "string" }
+                ]
+              }
+            }
+          ]
+        },
+        "dice": {
+          "anyOf": [
+            { "$ref": "#/$defs/RollModifierFormula" },
+            { "$ref": "#/$defs/DiceFormula" },
+            { "type": "string" }
+          ]
+        },
+        "formula": {
+          "anyOf": [
+            { "$ref": "#/$defs/RollModifierFormula" },
+            { "$ref": "#/$defs/DiceFormula" },
+            { "type": "string" }
+          ]
+        },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "ActionPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "action" },
+        "actionType": {
+          "type": "string",
+          "enum": ["attack", "castSpell", "takeAction", "general"]
+        },
+        "attackFilter": { "$ref": "#/$defs/AttackSpec" },
+        "spellFilter": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "school": { "type": "string" },
+            "level": { "$ref": "#/$defs/NumberOrExpression" }
+          },
+          "additionalProperties": false
+        },
+        "count": { "$ref": "#/$defs/NumberOrExpression" },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "TransformPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "transform" },
+        "statblock": {
+          "anyOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
+        },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "SummonPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "summon" },
+        "statblock": {
+          "anyOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
+        },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "StatModifierPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "statModifier" },
+        "stat": { "type": "string" },
+        "value": {
+          "anyOf": [
+            { "$ref": "#/$defs/NumberOrExpression" },
+            { "$ref": "#/$defs/DiceFormula" }
+          ]
+        },
+        "operation": {
+          "type": "string",
+          "enum": ["add", "subtract", "set"],
+          "default": "add"
+        },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "MovementPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "movement" },
+        "movementType": {
+          "type": "string",
+          "enum": ["forced", "allow"]
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["push", "pull", "any"]
+        },
+        "distance": {
+          "anyOf": [
+            { "$ref": "#/$defs/NumberOrExpression" },
+            { "type": "string" }
+          ]
+        },
+        "oppAttacks": { "type": "boolean" },
+        "text": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "TextPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "text" },
+        "text": { "type": "string" }
+      },
+      "required": ["text"],
+      "additionalProperties": false
+    },
+    "HealingPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "healing" },
+        "healing": { "$ref": "#/$defs/HealingEntry" }
+      },
+      "required": ["type", "healing"],
+      "additionalProperties": false
+    },
+    "Payload": {
+      "anyOf": [
+        { "$ref": "#/$defs/DamagePayload" },
+        { "$ref": "#/$defs/ConditionPayload" },
+        { "$ref": "#/$defs/RollModifierPayload" },
+        { "$ref": "#/$defs/ActionPayload" },
+        { "$ref": "#/$defs/TransformPayload" },
+        { "$ref": "#/$defs/SummonPayload" },
+        { "$ref": "#/$defs/StatModifierPayload" },
+        { "$ref": "#/$defs/MovementPayload" },
+        { "$ref": "#/$defs/HealingPayload" },
+        { "$ref": "#/$defs/TextPayload" },
+        { "$ref": "#/$defs/DamageEntry" },
+        { "type": "string" }
+      ]
+    },
+    "PayloadList": {
+      "anyOf": [
+        { "$ref": "#/$defs/Payload" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Payload" }
+        }
+      ]
+    },
+    "UpcastSpec": {
+      "type": "object",
+      "properties": {
+        "resourceStep": { "$ref": "#/$defs/NumberOrExpression" },
+        "modifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "add": { "$ref": "#/$defs/NumberOrExpression" }
+            },
+            "required": ["path", "add"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "DowncastSpec": {
+      "type": "object",
+      "properties": {
+        "condition": { "type": "string" },
+        "modifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "replace": { "$ref": "#/$defs/NumberOrExpression" },
+              "add": { "$ref": "#/$defs/NumberOrExpression" }
+            },
+            "required": ["path"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "RepeatSpec": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": ["action", "bonus_action", "free_action", "reaction"]
+            }
+          },
+          "additionalProperties": false
+        },
+        { "type": "string" }
+      ]
     }
   }
 }

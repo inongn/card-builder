@@ -23,7 +23,15 @@ mechanic:
     dice:
       count: 2
       sides: 8
-      bonus: 0
+      bonus: $(attributes.spellcasting.bonus)
     type: hitPoints
   target:
-    type: single
+    type: multiple
+    count: 5
+    range: $(range)
+  text: targets gain the benefits of a Short Rest; you can't cast this spell again until you finish a Long Rest
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: healing.dice.count
+        add: 1

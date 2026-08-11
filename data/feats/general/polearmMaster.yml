@@ -23,18 +23,3 @@ children:
     range: self
     duration: instantaneous
     description: You make a $(formatBonus(attributes.melee.bonus)) attack with the opposite end of a polearm weapon. On a hit, deal 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage.
-    mechanic:
-      pattern: attack
-      attack:
-        classification: melee
-        type: weapon
-        bonus: $(attributes.melee.attack)
-      damage:
-        dice:
-          count: 1
-          sides: 4
-          bonus: $(attributes.melee.bonus)
-        type: bludgeoning
-      target:
-        type: single
-        range: 10 feet

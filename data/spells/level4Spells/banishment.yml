@@ -27,8 +27,17 @@ mechanic:
   pattern: save
   save:
     ability: cha
-    dc: ''
-    failure:
-      text: One creature that you can see within range must succeed on a DC $(attributes.spellcasting.save) Charisma saving throw or be transported to a harmless demiplane for the duration. While there, the ta...
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    range: $(range)
+  failure:
+    - type: condition
+      condition: incapacitated
+    - type: text
+      text: the target is banished to a harmless demiplane (or its home plane if native there)
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

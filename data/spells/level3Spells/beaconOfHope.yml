@@ -14,12 +14,11 @@ summary: You grant hope and maximum healing to allies in an area.
 description: |
   Choose any number of creatures within range. For the duration, each target has Advantage on Wisdom saving throws and Death Saving Throws and regains the maximum number of Hit Points possible from any healing.
 mechanic:
-  pattern: healing
-  healing:
-    dice:
-      count: 1
-      sides: 8
-      bonus: ''
-    type: hitPoints
+  pattern: automatic
   target:
-    type: single
+    type: area
+    aoe:
+      shape: emanation
+      size: 30
+    range: $(range)
+  text: allies gain Advantage on Wisdom saves and death saves, and regain maximum HP from any healing

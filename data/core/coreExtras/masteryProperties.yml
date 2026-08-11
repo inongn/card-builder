@@ -2,43 +2,84 @@ id: masteryProperties
 name: Mastery Properties
 type: Folder
 children:
-  - type: Extra
-    target: weaponAttack AND graze AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=graze ].mechanic.miss
+    operation: push
+    value:
+      type: damage
+      dice: $(attributes.prof)
     id: graze
     name: Graze
-    description: "On a miss, deal $(attributes.prof) Damage."
-  - type: Extra
-    target: weaponAttack AND slow AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=slow ].mechanic.hit
+    operation: push
+    value:
+      type: statModifier
+      stat: speed
+      value: -10
+      operation: add
     id: slow
     name: Slow
-    description: "The target's speed is reduced by 10 feet."
-  - type: Extra
-    target: weaponAttack AND nick AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=nick ].mechanic.hit
+    operation: push
+    value:
+      type: action
+      actionType: attack
+      attackFilter:
+        classification: light
     id: nick
     name: Nick
-    description: "You can make the additional attack of the Light property as part of the Attack action instead of as a Bonus Action."
-  - type: Extra
-    target: weaponAttack AND cleave AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=cleave].mechanic.hit
+    operation: push
+    value:
+      type: action
+      actionType: attack
+      count: 1
     id: cleave
     name: Cleave
-    description: "You can make another attack against a second creature within 5 feet of the first that is also within your reach."
-  - type: Extra
-    target: weaponAttack AND push AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=push ].mechanic.hit
+    operation: push
+    value:
+      type: movement
+      movementType: forced
+      direction: push
+      distance: 10
     id: push
     name: Push
-    description: "Push the target up to 10 feet straight away from yourself."
-  - type: Extra
-    target: weaponAttack AND topple AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=topple ].mechanic
+    operation: push
+    value:
+      pattern: save
+      name: Topple
+      save:
+        ability: con
+        dc: '$(Math.max(8 + attributes.prof + stats.str.mod, 8 + attributes.prof + stats.dex.mod))'
+      target:
+        inherit: trigger
+      failure:
+        type: condition
+        condition: prone
     id: topple
     name: Topple
-    description: "The target has the Prone condition."
-  - type: Extra
-    target: weaponAttack AND sap AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=sap ].mechanic.hit
+    operation: push
+    value:
+      type: rollModifier
+      modifierType: disadvantage
+      targetRolls: attack
     id: sap
     name: Sap
-    description: "The target has Disadvantage on its next attack roll before the start of your next turn."
-  - type: Extra
-    target: weaponAttack AND vex AND (pactWeapon OR weaponMastery)
+  - type: Effect
+    target: activities[tags=weaponAttack AND tags=vex ].mechanic.hit
+    operation: push
+    value:
+      type: rollModifier
+      modifierType: advantage
+      targetRolls: attack
     id: vex
     name: Vex
-    description: "You have Advantage on your next attack roll against the target before the end of your next turn."

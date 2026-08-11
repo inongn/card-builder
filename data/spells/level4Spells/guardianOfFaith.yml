@@ -21,15 +21,19 @@ mechanic:
   pattern: save
   save:
     ability: dex
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 1
-          sides: 6
-          bonus: 0
-        type: radiant
-    success:
-      text: Takes half as much damage
+    dc: $(attributes.spellcasting.save)
   target:
-    type: single
+    type: area
+    aoe:
+      shape: sphere
+      size: 10
+    range: $(range)
+  failure:
+    type: damage
+    dice:
+      count: 0
+      sides: 0
+      bonus: 20
+    damageType: radiant
+  success:
+    halfDamage: true

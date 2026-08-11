@@ -19,8 +19,10 @@ mechanic:
   pattern: save
   save:
     ability: wis
-    dc: ''
-    failure:
-      text: You weave a distracting string of words, causing creatures of your choice that you can see within range to make a DC $(attributes.spellcasting.save) Wisdom saving throw. Any creature you or your co...
+    dc: $(attributes.spellcasting.save)
   target:
-    type: single
+    type: multiple
+    range: $(range)
+  failure:
+    type: text
+    text: target has a −10 penalty to Wisdom (Perception) checks and Passive Perception

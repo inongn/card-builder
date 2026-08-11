@@ -14,11 +14,11 @@ time: action
 range: 10 feet
 duration: instantaneous
 summary: You cleanse nonmagical food and drink of poison and rot.
-description: >
-  You remove poison and rot from nonmagical food and drink in a 5-foot-radius
-  Sphere centered on a point within range.
+description: |
+  You remove poison and rot from nonmagical food and drink in a 5-foot-radius Sphere centered on a point within range.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: single
-    range: 10 feet
+    range: $(range)
+  text: $(summary)

@@ -19,5 +19,8 @@ description: |
 
   In addition, whenever a creature within 5 feet of you hits you with a melee attack roll, the shield erupts with flame. The attacker takes 2d8 Fire damage from a warm shield or 2d8 Cold damage from a chill shield.
 mechanic:
-  pattern: utility
-  trigger: A creature within 5 feet hits you with a melee attack roll
+  pattern: automatic
+  target:
+    type: self
+    range: $(range)
+  text: grant Resistance to Cold (Warm Shield) or Fire (Chill Shield); whenever a creature hits you with a melee attack within 5 feet, it takes 2d8 Fire or Cold damage

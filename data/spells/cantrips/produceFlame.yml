@@ -12,30 +12,30 @@ time: bonus action
 range: self
 duration: 10 minutes
 summary: A flickering flame appears in your hand for light or throwing.
-description: >
-  A flickering flame appears in your hand and remains there for the duration.
-  While there, the flame emits no heat and ignites nothing, and it sheds Bright
-  Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell
-  ends if you cast it again.
+description: |
+  A flickering flame appears in your hand and remains there for the duration. While there, the flame emits no heat and ignites nothing, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell ends if you cast it again.
 
-
-  Until the spell ends, you can take a Magic action to hurl fire at a creature
-  or an object within 60 feet of you. Make a
-  $(formatBonus(attributes.spellcasting.attack)) ranged spell attack. On a hit,
-  the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >=
-  5 ? 2 : 1)d8 Fire damage.
+  Until the spell ends, you can take a Magic action to hurl fire at a creature or an object within 60 feet of you. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Fire damage.
 mechanic:
-  pattern: attack
-  attack:
-    classification: ranged
-    type: spell
-    bonus: $(attributes.spellcasting.attack)
-  damage:
-    dice:
-      count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
-      sides: 8
-      bonus: 0
-    type: fire
-  target:
-    type: single
-    range: 60 feet
+  mode: succession
+  blocks:
+    - pattern: automatic
+      target:
+        type: self
+        range: $(range)
+      text: a flickering flame appears in your hand, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. You can take the following Action while the flame persists
+    - pattern: attack
+      name: Hurl Flame
+      attack:
+        classification: ranged
+        type: spell
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: 30 feet
+      hit:
+        type: damage
+        dice:
+          count: 1
+          sides: 8
+        damageType: fire

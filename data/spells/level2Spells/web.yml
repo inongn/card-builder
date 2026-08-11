@@ -15,41 +15,39 @@ time: action
 range: 60 feet
 duration: concentration, up to 1 hour
 summary: You conjure a mass of sticky webs to snare and entangle foes.
-description: >
-  You conjure a mass of sticky webbing at a point within range. The webs fill a
-  20-foot Cube there for the duration. The webs are Difficult Terrain, and the
-  area within them is Lightly Obscured.
+description: |
+  You conjure a mass of sticky webbing at a point within range. The webs fill a 20-foot Cube there for the duration. The webs are Difficult Terrain, and the area within them is Lightly Obscured.
 
+  If the webs aren't anchored between two solid masses (such as walls or trees) or layered across a floor, wall, or ceiling, the web collapses on itself, and the spell ends at the start of your next turn. Webs layered over a flat surface have a depth of 5 feet.
 
-  If the webs aren't anchored between two solid masses (such as walls or trees)
-  or layered across a floor, wall, or ceiling, the web collapses on itself, and
-  the spell ends at the start of your next turn. Webs layered over a flat
-  surface have a depth of 5 feet.
+  The first time a creature enters the webs on a turn or starts its turn there, it must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or have the Restrained condition while in the webs or until it breaks free.
 
+  A creature Restrained by the webs can take an action to make a Strength (Athletics) check against DC $(attributes.spellcasting.save). If it succeeds, it is no longer Restrained.
 
-  The first time a creature enters the webs on a turn or starts its turn there,
-  it must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw
-  or have the Restrained condition while in the webs or until it breaks free.
-
-
-  A creature Restrained by the webs can take an action to make a Strength
-  (Athletics) check against DC $(attributes.spellcasting.save). If it succeeds,
-  it is no longer Restrained.
-
-
-  **The webs are flammable.** Any 5-foot Cube of webs exposed to fire burns away
-  in 1 round, dealing 2d4 Fire damage to any creature that starts its turn in
-  the fire.
+  **The webs are flammable.** Any 5-foot Cube of webs exposed to fire burns away in 1 round, dealing 2d4 Fire damage to any creature that starts its turn in the fire.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: $(attributes.spellcasting.save)
-    failure:
-      text: Target is Restrained in difficult terrain.
-  target:
-    type: aoe
-    aoe:
-      shape: cube
-      size: 20
-    range: 60 feet
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: cube
+          size: 20
+      difficultTerrain: true
+      obscured: true
+      text: sticky webbing
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - start_turn
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: condition
+        condition: restrained
+        end: action_check

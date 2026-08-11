@@ -16,5 +16,3 @@ description: |
   **Persuasion ($(formatBonus(skills.persuasion.bonus))).** Persuade
 
   **Animal Handling ($(formatBonus(skills.animal_handling.bonus))).** Control or train a Beast
-mechanic:
-  pattern: utility

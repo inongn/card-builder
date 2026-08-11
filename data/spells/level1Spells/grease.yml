@@ -13,25 +13,32 @@ time: action
 range: 60 feet
 duration: 1 minute
 summary: Slick grease covers the ground, turning it into difficult terrain.
-description: >
-  Nonflammable grease covers the ground in a 10-foot square centered on a point
-  within range and turns it into Difficult Terrain for the duration.
+description: |
+  Nonflammable grease covers the ground in a 10-foot square centered on a point within range and turns it into Difficult Terrain for the duration.
 
-
-  When the grease appears, each creature standing in its area must succeed on a
-  DC $(attributes.spellcasting.save) Dexterity saving throw or have the Prone
-  condition. A creature that enters the area or ends its turn there must also
-  succeed on that save or fall Prone.
+  When the grease appears, each creature standing in its area must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or have the Prone condition. A creature that enters the area or ends its turn there must also succeed on that save or fall Prone.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: $(attributes.spellcasting.save)
-    failure:
-      text: Target falls Prone in the greased area.
-  target:
-    type: aoe
-    aoe:
-      shape: square
-      size: 10
-    range: $(range)
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: square
+          size: 10
+      difficultTerrain: true
+      text: slick grease
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - enter_area
+          - end_turn
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: condition
+        condition: prone

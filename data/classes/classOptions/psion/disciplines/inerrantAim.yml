@@ -10,7 +10,3 @@ duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   When you make an attack roll against a creature and miss, you can roll 1d$(attributes.psiDice) and add the number rolled to the attack roll, potentially turning the miss into a hit. If this causes the attack to hit, the charge is expended.
-mechanic:
-  pattern: utility
-  trigger: When you miss an attack roll against a creature
-  text: Roll 1d$(attributes.psiDice) and add it to the attack roll, potentially turning the miss into a hit. Expend the charge only if it hits.

@@ -12,26 +12,21 @@ time: action
 range: 60 feet
 duration: instantaneous
 summary: Flame-like radiance descends on a target.
-description: >
-  Flame-like radiance descends on a creature that you can see within range. The
-  target must succeed on a DC $(attributes.spellcasting.save) Dexterity saving
-  throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5
-  ? 2 : 1)d8 Radiant damage. The target gains no benefit from Half Cover or
-  Three-Quarters Cover for this save.
+description: |
+  Flame-like radiance descends on a creature that you can see within range. The target must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Radiant damage. The target gains no benefit from Half Cover or Three-Quarters Cover for this save.
 mechanic:
   pattern: save
   save:
     ability: dex
     dc: $(attributes.spellcasting.save)
-    failure:
-      damage:
-        dice:
-          count: >-
-            $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2
-            : 1)
-          sides: 8
-          bonus: 0
-        type: radiant
   target:
     type: single
-    range: 60 feet
+    range: $(range)
+  failure:
+    - type: damage
+      dice:
+        count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+        sides: 8
+      damageType: radiant
+    - type: text
+      text: the target gains no benefit from cover for this save

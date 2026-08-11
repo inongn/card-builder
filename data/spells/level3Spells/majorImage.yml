@@ -25,11 +25,8 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The spell lasts until dispelled, without requiring Concentration, if cast with a level 4+ spell slot.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: ''
-    failure:
-      text: You create the image of an object, a creature, or some other visible phenomenon that is no larger than a 20-foot Cube. The image appears at a spot that you can see within range and lasts for the du...
+  pattern: automatic
   target:
-    type: area
+    type: single
+    range: $(range)
+  text: $(summary)

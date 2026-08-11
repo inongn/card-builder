@@ -26,4 +26,5 @@ children:
   - type: Reference
     target: otherworldlyFamiliar$(meta.familiarEnvironment || 'Land')$(meta.familiarType || 'Celestial')
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

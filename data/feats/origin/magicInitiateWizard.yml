@@ -5,7 +5,7 @@ type: Folder
 summary: "Learn arcane cantrips and a 1st-level wizard spell."
 children:
 - type: Reference
-  target: data.core.spellcasting.chooseCaster
+  target: chooseCaster
   quantity: 1
 - type: Slot
   id: magicInitiateWizardCantrips

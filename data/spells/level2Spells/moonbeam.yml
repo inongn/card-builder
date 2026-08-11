@@ -21,23 +21,41 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d10 for each spell slot level above 2.
 mechanic:
-  pattern: save
-  save:
-    ability: con
-    dc: ''
-    failure:
-      damage:
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: cylinder
+          size: 5
+        range: $(range)
+      move:
+        action: action
+        distance: 60
+      text: silvery pale light
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - area_moves_into_space
+          - enter_area
+          - end_turn
+      save:
+        ability: con
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: damage
         dice:
           count: 2
           sides: 10
-          bonus: 0
-        type: radiant
-    success:
-      text: Takes half as much damage
-  text: A creature also makes this save when the beam enters its space, it enters the beam, or ends its turn there. You can move the Cylinder as an action while you maintain concentration.
-  target:
-    type: aoe
-    aoe:
-      shape: cylinder
-      size: 5
-    range: 120 feet
+        damageType: radiant
+      success:
+        halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].failure.dice.count
+        add: 1

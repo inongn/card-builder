@@ -28,13 +28,12 @@ mechanic:
   pattern: save
   save:
     ability: int
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 2
-          sides: 8
-          bonus: 0
-        type: psychic
+    dc: $(attributes.spellcasting.save)
   target:
-    type: area
+    type: single
+    range: $(range)
+  failure:
+    - type: condition
+      condition: charmed
+    - type: text
+      text: the target treats a phantasmal illusion as real and takes 2d8 Psychic damage on each of its turns if the phantasm is dangerous

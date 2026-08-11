@@ -17,4 +17,7 @@ summary: You touch a creature to grant it darkvision.
 description: |
   For the duration, a willing creature you touch has Darkvision with a range of 150 feet.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: target gains Darkvision with a range of 60 feet

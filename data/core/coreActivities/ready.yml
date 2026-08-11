@@ -10,5 +10,3 @@ description: |
   First, you decide what perceivable circumstance will trigger your Reaction. Then, you choose the action you will take in response to that trigger, or you choose to move up to your Speed in response to it. Examples include "If the cultist steps on the trapdoor, I'll pull the lever that opens it," and "If the zombie steps next to me, I move away."
 
   When the trigger occurs, you can either take your Reaction right after the trigger finishes or ignore the trigger.
-mechanic:
-  pattern: utility

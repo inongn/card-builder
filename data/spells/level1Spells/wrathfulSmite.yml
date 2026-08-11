@@ -19,16 +19,28 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d6 for each spell slot level above 1.
 mechanic:
-  mode: succession
-  blocks:
-    - pattern: utility
-      trigger: Immediately after hitting a creature with a Melee weapon or an Unarmed Strike
-    - pattern: save
-      save:
-        ability: wis
-        dc: $(attributes.spellcasting.save)
-        failure:
-          text: Target has Frightened condition until spell ends.
-      target:
-        type: single
-        range: $(range)
+  pattern: save
+  trigger:
+    event: hit_with_attack
+  save:
+    ability: wis
+    dc: $(attributes.spellcasting.save)
+  target:
+    inherit: trigger
+  failureOrSuccess:
+    type: damage
+    dice:
+      count: 1
+      sides: 6
+    damageType: necrotic
+  failure:
+    - type: condition
+      condition: frightened
+      end: turn_repeat_save
+    - type: text
+      text: the target can take an Action to make a Wisdom check against your spell save DC to end the condition
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failureOrSuccess.dice.count
+        add: 1

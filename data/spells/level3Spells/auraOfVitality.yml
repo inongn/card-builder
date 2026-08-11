@@ -16,12 +16,24 @@ summary: An aura radiates from you in a 30-foot Emanation for the duration.
 description: |
   An aura radiates from you in a 30-foot Emanation for the duration. When you create the aura and at the start of each of your turns while it persists, you can restore 2d6 Hit Points to one creature in it.
 mechanic:
-  pattern: healing
-  healing:
-    dice:
-      count: 2
-      sides: 6
-      bonus: 0
-    type: hitPoints
-  target:
-    type: area
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: emanation
+          size: 30
+        range: $(range)
+      text: healing energy
+    - pattern: healing
+      trigger:
+        event: start_turn
+      healing:
+        dice:
+          count: 2
+          sides: 6
+        type: hitPoints
+      target:
+        type: single
+        range: 30 feet

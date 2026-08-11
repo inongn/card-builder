@@ -33,13 +33,9 @@ mechanic:
   pattern: save
   save:
     ability: wis
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 1
-          sides: 8
-          bonus: 0
-        type: necrotic
+    dc: $(attributes.spellcasting.save)
   target:
-    type: single
+    type: touch
+  failure:
+    type: text
+    text: 'the target is cursed for the duration; choose one effect: Disadvantage on checks and saves of one attribute, Disadvantage on attack rolls against you, Wis save at start of turn or waste action, or extra 1d8 Necrotic damage from your attacks and spells'

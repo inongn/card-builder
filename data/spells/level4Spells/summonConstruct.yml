@@ -25,4 +25,5 @@ children:
       - constructSpiritMetal
       - constructSpiritStone
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

@@ -21,10 +21,8 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: While cloaked, your Speed increases by 10 feet for each spell slot level above 2.
 mechanic:
-  pattern: utility
-  damage:
-    dice:
-      count: 2
-      sides: 8
-      bonus: 0
-    type: necrotic
+  pattern: automatic
+  target:
+    type: self
+    range: $(range)
+  text: $(summary)

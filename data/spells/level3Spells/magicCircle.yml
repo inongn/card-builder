@@ -30,11 +30,11 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The duration increases by 1 hour for each spell slot level above 3.
 mechanic:
-  pattern: save
-  save:
-    ability: cha
-    dc: ''
-    failure:
-      text: You create a 10-foot-radius, 20-foot-tall Cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the Cylinder intersects with the ...
+  pattern: automatic
   target:
     type: area
+    aoe:
+      shape: cylinder
+      size: 10
+    range: $(range)
+  text: $(summary)

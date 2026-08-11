@@ -28,14 +28,11 @@ description: |
 mechanic:
   pattern: save
   save:
-    ability: str
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 1
-          sides: 4
-          bonus: 0
-        type: untyped
+    ability: con
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    range: $(range)
+  failure:
+    type: text
+    text: target's size doubles or halves, altering its damage and checks accordingly

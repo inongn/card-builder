@@ -25,18 +25,39 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d6 for each spell slot level above 2.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: ''
-    failure:
-      damage:
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: sphere
+          size: 5
+        range: $(range)
+      move:
+        action: bonus_action
+        distance: 30
+      text: fire
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - end_turn
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: damage
         dice:
           count: 2
           sides: 6
-          bonus: 0
-        type: fire
-    success:
-      text: Takes half as much damage
-  target:
-    type: area
+        damageType: fire
+      success:
+        halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].failure.dice.count
+        add: 1

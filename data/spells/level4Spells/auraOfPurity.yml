@@ -14,4 +14,11 @@ summary: An aura radiates from you, protecting allies against conditions and dis
 description: |
   An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Poison damage and Advantage on saving throws to avoid or end effects that include the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, or Stunned condition.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: area
+    aoe:
+      shape: emanation
+      size: 30
+    range: $(range)
+  text: allies in aura can't become Diseased, gain Resistance to Poison damage, and gain Advantage on saving throws against the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, and Stunned conditions

@@ -20,15 +20,24 @@ extra:
     description: All the damage increases by 1d6 for each spell slot level above 1.
 mechanic:
   pattern: save
+  trigger:
+    event: hit_with_attack
   save:
     ability: con
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 1
-          sides: 6
-          bonus: 0
-        type: fire
+    dc: $(attributes.spellcasting.save)
   target:
-    type: self
+    inherit: trigger
+  failureOrSuccess:
+    type: damage
+    dice:
+      count: 1
+      sides: 6
+    damageType: fire
+  failure:
+    type: text
+    text: the target takes 1d6 Fire damage at start of each of its turns until it puts out flames
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failureOrSuccess.dice.count
+        add: 1

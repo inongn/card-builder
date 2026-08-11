@@ -35,7 +35,6 @@ children:
     target: fightingStyle
   - id: secondWind
     name: Second Wind
-    description: You draw on a well of physical and mental stamina. Regain 1d10+$(meta.level) Hit Points.
     type: Activity
     resource: secondWind
     time: bonus action
@@ -55,22 +54,25 @@ children:
     type: Reference
     target: masteryProperties
   - id: secondWind
-    name: Second Wind
     type: Resource
     quantity: $(progression(2,2,2,3,3,3,3,3,3,4,4,4))
     sr: 1
   - id: actionSurge
     name: Action Surge
     type: Activity
-    description: When you take an action, you push yourself beyond your normal limits for a moment. Take one additional action, except the Magic action.
     range: self
     time: free action
     duration: Instantaneous
     resource: actionSurge
-    mechanic:
-      pattern: utility
-      text: Take one additional action, except the Magic action.
     condition: $(meta.level >= 2)
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        type: action
+        actionType: general
+        count: 1
   - id: actionSurge
     type: Resource
     condition: $(meta.level >= 2)
@@ -84,15 +86,19 @@ children:
     resource: secondWind
     time: free action
     name: Tactical Mind
-    description: When you fail an ability check, you push yourself toward success. Add 1d10 to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn't expended.
-    mechanic:
-      pattern: utility
-      dice:
-        count: 1
-        sides: 10
-      trigger: When you fail an ability check
-      text: Add 1d10 to the ability check, potentially turning it into a success.
     condition: $(meta.level >= 2)
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        type: rollModifier
+        modifierType: add
+        dice:
+          count: 1
+          sides: 10
+        targetRolls: abilityCheck
+      reliable: true
   - id: fighterSubclass
     name: Fighter Subclass
     condition: $(meta.level >= 3)
@@ -105,10 +111,18 @@ children:
     target: feat
     condition: $(meta.level >= 4)
   - id: tacticalShift
-    type: Extra
-    target: secondWind
-    name: Tactical Shift
-    description: You can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
+    type: Effect
+    target: activities[id=secondWind].mechanic
+    operation: push
+    value:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        type: movement
+        movementType: normal
+        distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
+        provokesOpportunityAttacks: false
     condition: $(meta.level >= 5)
   - type: Reference
     target:

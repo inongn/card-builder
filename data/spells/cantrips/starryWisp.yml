@@ -13,28 +13,22 @@ time: action
 range: 60 feet
 duration: instantaneous
 summary: You launch a twinkling mote of light that illuminates a target.
-description: >
-  You launch a mote of light at one creature or object within range. Make a
-  $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the
-  target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ?
-  3 : meta.level >= 5 ? 2 : 1)d8 Radiant damage, and until the end of your next
-  turn, it emits Dim Light in a 10-foot radius and can't benefit from the
-  Invisible condition.
+description: |
+  You launch a mote of light at one creature or object within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Radiant damage, and until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition.
 mechanic:
   pattern: attack
   attack:
     classification: ranged
     type: spell
     bonus: $(attributes.spellcasting.attack)
-  damage:
-    dice:
-      count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
-      sides: 8
-      bonus: 0
-    type: radiant
-  text: >-
-    Target emits Dim Light in a 10-foot radius and cannot benefit from Invisible
-    condition.
   target:
     type: single
-    range: 60 feet
+    range: $(range)
+  hit:
+    - type: damage
+      dice:
+        count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+        sides: 8
+      damageType: radiant
+    - type: text
+      text: Until the end of your next turn, the target emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition

@@ -15,13 +15,23 @@ time: action
 range: touch
 duration: 1 hour
 summary: You touch a creature to increase its movement speed.
-description: >
-  You touch a creature. The target's Speed increases by 10 feet until the spell
-  ends.
+description: |
+  You touch a creature. The target's Speed increases by 10 feet until the spell ends.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: You can target one additional creature for each spell slot level above 1.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
-    type: touch
+    type: single
+    range: $(range)
+  payloads:
+    type: statModifier
+    stat: speed
+    value: 10
+    operation: add
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

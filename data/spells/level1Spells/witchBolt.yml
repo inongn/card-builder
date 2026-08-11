@@ -15,19 +15,12 @@ time: action
 range: 60 feet
 duration: concentration, up to 1 minute
 summary: You form a sustained arc of crackling lightning between yourself and a target.
-description: >
-  A beam of crackling energy lances toward a creature within range, forming a
-  sustained arc of lightning between you and the target. Make a
-  $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against it.
-  On a hit, the target takes 2d12 Lightning damage.
+description: |
+  A beam of crackling energy lances toward a creature within range, forming a sustained arc of lightning between you and the target. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against it. On a hit, the target takes 2d12 Lightning damage.
 
+  On each of your subsequent turns, you can take a Bonus Action to deal 1d12 Lightning damage to the target automatically, even if the first attack missed.
 
-  On each of your subsequent turns, you can take a Bonus Action to deal 1d12
-  Lightning damage to the target automatically, even if the first attack missed.
-
-
-  The spell ends if the target is ever outside the spell's range or if it has
-  Total Cover from you.
+  The spell ends if the target is ever outside the spell's range or if it has Total Cover from you.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The initial damage increases by 1d12 for each spell slot level above 1.
@@ -37,13 +30,20 @@ mechanic:
     classification: ranged
     type: spell
     bonus: $(attributes.spellcasting.attack)
-  damage:
+  target:
+    type: single
+    range: $(range)
+  hit:
+    type: damage
     dice:
       count: 2
       sides: 12
-      bonus: 0
-    type: lightning
-  text: Bonus Action on subsequent turns deals 1d12 Lightning damage automatically.
-  target:
-    type: single
-    range: 60 feet
+    damageType: lightning
+  hitOrMiss:
+    type: text
+    text: on each of your subsequent turns, you can take a Bonus Action to deal 1d12 Lightning damage to the target automatically
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: hit.dice.count
+        add: 1

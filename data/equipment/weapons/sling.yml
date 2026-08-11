@@ -11,22 +11,20 @@ tags:
   - weaponAttack
   - bludgeoningDamage
   - sling
-description: >-
-  You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus))
-  attack against the target. On a hit, the target takes $(formatDice(mechanic.damage.dice))
-  $(capitalize(mechanic.damage.type)) damage.
+description: You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus)) attack against the target. On a hit, the target takes $(formatDice(mechanic.hit.dice)) $(capitalize(mechanic.hit.damageType)) damage.
 mechanic:
   pattern: attack
   attack:
     classification: ranged
     type: weapon
     bonus: $(attributes.ranged.attack)
-  damage:
+  target:
+    type: single
+    range: 30 feet
+  hit:
+    type: damage
     dice:
       count: 1
       sides: 4
       bonus: $(attributes.ranged.bonus)
-    type: bludgeoning
-  target:
-    type: single
-    range: 30 feet
+    damageType: bludgeoning

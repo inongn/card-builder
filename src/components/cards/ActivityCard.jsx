@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { renderGridValue, renderIcon, sortDescription } from '../../utils/cardUtils';
 import { processDiceInChildren } from './DiceRoller';
+import { formatActivityMechanic } from '../../utils/mechanicFormatter';
 
 import 'mdui/components/card.js';
 import 'mdui/components/collapse-item.js';
@@ -223,7 +224,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
         return 'Core Feature';
     };
 
-    const subtitleText = getActivitySubtitle();
+    const displayDescription = activity.description || formatActivityMechanic(activity, char);
 
     const bodyContent = (
         <>
@@ -240,13 +241,13 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
             <div className="card-content">
                 {variant === 'static' ? (
                     <AutoFitContent>
-                        {activity.description && (
+                        {displayDescription && (
                             <div className="card-description">
-                                {Array.isArray(activity.description) ?
-                                    activity.description.map((line, i) => (
+                                {Array.isArray(displayDescription) ?
+                                    displayDescription.map((line, i) => (
                                         <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>{line}</ReactMarkdown>
                                     )) :
-                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{activity.description}</ReactMarkdown>
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{displayDescription}</ReactMarkdown>
                                 }
                             </div>
                         )}
@@ -273,13 +274,13 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                     </AutoFitContent>
                 ) : (
                     <>
-                        {activity.description && (
+                        {displayDescription && (
                             <div className="card-description">
-                                {Array.isArray(activity.description) ?
-                                    activity.description.map((line, i) => (
+                                {Array.isArray(displayDescription) ?
+                                    displayDescription.map((line, i) => (
                                         <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={markdownComponents}>{line}</ReactMarkdown>
                                     )) :
-                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{activity.description}</ReactMarkdown>
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{displayDescription}</ReactMarkdown>
                                 }
                             </div>
                         )}

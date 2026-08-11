@@ -24,19 +24,3 @@ children:
     description: |
       You can craft poisons. With 1 hour of work using a Poisoner's Kit and expending 50 GP worth of materials, you can create $(attributes.prof) doses of poison. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you hit with the poisoned item, whichever comes first. When a creature takes damage from the poisoned item, that creature must succeed on a DC $(8 + stats.dex.mod + attributes.prof) Constitution saving throw or take 2d8 Poison damage and have the Poisoned condition until the end of your next turn.
     id: poisonerBrewPoison
-    mechanic:
-      mode: succession
-      blocks:
-        - pattern: utility
-          text: You craft $(attributes.prof) doses of poison. You can apply a dose to a weapon or piece of ammunition as a Bonus Action. When a creature takes damage from the poisoned item, that creature must succeed on the following save.
-        - pattern: save
-          save:
-            ability: con
-            dc: $(8 + stats.dex.mod + attributes.prof)
-            failure:
-              damage:
-                dice:
-                  count: 2
-                  sides: 8
-                type: poison
-              text: Target takes damage and gains Poisoned condition until end of your next turn.

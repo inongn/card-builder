@@ -6,10 +6,15 @@ tags:
 type: Folder
 children:
   - id: huntersLore
-    type: Extra
+    type: Effect
     name: Hunter's Lore
-    target: huntersMark
-    description: You know whether the creature has any Immunities, Resistances, or Vulnerabilities, and if it has any, you know what they are.
+    target: activities[id=huntersMark].mechanic
+    operation: push
+    value:
+      pattern: automatic
+      text: you know whether the creature has any Immunities, Resistances, or Vulnerabilities, and if it has any, you know what they are
+      target:
+        type: Self
   - id: huntersPrey
     type: Slot
     name: Hunter's Prey

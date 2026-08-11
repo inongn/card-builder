@@ -11,7 +11,7 @@ children:
     description: The creature regains an additional $(2+(stats.wis.mod)) Hit Points.
     children:
       - type: Effect
-        target: activities[tags=healingSpell].mechanic.healing.dice.bonus
+        target: activities[tags=healingSpell].mechanic.payloads[type=healing].dice.bonus
         operation: add
         value: $(2+(stats.wis.mod))
     condition: $(meta.level >= 3)
@@ -48,17 +48,16 @@ children:
     mechanic:
       pattern: healing
       healing:
+        pool: true
         dice:
           count: 0
           sides: 0
-          bonus: $(5 * meta.level)
+          bonus: '$(5 * meta.level)'
         type: hitPoints
-      text: Divide up to $(5 * meta.level) Hit Points of healing among Bloodied allies within 30 feet.
       target:
-        type: aoe
-        aoe:
-          shape: emanation
-          size: 30
+        type: multiple
+        range: $(range)
+        filter: bloodied creatures
     condition: $(meta.level >= 3)
   - id: blessedHealer
     type: Trait

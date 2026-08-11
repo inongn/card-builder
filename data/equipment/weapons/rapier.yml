@@ -11,22 +11,20 @@ tags:
   - weaponAttack
   - piercingDamage
   - rapier
-description: >-
-  You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus))
-  attack against the target. On a hit, the target takes $(formatDice(mechanic.damage.dice))
-  $(capitalize(mechanic.damage.type)) damage.
+description: You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus)) attack against the target. On a hit, the target takes $(formatDice(mechanic.hit.dice)) $(capitalize(mechanic.hit.damageType)) damage.
 mechanic:
   pattern: attack
   attack:
     classification: finesse
     type: weapon
     bonus: $(attributes.finesse.attack)
-  damage:
+  target:
+    type: single
+    range: 5 feet
+  hit:
+    type: damage
     dice:
       count: 1
       sides: 8
       bonus: $(attributes.finesse.bonus)
-    type: piercing
-  target:
-    type: single
-    range: 5 feet
+    damageType: piercing

@@ -27,8 +27,13 @@ mechanic:
   pattern: save
   save:
     ability: int
-    dc: ''
-    failure:
-      text: Choose a creature you can see within range. The target must succeed on a DC $(attributes.spellcasting.save) Intelligence saving throw or have the Frightened condition for the duration. While Fright...
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    range: $(range)
+  failure:
+    - type: condition
+      condition: charmed
+      end: repeat_save_on_damage
+    - type: text
+      text: the target regards all creatures as enemies and repeats the save whenever it takes damage

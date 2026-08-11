@@ -4,6 +4,8 @@ name: Grappler
 tags:
   - feat
 children:
+  - type: Reference
+    target: unarmed
   - type: Effect
     target: attributes.asiPoolLimit
     operation: add

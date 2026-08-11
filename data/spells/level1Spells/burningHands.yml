@@ -14,11 +14,8 @@ time: action
 range: self
 duration: instantaneous
 summary: A thin sheet of flames shoots forth from your fingertips.
-description: >
-  A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone
-  makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 3d6
-  Fire damage on a failed save or half as much damage on a successful one.
-
+description: |
+  A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.
 
   Flammable objects in the Cone that aren't being worn or carried start burning.
 extra:
@@ -29,18 +26,22 @@ mechanic:
   save:
     ability: dex
     dc: $(attributes.spellcasting.save)
-    failure:
-      damage:
-        dice:
-          count: 3
-          sides: 6
-          bonus: 0
-        type: fire
-    success:
-      text: Takes half damage
   target:
-    type: aoe
+    type: area
     aoe:
       shape: cone
       size: 15
     range: $(range)
+  failure:
+    type: damage
+    dice:
+      count: 3
+      sides: 6
+    damageType: fire
+  success:
+    halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failure.dice.count
+        add: 1

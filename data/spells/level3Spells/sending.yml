@@ -20,4 +20,5 @@ description: |
 
   Upon receiving your message, a creature can block your ability to reach it again with this spell for 8 hours. If you try to send another message during that time, you learn that you are blocked, and the spell fails.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

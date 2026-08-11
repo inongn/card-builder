@@ -16,16 +16,20 @@ description: |
   You gain 2d4+4 Temporary Hit Points.
 extra:
   - name: Using a Higher-Level Spell Slot
-    description: >-
-      You gain 5 additional Temporary Hit Points for each spell slot level above
-      1.
+    description: You gain 5 additional Temporary Hit Points for each spell slot level above 1.
 mechanic:
   pattern: healing
   healing:
     dice:
       count: 2
       sides: 4
-      bonus: 4
+      bonus: 5
     type: tempHitPoints
   target:
     type: self
+    range: $(range)
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: healing.dice.bonus
+        add: 5

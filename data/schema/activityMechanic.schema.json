@@ -4,7 +4,7 @@
   "title": "Activity Mechanic Schema",
   "description": "JSON Schema for schematized D&D 5e / custom RPG activity mechanics.",
   "type": "object",
-  "oneOf": [
+  "anyOf": [
     { "$ref": "#/$defs/SinglePatternBlock" },
     { "$ref": "#/$defs/MultiBlockMechanic" }
   ],
@@ -13,21 +13,21 @@
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "trigger": { "type": "string" },
+        "trigger": { "$ref": "primitives.schema.json#/$defs/Trigger" },
         "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
         "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "text": { "type": "string" },
+        "reliable": { "type": "boolean" },
+        "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
+        "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
+        "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
         "pattern": { "type": "string", "const": "attack" },
         "attack": { "$ref": "primitives.schema.json#/$defs/AttackSpec" },
-        "damage": {
-          "oneOf": [
-            { "$ref": "primitives.schema.json#/$defs/DamageEntry" },
-            {
-              "type": "array",
-              "items": { "$ref": "primitives.schema.json#/$defs/DamageEntry" }
-            }
-          ]
-        },
-        "text": { "type": "string" }
+        "hit": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
+        "miss": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
+        "crit": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
+        "hitOrMiss": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
+        "damage": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
       },
       "required": ["pattern", "attack"],
       "additionalProperties": false
@@ -36,12 +36,19 @@
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "trigger": { "type": "string" },
+        "trigger": { "$ref": "primitives.schema.json#/$defs/Trigger" },
         "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
         "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "text": { "type": "string" },
+        "reliable": { "type": "boolean" },
+        "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
+        "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
+        "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
         "pattern": { "type": "string", "const": "save" },
         "save": { "$ref": "primitives.schema.json#/$defs/SaveSpec" },
-        "text": { "type": "string" }
+        "failureOrSuccess": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
+        "failure": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
+        "success": { "$ref": "primitives.schema.json#/$defs/SaveOutcome" }
       },
       "required": ["pattern", "save"],
       "additionalProperties": false
@@ -50,57 +57,82 @@
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "trigger": { "type": "string" },
+        "trigger": { "$ref": "primitives.schema.json#/$defs/Trigger" },
         "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
         "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "text": { "type": "string" },
+        "reliable": { "type": "boolean" },
+        "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
+        "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
+        "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
         "pattern": { "type": "string", "const": "healing" },
-        "healing": { "$ref": "primitives.schema.json#/$defs/HealingEntry" },
-        "text": { "type": "string" }
+        "healing": { "$ref": "primitives.schema.json#/$defs/HealingEntry" }
       },
       "required": ["pattern", "healing"],
       "additionalProperties": false
     },
-    "UtilityPatternBlock": {
+    "AutomaticPatternBlock": {
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "trigger": { "type": "string" },
+        "trigger": { "$ref": "primitives.schema.json#/$defs/Trigger" },
         "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
         "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
-        "pattern": { "type": "string", "const": "utility" },
-        "damage": {
-          "oneOf": [
-            { "$ref": "primitives.schema.json#/$defs/DamageEntry" },
-            {
-              "type": "array",
-              "items": { "$ref": "primitives.schema.json#/$defs/DamageEntry" }
-            }
-          ]
-        },
+        "text": { "type": "string" },
+        "reliable": { "type": "boolean" },
+        "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
+        "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
+        "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
+        "pattern": { "type": "string", "const": "automatic" },
+        "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
+        "damage": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
         "dice": {
-          "oneOf": [
+          "anyOf": [
             { "$ref": "primitives.schema.json#/$defs/DiceFormula" },
             { "type": "string" }
           ]
-        },
-        "text": { "type": "string" }
+        }
       },
       "required": ["pattern"],
       "additionalProperties": false
     },
+    "AuraPatternBlock": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "pattern": { "type": "string", "const": "aura" },
+        "trigger": { "$ref": "primitives.schema.json#/$defs/Trigger" },
+        "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
+        "move": {
+          "type": "object",
+          "properties": {
+            "action": { "type": "string", "enum": ["action", "bonus_action", "free_action"] },
+            "distance": { "$ref": "primitives.schema.json#/$defs/NumberOrExpression" }
+          },
+          "additionalProperties": false
+        },
+        "text": { "type": "string" },
+        "obscured": { "type": "boolean" },
+        "difficultTerrain": { "type": "boolean" },
+        "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
+      },
+      "required": ["pattern", "target"],
+      "additionalProperties": false
+    },
     "SinglePatternBlock": {
-      "oneOf": [
+      "anyOf": [
         { "$ref": "#/$defs/AttackPatternBlock" },
         { "$ref": "#/$defs/SavePatternBlock" },
         { "$ref": "#/$defs/HealingPatternBlock" },
-        { "$ref": "#/$defs/UtilityPatternBlock" }
+        { "$ref": "#/$defs/AutomaticPatternBlock" },
+        { "$ref": "#/$defs/AuraPatternBlock" }
       ]
     },
     "MultiBlockMechanic": {
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "trigger": { "type": "string" },
+        "trigger": { "$ref": "primitives.schema.json#/$defs/Trigger" },
         "text": { "type": "string" },
         "mode": {
           "type": "string",
@@ -110,8 +142,12 @@
         "blocks": {
           "type": "array",
           "items": { "$ref": "#/$defs/SinglePatternBlock" },
-          "minItems": 1
-        }
+          "minItems": 0
+        },
+        "reliable": { "type": "boolean" },
+        "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
+        "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
+        "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" }
       },
       "required": ["blocks"],
       "additionalProperties": false

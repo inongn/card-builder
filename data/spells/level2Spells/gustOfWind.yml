@@ -23,11 +23,28 @@ description: |
 
   As a Bonus Action on your later turns, you can change the direction in which the Line blasts from you.
 mechanic:
-  pattern: save
-  save:
-    ability: str
-    dc: ''
-    failure:
-      text: A Line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the duration. Each creature in the Line must succeed on a DC $(attributes.spellcasting.save) Streng...
-  target:
-    type: area
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: line
+          size: 60
+        range: $(range)
+      text: strong wind
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - start_turn
+      save:
+        ability: str
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: movement
+        movementType: forced
+        direction: push
+        distance: 15

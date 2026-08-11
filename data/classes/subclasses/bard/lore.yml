@@ -19,9 +19,14 @@ children:
     resource: bardicInspiration
     description: When a creature that you can see makes a damage roll, ability check, or attack roll, you use your wit to suppernaturally distract, confuse or otherwise sap its confidence and competence. The target substracts 1d$(attributes.bardicDie) from the roll.
     mechanic:
-      pattern: utility
-      trigger: When a creature makes an attack roll, ability check, or damage roll
-      text: The target subtracts 1d$(attributes.bardicDie) from the roll.
+      pattern: automatic
+      trigger:
+        text: When a creature that you can see makes an attack roll, ability check, or damage roll
+      target:
+        inherit: trigger
+      payloads:
+        type: text
+        text: subtract 1d$(attributes.bardicDie) from the roll
     condition: $(meta.level >= 3)
   - id: magicalDiscoveries
     name: Magical Discoveries

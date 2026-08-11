@@ -13,9 +13,8 @@ time: bonus action
 range: 60 feet
 duration: instantaneous
 summary: A quick word of magic heals a target at a distance.
-description: >
-  A creature of your choice that you can see within range regains Hit Points
-  equal to 2d4$(formatBonus(attributes.spellcasting.bonus)).
+description: |
+  A creature of your choice that you can see within range regains Hit Points equal to 2d4$(formatBonus(attributes.spellcasting.bonus)).
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The healing increases by 2d4 for each spell slot level above 1.
@@ -29,4 +28,9 @@ mechanic:
     type: hitPoints
   target:
     type: single
-    range: 60 feet
+    range: $(range)
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: healing.dice.count
+        add: 2

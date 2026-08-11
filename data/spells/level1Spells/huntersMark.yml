@@ -18,7 +18,16 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: Your Concentration can last longer with a spell slot of level 3–4 (up to 8 hours) or 5+ (up to 24 hours).
 mechanic:
-  pattern: utility
-  target:
-    type: single
-    range: 90 feet
+  mode: succession
+  blocks:
+    - pattern: automatic
+      target:
+        type: single
+        range: $(range)
+      text: you mark a target as your quarry
+    - pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: your attacks deal an extra 1d6 Force damage to the target

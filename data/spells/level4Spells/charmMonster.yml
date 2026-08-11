@@ -16,13 +16,8 @@ time: action
 range: 30 feet
 duration: 1 hour
 summary: You charm any creature type to regard you as a friendly acquaintance.
-description: >
-  One creature you can see within range makes a DC
-  $(attributes.spellcasting.save) Wisdom saving throw. It does so with Advantage
-  if you or your allies are fighting it. On a failed save, the target has the
-  Charmed condition until the spell ends or until you or your allies damage it.
-  The Charmed creature is Friendly to you. When the spell ends, the target knows
-  it was Charmed by you.
+description: |
+  One creature you can see within range makes a DC $(attributes.spellcasting.save) Wisdom saving throw. It does so with Advantage if you or your allies are fighting it. On a failed save, the target has the Charmed condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: You can target one additional creature for each spell slot level above 4.
@@ -31,8 +26,17 @@ mechanic:
   save:
     ability: wis
     dc: $(attributes.spellcasting.save)
-    failure:
-      text: Target has Charmed condition for 1 hour.
   target:
     type: single
-    range: 30 feet
+    range: $(range)
+  failure:
+    - type: condition
+      condition: charmed
+      end: take_damage
+    - type: text
+      text: ends early if you or your allies damage the target
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

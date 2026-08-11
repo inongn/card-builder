@@ -9,6 +9,3 @@ id: twoWeaponFighting
 name: Two-Weapon Fighting
 summary: Make an additional attack with a Light weapon.
 description: When you take the Attack action on your turn and attack with a Light weapon, you can make one attack with a different Light weapon as a Bonus Action.
-mechanic:
-  pattern: utility
-  text: When you take the Attack action on your turn and attack with a Light weapon, you can make one attack with a different Light weapon.

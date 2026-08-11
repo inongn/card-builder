@@ -16,6 +16,7 @@ description: |
 
   If the spell is still in effect when the target is subjected to an effect that would kill it instantly without dealing damage, that effect is negated against the target, and the spell ends.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: touch
+  text: the first time target drops to 0 Hit Points, it drops to 1 Hit Point instead, ending the spell

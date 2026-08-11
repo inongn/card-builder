@@ -10,5 +10,11 @@ time: bonus action
 duration: 1 turn
 description: Touch a willing creature to perceive through its senses until the end of your next turn. Use a Bonus Action to extend the duration.
 mechanic:
-  pattern: utility
-  text: "Touch a willing creature to perceive through its senses."
+  pattern: automatic
+  target:
+    type: single
+    range: touch
+    filter: willing creature
+  payloads:
+    - type: text
+      text: perceive through the target's senses until the end of your next turn

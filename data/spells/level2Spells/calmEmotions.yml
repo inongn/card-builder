@@ -23,8 +23,13 @@ mechanic:
   pattern: save
   save:
     ability: cha
-    dc: ''
-    failure:
-      text: Each Humanoid in a 20-foot-radius Sphere centered on a point you choose within range must succeed on a DC $(attributes.spellcasting.save) Charisma saving throw or be affected by one of the followin...
+    dc: $(attributes.spellcasting.save)
   target:
     type: area
+    aoe:
+      shape: sphere
+      size: 20
+    range: $(range)
+  failure:
+    type: text
+    text: suppresses Charmed and Frightened conditions, or makes hostile creatures indifferent

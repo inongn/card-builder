@@ -13,31 +13,25 @@ tags:
   - psion
 time: action
 range: 60 feet
-duration: 1 round
+duration: instantaneous
 summary: You drive a disorienting spike of psychic energy into a target mind.
-description: >
-  You try to temporarily sliver the mind of one creature you can see within
-  range. The target must succeed on an DC $(attributes.spellcasting.save)
-  Intelligence saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ?
-  3 : meta.level >= 5 ? 2 : 1)d6 Psychic damage and subtract 1d4 from the next
-  saving throw it makes before the end of your next turn.
+description: |
+  You try to temporarily sliver the mind of one creature you can see within range. The target must succeed on an DC $(attributes.spellcasting.save) Intelligence saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Psychic damage and subtract 1d4 from the next saving throw it makes before the end of your next turn.
 mechanic:
   pattern: save
   save:
     ability: int
     dc: $(attributes.spellcasting.save)
-    failure:
-      damage:
-        dice:
-          count: >-
-            $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2
-            : 1)
-          sides: 6
-          bonus: 0
-        type: psychic
-      text: >-
-        Target subtracts 1d4 from its next saving throw before the end of your
-        next turn.
   target:
     type: single
     range: $(range)
+  failure:
+    - type: damage
+      dice:
+        count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+        sides: 6
+      damageType: psychic
+    - type: rollModifier
+      modifierType: subtract
+      targetRolls: save
+      dice: 1d4

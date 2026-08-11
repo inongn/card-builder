@@ -25,4 +25,5 @@ children:
       - bestialSpiritWater
       - bestialSpiritAir
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

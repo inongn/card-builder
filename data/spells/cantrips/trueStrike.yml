@@ -14,22 +14,8 @@ time: action
 range: self
 duration: instantaneous
 summary: Magical insight guides your next strike.
-description: >
-  Guided by a flash of magical insight, you make one attack with the weapon used
-  in the spell's casting. Make a $(formatBonus(attributes.spellcasting.attack))
-  attack roll. On a hit, deal your weapon's damage die
-  $(formatBonus(attributes.spellcasting.bonus)) Radiant damage.
+description: |
+  Guided by a flash of magical insight, you make one attack with the weapon used in the spell's casting. Make a $(formatBonus(attributes.spellcasting.attack)) attack roll. On a hit, deal your weapon's damage die $(formatBonus(attributes.spellcasting.bonus)) Radiant damage.
 mechanic:
-  pattern: attack
-  attack:
-    classification: melee
-    type: spell
-    bonus: $(attributes.spellcasting.attack)
-  damage:
-    dice:
-      count: '$(meta.level >= 17 ? 3 : meta.level >= 11 ? 2 : meta.level >= 5 ? 1 : 0)'
-      sides: 6
-      bonus: 0
-    type: radiant
-  target:
-    type: single
+  pattern: automatic
+  text: Guided by a flash of magical insight, make one attack with the weapon used in the spell's casting using a $(formatBonus(attributes.spellcasting.attack)) attack roll. On a hit, deal your weapon's damage die $(formatBonus(attributes.spellcasting.bonus)) Radiant damage.

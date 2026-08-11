@@ -1,6 +1,6 @@
 id: evardsBlackTentacles
 type: Activity
-name: Tentacles
+name: Black Tentacles
 resource: level4SpellSlot
 tags:
   - level4Spell
@@ -20,16 +20,32 @@ description: |
 
   A Restrained creature can take an action to make a Strength (Athletics) check against DC $(attributes.spellcasting.save), ending the condition on itself on a success.
 mechanic:
-  pattern: save
-  save:
-    ability: str
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 3
-          sides: 6
-          bonus: 0
-        type: bludgeoning
-  target:
-    type: area
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: cube
+          size: 20
+      difficultTerrain: true
+      text: squirming tentacles
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - enter_area
+          - start_turn
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        - type: damage
+          dice:
+            count: 3
+            sides: 6
+          damageType: bludgeoning
+        - type: condition
+          condition: restrained

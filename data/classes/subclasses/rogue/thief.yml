@@ -11,15 +11,22 @@ children:
     time: bonus action
     range: self
     duration: Instantaneous
-    description: |
-      You do one of the following.
-
-      **Sleight of Hand.** Make a Dexterity (Sleight of Hand) check to pick a lock or disarm a trap with Thieves' Tools or to pick a pocket.
-
-      **Use an Object.** Take the Utilize action, or take the Magic action to use a magic item that requires an action.
     mechanic:
-      pattern: utility
-      text: Make a Sleight of Hand check, use Thieves' Tools, or take the Utilize or Magic action.
+      mode: choice
+      text: "You do one of the following:"
+      blocks:
+        - pattern: automatic
+          name: Sleight of Hand
+          target:
+            type: self
+          payloads:
+            text: "make a Dexterity (Sleight of Hand) check to pick a lock or disarm a trap with Thieves' Tools or to pick a pocket"
+        - pattern: automatic
+          name: Use an Object
+          target:
+            type: self
+          payloads:
+            text: "take the Utilize action, or take the Magic action to use a magic item that requires an action"
   - id: secondStoryWorkClimber
     type: Effect
     name: Climber

@@ -32,4 +32,5 @@ children:
     operation: set
     value: '$(meta.steedname ? meta.steedname + '' (Fiend Steed)'' : ''Fiend Steed'')'
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

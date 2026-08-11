@@ -29,9 +29,6 @@ children:
     resource: stonecunning
     description: |
       You gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.
-    mechanic:
-      pattern: utility
-      text: You gain Tremorsense with a range of 60 feet
   - id: stonecunning
     type: Resource
     name: Stonecunning

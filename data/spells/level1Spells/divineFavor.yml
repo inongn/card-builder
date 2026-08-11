@@ -13,6 +13,8 @@ summary: Your weapon attacks deal extra radiant damage.
 description: |
   Until the spell ends, your attacks with weapons deal an extra 1d4 Radiant damage on a hit.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: self
+    range: $(range)
+  text: for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit

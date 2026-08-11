@@ -14,6 +14,7 @@ summary: You touch a dying creature to stabilize it.
 description: |
   Choose a creature within range that has 0 Hit Points and isn't dead. The creature becomes Stable.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: touch
+  text: Target creature with 0 Hit Points becomes Stable.

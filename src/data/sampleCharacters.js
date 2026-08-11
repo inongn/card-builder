@@ -4256,7 +4256,7 @@ export const SAMPLE_CHARACTERS = [
         id: 'sample_sorcerer_draconic',
         name: 'Sylis Flame',
         class: 'Sorcerer',
-        sub: 'Draconic Sorcery',
+        sub: 'Draconic',
         species: 'Human',
         background: 'Noble',
         level: 8,

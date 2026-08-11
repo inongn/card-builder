@@ -284,6 +284,7 @@ export class CharacterBuilder {
             features: [],
             activities: [],
             statblocks: [],
+            traits: [],
             forms: {},
             transformations: {}
         };
@@ -1338,12 +1339,12 @@ export class CharacterBuilder {
 
                 for (const node of currentNodes) {
                     const collection = node[collectionName];
-                    if (!collection) {
+                    if (!collection || (typeof collection !== 'object' && !Array.isArray(collection))) {
                         if (createMissing) node[collectionName] = [];
                         else continue;
                     }
 
-                    const items = Array.isArray(collection) ? collection : Object.values(collection);
+                    const items = Array.isArray(collection) ? collection : (collection ? Object.values(collection) : []);
 
                     const matches = items.filter(item => {
                         return evaluateBoolean(query, (token) => {
@@ -1370,6 +1371,9 @@ export class CharacterBuilder {
                                     case '=':
                                         if (Array.isArray(actualValue)) {
                                             return actualValue.some(val => String(val) === expectedValue);
+                                        }
+                                        if (key === 'type' && !actualValue && item.dice) {
+                                            actualValue = 'damage';
                                         }
                                         return String(actualValue ?? '') === expectedValue;
                                 }
@@ -1400,11 +1404,34 @@ export class CharacterBuilder {
                 }
             } else {
                 for (const node of currentNodes) {
-                    if (!node[part]) {
-                        if (createMissing) node[part] = {};
-                        else continue;
+                    const checkAndPush = (targetObj) => {
+                        if (!targetObj || typeof targetObj !== 'object') return;
+                        if (targetObj[part] !== undefined) {
+                            if (Array.isArray(targetObj[part])) nextNodes.push(...targetObj[part]);
+                            else nextNodes.push(targetObj[part]);
+                        }
+                    };
+
+                    if (Array.isArray(node)) {
+                        node.forEach(item => checkAndPush(item));
+                    } else if (node && typeof node === 'object') {
+                        if (node.hit || node.failure || node.blocks) {
+                            if (node.hit) checkAndPush(node.hit);
+                            if (node.failure) checkAndPush(node.failure);
+                            if (node.blocks && Array.isArray(node.blocks)) node.blocks.forEach(b => checkAndPush(b));
+                        }
+                        if (node[part] !== undefined) {
+                            checkAndPush(node);
+                        }
                     }
-                    nextNodes.push(node[part]);
+                }
+                if (nextNodes.length === 0 && createMissing) {
+                    for (const node of currentNodes) {
+                        if (node && typeof node === 'object' && !Array.isArray(node)) {
+                            node[part] = {};
+                            nextNodes.push(node[part]);
+                        }
+                    }
                 }
             }
             currentNodes = nextNodes;
@@ -1412,7 +1439,24 @@ export class CharacterBuilder {
         }
 
         const finalKey = parts[parts.length - 1];
-        return currentNodes.map(node => ({ parent: node, key: finalKey }));
+        const results = [];
+        for (const node of currentNodes) {
+            if (Array.isArray(node)) {
+                node.forEach(item => {
+                    if (item && typeof item === 'object') {
+                        results.push({ parent: item, key: finalKey });
+                    }
+                });
+            } else if (node && typeof node === 'object') {
+                if (node.mode && Array.isArray(node.blocks)) {
+                    node.blocks.forEach(block => {
+                        results.push({ parent: block, key: finalKey });
+                    });
+                }
+                results.push({ parent: node, key: finalKey });
+            }
+        }
+        return results;
     }
 
     /**
@@ -1695,6 +1739,24 @@ export class CharacterBuilder {
                     this.characterData.statblocks.push(statblockObj);
                 }
                 break;
+
+            case 'Trait':
+                {
+                    const traitScope = prop.variables || {};
+                    const evaluatedName = evaluator.evaluate(prop.name, traitScope);
+                    const evaluatedDescription = evaluator.evaluate(prop.description, traitScope);
+
+                    // Avoid duplicate traits by id
+                    const traitId = prop.id || evaluatedName;
+                    if (!this.characterData.traits.some(t => t.id === traitId)) {
+                        this.characterData.traits.push({
+                            id: traitId,
+                            name: evaluatedName,
+                            description: evaluatedDescription
+                        });
+                    }
+                }
+                break;
         }
     }
 
@@ -1750,27 +1812,29 @@ export class CharacterBuilder {
 
             switch (operation) {
                 case 'add':
-                    // Check if target is currently an expression string
-                    if (typeof current[finalKey] === 'string' && current[finalKey].includes('$')) {
-                        // Wrap with $() to ensure the math is evaluated in subsequent passes
-                        current[finalKey] = `$(${current[finalKey]} + ${evaluatedValue})`;
-                    } else if (typeof current[finalKey] === 'string') {
-                        // Check if the string is in the format "<n> feet"
-                        const feetMatch = current[finalKey].match(/^(\d+)\s+feet$/i);
-                        if (feetMatch) {
-                            const currentFeet = Number(feetMatch[1]);
-                            const addVal = Number(evaluatedValue || 0);
-                            current[finalKey] = `${currentFeet + addVal} feet`;
+                    {
+                        const isDynamic = typeof dynamicValue === 'string' && dynamicValue.includes('$');
+                        if (typeof current[finalKey] === 'string' && current[finalKey].includes('$')) {
+                            const valStr = isDynamic ? dynamicValue : evaluatedValue;
+                            current[finalKey] = `$(${current[finalKey]} + ${valStr})`;
+                        } else if (typeof current[finalKey] === 'string') {
+                            const feetMatch = current[finalKey].match(/^(\d+)\s+feet$/i);
+                            if (feetMatch) {
+                                const currentFeet = Number(feetMatch[1]);
+                                const addVal = Number(evaluatedValue || 0);
+                                current[finalKey] = `${currentFeet + addVal} feet`;
+                            } else {
+                                const addVal = Number(evaluatedValue || 0);
+                                current[finalKey] = addVal;
+                            }
+                        } else if (isDynamic) {
+                            const currentVal = current[finalKey] !== undefined && current[finalKey] !== null ? current[finalKey] : 0;
+                            current[finalKey] = currentVal ? `$(${currentVal} + ${dynamicValue})` : dynamicValue;
                         } else {
-                            // Not a recognized format, treat as 0 and convert to number
+                            const currentVal = Number(current[finalKey] || 0);
                             const addVal = Number(evaluatedValue || 0);
-                            current[finalKey] = addVal;
+                            current[finalKey] = currentVal + addVal;
                         }
-                    } else {
-                        // Force numeric addition to prevent string concatenation
-                        const currentVal = Number(current[finalKey] || 0);
-                        const addVal = Number(evaluatedValue || 0);
-                        current[finalKey] = currentVal + addVal;
                     }
                     break;
                 case 'softSet':
@@ -1780,22 +1844,46 @@ export class CharacterBuilder {
                     break;
                 case 'push':
                     {
-                        // If the target is not an array, wrap the current value in an array
+                        if (finalKey === 'mechanic') {
+                            const targetMechanic = current[finalKey];
+                            const mechanicItemsToPush = Array.isArray(dynamicValue) ? dynamicValue : [dynamicValue];
+                            if (targetMechanic && typeof targetMechanic === 'object') {
+                                if (targetMechanic.mode) {
+                                    if (!Array.isArray(targetMechanic.blocks)) targetMechanic.blocks = [];
+                                    targetMechanic.blocks.push(...structuredClone(mechanicItemsToPush));
+                                } else {
+                                    // Convert single-block mechanic object into a multi-block succession mechanic
+                                    const baseBlock = { ...targetMechanic };
+                                    current[finalKey] = {
+                                        mode: 'succession',
+                                        blocks: [baseBlock, ...structuredClone(mechanicItemsToPush)]
+                                    };
+                                }
+                                break;
+                            }
+                        }
+
+                        // If current[finalKey] is not an array, convert/wrap it or initialize as array
                         let existing;
                         if (Array.isArray(current[finalKey])) {
                             existing = current[finalKey];
                         } else if (current[finalKey] !== null && current[finalKey] !== undefined) {
-                            existing = [current[finalKey]];
+                            current[finalKey] = [current[finalKey]];
+                            existing = current[finalKey];
                         } else {
-                            existing = [];
+                            current[finalKey] = [];
+                            existing = current[finalKey];
                         }
 
-                        const itemsToPush = Array.isArray(evaluatedValue) ? evaluatedValue : [evaluatedValue];
+                        const itemsToPush = Array.isArray(dynamicValue) ? dynamicValue : [dynamicValue];
 
                         // Helper to get normalized representation for comparison
                         const getNormalizedExtraString = (item) => {
                             if (typeof item === 'object' && item !== null) {
-                                return `**${item.name || ''}.** ${item.description || ''}`.trim().toLowerCase();
+                                if (item.name || item.description) {
+                                    return `**${item.name || ''}.** ${item.description || ''}`.trim().toLowerCase();
+                                }
+                                return JSON.stringify(item).toLowerCase();
                             }
                             return String(item).trim().toLowerCase();
                         };
@@ -1807,7 +1895,7 @@ export class CharacterBuilder {
                         });
 
                         if (newItems.length > 0) {
-                            current[finalKey] = [...existing, ...newItems];
+                            existing.push(...structuredClone(newItems));
                         }
                     }
                     break;

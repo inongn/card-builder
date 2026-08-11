@@ -23,11 +23,9 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The spell's duration increases by 48 hours for each spell slot level above 2.
 mechanic:
-  pattern: save
-  save:
-    ability: cha
-    dc: ''
-    failure:
-      text: A Tiny Beast of your choice that you can see within range must succeed on a DC $(attributes.spellcasting.save) Charisma saving throw, or it attempts to deliver a message for you (if the target's Ch...
+  pattern: automatic
   target:
     type: single
+    filter: beast
+    range: $(range)
+  text: $(summary)

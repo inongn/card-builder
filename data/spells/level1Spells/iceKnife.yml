@@ -17,13 +17,8 @@ time: action
 range: 60 feet
 duration: instantaneous
 summary: You fling a shard of ice that pierces a target and explodes into cold shards.
-description: >
-  You create a shard of ice and fling it at one creature within range. Make a
-  $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the
-  target. On a hit, the target takes 1d10 Piercing damage. Hit or miss, the
-  shard then explodes. The target and each creature within 5 feet of it must
-  succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take
-  2d6 Cold damage.
+description: |
+  You create a shard of ice and fling it at one creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes 1d10 Piercing damage. Hit or miss, the shard then explodes. The target and each creature within 5 feet of it must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take 2d6 Cold damage.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The Cold damage increases by 1d6 for each spell slot level above 1.
@@ -35,28 +30,33 @@ mechanic:
         classification: ranged
         type: spell
         bonus: $(attributes.spellcasting.attack)
-      damage:
+      target:
+        type: single
+        range: $(range)
+      hit:
+        type: damage
         dice:
           count: 1
           sides: 10
-          bonus: 0
-        type: piercing
-      target:
-        type: single
-        range: 60 feet
+        damageType: piercing
     - pattern: save
       save:
         ability: dex
         dc: $(attributes.spellcasting.save)
-        failure:
-          damage:
-            dice:
-              count: 2
-              sides: 6
-              bonus: 0
-            type: cold
       target:
-        type: aoe
+        type: area
         aoe:
           shape: sphere
           size: 5
+        range: inherit
+      failure:
+        type: damage
+        dice:
+          count: 2
+          sides: 6
+        damageType: cold
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].failure.dice.count
+        add: 1

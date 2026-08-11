@@ -14,17 +14,14 @@ time: action
 range: 120 feet
 duration: concentration, up to 10 minutes
 summary: An area becomes completely silent, blocking sound and verbal spells.
-description: >
-  For the duration, no sound can be created within or pass through a
-  20-foot-radius Sphere centered on a point you choose within range. Any
-  creature or object entirely inside the Sphere has Immunity to Thunder damage,
-  and creatures have the Deafened condition while entirely inside it. Casting a
-  spell that includes a Verbal component is impossible there.
+description: |
+  For the duration, no sound can be created within or pass through a 20-foot-radius Sphere centered on a point you choose within range. Any creature or object entirely inside the Sphere has Immunity to Thunder damage, and creatures have the Deafened condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
-    type: aoe
+    type: area
     aoe:
       shape: sphere
       size: 20
-    range: 120 feet
+    range: $(range)
+  text: creates an area where no sound can be created or pass through

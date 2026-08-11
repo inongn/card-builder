@@ -6,6 +6,10 @@ tags:
   - blessedStrikes
 children:
   - type: Effect
-    target: activities[tags=cantrip AND tags=damageSpell].mechanic.damage.dice.bonus
+    target: activities[tags=cantrip AND tags=damageSpell].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.wis.mod)
+  - type: Effect
+    target: activities[tags=cantrip AND tags=damageSpell].mechanic.failure.dice.bonus
     operation: add
     value: $(stats.wis.mod)

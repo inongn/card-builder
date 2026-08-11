@@ -22,4 +22,8 @@ description: |
 
   When you cast the spell, a loud knock, audible up to 300 feet away, emanates from the target.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: single
+    range: $(range)
+  text: $(summary)

@@ -18,4 +18,7 @@ summary: You grant a creature resistance to one elemental damage type.
 description: |
   For the duration, the willing creature you touch has Resistance to one damage type of your choice: Acid, Cold, Fire, Lightning, or Thunder.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: target gains Resistance to one damage type (Acid, Cold, Fire, Lightning, or Thunder)

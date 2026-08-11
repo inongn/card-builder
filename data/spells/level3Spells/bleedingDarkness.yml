@@ -23,16 +23,43 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d8 for each spell slot level above 3.
 mechanic:
-  pattern: save
-  save:
-    ability: con
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 3
-          sides: 8
-          bonus: 0
-        type: cold
-  target:
-    type: area
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: sphere
+          size: 15
+        range: $(range)
+      move:
+        action: action
+      difficultTerrain: true
+      obscured: true
+      text: dark mist
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - start_turn
+      save:
+        ability: con
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        - type: damage
+          dice:
+            count: 3
+            sides: 8
+          damageType: necrotic
+        - type: condition
+          condition: blinded
+          end: end_of_its_next_turn
+      success:
+        halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].failure[0].dice.count
+        add: 1

@@ -12,9 +12,8 @@ time: bonus action
 range: 60 feet
 duration: instantaneous
 summary: A quick burst of magic heals up to six targets at a distance.
-description: >
-  Up to six creatures of your choice that you can see within range regain Hit
-  Points equal to 2d4$(formatBonus(attributes.spellcasting.bonus)).
+description: |
+  Up to six creatures of your choice that you can see within range regain Hit Points equal to 2d4$(formatBonus(attributes.spellcasting.bonus)).
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The healing increases by 1d4 for each spell slot level above 3.
@@ -27,5 +26,11 @@ mechanic:
       bonus: $(attributes.spellcasting.bonus)
     type: hitPoints
   target:
-    type: single
-    range: 60 feet
+    type: multiple
+    count: 6
+    range: $(range)
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: healing.dice.count
+        add: 1

@@ -19,12 +19,8 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The number of unexpended Hit Dice you can roll increases by one for each spell slot level above 2.
 mechanic:
-  pattern: healing
-  healing:
-    dice:
-      count: 1
-      sides: 8
-      bonus: ''
-    type: hitPoints
+  pattern: automatic
   target:
     type: self
+    range: $(range)
+  text: you can expend up to two Hit Point Dice to regain Hit Points equal to the roll plus $(attributes.spellcasting.bonus)

@@ -46,9 +46,9 @@ children:
           sides: 0
           bonus: 5
         type: hitPoints
-      text: Restore 5 Hit Points per charge expended, or remove conditions.
       target:
         type: touch
+      text: 'per charge expended$(meta.level >= 14 ? ''. You can also expend 1 charge to remove Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned'' : '''')'
   - id: layOnHands
     type: Resource
     name: Lay On Hands
@@ -96,13 +96,12 @@ children:
     resource: channelDivinity
     description: You open your awareness to detect Celestials, Fiends, and Undead. For the duration or until you have the Incapacitated condition, you know the location of any creature of those types within range, and you know its creature type. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow spell.
     mechanic:
-      pattern: utility
-      text: You know the location of Celestials, Fiends, and Undead.
+      pattern: automatic
       target:
-        type: aoe
-        aoe:
-          shape: emanation
-          size: 60
+        type: self
+      payloads:
+        type: text
+        text: detect the location of any Celestial, Fiend, or Undead and any consecrated or desecrated object within 60 feet
     condition: $(meta.level >= 3)
   - id: level4feat
     name: Level 4 Feat
@@ -125,13 +124,25 @@ children:
     range: '$(meta.level >= 18 ? 30 : 10) feet'
     description: You radiate a protective, unseeable aura. The aura is inactive while you have the Incapacitated condition. You and your allies in the aura gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws.
     mechanic:
-      pattern: utility
-      text: You and allies gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws.
-      target:
-        type: aoe
-        aoe:
-          shape: emanation
-          size: '$(meta.level >= 18 ? 30 : 10)'
+      mode: succession
+      blocks:
+        - pattern: aura
+          target:
+            type: area
+            aoe:
+              shape: emanation
+              size: '$(meta.level >= 18 ? 30 : 10)'
+            range: $(range)
+          text: protective aura
+        - pattern: automatic
+          trigger:
+            text: while in the aura
+          target:
+            type: multiple
+            range: $(range)
+          payloads:
+            - type: text
+              text: gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws
     condition: $(meta.level >= 6)
   - id: level8feat
     name: Level 8 Feat

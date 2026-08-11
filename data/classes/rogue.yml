@@ -41,16 +41,18 @@ children:
     duration: instantaneous
     range: self
     name: Sneak Attack
-    description: |
-      Once per turn, you deal an extra $(attributes.sneakAttackDice)d6 damage to one creature you hit with an attack roll if you have Advantage on the roll or at least one of your allies is within 5 feet of the target.
     mechanic:
-      pattern: utility
-      trigger: When you hit with an attack roll
-      damage:
+      trigger:
+        text: Once per turn when you hit a creature with an attack roll if you have Advantage or an ally is within 5 feet of the target
+      pattern: automatic
+      target:
+        inherit: trigger
+      payloads:
+        type: damage
         dice:
           count: $(attributes.sneakAttackDice)
           sides: 6
-          bonus: 0
+        text: extra damage
   - id: masteryProperties
     type: Reference
     target: masteryProperties
@@ -60,22 +62,29 @@ children:
     time: bonus action
     range: self
     duration: Instantaneous
-    description: You take the Dash, Disengage, or Hide action.
-    mechanic:
-      pattern: utility
-      text: Take the Dash, Disengage, or Hide action.
     condition: $(meta.level >= 2)
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        text: take the Dash, Disengage, or Hide action
   - id: steadyAim
     type: Activity
     name: Steady Aim
     time: bonus action
     range: self
     duration: Instantaneous
-    description: You give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved during this turn, and after you use it, your Speed is 0 until the end of the current turn.
-    mechanic:
-      pattern: utility
-      text: Gain Advantage on your next attack roll. Your Speed becomes 0.
     condition: $(meta.level >= 3)
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: rollModifier
+          modifierType: advantage
+          targetRolls: attack
+          text: on your next attack roll on the current turn (only if you haven't moved this turn; your Speed becomes 0 until end of turn)
   - id: rogueSubclass
     name: Rogue Subclass
     condition: $(meta.level >= 3)
@@ -93,33 +102,63 @@ children:
     duration: instantaneous
     range: self
     name: Cunning Strike
-    description: 'When you deal Sneak Attack damage to a creature, you can choose to spend dice from the Sneak Attack to create one of the following effects:'
-    mechanic:
-      pattern: utility
-      trigger: When you deal Sneak Attack damage
-      text: Spend Sneak Attack dice to apply one of the available Cunning Strike effects.
     condition: $(meta.level >= 5)
+    mechanic:
+      mode: choice
+      text: "When you deal Sneak Attack damage to a creature, you can choose to spend dice from the Sneak Attack to create one of the following effects:"
+      blocks: []
   - id: cunningStrikeSave
     type: Attribute
     condition: $(meta.level >= 5)
     value: $(8 + stats.dex.mod + attributes.prof)
   - id: cunningStrikePoison
-    type: Extra
-    name: 'Poison (Cost: 1d6)'
-    target: cunningStrike
-    description: The target must succeed on a DC $(attributes.cunningStrikeSave) Constitution saving throw or have the Poisoned condition for 1 minute. At the end of each of its turns, the poisoned target repeats the save, ending the effect on a success.
+    type: Effect
+    target: activities[id=cunningStrike].mechanic
+    operation: push
+    value:
+      pattern: save
+      name: "Poison (Cost: 1d6)"
+      save:
+        ability: con
+        dc: $(attributes.cunningStrikeSave)
+      target:
+        inherit: trigger
+      failure:
+        type: condition
+        condition: poisoned
+        end: turn_repeat_save
     condition: $(meta.level >= 5)
   - id: cunningStrikeTrip
-    type: Extra
-    name: 'Trip (Cost: 1d6)'
-    target: cunningStrike
-    description: If the target is Large or smaller, it must succeed on a DC $(attributes.cunningStrikeSave) Dexterity saving throw or have the Prone condition.
+    type: Effect
+    target: activities[id=cunningStrike].mechanic
+    operation: push
+    value:
+      pattern: save
+      name: "Trip (Cost: 1d6)"
+      save:
+        ability: dex
+        dc: $(attributes.cunningStrikeSave)
+      target:
+        inherit: trigger
+        filter: Large or smaller creature
+      failure:
+        type: condition
+        condition: prone
     condition: $(meta.level >= 5)
   - id: cunningStrikeWithdraw
-    type: Extra
-    name: 'Withdraw (Cost: 1d6)'
-    target: cunningStrike
-    description: Immediately after the attack, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks.
+    type: Effect
+    target: activities[id=cunningStrike].mechanic
+    operation: push
+    value:
+      pattern: automatic
+      name: "Withdraw (Cost: 1d6)"
+      target:
+        type: self
+      payloads:
+        type: movement
+        movementType: normal
+        distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
+        provokesOpportunityAttacks: false
     condition: $(meta.level >= 5)
   - id: uncannyDodge
     type: Activity
@@ -127,12 +166,15 @@ children:
     time: reaction
     range: self
     duration: Instantaneous
-    description: When an attacker that you can see hits you with an attack roll, you halve the attack's damage against you (round down).
-    mechanic:
-      pattern: utility
-      trigger: When an attacker that you can see hits you with an attack roll
-      text: Halve the attack's damage against you.
     condition: $(meta.level >= 5)
+    mechanic:
+      trigger:
+        event: be_hit
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        text: halve the attack's damage against you (round down)
   - id: rogueExpertise2
     type: Slot
     name: Expertise
@@ -142,7 +184,7 @@ children:
   - id: evasion
     type: Trait
     name: Evasion
-    description: When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed and only half damage if you fail. 
+    description: When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed and only half damage if you fail.
     condition: $(meta.level >= 7)
   - id: reliableTalent
     type: Effect

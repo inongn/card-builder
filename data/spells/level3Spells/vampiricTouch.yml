@@ -21,12 +21,26 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d6 for each spell slot level above 3.
 mechanic:
-  pattern: healing
-  healing:
-    dice:
-      count: 3
-      sides: 6
-      bonus: 0
-    type: hitPoints
+  pattern: attack
+  attack:
+    classification: melee
+    type: spell
+    bonus: $(attributes.spellcasting.attack)
   target:
-    type: self
+    type: single
+    range: 5 feet
+  hit:
+    - type: damage
+      dice:
+        count: 3
+        sides: 6
+      damageType: necrotic
+    - type: text
+      text: you regain Hit Points equal to half the necrotic damage dealt
+  repeat:
+    action: action
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: hit[0].dice.count
+        add: 1

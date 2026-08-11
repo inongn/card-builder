@@ -20,6 +20,12 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: You can target one additional creature for each spell slot level above 3.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: touch
+  text: target gains a Flying Speed equal to 60 feet
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

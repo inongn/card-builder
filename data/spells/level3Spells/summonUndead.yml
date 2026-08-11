@@ -25,4 +25,5 @@ children:
       - undeadSpiritPutrid
       - undeadSpiritSkeletal
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

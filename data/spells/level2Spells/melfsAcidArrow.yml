@@ -23,11 +23,26 @@ mechanic:
   attack:
     classification: ranged
     type: spell
+    bonus: $(attributes.spellcasting.attack)
   target:
     type: single
-  damage:
+    range: $(range)
+  hit:
+    - type: damage
+      dice:
+        count: 4
+        sides: 4
+      damageType: acid
+    - type: text
+      text: the target takes 2d4 Acid damage at the end of its next turn
+  miss:
+    type: damage
     dice:
-      count: 4
+      count: 2
       sides: 4
-      bonus: 0
-    type: acid
+    damageType: acid
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: hit[0].dice.count
+        add: 1

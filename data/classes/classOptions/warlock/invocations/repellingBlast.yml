@@ -3,7 +3,12 @@ summary: "Push a target up to 10 feet away when hitting with Eldritch Blast."
 name: Repelling Blast
 tags:
   - eldritchInvocation
-type: Extra
-target: eldritchBlast
+type: Effect
+target: activities[id=eldritchBlast].mechanic.hit
+operation: push
+value:
+  type: movement
+  movementType: forced
+  direction: push
+  distance: 10
 condition: $(meta.level >= 2)
-description: "When you hit a Large or smaller creature, you can push it up to 10 feet straight away from you."

@@ -13,30 +13,30 @@ time: reaction
 range: 60 feet
 duration: instantaneous
 summary: You retaliate against damage with green hellfire.
-description: >
-  Immediately after taking damage from a creature that you can see within 60
-  feet of yourself, the creature that damaged you is momentarily surrounded by
-  green flames. It makes a DC $(attributes.spellcasting.save) Dexterity saving
-  throw, taking 2d10 Fire damage on a failed save or half as much damage on a
-  successful one.
+description: |
+  Immediately after taking damage from a creature that you can see within 60 feet of yourself, the creature that damaged you is momentarily surrounded by green flames. It makes a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 2d10 Fire damage on a failed save or half as much damage on a successful one.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d10 for each spell slot level above 1.
 mechanic:
   pattern: save
+  trigger:
+    text: When you take damage from a creature
   save:
     ability: dex
     dc: $(attributes.spellcasting.save)
-    failure:
-      damage:
-        dice:
-          count: 2
-          sides: 10
-          bonus: 0
-        type: fire
-    success:
-      text: Takes half damage
-  trigger: You take damage from a creature
   target:
-    type: single
-    range: 60 feet
+    inherit: trigger
+  failure:
+    type: damage
+    dice:
+      count: 2
+      sides: 10
+    damageType: fire
+  success:
+    halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failure.dice.count
+        add: 1

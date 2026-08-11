@@ -24,4 +24,5 @@ children:
       - astralEntityEctoplasmic
       - astralEntityGhostly
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

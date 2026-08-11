@@ -16,5 +16,14 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d8 for each spell slot level above 1.
 mechanic:
-  pattern: utility
-  trigger: You hit a target with a Melee weapon or an Unarmed Strike
+  pattern: automatic
+  trigger:
+    event: hit_with_attack
+  target:
+    inherit: trigger
+  text: the target takes an extra 2d8 Radiant damage
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: text
+        add: 0

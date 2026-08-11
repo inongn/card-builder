@@ -41,11 +41,20 @@ children:
 
       The weapon also emits Bright Light in a 20-foot radius and Dim Light 20 feet beyond that. You can end this effect early (no action required). This effect also ends if you aren't carrying the weapon.
     mechanic:
-      pattern: utility
-      text: Imbue a held Melee weapon with positive energy; add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls with it, and its damage type becomes Radiant. It emits Bright Light.
+      pattern: automatic
+      trigger:
+        text: When you take the Attack action
+      target:
+        type: touch
+      payloads:
+        type: text
+        text: imbue one Melee weapon you are holding. Add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls made with it, and it can deal Radiant damage 
   - id: auraOfDevotion
-    type: Extra
+    type: Effect
     name: Aura of Devotion
-    target: auraOfProtection
-    description: You and your allies have Immunity to the Charmed condition. If a Charmed ally enters the aura, that condition has no effect on that ally while there.
+    target: activities[id=auraOfProtection].mechanic.payloads
+    operation: push
+    value:
+      type: text
+      text: have Immunity to the Charmed condition
     condition: $(meta.level >= 7)

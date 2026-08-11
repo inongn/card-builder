@@ -15,6 +15,11 @@ summary: Your body becomes blurred, imposing disadvantage on attack rolls agains
 description: |
   Your body becomes blurred. For the duration, any creature has Disadvantage on attack rolls against you. An attacker is immune to this effect if it perceives you with Blindsight or Truesight.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: self
+    range: $(range)
+  payloads:
+    type: rollModifier
+    modifierType: attacksAgainstDisadvantage
+    targetRolls: attack

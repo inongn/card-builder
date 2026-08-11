@@ -23,15 +23,28 @@ description: |
 
   If you roll an 8 on a d8 for this spell, you can roll another d8, and add it to the damage. When you cast this spell, the maximum number of these d8s you can add to the spell's damage equals $(attributes.spellcasting.bonus).
 mechanic:
-  pattern: attack
-  attack:
-    classification: ranged
-    type: spell
-  target:
-    type: single
-  damage:
-    dice:
-      count: 1
-      sides: 6
-      bonus: 0
-    type: fire
+  mode: succession
+  blocks:
+    - pattern: attack
+      attack:
+        classification: ranged
+        type: spell
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: $(range)
+      hit:
+        - type: damage
+          dice:
+            count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+            sides: 8
+          damageType:
+            - acid
+            - cold
+            - fire
+            - lightning
+            - poison
+            - psychic
+            - thunder
+        - type: text
+          text: if you roll an 8 on a d8 for this spell, you can roll another d8 and add it to the damage

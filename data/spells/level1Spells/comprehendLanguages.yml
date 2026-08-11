@@ -15,13 +15,11 @@ time: action
 range: self
 duration: 1 hour
 summary: You understand the literal meaning of any spoken or written language.
-description: >
-  For the duration, you understand the literal meaning of any language that you
-  hear or see signed. You also understand any written language that you see, but
-  you must be touching the surface on which the words are written. It takes
-  about 1 minute to read one page of text. This spell doesn't decode symbols or
-  secret messages.
+description: |
+  For the duration, you understand the literal meaning of any language that you hear or see signed. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text. This spell doesn't decode symbols or secret messages.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: self
+    range: $(range)
+  text: $(summary)

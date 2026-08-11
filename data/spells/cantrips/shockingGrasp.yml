@@ -11,23 +11,21 @@ time: action
 range: touch
 duration: instantaneous
 summary: Lightning springs from your hand to shock a target.
-description: >
-  Lightning springs from you to a creature that you try to touch. Make a melee
-  spell attack against the target. On a hit, the target takes $(meta.level >= 17
-  ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Lightning damage, and
-  it can't make Opportunity Attacks until the start of its next turn.
+description: |
+  Lightning springs from you to a creature that you try to touch. Make a melee spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Lightning damage, and it can't make Opportunity Attacks until the start of its next turn.
 mechanic:
   pattern: attack
   attack:
     classification: melee
     type: spell
     bonus: $(attributes.spellcasting.attack)
-  damage:
-    dice:
-      count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
-      sides: 8
-      bonus: 0
-    type: lightning
-  text: Target cannot take Reactions until the start of its next turn.
   target:
     type: touch
+  hit:
+    - type: damage
+      dice:
+        count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+        sides: 8
+      damageType: lightning
+    - type: text
+      text: the target cannot make Opportunity Attacks until the start of its next turn

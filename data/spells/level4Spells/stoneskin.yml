@@ -17,4 +17,7 @@ summary: You grant a creature resistance to nonmagical physical damage.
 description: |
   Until the spell ends, one willing creature you touch has Resistance to Bludgeoning, Piercing, and Slashing damage.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: gain Resistance to nonmagical Bludgeoning, Piercing, and Slashing damage

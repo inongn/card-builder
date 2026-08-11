@@ -6,13 +6,16 @@ children:
   - type: Reference
     target:
       - unarmed
-  - type: Extra
+  - type: Activity
+    range: self
+    time: free action
+    duration: instantaneous
     target: unarmed
     name: Unarmed Fighting
     description: At the start of each of your turns, you can deal 1d4 Bludgeoning damage to one creature grappled by you.
     id: unarmedFightingUnarmedFighting
   - type: Effect
-    target: activities[tags=unarmed].mechanic.damage.dice
+    target: activities[tags=unarmed].mechanic.hit.dice
     operation: set
     value:
       count: 1

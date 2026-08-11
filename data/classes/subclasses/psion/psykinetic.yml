@@ -42,9 +42,6 @@ children:
     duration: 10 minutes
     resource: psionicEnergyDice
     description: Enter a destructive state for the duration. You gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell.
-    mechanic:
-      pattern: utility
-      text: Gain a Fly Speed (hover). When you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll.
     condition: $(meta.level >= 6)
   - id: reboundingField
     type: Extra

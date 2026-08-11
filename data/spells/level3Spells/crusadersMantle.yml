@@ -13,4 +13,11 @@ summary: Holy power radiates from you, boosting allies weapon damage with radian
 description: |
   You radiate a magical aura in a 30-foot Emanation. While in the aura, you and your allies each deal an extra 1d4 Radiant damage when hitting with a weapon or an Unarmed Strike.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: area
+    aoe:
+      shape: emanation
+      size: 30
+    range: $(range)
+  text: weapon attacks by you and your allies deal an extra 1d4 Radiant damage

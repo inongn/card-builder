@@ -14,24 +14,20 @@ time: action
 range: 10 feet
 duration: concentration, up to 1 minute
 summary: You magically enhance your charisma against a single creature.
-description: >
-  You magically emanate a sense of friendship toward one creature you can see
-  within range. The target must succeed on a DC $(attributes.spellcasting.save)
-  Wisdom saving throw or have the Charmed condition for the duration. The target
-  succeeds automatically if it isn't a Humanoid, if you're fighting it, or if
-  you have cast this spell on it within the past 24 hours.
+description: |
+  You magically emanate a sense of friendship toward one creature you can see within range. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. The target succeeds automatically if it isn't a Humanoid, if you're fighting it, or if you have cast this spell on it within the past 24 hours.
 
-
-  The spell ends early if the target takes damage or if you make an attack roll,
-  deal damage, or force anyone to make a saving throw. When the spell ends, the
-  target knows it was Charmed by you.
+  The spell ends early if the target takes damage or if you make an attack roll, deal damage, or force anyone to make a saving throw. When the spell ends, the target knows it was Charmed by you.
 mechanic:
   pattern: save
   save:
     ability: wis
     dc: $(attributes.spellcasting.save)
-    failure:
-      text: Target has the Charmed condition for 1 minute.
   target:
     type: single
     range: $(range)
+  failure:
+    type: condition
+    condition: charmed
+    end:
+      text: when spell ends, target becomes hostile

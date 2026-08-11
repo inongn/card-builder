@@ -21,4 +21,8 @@ description: |
 
   The spell ends early if you leave the Emanation or if you cast it again.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: self
+    range: $(range)
+  text: $(summary)

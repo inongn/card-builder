@@ -16,4 +16,8 @@ description: |
 
   For the duration, you or a creature you choose can ride the steed. The steed uses the Riding Horse stat block (see appendix B), except it has a Speed of 100 feet and can travel 13 miles in an hour. When the spell ends, the steed gradually fades, giving the rider 1 minute to dismount. The spell ends early if the steed takes any damage.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: single
+    range: $(range)
+  text: $(summary)

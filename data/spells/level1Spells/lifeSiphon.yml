@@ -23,11 +23,20 @@ mechanic:
   attack:
     classification: ranged
     type: spell
+    bonus: $(attributes.spellcasting.attack)
   target:
     type: single
-  damage:
-    dice:
-      count: 1
-      sides: 10
-      bonus: 0
-    type: psychic
+    range: $(range)
+  hit:
+    - type: damage
+      dice:
+        count: 1
+        sides: 10
+      damageType: psychic
+    - type: text
+      text: you can expend one Hit Point Die to increase the damage by 1d10
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: hit[0].dice.count
+        add: 1

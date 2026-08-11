@@ -18,7 +18,8 @@ description: |
 
   The spell ends if the warded creature makes an attack roll, casts a spell, or deals damage.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: single
-    range: 30 feet
+    range: $(range)
+  text: any creature who targets the target with an attack or harmful spell must first succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or either choose a new target or lose the attack or spell

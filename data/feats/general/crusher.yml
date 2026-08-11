@@ -13,11 +13,20 @@ children:
     value: 1
   - id: crusherPush
     name: Push
-    type: Extra
-    target: weaponAttack AND bludgeoningDamage
-    description: On a hit, you can move the target 5 feet to an unoccupied space if the target is no more than one size larger than you.
+    type: Effect
+    target: activities[tags=weaponAttack AND tags=bludgeoningDamage].mechanic.hit
+    operation: push
+    value:
+      type: movement
+      movementType: forced
+      direction: push
+      distance: 5
   - id: crusherEnhancedCritical
     name: Enhanced Critical
-    type: Extra
-    target: weaponAttack AND bludgeoningDamage
-    description: On a Critical Hit, attack rolls against the target have Advantage until the start of your next turn.
+    type: Effect
+    target: activities[tags=weaponAttack AND tags=bludgeoningDamage].mechanic.crit
+    operation: push
+    value:
+      type: rollModifier
+      modifierType: attacksAgainstAdvantage
+      targetRolls: attack

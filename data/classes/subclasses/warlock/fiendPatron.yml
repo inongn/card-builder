@@ -36,13 +36,16 @@ children:
     description: When you reduce an enemy to 0 Hit Points, you gain $(meta.level + stats.cha.mod) Temporary Hit Points. You also gain this benefit if someone else reduces an enemy within 10 feet of you to 0 Hit Points.
     mechanic:
       pattern: healing
+      trigger:
+        text: when you reduce an enemy to 0 Hit Points, or someone else reduces an enemy within 10 feet of you to 0 Hit Points
+      target:
+        type: self
       healing:
+        type: tempHitPoints
         dice:
           count: 0
           sides: 0
           bonus: $(meta.level + stats.cha.mod)
-        type: tempHitPoints
-      trigger: When you or a nearby ally reduces an enemy to 0 Hit Points
     condition: $(meta.level >= 3)
   - id: darkOnesOwnLuck
     type: Activity
@@ -53,9 +56,14 @@ children:
     resource: darkOnesOwnLuck
     description: You call on your fiendish patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add 1d10 to your roll. You can do so after seeing the roll but before any of the roll's effects occur.
     mechanic:
-      pattern: utility
-      trigger: When you make an ability check or saving throw
-      text: Add 1d10 to your roll.
+      pattern: automatic
+      trigger:
+        text: when you make an ability check or a saving throw
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: add 1d10 to your roll (you can do so after seeing the roll but before any of the roll's effects occur)
     condition: $(meta.level >= 6)
   - id: darkOnesOwnLuck
     type: Resource
@@ -63,37 +71,3 @@ children:
     quantity: $(Math.max(1, stats.cha.mod))
     condition: $(meta.level >= 6)
     sr: 0
-  - id: fiendishResilience
-    type: Slot
-    target: shortRest OR longRest
-    name: Fiendish Resilience
-    description: Choose one damage type (other than Force). You have Resistance to it.
-    condition: $(meta.level >= 10)
-  - id: hurlThroughHell
-    type: Activity
-    duration: instantaneous
-    range: self
-    name: Hurl Through Hell
-    time: free action
-    resource: level1SpellSlot
-    description: |
-      Once per turn when you hit a creature with an attack roll, you try to instantly transport the target through the Lower Planes. The target must succeed on DC $(attributes.spellcasting.save) Charisma saving throw, or the target disappears and hurtles through a nightmare landscape. 
-
-      The target takes 8d10 Psychic damage if it isn't a Fiend, and it has the Incapacitated condition until the end of your next turn, when it returns to the space it previously occupied or the nearest unoccupied space.
-    mechanic:
-      pattern: save
-      trigger: When you hit a creature with an attack roll
-      save:
-        ability: cha
-        dc: $(attributes.spellcasting.save)
-        failure:
-          damage:
-            dice:
-              count: 8
-              sides: 10
-              bonus: 0
-            type: psychic
-          text: Target disappears until end of your next turn and has Incapacitated condition.
-      target:
-        type: single
-    condition: $(meta.level >= 14)

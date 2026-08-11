@@ -21,7 +21,8 @@ description: |
 
   If you, the other creature, or both would arrive in a space occupied by a creature or completely filled by one or more objects, you and any creature traveling with you each take 4d6 Force damage, and the teleportation fails.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
-    type: single
-    range: 500 feet
+    type: self
+    range: $(range)
+  text: teleport yourself and one willing creature within 5 feet to any destination within range

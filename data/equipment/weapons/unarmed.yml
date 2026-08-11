@@ -11,22 +11,45 @@ tags:
   - slashingDamage
   - unarmed
   - bludgeoningDamage
-description: >-
-  You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus))
-  attack against the target. On a hit, the target takes $(formatDice(mechanic.damage.dice))
-  $(capitalize(mechanic.damage.type)) damage.
+description: You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus)) attack against the target. On a hit, the target takes $(formatDice(mechanic.hit.dice)) $(capitalize(mechanic.hit.damageType)) damage.
 mechanic:
-  pattern: attack
-  attack:
-    classification: melee
-    type: weapon
-    bonus: $(attributes.melee.attack)
-  damage:
-    dice:
-      count: 0
-      sides: 0
-      bonus: $(Math.max(1,attributes.melee.bonus))
-    type: Bludgeoning
-  target:
-    type: single
-    range: 5 feet
+  mode: choice
+  blocks:
+  - pattern: attack
+    name: Damage
+    attack:
+      classification: melee
+      type: weapon
+      bonus: $(attributes.melee.attack)
+    target:
+      type: single
+      range: 5 feet
+    hit:
+      type: damage
+      dice:
+        count: 0
+        sides: 0
+        bonus: $(Math.max(1,attributes.melee.bonus))
+      damageType: Bludgeoning
+  - pattern: save
+    name: Shove
+    save:
+      ability: dex
+      dc: '$(attributes.prof + stats.str.mod)'
+    target:
+      type: single
+      range: 5 feet
+    failure:
+       type: condition
+       condition: prone
+  - pattern: save
+    name: Grapple
+    save:
+      ability: str
+      dc: '$(attributes.prof + stats.str.mod)'
+    target:
+      type: single
+      range: 5 feet
+    failure:
+      type: condition
+      condition: grappled

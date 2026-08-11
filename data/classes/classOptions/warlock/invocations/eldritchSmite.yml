@@ -18,7 +18,19 @@ children:
       - pactMagicSpellSlot
     description: Once per turn when you hit a creature with your pact weapon, the target takes an extra 1d8 Force damage, plus another 1d8 per level of the spell slot. You can knock the target Prone if it is Huge or smaller.
     mechanic:
-      pattern: utility
-      trigger: When you hit a creature with your pact weapon
-      text: Deal an extra 1d8 Force damage, plus another 1d8 per level of the spell slot. You can knock the target Prone if it is Huge or smaller.
+      pattern: automatic
+      trigger:
+      event: hit_with_attack
+      target:
+        inherit: trigger
+      payloads:
+        - type: damage
+          damage:
+            dice:
+              count: $(1+local.maxLevel)
+              sides: 8
+            damageType: force
+        - type: condition
+          condition: prone
+          text: if it is Huge or smaller
     condition: $(attributes.pactOfTheBlade == true)

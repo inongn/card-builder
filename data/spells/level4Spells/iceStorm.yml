@@ -27,15 +27,29 @@ mechanic:
   pattern: save
   save:
     ability: dex
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 2
-          sides: 10
-          bonus: 0
-        type: bludgeoning
-    success:
-      text: Takes half as much damage
+    dc: $(attributes.spellcasting.save)
   target:
     type: area
+    aoe:
+      shape: cylinder
+      size: 20
+    range: $(range)
+  failure:
+    - type: damage
+      dice:
+        count: 2
+        sides: 10
+      damageType: bludgeoning
+    - type: damage
+      dice:
+        count: 4
+        sides: 6
+      damageType: cold
+  success:
+    halfDamage: true
+  text: area becomes Difficult Terrain until end of your next turn
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failure[0].dice.count
+        add: 1

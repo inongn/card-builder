@@ -13,11 +13,20 @@ children:
     value: 1
   - id: slasherHamstring
     name: Hamstring
-    type: Extra
-    target: weaponAttack AND slashingDamage
-    description: On a hit, the target's Speed is reduced by 10 feet until the start of your next turn.
+    type: Effect
+    target: activities[tags=weaponAttack AND tags=slashingDamage].mechanic.hit
+    operation: push
+    value:
+      type: statModifier
+      stat: speed
+      value: -10
+      operation: add
   - id: slasherEnhancedCritical
     name: Enhanced Critical
-    type: Extra
-    target: weaponAttack AND slashingDamage
-    description: On a Critical Hit, the target has Disadvantage on all attack rolls until the start of the next turn.
+    type: Effect
+    target: activities[tags=weaponAttack AND tags=slashingDamage].mechanic.crit
+    operation: push
+    value:
+      type: rollModifier
+      modifierType: disadvantage
+      targetRolls: attack

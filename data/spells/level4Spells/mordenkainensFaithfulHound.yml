@@ -22,16 +22,8 @@ description: |
 
   On your later turns, you can take a Magic action to move the hound up to 30 feet.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 4
-          sides: 8
-          bonus: 0
-        type: force
+  pattern: automatic
   target:
     type: single
+    range: $(range)
+  text: $(summary)

@@ -14,28 +14,32 @@ time: action
 range: 60 feet
 duration: 10 minutes
 summary: You create a zone that prevents creatures from speaking deliberate lies.
-description: >
-  You create a magical zone that guards against deception in a 15-foot-radius
-  Sphere centered on a point within range. Until the spell ends, a creature that
-  enters the spell's area for the first time on a turn or starts its turn there
-  makes a DC $(attributes.spellcasting.save) Charisma saving throw. On a failed
-  save, a creature can't speak a deliberate lie while in the radius. You know
-  whether a creature succeeds or fails on this save.
+description: |
+  You create a magical zone that guards against deception in a 15-foot-radius Sphere centered on a point within range. Until the spell ends, a creature that enters the spell's area for the first time on a turn or starts its turn there makes a DC $(attributes.spellcasting.save) Charisma saving throw. On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether a creature succeeds or fails on this save.
 
-
-  An affected creature is aware of the spell and can avoid answering questions
-  to which it would normally respond with a lie. Such a creature can be evasive
-  yet must be truthful.
+  An affected creature is aware of the spell and can avoid answering questions to which it would normally respond with a lie. Such a creature can be evasive yet must be truthful.
 mechanic:
-  pattern: save
-  save:
-    ability: cha
-    dc: $(attributes.spellcasting.save)
-    failure:
-      text: Creatures in area cannot speak a deliberate lie.
-  target:
-    type: aoe
-    aoe:
-      shape: sphere
-      size: 15
-    range: 60 feet
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: sphere
+          size: 15
+        range: $(range)
+      text: truth zone
+    - pattern: save
+      trigger:
+        event:
+          - on_cast
+          - enter_area
+          - start_turn
+      save:
+        ability: cha
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: text
+        text: the target can't speak a deliberate lie

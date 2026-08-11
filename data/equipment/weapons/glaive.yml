@@ -12,22 +12,20 @@ tags:
   - weaponAttack
   - slashingDamage
   - glaive
-description: >-
-  You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus))
-  attack against the target. On a hit, the target takes $(formatDice(mechanic.damage.dice))
-  $(capitalize(mechanic.damage.type)) damage.
+description: You strike with your $(name). Make a $(formatBonus(mechanic.attack.bonus)) attack against the target. On a hit, the target takes $(formatDice(mechanic.hit.dice)) $(capitalize(mechanic.hit.damageType)) damage.
 mechanic:
   pattern: attack
   attack:
     classification: melee
     type: weapon
     bonus: $(attributes.melee.attack)
-  damage:
+  target:
+    type: single
+    range: 5 feet
+  hit:
+    type: damage
     dice:
       count: 1
       sides: 10
       bonus: $(attributes.melee.bonus)
-    type: slashing
-  target:
-    type: single
-    range: 5 feet
+    damageType: slashing

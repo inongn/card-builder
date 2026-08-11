@@ -21,10 +21,32 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 2d4 for each spell slot level above 2.
 mechanic:
-  pattern: utility
-  target:
-    type: aoe
-    aoe:
-      shape: cube
-      size: 5
-    range: 60 feet
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: cube
+          size: 5
+        range: $(range)
+      text: spinning daggers
+    - pattern: automatic
+      trigger:
+        event:
+          - on_cast
+          - enter_area
+          - start_turn
+      target:
+        inherit: prev_step
+      payloads:
+        type: damage
+        dice:
+          count: 4
+          sides: 4
+        damageType: slashing
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].payloads.dice.count
+        add: 2

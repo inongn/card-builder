@@ -37,24 +37,14 @@ children:
     range: self
     duration: 10 minutes
     resource: rage
-    description: |
-      You imbue yourself with primal power. While active, you gain the following benefits:
-
-      **Damage Resistance.** You have resistance to Bludgeoning, Piercing, and Slashing damage. 
-
-      **Rage Damage.** When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage. 
-
-      **Strength Advantage.** You have Advantage on Strength checks and Strength saving throws.
     mechanic:
-      pattern: utility
-      text: You imbue yourself with primal power.
-    extra:
-      - name: Damage Resistance
-        description: You have resistance to Bludgeoning, Piercing, and Slashing damage.
-      - name: Rage Damage
-        description: When you make an attack using Strength and deal damage, you gain a $(formatBonus(attributes.rageDamage)) bonus to the damage.
-      - name: Strength Advantage
-        description: You have Advantage on Strength checks and Strength saving throws.
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - text: "gain resistance to Bludgeoning, Piercing, and Slashing damage"
+        - text: "add $(formatBonus(attributes.rageDamage)) to Strength-based attack damage"
+        - text: "gain Advantage on Strength checks and Strength saving throws"
   - id: rage
     type: Form
     name: Rage
@@ -99,16 +89,14 @@ children:
     duration: instantaneous
     range: self
     name: Reckless Attack
-    description: |
-
-      When you make your first attack roll on your turn, you attack recklessly. You gain Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time.
-
-      $(meta.level >= 9 ? "You can forgo Advantage on one Strength-based attack roll on your turn. If the chosen attack hits, the target takes an extra $(meta.level >= 17 ? '2d10' : '1d10') damage and you can cause $(meta.level > 17 ? 'two effects of your choice:' : 'one effect of your choice:')" : "")
-    mechanic:
-      pattern: utility
-      trigger: When you make your first attack
-      text: You gain Advantage on attack rolls using Strength, but attack rolls against you have Advantage.
     condition: $(meta.level >= 2)
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - text: "gain Advantage on Strength-based attack rolls until the start of your next turn"
+        - text: "attack rolls against you have Advantage until the start of your next turn"
   - id: primalKnowledgeSkill
     type: Slot
     name: Primal Knowledge Skill Proficiency
@@ -152,10 +140,17 @@ children:
     target: initiativeAdvantage
     condition: $(meta.level >= 7)
   - id: instinctivePounce
-    type: Extra
-    name: Instinctive Pounce
-    target: rage
-    description: As part of the Bonus Action you take to enter your Rage, move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet.
+    type: Effect
+    target: activities[id=rage].mechanic
+    operation: push
+    value:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        type: movement
+        movementType: normal
+        distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
     condition: $(meta.level >= 7)
   - id: level8feat
     name: Level 8 Feat

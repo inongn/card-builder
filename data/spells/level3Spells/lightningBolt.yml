@@ -23,15 +23,23 @@ mechanic:
   pattern: save
   save:
     ability: dex
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 8
-          sides: 6
-          bonus: 0
-        type: lightning
-    success:
-      text: Takes half as much damage
+    dc: $(attributes.spellcasting.save)
   target:
     type: area
+    aoe:
+      shape: line
+      size: 100
+    range: $(range)
+  failure:
+    type: damage
+    dice:
+      count: 8
+      sides: 6
+    damageType: lightning
+  success:
+    halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failure.dice.count
+        add: 1

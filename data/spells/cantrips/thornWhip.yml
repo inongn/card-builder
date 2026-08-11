@@ -13,4 +13,21 @@ summary: You create a thorny whip to strike and pull a target closer.
 description: |
   You create a vine-like whip covered in thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. On a hit, the target takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Piercing damage, and if it is Large or smaller, you can pull it up to 10 feet closer to you.
 mechanic:
-  pattern: utility
+  pattern: attack
+  attack:
+    classification: melee
+    type: spell
+    bonus: $(attributes.spellcasting.attack)
+  target:
+    type: single
+    range: $(range)
+  hit:
+    - type: damage
+      dice:
+        count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+        sides: 6
+      damageType: piercing
+    - type: movement
+      movementType: forced
+      direction: pull
+      distance: 10

@@ -26,4 +26,8 @@ children:
       - skeleton
       - zombie
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: single
+    range: $(range)
+  text: $(summary)

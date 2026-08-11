@@ -6,5 +6,3 @@ range: self
 duration: instantaneous
 description: |
   You gain extra movement for the current turn. Your Speed increases by $(attributes.movement.walk).
-mechanic:
-  pattern: utility

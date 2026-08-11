@@ -7,7 +7,7 @@ tags:
 type: Folder
 children:
 - type: Reference
-  target: data.core.spellcasting.chooseCaster
+  target: chooseCaster
   quantity: 1
 - type: Slot
   id: magicInitiateDruidCantrips

@@ -20,11 +20,11 @@ description: |
 
   The tactile characteristics of the terrain are unchanged, so creatures entering the area are likely to notice the illusion. If the difference isn't obvious by touch, a creature examining the illusion can take the Study action to make an Intelligence (Investigation) check against DC $(attributes.spellcasting.save) to disbelieve it. If a creature discerns that the terrain is illusory, the creature sees a vague image superimposed on the real terrain.
 mechanic:
-  pattern: save
-  save:
-    ability: dex
-    dc: ''
-    failure:
-      text: You make natural terrain in a 150-foot Cube in range look, sound, and smell like another sort of natural terrain. Thus, open fields or a road can be made to resemble a swamp, hill, crevasse, or som...
+  pattern: automatic
   target:
     type: area
+    aoe:
+      shape: cube
+      size: 150
+    range: $(range)
+  text: $(summary)

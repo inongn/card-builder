@@ -10,7 +10,3 @@ duration: 1 round
 resource: psionicEnergyDice
 description: |
   When you cast a Psion spell of the Abjuration or Divination school, choose a creature you can see within range (including yourself). Until the end of your next turn, the creature gains a bonus to the next D20 Test it makes equal to the number rolled on 1d$(attributes.psiDice).
-mechanic:
-  pattern: utility
-  trigger: When you cast a Psion Abjuration or Divination spell
-  text: Choose a creature; it gains a bonus to its next D20 Test equal to a roll of 1d$(attributes.psiDice).

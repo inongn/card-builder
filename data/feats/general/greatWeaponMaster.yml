@@ -18,6 +18,23 @@ children:
     value: $(attributes.prof)
   - id: hew
     name: Hew
-    type: Extra
-    target: weaponAttack and melee and twoHanded
-    description: On a Critical Hit, or when you reduce a creature to 0 Hit Points, make another attack.
+    type: Activity
+    time: bonus action
+    range: self
+    description: Immediately after you score a Critical Hit with a Melee weapon or reduce a creature to 0 Hit Points with one, you can make one attack with the same weapon.
+    duration: instantaneous
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      trigger:
+        event:
+          - land_crit
+          - drop_enemy_zero
+        attackFilter:
+          classification: melee
+          type: weapon
+      payloads:
+        type: action
+        actionType: attack
+        count: 1

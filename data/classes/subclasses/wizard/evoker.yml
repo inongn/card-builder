@@ -5,11 +5,16 @@ type: Folder
 tags:
   - wizardSubclass
 children:
-  - id: potentCantrip
-    type: Trait
-    name: Potent Cantrip
-    description: When you miss or a creature succeeds on its saving throw against a damage-dealing cantrip, it deals half damage to the target.
-    condition: $(meta.level >= 3)
+  - id: potentCantripEffect
+    type: Effect
+    target: activities[tags=cantrip].mechanic.miss.halfDamage
+    operation: set
+    value: true
+  - id: potentCantripEffect2
+    type: Effect
+    target: activities[tags=cantrip].mechanic.success.halfDamage
+    operation: set
+    value: true
   - id: sculptSpells
     type: Trait
     name: Sculpt Spells

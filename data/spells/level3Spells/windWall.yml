@@ -21,18 +21,34 @@ description: |
 
   The strong wind keeps fog, smoke, and other gases at bay. Small or smaller flying creatures or objects can't pass through the wall. Loose, lightweight materials brought into the wall fly upward. Arrows, bolts, and other ordinary projectiles launched at targets behind the wall are deflected upward and miss automatically. Boulders hurled by Giants or siege engines, and similar projectiles, are unaffected. Creatures in gaseous form can't pass through it.
 mechanic:
-  pattern: save
-  save:
-    ability: str
-    dc: ''
-    failure:
-      damage:
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: wall
+          size: 50
+        range: $(range)
+      text: strong wind
+    - pattern: save
+      trigger:
+        event: on_cast
+      save:
+        ability: str
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: prev_step
+      failure:
+        type: damage
         dice:
           count: 4
           sides: 8
-          bonus: 0
-        type: bludgeoning
-    success:
-      text: Takes half as much damage
-  target:
-    type: area
+        damageType: bludgeoning
+      success:
+        halfDamage: true
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: blocks[1].failure.dice.count
+        add: 1

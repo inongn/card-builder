@@ -17,4 +17,7 @@ summary: You neutralize poison and grant resistance to poison damage.
 description: |
   You touch a creature and end the Poisoned condition on it. For the duration, the target has Advantage on saving throws to avoid or end the Poisoned condition, and it has Resistance to Poison damage.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: neutralizes one poison affecting the target, and target gains Resistance to Poison damage and Advantage on saves against poison

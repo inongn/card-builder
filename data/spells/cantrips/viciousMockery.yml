@@ -12,30 +12,22 @@ time: action
 range: 60 feet
 duration: instantaneous
 summary: You unleash subtle enchantments to disorient a creature.
-description: >
-  You unleash a string of insults laced with subtle enchantments at one creature
-  you can see or hear within range. The target must succeed on a DC
-  $(attributes.spellcasting.save) Wisdom saving throw or take $(meta.level >= 17
-  ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Psychic damage and
-  have Disadvantage on the next attack roll it makes before the end of its next
-  turn.
+description: |
+  You unleash a string of insults laced with subtle enchantments at one creature you can see or hear within range. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or take $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d6 Psychic damage and have Disadvantage on the next attack roll it makes before the end of its next turn.
 mechanic:
   pattern: save
   save:
     ability: wis
     dc: $(attributes.spellcasting.save)
-    failure:
-      damage:
-        dice:
-          count: >-
-            $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2
-            : 1)
-          sides: 6
-          bonus: 0
-        type: psychic
-      text: >-
-        Target has Disadvantage on its next attack roll before the end of its
-        next turn.
   target:
     type: single
-    range: 60 feet
+    range: $(range)
+  failure:
+    - type: damage
+      dice:
+        count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+        sides: 6
+      damageType: psychic
+    - type: rollModifier
+      modifierType: disadvantage
+      targetRolls: attack

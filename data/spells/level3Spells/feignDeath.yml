@@ -21,4 +21,7 @@ description: |
 
   The target also has Resistance to all damage except Psychic damage, and it has Immunity to the Poisoned condition.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  text: $(summary)

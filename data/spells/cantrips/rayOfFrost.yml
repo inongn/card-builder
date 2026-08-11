@@ -14,25 +14,24 @@ time: action
 range: 60 feet
 duration: instantaneous
 summary: A frigid beam of blue-white light strikes and slows a target.
-description: >
-  A frigid beam of blue-white light streaks toward a creature within range. Make
-  a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against
-  the target. On a hit, it takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 :
-  meta.level >= 5 ? 2 : 1)d8 Cold damage, and its Speed is reduced by 10 feet
-  until the start of your next turn.
+description: |
+  A frigid beam of blue-white light streaks toward a creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, it takes $(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)d8 Cold damage, and its Speed is reduced by 10 feet until the start of your next turn.
 mechanic:
   pattern: attack
   attack:
     classification: ranged
     type: spell
     bonus: $(attributes.spellcasting.attack)
-  damage:
-    dice:
-      count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
-      sides: 8
-      bonus: 0
-    type: cold
-  text: Target speed is reduced by 10 feet until the start of your next turn.
   target:
     type: single
-    range: 60 feet
+    range: $(range)
+  hit:
+    - type: damage
+      dice:
+        count: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)'
+        sides: 8
+      damageType: cold
+    - type: statModifier
+      stat: speed
+      value: -10
+      operation: add

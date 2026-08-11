@@ -16,4 +16,25 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d6 for each spell slot level above 2.
 mechanic:
-  pattern: utility
+  pattern: save
+  trigger:
+    event: hit_with_attack
+  save:
+    ability: con
+    dc: $(attributes.spellcasting.save)
+  target:
+    inherit: trigger
+  failureOrSuccess:
+    type: damage
+    dice:
+      count: 2
+      sides: 6
+    damageType: radiant
+  failure:
+    type: text
+    text: the target sheds Bright Light in a 5-foot radius, attack rolls against it have Advantage, and it can't benefit from the Invisible condition
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: failureOrSuccess.dice.count
+        add: 1

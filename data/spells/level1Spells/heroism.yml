@@ -17,6 +17,8 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: You can target one additional creature for each spell slot level above 1.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
-    type: touch
+    type: single
+    range: $(range)
+  text: target is immune to Frightened condition and gains $(attributes.spellcasting.bonus) Temporary Hit Points at start of each of its turns

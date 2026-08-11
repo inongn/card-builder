@@ -26,8 +26,14 @@ mechanic:
   pattern: save
   save:
     ability: wis
-    dc: ''
-    failure:
-      text: One Beast you can see within range must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. The target has Advantage on the save if y...
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    filter: beast
+    range: $(range)
+  failure:
+    - type: condition
+      condition: charmed
+      end: repeat_save_on_damage
+    - type: text
+      text: the target repeats the save whenever it takes damage

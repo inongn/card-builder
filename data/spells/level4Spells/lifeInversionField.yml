@@ -21,16 +21,11 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The healing increases by 1d8 for each spell slot level above 4.
 mechanic:
-  pattern: save
-  save:
-    ability: con
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 4
-          sides: 8
-          bonus: 0
-        type: necrotic
+  pattern: automatic
   target:
     type: area
+    aoe:
+      shape: emanation
+      size: 30
+    range: $(range)
+  text: when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored

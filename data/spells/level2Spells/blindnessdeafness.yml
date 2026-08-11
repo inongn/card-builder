@@ -24,8 +24,20 @@ mechanic:
   pattern: save
   save:
     ability: con
-    dc: ''
-    failure:
-      text: One creature that you can see within range must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw, or it has the Blinded or Deafened condition (your choice) for the duration...
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    range: $(range)
+  failure:
+    - type: condition
+      condition:
+        - blinded
+        - deafened
+      end: turn_repeat_save
+    - type: text
+      text: the target repeats the save at the end of each of its turns
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

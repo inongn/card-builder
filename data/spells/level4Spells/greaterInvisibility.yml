@@ -16,4 +16,9 @@ summary: A creature becomes invisible even while attacking or casting.
 description: |
   A creature you touch has the Invisible condition until the spell ends.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  payloads:
+    type: condition
+    condition: invisible

@@ -27,4 +27,5 @@ children:
       - elementalSpiritFire
       - elementalSpiritWater
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

@@ -16,4 +16,13 @@ description: |
 
   The spell ends if you drop to 0 Hit Points or if you and the target become separated by more than 60 feet. It also ends if the spell is cast again on either of the connected creatures.
 mechanic:
-  pattern: utility
+  pattern: automatic
+  target:
+    type: touch
+  payloads:
+    - type: statModifier
+      stat: ac
+      value: 1
+      operation: add
+    - type: text
+      text: gains +1 to saves, Resistance to all damage, and you take the same amount of damage whenever it takes damage

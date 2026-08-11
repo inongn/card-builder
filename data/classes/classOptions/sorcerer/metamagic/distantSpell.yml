@@ -13,6 +13,3 @@ children:
     name: Distant Spell
     resource: 1 sorceryPoints
     description: When you cast a spell that has a range of at least 5 feet, you double the spell's range. Or when you cast a spell that has a range of Touch, you make the spell's range 30 feet.
-    mechanic:
-      pattern: utility
-      text: Double a spell's range, or change Touch range to 30 feet.

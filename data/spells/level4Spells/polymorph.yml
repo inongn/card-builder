@@ -27,8 +27,10 @@ mechanic:
   pattern: save
   save:
     ability: wis
-    dc: ''
-    failure:
-      text: You attempt to transform a creature that you can see within range into a Beast. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or shape-shift into a Beast form ...
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    range: $(range)
+  failure:
+    type: text
+    text: target is transformed into a beast form of your choice (replacing its stat block)

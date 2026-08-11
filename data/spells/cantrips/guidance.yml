@@ -14,6 +14,7 @@ summary: You touch a creature to grant a minor boost to its next skill check.
 description: |
   You touch a willing creature and choose a skill. Until the spell ends, the creature adds 1d4 to any ability check using the chosen skill.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
     type: touch
+  text: Target willing creature adds 1d4 to any ability check using a chosen skill.

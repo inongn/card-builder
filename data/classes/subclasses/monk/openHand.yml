@@ -6,17 +6,46 @@ tags:
 type: Folder
 children:
   - id: openHandTechnique
-    type: Extra
-    target: flurryOfBlows
+    type: Activity
     name: Open Hand Technique
+    time: free action
+    range: self
+    duration: Instantaneous
     description: |
-      When you hit a creature with an attack, you impose one of the following effects on the target:
-
-      - **Addle**. The target can't make Opportunity Attacks until the start of its next turn.
-
-      - **Push**. The target must succeed on a DC $(attributes.monkSaveDC) Strength saving throw or be pushed up to 15 feet away from you.
-
-      - **Topple**. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or have the Prone condition.
+      Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target.
+    mechanic:
+      mode: choice
+      text: "Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target:"
+      blocks:
+        - pattern: automatic
+          name: Addle
+          target:
+            inherit: trigger
+          payloads:
+            type: text
+            text: "can't make Opportunity Attacks until the start of its next turn"
+        - pattern: save
+          name: Push
+          save:
+            ability: str
+            dc: $(attributes.monkSaveDC)
+          target:
+            inherit: trigger
+          failure:
+            type: movement
+            movementType: forced
+            direction: push
+            distance: 15
+        - pattern: save
+          name: Topple
+          save:
+            ability: dex
+            dc: $(attributes.monkSaveDC)
+          target:
+            inherit: trigger
+          failure:
+            type: condition
+            condition: prone
   - id: wholenessOfBody
     type: Activity
     name: Wholeness of Body

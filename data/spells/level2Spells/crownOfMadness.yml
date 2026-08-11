@@ -25,8 +25,14 @@ mechanic:
   pattern: save
   save:
     ability: wis
-    dc: ''
-    failure:
-      text: One creature that you can see within range must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or have the Charmed condition for the duration. The creature succeeds automatical...
+    dc: $(attributes.spellcasting.save)
   target:
     type: single
+    filter: humanoid
+    range: $(range)
+  failure:
+    - type: condition
+      condition: charmed
+      end: turn_repeat_save
+    - type: text
+      text: the target must use its action before moving to make a melee attack against a creature you choose

@@ -22,16 +22,8 @@ description: |
 
   In addition, immediately after you take damage from a creature you can see within 60 feet of yourself, you can take a Reaction to force the creature to make a DC $(attributes.spellcasting.save) Constitution saving throw. On a failed save, the creature has the Blinded condition until the end of your next turn.
 mechanic:
-  pattern: save
-  save:
-    ability: con
-    dc: ''
-    failure:
-      damage:
-        dice:
-          count: 2
-          sides: 6
-          bonus: 0
-        type: force
+  pattern: automatic
   target:
-    type: area
+    type: self
+    range: $(range)
+  text: you shed light, gain Resistance to Radiant damage, your melee attacks deal +2d6 Radiant damage, and attackers within 20 feet make a Constitution saving throw or become Blinded

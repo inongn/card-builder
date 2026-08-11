@@ -26,4 +26,5 @@ children:
       - aberrantSpiritMindFlayer
       - aberrantSpiritSlaad
 mechanic:
-  pattern: utility
+  pattern: automatic
+  text: $(summary)

@@ -14,11 +14,8 @@ time: action
 range: 60 feet
 duration: instantaneous
 summary: You shoot a greenish ray that deals poison damage and sickening illness.
-description: >
-  You shoot a greenish ray at a creature within range. Make a
-  $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the
-  target. On a hit, the target takes 2d8 Poison damage and has the Poisoned
-  condition until the end of your next turn.
+description: |
+  You shoot a greenish ray at a creature within range. Make a $(formatBonus(attributes.spellcasting.attack)) ranged spell attack against the target. On a hit, the target takes 2d8 Poison damage and has the Poisoned condition until the end of your next turn.
 extra:
   - name: Using a Higher-Level Spell Slot
     description: The damage increases by 1d8 for each spell slot level above 1.
@@ -28,13 +25,19 @@ mechanic:
     classification: ranged
     type: spell
     bonus: $(attributes.spellcasting.attack)
-  damage:
-    dice:
-      count: 2
-      sides: 8
-      bonus: 0
-    type: poison
-  text: Target makes a CON save or has Poisoned condition for 1 round.
   target:
     type: single
-    range: 60 feet
+    range: $(range)
+  hit:
+    - type: damage
+      dice:
+        count: 2
+        sides: 8
+      damageType: poison
+    - type: condition
+      condition: poisoned
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: hit[0].dice.count
+        add: 1

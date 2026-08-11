@@ -48,9 +48,6 @@ children:
       *   You have Advantage on the attack rolls of Sorcerer spells you cast.
       $(meta.level >= 7 ? "*   You can use up to two Metamagic options on each spell you cast." : "")
     resource: innateSorcery
-    mechanic:
-      pattern: utility
-      text: 'Your Sorcerer spell save DC increases by 1, and you have Advantage on Sorcerer spell attack rolls$(meta.level >= 7 ? ''; you can apply two Metamagic options per spell'' : '''').'
     condition: $(meta.level >= 1)
   - id: innateSorcery
     type: Resource

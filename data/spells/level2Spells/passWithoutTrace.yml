@@ -14,6 +14,11 @@ summary: A veil of shadows and silence grants +10 to Stealth checks for your par
 description: |
   You radiate a concealing aura in a 30-foot Emanation for the duration. While in the aura, you and each creature you choose have a +10 bonus to Dexterity (Stealth) checks and leave no tracks.
 mechanic:
-  pattern: utility
+  pattern: automatic
   target:
-    type: self
+    type: area
+    aoe:
+      shape: emanation
+      size: 30
+    range: $(range)
+  text: you and your allies gain +10 bonus to Dexterity (Stealth) checks and can't be tracked except by magical means
