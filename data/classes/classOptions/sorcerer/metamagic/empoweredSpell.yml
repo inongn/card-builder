@@ -16,3 +16,15 @@ children:
       When you roll damage for a spell, you can reroll a number of the damage dice up to $(Math.max(1, stats.cha.mod)), and you must use the new rolls.
 
       You can use Empowered Spell even if you've already used a different Metamagic option during the casting of the spell.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: roll_damage
+      target:
+        type: self
+      payloads:
+        - type: rollModifier
+          modifierType: reroll
+          targetRolls: damage
+          dice: $(Math.max(1, stats.cha.mod))
+          text: reroll up to $(Math.max(1, stats.cha.mod)) damage dice for a spell

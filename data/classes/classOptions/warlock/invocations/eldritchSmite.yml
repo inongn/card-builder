@@ -20,16 +20,15 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-      event: hit_with_attack
+        event: hit_with_attack
       target:
         inherit: trigger
       payloads:
         - type: damage
-          damage:
-            dice:
-              count: $(1+local.maxLevel)
-              sides: 8
-            damageType: force
+          dice:
+            count: $(1 + local.maxLevel)
+            sides: 8
+          damageType: force
         - type: condition
           condition: prone
           text: if it is Huge or smaller

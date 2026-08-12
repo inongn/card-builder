@@ -66,7 +66,8 @@
         "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
         "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
         "pattern": { "type": "string", "const": "healing" },
-        "healing": { "$ref": "primitives.schema.json#/$defs/HealingEntry" }
+        "healing": { "$ref": "primitives.schema.json#/$defs/HealingEntry" },
+        "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
       },
       "required": ["pattern", "healing"],
       "additionalProperties": false
@@ -136,7 +137,7 @@
         "text": { "type": "string" },
         "mode": {
           "type": "string",
-          "enum": ["succession", "choice"],
+          "enum": ["succession", "sequence", "choice"],
           "default": "succession"
         },
         "blocks": {

@@ -11,6 +11,23 @@ children:
     range: self
     name: Frost's Chill
     description: When you hit a target with an attack roll and deal damage to it, you also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: hit_with_attack
+      target:
+        inherit: trigger
+      payloads:
+        - type: damage
+          dice:
+            count: 1
+            sides: 6
+          damageType: cold
+        - type: statModifier
+          stat: speed
+          operation: subtract
+          value: 10
+          text: target's Speed is reduced by 10 feet until the start of your next turn
     resource: giantAncestry
   - id: giantAncestry
     type: Resource

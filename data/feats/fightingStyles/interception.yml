@@ -9,3 +9,14 @@ id: interception
 summary: Use your reaction to reduce incoming damage to a nearby ally.
 name: Interception
 description: When a creature you can see hits another creature with an attack roll, you reduce the damage dealt to the target by 1d10+$(attributes.prof).
+mechanic:
+  pattern: automatic
+  trigger:
+    text: when a creature you can see hits another creature with an attack roll
+  target:
+    type: touch
+    filter: target of attack
+    range: $(range)
+  payloads:
+    - type: text
+      text: "reduce damage taken by 1d10 + $(attributes.prof)"

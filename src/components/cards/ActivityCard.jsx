@@ -226,6 +226,8 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
 
     const displayDescription = activity.description || formatActivityMechanic(activity, char);
 
+    let subtitleText = getActivitySubtitle();
+
     const bodyContent = (
         <>
             {subtitleText && (

@@ -37,7 +37,7 @@ children:
     mechanic:
       pattern: healing
       trigger:
-        text: when you reduce an enemy to 0 Hit Points, or someone else reduces an enemy within 10 feet of you to 0 Hit Points
+        event: drop_enemy_zero
       target:
         type: self
       healing:
@@ -58,7 +58,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: when you make an ability check or a saving throw
+        event: [make_check, make_save]
       target:
         type: self
       payloads:

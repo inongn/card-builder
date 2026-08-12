@@ -10,3 +10,16 @@ duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   When you cast a Psion spell of the Necromancy or Transmutation school, you gain 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Temporary Hit Points per charge expended.
+mechanic:
+  pattern: healing
+  trigger:
+    event: cast_spell
+    text: when you cast a Psion spell of the Necromancy or Transmutation school
+  target:
+    type: self
+  healing:
+    type: tempHitPoints
+    dice:
+      count: 1
+      sides: $(attributes.psiDice)
+      bonus: $(Math.max(1, stats.int.mod))

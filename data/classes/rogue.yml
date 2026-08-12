@@ -43,16 +43,16 @@ children:
     name: Sneak Attack
     mechanic:
       trigger:
-        text: Once per turn when you hit a creature with an attack roll if you have Advantage or an ally is within 5 feet of the target
+        event: hit_with_attack
       pattern: automatic
       target:
         inherit: trigger
       payloads:
-        type: damage
-        dice:
-          count: $(attributes.sneakAttackDice)
-          sides: 6
-        text: extra damage
+        - type: damage
+          dice:
+            count: $(attributes.sneakAttackDice)
+            sides: 6
+          text: extra damage
   - id: masteryProperties
     type: Reference
     target: masteryProperties

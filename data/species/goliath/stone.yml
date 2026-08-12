@@ -12,6 +12,15 @@ children:
     range: self
     resource: giantAncestry
     description: When you take damage, reduce it by 1d12$(formatBonus(stats.con.mod)).
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: take_damage
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: "reduce damage taken by 1d12 + $(stats.con.mod)"
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

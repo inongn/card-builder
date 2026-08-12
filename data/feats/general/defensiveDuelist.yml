@@ -17,4 +17,18 @@ children:
     range: self
     time: reaction
     description: When you are hit with an attack, you add $(attributes.prof) to your Armor Class, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: be_hit
+        attackFilter:
+          classification: melee
+      target:
+        type: self
+      payloads:
+        - type: statModifier
+          stat: ac
+          operation: add
+          value: $(attributes.prof)
+          text: add $(attributes.prof) to AC against melee attacks until the start of your next turn
     id: defensiveDuelistParry

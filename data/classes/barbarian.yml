@@ -104,10 +104,13 @@ children:
     quantity: 1
     target: animalHandlingProficiency OR athleticsProficiency OR intimidationProficiency OR natureProficiency OR perceptionProficiency OR survivalProficiency
   - id: primalKnowledge
-    type: Extra
+    type: Effect
     name: Primal Knowledge
-    target: rage
-    description: You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability.
+    target: activities[id=rage].mechanic.payloads
+    operation: push
+    value:
+      type: text
+      text: "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength"
     condition: $(meta.level >= 3)
   - id: primalKnowledgeAcr
     type: Effect
@@ -141,16 +144,12 @@ children:
     condition: $(meta.level >= 7)
   - id: instinctivePounce
     type: Effect
-    target: activities[id=rage].mechanic
+    target: activities[id=rage].mechanic.payloads
     operation: push
     value:
-      pattern: automatic
-      target:
-        type: self
-      payloads:
-        type: movement
-        movementType: normal
-        distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
+      type: movement
+      movementType: normal
+      distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
     condition: $(meta.level >= 7)
   - id: level8feat
     name: Level 8 Feat

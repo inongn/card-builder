@@ -12,9 +12,9 @@ children:
     operation: add
     value: 1
   - name: Potent Poison
-    type: Extra
+    type: Trait
     target: poisonDamage
-    description: This damage ignores resistance to Poison damage.
+    description: Your damage ignores resistance to Poison damage.
     id: poisonerPotentPoison
   - name: Brew Poison
     type: Activity
@@ -23,4 +23,20 @@ children:
     time: 1 hour
     description: |
       You can craft poisons. With 1 hour of work using a Poisoner's Kit and expending 50 GP worth of materials, you can create $(attributes.prof) doses of poison. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you hit with the poisoned item, whichever comes first. When a creature takes damage from the poisoned item, that creature must succeed on a DC $(8 + stats.dex.mod + attributes.prof) Constitution saving throw or take 2d8 Poison damage and have the Poisoned condition until the end of your next turn.
+    mechanic:
+      pattern: save
+      save:
+        ability: con
+        dc: $(8 + stats.dex.mod + attributes.prof)
+      target:
+        inherit: trigger
+      failure:
+        - type: damage
+          dice:
+            count: 2
+            sides: 8
+          damageType: poison
+        - type: condition
+          condition: poisoned
+          end: end_of_your_next_turn
     id: poisonerBrewPoison

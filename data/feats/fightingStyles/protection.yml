@@ -9,3 +9,15 @@ id: protection
 summary: Use your reaction to impose disadvantage on attacks against nearby allies.
 name: Protection
 description: When a creature you can see attacks a target other than you, you impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn.
+mechanic:
+  pattern: automatic
+  trigger:
+    text: when a creature you can see attacks a target other than you
+  target:
+    inherit: trigger
+    range: $(range)
+  payloads:
+    - type: rollModifier
+      modifierType: disadvantage
+      targetRolls: attack
+      end: end_of_your_next_turn

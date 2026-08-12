@@ -18,4 +18,11 @@ children:
     range: self
     name: Luck
     description: When you roll a d20 for a D20 Test, or a creature rolls a d20 for an attack roll against you, give yourself Advantage on the roll, or impose Disadvantage on the roll, respectively.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: give yourself Advantage on a d20 test or impose Disadvantage on an attack roll against you
     resource: luckPoints

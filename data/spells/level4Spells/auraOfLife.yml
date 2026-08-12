@@ -15,11 +15,21 @@ summary: An aura radiates from you, restoring unconscious allies and granting ne
 description: |
   An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Necrotic damage, and your Hit Point maximums can't be reduced. If an ally with 0 Hit Points starts its turn in the aura, that ally regains 1 Hit Point.
 mechanic:
-  pattern: automatic
-  target:
-    type: area
-    aoe:
-      shape: emanation
-      size: 30
-    range: $(range)
-  text: allies in aura gain Resistance to Necrotic damage, max HP can't be reduced, and living creatures at 0 HP regain 1 HP at start of turn
+  mode: succession
+  blocks:
+    - pattern: aura
+      target:
+        type: area
+        aoe:
+          shape: emanation
+          size: 30
+        range: $(range)
+      text: life-giving energy
+    - pattern: automatic
+      trigger:
+        text: while in the aura
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: allies gain Resistance to Necrotic damage, maximum Hit Points cannot be reduced, and living creatures at 0 Hit Points regain 1 Hit Point at the start of their turn

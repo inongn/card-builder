@@ -10,3 +10,17 @@ duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   When you take the Influence action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.
+mechanic:
+  pattern: automatic
+  trigger:
+    event: make_check
+    text: when you take the Influence action
+  target:
+    type: self
+  payloads:
+    - type: rollModifier
+      modifierType: add
+      targetRolls: check
+      dice:
+        count: 1
+        sides: $(attributes.psiDice)

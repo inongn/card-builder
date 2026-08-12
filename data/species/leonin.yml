@@ -14,6 +14,20 @@ children:
     time: bonus action
     name: Daunting Roar
     description: You let out a terrifying roar. Each creature of your choice within range must succeed on a DC $(attributes.prof + 8 + stats.con.mod) Wisdom saving throw or have Disadvantage on attack rolls and saving throws until the end of your next turn.
+    mechanic:
+      pattern: save
+      save:
+        ability: wis
+        dc: $(attributes.prof + 8 + stats.con.mod)
+      target:
+        type: multiple
+        filter: creature
+        range: $(range)
+      failure:
+        - type: rollModifier
+          modifierType: disadvantage
+          targetRolls: [attack, save]
+          end: end_of_your_next_turn
     resource: dauntingRoar
     id: dauntingRoar
   - type: Resource

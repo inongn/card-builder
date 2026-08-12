@@ -23,6 +23,14 @@ children:
     resource: limited
     description: |
       You touch a creature and roll $(attributes.prof)d4. The creature regains Hit Points equal to the total rolled.
+    mechanic:
+      pattern: healing
+      target:
+        type: touch
+      healing:
+        dice:
+          count: $(attributes.prof)
+          sides: 4
   - type: Reference
     target: lightSpell
   - id: celestialRevelation
@@ -40,4 +48,41 @@ children:
       **Inner Radiance.** You shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. At the end of each of your turns, each creature within 10 feet of you takes $(attributes.prof) Radiant damage.
 
       **Necrotic Shroud.** Creatures other than your allies within 10 feet of you must succeed on a DC $(attributes.prof + 8 + stats.cha.mod) Charisma saving throw or have the Frightened condition until the end of your next turn.
+    mechanic:
+      mode: choice
+      text: "Choose one of the following transformations:"
+      blocks:
+        - name: Heavenly Wings
+          pattern: automatic
+          target:
+            type: self
+          payloads:
+            - type: text
+              text: "gain a Fly Speed of $(attributes.movement.walk) feet, and once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Radiant damage"
+        - name: Inner Radiance
+          pattern: automatic
+          target:
+            type: self
+          payloads:
+            - type: text
+              text: "shed Bright Light in a 10-foot radius and Dim Light for 10 feet; at the end of each turn, each creature within 10 feet takes $(attributes.prof) Radiant damage, and once per turn deal $(attributes.prof) extra Radiant damage"
+        - name: Necrotic Shroud
+          pattern: save
+          save:
+            ability: cha
+            dc: $(attributes.prof + 8 + stats.cha.mod)
+          target:
+            type: area
+            aoe:
+              shape: emanation
+              size: 10
+            filter: creature other than your allies
+            range: $(range)
+          failure:
+            type: condition
+            condition: frightened
+            end: end_of_your_next_turn
+          failureOrSuccess:
+            type: text
+            text: once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Necrotic damage
     condition: $(meta.level >= 3)

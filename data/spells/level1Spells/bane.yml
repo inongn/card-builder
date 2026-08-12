@@ -28,8 +28,14 @@ mechanic:
     count: 3
     range: $(range)
   failure:
-    type: text
-    text: the target subtracts 1d4 from all attack rolls and save rolls
+    type: rollModifier
+    modifierType: subtract
+    dice:
+      count: 1
+      sides: 4
+    targetRolls:
+      - attack
+      - save
   upcast:
     resourceStep: 1
     modifications:

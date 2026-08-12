@@ -13,6 +13,19 @@ children:
     target: unarmed
     name: Unarmed Fighting
     description: At the start of each of your turns, you can deal 1d4 Bludgeoning damage to one creature grappled by you.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: start_turn
+      target:
+        type: single
+        filter: creature grappled by you
+      payloads:
+        - type: damage
+          dice:
+            count: 1
+            sides: 4
+          damageType: bludgeoning
     id: unarmedFightingUnarmedFighting
   - type: Effect
     target: activities[tags=unarmed].mechanic.hit.dice

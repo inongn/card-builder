@@ -12,6 +12,14 @@ children:
     range: self
     resource: giantAncestry
     description: You magically teleport up to 30 feet to an unoccupied space you can see.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: movement
+          movementType: allow
+          text: teleport up to 30 feet to an unoccupied space you can see
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

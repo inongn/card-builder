@@ -14,6 +14,25 @@ children:
     resource: adrenalineRush
     description: |
       You take the Dash action. When you do so, you gain $(attributes.prof) Temporary Hit Points.
+    mechanic:
+      mode: succession
+      blocks:
+        - pattern: healing
+          target:
+            type: self
+          healing:
+            type: tempHitPoints
+            dice:
+              count: 0
+              sides: 0
+              bonus: $(attributes.prof)
+        - pattern: automatic
+          target:
+            type: self
+          payloads:
+            - type: action
+              actionType: general
+              text: take the Dash action
   - id: adrenalineRush
     type: Resource
     name: Adrenaline Rush
@@ -31,4 +50,13 @@ children:
     range: self
     name: Relentless Endurance
     description: When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: when you are reduced to 0 Hit Points but not killed outright
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: drop to 1 Hit Point instead
     resource: limited

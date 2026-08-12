@@ -8,6 +8,10 @@ children:
   - type: Reference
     target: poisonResistance
   - type: Effect
-    target: activities[tags=damageSpell AND tags=poisonDamage].mechanic.damage.dice.bonus
+    target: activities[tags=damageSpell AND tags=poisonDamage].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.cha.mod)
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=poisonDamage].mechanic.failure.dice.bonus
     operation: add
     value: $(stats.cha.mod)

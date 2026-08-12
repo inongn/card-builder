@@ -5,8 +5,30 @@ tags:
   - psionicDiscipline
 type: Activity
 time: reaction
-range: Varies
+range: self
 duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   Immediately after a creature you can see hits you with an attack roll, you reduce the damage you take from the attack by an amount equal to two times the number rolled on 1d$(attributes.psiDice) + $(stats.int.mod) (minimum 2). In addition, you force the attacker to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the target takes Psychic damage equal to the amount of damage reduced.
+mechanic:
+  mode: succession
+  blocks:
+    - pattern: automatic
+      trigger:
+        event: be_hit
+        text: immediately after a creature you can see hits you with an attack roll
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: "reduce incoming attack damage by 2d$(attributes.psiDice) + $(stats.int.mod) (minimum 2)"
+    - pattern: save
+      save:
+        ability: wis
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: trigger
+      failure:
+        type: damage
+        damageType: psychic
+        text: Psychic damage equal to the amount of damage reduced

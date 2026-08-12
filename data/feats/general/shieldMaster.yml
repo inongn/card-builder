@@ -18,6 +18,17 @@ children:
     time: bonus action
     range: 5 feet
     description: If you attack a creature on your turn, you try to shove that creature with your Shield. The target must succeed on a DC $(8+attributes.prof+stats.str.mod) Strength saving throw or be knocked prone.
+    mechanic:
+      pattern: save
+      save:
+        ability: str
+        dc: $(8 + attributes.prof + stats.str.mod)
+      target:
+        type: single
+        range: $(range)
+      failure:
+        type: condition
+        condition: prone
     id: shieldMasterShieldBash
   - name: Interpose Shield
     type: Activity
@@ -25,4 +36,15 @@ children:
     range: self
     time: reaction
     description: If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you take no damage if you succeed on the saving throw.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: make_save
+        saveFilter:
+          ability: dex
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: take no damage if you succeed on the saving throw
     id: shieldMasterInterposeShield

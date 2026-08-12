@@ -18,4 +18,13 @@ children:
     duration: instantaneous
     range: self
     description: When you're hit by an attack, any Bludgeoning, Piercing, or Slashing damage dealt to you by that attack is reduced by $(attributes.prof).
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: take_damage
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: "reduce Bludgeoning, Piercing, or Slashing damage taken by $(attributes.prof)"
     id: heavyArmorMasterDamageReduction

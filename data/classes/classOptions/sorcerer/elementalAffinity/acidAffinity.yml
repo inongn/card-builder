@@ -8,6 +8,10 @@ children:
   - type: Reference
     target: acidResistance
   - type: Effect
-    target: activities[tags=damageSpell AND tags=acidDamage].mechanic.damage.dice.bonus
+    target: activities[tags=damageSpell AND tags=acidDamage].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.cha.mod)
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=acidDamage].mechanic.failure.dice.bonus
     operation: add
     value: $(stats.cha.mod)

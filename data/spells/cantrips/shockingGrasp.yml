@@ -20,7 +20,8 @@ mechanic:
     type: spell
     bonus: $(attributes.spellcasting.attack)
   target:
-    type: touch
+    type: single
+    range: 5 feet
   hit:
     - type: damage
       dice:

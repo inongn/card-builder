@@ -8,6 +8,10 @@ children:
   - type: Reference
     target: coldResistance
   - type: Effect
-    target: activities[tags=damageSpell AND tags=coldDamage].mechanic.damage.dice.bonus
+    target: activities[tags=damageSpell AND tags=coldDamage].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.cha.mod)
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=coldDamage].mechanic.failure.dice.bonus
     operation: add
     value: $(stats.cha.mod)

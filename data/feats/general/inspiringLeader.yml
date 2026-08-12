@@ -18,3 +18,15 @@ children:
     range: 30 feet
     duration: until next short or long rest
     description: At the end of a Short Rest or Long Rest, you can give an inspiring performance — a speech, song, or dance. Choose up to $(5 + attributes.prof) allies who witnessed the performance. The chosen creatures each gain $(meta.level + stats.cha.mod) Temporary Hit Points.
+    mechanic:
+      pattern: healing
+      target:
+        type: multiple
+        count: $(5 + attributes.prof)
+        range: $(range)
+      healing:
+        type: tempHitPoints
+        dice:
+          count: 0
+          sides: 0
+          bonus: $(meta.level + stats.cha.mod)

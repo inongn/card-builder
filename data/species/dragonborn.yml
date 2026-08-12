@@ -14,6 +14,25 @@ children:
     resource: breathWeapon
     description: |
       You exhale magical energy in a 15-foot Cone or a 30-foot Line (5 feet wide). Each creature in that area must make a DC $(8 + stats.con.mod + attributes.prof) Dexterity saving throw. On a failed save, a creature takes $(meta.level >= 17 ? '4' : meta.level >= 11 ? '3' : meta.level >= 5 ? '2' : '1')d10 $(attributes.dragonicAncestryDamage) damage. On a successful save, a creature takes half as much damage.
+    mechanic:
+      pattern: save
+      save:
+        ability: dex
+        dc: $(8 + stats.con.mod + attributes.prof)
+      target:
+        type: area
+        aoe:
+          shape: cone
+          size: 15
+        range: $(range)
+      failure:
+        type: damage
+        dice:
+          count: "$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)"
+          sides: 10
+        damageType: $(attributes.dragonicAncestryDamage)
+      success:
+        halfDamage: true
   - id: breathWeapon
     type: Resource
     name: Breath Weapon
@@ -33,6 +52,13 @@ children:
     resource: limited
     description: |
       You sprout spectral wings on your back for 10 minutes or until you retract them (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed of $(attributes.movement.walk) feet.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: "gain a Fly Speed of $(attributes.movement.walk) feet"
     condition: $(meta.level >= 5)
   - id: draconicAncestry
     name: Draconic Ancestry

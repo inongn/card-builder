@@ -138,11 +138,12 @@ children:
           trigger:
             text: while in the aura
           target:
-            type: multiple
-            range: $(range)
+            inherit: prev_step
           payloads:
-            - type: text
-              text: gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws
+            - type: statModifier
+              stat: saves
+              value: $(Math.max(1, stats.cha.mod))
+              operation: add
     condition: $(meta.level >= 6)
   - id: level8feat
     name: Level 8 Feat

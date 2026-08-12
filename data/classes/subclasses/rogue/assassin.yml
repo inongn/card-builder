@@ -1,0 +1,24 @@
+id: assassin
+name: Assassin
+description: Use stealth, poison, and disguise to eliminate foes with deadly efficiency as a trained killer.
+tags:
+  - rogueSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - initiativeAdvantage
+      - disguiseKit
+      - poisonersKit
+  - id: surprisingStrikes
+    type: Effect
+    name: Surprising Strike Damage
+    target: activities[id=sneakAttack].mechanic.payloads
+    operation: push
+    value:
+      type: text
+      text: "$(meta.level) extra damage during the first round of combat"
+  - id: surprisingStrikesAttack
+    type: Trait
+    name: Surprising Strike Advantage
+    description: During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn.

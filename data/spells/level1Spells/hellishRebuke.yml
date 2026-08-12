@@ -21,7 +21,7 @@ extra:
 mechanic:
   pattern: save
   trigger:
-    text: When you take damage from a creature
+    event: take_damage
   save:
     ability: dex
     dc: $(attributes.spellcasting.save)

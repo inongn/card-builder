@@ -19,15 +19,14 @@ const sortActivitiesByCategory = (activities = []) => {
 };
 
 export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
-    // ── All hooks must come before any conditional return ────────────────────
     const containerRef = useRef(null);
     const activitySlotRef = useRef(null);
     const overflowSlotRefs = useRef([]);
     const [scale, setScale] = useState(1);
-    
-    // Array of activity arrays per page: [page1Acts, overflow1Acts, overflow2Acts, ...]
-    // null = measuring pass (all activities rendered on page 1 initially)
-    const [activityPages, setActivityPages] = useState(null);
+
+    // Iterative bin packing state
+    const [activitySlots, setActivitySlots] = useState(null);
+    const [deferredActs, setDeferredActs] = useState([]);
 
     // Scale the print preview to fit the screen width.
     useEffect(() => {
@@ -51,12 +50,13 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
     if (prevKeyRef.current !== currentKey) {
         prevKeyRef.current = currentKey;
         overflowSlotRefs.current = [];
-        if (activityPages !== null) {
-            setActivityPages(null);
+        if (activitySlots !== null) {
+            setActivitySlots(null);
+            setDeferredActs([]);
         }
     }
 
-    // Measure overflowing activities and split across multiple print pages.
+    // Measure overflowing activities and optimize category packing
     useLayoutEffect(() => {
         if (!useActivitySheet || !char) return;
 
@@ -65,72 +65,105 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
 
         if (allActivities.length === 0) return;
 
-        // Pass 1: Measure Page 1 right slot (when activityPages is null)
-        if (activityPages === null) {
-            if (!activitySlotRef.current) return;
-            const slot = activitySlotRef.current;
-            const slotRect = slot.getBoundingClientRect();
-            const items = Array.from(slot.querySelectorAll('.activity-sheet-item'));
+        // Initialization pass: start with everything in Slot 0
+        if (activitySlots === null) {
+            setActivitySlots([allActivities]);
+            setDeferredActs([]);
+            return;
+        }
 
-            if (items.length === 0) {
-                setActivityPages([allActivities]);
-                return;
-            }
+        const lastSlotIndex = activitySlots.length - 1;
+        let slotEl;
+        if (lastSlotIndex === 0) {
+            slotEl = activitySlotRef.current;
+        } else {
+            slotEl = overflowSlotRefs.current[lastSlotIndex - 1];
+        }
 
-            let overflowIdx = -1;
-            for (let i = 0; i < items.length; i++) {
-                const itemRect = items[i].getBoundingClientRect();
-                if (itemRect.bottom > slotRect.bottom + 2) {
-                    overflowIdx = i;
-                    break;
-                }
-            }
+        if (!slotEl) return;
 
-            if (overflowIdx === -1) {
-                setActivityPages([allActivities]);
-            } else {
-                const page1Count = Math.max(1, overflowIdx);
-                setActivityPages([
-                    allActivities.slice(0, page1Count),
-                    allActivities.slice(page1Count)
-                ]);
+        const slotRect = slotEl.getBoundingClientRect();
+        const items = Array.from(slotEl.querySelectorAll('.activity-sheet-item'));
+
+        if (items.length === 0) {
+            if (deferredActs.length > 0) {
+                const nextActs = sortActivitiesByCategory(deferredActs);
+                setActivitySlots(prev => [...prev, nextActs]);
+                setDeferredActs([]);
             }
             return;
         }
 
-        // Pass 2+: Measure latest overflow page to see if it needs further splitting
-        if (activityPages.length >= 2) {
-            const lastPageIndex = activityPages.length - 1;
-            const lastSlot = overflowSlotRefs.current[lastPageIndex - 1];
-            if (!lastSlot) return;
-
-            const slotRect = lastSlot.getBoundingClientRect();
-            const items = Array.from(lastSlot.querySelectorAll('.activity-sheet-item'));
-
-            let overflowIdx = -1;
-            for (let i = 0; i < items.length; i++) {
-                const itemRect = items[i].getBoundingClientRect();
-                if (itemRect.right > slotRect.right + 2 || itemRect.bottom > slotRect.bottom + 2) {
-                    overflowIdx = i;
-                    break;
-                }
-            }
-
-            if (overflowIdx > 0) {
-                const currentLastActs = activityPages[lastPageIndex];
-                const pageFit = currentLastActs.slice(0, overflowIdx);
-                const pageRem = currentLastActs.slice(overflowIdx);
-
-                setActivityPages([
-                    ...activityPages.slice(0, lastPageIndex),
-                    pageFit,
-                    pageRem
-                ]);
+        let overflowIdx = -1;
+        for (let i = 0; i < items.length; i++) {
+            const itemRect = items[i].getBoundingClientRect();
+            if (itemRect.bottom > slotRect.bottom + 2 || itemRect.right > slotRect.right + 2) {
+                overflowIdx = i;
+                break;
             }
         }
-    }, [char, useActivitySheet, activityPages]);
 
-    // ── Early return after all hooks ─────────────────────────────────────────
+        if (overflowIdx === -1) {
+            // Slot is perfectly packed without overflows
+            if (deferredActs.length > 0) {
+                const nextActs = sortActivitiesByCategory(deferredActs);
+                setActivitySlots(prev => [...prev, nextActs]);
+                setDeferredActs([]);
+            }
+        } else {
+            // Handle Overflow
+            const currentActs = activitySlots[lastSlotIndex];
+            const overflowingItem = items[overflowIdx];
+            const parentGroup = overflowingItem.closest('.aside-card-group');
+
+            let itemsToDefer = [];
+            let itemsToKeep = [];
+
+            if (parentGroup) {
+                const groupItems = Array.from(parentGroup.querySelectorAll('.activity-sheet-item'));
+                const firstItemInGroup = groupItems[0];
+                const groupStartIdx = items.indexOf(firstItemInGroup);
+                const groupEndIdx = groupStartIdx + groupItems.length - 1;
+
+                if (groupStartIdx > 0) {
+                    // Category didn't start at the top. Defer ONLY this category.
+                    // Keep subsequent categories in the slot to see if they fit in the gap.
+                    itemsToDefer = currentActs.slice(groupStartIdx, groupEndIdx + 1);
+                    itemsToKeep = [
+                        ...currentActs.slice(0, groupStartIdx),
+                        ...currentActs.slice(groupEndIdx + 1)
+                    ];
+                } else {
+                    // Category started at the top. Slot is entirely full. Split at overflow.
+                    const sliceIdx = Math.max(1, overflowIdx);
+                    itemsToDefer = currentActs.slice(sliceIdx);
+                    itemsToKeep = currentActs.slice(0, sliceIdx);
+                }
+            } else {
+                const sliceIdx = Math.max(1, overflowIdx);
+                itemsToDefer = currentActs.slice(sliceIdx);
+                itemsToKeep = currentActs.slice(0, sliceIdx);
+            }
+
+            // Infinite loop prevention: If we can't shrink the slot anymore, force completion
+            if (itemsToKeep.length === currentActs.length) {
+                if (deferredActs.length > 0) {
+                    const nextActs = sortActivitiesByCategory(deferredActs);
+                    setActivitySlots(prev => [...prev, nextActs]);
+                    setDeferredActs([]);
+                }
+                return;
+            }
+
+            setDeferredActs(prev => [...prev, ...itemsToDefer]);
+            setActivitySlots(prev => {
+                const newSlots = [...prev];
+                newSlots[lastSlotIndex] = itemsToKeep;
+                return newSlots;
+            });
+        }
+    }, [char, useActivitySheet, activitySlots, deferredActs]);
+
     if (!char) return null;
 
     // ── Activity Sheet mode ──────────────────────────────────────────────────
@@ -139,9 +172,16 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         const rawActivities = char.activities || [];
         const allActivities = sortActivitiesByCategory(rawActivities);
 
-        // Determine activities for page 1 and overflow pages
-        const page1Acts = activityPages !== null ? activityPages[0] : allActivities;
-        const overflowPages = activityPages !== null ? activityPages.slice(1) : [];
+        const page1Acts = activitySlots !== null ? activitySlots[0] : allActivities;
+        const overflowSlotsArr = activitySlots !== null ? activitySlots.slice(1) : [];
+
+        const overflowPages = [];
+        for (let i = 0; i < overflowSlotsArr.length; i += 2) {
+            overflowPages.push([
+                overflowSlotsArr[i],
+                overflowSlotsArr[i + 1]
+            ]);
+        }
 
         const pageStyle = scale < 1 ? { transform: `scale(${scale})` } : undefined;
 
@@ -154,7 +194,6 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                 </mdui-top-app-bar>
 
                 <div className="content print-content print-mode" ref={containerRef}>
-                    {/* Page 1: character sheet (left) + activity list (right) */}
                     <div className="print-page-wrapper">
                         <div className="print-page first-page activity-sheet-print-page" style={pageStyle}>
                             <div className="print-grid activity-sheet-2x1-grid">
@@ -172,25 +211,39 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                         </div>
                     </div>
 
-                    {/* Overflow pages: remaining activity items in a 2-column layout */}
-                    {overflowPages.map((pageActs, pageIdx) => (
+                    {overflowPages.map((pageSlots, pageIdx) => (
                         <div key={pageIdx} className="print-page-wrapper">
                             <div className="print-page" style={pageStyle}>
-                                <div
-                                    className="activity-overflow-slot"
-                                    ref={el => overflowSlotRefs.current[pageIdx] = el}
-                                >
-                                    <ActivitySheet
-                                        groupedActivities={groupActivities(pageActs)}
-                                        characterData={char}
-                                        printMode={true}
-                                    />
+                                <div className="print-grid activity-sheet-2x1-grid">
+                                    <div
+                                        className="activity-sheet-print-slot"
+                                        ref={el => overflowSlotRefs.current[pageIdx * 2] = el}
+                                    >
+                                        {pageSlots[0] && (
+                                            <ActivitySheet
+                                                groupedActivities={groupActivities(pageSlots[0])}
+                                                characterData={char}
+                                                printMode={true}
+                                            />
+                                        )}
+                                    </div>
+                                    <div
+                                        className="activity-sheet-print-slot"
+                                        ref={el => overflowSlotRefs.current[pageIdx * 2 + 1] = el}
+                                    >
+                                        {pageSlots[1] && (
+                                            <ActivitySheet
+                                                groupedActivities={groupActivities(pageSlots[1])}
+                                                characterData={char}
+                                                printMode={true}
+                                            />
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     ))}
 
-                    {/* Statblock pages */}
                     {statblocks.length > 0 && (
                         <div className="print-page-wrapper">
                             <div className="print-page" style={pageStyle}>

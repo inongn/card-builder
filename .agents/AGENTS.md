@@ -14,7 +14,15 @@ All `mechanic:` blocks must validate against `data/schema/activityMechanic.schem
   - `pattern: healing`: Healing or temp HP activities.
   - `pattern: automatic`: Automatic effects, buffs, utility, or narrative spells (**Do NOT use `utility`**; the schema keyword is `automatic`).
   - `pattern: aura`: Persistent AoE creation, specifying shape/size, move actions (`action` / `bonus_action`), distance, and brief contents noun phrase text.
-- **Multi-Block Mechanics (`mode: succession` or `mode: choice`)**:
+
+- **CRITICAL MANDATE — Saving Throws**:
+  - **NEVER HALF-ASS A SAVE!** Saving throws are **ALWAYS** mechanized as an explicit `pattern: save` block.
+  - **NEVER** put saving throw rules or DC text inside text payloads of a `pattern: automatic` block when a save can be mechanized.
+  - If a feature combines utility/buffs with a saving throw, use a multi-block mechanic (`mode: succession`, `mode: sequence`, or `mode: choice`):
+    - **Block 1**: `pattern: automatic` for self/buff/setup text.
+    - **Block 2**: `pattern: save` for the actual saving throw (with `ability`, `dc`, and payload branches).
+
+- **Multi-Block Mechanics (`mode: succession`, `mode: sequence`, or `mode: choice`)**:
   - **Persistent AoE Spells**: Block 1 is `pattern: aura` and Block 2+ are saves/automatic payloads with trigger events (`on_cast`, `area_moves_into_space`, `enter_area`, `start_turn`, `end_turn`).
   - **Action Setup Spells**: Spells cast as Bonus Action/Action that grant an Action while persisting (`Produce Flame`, `Dragon's Breath`, `Flame Blade`) use Block 1 `pattern: automatic` text referencing *"the following Action"*, and Block 2 as the actual Attack/Save block.
 
@@ -28,7 +36,17 @@ All `mechanic:` blocks must validate against `data/schema/activityMechanic.schem
 
 ---
 
-## 3. Pattern Selection & Structure
+## 3. Effect Target Path Guardrails (IMPORTANT)
+
+- **NEVER use numeric array indices** in `Effect` `target` paths (e.g. `blocks[0]`, `payloads[0]` IS BROKEN). The engine's path resolver interprets brackets as query selectors, not array offsets.
+- **DO use Property Fan-Out**:
+  - `activities[tags=unarmed].mechanic.hit.damageType`: The path engine automatically fans out through `mechanic` into `hit` of all blocks containing a `hit` property.
+  - `activities[id=envenomWeapon].mechanic.payloads.damageType`: The path engine automatically fans out through `mechanic` into `payloads` of all blocks containing payloads.
+- **Deduplicate Multi-Target Effects**: If an effect applies to both weapon attacks and specific activity payloads (e.g. `Potent Arsenal`), split into separate `Effect` nodes (e.g. `potentArsenalWeapon` for `activities[tags=weaponAttack].mechanic.hit.damageType` and `potentArsenalEnvenom` for `activities[id=envenomWeapon].mechanic.payloads.damageType`).
+
+---
+
+## 4. Pattern Selection & Structure
 
 ### `pattern: attack`
 ```yaml
@@ -149,7 +167,7 @@ mechanic:
 
 ---
 
-## 4. Condition Payload Termination Specifications (`end:`)
+## 5. Condition Payload Termination Specifications (`end:`)
 
 Condition payloads (`type: condition`) should specify condition termination behavior using `end:`:
 - `end: take_damage`: Ends if target takes damage.
@@ -161,7 +179,7 @@ Condition payloads (`type: condition`) should specify condition termination beha
 
 ---
 
-## 5. Range, Target Inheritance & AOE Standardizations
+## 6. Range, Target Inheritance & AOE Standardizations
 
 - Use `range: "$(range)"` in `target` instead of hardcoding literal range strings, unless a multi-block phase specifies a distinct range.
 - **Target Inheritance**:
@@ -171,14 +189,14 @@ Condition payloads (`type: condition`) should specify condition termination beha
 
 ---
 
-## 6. Formatting Consistency for Text & Triggers
+## 7. Formatting Consistency for Text & Triggers
 
 - **Text Payloads**: First letter lowercase, use `"the target"`, no trailing period inside payload lists.
 - **Deduplication**: `_Range_:` suffix is automatically suppressed if range/location is already expressed in the main body or target description.
 
 ---
 
-## 7. Upcasting Specifications (`upcast:`)
+## 8. Upcasting Specifications (`upcast:`)
 
 Scaling activities must explicitly specify upcasting:
 ```yaml
@@ -191,7 +209,7 @@ upcast:
 
 ---
 
-## 8. Planning & Review Workflow
+## 9. Planning & Review Workflow
 
 When making batch modifications to activity mechanics:
 1. Always create an `implementation_plan.md` artifact in Planning Mode detailing every proposed YAML `mechanic:` block.

@@ -14,6 +14,18 @@ children:
     range: 5 feet
     description: |
       You tend to a creature within range. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains Hit Points equal to the roll plus a $(attributes.prof) Bonus.
+    mechanic:
+      pattern: healing
+      target:
+        type: touch
+        range: $(range)
+      healing:
+        dice:
+          count: 1
+          sides: 8
+          bonus: $(attributes.prof)
+        type: hitPoints
+        text: creature expends one Hit Point Die to regain Hit Points equal to the roll plus $(attributes.prof)
   - id: healingRerolls
     type: Trait
     name: Healing Rerolls

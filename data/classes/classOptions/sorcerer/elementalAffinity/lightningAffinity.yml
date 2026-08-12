@@ -8,6 +8,10 @@ children:
   - type: Reference
     target: lightningResistance
   - type: Effect
-    target: activities[tags=damageSpell AND tags=lightningDamage].mechanic.damage.dice.bonus
+    target: activities[tags=damageSpell AND tags=lightningDamage].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.cha.mod)
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=lightningDamage].mechanic.failure.dice.bonus
     operation: add
     value: $(stats.cha.mod)

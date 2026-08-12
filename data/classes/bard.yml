@@ -119,7 +119,9 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you or an ally within range fails a saving throw against an effect that applies the Charmed or Frightened condition
+        event: fail_save
+        saveFilter:
+          text: against an effect that applies the Charmed or Frightened condition
       target:
         inherit: trigger
       payloads:

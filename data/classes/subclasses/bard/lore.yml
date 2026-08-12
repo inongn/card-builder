@@ -21,7 +21,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When a creature that you can see makes an attack roll, ability check, or damage roll
+        event: [make_attack, make_check, roll_damage]
       target:
         inherit: trigger
       payloads:

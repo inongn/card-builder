@@ -19,9 +19,9 @@ description: |
 mechanic:
   pattern: automatic
   trigger:
-    type: text
     text: immediately after you or a creature you can see falls
   target:
     type: multiple
+    count: 5
     range: $(range)
-  text: $(summary)
+  text: rate of descent slows to 60 feet per round and taking no fall damage on landing

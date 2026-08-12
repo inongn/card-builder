@@ -28,8 +28,8 @@ children:
       trigger:
         text: when the familiar takes damage
       target:
-        type: text
-        text: familiar
+        type: single
+        filter: familiar
       payloads:
         - type: text
           text: grant it Resistance against that damage

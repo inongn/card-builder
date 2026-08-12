@@ -13,3 +13,12 @@ children:
     name: Extended Spell
     resource: 1 sorceryPoints
     description: When you cast a spell that has a duration of 1 minute or longer, you double its duration to a maximum duration of 24 hours. If the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: cast_spell
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: double the duration of a spell (max 24 hours), and gain Advantage on Concentration saves

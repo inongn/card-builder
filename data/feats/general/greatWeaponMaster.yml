@@ -13,7 +13,7 @@ children:
     value: 1
   - name: Heavy Weapon Mastery
     type: Effect
-    target: activities[tags=weaponAttack and tags=heavy].mechanic.damage.dice.bonus
+    target: activities[tags=weaponAttack and tags=heavy].mechanic.hit.dice.bonus
     operation: add
     value: $(attributes.prof)
   - id: hew

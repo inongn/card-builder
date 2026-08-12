@@ -162,7 +162,7 @@ children:
       blocks:
         - pattern: automatic
           trigger:
-            text: 'When an attack hits you and deals $(meta.level >= 13 ? ''any damage type'' : ''Bludgeoning, Piercing, or Slashing damage'')'
+            event: be_hit
           target:
             type: self
           payloads:
@@ -231,7 +231,7 @@ children:
     mechanic:
       pattern: save
       trigger:
-        text: Once per turn when you hit a creature with an attack
+        event: hit_with_attack
       save:
         ability: con
         dc: $(attributes.monkSaveDC)
@@ -244,12 +244,13 @@ children:
       success:
         - type: text
           text: speed is halved until the end of your next turn
-        - type: text
-          text: the next attack roll against it has Advantage
+        - type: rollModifier
+          modifierType: attacksAgainstAdvantage
+          targetRolls: attack
     condition: $(meta.level >= 5)
   - id: martialArtsEmpoweredStrikes
     type: Effect
-    target: activities[tags=unarmed].mechanic.damage.type
+    target: activities[tags=weaponAttack].mechanic.hit.damageType
     operation: set
     condition: $(meta.level >= 6)
     value: force

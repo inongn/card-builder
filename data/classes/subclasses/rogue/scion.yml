@@ -1,0 +1,33 @@
+id: scion
+name: Scion
+description: Channel dark power through malevolent dread aspects, shifting your allegiance to unleash sinister magic.
+tags:
+  - rogueSubclass
+type: Folder
+children:
+  - id: bloodthirstResource
+    name: Bloodthirst
+    type: Resource
+    quantity: $(Math.max(1, stats.int.mod))
+  - id: bloodthirst
+    type: Activity
+    name: Bloodthirst
+    time: reaction
+    range: 30 feet
+    duration: Instantaneous
+    resource: bloodthirstResource
+    description: |
+      When an enemy you can see within range takes damage and is Bloodied (at or below half its Hit Point maximum) after taking that damage but is not killed, you teleport to an unoccupied space you can see within 5 feet of that enemy. You can then make one melee attack against it.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: when an enemy you can see within range takes damage and is Bloodied
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: teleport to an unoccupied space within 5 feet of that enemy and make one melee attack against it
+  - id: dreadAllegiance
+    name: Dread Allegiance
+    type: Slot
+    target: dreadAllegiance OR classOptions

@@ -16,5 +16,14 @@ children:
     name: Initiative Swap
     description: |
       When you roll Initiative, you swap your Initiative with the Initiative of one willing ally in the same combat. You can't make this swap if you or the ally has the Incapacitated condition.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: roll_initiative
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: swap your Initiative with the Initiative of one willing ally in the same combat
 id: alert
 name: Alert

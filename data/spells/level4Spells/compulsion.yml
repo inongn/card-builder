@@ -29,5 +29,3 @@ mechanic:
       condition: charmed
     - type: text
       text: on each of your turns, you can use a Bonus Action to designate a direction for targets to move
-  repeat:
-    action: bonus_action

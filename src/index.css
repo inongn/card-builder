@@ -3156,7 +3156,6 @@ mdui-list-item.card-vertical-item::part(container) {
 }
 
 .print-mode .activity-sheet-print-slot {
-  grid-column: 2 / span 1 !important;
   grid-row: 1 / span 1 !important;
   height: 100% !important;
   /* Never scroll — clips at page boundary like a physical page */

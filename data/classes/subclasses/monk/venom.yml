@@ -1,0 +1,105 @@
+id: venom
+name: Warrior of Venom
+description: Harvest blood toxins to coat weapons in debilitating poison and use toxic touches to sedate or charm.
+type: Folder
+tags:
+  - monkSubclass
+children:
+  - id: envenomWeapon
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Envenom Weapon
+    time: free action
+    resource: 1 focusPoints
+    description: |
+      You coat your Monk weapon in toxin. For 1 minute or until you hit a creature with it, the next creature taking damage from the weapon is subjected to one of the following:
+
+      **Slowing Toxin.** The target's Speed is halved, it can't take Reactions, and it can take either an action or a Bonus Action on its turn, not both. These effects last until the start of your next turn.
+
+      **Venom.** The target takes Poison damage equal to two rolls of your Martial Arts die (2d$(attributes.martialArtsDie)).
+    mechanic:
+      mode: choice
+      trigger:
+        event: hit_with_attack
+      text: "choose one of the following:"
+      blocks:
+        - pattern: automatic
+          name: Slowing Toxin
+          target:
+            inherit: trigger
+          payloads:
+            - type: text
+              text: target's Speed is halved until the start of your next turn
+            - type: text
+              text: target can't take Reactions, and can take either an action or a Bonus Action on its turn, not both
+        - pattern: automatic
+          name: Venom
+          target:
+            inherit: trigger
+          payloads:
+            - type: damage
+              dice:
+                count: 2
+                sides: $(attributes.martialArtsDie)
+              damageType: poison
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: poisonersKit
+    condition: $(meta.level >= 3)
+  - id: potentArsenalWeapon
+    type: Effect
+    name: Potent Arsenal
+    target: activities[tags=weaponAttack].mechanic.hit.damageType
+    operation: push
+    value: acid
+    condition: $(meta.level >= 3)
+  - id: potentArsenalEnvenom
+    type: Effect
+    name: Potent Arsenal
+    target: activities[id=envenomWeapon].mechanic.payloads.damageType
+    operation: push
+    value: acid
+    condition: $(meta.level >= 3)
+  - id: toxicTouch
+    type: Activity
+    name: Toxic Touch
+    time: action
+    range: touch
+    duration: 1 minute
+    resource: 1 focusPoints
+    description: |
+      You touch a creature. The target must succeed on a DC $(attributes.monkSaveDC) Constitution saving throw or have the Poisoned condition for 1 minute. While Poisoned in this way, it suffers one of the following:
+
+      **Intoxicant.** The target has the Charmed condition until you or your allies deal damage to it.
+
+      **Sedative.** The target has the Unconscious condition. Another creature can use an action to shake it awake.
+
+      **Truth Serum.** The target can't knowingly tell a lie.
+    mechanic:
+      pattern: save
+      save:
+        ability: con
+        dc: $(attributes.monkSaveDC)
+      target:
+        type: touch
+      failure:
+        - type: condition
+          condition: poisoned
+        - type: choice
+          text: "choose one of the following additional effects:"
+          options:
+            - name: Intoxicant
+              payloads:
+                - type: condition
+                  condition: charmed
+                  end: take_damage
+            - name: Sedative
+              payloads:
+                - type: condition
+                  condition: unconscious
+            - name: Truth Serum
+              payloads:
+                - type: text
+                  text: target can't knowingly tell a lie
+    condition: $(meta.level >= 6)

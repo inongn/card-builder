@@ -12,6 +12,18 @@ children:
     range: 60 feet
     resource: giantAncestry
     description: When you take damage from a creature within range, deal 1d8 Thunder damage to that creature.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: take_damage
+      target:
+        inherit: trigger
+      payloads:
+        - type: damage
+          dice:
+            count: 1
+            sides: 8
+          damageType: thunder
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

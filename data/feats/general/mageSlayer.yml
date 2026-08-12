@@ -22,4 +22,15 @@ children:
     range: self
     resource: limited
     description: If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: fail_save
+        saveFilter:
+          ability: [int, wis, cha]
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: cause yourself to succeed on the saving throw instead
     id: mageSlayerGuardedMind

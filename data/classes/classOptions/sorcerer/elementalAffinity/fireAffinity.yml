@@ -9,6 +9,10 @@ children:
     target: fireResistance
   # Bake CHA mod into fire damage spell rolls (like potentSpellcasting)
   - type: Effect
-    target: activities[tags=damageSpell AND tags=fireDamage].mechanic.damage.dice.bonus
+    target: activities[tags=damageSpell AND tags=fireDamage].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.cha.mod)
+  - type: Effect
+    target: activities[tags=damageSpell AND tags=fireDamage].mechanic.failure.dice.bonus
     operation: add
     value: $(stats.cha.mod)

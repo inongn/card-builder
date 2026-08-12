@@ -37,6 +37,20 @@ children:
     resource: psionicEnergyDice
     description: |
       Choose a Large or smaller creature other than you within range. The target must make a DC $(attributes.spellcasting.save) Strength saving throw. On a failed save, it is moved 5d$(attributes.psiDice) feet straight toward or away from you.
+    mechanic:
+      pattern: save
+      save:
+        ability: str
+        dc: $(attributes.spellcasting.save)
+      target:
+        type: single
+        filter: Large or smaller creature other than you
+        range: $(range)
+      failure:
+        - type: movement
+          movementType: forced
+          direction: push
+          distance: 5d$(attributes.psiDice)
     condition: $(meta.level >= 1)
   - id: subtleTelekinesis
     type: Reference

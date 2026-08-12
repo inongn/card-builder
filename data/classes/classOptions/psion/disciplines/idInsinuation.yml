@@ -10,3 +10,15 @@ duration: Instantaneous
 resource: psionicEnergyDice
 description: |
   When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell.
+mechanic:
+  pattern: automatic
+  trigger:
+    event: cast_spell
+    text: when you cast a Psion spell of the Enchantment or Illusion school that forces a saving throw
+  target:
+    type: single
+  payloads:
+    - type: rollModifier
+      modifierType: subtract
+      targetRolls: save
+      text: "target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell"

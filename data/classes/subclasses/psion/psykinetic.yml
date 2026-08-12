@@ -23,9 +23,10 @@ children:
       - stoneShape
     condition: $(meta.level >= 7)
   - id: telekineticTechniques
-    type: Extra
-    target: telekineticPropel
     name: Telekinetic Techniques
+    type: Effect
+    target: activities[id=telekineticPropel].mechanic.failure
+    operation: push
     description: |
       You can roll 5d4 instead of expending a Psionic Energy Die.
 
@@ -33,6 +34,16 @@ children:
       * **Boost.** The target's Speed increases by 10 feet until the start of your next turn.
       * **Disorient.** The target cannot make Opportunity Attacks until the start of its next turn.
       * **Telekinetic Bolt.** The target takes Force damage equal to the number rolled on the die.
+    value:
+      type: choice
+      text: "and choose one of the following:"
+      options:
+        - name: Boost
+          text: "the target's Speed increases by 10 feet until the start of your next turn"
+        - name: Disorient
+          text: "the target cannot make Opportunity Attacks until the start of its next turn"
+        - name: Telekinetic Bolt
+          text: "the target takes 1d$(attributes.psiDice) Force damage"
     condition: $(meta.level >= 3)
   - id: destructiveTrance
     type: Activity
@@ -42,10 +53,39 @@ children:
     duration: 10 minutes
     resource: psionicEnergyDice
     description: Enter a destructive state for the duration. You gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: "gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell"
     condition: $(meta.level >= 6)
   - id: reboundingField
-    type: Extra
-    target: shield
+    type: Effect
+    target: activities[id=shield].mechanic.blocks
+    operation: push
     name: Rebounding Field
     description: The attacker must make a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage on a failed save, or half on a success. You gain Temporary Hit Points equal to the damage dealt.
+    value:
+      pattern: save
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: trigger
+      failure:
+        type: damage
+        dice:
+          count: 1
+          sides: $(attributes.psiDice)
+          bonus: $(stats.int.mod)
+        damageType: force
+      success:
+        halfDamage: true
+      failureOrSuccess:
+        type: healing
+        healing:
+          type: tempHitPoints
+          text: gain Temporary Hit Points equal to the damage dealt
     condition: $(meta.level >= 6)

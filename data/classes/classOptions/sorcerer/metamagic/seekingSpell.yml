@@ -16,3 +16,13 @@ children:
       If you make an attack roll for a spell and miss, you reroll the d20, and you must use the new roll.
 
       You can use Seeking Spell even if you've already used a different Metamagic option during the casting of the spell.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: miss_with_attack
+      target:
+        type: self
+      payloads:
+        - type: rollModifier
+          modifierType: reroll
+          targetRolls: attack

@@ -13,3 +13,12 @@ children:
     name: Transmuted Spell
     resource: 1 sorceryPoints
     description: 'When you cast a spell that deals a type of damage from the following list, you change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder.'
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: cast_spell
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: change elemental damage type of a spell (Acid, Cold, Fire, Lightning, Poison, or Thunder)

@@ -18,7 +18,7 @@ description: |
 mechanic:
   pattern: save
   trigger:
-    text: When a creature you can see within 30 feet of yourself makes a Charisma-based ability check or saving throw
+    event: [make_check, make_save]
   save:
     ability: int
     dc: $(attributes.spellcasting.save)

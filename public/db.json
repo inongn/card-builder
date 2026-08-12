@@ -1387,10 +1387,14 @@
       },
       {
         "id": "primalKnowledge",
-        "type": "Extra",
+        "type": "Effect",
         "name": "Primal Knowledge",
-        "target": "rage",
-        "description": "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival as a Strength check even if it normally uses a different ability.",
+        "target": "activities[id=rage].mechanic.payloads",
+        "operation": "push",
+        "value": {
+          "type": "text",
+          "text": "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength"
+        },
         "condition": "$(meta.level >= 3)"
       },
       {
@@ -1439,18 +1443,12 @@
       {
         "id": "instinctivePounce",
         "type": "Effect",
-        "target": "activities[id=rage].mechanic",
+        "target": "activities[id=rage].mechanic.payloads",
         "operation": "push",
         "value": {
-          "pattern": "automatic",
-          "target": {
-            "type": "self"
-          },
-          "payloads": {
-            "type": "movement",
-            "movementType": "normal",
-            "distance": "$(Math.floor(attributes.movement.walk / 2 / 5) * 5)"
-          }
+          "type": "movement",
+          "movementType": "normal",
+          "distance": "$(Math.floor(attributes.movement.walk / 2 / 5) * 5)"
         },
         "condition": "$(meta.level >= 7)"
       },
@@ -1623,7 +1621,10 @@
         "mechanic": {
           "pattern": "automatic",
           "trigger": {
-            "text": "When you or an ally within range fails a saving throw against an effect that applies the Charmed or Frightened condition"
+            "event": "fail_save",
+            "saveFilter": {
+              "text": "against an effect that applies the Charmed or Frightened condition"
+            }
           },
           "target": {
             "inherit": "trigger"
@@ -2137,7 +2138,25 @@
     "range": "self",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "When you cast a Psion spell of the Necromancy or Transmutation school, you gain 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Temporary Hit Points per charge expended.\n"
+    "description": "When you cast a Psion spell of the Necromancy or Transmutation school, you gain 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Temporary Hit Points per charge expended.\n",
+    "mechanic": {
+      "pattern": "healing",
+      "trigger": {
+        "event": "cast_spell",
+        "text": "when you cast a Psion spell of the Necromancy or Transmutation school"
+      },
+      "target": {
+        "type": "self"
+      },
+      "healing": {
+        "type": "tempHitPoints",
+        "dice": {
+          "count": 1,
+          "sides": "$(attributes.psiDice)",
+          "bonus": "$(Math.max(1, stats.int.mod))"
+        }
+      }
+    }
   },
   {
     "id": "bolsteringPrecognition",
@@ -2151,7 +2170,30 @@
     "range": "60 feet",
     "duration": "1 round",
     "resource": "psionicEnergyDice",
-    "description": "When you cast a Psion spell of the Abjuration or Divination school, choose a creature you can see within range (including yourself). Until the end of your next turn, the creature gains a bonus to the next D20 Test it makes equal to the number rolled on 1d$(attributes.psiDice).\n"
+    "description": "When you cast a Psion spell of the Abjuration or Divination school, choose a creature you can see within range (including yourself). Until the end of your next turn, the creature gains a bonus to the next D20 Test it makes equal to the number rolled on 1d$(attributes.psiDice).\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "event": "cast_spell",
+        "text": "when you cast a Psion spell of the Abjuration or Divination school"
+      },
+      "target": {
+        "type": "single",
+        "range": "$(range)"
+      },
+      "payloads": [
+        {
+          "type": "rollModifier",
+          "modifierType": "add",
+          "targetRolls": "roll",
+          "dice": {
+            "count": 1,
+            "sides": "$(attributes.psiDice)"
+          },
+          "text": "add 1d$(attributes.psiDice) to the next D20 Test the target makes until the end of your next turn"
+        }
+      ]
+    }
   },
   {
     "id": "destructiveThoughts",
@@ -2165,7 +2207,28 @@
     "range": "self",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result.\n"
+    "description": "When you cast a Psion spell of the Conjuration or Evocation school that forces a creature you can see to make a saving throw, the target takes 1d$(attributes.psiDice)+$(Math.max(1, stats.int.mod)) Psychic damage per charge expended, regardless of the saving throw result.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "event": "cast_spell",
+        "text": "when you cast a Psion spell of the Conjuration or Evocation school that forces a saving throw"
+      },
+      "target": {
+        "type": "single"
+      },
+      "payloads": [
+        {
+          "type": "damage",
+          "dice": {
+            "count": 1,
+            "sides": "$(attributes.psiDice)",
+            "bonus": "$(Math.max(1, stats.int.mod))"
+          },
+          "damageType": "psychic"
+        }
+      ]
+    }
   },
   {
     "id": "devilishTongue",
@@ -2179,7 +2242,28 @@
     "range": "self",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "When you take the Influence action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.\n"
+    "description": "When you take the Influence action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "event": "make_check",
+        "text": "when you take the Influence action"
+      },
+      "target": {
+        "type": "self"
+      },
+      "payloads": [
+        {
+          "type": "rollModifier",
+          "modifierType": "add",
+          "targetRolls": "check",
+          "dice": {
+            "count": 1,
+            "sides": "$(attributes.psiDice)"
+          }
+        }
+      ]
+    }
   },
   {
     "id": "expandedAwareness",
@@ -2193,7 +2277,28 @@
     "range": "self",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "When you take the Search action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.\n"
+    "description": "When you take the Search action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "event": "make_check",
+        "text": "when you take the Search action"
+      },
+      "target": {
+        "type": "self"
+      },
+      "payloads": [
+        {
+          "type": "rollModifier",
+          "modifierType": "add",
+          "targetRolls": "check",
+          "dice": {
+            "count": 1,
+            "sides": "$(attributes.psiDice)"
+          }
+        }
+      ]
+    }
   },
   {
     "id": "idInsinuation",
@@ -2207,7 +2312,25 @@
     "range": "Varies",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell.\n"
+    "description": "When you cast a Psion spell of the Enchantment or Illusion school that forces a creature to make a saving throw, choose one target of the spell you can see. The target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "event": "cast_spell",
+        "text": "when you cast a Psion spell of the Enchantment or Illusion school that forces a saving throw"
+      },
+      "target": {
+        "type": "single"
+      },
+      "payloads": [
+        {
+          "type": "rollModifier",
+          "modifierType": "subtract",
+          "targetRolls": "save",
+          "text": "target subtracts half the number rolled on 1d$(attributes.psiDice) (rounded up) from its saving throw against the spell"
+        }
+      ]
+    }
   },
   {
     "id": "inerrantAim",
@@ -2221,7 +2344,27 @@
     "range": "self",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "When you make an attack roll against a creature and miss, you can roll 1d$(attributes.psiDice) and add the number rolled to the attack roll, potentially turning the miss into a hit. If this causes the attack to hit, the charge is expended.\n"
+    "description": "When you make an attack roll against a creature and miss, you can roll 1d$(attributes.psiDice) and add the number rolled to the attack roll, potentially turning the miss into a hit. If this causes the attack to hit, the charge is expended.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "event": "miss_with_attack"
+      },
+      "target": {
+        "type": "self"
+      },
+      "payloads": [
+        {
+          "type": "rollModifier",
+          "modifierType": "add",
+          "targetRolls": "attack",
+          "dice": {
+            "count": 1,
+            "sides": "$(attributes.psiDice)"
+          }
+        }
+      ]
+    }
   },
   {
     "id": "observantMind",
@@ -2235,7 +2378,28 @@
     "range": "self",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "When you take the Study action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.\n"
+    "description": "When you take the Study action, you can roll 1d$(attributes.psiDice) and add the number rolled to the ability check. If this causes you to succeed on the ability check, the charge is expended.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "event": "make_check",
+        "text": "when you take the Study action"
+      },
+      "target": {
+        "type": "self"
+      },
+      "payloads": [
+        {
+          "type": "rollModifier",
+          "modifierType": "add",
+          "targetRolls": "check",
+          "dice": {
+            "count": 1,
+            "sides": "$(attributes.psiDice)"
+          }
+        }
+      ]
+    }
   },
   {
     "id": "psionicBacklash",
@@ -2246,10 +2410,46 @@
     ],
     "type": "Activity",
     "time": "reaction",
-    "range": "Varies",
+    "range": "self",
     "duration": "Instantaneous",
     "resource": "psionicEnergyDice",
-    "description": "Immediately after a creature you can see hits you with an attack roll, you reduce the damage you take from the attack by an amount equal to two times the number rolled on 1d$(attributes.psiDice) + $(stats.int.mod) (minimum 2). In addition, you force the attacker to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the target takes Psychic damage equal to the amount of damage reduced.\n"
+    "description": "Immediately after a creature you can see hits you with an attack roll, you reduce the damage you take from the attack by an amount equal to two times the number rolled on 1d$(attributes.psiDice) + $(stats.int.mod) (minimum 2). In addition, you force the attacker to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the target takes Psychic damage equal to the amount of damage reduced.\n",
+    "mechanic": {
+      "mode": "succession",
+      "blocks": [
+        {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "be_hit",
+            "text": "immediately after a creature you can see hits you with an attack roll"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "reduce incoming attack damage by 2d$(attributes.psiDice) + $(stats.int.mod) (minimum 2)"
+            }
+          ]
+        },
+        {
+          "pattern": "save",
+          "save": {
+            "ability": "wis",
+            "dc": "$(attributes.spellcasting.save)"
+          },
+          "target": {
+            "inherit": "trigger"
+          },
+          "failure": {
+            "type": "damage",
+            "damageType": "psychic",
+            "text": "Psychic damage equal to the amount of damage reduced"
+          }
+        }
+      ]
+    }
   },
   {
     "id": "psionicGuards",
@@ -2263,7 +2463,34 @@
     "range": "self",
     "duration": "1 round",
     "resource": "psionicEnergyDice",
-    "description": "At the start of your turn, you gain Immunity to the Charmed and Frightened conditions and Advantage on Intelligence saving throws until the start of your next turn. If you are Charmed or Frightened when you use this discipline, the condition ends on you.\n\nWhen you use Psionic Guards, you can also use a different Psionic Discipline this turn.\n"
+    "description": "At the start of your turn, you gain Immunity to the Charmed and Frightened conditions and Advantage on Intelligence saving throws until the start of your next turn. If you are Charmed or Frightened when you use this discipline, the condition ends on you.\n\nWhen you use Psionic Guards, you can also use a different Psionic Discipline this turn.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "text": "at the start of your turn"
+      },
+      "target": {
+        "type": "self"
+      },
+      "payloads": [
+        {
+          "type": "condition",
+          "condition": [
+            "charmed",
+            "frightened"
+          ],
+          "end": {
+            "text": "until the start of your next turn"
+          }
+        },
+        {
+          "type": "rollModifier",
+          "modifierType": "advantage",
+          "targetRolls": "save",
+          "text": "gain Advantage on Intelligence saving throws until the start of your next turn"
+        }
+      ]
+    }
   },
   {
     "id": "sharpenedMind",
@@ -2277,7 +2504,22 @@
     "range": "self",
     "duration": "1 minute",
     "resource": "psionicEnergyDice",
-    "description": "At the start of your turn, roll 1d$(attributes.psiDice) and record the number rolled. You gain the following benefits for 1 minute or until you have the Incapacitated condition:\n* **Bypassing Psionics.** Damage from your weapon attacks, Psion spells, and Psion features ignores Resistance to Psychic damage.\n* **Attack Mode.** Once per turn, when you deal Psychic damage to one or more creatures, you can replace the number rolled on one of the damage dice with the number recorded when you activated this Psionic Discipline.\n\nWhen you use Sharpened Mind, you can also use a different Psionic Discipline this turn.\n"
+    "description": "At the start of your turn, roll 1d$(attributes.psiDice) and record the number rolled. You gain the following benefits for 1 minute or until you have the Incapacitated condition:\n* **Bypassing Psionics.** Damage from your weapon attacks, Psion spells, and Psion features ignores Resistance to Psychic damage.\n* **Attack Mode.** Once per turn, when you deal Psychic damage to one or more creatures, you can replace the number rolled on one of the damage dice with the number recorded when you activated this Psionic Discipline.\n\nWhen you use Sharpened Mind, you can also use a different Psionic Discipline this turn.\n",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "text": "at the start of your turn"
+      },
+      "target": {
+        "type": "self"
+      },
+      "payloads": [
+        {
+          "type": "text",
+          "text": "roll 1d$(attributes.psiDice) and record it: damage from your weapon attacks, Psion spells, and Psion features ignores Resistance to Psychic damage, and once per turn when dealing Psychic damage, you can replace one damage die with the recorded number"
+        }
+      ]
+    }
   },
   {
     "id": "escapeTheHorde",
@@ -2396,7 +2638,13 @@
       },
       {
         "type": "Effect",
-        "target": "activities[tags=damageSpell AND tags=acidDamage].mechanic.damage.dice.bonus",
+        "target": "activities[tags=damageSpell AND tags=acidDamage].mechanic.hit.dice.bonus",
+        "operation": "add",
+        "value": "$(stats.cha.mod)"
+      },
+      {
+        "type": "Effect",
+        "target": "activities[tags=damageSpell AND tags=acidDamage].mechanic.failure.dice.bonus",
         "operation": "add",
         "value": "$(stats.cha.mod)"
       }
@@ -2417,7 +2665,13 @@
       },
       {
         "type": "Effect",
-        "target": "activities[tags=damageSpell AND tags=coldDamage].mechanic.damage.dice.bonus",
+        "target": "activities[tags=damageSpell AND tags=coldDamage].mechanic.hit.dice.bonus",
+        "operation": "add",
+        "value": "$(stats.cha.mod)"
+      },
+      {
+        "type": "Effect",
+        "target": "activities[tags=damageSpell AND tags=coldDamage].mechanic.failure.dice.bonus",
         "operation": "add",
         "value": "$(stats.cha.mod)"
       }
@@ -2438,7 +2692,13 @@
       },
       {
         "type": "Effect",
-        "target": "activities[tags=damageSpell AND tags=fireDamage].mechanic.damage.dice.bonus",
+        "target": "activities[tags=damageSpell AND tags=fireDamage].mechanic.hit.dice.bonus",
+        "operation": "add",
+        "value": "$(stats.cha.mod)"
+      },
+      {
+        "type": "Effect",
+        "target": "activities[tags=damageSpell AND tags=fireDamage].mechanic.failure.dice.bonus",
         "operation": "add",
         "value": "$(stats.cha.mod)"
       }
@@ -2459,7 +2719,13 @@
       },
       {
         "type": "Effect",
-        "target": "activities[tags=damageSpell AND tags=lightningDamage].mechanic.damage.dice.bonus",
+        "target": "activities[tags=damageSpell AND tags=lightningDamage].mechanic.hit.dice.bonus",
+        "operation": "add",
+        "value": "$(stats.cha.mod)"
+      },
+      {
+        "type": "Effect",
+        "target": "activities[tags=damageSpell AND tags=lightningDamage].mechanic.failure.dice.bonus",
         "operation": "add",
         "value": "$(stats.cha.mod)"
       }
@@ -2480,7 +2746,13 @@
       },
       {
         "type": "Effect",
-        "target": "activities[tags=damageSpell AND tags=poisonDamage].mechanic.damage.dice.bonus",
+        "target": "activities[tags=damageSpell AND tags=poisonDamage].mechanic.hit.dice.bonus",
+        "operation": "add",
+        "value": "$(stats.cha.mod)"
+      },
+      {
+        "type": "Effect",
+        "target": "activities[tags=damageSpell AND tags=poisonDamage].mechanic.failure.dice.bonus",
         "operation": "add",
         "value": "$(stats.cha.mod)"
       }
@@ -2503,7 +2775,23 @@
         "range": "self",
         "name": "Careful Spell",
         "resource": "1 sorceryPoints",
-        "description": "When you cast a spell that forces other creatures to make a saving throw, you protect some of those creatures from the spell's full force. Choose a number of those creatures up to $(Math.max(1, stats.cha.mod)). A chosen creature automatically succeeds on its saving throw against the spell, and it takes no damage if it would normally take half damage on a successful save."
+        "description": "When you cast a spell that forces other creatures to make a saving throw, you protect some of those creatures from the spell's full force. Choose a number of those creatures up to $(Math.max(1, stats.cha.mod)). A chosen creature automatically succeeds on its saving throw against the spell, and it takes no damage if it would normally take half damage on a successful save.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "multiple",
+            "count": "$(Math.max(1, stats.cha.mod))"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "automatically succeed on saving throw against your spell and take no damage"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2524,7 +2812,22 @@
         "range": "self",
         "name": "Distant Spell",
         "resource": "1 sorceryPoints",
-        "description": "When you cast a spell that has a range of at least 5 feet, you double the spell's range. Or when you cast a spell that has a range of Touch, you make the spell's range 30 feet."
+        "description": "When you cast a spell that has a range of at least 5 feet, you double the spell's range. Or when you cast a spell that has a range of Touch, you make the spell's range 30 feet.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "double the range of a spell (or make a Touch spell's range 30 feet)"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2545,7 +2848,25 @@
         "range": "self",
         "name": "Empowered Spell",
         "resource": "1 sorceryPoints",
-        "description": "When you roll damage for a spell, you can reroll a number of the damage dice up to $(Math.max(1, stats.cha.mod)), and you must use the new rolls.\n\nYou can use Empowered Spell even if you've already used a different Metamagic option during the casting of the spell.\n"
+        "description": "When you roll damage for a spell, you can reroll a number of the damage dice up to $(Math.max(1, stats.cha.mod)), and you must use the new rolls.\n\nYou can use Empowered Spell even if you've already used a different Metamagic option during the casting of the spell.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "roll_damage"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "rollModifier",
+              "modifierType": "reroll",
+              "targetRolls": "damage",
+              "dice": "$(Math.max(1, stats.cha.mod))",
+              "text": "reroll up to $(Math.max(1, stats.cha.mod)) damage dice for a spell"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2566,7 +2887,22 @@
         "range": "self",
         "name": "Extended Spell",
         "resource": "1 sorceryPoints",
-        "description": "When you cast a spell that has a duration of 1 minute or longer, you double its duration to a maximum duration of 24 hours. If the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration."
+        "description": "When you cast a spell that has a duration of 1 minute or longer, you double its duration to a maximum duration of 24 hours. If the affected spell requires Concentration, you have Advantage on any saving throw you make to maintain that Concentration.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "double the duration of a spell (max 24 hours), and gain Advantage on Concentration saves"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2587,7 +2923,23 @@
         "range": "self",
         "name": "Heightened Spell",
         "resource": "2 sorceryPoints",
-        "description": "When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell."
+        "description": "When you cast a spell that forces a creature to make a saving throw, you give one target of the spell Disadvantage on saves against the spell.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "single"
+          },
+          "payloads": [
+            {
+              "type": "rollModifier",
+              "modifierType": "disadvantage",
+              "targetRolls": "save"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2608,7 +2960,22 @@
         "range": "self",
         "name": "Quickened Spell",
         "resource": "2 sorceryPoints",
-        "description": "When you cast a spell that has a casting time of an action, you change the casting time to a Bonus Action for this casting. You can't modify a spell in this way if you've already cast a level 1+ spell on the current turn, nor can you cast a level 1+ spell on this turn after modifying a spell in this way."
+        "description": "When you cast a spell that has a casting time of an action, you change the casting time to a Bonus Action for this casting. You can't modify a spell in this way if you've already cast a level 1+ spell on the current turn, nor can you cast a level 1+ spell on this turn after modifying a spell in this way.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "change the casting time of an action spell to a Bonus Action"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2629,7 +2996,23 @@
         "range": "self",
         "name": "Seeking Spell",
         "resource": "1 sorceryPoints",
-        "description": "If you make an attack roll for a spell and miss, you reroll the d20, and you must use the new roll.\n\nYou can use Seeking Spell even if you've already used a different Metamagic option during the casting of the spell.\n"
+        "description": "If you make an attack roll for a spell and miss, you reroll the d20, and you must use the new roll.\n\nYou can use Seeking Spell even if you've already used a different Metamagic option during the casting of the spell.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "miss_with_attack"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "rollModifier",
+              "modifierType": "reroll",
+              "targetRolls": "attack"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2650,7 +3033,22 @@
         "range": "self",
         "name": "Subtle Spell",
         "resource": "1 sorceryPoints",
-        "description": "When you cast a spell, you cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell."
+        "description": "When you cast a spell, you cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "cast a spell without Verbal, Somatic, or non-costly Material components"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2671,7 +3069,22 @@
         "range": "self",
         "name": "Transmuted Spell",
         "resource": "1 sorceryPoints",
-        "description": "When you cast a spell that deals a type of damage from the following list, you change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder."
+        "description": "When you cast a spell that deals a type of damage from the following list, you change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "change elemental damage type of a spell (Acid, Cold, Fire, Lightning, Poison, or Thunder)"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2692,7 +3105,22 @@
         "range": "self",
         "name": "Twinned Spell",
         "resource": "1 sorceryPoints",
-        "description": "When you cast a spell, such as Charm Person, that can be cast with a higher-level spell slot to target an additional creature, you increase the spell's effective level by 1."
+        "description": "When you cast a spell, such as Charm Person, that can be cast with a higher-level spell slot to target an additional creature, you increase the spell's effective level by 1.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "cast_spell"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "increase the spell's effective level by 1 to affect an additional creature"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2794,21 +3222,20 @@
         "description": "Once per turn when you hit a creature with your pact weapon, the target takes an extra 1d8 Force damage, plus another 1d8 per level of the spell slot. You can knock the target Prone if it is Huge or smaller.",
         "mechanic": {
           "pattern": "automatic",
-          "trigger": null,
-          "event": "hit_with_attack",
+          "trigger": {
+            "event": "hit_with_attack"
+          },
           "target": {
             "inherit": "trigger"
           },
           "payloads": [
             {
               "type": "damage",
-              "damage": {
-                "dice": {
-                  "count": "$(1+local.maxLevel)",
-                  "sides": 8
-                },
-                "damageType": "force"
-              }
+              "dice": {
+                "count": "$(1 + local.maxLevel)",
+                "sides": 8
+              },
+              "damageType": "force"
             },
             {
               "type": "condition",
@@ -2941,8 +3368,8 @@
             "text": "when the familiar takes damage"
           },
           "target": {
-            "type": "text",
-            "text": "familiar"
+            "type": "single",
+            "filter": "familiar"
           },
           "payloads": [
             {
@@ -4177,7 +4604,7 @@
             {
               "pattern": "automatic",
               "trigger": {
-                "text": "When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage')"
+                "event": "be_hit"
               },
               "target": {
                 "type": "self"
@@ -4275,7 +4702,7 @@
         "mechanic": {
           "pattern": "save",
           "trigger": {
-            "text": "Once per turn when you hit a creature with an attack"
+            "event": "hit_with_attack"
           },
           "save": {
             "ability": "con",
@@ -4295,8 +4722,9 @@
               "text": "speed is halved until the end of your next turn"
             },
             {
-              "type": "text",
-              "text": "the next attack roll against it has Advantage"
+              "type": "rollModifier",
+              "modifierType": "attacksAgainstAdvantage",
+              "targetRolls": "attack"
             }
           ]
         },
@@ -4305,7 +4733,7 @@
       {
         "id": "martialArtsEmpoweredStrikes",
         "type": "Effect",
-        "target": "activities[tags=unarmed].mechanic.damage.type",
+        "target": "activities[tags=weaponAttack].mechanic.hit.damageType",
         "operation": "set",
         "condition": "$(meta.level >= 6)",
         "value": "force"
@@ -4527,13 +4955,14 @@
                 "text": "while in the aura"
               },
               "target": {
-                "type": "multiple",
-                "range": "$(range)"
+                "inherit": "prev_step"
               },
               "payloads": [
                 {
-                  "type": "text",
-                  "text": "gain a $(formatBonus(Math.max(1, stats.cha.mod))) bonus to saving throws"
+                  "type": "statModifier",
+                  "stat": "saves",
+                  "value": "$(Math.max(1, stats.cha.mod))",
+                  "operation": "add"
                 }
               ]
             }
@@ -4606,6 +5035,26 @@
         "duration": "Instantaneous",
         "resource": "psionicEnergyDice",
         "description": "Choose a Large or smaller creature other than you within range. The target must make a DC $(attributes.spellcasting.save) Strength saving throw. On a failed save, it is moved 5d$(attributes.psiDice) feet straight toward or away from you.\n",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "str",
+            "dc": "$(attributes.spellcasting.save)"
+          },
+          "target": {
+            "type": "single",
+            "filter": "Large or smaller creature other than you",
+            "range": "$(range)"
+          },
+          "failure": [
+            {
+              "type": "movement",
+              "movementType": "forced",
+              "direction": "push",
+              "distance": "5d$(attributes.psiDice)"
+            }
+          ]
+        },
         "condition": "$(meta.level >= 1)"
       },
       {
@@ -4892,20 +5341,22 @@
         "name": "Sneak Attack",
         "mechanic": {
           "trigger": {
-            "text": "Once per turn when you hit a creature with an attack roll if you have Advantage or an ally is within 5 feet of the target"
+            "event": "hit_with_attack"
           },
           "pattern": "automatic",
           "target": {
             "inherit": "trigger"
           },
-          "payloads": {
-            "type": "damage",
-            "dice": {
-              "count": "$(attributes.sneakAttackDice)",
-              "sides": 6
-            },
-            "text": "extra damage"
-          }
+          "payloads": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": "$(attributes.sneakAttackDice)",
+                "sides": 6
+              },
+              "text": "extra damage"
+            }
+          ]
         }
       },
       {
@@ -5176,6 +5627,18 @@
         "duration": "1 minute",
         "description": "You unleash simmering magic within yourself. For the duration, you gain the following benefits:\n*   The spell save DC of your Sorcerer spells increases by 1.\n*   You have Advantage on the attack rolls of Sorcerer spells you cast.\n$(meta.level >= 7 ? \"*   You can use up to two Metamagic options on each spell you cast.\" : \"\")\n",
         "resource": "innateSorcery",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "the spell save DC of your Sorcerer spells increases by 1, you have Advantage on attack rolls of Sorcerer spells you cast$(meta.level >= 7 ? ', and you can use up to two Metamagic options on each spell you cast' : '')"
+            }
+          ]
+        },
         "condition": "$(meta.level >= 1)"
       },
       {
@@ -5453,7 +5916,11 @@
         "mechanic": {
           "pattern": "automatic",
           "trigger": {
-            "text": "When a creature that you can see makes an attack roll, ability check, or damage roll"
+            "event": [
+              "make_attack",
+              "make_check",
+              "roll_damage"
+            ]
           },
           "target": {
             "inherit": "trigger"
@@ -5681,6 +6148,240 @@
     ]
   },
   {
+    "id": "elements",
+    "name": "Warrior of the Elements",
+    "description": "Harness elemental power to shape strikes, manifest reaching tendrils, and unleash devastating bursts.",
+    "tags": [
+      "monkSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "elementalism",
+          "wisCaster"
+        ]
+      },
+      {
+        "id": "elementalBurst",
+        "type": "Activity",
+        "name": "Elemental Burst",
+        "time": "action",
+        "range": "120 feet",
+        "duration": "Instantaneous",
+        "resource": "2 focusPoints",
+        "description": "You cause elemental energy to burst in a 20-foot-radius Sphere. Choose Acid, Cold, Fire, Lightning, or Thunder. Each creature in the Sphere must make a DC $(attributes.monkSaveDC) Dexterity saving throw, taking 3d$(attributes.martialArtsDie) damage of the chosen type on a failure or half as much on a success.",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "dex",
+            "dc": "$(attributes.monkSaveDC)"
+          },
+          "target": {
+            "type": "area",
+            "aoe": {
+              "shape": "sphere",
+              "size": 20
+            },
+            "range": "$(range)"
+          },
+          "failure": {
+            "type": "damage",
+            "dice": {
+              "count": 3,
+              "sides": "$(attributes.martialArtsDie)"
+            },
+            "damageType": [
+              "acid",
+              "cold",
+              "fire",
+              "lightning",
+              "thunder"
+            ]
+          },
+          "success": {
+            "halfDamage": true
+          }
+        },
+        "condition": "$(meta.level >= 6)"
+      },
+      {
+        "id": "elementalAttunement",
+        "type": "Activity",
+        "name": "Elemental Attunement",
+        "time": "free action",
+        "range": "self",
+        "duration": "10 minutes",
+        "resource": "1 focusPoints",
+        "description": "You imbue yourself with elemental energy. While active, gain the following benefits:\n\n**Reach**. Your Unarmed Strike reach is 5 feet greater than normal, as elemental energy extends from you.\n\n**Elemental Strikes**. You can cause Unarmed Strikes to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage. When you deal one of these types, force the target to make a DC $(attributes.monkSaveDC) Strength saving throw. On a failure, move the target up to 5 feet toward or away from you.\n",
+        "mechanic": {
+          "mode": "sequence",
+          "blocks": [
+            {
+              "pattern": "automatic",
+              "target": {
+                "type": "self"
+              },
+              "payloads": [
+                {
+                  "type": "text",
+                  "text": "Your Unarmed Strike reach is 5 feet greater than normal"
+                },
+                {
+                  "type": "text",
+                  "text": "Unarmed Strikes can deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage, and when you deal one of these damage types, the target is subject to the following saving throw"
+                }
+              ]
+            },
+            {
+              "pattern": "save",
+              "save": {
+                "ability": "str",
+                "dc": "$(attributes.monkSaveDC)"
+              },
+              "failure": {
+                "type": "movement",
+                "movementType": "forced",
+                "distance": 5,
+                "direction": "push"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mercy",
+    "name": "Warrior of Mercy",
+    "description": "Manipulate life force as a masked wandering physician, acting as a faceless bringer of life and death.",
+    "tags": [
+      "monkSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "insightProficiency",
+          "medicineProficiency",
+          "herbalismKit"
+        ]
+      },
+      {
+        "id": "handOfHarm",
+        "type": "Activity",
+        "time": "free action",
+        "duration": "instantaneous",
+        "range": "self",
+        "name": "Hand of Harm",
+        "resource": "1 focusPoints",
+        "description": "Once per turn when you hit a creature with an Unarmed Strike and deal damage, you deal 1d$(attributes.martialArtsDie)+$(stats.wis.mod) extra Necrotic damage.$(meta.level >= 6 ? ' You can also give the target the Poisoned condition until the end of your next turn.' : '')",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "hit_with_attack",
+            "text": "Once per turn when you hit a creature with an Unarmed Strike and deal damage"
+          },
+          "target": {
+            "inherit": "trigger"
+          },
+          "payloads": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": 1,
+                "sides": "$(attributes.martialArtsDie)",
+                "bonus": "$(stats.wis.mod)"
+              },
+              "damageType": "necrotic"
+            },
+            {
+              "type": "condition",
+              "condition": "poisoned",
+              "end": "end_of_your_next_turn"
+            }
+          ]
+        }
+      },
+      {
+        "id": "handOfHealing",
+        "type": "Activity",
+        "name": "Hand of Healing",
+        "time": "action",
+        "range": "touch",
+        "duration": "Instantaneous",
+        "resource": "1 focusPoints",
+        "description": "You touch a creature and restore 1d$(attributes.martialArtsDie)+$(stats.wis.mod) Hit Points to it.$(meta.level >= 6 ? ' You can also end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned.' : '')",
+        "mechanic": {
+          "pattern": "healing",
+          "target": {
+            "type": "touch"
+          },
+          "healing": {
+            "dice": {
+              "count": 1,
+              "sides": "$(attributes.martialArtsDie)",
+              "bonus": "$(stats.wis.mod)"
+            },
+            "type": "hitPoints"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mysticArts",
+    "name": "Warrior of the Mystic Arts",
+    "description": "Wield magic to supplement martial skill, harnessing supernatural focus to enhance magical and physical abilities.",
+    "type": "Folder",
+    "tags": [
+      "monkSubclass"
+    ],
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "oneThirdCaster",
+          "wisCaster"
+        ],
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Slot",
+        "id": "mysticArtsCantrips",
+        "name": "Mystic Arts Cantrips",
+        "target": "sorcerer AND cantrip",
+        "quantity": 2,
+        "condition": "$(meta.level >= 3)",
+        "overwrite": {
+          "variables.classification": "spellcasting",
+          "tags": [
+            "monkSpell"
+          ]
+        }
+      },
+      {
+        "type": "Slot",
+        "id": "mysticArtsPreparedSpells",
+        "name": "Mystic Arts Prepared Spells",
+        "target": "sorcerer NOT class NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')",
+        "variables": {
+          "maxLevel": "$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)"
+        },
+        "quantity": "$(meta.level >= 8 ? 6 : meta.level >= 7 ? 5 : meta.level >= 4 ? 4 : 3)",
+        "condition": "$(meta.level >= 3)"
+      }
+    ]
+  },
+  {
     "id": "openHand",
     "name": "Warrior of the Open Hand",
     "description": "Master unarmed combat with techniques to push, trip, and manipulate energy to protect against harm.",
@@ -5777,6 +6478,216 @@
         "type": "Resource",
         "name": "Wholeness of Body",
         "quantity": "$(Math.max(1, stats.wis.mod))"
+      }
+    ]
+  },
+  {
+    "id": "shadows",
+    "name": "Warrior of Shadow",
+    "description": "Practice stealth and subterfuge by harnessing Shadowfell power to hide, shadow-leap, and become wraithlike.",
+    "tags": [
+      "monkSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "shadowArtsDarkness",
+        "type": "Reference",
+        "target": "darkness",
+        "overwrite": {
+          "resource": "2 focusPoints"
+        }
+      },
+      {
+        "id": "shadowArtsDarkvision",
+        "type": "Effect",
+        "target": "attributes.senses.darkvision",
+        "operation": "add",
+        "value": 60
+      },
+      {
+        "type": "Reference",
+        "target": [
+          "minorIllusion",
+          "wisCaster"
+        ]
+      },
+      {
+        "id": "shadowStep",
+        "type": "Activity",
+        "name": "Shadow Step",
+        "time": "bonus action",
+        "range": "60 feet",
+        "duration": "Instantaneous",
+        "description": "While entirely within Dim Light or Darkness, you teleport up to 60 feet to an unoccupied space you can see that is also in Dim Light or Darkness. You then have Advantage on the next melee attack you make before the end of the current turn.",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "teleport up to 60 feet to an unoccupied space in Dim Light or Darkness"
+            },
+            {
+              "type": "rollModifier",
+              "modifierType": "advantage",
+              "targetRolls": "attack",
+              "text": "gain Advantage on your next melee attack before the end of the current turn"
+            }
+          ]
+        },
+        "condition": "$(meta.level >= 6)"
+      }
+    ]
+  },
+  {
+    "id": "venom",
+    "name": "Warrior of Venom",
+    "description": "Harvest blood toxins to coat weapons in debilitating poison and use toxic touches to sedate or charm.",
+    "type": "Folder",
+    "tags": [
+      "monkSubclass"
+    ],
+    "children": [
+      {
+        "id": "envenomWeapon",
+        "type": "Activity",
+        "duration": "instantaneous",
+        "range": "self",
+        "name": "Envenom Weapon",
+        "time": "free action",
+        "resource": "1 focusPoints",
+        "description": "You coat your Monk weapon in toxin. For 1 minute or until you hit a creature with it, the next creature taking damage from the weapon is subjected to one of the following:\n\n**Slowing Toxin.** The target's Speed is halved, it can't take Reactions, and it can take either an action or a Bonus Action on its turn, not both. These effects last until the start of your next turn.\n\n**Venom.** The target takes Poison damage equal to two rolls of your Martial Arts die (2d$(attributes.martialArtsDie)).\n",
+        "mechanic": {
+          "mode": "choice",
+          "trigger": {
+            "event": "hit_with_attack"
+          },
+          "text": "choose one of the following:",
+          "blocks": [
+            {
+              "pattern": "automatic",
+              "name": "Slowing Toxin",
+              "target": {
+                "inherit": "trigger"
+              },
+              "payloads": [
+                {
+                  "type": "text",
+                  "text": "target's Speed is halved until the start of your next turn"
+                },
+                {
+                  "type": "text",
+                  "text": "target can't take Reactions, and can take either an action or a Bonus Action on its turn, not both"
+                }
+              ]
+            },
+            {
+              "pattern": "automatic",
+              "name": "Venom",
+              "target": {
+                "inherit": "trigger"
+              },
+              "payloads": [
+                {
+                  "type": "damage",
+                  "dice": {
+                    "count": 2,
+                    "sides": "$(attributes.martialArtsDie)"
+                  },
+                  "damageType": "poison"
+                }
+              ]
+            }
+          ]
+        },
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Reference",
+        "target": "poisonersKit",
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "potentArsenalWeapon",
+        "type": "Effect",
+        "name": "Potent Arsenal",
+        "target": "activities[tags=weaponAttack].mechanic.hit.damageType",
+        "operation": "push",
+        "value": "acid",
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "potentArsenalEnvenom",
+        "type": "Effect",
+        "name": "Potent Arsenal",
+        "target": "activities[id=envenomWeapon].mechanic.payloads.damageType",
+        "operation": "push",
+        "value": "acid",
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "toxicTouch",
+        "type": "Activity",
+        "name": "Toxic Touch",
+        "time": "action",
+        "range": "touch",
+        "duration": "1 minute",
+        "resource": "1 focusPoints",
+        "description": "You touch a creature. The target must succeed on a DC $(attributes.monkSaveDC) Constitution saving throw or have the Poisoned condition for 1 minute. While Poisoned in this way, it suffers one of the following:\n\n**Intoxicant.** The target has the Charmed condition until you or your allies deal damage to it.\n\n**Sedative.** The target has the Unconscious condition. Another creature can use an action to shake it awake.\n\n**Truth Serum.** The target can't knowingly tell a lie.\n",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "con",
+            "dc": "$(attributes.monkSaveDC)"
+          },
+          "target": {
+            "type": "touch"
+          },
+          "failure": [
+            {
+              "type": "condition",
+              "condition": "poisoned"
+            },
+            {
+              "type": "choice",
+              "text": "choose one of the following additional effects:",
+              "options": [
+                {
+                  "name": "Intoxicant",
+                  "payloads": [
+                    {
+                      "type": "condition",
+                      "condition": "charmed",
+                      "end": "take_damage"
+                    }
+                  ]
+                },
+                {
+                  "name": "Sedative",
+                  "payloads": [
+                    {
+                      "type": "condition",
+                      "condition": "unconscious"
+                    }
+                  ]
+                },
+                {
+                  "name": "Truth Serum",
+                  "payloads": [
+                    {
+                      "type": "text",
+                      "text": "target can't knowingly tell a lie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "condition": "$(meta.level >= 6)"
       }
     ]
   },
@@ -5902,10 +6813,29 @@
       },
       {
         "id": "telekineticTechniques",
-        "type": "Extra",
-        "target": "telekineticPropel",
         "name": "Telekinetic Techniques",
+        "type": "Effect",
+        "target": "activities[id=telekineticPropel].mechanic.failure",
+        "operation": "push",
         "description": "You can roll 5d4 instead of expending a Psionic Energy Die.\n\nWhen a target fails its saving throw, you can impose one of the following effects:\n* **Boost.** The target's Speed increases by 10 feet until the start of your next turn.\n* **Disorient.** The target cannot make Opportunity Attacks until the start of its next turn.\n* **Telekinetic Bolt.** The target takes Force damage equal to the number rolled on the die.\n",
+        "value": {
+          "type": "choice",
+          "text": "and choose one of the following:",
+          "options": [
+            {
+              "name": "Boost",
+              "text": "the target's Speed increases by 10 feet until the start of your next turn"
+            },
+            {
+              "name": "Disorient",
+              "text": "the target cannot make Opportunity Attacks until the start of its next turn"
+            },
+            {
+              "name": "Telekinetic Bolt",
+              "text": "the target takes 1d$(attributes.psiDice) Force damage"
+            }
+          ]
+        },
         "condition": "$(meta.level >= 3)"
       },
       {
@@ -5917,14 +6847,56 @@
         "duration": "10 minutes",
         "resource": "psionicEnergyDice",
         "description": "Enter a destructive state for the duration. You gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell.",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell"
+            }
+          ]
+        },
         "condition": "$(meta.level >= 6)"
       },
       {
         "id": "reboundingField",
-        "type": "Extra",
-        "target": "shield",
+        "type": "Effect",
+        "target": "activities[id=shield].mechanic.blocks",
+        "operation": "push",
         "name": "Rebounding Field",
         "description": "The attacker must make a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage on a failed save, or half on a success. You gain Temporary Hit Points equal to the damage dealt.",
+        "value": {
+          "pattern": "save",
+          "save": {
+            "ability": "dex",
+            "dc": "$(attributes.spellcasting.save)"
+          },
+          "target": {
+            "inherit": "trigger"
+          },
+          "failure": {
+            "type": "damage",
+            "dice": {
+              "count": 1,
+              "sides": "$(attributes.psiDice)",
+              "bonus": "$(stats.int.mod)"
+            },
+            "damageType": "force"
+          },
+          "success": {
+            "halfDamage": true
+          },
+          "failureOrSuccess": {
+            "type": "healing",
+            "healing": {
+              "type": "tempHitPoints",
+              "text": "gain Temporary Hit Points equal to the damage dealt"
+            }
+          }
+        },
         "condition": "$(meta.level >= 6)"
       }
     ]
@@ -5966,6 +6938,298 @@
         "quantity": 1,
         "target": "classOption OR defensiveTactics",
         "condition": "$(meta.level >= 7)"
+      }
+    ]
+  },
+  {
+    "id": "arcaneTrickster",
+    "name": "Arcane Trickster",
+    "description": "Enhance your stealth and agility with spells, learning magical tricks for burglary or pranks.",
+    "tags": [
+      "rogueSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "oneThirdCaster",
+          "intCaster"
+        ]
+      },
+      {
+        "type": "Slot",
+        "id": "arcaneTricksterCantrips",
+        "name": "Arcane Trickster Cantrips",
+        "target": "cantrip AND wizard",
+        "quantity": "$(meta.level >= 10 ? 3 : 2)"
+      },
+      {
+        "type": "Slot",
+        "id": "arcaneTricksterSpells",
+        "name": "Arcane Trickster Spells",
+        "target": "wizard NOT class NOT cantrip $(local.maxLevel < 9 ? 'NOT level9Spell' : '') $(local.maxLevel < 8 ? 'NOT level8Spell' : '') $(local.maxLevel < 7 ? 'NOT level7Spell' : '') $(local.maxLevel < 6 ? 'NOT level6Spell' : '') $(local.maxLevel < 5 ? 'NOT level5Spell' : '') $(local.maxLevel < 4 ? 'NOT level4Spell' : '') $(local.maxLevel < 3 ? 'NOT level3Spell' : '') $(local.maxLevel < 2 ? 'NOT level2Spell' : '')",
+        "variables": {
+          "maxLevel": "$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)"
+        },
+        "quantity": "$(progression(0,0,3,4,4,4,5,6,6,7,8,8,9,10,10,11,11,11,12,13))"
+      },
+      {
+        "id": "mageHandLegerdemain",
+        "type": "Reference",
+        "target": "mageHand",
+        "overwrite": {
+          "time": "bonus action"
+        }
+      }
+    ]
+  },
+  {
+    "id": "assassin",
+    "name": "Assassin",
+    "description": "Use stealth, poison, and disguise to eliminate foes with deadly efficiency as a trained killer.",
+    "tags": [
+      "rogueSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "type": "Reference",
+        "target": [
+          "initiativeAdvantage",
+          "disguiseKit",
+          "poisonersKit"
+        ]
+      },
+      {
+        "id": "surprisingStrikes",
+        "type": "Effect",
+        "name": "Surprising Strike Damage",
+        "target": "activities[id=sneakAttack].mechanic.payloads",
+        "operation": "push",
+        "value": {
+          "type": "text",
+          "text": "$(meta.level) extra damage during the first round of combat"
+        }
+      },
+      {
+        "id": "surprisingStrikesAttack",
+        "type": "Trait",
+        "name": "Surprising Strike Advantage",
+        "description": "During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn."
+      }
+    ]
+  },
+  {
+    "id": "phantom",
+    "name": "Phantom",
+    "description": "Slip between the living and dead, drawing on spectral power to strike with supernatural lethality.",
+    "tags": [
+      "rogueSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "wailsFromTheGraveResource",
+        "name": "Wails from the Grave",
+        "type": "Resource",
+        "quantity": "$(Math.max(1, stats.dex.mod))"
+      },
+      {
+        "id": "wailsFromTheGrave",
+        "type": "Activity",
+        "name": "Wails from the Grave",
+        "time": "free action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "resource": "wailsFromTheGraveResource",
+        "description": "Immediately after you deal Sneak Attack damage to a creature on your turn, you target a second creature you can see within range. Roll $(Math.ceil(meta.level / 4))d6 and the second creature takes that much Necrotic damage as wails of the dead sound around it.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "hit_with_attack",
+            "text": "immediately after you deal Sneak Attack damage to a creature"
+          },
+          "target": {
+            "type": "single",
+            "range": "$(range)"
+          },
+          "payloads": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": "$(Math.ceil(meta.level / 4))",
+                "sides": 6
+              },
+              "damageType": "necrotic"
+            }
+          ]
+        }
+      },
+      {
+        "id": "whispersOfTheDead",
+        "type": "Slot",
+        "target": "skillProficiency",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "id": "scion",
+    "name": "Scion",
+    "description": "Channel dark power through malevolent dread aspects, shifting your allegiance to unleash sinister magic.",
+    "tags": [
+      "rogueSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "bloodthirstResource",
+        "name": "Bloodthirst",
+        "type": "Resource",
+        "quantity": "$(Math.max(1, stats.int.mod))"
+      },
+      {
+        "id": "bloodthirst",
+        "type": "Activity",
+        "name": "Bloodthirst",
+        "time": "reaction",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "resource": "bloodthirstResource",
+        "description": "When an enemy you can see within range takes damage and is Bloodied (at or below half its Hit Point maximum) after taking that damage but is not killed, you teleport to an unoccupied space you can see within 5 feet of that enemy. You can then make one melee attack against it.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "text": "when an enemy you can see within range takes damage and is Bloodied"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "teleport to an unoccupied space within 5 feet of that enemy and make one melee attack against it"
+            }
+          ]
+        }
+      },
+      {
+        "id": "dreadAllegiance",
+        "name": "Dread Allegiance",
+        "type": "Slot",
+        "target": "dreadAllegiance OR classOptions"
+      }
+    ]
+  },
+  {
+    "id": "soulknife",
+    "name": "Soulknife",
+    "description": "Strike with your mind, channeling innate psionic power to cut through physical and psychic barriers.",
+    "tags": [
+      "rogueSubclass"
+    ],
+    "type": "Folder",
+    "children": [
+      {
+        "id": "psionicEnergyDice",
+        "type": "Resource",
+        "name": "Psionic Energy",
+        "sr": 1,
+        "quantity": "$(progression(0,0,4,4,6,6,6,6,8,8,8,8,10,10,10,10,12,12,12,12))"
+      },
+      {
+        "id": "psiDice",
+        "type": "Attribute",
+        "value": "$(progression(0,0,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))"
+      },
+      {
+        "id": "psiBolsteredKnack",
+        "type": "Activity",
+        "name": "Psi-Bolstered Knack",
+        "time": "free action",
+        "range": "self",
+        "duration": "Instantaneous",
+        "resource": "psionicEnergyDice",
+        "description": "When you fail an ability check using a skill or tool with which you have proficiency, you add 1d$(attributes.psiDice) to the check, potentially turning failure into success. The charge is expended only if the roll then succeeds.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "fail_check"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "rollModifier",
+              "modifierType": "add",
+              "dice": {
+                "count": 1,
+                "sides": "$(attributes.psiDice)"
+              },
+              "targetRolls": "check",
+              "text": "add 1d$(attributes.psiDice) to the check (charge expended only if roll succeeds)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "psychicWhispers",
+        "type": "Activity",
+        "name": "Psychic Whispers",
+        "time": "action",
+        "range": "self",
+        "duration": "Varies",
+        "resource": "psionicEnergyDice",
+        "description": "You choose up to $(attributes.prof) creatures you can see. For 1d$(attributes.psiDice) hours, the chosen creatures can speak telepathically to you, and you can speak telepathically with them. To send or receive a message (no action required), you and the other creature must be within 1 mile of each other. A creature can end the telepathic connection at any time (no action required).",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "speak telepathically with up to $(attributes.prof) chosen creatures for 1d$(attributes.psiDice) hours (within 1 mile)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "psychicBlade",
+        "type": "Activity",
+        "name": "Psychic Blade",
+        "time": "action",
+        "range": "60 feet",
+        "duration": "Instantaneous",
+        "tags": [
+          "weaponAttack",
+          "vex",
+          "attack"
+        ],
+        "description": "You manifest a shimmering blade of psychic energy and strike at a target within range. Make a $(formatBonus(stats.dex.mod + attributes.prof)) attack. On a hit, the target takes 1d6$(formatBonus(stats.dex.mod)) Psychic damage. The blade vanishes immediately after it hits or misses, leaving no mark.\n\nAfter you attack with the blade on your turn, you can make a melee or ranged attack with a second psychic blade as a Bonus Action on the same turn. The damage die of this bonus attack is 1d4 instead of 1d6.\n",
+        "mechanic": {
+          "pattern": "attack",
+          "attack": {
+            "classification": "finesse",
+            "type": "spell",
+            "bonus": "$(stats.dex.mod + attributes.prof)"
+          },
+          "target": {
+            "type": "single",
+            "range": "$(range)"
+          },
+          "hit": {
+            "type": "damage",
+            "dice": {
+              "count": 1,
+              "sides": 6,
+              "bonus": "$(stats.dex.mod)"
+            },
+            "damageType": "psychic"
+          }
+        }
       }
     ]
   },
@@ -6144,7 +7408,7 @@
         "mechanic": {
           "pattern": "healing",
           "trigger": {
-            "text": "when you reduce an enemy to 0 Hit Points, or someone else reduces an enemy within 10 feet of you to 0 Hit Points"
+            "event": "drop_enemy_zero"
           },
           "target": {
             "type": "self"
@@ -6172,7 +7436,10 @@
         "mechanic": {
           "pattern": "automatic",
           "trigger": {
-            "text": "when you make an ability check or a saving throw"
+            "event": [
+              "make_check",
+              "make_save"
+            ]
           },
           "target": {
             "type": "self"
@@ -10707,7 +11974,24 @@
     "id": "interception",
     "summary": "Use your reaction to reduce incoming damage to a nearby ally.",
     "name": "Interception",
-    "description": "When a creature you can see hits another creature with an attack roll, you reduce the damage dealt to the target by 1d10+$(attributes.prof)."
+    "description": "When a creature you can see hits another creature with an attack roll, you reduce the damage dealt to the target by 1d10+$(attributes.prof).",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "text": "when a creature you can see hits another creature with an attack roll"
+      },
+      "target": {
+        "type": "touch",
+        "filter": "target of attack",
+        "range": "$(range)"
+      },
+      "payloads": [
+        {
+          "type": "text",
+          "text": "reduce damage taken by 1d10 + $(attributes.prof)"
+        }
+      ]
+    }
   },
   {
     "tags": [
@@ -10721,7 +12005,25 @@
     "id": "protection",
     "summary": "Use your reaction to impose disadvantage on attacks against nearby allies.",
     "name": "Protection",
-    "description": "When a creature you can see attacks a target other than you, you impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn."
+    "description": "When a creature you can see attacks a target other than you, you impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn.",
+    "mechanic": {
+      "pattern": "automatic",
+      "trigger": {
+        "text": "when a creature you can see attacks a target other than you"
+      },
+      "target": {
+        "inherit": "trigger",
+        "range": "$(range)"
+      },
+      "payloads": [
+        {
+          "type": "rollModifier",
+          "modifierType": "disadvantage",
+          "targetRolls": "attack",
+          "end": "end_of_your_next_turn"
+        }
+      ]
+    }
   },
   {
     "tags": [
@@ -10747,7 +12049,21 @@
     "id": "twoWeaponFighting",
     "name": "Two-Weapon Fighting",
     "summary": "Make an additional attack with a Light weapon.",
-    "description": "When you take the Attack action on your turn and attack with a Light weapon, you can make one attack with a different Light weapon as a Bonus Action."
+    "description": "When you take the Attack action on your turn and attack with a Light weapon, you can make one attack with a different Light weapon as a Bonus Action.",
+    "mechanic": {
+      "pattern": "automatic",
+      "target": {
+        "type": "self"
+      },
+      "payloads": [
+        {
+          "type": "action",
+          "actionType": "attack",
+          "count": 1,
+          "text": "make one attack with a different Light weapon"
+        }
+      ]
+    }
   },
   {
     "tags": [
@@ -10770,6 +12086,26 @@
         "target": "unarmed",
         "name": "Unarmed Fighting",
         "description": "At the start of each of your turns, you can deal 1d4 Bludgeoning damage to one creature grappled by you.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "start_turn"
+          },
+          "target": {
+            "type": "single",
+            "filter": "creature grappled by you"
+          },
+          "payloads": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": 1,
+                "sides": 4
+              },
+              "damageType": "bludgeoning"
+            }
+          ]
+        },
         "id": "unarmedFightingUnarmedFighting"
       },
       {
@@ -10939,6 +12275,45 @@
         "duration": "instantaneous",
         "time": "free action",
         "description": "If you move at least 10 feet in a straight line toward the target immediately before hitting it, choose one of the following effects — gain a 1d8 bonus to the attack's damage roll, or push the target up to 10 feet away if it is no more than one size larger than you.",
+        "mechanic": {
+          "mode": "choice",
+          "text": "choose one of the following:",
+          "blocks": [
+            {
+              "name": "Damage Bonus",
+              "pattern": "automatic",
+              "target": {
+                "type": "self"
+              },
+              "payloads": [
+                {
+                  "type": "damage",
+                  "dice": {
+                    "count": 1,
+                    "sides": 8
+                  },
+                  "text": "gain a 1d8 bonus to the attack's damage roll"
+                }
+              ]
+            },
+            {
+              "name": "Push",
+              "pattern": "automatic",
+              "target": {
+                "inherit": "trigger",
+                "filter": "creature no more than one size larger than you"
+              },
+              "payloads": [
+                {
+                  "type": "movement",
+                  "movementType": "forced",
+                  "direction": "push",
+                  "distance": 10
+                }
+              ]
+            }
+          ]
+        },
         "id": "chargerCharge"
       }
     ]
@@ -10971,6 +12346,18 @@
         "range": "self",
         "time": "free action",
         "description": "When you finish a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for $(4 + attributes.prof) creatures. Any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "prepare food for $(4 + attributes.prof) creatures; eating it grants an extra 1d8 HP when spending Hit Dice during a Short Rest"
+            }
+          ]
+        },
         "id": "chefReplenishingMeal"
       },
       {
@@ -10980,7 +12367,22 @@
         "duration": "instantaneous",
         "range": "self",
         "time": "1 hour",
-        "description": "You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.\n"
+        "description": "You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.\n",
+        "mechanic": {
+          "pattern": "healing",
+          "target": {
+            "type": "self"
+          },
+          "healing": {
+            "type": "tempHitPoints",
+            "dice": {
+              "count": 0,
+              "sides": 0,
+              "bonus": "$(attributes.prof)"
+            },
+            "text": "create $(attributes.prof) treats; eating one as a Bonus Action grants $(attributes.prof) Temp HP"
+          }
+        }
       }
     ]
   },
@@ -11077,6 +12479,27 @@
         "range": "self",
         "time": "reaction",
         "description": "When you are hit with an attack, you add $(attributes.prof) to your Armor Class, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "be_hit",
+            "attackFilter": {
+              "classification": "melee"
+            }
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "statModifier",
+              "stat": "ac",
+              "operation": "add",
+              "value": "$(attributes.prof)",
+              "text": "add $(attributes.prof) to AC against melee attacks until the start of your next turn"
+            }
+          ]
+        },
         "id": "defensiveDuelistParry"
       }
     ]
@@ -11135,6 +12558,21 @@
         "resource": "hitDice",
         "time": "bonus action",
         "description": "You can expend one of your Hit Dice, roll the die, and regain a number of Hit Points equal to the roll.",
+        "mechanic": {
+          "pattern": "healing",
+          "target": {
+            "type": "self"
+          },
+          "healing": {
+            "dice": {
+              "count": 1,
+              "sides": 8,
+              "bonus": "$(stats.con.mod)"
+            },
+            "type": "hitPoints",
+            "text": "expend one Hit Die, roll it, and regain Hit Points equal to the roll"
+          }
+        },
         "id": "durableSpeedyRecovery"
       }
     ]
@@ -11263,7 +12701,7 @@
       {
         "name": "Heavy Weapon Mastery",
         "type": "Effect",
-        "target": "activities[tags=weaponAttack and tags=heavy].mechanic.damage.dice.bonus",
+        "target": "activities[tags=weaponAttack and tags=heavy].mechanic.hit.dice.bonus",
         "operation": "add",
         "value": "$(attributes.prof)"
       },
@@ -11349,6 +12787,21 @@
         "duration": "instantaneous",
         "range": "self",
         "description": "When you're hit by an attack, any Bludgeoning, Piercing, or Slashing damage dealt to you by that attack is reduced by $(attributes.prof).",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "take_damage"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "reduce Bludgeoning, Piercing, or Slashing damage taken by $(attributes.prof)"
+            }
+          ]
+        },
         "id": "heavyArmorMasterDamageReduction"
       }
     ]
@@ -11377,7 +12830,23 @@
         "time": "10 minutes",
         "range": "30 feet",
         "duration": "until next short or long rest",
-        "description": "At the end of a Short Rest or Long Rest, you can give an inspiring performance — a speech, song, or dance. Choose up to $(5 + attributes.prof) allies who witnessed the performance. The chosen creatures each gain $(meta.level + stats.cha.mod) Temporary Hit Points."
+        "description": "At the end of a Short Rest or Long Rest, you can give an inspiring performance — a speech, song, or dance. Choose up to $(5 + attributes.prof) allies who witnessed the performance. The chosen creatures each gain $(meta.level + stats.cha.mod) Temporary Hit Points.",
+        "mechanic": {
+          "pattern": "healing",
+          "target": {
+            "type": "multiple",
+            "count": "$(5 + attributes.prof)",
+            "range": "$(range)"
+          },
+          "healing": {
+            "type": "tempHitPoints",
+            "dice": {
+              "count": 0,
+              "sides": 0,
+              "bonus": "$(meta.level + stats.cha.mod)"
+            }
+          }
+        }
       }
     ]
   },
@@ -11471,6 +12940,28 @@
         "range": "self",
         "resource": "limited",
         "description": "If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "fail_save",
+            "saveFilter": {
+              "ability": [
+                "int",
+                "wis",
+                "cha"
+              ]
+            }
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "cause yourself to succeed on the saving throw instead"
+            }
+          ]
+        },
         "id": "mageSlayerGuardedMind"
       }
     ]
@@ -11653,9 +13144,9 @@
       },
       {
         "name": "Potent Poison",
-        "type": "Extra",
+        "type": "Trait",
         "target": "poisonDamage",
-        "description": "This damage ignores resistance to Poison damage.",
+        "description": "Your damage ignores resistance to Poison damage.",
         "id": "poisonerPotentPoison"
       },
       {
@@ -11665,6 +13156,31 @@
         "range": "self",
         "time": "1 hour",
         "description": "You can craft poisons. With 1 hour of work using a Poisoner's Kit and expending 50 GP worth of materials, you can create $(attributes.prof) doses of poison. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you hit with the poisoned item, whichever comes first. When a creature takes damage from the poisoned item, that creature must succeed on a DC $(8 + stats.dex.mod + attributes.prof) Constitution saving throw or take 2d8 Poison damage and have the Poisoned condition until the end of your next turn.\n",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "con",
+            "dc": "$(8 + stats.dex.mod + attributes.prof)"
+          },
+          "target": {
+            "inherit": "trigger"
+          },
+          "failure": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": 2,
+                "sides": 8
+              },
+              "damageType": "poison"
+            },
+            {
+              "type": "condition",
+              "condition": "poisoned",
+              "end": "end_of_your_next_turn"
+            }
+          ]
+        },
         "id": "poisonerBrewPoison"
       }
     ]
@@ -11687,11 +13203,14 @@
         "value": 1
       },
       {
+        "id": "polearmMasterReactiveStrike",
         "name": "Reactive Strike",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "You can make an Opportunity Attack when a creature enters your reach.",
-        "id": "polearmMasterReactiveStrike"
+        "type": "Effect",
+        "target": "activities[id=opportunityAttack].mechanic.trigger",
+        "operation": "merge",
+        "value": {
+          "event": "move_within_range"
+        }
       },
       {
         "id": "poleStrike",
@@ -11700,7 +13219,28 @@
         "time": "bonus action",
         "range": "self",
         "duration": "instantaneous",
-        "description": "You make a $(formatBonus(attributes.melee.bonus)) attack with the opposite end of a polearm weapon. On a hit, deal 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage."
+        "description": "You make a $(formatBonus(attributes.melee.bonus)) attack with the opposite end of a polearm weapon. On a hit, deal 1d4$(formatBonus(attributes.melee.bonus)) Bludgeoning damage.",
+        "mechanic": {
+          "pattern": "attack",
+          "attack": {
+            "classification": "melee",
+            "type": "weapon",
+            "bonus": "$(attributes.melee.bonus)"
+          },
+          "target": {
+            "type": "single",
+            "range": "reach 5 feet"
+          },
+          "hit": {
+            "type": "damage",
+            "dice": {
+              "count": 1,
+              "sides": 4,
+              "bonus": "$(attributes.melee.bonus)"
+            },
+            "damageType": "bludgeoning"
+          }
+        }
       }
     ]
   },
@@ -11774,18 +13314,28 @@
         "value": 1
       },
       {
+        "id": "sentinelHalt",
         "name": "Halt",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "On a hit, the target's Speed becomes 0 for the rest of the current turn.",
-        "id": "sentinelHalt"
+        "type": "Effect",
+        "target": "activities[id=opportunityAttack].mechanic.hit.payloads",
+        "operation": "push",
+        "value": {
+          "type": "statModifier",
+          "stat": "speed",
+          "operation": "set",
+          "value": 0,
+          "text": "target's Speed becomes 0 for the rest of the current turn"
+        }
       },
       {
+        "id": "sentinelGuardian",
         "name": "Guardian",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "You can make an Opportunity Attack when a creature takes the Disengage action or hits a target other than you with an attack.",
-        "id": "sentinelGuardian"
+        "type": "Effect",
+        "target": "activities[id=opportunityAttack].mechanic.trigger",
+        "operation": "merge",
+        "value": {
+          "text": "when a creature takes the Disengage action or hits a target other than you with an attack"
+        }
       }
     ]
   },
@@ -11844,22 +13394,20 @@
       },
       {
         "name": "Bypass Cover",
-        "type": "Extra",
-        "target": "weaponAttack and ranged",
-        "description": "This attack ignores Half Cover and Three-Quarters Cover.",
+        "type": "Trait",
+        "description": "Your attacks ignore Half Cover and Three-Quarters Cover.",
         "id": "sharpshooterBypassCover"
       },
       {
         "name": "Firing in Melee",
-        "type": "Extra",
-        "target": "weaponAttack and ranged",
-        "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on this attack.",
+        "type": "Trait",
+        "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on your attacks.",
         "id": "sharpshooterFiringInMelee"
       },
       {
         "name": "Precision Shot",
         "type": "Effect",
-        "target": "activities[tags=weaponAttack and tags=ranged].mechanic.damage.dice.bonus",
+        "target": "activities[tags=weaponAttack and tags=ranged].mechanic.hit.dice.bonus",
         "operation": "add",
         "value": "$(attributes.prof)",
         "id": "sharpshooterPrecisionShot"
@@ -11891,6 +13439,21 @@
         "time": "bonus action",
         "range": "5 feet",
         "description": "If you attack a creature on your turn, you try to shove that creature with your Shield. The target must succeed on a DC $(8+attributes.prof+stats.str.mod) Strength saving throw or be knocked prone.",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "str",
+            "dc": "$(8 + attributes.prof + stats.str.mod)"
+          },
+          "target": {
+            "type": "single",
+            "range": "$(range)"
+          },
+          "failure": {
+            "type": "condition",
+            "condition": "prone"
+          }
+        },
         "id": "shieldMasterShieldBash"
       },
       {
@@ -11900,6 +13463,24 @@
         "range": "self",
         "time": "reaction",
         "description": "If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you take no damage if you succeed on the saving throw.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "make_save",
+            "saveFilter": {
+              "ability": "dex"
+            }
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "take no damage if you succeed on the saving throw"
+            }
+          ]
+        },
         "id": "shieldMasterInterposeShield"
       }
     ]
@@ -12115,7 +13696,24 @@
         "id": "telekineticShove",
         "time": "bonus action",
         "range": "30 feet",
-        "description": "You try to telekinetically shove one creature you can see within range. The target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Strength saving throw or be moved 5 feet toward or away from you. A creature can willingly fail this save."
+        "description": "You try to telekinetically shove one creature you can see within range. The target must succeed on a DC $(8 + stats.int.mod + attributes.prof) Strength saving throw or be moved 5 feet toward or away from you. A creature can willingly fail this save.",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "str",
+            "dc": "$(8 + stats.int.mod + attributes.prof)"
+          },
+          "target": {
+            "type": "single",
+            "range": "$(range)"
+          },
+          "failure": {
+            "type": "movement",
+            "movementType": "forced",
+            "distance": 5,
+            "text": "moved 5 feet toward or away from you"
+          }
+        }
       }
     ]
   },
@@ -12174,11 +13772,16 @@
         "target": "concentrationAdvantage"
       },
       {
+        "id": "warCasterReactiveSpell",
         "name": "Reactive Spell",
-        "type": "Extra",
-        "target": "opportunityAttack",
-        "description": "You can cast a spell rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature.",
-        "id": "warCasterReactiveSpell"
+        "type": "Effect",
+        "target": "activities[id=opportunityAttack].mechanic.payloads",
+        "operation": "push",
+        "value": {
+          "type": "action",
+          "actionType": "spell",
+          "text": "cast a spell with a casting time of 1 action that targets only the triggering creature instead of making an Opportunity Attack"
+        }
       }
     ]
   },
@@ -12227,7 +13830,22 @@
         "duration": "instantaneous",
         "range": "self",
         "name": "Initiative Swap",
-        "description": "When you roll Initiative, you swap your Initiative with the Initiative of one willing ally in the same combat. You can't make this swap if you or the ally has the Incapacitated condition.\n"
+        "description": "When you roll Initiative, you swap your Initiative with the Initiative of one willing ally in the same combat. You can't make this swap if you or the ally has the Incapacitated condition.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "roll_initiative"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "swap your Initiative with the Initiative of one willing ally in the same combat"
+            }
+          ]
+        }
       }
     ],
     "id": "alert",
@@ -12271,7 +13889,23 @@
         "name": "Battle Medicine",
         "time": "action",
         "range": "5 feet",
-        "description": "You tend to a creature within range. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains Hit Points equal to the roll plus a $(attributes.prof) Bonus.\n"
+        "description": "You tend to a creature within range. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains Hit Points equal to the roll plus a $(attributes.prof) Bonus.\n",
+        "mechanic": {
+          "pattern": "healing",
+          "target": {
+            "type": "touch",
+            "range": "$(range)"
+          },
+          "healing": {
+            "dice": {
+              "count": 1,
+              "sides": 8,
+              "bonus": "$(attributes.prof)"
+            },
+            "type": "hitPoints",
+            "text": "creature expends one Hit Point Die to regain Hit Points equal to the roll plus $(attributes.prof)"
+          }
+        }
       },
       {
         "id": "healingRerolls",
@@ -12306,6 +13940,18 @@
         "range": "self",
         "name": "Luck",
         "description": "When you roll a d20 for a D20 Test, or a creature rolls a d20 for an attack roll against you, give yourself Advantage on the roll, or impose Disadvantage on the roll, respectively.",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "give yourself Advantage on a d20 test or impose Disadvantage on an attack roll against you"
+            }
+          ]
+        },
         "resource": "luckPoints"
       }
     ]
@@ -12429,7 +14075,19 @@
         "range": "self",
         "duration": "instantaneous",
         "name": "Encouraging Song",
-        "description": "When you finish a Short or Long Rest, you play a song on a Musical Instrument with which you have proficiency and give Heroic Inspiration to $(attributes.prof) allies who hear the song."
+        "description": "When you finish a Short or Long Rest, you play a song on a Musical Instrument with which you have proficiency and give Heroic Inspiration to $(attributes.prof) allies who hear the song.",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "give Heroic Inspiration to $(attributes.prof) allies who hear the song"
+            }
+          ]
+        }
       }
     ]
   },
@@ -12482,10 +14140,16 @@
       },
       {
         "id": "tavernBrawlerPush",
-        "type": "Extra",
-        "target": "unarmed",
         "name": "Push",
-        "description": "On a hit, you can push the target 5 feet away from you."
+        "type": "Effect",
+        "target": "activities[tags=unarmed].mechanic.hit.payloads",
+        "operation": "push",
+        "value": {
+          "type": "movement",
+          "movementType": "forced",
+          "direction": "push",
+          "distance": 5
+        }
       }
     ]
   },
@@ -12539,7 +14203,19 @@
         "range": "touch",
         "duration": "Instantaneous",
         "resource": "limited",
-        "description": "You touch a creature and roll $(attributes.prof)d4. The creature regains Hit Points equal to the total rolled.\n"
+        "description": "You touch a creature and roll $(attributes.prof)d4. The creature regains Hit Points equal to the total rolled.\n",
+        "mechanic": {
+          "pattern": "healing",
+          "target": {
+            "type": "touch"
+          },
+          "healing": {
+            "dice": {
+              "count": "$(attributes.prof)",
+              "sides": 4
+            }
+          }
+        }
       },
       {
         "type": "Reference",
@@ -12554,6 +14230,64 @@
         "duration": "1 minute",
         "resource": "limited",
         "description": "You transform. The transformation lasts for the duration or until you end it (no action required). Once on each of your turns before it ends, you can deal $(attributes.prof) extra damage to one target when you deal damage to it with an attack or a spell; the damage is Necrotic for Necrotic Shroud or Radiant for Heavenly Wings and Inner Radiance.\n\n**Heavenly Wings.** You have a Fly Speed of $(attributes.movement.walk) until the transformation ends.\n\n**Inner Radiance.** You shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. At the end of each of your turns, each creature within 10 feet of you takes $(attributes.prof) Radiant damage.\n\n**Necrotic Shroud.** Creatures other than your allies within 10 feet of you must succeed on a DC $(attributes.prof + 8 + stats.cha.mod) Charisma saving throw or have the Frightened condition until the end of your next turn.\n",
+        "mechanic": {
+          "mode": "choice",
+          "text": "Choose one of the following transformations:",
+          "blocks": [
+            {
+              "name": "Heavenly Wings",
+              "pattern": "automatic",
+              "target": {
+                "type": "self"
+              },
+              "payloads": [
+                {
+                  "type": "text",
+                  "text": "gain a Fly Speed of $(attributes.movement.walk) feet, and once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Radiant damage"
+                }
+              ]
+            },
+            {
+              "name": "Inner Radiance",
+              "pattern": "automatic",
+              "target": {
+                "type": "self"
+              },
+              "payloads": [
+                {
+                  "type": "text",
+                  "text": "shed Bright Light in a 10-foot radius and Dim Light for 10 feet; at the end of each turn, each creature within 10 feet takes $(attributes.prof) Radiant damage, and once per turn deal $(attributes.prof) extra Radiant damage"
+                }
+              ]
+            },
+            {
+              "name": "Necrotic Shroud",
+              "pattern": "save",
+              "save": {
+                "ability": "cha",
+                "dc": "$(attributes.prof + 8 + stats.cha.mod)"
+              },
+              "target": {
+                "type": "area",
+                "aoe": {
+                  "shape": "emanation",
+                  "size": 10
+                },
+                "filter": "creature other than your allies",
+                "range": "$(range)"
+              },
+              "failure": {
+                "type": "condition",
+                "condition": "frightened",
+                "end": "end_of_your_next_turn"
+              },
+              "failureOrSuccess": {
+                "type": "text",
+                "text": "once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Necrotic damage"
+              }
+            }
+          ]
+        },
         "condition": "$(meta.level >= 3)"
       }
     ]
@@ -12766,7 +14500,33 @@
         "range": "self",
         "duration": "Instantaneous",
         "resource": "breathWeapon",
-        "description": "You exhale magical energy in a 15-foot Cone or a 30-foot Line (5 feet wide). Each creature in that area must make a DC $(8 + stats.con.mod + attributes.prof) Dexterity saving throw. On a failed save, a creature takes $(meta.level >= 17 ? '4' : meta.level >= 11 ? '3' : meta.level >= 5 ? '2' : '1')d10 $(attributes.dragonicAncestryDamage) damage. On a successful save, a creature takes half as much damage.\n"
+        "description": "You exhale magical energy in a 15-foot Cone or a 30-foot Line (5 feet wide). Each creature in that area must make a DC $(8 + stats.con.mod + attributes.prof) Dexterity saving throw. On a failed save, a creature takes $(meta.level >= 17 ? '4' : meta.level >= 11 ? '3' : meta.level >= 5 ? '2' : '1')d10 $(attributes.dragonicAncestryDamage) damage. On a successful save, a creature takes half as much damage.\n",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "dex",
+            "dc": "$(8 + stats.con.mod + attributes.prof)"
+          },
+          "target": {
+            "type": "area",
+            "aoe": {
+              "shape": "cone",
+              "size": 15
+            },
+            "range": "$(range)"
+          },
+          "failure": {
+            "type": "damage",
+            "dice": {
+              "count": "$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 5 ? 2 : 1)",
+              "sides": 10
+            },
+            "damageType": "$(attributes.dragonicAncestryDamage)"
+          },
+          "success": {
+            "halfDamage": true
+          }
+        }
       },
       {
         "id": "breathWeapon",
@@ -12791,6 +14551,18 @@
         "duration": "10 minutes",
         "resource": "limited",
         "description": "You sprout spectral wings on your back for 10 minutes or until you retract them (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed of $(attributes.movement.walk) feet.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "gain a Fly Speed of $(attributes.movement.walk) feet"
+            }
+          ]
+        },
         "condition": "$(meta.level >= 5)"
       },
       {
@@ -12842,7 +14614,19 @@
         "range": "self",
         "duration": "10 minutes",
         "resource": "stonecunning",
-        "description": "You gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.\n"
+        "description": "You gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "gain Tremorsense 60 feet while on or touching a stone surface"
+            }
+          ]
+        }
       },
       {
         "id": "stonecunning",
@@ -13164,7 +14948,19 @@
         "time": "10 minutes",
         "range": "self",
         "duration": "8 hours",
-        "description": "You create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a Bonus Action to activate it with a touch. You can have three such devices in existence at a time, and each falls apart 8 hours after its creation or when you dismantle it with a touch as a Utilize action.\n"
+        "description": "You create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a Bonus Action to activate it with a touch. You can have three such devices in existence at a time, and each falls apart 8 hours after its creation or when you dismantle it with a touch as a Utilize action.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "create a Tiny clockwork device (AC 5, 1 HP) that produces a chosen Prestidigitation effect when activated with a touch as a Bonus Action (max 3 devices)"
+            }
+          ]
+        }
       }
     ]
   },
@@ -13217,7 +15013,20 @@
         "time": "bonus action",
         "range": "self",
         "resource": "giantAncestry",
-        "description": "You magically teleport up to 30 feet to an unoccupied space you can see."
+        "description": "You magically teleport up to 30 feet to an unoccupied space you can see.",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "movement",
+              "movementType": "allow",
+              "text": "teleport up to 30 feet to an unoccupied space you can see"
+            }
+          ]
+        }
       },
       {
         "id": "giantAncestry",
@@ -13244,6 +15053,25 @@
         "range": "self",
         "name": "Fire's Burn",
         "description": "When you hit a target with an attack roll and deal damage to it, you also deal 1d10 Fire damage to that target.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "hit_with_attack"
+          },
+          "target": {
+            "inherit": "trigger"
+          },
+          "payloads": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": 1,
+                "sides": 10
+              },
+              "damageType": "fire"
+            }
+          ]
+        },
         "resource": "giantAncestry"
       },
       {
@@ -13271,6 +15099,32 @@
         "range": "self",
         "name": "Frost's Chill",
         "description": "When you hit a target with an attack roll and deal damage to it, you also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "hit_with_attack"
+          },
+          "target": {
+            "inherit": "trigger"
+          },
+          "payloads": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": 1,
+                "sides": 6
+              },
+              "damageType": "cold"
+            },
+            {
+              "type": "statModifier",
+              "stat": "speed",
+              "operation": "subtract",
+              "value": 10,
+              "text": "target's Speed is reduced by 10 feet until the start of your next turn"
+            }
+          ]
+        },
         "resource": "giantAncestry"
       },
       {
@@ -13298,6 +15152,22 @@
         "range": "self",
         "name": "Hill's Tumble",
         "description": "When you hit a Large or smaller creature with an attack roll and deal damage to it, you give that target the Prone condition.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "hit_with_attack"
+          },
+          "target": {
+            "inherit": "trigger",
+            "filter": "Large or smaller creature"
+          },
+          "payloads": [
+            {
+              "type": "condition",
+              "condition": "prone"
+            }
+          ]
+        },
         "resource": "giantAncestry"
       },
       {
@@ -13325,7 +15195,22 @@
         "time": "reaction",
         "range": "self",
         "resource": "giantAncestry",
-        "description": "When you take damage, reduce it by 1d12$(formatBonus(stats.con.mod))."
+        "description": "When you take damage, reduce it by 1d12$(formatBonus(stats.con.mod)).",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "take_damage"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "reduce damage taken by 1d12 + $(stats.con.mod)"
+            }
+          ]
+        }
       },
       {
         "id": "giantAncestry",
@@ -13352,7 +15237,26 @@
         "time": "reaction",
         "range": "60 feet",
         "resource": "giantAncestry",
-        "description": "When you take damage from a creature within range, deal 1d8 Thunder damage to that creature."
+        "description": "When you take damage from a creature within range, deal 1d8 Thunder damage to that creature.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "take_damage"
+          },
+          "target": {
+            "inherit": "trigger"
+          },
+          "payloads": [
+            {
+              "type": "damage",
+              "dice": {
+                "count": 1,
+                "sides": 8
+              },
+              "damageType": "thunder"
+            }
+          ]
+        }
       },
       {
         "id": "giantAncestry",
@@ -13395,6 +15299,20 @@
         "duration": "10 minutes",
         "resource": "limited",
         "description": "You change your size to Large if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet.\n",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "rollModifier",
+              "modifierType": "advantage",
+              "targetRolls": "check",
+              "text": "gain Advantage on Strength checks, your size becomes Large, and your Speed increases by 10 feet"
+            }
+          ]
+        },
         "condition": "$(meta.level >= 5)"
       },
       {
@@ -13489,6 +15407,29 @@
         "time": "bonus action",
         "name": "Daunting Roar",
         "description": "You let out a terrifying roar. Each creature of your choice within range must succeed on a DC $(attributes.prof + 8 + stats.con.mod) Wisdom saving throw or have Disadvantage on attack rolls and saving throws until the end of your next turn.",
+        "mechanic": {
+          "pattern": "save",
+          "save": {
+            "ability": "wis",
+            "dc": "$(attributes.prof + 8 + stats.con.mod)"
+          },
+          "target": {
+            "type": "multiple",
+            "filter": "creature",
+            "range": "$(range)"
+          },
+          "failure": [
+            {
+              "type": "rollModifier",
+              "modifierType": "disadvantage",
+              "targetRolls": [
+                "attack",
+                "save"
+              ],
+              "end": "end_of_your_next_turn"
+            }
+          ]
+        },
         "resource": "dauntingRoar",
         "id": "dauntingRoar"
       },
@@ -13557,7 +15498,39 @@
         "time": "bonus action",
         "range": "self",
         "resource": "adrenalineRush",
-        "description": "You take the Dash action. When you do so, you gain $(attributes.prof) Temporary Hit Points.\n"
+        "description": "You take the Dash action. When you do so, you gain $(attributes.prof) Temporary Hit Points.\n",
+        "mechanic": {
+          "mode": "succession",
+          "blocks": [
+            {
+              "pattern": "healing",
+              "target": {
+                "type": "self"
+              },
+              "healing": {
+                "type": "tempHitPoints",
+                "dice": {
+                  "count": 0,
+                  "sides": 0,
+                  "bonus": "$(attributes.prof)"
+                }
+              }
+            },
+            {
+              "pattern": "automatic",
+              "target": {
+                "type": "self"
+              },
+              "payloads": [
+                {
+                  "type": "action",
+                  "actionType": "general",
+                  "text": "take the Dash action"
+                }
+              ]
+            }
+          ]
+        }
       },
       {
         "id": "adrenalineRush",
@@ -13581,6 +15554,21 @@
         "range": "self",
         "name": "Relentless Endurance",
         "description": "When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead.",
+        "mechanic": {
+          "pattern": "automatic",
+          "trigger": {
+            "text": "when you are reduced to 0 Hit Points but not killed outright"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "drop to 1 Hit Point instead"
+            }
+          ]
+        },
         "resource": "limited"
       }
     ]
@@ -14663,7 +16651,8 @@
         "bonus": "$(attributes.spellcasting.attack)"
       },
       "target": {
-        "type": "touch"
+        "type": "single",
+        "range": "5 feet"
       },
       "hit": [
         {
@@ -15354,8 +17343,16 @@
         "range": "$(range)"
       },
       "failure": {
-        "type": "text",
-        "text": "the target subtracts 1d4 from all attack rolls and save rolls"
+        "type": "rollModifier",
+        "modifierType": "subtract",
+        "dice": {
+          "count": 1,
+          "sides": 4
+        },
+        "targetRolls": [
+          "attack",
+          "save"
+        ]
       },
       "upcast": {
         "resourceStep": 1,
@@ -16059,13 +18056,22 @@
       "target": {
         "inherit": "trigger"
       },
-      "text": "the target takes an extra 2d8 Radiant damage",
+      "payloads": [
+        {
+          "type": "damage",
+          "dice": {
+            "count": 2,
+            "sides": 8
+          },
+          "damageType": "radiant"
+        }
+      ],
       "upcast": {
         "resourceStep": 1,
         "modifications": [
           {
-            "path": "text",
-            "add": 0
+            "path": "payloads[0].dice.count",
+            "add": 1
           }
         ]
       }
@@ -16327,14 +18333,14 @@
     "mechanic": {
       "pattern": "automatic",
       "trigger": {
-        "type": "text",
         "text": "immediately after you or a creature you can see falls"
       },
       "target": {
         "type": "multiple",
+        "count": 5,
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "rate of descent slows to 60 feet per round and taking no fall damage on landing"
     }
   },
   {
@@ -16692,7 +18698,7 @@
     "mechanic": {
       "pattern": "save",
       "trigger": {
-        "text": "When you take damage from a creature"
+        "event": "take_damage"
       },
       "save": {
         "ability": "dex",
@@ -17382,12 +19388,28 @@
     "summary": "You ward a creature, causing attackers to hesitate before striking it.",
     "description": "You ward a creature within range. Until the spell ends, any creature who targets the warded creature with an attack roll or a damaging spell must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or either choose a new target or lose the attack or spell. This spell doesn't protect the warded creature from areas of effect.\n\nThe spell ends if the warded creature makes an attack roll, casts a spell, or deals damage.\n",
     "mechanic": {
-      "pattern": "automatic",
-      "target": {
-        "type": "single",
-        "range": "$(range)"
-      },
-      "text": "any creature who targets the target with an attack or harmful spell must first succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or either choose a new target or lose the attack or spell"
+      "mode": "succession",
+      "blocks": [
+        {
+          "pattern": "automatic",
+          "target": {
+            "type": "single",
+            "range": "$(range)"
+          },
+          "text": "any creature who targets the target with an attack or harmful spell must first succeed on the following save"
+        },
+        {
+          "pattern": "save",
+          "save": {
+            "ability": "wis",
+            "dc": "$(attributes.spellcasting.save)"
+          },
+          "failure": {
+            "type": "text",
+            "text": "either choose a new target or lose the attack or spell"
+          }
+        }
+      ]
     }
   },
   {
@@ -17467,15 +19489,20 @@
     "summary": "An imperceptible barrier of force raises your AC to block attacks.",
     "description": "Immediately after being hit by an attack roll or targeted by the Magic Missile spell, an imperceptible barrier of magical force protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from Magic Missile.\n",
     "mechanic": {
-      "pattern": "automatic",
-      "trigger": {
-        "event": "be_hit"
-      },
-      "target": {
-        "type": "self",
-        "range": "$(range)"
-      },
-      "text": "gains +5 bonus to your AC until start of your next turn, including against the triggering attack, and you take no damage from Magic Missile"
+      "mode": "succession",
+      "blocks": [
+        {
+          "pattern": "automatic",
+          "trigger": {
+            "event": "be_hit"
+          },
+          "target": {
+            "type": "self",
+            "range": "$(range)"
+          },
+          "text": "gains +5 bonus to your AC until start of your next turn, including against the triggering attack, and you take no damage from Magic Missile"
+        }
+      ]
     }
   },
   {
@@ -18751,7 +20778,10 @@
     "mechanic": {
       "pattern": "save",
       "trigger": {
-        "text": "When a creature you can see within 30 feet of yourself makes a Charisma-based ability check or saving throw"
+        "event": [
+          "make_check",
+          "make_save"
+        ]
       },
       "save": {
         "ability": "int",
@@ -23082,16 +25112,36 @@
     "summary": "An aura radiates from you, restoring unconscious allies and granting necrotic resistance.",
     "description": "An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Necrotic damage, and your Hit Point maximums can't be reduced. If an ally with 0 Hit Points starts its turn in the aura, that ally regains 1 Hit Point.\n",
     "mechanic": {
-      "pattern": "automatic",
-      "target": {
-        "type": "area",
-        "aoe": {
-          "shape": "emanation",
-          "size": 30
+      "mode": "succession",
+      "blocks": [
+        {
+          "pattern": "aura",
+          "target": {
+            "type": "area",
+            "aoe": {
+              "shape": "emanation",
+              "size": 30
+            },
+            "range": "$(range)"
+          },
+          "text": "life-giving energy"
         },
-        "range": "$(range)"
-      },
-      "text": "allies in aura gain Resistance to Necrotic damage, max HP can't be reduced, and living creatures at 0 HP regain 1 HP at start of turn"
+        {
+          "pattern": "automatic",
+          "trigger": {
+            "text": "while in the aura"
+          },
+          "target": {
+            "type": "self"
+          },
+          "payloads": [
+            {
+              "type": "text",
+              "text": "allies gain Resistance to Necrotic damage, maximum Hit Points cannot be reduced, and living creatures at 0 Hit Points regain 1 Hit Point at the start of their turn"
+            }
+          ]
+        }
+      ]
     }
   },
   {
@@ -23335,10 +25385,7 @@
           "type": "text",
           "text": "on each of your turns, you can use a Bonus Action to designate a direction for targets to move"
         }
-      ],
-      "repeat": {
-        "action": "bonus_action"
-      }
+      ]
     }
   },
   {

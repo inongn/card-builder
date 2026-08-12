@@ -105,7 +105,10 @@ export function formatTargetText(targetObj, formattedRange, evalStr, isAttack = 
   }
 
   if (targetObj.inherit === 'trigger') {
-    if (activity?.id === 'hellishRebuke' || (activity?.name || '').toLowerCase() === 'hellish rebuke') {
+    const triggerEvent = activity?.mechanic?.trigger?.event || activity?.mechanic?.blocks?.[0]?.trigger?.event || '';
+    const rawEvents = Array.isArray(triggerEvent) ? triggerEvent : [triggerEvent];
+    const isAttackerTrigger = rawEvents.some(e => e === 'be_hit' || e === 'beHit' || e === 'take_damage' || e === 'takeDamage');
+    if (isAttackerTrigger || activity?.id === 'hellishRebuke' || (activity?.name || '').toLowerCase().includes('backlash') || (activity?.name || '').toLowerCase().includes('rebuke')) {
       return ', the attacker';
     }
     return ', the target';
@@ -152,6 +155,7 @@ export function formatTargetText(targetObj, formattedRange, evalStr, isAttack = 
 }
 
 const TRIGGER_EVENT_MAP = {
+  cast_spell: "cast a spell",
   on_cast: "the area is created",
   enter_area: "a creature enters the area",
   area_moves_into_space: "the area moves into a creature's space",
@@ -185,7 +189,12 @@ export function formatTrigger(trigger, evalStr) {
         if (rawEvents.some(e => e === 'failSave' || e === 'fail_save')) events.push('saving throw');
         return `When you or a creature you can see fails ${events.join(' or ')}`;
       }
-      const eventNames = rawEvents.map(e => e.replace(/_/g, ' ').replace(/\bbe hit\b/gi, 'are hit with an attack').replace(/\bland crit\b/gi, 'are hit with a critical hit')).join(' or ');
+      const eventNames = rawEvents.map(e => {
+        if (e === 'land_crit' || e === 'landCrit') return 'hit with a critical hit';
+        if (e === 'drop_enemy_zero' || e === 'dropEnemyZero') return 'reduce an enemy to 0 HP';
+        if (e === 'take_damage' || e === 'takeDamage') return 'take damage';
+        return e.replace(/_/g, ' ').replace(/\bbe hit\b/gi, 'are hit with an attack');
+      }).join(' or ');
       return `When you ${eventNames}`;
     }
   }
@@ -245,6 +254,11 @@ export function formatPayload(payload, evalStr, formatDiceObj) {
     const rawType = payload.type === 'damage' ? payload.damageType : (payload.damageType || payload.type);
     const dType = formatDamageType(rawType, evalStr);
     const typeStr = dType ? ` ${dType}` : '';
+    if (payload.text) {
+      let txt = evalStr(payload.text).trim();
+      if (dDice) return `${dDice} ${txt}`.trim();
+      return txt;
+    }
     return dDice ? `${dDice}${typeStr} damage`.trim() : 'damage'.trim();
   }
 
@@ -280,6 +294,7 @@ export function formatPayload(payload, evalStr, formatDiceObj) {
   }
 
   if (type === 'rollModifier') {
+    if (payload.text) return evalStr(payload.text);
     const modType = payload.modifierType || 'advantage';
     const rawRolls = Array.isArray(payload.targetRolls) ? payload.targetRolls : [payload.targetRolls || 'roll'];
     const rollNames = {
@@ -292,17 +307,25 @@ export function formatPayload(payload, evalStr, formatDiceObj) {
     };
     const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
 
-    if (modType === 'advantage') return `gain Advantage on your next ${rollsStr} roll`;
-    if (modType === 'disadvantage') return `target has Disadvantage on its next ${rollsStr} roll`;
-    if (modType === 'attacksAgainstAdvantage') return `attack rolls against target have Advantage`;
-    if (modType === 'attacksAgainstDisadvantage') return `attack rolls against target have Disadvantage`;
+    let endStr = '';
+    if (payload.end === 'end_of_your_next_turn') endStr = ' until the end of your next turn';
+    else if (payload.end === 'end_of_its_next_turn') endStr = ' until the end of its next turn';
+    else if (typeof payload.end === 'string') endStr = ` (${evalStr(payload.end)})`;
+    else if (typeof payload.end === 'object' && payload.end.text) endStr = ` (${evalStr(payload.end.text)})`;
+
+    if (modType === 'advantage') return `gain Advantage on your next ${rollsStr} roll${endStr}`;
+    if (modType === 'disadvantage') return `target has Disadvantage on its next ${rollsStr} roll${endStr}`;
+    if (modType === 'reroll') return payload.text ? evalStr(payload.text) : `reroll the ${rollsStr} roll${endStr}`;
+    if (modType === 'attacksAgainstAdvantage') return `attack rolls against target have Advantage${endStr}`;
+    if (modType === 'attacksAgainstDisadvantage') return `attack rolls against target have Disadvantage${endStr}`;
     
     const formulaStr = formatDiceObj(payload.dice || payload.formula, undefined, evalStr);
-    if (modType === 'add') return `add ${formulaStr} to an ${rollsStr}`;
-    if (modType === 'subtract') return `subtract ${formulaStr} from an ${rollsStr}`;
+    if (modType === 'add') return `add ${formulaStr} to an ${rollsStr}${endStr}`;
+    if (modType === 'subtract') return `subtract ${formulaStr} from an ${rollsStr}${endStr}`;
   }
 
   if (type === 'movement') {
+    if (payload.text) return evalStr(payload.text);
     const dir = payload.direction || 'push';
     const distStr = payload.distance ? `${evalStr(payload.distance)} feet` : '5 feet';
     if (payload.movementType === 'forced') {
@@ -351,6 +374,22 @@ export function formatPayload(payload, evalStr, formatDiceObj) {
     return `summon ${stats}`;
   }
 
+  if (type === 'choice') {
+    const preamble = payload.text ? evalStr(payload.text) : 'and choose one of the following:';
+    const opts = Array.isArray(payload.options) ? payload.options : [];
+    const optionLines = opts.map(opt => {
+      const optName = opt.name ? `**${evalStr(opt.name)}**: ` : '';
+      let optBody = '';
+      if (opt.text) {
+        optBody = evalStr(opt.text);
+      } else if (opt.payloads) {
+        optBody = formatPayloadList(opt.payloads, evalStr, formatDiceObj);
+      }
+      return `> ${optName}${optBody}`;
+    }).join('\n\n');
+    return `${preamble}\n\n${optionLines}`;
+  }
+
   return '';
 }
 
@@ -359,13 +398,43 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj) {
   const rawList = Array.isArray(payloadList) ? payloadList : [payloadList];
 
   const sortedList = [...rawList].sort((a, b) => getPayloadRank(a) - getPayloadRank(b));
-
-  let damageStr = '';
   const targetIsPhrases = [];
   const otherParts = [];
   let actionStr = '';
+  let damageStr = '';
+
+  const mergedList = [];
+  let totalPushDist = 0;
+  let totalPullDist = 0;
 
   sortedList.forEach(p => {
+    if (!p) return;
+    const type = getPayloadType(p);
+    if (type === 'movement' && (p.movementType === 'forced' || p.direction === 'push' || p.direction === 'pull')) {
+      const dir = p.direction || 'push';
+      const rawDistStr = p.distance ? evalStr(p.distance) : '5';
+      if (/\d+d\d+/i.test(rawDistStr)) {
+        mergedList.push(p);
+      } else {
+        const distNum = parseInt(rawDistStr, 10);
+        const distVal = !isNaN(distNum) ? distNum : 5;
+        if (dir === 'push') totalPushDist += distVal;
+        else if (dir === 'pull') totalPullDist += distVal;
+        else mergedList.push(p);
+      }
+    } else {
+      mergedList.push(p);
+    }
+  });
+
+  if (totalPushDist > 0) {
+    mergedList.push({ type: 'movement', movementType: 'forced', direction: 'push', distance: `${totalPushDist}` });
+  }
+  if (totalPullDist > 0) {
+    mergedList.push({ type: 'movement', movementType: 'forced', direction: 'pull', distance: `${totalPullDist}` });
+  }
+
+  mergedList.forEach(p => {
     if (!p) return;
     if (typeof p === 'string') {
       otherParts.push(evalStr(p));
@@ -428,11 +497,22 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj) {
 
   if (clauseParts.length === 0) return '';
   if (clauseParts.length === 1) return clauseParts[0];
-  if (clauseParts.length === 2) return `${clauseParts[0]}, and ${clauseParts[1]}`;
-  return `${clauseParts.slice(0, -1).join(', ')}, and ${clauseParts[clauseParts.length - 1]}`;
+
+  let resultStr = clauseParts[0];
+  for (let i = 1; i < clauseParts.length; i++) {
+    const part = clauseParts[i];
+    if (part.includes('\n\n') || part.startsWith('and choose ')) {
+      resultStr = `${resultStr.replace(/\.$/, '')}, ${part}`;
+    } else if (i === clauseParts.length - 1) {
+      resultStr = `${resultStr.replace(/\.$/, '')}, and ${part}`;
+    } else {
+      resultStr = `${resultStr.replace(/\.$/, '')}, ${part}`;
+    }
+  }
+  return resultStr;
 }
 
-export function formatBlock(block, activity, evaluator, scope) {
+export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
   if (!block) return '';
 
   const effectiveScope = {
@@ -659,6 +739,8 @@ export function formatBlock(block, activity, evaluator, scope) {
         bodyStr = `Up to ${cntStr} targets${rangePart} gain ${rawCombinedText.replace(/^(targets\s+gains?)\s+/i, '')}`;
       } else if (rawCombinedText.toLowerCase().startsWith('targets add ')) {
         bodyStr = `Up to ${cntStr} targets${rangePart} ${rawCombinedText.slice(8)}`;
+      } else if (rawCombinedText.toLowerCase().startsWith('automatically ')) {
+        bodyStr = `Up to ${cntStr} targets${rangePart} ${rawCombinedText}`;
       } else if (rawCombinedText.toLowerCase().startsWith('up to ')) {
         bodyStr = rawCombinedText;
       } else {
@@ -674,8 +756,13 @@ export function formatBlock(block, activity, evaluator, scope) {
         bodyStr = rawCombinedText;
       }
     } else if (block.target?.inherit === 'trigger' || targetType === 'trigger') {
-      if (rawCombinedText.toLowerCase().includes('damage')) {
+      const lowerComb = rawCombinedText.toLowerCase();
+      if (lowerComb.includes('damage')) {
         bodyStr = `The target takes an extra ${rawCombinedText.replace(/\s*extra\s+damage/i, ' damage')}`;
+      } else if (lowerComb.startsWith('target knocked ')) {
+        bodyStr = `The target is ${rawCombinedText.slice(7)}`;
+      } else if (lowerComb.startsWith('target ')) {
+        bodyStr = `The ${rawCombinedText}`;
       } else {
         const verbFixedText = rawCombinedText
           .replace(/^reroll\b/i, 'rerolls')
@@ -687,7 +774,7 @@ export function formatBlock(block, activity, evaluator, scope) {
       }
     } else if (targetType === 'single' || targetType === 'creature') {
       const lowerText = rawCombinedText.toLowerCase();
-      if (lowerText.startsWith('add ')) {
+      if (lowerText.startsWith('add ') && !lowerText.includes('target')) {
         bodyStr = `Add ${rawCombinedText.slice(4)} to the triggering roll`;
       } else if (lowerText.startsWith('gains ') || lowerText.startsWith('gain ')) {
         const verbFixed = rawCombinedText.replace(/^(gains?)\s+/i, 'gains ');
@@ -713,7 +800,8 @@ export function formatBlock(block, activity, evaluator, scope) {
     }
 
     let rangeText = '';
-    const rawRangeVal = evalStr(block.target?.range || activity?.range || '').trim();
+    const explicitBlockRange = block.target?.range ? evalStr(block.target.range).trim() : '';
+    const rawRangeVal = explicitBlockRange || (blockIndex === 0 ? evalStr(activity?.range || '').trim() : '');
     const bodyHasRange = rawRangeVal && (cleanBody.toLowerCase().includes(`within ${rawRangeVal.toLowerCase()}`) || cleanBody.toLowerCase().includes(`range: ${rawRangeVal.toLowerCase()}`));
     if (rawRangeVal && !/^self$/i.test(rawRangeVal) && !bodyHasRange) {
       rangeText = ` _Range_: ${capitalize(rawRangeVal)}.`;
@@ -864,18 +952,20 @@ export function formatActivityMechanic(activity, characterData) {
   if (mechanic.mode) {
     const blocks = Array.isArray(mechanic.blocks) ? mechanic.blocks : [];
     if (mechanic.mode === 'choice') {
+      const topTrigger = mechanic.trigger ? formatTrigger(mechanic.trigger, s => evaluator.evaluate(s, scope)) : '';
+      const triggerPart = topTrigger ? ` _Trigger_: ${topTrigger}. _Response_:` : '';
       const preamble = mechanic.text
         ? evaluator.evaluate(String(mechanic.text), scope).trim()
-        : 'You do one of the following:';
+        : 'choose one of the following:';
       const preamblePart = preamble ? ` ${preamble}` : '';
       const choiceLines = blocks.map(b => {
         const title = b.name ? `**${b.name}**: ` : '';
         const content = formatBlock(b, activity, evaluator, scope);
         return `> ${title}${content}`;
       }).join('\n\n');
-      return `**${name}.**${preamblePart}${fullSuffix}\n\n${choiceLines}`;
+      return `**${name}.**${triggerPart}${preamblePart}${fullSuffix}\n\n${choiceLines}`;
     } else {
-      const contentParts = blocks.map(b => formatBlock(b, activity, evaluator, scope)).filter(Boolean);
+      const contentParts = blocks.map((b, idx) => formatBlock(b, activity, evaluator, scope, idx)).filter(Boolean);
       return `**${name}.** ${contentParts.join(' ')}${fullSuffix}`;
     }
   }

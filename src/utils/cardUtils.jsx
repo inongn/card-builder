@@ -95,7 +95,7 @@ export const TERM_ICONS = {
     'self': { icon: 'person_pin_circle', color: 'accent', shortName: 'Self' },
     'touch': { icon: 'back_hand', color: 'accent', shortName: 'Touch' },
     'limited': { icon: 'replay', color: 'accent', shortName: 'Limited' },
-    'bloodthirst': { icon: 'water_drop', color: 'fire', shortName: 'Bloodthirst' },
+    'bloodthirstResource': { icon: 'water_drop', color: 'fire', shortName: 'Bloodthirst' },
     'warriorOfTheGods': { icon: 'storm', color: 'radiant', shortName: 'Warrior of the Gods' },
     'gloriousDefense': { icon: 'shield', color: 'fire', shortName: 'Glorious Defense' },
     'elementalRebuke': { icon: 'mode_standby', color: 'action', shortName: 'Elemental Rebuke' },

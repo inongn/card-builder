@@ -21,9 +21,14 @@ mechanic:
     event: hit_with_attack
   target:
     inherit: trigger
-  text: the target takes an extra 2d8 Radiant damage
+  payloads:
+    - type: damage
+      dice:
+        count: 2
+        sides: 8
+      damageType: radiant
   upcast:
     resourceStep: 1
     modifications:
-      - path: text
-        add: 0
+      - path: payloads[0].dice.count
+        add: 1

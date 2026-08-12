@@ -19,6 +19,13 @@ children:
     range: self
     time: free action
     description: When you finish a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for $(4 + attributes.prof) creatures. Any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: "prepare food for $(4 + attributes.prof) creatures; eating it grants an extra 1d8 HP when spending Hit Dice during a Short Rest"
     id: chefReplenishingMeal
   - id: chefBolsteringTreats
     name: Bolstering Treats
@@ -28,3 +35,14 @@ children:
     time: 1 hour
     description: |
       You cook a number of treats equal to $(attributes.prof) if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain $(attributes.prof) Temporary Hit Points.
+    mechanic:
+      pattern: healing
+      target:
+        type: self
+      healing:
+        type: tempHitPoints
+        dice:
+          count: 0
+          sides: 0
+          bonus: $(attributes.prof)
+        text: "create $(attributes.prof) treats; eating one as a Bonus Action grants $(attributes.prof) Temp HP"
