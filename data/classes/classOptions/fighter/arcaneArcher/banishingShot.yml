@@ -1,0 +1,24 @@
+id: banishingShot
+name: Banishing Shot
+summary: Temporarily banish the target to a harmless demiplane.
+tags:
+  - arcaneShotOption
+type: Activity
+duration: instantaneous
+range: self
+time: free action
+resource: arcaneShot
+description: When you hit a creature with a weapon attack using a bow, you attempt to banish the target. The target must succeed on a DC $(attributes.spellcasting.save) Charisma saving throw or be banished to a harmless demiplane until the end of your next turn.
+mechanic:
+  pattern: save
+  trigger:
+    text: When you hit a creature with a weapon attack using a bow
+  save:
+    ability: cha
+    dc: $(attributes.spellcasting.save)
+  target:
+    inherit: trigger
+  failure:
+    - type: condition
+      condition: incapacitated
+      text: banished to a harmless demiplane until the end of your next turn

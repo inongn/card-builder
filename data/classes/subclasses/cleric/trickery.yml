@@ -1,0 +1,74 @@
+id: trickeryDomain
+name: Trickery Domain
+description: Wield magic of deception, illusion, and stealth as a disruptive force puncturing pride and tyranny.
+type: Folder
+tags:
+  - clericSubclass
+children:
+  - id: blessingOfTheTrickster
+    type: Activity
+    name: Blessing of the Trickster
+    time: action
+    range: 30 feet
+    duration: instantaneous
+    description: You grant Advantage on Dexterity (Stealth) checks to yourself or a willing creature. The effect lasts until you finish a Long Rest or use this feature again.
+    mechanic:
+      pattern: automatic
+      target:
+        type: single
+        range: 30 feet
+      payloads:
+        - type: text
+          text: gains advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again.
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - charmPerson
+      - disguiseSelf
+      - invisibility
+      - passWithoutTrace
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - hypnoticPattern
+      - nondetection
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - confusion
+      - dimensionDoor
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - dominatePerson
+      - modifyMemory
+    condition: $(meta.level >= 9)
+  - id: invokeDuplicity
+    type: Activity
+    name: Invoke Duplicity
+    time: bonus action
+    range: 30 feet
+    duration: 1 minute
+    resource: channelDivinity
+    description: |
+      You create a visual illusion of yourself in an unoccupied space you can see within range. The illusion is animated and mimics your expressions and gestures. While it persists, you gain the following benefits:
+
+      **Cast Spells.** You can cast spells as though you were in the illusion's space, but you must use your own senses.
+
+      **Distract.** When you$(meta.level >= 17 ? ' or your allies' : '') and the illusion are within 5 feet of a creature, attack rolls against it have Advantage.
+
+      **Move.** As a Bonus Action, move the illusion up to 30 feet to a space within 120 feet of you.$(meta.level >= 6 ? ' You can teleport to swap places with it.' : '')
+    mechanic:
+      mode: choice
+      text: You create a visual illusion of yourself in an unoccupied space you can see within range. 
+      blocks:
+        - pattern: automatic
+          name: Cast Spells
+          text: You can cast spells as though you were in the illusion's space, but you must use your own senses
+        - pattern: automatic
+          name: Distract
+          text: "When you$(meta.level >= 17 ? ' or your allies' : '') and the illusion are within 5 feet of a creature, attack rolls against it have Advantage."
+        - pattern: automatic
+          name: Move
+          text: "As a Bonus Action, move the illusion up to 30 feet to a space within 120 feet of you.$(meta.level >= 6 ? ' You can teleport to swap places with it.' : '')"
+    condition: $(meta.level >= 3)

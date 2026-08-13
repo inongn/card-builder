@@ -1,0 +1,174 @@
+id: spirits
+name: College of Spirits
+description: Commune with past spirits, channeling their stories and wisdom to perform wondrous magic.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  - type: Reference
+    target: guidance
+    condition: $(meta.level >= 3)
+    overwrite:
+      range: 60 feet
+  - id: spiritsFromBeyond
+    type: Effect
+    name: Spirits from Beyond
+    target: activities[id=bardicInspiration].mechanic.payloads
+    operation: push
+    value:
+      type: action
+      actionType: general
+      text: roll the Bardic Inspiration die to channel a random spirit
+    condition: $(meta.level >= 3)
+  - id: spiritChanneling
+    type: Activity
+    duration: instantaneous
+    name: Spirit Channeling
+    time: bonus action
+    range: self
+    resource: bardicInspiration
+    description: |
+      You channel a specific spirit. You can unleash the spirit as a Magic Action.
+
+      * **1. Beloved.** The target regains Hit Points equal to 1d$(attributes.bardicDie) + $(stats.cha.mod).
+      * **2. Sharpshooter.** The target takes Force damage equal to 1d$(attributes.bardicDie) + $(stats.cha.mod).
+      * **3. Avenger.** Until the end of your next turn, any creature that hits the target with a melee attack roll takes Force damage equal to 1d$(attributes.bardicDie).
+      * **4. Renegade.** The target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see.
+      * **5. Fortune Teller.** The target has Advantage on D20 Tests until the start of your next turn.
+      * **6. Wayfarer.** The target gains Temporary Hit Points equal to 1d$(attributes.bardicDie) + $(meta.level). While it has these, its Speed increases by 10 feet.
+      $(meta.level >= 5 ? '* **7. Trickster.** The target makes a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failure, it takes Psychic damage equal to 2d$(attributes.bardicDie) and is Charmed until the start of your next turn. On a success, it takes half damage only.' : '')
+      $(meta.level >= 5 ? '* **8. Shade.** The target has the Invisible condition until the end of its next turn or until it attacks, deals damage, or casts a spell. When the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take Necrotic damage equal to 2d$(attributes.bardicDie).' : '')
+    mechanic:
+      mode: choice
+      text: 'Choose a spirit option to channel. You can unleash it as a Magic Action:'
+      blocks:
+        - pattern: healing
+          name: Beloved
+          target:
+            type: single
+            range: 30 feet
+          healing:
+            dice:
+              count: 1
+              sides: $(attributes.bardicDie)
+              bonus: $(stats.cha.mod)
+            type: hitPoints
+        - pattern: automatic
+          name: Sharpshooter
+          target:
+            type: single
+            range: 30 feet
+          payloads:
+            - type: damage
+              dice:
+                count: 1
+                sides: $(attributes.bardicDie)
+                bonus: $(stats.cha.mod)
+              damageType: force
+        - pattern: automatic
+          name: Avenger
+          target:
+            type: single
+            range: 30 feet
+          payloads:
+            - type: text
+              text: until the end of your next turn, any creature that hits the target with a melee attack roll takes 1d$(attributes.bardicDie) Force damage
+        - pattern: automatic
+          name: Renegade
+          target:
+            type: single
+            range: 30 feet
+          payloads:
+            - type: text
+              text: the target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see
+        - pattern: automatic
+          name: Fortune Teller
+          target:
+            type: single
+            range: 30 feet
+          payloads:
+            - type: rollModifier
+              modifierType: advantage
+              targetRolls: [attack, check, save]
+              end: end_of_your_next_turn
+              text: Advantage on D20 Tests until the start of your next turn
+        - pattern: healing
+          name: Wayfarer
+          target:
+            type: single
+            range: 30 feet
+          healing:
+            dice:
+              count: 1
+              sides: $(attributes.bardicDie)
+              bonus: $(meta.level)
+            type: tempHitPoints
+          payloads:
+            - type: statModifier
+              stat: speed
+              operation: add
+              value: 10
+              text: while it has these temporary hit points, its Speed increases by 10 feet
+    condition: $(meta.level >= 3)
+  - id: spiritsFromBeyondLevel5Options
+    type: Effect
+    name: Spirits from Beyond (Level 5 Options)
+    target: activities[id=spiritChanneling].mechanic.blocks
+    operation: push
+    value:
+      - pattern: save
+        name: Trickster
+        save:
+          ability: wis
+          dc: $(attributes.spellcasting.save)
+        target:
+          type: single
+          range: 30 feet
+        failure:
+          - type: damage
+            dice:
+              count: 2
+              sides: $(attributes.bardicDie)
+            damageType: psychic
+          - type: condition
+            condition: charmed
+            end: end_of_your_next_turn
+        success:
+          halfDamage: true
+      - pattern: save
+        name: Shade
+        save:
+          ability: con
+          dc: $(attributes.spellcasting.save)
+        target:
+          type: single
+          range: 30 feet
+        failure:
+          - type: condition
+            condition: invisible
+            end: end_of_its_next_turn
+          - type: damage
+            dice:
+              count: 2
+              sides: $(attributes.bardicDie)
+            damageType: necrotic
+            text: when the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take 2d$(attributes.bardicDie) Necrotic damage
+    condition: $(meta.level >= 5)
+  - id: powerFromBeyondDamage
+    type: Effect
+    name: Power from Beyond (Damage)
+    target: activities[tags=damageSpell].mechanic.hit.dice.bonus
+    operation: add
+    value: 1d6
+    condition: $(meta.level >= 6)
+  - id: powerFromBeyondHealing
+    type: Effect
+    name: Power from Beyond (Healing)
+    target: activities[tags=healingSpell].mechanic.healing.dice.bonus
+    operation: add
+    value: 1d6
+    condition: $(meta.level >= 6)
+  - type: Reference
+    target:
+      - spiritGuardians
+    condition: $(meta.level >= 6)

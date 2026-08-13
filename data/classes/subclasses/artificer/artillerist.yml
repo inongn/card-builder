@@ -55,7 +55,7 @@ children:
       failure:
         type: damage
         dice:
-          count: 2
+          count: '$(meta.level >= 9 ? 3 : 2)'
           sides: 8
           bonus: 0
         damageType: fire

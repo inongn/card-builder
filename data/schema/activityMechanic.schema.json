@@ -26,8 +26,7 @@
         "hit": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
         "miss": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
         "crit": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
-        "hitOrMiss": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
-        "damage": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
+        "hitOrMiss": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
       },
       "required": ["pattern", "attack"],
       "additionalProperties": false
@@ -85,14 +84,7 @@
         "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
         "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
         "pattern": { "type": "string", "const": "automatic" },
-        "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
-        "damage": { "$ref": "primitives.schema.json#/$defs/PayloadList" },
-        "dice": {
-          "anyOf": [
-            { "$ref": "primitives.schema.json#/$defs/DiceFormula" },
-            { "type": "string" }
-          ]
-        }
+        "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
       },
       "required": ["pattern"],
       "additionalProperties": false
@@ -137,7 +129,7 @@
         "text": { "type": "string" },
         "mode": {
           "type": "string",
-          "enum": ["succession", "sequence", "choice"],
+          "enum": ["succession", "choice"],
           "default": "succession"
         },
         "blocks": {

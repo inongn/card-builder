@@ -1,0 +1,71 @@
+id: wildMagic
+name: Wild Magic Sorcery
+description: Channel the underlying chaos of creation, unleashing unpredictable raw magic in spectacular bursts.
+type: Folder
+tags:
+  - sorcererSubclass
+children:
+  - id: wildMagicSurge
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Wild Magic Surge
+    description: Your spellcasting unleashes surges of untamed magic. Once per turn, roll 1d20 immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: Once per turn, immediately after you cast a Sorcerer spell with a spell slot
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: roll 1d20; if you roll a 20, roll on the Wild Magic Surge table
+    condition: $(meta.level >= 3)
+  - id: tidesOfChaos
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Tides of Chaos
+    description: |
+      You manipulate chaos itself to give yourself Advantage on one D20 Test before you roll.
+      Once you do so, you must cast a Sorcerer spell with a spell slot or finish a Long Rest before you can use this feature again.
+
+      If you do cast a Sorcerer spell with a spell slot before you finish a Long Rest, you automatically roll on the Wild Magic Surge table.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: rollModifier
+          modifierType: advantage
+          targetRolls: check
+          text: have Advantage on one D20 Test before you roll. Once you do so, you must cast a Sorcerer spell with a spell slot or finish a Long Rest before you can use this feature again. If you do cast a Sorcerer spell with a spell slot before you finish a Long Rest, you automatically roll on the Wild Magic Surge table.
+    condition: $(meta.level >= 3)
+  - id: bendLuck
+    type: Activity
+    duration: instantaneous
+    name: Bend Luck
+    time: reaction
+    range: 60 feet
+    resource: 1 sorceryPoints
+    description: You twist fate using your wild magic. Immediately after another creature you can see rolls the d20 for a D20 Test, roll 1d4 and apply the number rolled as a bonus or penalty (your choice) to the d20 roll.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: Immediately after another creature you can see rolls the d20 for a D20 Test
+      target:
+        inherit: trigger
+      payloads:
+        - type: rollModifier
+          modifierType: add
+          dice:
+            count: 1
+            sides: 4
+          targetRolls:
+            - attack
+            - check
+            - save
+          text: apply 1d4 as a bonus or penalty (your choice) to the d20 roll
+    condition: $(meta.level >= 6)

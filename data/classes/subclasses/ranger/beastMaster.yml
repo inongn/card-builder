@@ -1,0 +1,58 @@
+id: beastMaster
+name: Beast Master
+description: Form a mystical bond with a special animal, drawing on primal magic and deep natural connection.
+tags:
+  - rangerSubclass
+type: Folder
+children:
+  - id: primalCompanion
+    type: Slot
+    name: Primal Companion
+    quantity: 1
+    target: classOption OR primalCompanion
+  - id: beastCompanionName
+    type: Input
+    name: Beast Companion Name
+    inputType: text
+    label: Beast Companion Name
+  - type: Effect
+    target: statblocks[beastOfTheLand].name
+    operation: set
+    value: '$(meta.beastcompanionname ? meta.beastcompanionname: ''Beast of the Land'')'
+  - type: Effect
+    target: statblocks[beastOfTheSea].name
+    operation: set
+    value: '$(meta.beastcompanionname ? meta.beastcompanionname: ''Beast of the Sea'')'
+  - type: Effect
+    target: statblocks[beastOfTheSky].name
+    operation: set
+    value: '$(meta.beastcompanionname ? meta.beastcompanionname: ''Beast of the Sky'')'
+  - id: commandCompanionExtraAttack
+    type: Effect
+    target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    operation: replace
+    condition: $(meta.level >= 5)
+    value: 'instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Primal Companion beast to take the Beast''s Strike action$(meta.level >= 11 ? '' twice'' : '''').'
+  - id: commandPrimalCompanion
+    type: Activity
+    duration: instantaneous
+    time: bonus action
+    range: 60 feet
+    name: Command Companion
+    description: You command your Primal Companion beast to take an action. The beast acts during your turn and can move and use its Reaction on its own, but only takes the Dodge action unless you command it.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        type: text
+        text: command your Primal Companion beast to take any action (it otherwise only Dodges)
+  - id: exceptionalTraining
+    type: Effect
+    name: Exceptional Training
+    target: activities[id=commandPrimalCompanion].mechanic.payloads
+    operation: push
+    condition: $(meta.level >= 7)
+    value:
+      type: text
+      text: also command the beast to Dash, Disengage, Dodge, or Help as a Bonus Action; its attacks can deal Force damage instead of their normal type

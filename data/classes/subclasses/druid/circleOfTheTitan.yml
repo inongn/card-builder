@@ -1,0 +1,49 @@
+id: circleOfTheTitan
+name: Circle of the Titan
+description: Channel cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing shock waves.
+type: Folder
+tags:
+  - druidSubclass
+children:
+  - type: Reference
+    target:
+      - enlargereduce
+      - thaumaturgy
+      - thunderwave
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - fear
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - fireShield
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - titanForm
+    condition: $(meta.level >= 3)
+  - id: titanMultiattack
+    type: Effect
+    target: statblocks[tags=titanFormTemplate].traits
+    operation: push
+    condition: $(meta.level >= 5)
+    value:
+      name: Multiattack
+      description: You make two Rend attacks.
+  - id: elementalRendEffect
+    type: Effect
+    target: statblocks[tags=titanFormTemplate].traits
+    operation: push
+    condition: $(meta.level >= 6)
+    value:
+      name: Elemental Rend
+      description: Whenever you hit with your Titan Form's Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type.
+  - id: shockWaveEffect
+    type: Effect
+    target: statblocks[tags=titanFormTemplate].traits
+    operation: push
+    condition: $(meta.level >= 6)
+    value:
+      name: Shock Wave
+      description: Once per turn, immediately after you move at least half your Speed, you can create a shock wave in a 10-foot Emanation originating from yourself. Each creature in the Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or have the Prone condition.

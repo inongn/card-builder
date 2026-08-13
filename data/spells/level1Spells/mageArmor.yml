@@ -21,5 +21,5 @@ mechanic:
   payloads:
     type: statModifier
     stat: ac
-    value: $(13 + stats.dex.mod)
+    value: 13 plus its Dexterity modifier
     operation: set

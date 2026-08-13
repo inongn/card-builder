@@ -7,14 +7,16 @@ tags:
 type: Folder
 children:
   - id: damageRerolls
-    type: Extra
-    target: unarmed
-    name: Damage Rerolls
-    description: You can reroll the damage die if it rolls a 1, and you must use the new roll.
+    type: Effect
+    target: activities[id=unarmed].mechanic.hit
+    operation: push
+    value: 
+      type: text
+      text: you can reroll the damage die if it rolls a 1, and you must use the new roll.
   - id: tavernBrawlerPush
     name: Push
     type: Effect
-    target: activities[tags=unarmed].mechanic.hit.payloads
+    target: activities[id=unarmed].mechanic.hit
     operation: push
     value:
       type: movement

@@ -1,0 +1,29 @@
+id: disarmingAttack
+summary: Deal extra damage and force the target to drop an item.
+name: Disarming Attack
+tags:
+  - maneuver
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+resource: superiorityDice
+description: When you hit a creature with an attack roll using a weapon or an Unarmed Strike, add 1d$(attributes.superiorityDie) to the attack's damage roll. If the target is Large or smaller, it must succeed on a DC $(attributes.superioritySave) Strength saving throw or drop one object of your choice that it is holding.
+mechanic:
+  pattern: save
+  trigger:
+    event: hit_with_attack
+  save:
+    ability: str
+    dc: $(attributes.superioritySave)
+  target:
+    inherit: trigger
+  failureOrSuccess:
+    type: damage
+    dice:
+      count: 1
+      sides: $(attributes.superiorityDie)
+    damageType: extra
+  failure:
+    - type: text
+      text: drop one object of your choice that it is holding

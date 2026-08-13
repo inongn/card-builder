@@ -18,8 +18,7 @@ children:
     name: Reactive Spell
     type: Effect
     target: activities[id=opportunityAttack].mechanic.payloads
-    operation: push
+    operation: set
     value:
-      type: action
-      actionType: spell
-      text: cast a spell with a casting time of 1 action that targets only the triggering creature instead of making an Opportunity Attack
+      type: text
+      text: "cast a spell with a casting time of 1 action that targets only the triggering creature"

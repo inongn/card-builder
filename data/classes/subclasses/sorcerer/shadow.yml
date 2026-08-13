@@ -1,0 +1,62 @@
+id: shadow
+name: Shadow Sorcery
+description: Draw magic from the Shadowfell to command darkness, wrap yourself in gloom, and summon foul beasts.
+tags:
+  - sorcererSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - bane
+      - darkness
+      - inflictWounds
+      - passWithoutTrace
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target:
+      - hungerOfHadar
+      - nondetection
+  - type: Reference
+    condition: $(meta.level >= 7)
+    target:
+      - greaterInvisibility
+      - phantasmalKiller
+  - type: Reference
+    condition: $(meta.level >= 9)
+    target:
+      - contagion
+      - creation
+  - id: eyesOfTheDark
+    type: Effect
+    target: attributes.senses.darkvision
+    operation: set
+    value: 120
+  - id: strengthOfTheGrave
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    uses: 1
+    name: Strength of the Grave
+    description: When you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw (DC 5 + damage taken). On a success, your Hit Points instead change to $(stats.cha.mod + meta.level).
+    mechanic:
+      pattern: save
+      trigger:
+        text: When you would drop to 0 Hit Points and not die outright
+      save:
+        ability: cha
+        dc: 5 plus the damage taken
+      target:
+        type: self
+      success:
+        type: text
+        text: your Hit Points change to $(stats.cha.mod + meta.level)
+  - id: beastsOfIllOmen
+    type: Reference
+    target: summonBeast
+    condition: $(meta.level >= 6)
+  - id: beastsOfIllOmenEffect
+    type: Effect
+    target: activities[id=summonBeast].time
+    operation: set
+    value: bonus action

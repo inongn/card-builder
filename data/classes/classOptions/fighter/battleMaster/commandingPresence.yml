@@ -1,0 +1,23 @@
+id: commandingPresence
+summary: Add a maneuver die to Charisma (Intimidation, Performance, or Persuasion) checks.
+name: Commanding Presence
+tags:
+  - maneuver
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+resource: superiorityDice
+description: When you make a Charisma (Intimidation or Persuasion) check or a Performance check, you add 1d$(attributes.superiorityDie) to the check.
+mechanic:
+  pattern: automatic
+  target:
+    type: self
+  payloads:
+    - type: rollModifier
+      modifierType: add
+      dice:
+        count: 1
+        sides: $(attributes.superiorityDie)
+      targetRolls: check
+      text: add 1d$(attributes.superiorityDie) to a Charisma (Intimidation, Performance, or Persuasion) check

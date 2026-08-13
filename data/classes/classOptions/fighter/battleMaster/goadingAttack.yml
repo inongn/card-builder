@@ -1,0 +1,30 @@
+id: goadingAttack
+summary: Goad a target into focusing its attacks solely on you.
+name: Goading Attack
+tags:
+  - maneuver
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+resource: superiorityDice
+description: When you hit a creature with an attack roll, you attempt to goad the target into attacking you. Add 1d$(attributes.superiorityDie) to the attack's damage roll. The target must succeed on a DC $(attributes.superioritySave) Wisdom saving throw or have Disadvantage on attack rolls against targets other than you until the end of your next turn.
+mechanic:
+  pattern: save
+  trigger:
+    event:  hit_with_attack
+  save:
+    ability: wis
+    dc: $(attributes.superioritySave)
+  target:
+    inherit: trigger
+  failureOrSuccess:
+    type: damage
+    dice:
+      count: 1
+      sides: $(attributes.superiorityDie)
+  failure:
+    - type: rollModifier
+      modifierType: disadvantage
+      targetRolls: attack
+      text: Disadvantage on attack rolls against targets other than you until the end of your next turn

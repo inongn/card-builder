@@ -209,10 +209,130 @@ upcast:
 
 ---
 
-## 9. Planning & Review Workflow
+---
 
-When making batch modifications to activity mechanics:
-1. Always create an `implementation_plan.md` artifact in Planning Mode detailing every proposed YAML `mechanic:` block.
-2. Wait for explicit user review and approval before writing changes to source files.
-3. Validate schema compliance with `node scripts/validateActivities.js` and verify formatted text output.
+## 10. Process & Guidelines for Updating YAMLs to Mechanics
+
+When porting or updating YAML files across `data/` to use structured mechanics, follow these step-by-step guidelines for each of the core tasks:
+
+---
+
+### Task 1: Add Mechanics to All Activity Nodes
+
+- **Guidelines**:
+  - Every `type: Activity` node must include an authoritative `mechanic:` block adhering to `data/schema/activityMechanic.schema.json`.
+  - **CRITICAL MANDATE — Saving Throws**: NEVER half-ass a save! If a feature involves a saving throw, it **MUST** be mechanized with an explicit `pattern: save` block. Do not hide saves inside `pattern: automatic` text payloads.
+  - Multi-phase/utility features with saves must use multi-block mechanics (`mode: succession` or `mode: choice`).
+- **Example**:
+  - *Before*:
+    ```yaml
+    id: fireball
+    type: Activity
+    name: Fireball
+    description: Bright streak flashes... DC 15 Dex save for 8d6 fire damage.
+    ```
+  - *After*:
+    ```yaml
+    id: fireball
+    type: Activity
+    name: Fireball
+    description: Bright streak flashes... DC 15 Dex save for 8d6 fire damage.
+    mechanic:
+      pattern: save
+      save:
+        ability: dex
+        dc: $(attributes.spellcasting.save)
+      target:
+        type: area
+        aoe:
+          shape: sphere
+          size: 20
+        range: $(range)
+      failure:
+        type: damage
+        dice:
+          count: 8
+          sides: 6
+        damageType: fire
+      success:
+        halfDamage: true
+    ```
+
+---
+
+### Task 2: Update Effect Nodes That Target Activities
+
+- **Guidelines**:
+  - Retarget legacy `Effect` nodes so their `target` paths point directly at structured activity mechanic properties (`.mechanic.hit.damageType`, `.mechanic.payloads`, etc.).
+  - **Guardrails**:
+    - **NEVER use numeric array indices** like `blocks[0]` or `payloads[0]` in `target` paths (array index syntax is broken in the path engine).
+    - **DO use Property Fan-Out**: `activities[tags=unarmed].mechanic.hit.damageType` automatically fans into `hit` of all matching blocks.
+    - **Deduplicate Multi-Target Effects**: If an effect modifies both weapon attacks and specific activity payloads, split it into separate `Effect` nodes.
+- **Example**:
+  - *Before (Broken Numeric Index)*:
+    ```yaml
+    id: martialArtsEmpoweredStrikes
+    type: Effect
+    target: activities[tags=unarmed].mechanic.blocks[0].damage.damageType
+    operation: set
+    value: force
+    ```
+  - *After (Property Fan-Out)*:
+    ```yaml
+    id: martialArtsEmpoweredStrikes
+    type: Effect
+    target: activities[tags=unarmed].mechanic.hit.damageType
+    operation: set
+    value: force
+    ```
+
+---
+
+### Task 3: Convert Extras into Effects Targeting Activity Mechanics
+
+- **Guidelines**:
+  - When an `Extra` modifies an activity's damage, roll modifiers, condition termination, or payloads, convert it from `type: Extra` into `type: Effect` targeting the activity's `mechanic:` path.
+- **Example**:
+  - *Before (Legacy Extra)*:
+    ```yaml
+    id: surprisingStrikes
+    type: Extra
+    target: sneakAttack
+    name: Surprising Strike
+    description: On a hit during the first round of combat, the target takes $(meta.level) extra damage.
+    ```
+  - *After (Structured Effect)*:
+    ```yaml
+    id: surprisingStrikes
+    type: Effect
+    name: Surprising Strike Damage
+    target: activities[id=sneakAttack].mechanic.payloads
+    operation: push
+    value:
+      type: text
+      text: "$(meta.level) extra damage during the first round of combat"
+    ```
+
+---
+
+### Task 4: Convert Activities and Extras into Traits (When Appropriate)
+
+- **Guidelines**:
+  - Convert `type: Extra` or passive `type: Activity` nodes into `type: Trait` when they describe passive capabilities, static rules, or conditional benefits that do not require an active action/resource roll or direct mechanics mutation.
+- **Example**:
+  - *Before (Legacy Extra for Passive Benefit)*:
+    ```yaml
+    id: surprisingStrikesAttack
+    type: Extra
+    target: weaponAttack
+    name: Surprising Strike
+    description: During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn.
+    ```
+  - *After (Structured Trait)*:
+    ```yaml
+    id: surprisingStrikesAttack
+    type: Trait
+    name: Surprising Strike Advantage
+    description: During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn.
+    ```
 

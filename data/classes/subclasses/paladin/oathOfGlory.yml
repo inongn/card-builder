@@ -1,0 +1,82 @@
+id: oathOfGlory
+name: Oath of Glory
+description: Embrace a destiny of greatness, leading companions to achieve immortal glory through heroic deeds.
+tags:
+  - paladinSubclass
+type: Folder
+children:
+  - id: inspiringSmite
+    type: Activity
+    name: Inspiring Smite
+    time: free action
+    range: 30 feet
+    duration: Instantaneous
+    resource: channelDivinity
+    description: Immediately after you cast Divine Smite, you distribute Temporary Hit Points to creatures of your choice within range, which can include you. The total number of Temporary Hit Points equals 2d8$(formatBonus(meta.level)), divided among the chosen creatures however you like.
+    mechanic:
+      pattern: healing
+      trigger:
+        text: Immediately after you cast Divine Smite
+      healing:
+        dice:
+          count: 2
+          sides: 8
+          bonus: $(meta.level)
+        type: tempHitPoints
+      target:
+        type: multiple
+        range: $(range)
+  - type: Reference
+    target:
+      - guidingBolt
+      - heroism
+  - type: Reference
+    target:
+      - enhanceAbility
+      - magicWeapon
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - haste
+      - protectionFromEnergy
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - compulsion
+      - freedomOfMovement
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target:
+      - legendLore
+      - yolandesRegalPresence
+    condition: $(meta.level >= 17)
+  - id: peerlessAthlete
+    type: Activity
+    range: self
+    name: Peerless Athlete
+    time: bonus action
+    duration: 1 hour
+    resource: channelDivinity
+    description: You augment your athleticism. For the duration, you have Advantage on Strength (Athletics) and Dexterity (Acrobatics) checks, and the distance of your Long and High Jumps increases by 10 feet (this extra distance costs movement as normal).
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: have Advantage on Strength (Athletics) and Dexterity (Acrobatics) checks, and the distance of your Long and High Jumps increases by 10 feet
+  - id: auraOfAlacrity
+    type: Effect
+    target: attributes.movement.walk
+    operation: add
+    condition: $(meta.level >= 7)
+    value: 10
+  - id: auraOfAlacrity
+    type: Effect
+    name: Aura of Alacrity
+    target: activities[id=auraOfProtection].mechanic.payloads
+    operation: push
+    condition: $(meta.level >= 7)
+    value:
+      type: text
+      text: gain +10 Speed until the end of their next turn (when entering the aura or starting their turn there)

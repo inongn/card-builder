@@ -1,0 +1,18 @@
+id: feintingAttack
+summary: Feint to gain advantage and extra damage on your next attack roll.
+name: Feinting Attack
+tags:
+  - maneuver
+type: Activity
+duration: instantaneous
+range: self
+time: bonus action
+resource: superiorityDice
+description: You feint, choosing one creature within 5 feet of yourself as your target. You have Advantage on your next attack roll against that target this turn. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll.
+mechanic:
+  pattern: automatic
+  target:
+    type: self
+  payloads:
+    - type: text
+      text: have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll.

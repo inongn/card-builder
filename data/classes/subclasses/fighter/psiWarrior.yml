@@ -1,0 +1,104 @@
+id: psiWarrior
+name: Psi Warrior
+description: Awaken the power of your mind to augment physical might, infusing weapon strikes with psionic power.
+tags:
+  - fighterSubclass
+type: Folder
+children:
+  - id: psionicEnergyDice
+    type: Resource
+    name: Psionic Energy
+    sr: 1
+    quantity: $(progression(0,0,4,4,6,6,6,6,8,8,8,8,10,10,10,10,12,12,12,12))
+  - id: psiDice
+    type: Attribute
+    value: $(progression(0,0,6,6,8,8,8,8,8,8,10,10,10,10,10,10,12,12,12,12))
+  - id: protectiveField
+    type: Activity
+    time: reaction
+    range: 30 feet
+    duration: Instantaneous
+    name: Protective Field
+    resource: psionicEnergyDice
+    description: When you or another creature you can see within range takes damage, you create a momentary shield of telekinetic force. Reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)).
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: When you or another creature you can see takes damage
+      target:
+        inherit: trigger
+      payloads:
+        - type: text
+          text: reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))
+  - id: psionicStrike
+    type: Activity
+    time: free action
+    range: 30 feet
+    duration: Instantaneous
+    name: Psionic Strike
+    resource: psionicEnergyDice
+    description: When you hit a target with a weapon attack, you propel your weapon with psionic force. The target takes 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: hit_with_attack
+      target:
+        inherit: trigger
+      payloads:
+        - type: damage
+          dice:
+            count: 1
+            sides: $(attributes.psiDice)
+            bonus: $(stats.int.mod)
+          damageType: force
+  - id: telekineticMovement
+    type: Activity
+    time: action
+    range: 30 feet
+    duration: Instantaneous
+    name: Telekinetic Movement
+    resource: psionicEnergyDice
+    description: |
+      You move an object or creature with your mind. Choose one target you can see within range; the target must be a loose object that is Large or smaller, or one willing creature other than you. You transport the target up to 30 feet to an unoccupied space you can see. Alternatively, if the target is a Tiny object, you can transport it to or from your hand.
+    mechanic:
+      pattern: automatic
+      target:
+        type: single
+        range: 30 feet
+      payloads:
+        - type: text
+          text: is transported up to 30 feet to an unoccupied space
+  - id: psiPoweredLeap
+    type: Activity
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    name: Psi Powered Leap
+    resource: psionicEnergyDice
+    description: You gain a Fly Speed of $(attributes.movement.walk * 2) feet until the end of the current turn.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: gain a Fly Speed of $(attributes.movement.walk * 2) feet until the end of the current turn
+    condition: $(meta.level >= 7)
+  - id: telekineticThrust
+    type: Effect
+    target: activities[id=psionicStrike].mechanic
+    operation: push
+    value:
+      pattern: save
+      save:
+        ability: str
+        dc: $(8 + attributes.prof + stats.int.mod)
+      target:
+        inherit: trigger
+      failure:
+        - type: condition
+          condition: prone
+        - type: movement
+          movementType: forced
+          distance: 10
+    condition: $(meta.level >= 7)

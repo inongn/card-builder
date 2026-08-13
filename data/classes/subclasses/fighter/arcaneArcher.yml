@@ -1,0 +1,87 @@
+id: arcaneArcher
+name: Arcane Archer
+description: Study a unique method of elven archery that weaves magic into shots to create supernatural effects.
+type: Folder
+tags:
+  - fighterSubclass
+children:
+  - type: Slot
+    id: arcaneArcherLoreCantrip
+    name: Arcane Archer Lore Cantrip
+    target: druidcraft OR prestidigitation
+    quantity: 1
+    condition: $(meta.level >= 3)
+    overwrite:
+      variables.classification: spellcasting
+      tags:
+        - fighterSpell
+  - type: Reference
+    target: intCaster
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - arcanaProficiency
+      - natureProficiency
+    condition: $(meta.level >= 3 && !skills.arcana.proficiency && !skills.nature.proficiency)
+  - id: arcaneShot
+    type: Resource
+    name: Arcane Shot
+    quantity: $(Math.max(1, stats.int.mod))
+    sr: 1
+    condition: $(meta.level >= 3)
+  - id: arcaneShotOptions
+    name: Arcane Shot Options
+    type: Slot
+    target: arcaneShotOption OR classOption
+    quantity: '$(meta.level >= 7 ? 3 : 2)'
+    condition: $(meta.level >= 3)
+  - id: curvingShot
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Curving Shot
+    time: bonus action
+    description: If you miss a ranged attack roll with ammunition, you redirect the shot. Make a new attack roll against a creature you can see within 60 feet of the original target.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: When you miss a ranged attack roll with ammunition
+      text: make a new attack roll against a creature within 60 feet of the original target
+    condition: $(meta.level >= 7)
+  - id: magicalAmmunition
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Magical Ammunition
+    time: action
+    resource: secondWind
+    description: |
+      You imbue a piece of nonmagical ammunition with one of the following properties and fire it at a solid surface within range. When the effect ends, the ammunition is destroyed.
+
+      **Darkening Shot.** Magical darkness fills a 15-foot Emanation originating from the ammunition for 1 minute. Nonmagical flames are extinguished, and creatures in the Emanation have a –5 penalty to Wisdom (Perception) checks and Passive Perception.
+
+      **Unlocking Shot.** A burst of magic fills a 15-foot Emanation. Any mundane lock, stuck, or barred object in the area is unlocked, unstuck or unbarred (limit one lock per object). A loud knock is audible up to 300 feet away.
+
+      **Vine Shot.** A 60-foot-long vine grows from the ammunition, lasting 10 minutes.
+    mechanic:
+      mode: choice
+      text: "You imbue a piece of nonmagical ammunition with one of the following properties:"
+      blocks:
+        - pattern: automatic
+          name: Darkening Shot
+          target:
+            type: area
+            aoe:
+              shape: emanation
+              size: 15
+            range: self
+          payloads:
+            - type: text
+              text: of magical darkness fills the area for 1 minute; creatures in the area have a -5 penalty to Wisdom (Perception) checks
+        - pattern: automatic
+          name: Unlocking Shot
+          text: any mundane lock, stuck, or barred object in the area is unlocked, unstuck, or unbarred
+        - pattern: automatic
+          name: Vine Shot
+          text: a 60-foot-long vine grows from the ammunition, lasting 10 minutes
+    condition: $(meta.level >= 7)

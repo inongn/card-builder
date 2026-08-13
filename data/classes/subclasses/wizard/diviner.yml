@@ -1,0 +1,29 @@
+id: diviner
+name: Diviner
+description: Part the veils of space and time as a Diviner, mastering spells of discernment, foresight, and truth.
+type: Folder
+tags:
+  - wizardSubclass
+children:
+  - id: portent
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Portent
+    description: "Whenever you finish a Long Rest, glimpses on the future press on your awareness. Roll $(meta.level >= 14 ? '3' : '2')d20s and record the numbers rolled. You can replace any D20 Test made by you or a creature that you can see with one of these foretelling rolls. You must choose to do so before the roll, and you can replace a roll in this way only once per turn."
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: Whenever you finish a Long Rest
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: "roll $(meta.level >= 14 ? '3' : '2')d20s and record the numbers; replace any D20 Test made by you or a creature you see with one of these foretelling rolls"
+    condition: $(meta.level >= 3)
+  - id: expertDivination
+    type: Trait
+    name: Expert Divination
+    description: When you cast a Divination spell of 2nd level or higher, you regain an expended spell slot of a lower level (up to 5th level).
+    condition: $(meta.level >= 6)

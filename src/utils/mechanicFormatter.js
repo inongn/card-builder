@@ -1,6 +1,8 @@
 import { ExpressionEvaluator } from '../engine/ExpressionEvaluator.js';
 import { formatBonus } from '../engine/helpers.js';
 
+// ─── Constants ────────────────────────────────────────────────────────────────
+
 const ABILITY_NAMES = {
   str: 'Strength',
   dex: 'Dexterity',
@@ -10,26 +12,57 @@ const ABILITY_NAMES = {
   cha: 'Charisma'
 };
 
+/** Canonical display order for payloads within a clause */
 const PAYLOAD_ORDER = {
   damage: 1,
-  movement: 2,
-  condition: 3,
-  statModifier: 4,
-  rollModifier: 5,
-  text: 6,
-  action: 7
+  healing: 2,
+  movement: 3,
+  condition: 4,
+  statModifier: 5,
+  rollModifier: 6,
+  text: 7,
+  action: 8
 };
 
-function getPayloadType(p) {
-  if (!p || typeof p !== 'object') return 'text';
-  if (p.type) return p.type;
-  if (p.dice) return 'damage';
-  return 'text';
-}
+/**
+ * Maps every TriggerEventEnum value to a natural-language fragment.
+ * The fragment is written in the second-person singular ("you hit") or
+ * impersonal ("a creature enters") as appropriate for its category.
+ */
+const TRIGGER_EVENT_PHRASES = {
+  // Personal — "When you <phrase>"
+  make_attack:        { subject: 'you', phrase: 'make an attack' },
+  hit_with_attack:    { subject: 'you', phrase: 'hit a creature with an attack' },
+  miss_with_attack:   { subject: 'you', phrase: 'miss with an attack' },
+  be_hit:             { subject: 'you', phrase: 'are hit by an attack' },
+  take_damage:        { subject: 'you', phrase: 'take damage' },
+  make_save:          { subject: 'you', phrase: 'make a saving throw' },
+  fail_save:          { subject: 'you or a creature you can see', phrase: 'fail a saving throw' },
+  make_check:         { subject: 'you', phrase: 'make an ability check' },
+  fail_check:         { subject: 'you or a creature you can see', phrase: 'fail an ability check' },
+  roll_initiative:    { subject: 'you', phrase: 'roll Initiative' },
+  roll_damage:        { subject: 'you', phrase: 'roll damage' },
+  land_crit:          { subject: 'you', phrase: 'score a critical hit' },
+  drop_enemy_zero:    { subject: 'you', phrase: 'reduce an enemy to 0 Hit Points' },
+  cast_spell:         { subject: 'you', phrase: 'cast a spell' },
+  // Aura / area — "When <phrase>"
+  on_cast:            { subject: null,  phrase: 'the area is created' },
+  enter_area:         { subject: null,  phrase: 'a creature enters the area' },
+  start_turn:         { subject: null,  phrase: 'a creature starts its turn there' },
+  end_turn:           { subject: null,  phrase: 'a creature ends its turn there' },
+  leave_area:         { subject: null,  phrase: 'a creature leaves the area' },
+  move_within_range:  { subject: null,  phrase: 'a creature moves within range' },
+  area_moves_into_space: { subject: null, phrase: "the area moves into a creature's space" },
+  move_into_space:    { subject: null,  phrase: "the area moves into a creature's space" },
+  // Custom — rendered verbatim
+  custom:             null,
+};
 
-function getPayloadRank(p) {
-  const t = getPayloadType(p);
-  return PAYLOAD_ORDER[t] || 6;
+// ─── Utility helpers ──────────────────────────────────────────────────────────
+
+export function capitalize(str) {
+  if (!str || typeof str !== 'string') return str || '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export function formatDistance(distStr) {
@@ -38,21 +71,30 @@ export function formatDistance(distStr) {
   if (/^5\s*feet$/i.test(str)) return 'reach 5 feet';
   if (/^touch$/i.test(str)) return 'reach Touch';
   if (/^self$/i.test(str)) return 'range Self';
-  return str.replace(/\bfeet\b/gi, 'feet').replace(/\bfoot\b/gi, 'feet');
+  return str.replace(/\bfoot\b/gi, 'feet');
 }
 
-export function capitalize(str) {
-  if (!str || typeof str !== 'string') return str || '';
-  return str.charAt(0).toUpperCase() + str.slice(1);
+/** Returns the canonical payload type string, requiring an explicit `type` field. */
+function getPayloadType(p) {
+  if (!p || typeof p !== 'object') return 'text';
+  return p.type || 'text';
 }
+
+function getPayloadRank(p) {
+  return PAYLOAD_ORDER[getPayloadType(p)] ?? PAYLOAD_ORDER.text;
+}
+
+// ─── Formatting helpers ───────────────────────────────────────────────────────
 
 export function formatDamageType(typeVal, evalStr) {
   if (!typeVal) return '';
   const rawList = Array.isArray(typeVal) ? typeVal : [typeVal];
-  const formatted = rawList.map(t => {
-    const s = evalStr(t);
-    return s === 'damage' ? '' : capitalize(s);
-  }).filter(Boolean);
+  const formatted = rawList
+    .map(t => {
+      const s = evalStr(t);
+      return s === 'damage' ? '' : capitalize(s);
+    })
+    .filter(Boolean);
   if (formatted.length === 0) return '';
   if (formatted.length === 1) return formatted[0];
   if (formatted.length === 2) return `${formatted[0]} or ${formatted[1]}`;
@@ -65,140 +107,93 @@ export function formatFilterText(filterVal, evalStr, plural = false) {
   const formattedList = rawList.map(f => evalStr(f)).filter(Boolean);
   if (formattedList.length === 0) return plural ? 'creatures' : 'creature';
 
-  return formattedList.map(s => {
-    const evalS = String(s).trim();
-    if (plural) {
-      const lower = evalS.toLowerCase();
-      if (lower === 'creature') return 'creatures';
-      if (lower === 'undead') return 'Undead';
-      if (lower.endsWith('s')) return capitalize(evalS);
-      return `${capitalize(evalS)}s`;
-    }
-    return capitalize(evalS);
-  }).join(' or ');
+  return formattedList
+    .map(s => {
+      const evalS = String(s).trim();
+      if (plural) {
+        const lower = evalS.toLowerCase();
+        if (lower === 'creature') return 'creatures';
+        if (lower === 'undead') return 'Undead';
+        if (lower.endsWith('s')) return capitalize(evalS);
+        return `${capitalize(evalS)}s`;
+      }
+      return capitalize(evalS);
+    })
+    .join(' or ');
 }
 
-export function formatTargetText(targetObj, formattedRange, evalStr, isAttack = false, activity = null) {
-  if (!targetObj) return '';
-  const cleanRange = formattedRange.replace(/^(range|reach)\s*/i, '').trim();
-
-  const filterSingular = formatFilterText(targetObj.filter, evalStr, false);
-  const filterPlural = formatFilterText(targetObj.filter, evalStr, true);
-
-  if (targetObj.aoe) {
-    const shape = capitalize(evalStr(targetObj.aoe.shape || 'sphere'));
-    const size = evalStr(targetObj.aoe.size || '');
-    let rangePart = '';
-    const lowerRange = cleanRange.toLowerCase();
-
-    if (targetObj.inherit === 'trigger' || targetObj.inherit === 'previous' || lowerRange === 'inherit') {
-      rangePart = ' centered on the target';
-    } else if (lowerRange === 'self' || targetObj.aoe.shape === 'emanation') {
-      rangePart = shape.toLowerCase() === 'line' ? ' originating from you' : ' centered on you';
-    } else if (cleanRange) {
-      rangePart = ` centered on a point within ${cleanRange}`;
-    }
-    const isLine = shape.toLowerCase() === 'line';
-    const isWall = shape.toLowerCase() === 'wall';
-    const sizePhrase = (isLine || isWall) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
-    return `, each ${filterSingular} in a ${sizePhrase}${rangePart}`;
-  }
-
-  if (targetObj.inherit === 'trigger') {
-    const triggerEvent = activity?.mechanic?.trigger?.event || activity?.mechanic?.blocks?.[0]?.trigger?.event || '';
-    const rawEvents = Array.isArray(triggerEvent) ? triggerEvent : [triggerEvent];
-    const isAttackerTrigger = rawEvents.some(e => e === 'be_hit' || e === 'beHit' || e === 'take_damage' || e === 'takeDamage');
-    if (isAttackerTrigger || activity?.id === 'hellishRebuke' || (activity?.name || '').toLowerCase().includes('backlash') || (activity?.name || '').toLowerCase().includes('rebuke')) {
-      return ', the attacker';
-    }
-    return ', the target';
-  }
-  if (targetObj.inherit) {
-    return '';
-  }
-
-  const type = (evalStr(targetObj.type) || '').toLowerCase();
-  const countRaw = targetObj.count !== undefined ? evalStr(targetObj.count) : '';
-  const countNum = parseInt(countRaw, 10);
-
-  if (type === 'multiple' || type === 'multi' || (!isNaN(countNum) && countNum > 1)) {
-    const rangePart = cleanRange && !/^self$/i.test(cleanRange) ? ` within ${cleanRange}` : '';
-    if (!countRaw || isNaN(countNum)) {
-      return `, ${filterPlural} of your choice${rangePart}`;
-    }
-    const cntStr = countRaw || String(countNum);
-    const noun = targetObj.filter
-      ? (cntStr === '1' ? filterSingular : filterPlural)
-      : (cntStr === '1' ? 'target' : 'targets');
-    return `, up to ${cntStr} ${noun}${rangePart}`;
-  }
-
-  if (isAttack) {
-    return '';
-  }
-
-  if (cleanRange) {
-    const lowerRange = cleanRange.toLowerCase();
-    if (lowerRange === 'self') {
-      return '';
-    }
-    if (lowerRange === 'touch') {
-      return `, one ${filterSingular} you touch`;
-    }
-    if (/\b(in the area|within)\b/i.test(filterSingular)) {
-      return `, one ${filterSingular}`;
-    }
-    return `, one ${filterSingular} within ${cleanRange}`;
-  }
-
-  return '';
-}
-
-const TRIGGER_EVENT_MAP = {
-  cast_spell: "cast a spell",
-  on_cast: "the area is created",
-  enter_area: "a creature enters the area",
-  area_moves_into_space: "the area moves into a creature's space",
-  move_into_space: "the area moves into a creature's space",
-  start_turn: "starts its turn there",
-  end_turn: "ends its turn there",
-  leave_area: "leaves the area",
-  move_within_range: "a creature moves within range"
-};
-
+/**
+ * Formats the trigger section of a block into a "When ..." sentence.
+ * Uses a complete lookup table covering every TriggerEventEnum value.
+ */
 export function formatTrigger(trigger, evalStr) {
   if (!trigger) return '';
   if (typeof trigger === 'string') return evalStr(trigger);
-  if (typeof trigger === 'object') {
-    if (trigger.text) return evalStr(trigger.text);
-    if (trigger.event) {
-      const rawEvents = Array.isArray(trigger.event) ? trigger.event : [trigger.event];
-      const auraKeys = ['on_cast', 'enter_area', 'area_moves_into_space', 'move_into_space', 'start_turn', 'end_turn', 'leave_area', 'move_within_range'];
-      const hasAuraEvents = rawEvents.some(e => auraKeys.includes(e));
-      if (hasAuraEvents) {
-        const parts = rawEvents.map(e => TRIGGER_EVENT_MAP[e] || e.replace(/_/g, ' '));
-        if (parts.length === 1) {
-          return `When ${parts[0]}`;
-        }
-        return `When ${parts.slice(0, -1).join(', ')}, or ${parts[parts.length - 1]}`;
+
+  if (trigger.text) return evalStr(trigger.text);
+
+  if (trigger.event) {
+    const rawEvents = Array.isArray(trigger.event) ? trigger.event : [trigger.event];
+
+    // Partition into personal ("you …") and impersonal events
+    const personalPhrases = [];
+    const impersonalPhrases = [];
+
+    for (const e of rawEvents) {
+      const entry = TRIGGER_EVENT_PHRASES[e];
+      if (!entry) {
+        // Unknown event — emit a best-effort form
+        personalPhrases.push(e.replace(/_/g, ' '));
+        continue;
       }
-      const hasFailCheckSave = rawEvents.includes('fail_check') || rawEvents.includes('failCheck') || rawEvents.includes('fail_save') || rawEvents.includes('failSave');
-      if (hasFailCheckSave) {
-        const events = [];
-        if (rawEvents.some(e => e === 'failCheck' || e === 'fail_check')) events.push('an ability check');
-        if (rawEvents.some(e => e === 'failSave' || e === 'fail_save')) events.push('saving throw');
-        return `When you or a creature you can see fails ${events.join(' or ')}`;
+      if (entry.subject === null) {
+        impersonalPhrases.push(entry.phrase);
+      } else {
+        // Group by subject
+        personalPhrases.push({ subject: entry.subject, phrase: entry.phrase });
       }
-      const eventNames = rawEvents.map(e => {
-        if (e === 'land_crit' || e === 'landCrit') return 'hit with a critical hit';
-        if (e === 'drop_enemy_zero' || e === 'dropEnemyZero') return 'reduce an enemy to 0 HP';
-        if (e === 'take_damage' || e === 'takeDamage') return 'take damage';
-        return e.replace(/_/g, ' ').replace(/\bbe hit\b/gi, 'are hit with an attack');
-      }).join(' or ');
-      return `When you ${eventNames}`;
     }
+
+    const parts = [];
+
+    // Build impersonal clauses first
+    if (impersonalPhrases.length > 0) {
+      const joined = joinOr(impersonalPhrases);
+      parts.push(`When ${joined}`);
+    }
+
+    // Group personal clauses by subject, then merge
+    if (personalPhrases.length > 0) {
+      // Separate plain strings (unknown events) from structured entries
+      const structured = personalPhrases.filter(p => typeof p === 'object');
+      const raw = personalPhrases.filter(p => typeof p === 'string');
+
+      const bySubject = new Map();
+      for (const { subject, phrase } of structured) {
+        if (!bySubject.has(subject)) bySubject.set(subject, []);
+        bySubject.get(subject).push(phrase);
+      }
+
+      for (const [subject, phrases] of bySubject) {
+        const joined = joinOr(phrases);
+        parts.push(`When ${subject} ${joined}`);
+      }
+
+      if (raw.length > 0) {
+        parts.push(`When you ${joinOr(raw)}`);
+      }
+    }
+
+    if (parts.length === 0) return '';
+    return parts.join(', or ');
   }
+
   return '';
+}
+
+function joinOr(arr) {
+  if (arr.length === 1) return arr[0];
+  return `${arr.slice(0, -1).join(', ')}, or ${arr[arr.length - 1]}`;
 }
 
 export function formatRepeat(repeat, pattern, evalStr) {
@@ -206,21 +201,16 @@ export function formatRepeat(repeat, pattern, evalStr) {
   let rawAction = '';
   if (typeof repeat === 'string') {
     rawAction = repeat;
-    if (!['action', 'bonus_action', 'bonusaction', 'free_action', 'freeaction', 'reaction'].includes(rawAction.toLowerCase())) {
-      return ` _Repeat_: ${evalStr(repeat)}.`;
-    }
   } else if (typeof repeat === 'object') {
-    if (repeat.text) return ` _Repeat_: ${evalStr(repeat.text)}.`;
     if (repeat.action) rawAction = repeat.action;
   }
-
   if (!rawAction) return '';
 
-  let actionName = 'action';
   const lower = rawAction.toLowerCase();
-  if (lower === 'bonus_action' || lower === 'bonusaction') actionName = 'Bonus Action';
+  let actionName = 'action';
+  if (lower === 'bonus_action') actionName = 'Bonus Action';
   else if (lower === 'action') actionName = 'action';
-  else if (lower === 'free_action' || lower === 'freeaction') actionName = 'free action';
+  else if (lower === 'free_action') actionName = 'free action';
   else if (lower === 'reaction') actionName = 'reaction';
 
   const article = /^[aeiou]/i.test(actionName) ? 'an' : 'a';
@@ -234,96 +224,207 @@ export function formatRepeat(repeat, pattern, evalStr) {
   return ` _Repeat_: On subsequent turns, you can take ${article} ${actionName} to repeat the effect.`;
 }
 
-export function formatPayload(payload, evalStr, formatDiceObj) {
+/**
+ * Formats a target specification into a natural-language clause beginning with ", ".
+ * e.g. ", one creature within 60 feet"  /  ", each creature in a 15-foot-radius Sphere centered on you"
+ */
+export function formatTargetText(targetObj, formattedRange, evalStr, isAttack = false, activity = null) {
+  if (!targetObj) return '';
+  if (targetObj.text) return `, ${evalStr(targetObj.text)}`;
+  const cleanRange = formattedRange.replace(/^(range|reach)\s*/i, '').trim();
+
+  const filterSingular = formatFilterText(targetObj.filter, evalStr, false);
+  const filterPlural = formatFilterText(targetObj.filter, evalStr, true);
+
+  // ── AOE target ──────────────────────────────────────────────────────────────
+  if (targetObj.aoe) {
+    const shape = capitalize(evalStr(targetObj.aoe.shape || 'sphere'));
+    const size = evalStr(targetObj.aoe.size || '');
+    const isLine = shape.toLowerCase() === 'line';
+    const isWall = shape.toLowerCase() === 'wall';
+    const isEmanation = shape.toLowerCase() === 'emanation';
+    const sizePhrase = (isLine || isWall) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
+
+    let rangePart = '';
+    const lowerRange = cleanRange.toLowerCase();
+    if (targetObj.inherit === 'trigger' || targetObj.inherit === 'prev_step') {
+      rangePart = ' centered on the target';
+    } else if (lowerRange === 'self' || isEmanation) {
+      rangePart = isLine ? ' originating from you' : ' centered on you';
+    } else if (cleanRange) {
+      rangePart = ` centered on a point within ${cleanRange}`;
+    }
+    return `, each ${filterSingular} in a ${sizePhrase}${rangePart}`;
+  }
+
+  // ── Inherited target ────────────────────────────────────────────────────────
+  if (targetObj.inherit === 'trigger') {
+    const triggerEvent = activity?.mechanic?.trigger?.event
+      ?? activity?.mechanic?.blocks?.[0]?.trigger?.event
+      ?? '';
+    const rawEvents = Array.isArray(triggerEvent) ? triggerEvent : [triggerEvent];
+    // Events where "you" are the one reacting to something done TO you
+    const isAttackerTrigger = rawEvents.some(e =>
+      e === 'be_hit' || e === 'take_damage'
+    );
+    return isAttackerTrigger ? ', the attacker' : ', the target';
+  }
+  if (targetObj.inherit === 'prev_step') {
+    return '';
+  }
+
+  const type = (evalStr(targetObj.type) || '').toLowerCase();
+  const countRaw = targetObj.count !== undefined ? evalStr(targetObj.count) : '';
+  const countNum = parseInt(countRaw, 10);
+
+  // ── Multiple targets ────────────────────────────────────────────────────────
+  if (type === 'multiple' || type === 'multi' || (!isNaN(countNum) && countNum > 1)) {
+    const rangePart = cleanRange && !/^self$/i.test(cleanRange) ? ` within ${cleanRange}` : '';
+    if (!countRaw || isNaN(countNum)) {
+      return `, ${filterPlural} of your choice${rangePart}`;
+    }
+    const noun = targetObj.filter
+      ? (countRaw === '1' ? filterSingular : filterPlural)
+      : (countRaw === '1' ? 'target' : 'targets');
+    return `, up to ${countRaw} ${noun}${rangePart}`;
+  }
+
+  // ── Attack pattern: target is implied by the roll ───────────────────────────
+  if (isAttack) return '';
+
+  // ── Single / touch / self targets ───────────────────────────────────────────
+  if (!cleanRange) return '';
+  const lowerRange = cleanRange.toLowerCase();
+  if (lowerRange === 'self') return '';
+  if (lowerRange === 'touch') return `, one ${filterSingular} you touch`;
+  return `, one ${filterSingular} within ${cleanRange}`;
+}
+
+// ─── Payload formatting ───────────────────────────────────────────────────────
+
+/**
+ * Formats a single payload into a natural-language fragment (no leading capital,
+ * no trailing period — the caller handles those).
+ */
+export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
   if (!payload) return '';
   if (typeof payload === 'string') return evalStr(payload);
-  if (payload.type === 'text' || (!payload.type && payload.text)) {
-    let txt = evalStr(payload.text).trim();
-    if (txt) {
-      txt = txt.charAt(0).toLowerCase() + txt.slice(1);
-      txt = txt.replace(/\b(?<!the\s)target\b/gi, 'the target');
-      txt = txt.replace(/\.$/, '');
-      return txt;
-    }
+
+  const type = getPayloadType(payload);
+
+  // ── Text payload ─────────────────────────────────────────────────────────────
+  if (type === 'text') {
+    const raw = payload.text ? evalStr(payload.text).trim() : '';
+    if (!raw) return '';
+    // Normalise: lowercase first char, ensure bare "target" → "the target"
+    const lowered = raw.charAt(0).toLowerCase() + raw.slice(1);
+    return lowered
+      .replace(/\b(?<!the\s)target\b/gi, 'the target')
+      .replace(/\.$/, '');
   }
 
-  const type = payload.type;
-
-  if (type === 'damage' || (!type && payload.dice)) {
+  // ── Damage payload ──────────────────────────────────────────────────────────
+  if (type === 'damage') {
     const dDice = formatDiceObj(payload.dice, payload.min, evalStr);
-    const rawType = payload.type === 'damage' ? payload.damageType : (payload.damageType || payload.type);
-    const dType = formatDamageType(rawType, evalStr);
+    const dType = formatDamageType(payload.damageType, evalStr);
     const typeStr = dType ? ` ${dType}` : '';
     if (payload.text) {
-      let txt = evalStr(payload.text).trim();
-      if (dDice) return `${dDice} ${txt}`.trim();
-      return txt;
+      const txt = evalStr(payload.text).trim();
+      return dDice ? `${dDice} ${txt}`.trim() : txt;
     }
-    return dDice ? `${dDice}${typeStr} damage`.trim() : 'damage'.trim();
+    return dDice ? `${dDice}${typeStr} damage` : 'damage';
   }
 
+  // ── Healing payload ─────────────────────────────────────────────────────────
+  if (type === 'healing') {
+    const healEntry = payload.healing || payload;
+    const diceStr = formatDiceObj(healEntry.dice, undefined, evalStr);
+    const typeLabel = healEntry.type === 'tempHitPoints' ? 'Temporary Hit Points' : 'Hit Points';
+    return diceStr ? `${diceStr} ${typeLabel}` : typeLabel;
+  }
+
+  // ── Condition payload ───────────────────────────────────────────────────────
   if (type === 'condition') {
     const rawCond = Array.isArray(payload.condition) ? payload.condition : [payload.condition];
     const formattedCond = rawCond.map(c => capitalize(evalStr(c))).join(' and ');
-    let condBase = formattedCond.toLowerCase() === 'prone' ? 'knocked Prone' : `given the ${formattedCond} condition`;
+    const condBase = formattedCond.toLowerCase() === 'prone'
+      ? 'Prone'
+      : `the ${formattedCond} condition`;
 
+    let endText = '';
     if (payload.end) {
-      let endText = '';
       if (typeof payload.end === 'string') {
-        if (payload.end === 'take_damage' || payload.end === 'damage') {
-          endText = ' (ends if target takes damage)';
-        } else if (payload.end === 'repeat_save_on_damage') {
-          endText = ' (repeats save whenever it takes damage)';
-        } else if (payload.end === 'action_check') {
-          endText = ' (ends if target uses an Action to escape)';
-        } else if (payload.end === 'turn_repeat_save') {
-          endText = ' (repeats save at end of each turn)';
-        } else if (payload.end === 'end_of_its_next_turn') {
-          endText = ' until the end of its next turn';
-        } else if (payload.end === 'end_of_your_next_turn') {
-          endText = ' until the end of your next turn';
-        } else if (payload.end === 'end_of_next_turn') {
-          endText = ' until the end of next turn';
+        let actionCheckText = ' (escape DC)';
+        if (payload.end === 'action_check') {
+          const rawDc = ctx?.saveDc
+            ? evalStr(ctx.saveDc)
+            : evalStr('$(attributes.spellcasting.save)');
+          const cleanDc = rawDc.replace(/^DC\s*/i, '').trim();
+          actionCheckText = (cleanDc && !cleanDc.includes('$'))
+            ? ` (escape DC ${cleanDc})`
+            : ' (escape DC)';
         }
-      } else if (typeof payload.end === 'object' && payload.end.text) {
+        const endMap = {
+          take_damage: ' (ends if the target takes damage)',
+          repeat_save_on_damage: ' (repeats save whenever it takes damage)',
+          action_check: actionCheckText,
+          turn_repeat_save: ' (repeats save at end of each turn)',
+          end_of_its_next_turn: ' until the end of its next turn',
+          end_of_your_next_turn: ' until the end of your next turn',
+          end_of_next_turn: ' until the end of next turn',
+        };
+        endText = endMap[payload.end] ?? ` (${evalStr(payload.end)})`;
+      } else if (payload.end?.text) {
         endText = ` (${evalStr(payload.end.text)})`;
       }
-      condBase += endText;
     }
-    return condBase;
+    return `${condBase}${endText}`;
   }
 
+  // ── Roll modifier payload ───────────────────────────────────────────────────
   if (type === 'rollModifier') {
     if (payload.text) return evalStr(payload.text);
     const modType = payload.modifierType || 'advantage';
-    const rawRolls = Array.isArray(payload.targetRolls) ? payload.targetRolls : [payload.targetRolls || 'roll'];
+    const rawRolls = Array.isArray(payload.targetRolls)
+      ? payload.targetRolls
+      : [payload.targetRolls || 'roll'];
     const rollNames = {
       attack: 'attack',
       check: 'ability check',
       abilityCheck: 'ability check',
       save: 'saving throw',
       savingThrow: 'saving throw',
-      dmg: 'damage'
+      dmg: 'damage',
+      trigger: 'triggering roll',
     };
     const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
 
     let endStr = '';
-    if (payload.end === 'end_of_your_next_turn') endStr = ' until the end of your next turn';
-    else if (payload.end === 'end_of_its_next_turn') endStr = ' until the end of its next turn';
-    else if (typeof payload.end === 'string') endStr = ` (${evalStr(payload.end)})`;
-    else if (typeof payload.end === 'object' && payload.end.text) endStr = ` (${evalStr(payload.end.text)})`;
+    if (payload.end) {
+      if (typeof payload.end === 'string') {
+        const endMap = {
+          end_of_your_next_turn: ' until the end of your next turn',
+          end_of_its_next_turn: ' until the end of its next turn',
+        };
+        endStr = endMap[payload.end] ?? ` (${evalStr(payload.end)})`;
+      } else if (payload.end?.text) {
+        endStr = ` (${evalStr(payload.end.text)})`;
+      }
+    }
 
-    if (modType === 'advantage') return `gain Advantage on your next ${rollsStr} roll${endStr}`;
-    if (modType === 'disadvantage') return `target has Disadvantage on its next ${rollsStr} roll${endStr}`;
-    if (modType === 'reroll') return payload.text ? evalStr(payload.text) : `reroll the ${rollsStr} roll${endStr}`;
-    if (modType === 'attacksAgainstAdvantage') return `attack rolls against target have Advantage${endStr}`;
-    if (modType === 'attacksAgainstDisadvantage') return `attack rolls against target have Disadvantage${endStr}`;
-    
+    if (modType === 'advantage') return `Advantage on your next ${rollsStr}${endStr}`;
+    if (modType === 'disadvantage') return `Disadvantage on its next ${rollsStr}${endStr}`;
+    if (modType === 'reroll') return `reroll the ${rollsStr}${endStr}`;
+    if (modType === 'attacksAgainstAdvantage') return `attack rolls against the target have Advantage${endStr}`;
+    if (modType === 'attacksAgainstDisadvantage') return `attack rolls against the target have Disadvantage${endStr}`;
+
     const formulaStr = formatDiceObj(payload.dice || payload.formula, undefined, evalStr);
-    if (modType === 'add') return `add ${formulaStr} to an ${rollsStr}${endStr}`;
-    if (modType === 'subtract') return `subtract ${formulaStr} from an ${rollsStr}${endStr}`;
+    if (modType === 'add') return `add ${formulaStr} to the ${rollsStr}${endStr}`;
+    if (modType === 'subtract') return `subtract ${formulaStr} from the ${rollsStr}${endStr}`;
+    return evalStr(payload.text || '');
   }
 
+  // ── Movement payload ────────────────────────────────────────────────────────
   if (type === 'movement') {
     if (payload.text) return evalStr(payload.text);
     const dir = payload.direction || 'push';
@@ -333,58 +434,68 @@ export function formatPayload(payload, evalStr, formatDiceObj) {
       if (dir === 'pull') return `pulled up to ${distStr} closer`;
       return `moved up to ${distStr}`;
     }
-    const opportStr = payload.provokesOpportunityAttacks === false ? ' without provoking Opportunity Attacks' : '';
+    const opportStr = payload.provokesOpportunityAttacks === false
+      ? ' without provoking Opportunity Attacks'
+      : '';
     return `move up to ${distStr}${opportStr}`;
   }
 
+  // ── Stat modifier payload ───────────────────────────────────────────────────
   if (type === 'statModifier') {
-    const rawStat = (payload.stat || 'Speed').toLowerCase();
+    const rawStat = (payload.stat || 'speed').toLowerCase();
     const statName = rawStat === 'ac' ? 'AC' : capitalize(rawStat);
     const rawVal = evalStr(payload.value);
     const numVal = Number(rawVal);
     const isNeg = !isNaN(numVal) && numVal < 0;
     const absVal = !isNaN(numVal) ? Math.abs(numVal) : rawVal;
-    
+    const speedSuffix = rawStat === 'speed' ? ' feet' : '';
+
     if (payload.operation === 'set') {
-      return `target's base ${statName} becomes ${rawVal}`;
+      return `base ${statName} becomes ${rawVal}`;
     }
     if (payload.operation === 'subtract' || isNeg) {
-      return `target's ${statName} is reduced by ${absVal}${rawStat === 'speed' ? ' feet' : ''}`;
+      return `have ${statName} reduced by ${absVal}${speedSuffix}`;
     }
-    return `target's ${statName} is increased by ${absVal}${rawStat === 'speed' ? ' feet' : ''}`;
+    return `gain a +${absVal} bonus to ${statName}${speedSuffix}`;
   }
 
+  // ── Action payload ──────────────────────────────────────────────────────────
   if (type === 'action') {
-    if (payload.actionType === 'attack') {
-      return 'take an additional weapon attack';
-    }
-    if (payload.actionType === 'general') {
-      return 'take one additional action, except the Magic action';
-    }
-    return `take an ${payload.actionType || 'action'}`;
+    if (payload.text) return evalStr(payload.text);
+    if (payload.actionType === 'attack') return 'take an additional weapon attack';
+    if (payload.actionType === 'general') return 'take one additional action, except the Magic action';
+    return `take ${payload.actionType ? `a ${payload.actionType}` : 'an action'}`;
   }
 
+  // ── Transform payload ───────────────────────────────────────────────────────
   if (type === 'transform') {
-    const stats = Array.isArray(payload.statblock) ? payload.statblock.join(' or ') : payload.statblock;
+    const stats = Array.isArray(payload.statblock)
+      ? payload.statblock.join(' or ')
+      : payload.statblock;
     return `transform into a ${stats}`;
   }
 
+  // ── Summon payload ──────────────────────────────────────────────────────────
   if (type === 'summon') {
-    const stats = Array.isArray(payload.statblock) ? payload.statblock.join(' or ') : payload.statblock;
+    const stats = Array.isArray(payload.statblock)
+      ? payload.statblock.join(' or ')
+      : payload.statblock;
     return `summon ${stats}`;
   }
 
+  // ── Choice payload ──────────────────────────────────────────────────────────
   if (type === 'choice') {
-    const preamble = payload.text ? evalStr(payload.text) : 'and choose one of the following:';
+    const preamble = payload.text
+      ? evalStr(payload.text)
+      : 'choose one of the following:';
     const opts = Array.isArray(payload.options) ? payload.options : [];
     const optionLines = opts.map(opt => {
       const optName = opt.name ? `**${evalStr(opt.name)}**: ` : '';
-      let optBody = '';
-      if (opt.text) {
-        optBody = evalStr(opt.text);
-      } else if (opt.payloads) {
-        optBody = formatPayloadList(opt.payloads, evalStr, formatDiceObj);
-      }
+      const optBody = opt.text
+        ? evalStr(opt.text)
+        : opt.payloads
+          ? formatPayloadList(opt.payloads, evalStr, formatDiceObj)
+          : '';
       return `> ${optName}${optBody}`;
     }).join('\n\n');
     return `${preamble}\n\n${optionLines}`;
@@ -393,27 +504,35 @@ export function formatPayload(payload, evalStr, formatDiceObj) {
   return '';
 }
 
-export function formatPayloadList(payloadList, evalStr, formatDiceObj) {
+/**
+ * Merges and formats a PayloadList (single payload or array of payloads) into
+ * a single natural-language clause with correct grammar and payload ordering.
+ *
+ * Sentence structure:
+ *   <damage> + "the target is <conditions & movements>" + <other payloads> + <action>
+ *
+ * "The target is" prefix is always applied when conditions or forced movement exist.
+ */
+export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {}) {
   if (!payloadList) return '';
   const rawList = Array.isArray(payloadList) ? payloadList : [payloadList];
 
   const sortedList = [...rawList].sort((a, b) => getPayloadRank(a) - getPayloadRank(b));
-  const targetIsPhrases = [];
-  const otherParts = [];
-  let actionStr = '';
-  let damageStr = '';
 
+  // Merge contiguous forced-movement entries of the same direction to avoid
+  // "pushed 5 feet away and pushed 5 feet away" when two payloads contribute.
   const mergedList = [];
   let totalPushDist = 0;
   let totalPullDist = 0;
 
-  sortedList.forEach(p => {
-    if (!p) return;
-    const type = getPayloadType(p);
-    if (type === 'movement' && (p.movementType === 'forced' || p.direction === 'push' || p.direction === 'pull')) {
+  for (const p of sortedList) {
+    if (!p) continue;
+    const ptype = getPayloadType(p);
+    if (ptype === 'movement' && p.movementType === 'forced') {
       const dir = p.direction || 'push';
       const rawDistStr = p.distance ? evalStr(p.distance) : '5';
       if (/\d+d\d+/i.test(rawDistStr)) {
+        // Dice-based distance — can't merge numerically
         mergedList.push(p);
       } else {
         const distNum = parseInt(rawDistStr, 10);
@@ -425,8 +544,7 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj) {
     } else {
       mergedList.push(p);
     }
-  });
-
+  }
   if (totalPushDist > 0) {
     mergedList.push({ type: 'movement', movementType: 'forced', direction: 'push', distance: `${totalPushDist}` });
   }
@@ -434,84 +552,227 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj) {
     mergedList.push({ type: 'movement', movementType: 'forced', direction: 'pull', distance: `${totalPullDist}` });
   }
 
-  mergedList.forEach(p => {
-    if (!p) return;
-    if (typeof p === 'string') {
-      otherParts.push(evalStr(p));
-      return;
-    }
-    const type = getPayloadType(p);
+  // Categorise payloads for sentence building
+  let damageStr = '';
+  const targetIsPhrasesRaw = [];   // conditions and forced movement → "the target is <phrase>"
+  const otherParts = [];
+  let actionStr = '';
 
-    if (type === 'damage' || (!type && p.dice)) {
-      const formattedDmg = formatPayload(p, evalStr, formatDiceObj);
-      if (formattedDmg) {
-        damageStr = damageStr ? `${damageStr} plus ${formattedDmg}` : formattedDmg;
-      }
-    } else if (type === 'movement') {
-      if (p.movementType === 'forced' || p.direction === 'push' || p.direction === 'pull') {
+  for (const p of mergedList) {
+    if (!p) continue;
+    if (typeof p === 'string') { otherParts.push(evalStr(p)); continue; }
+
+    const ptype = getPayloadType(p);
+
+    if (ptype === 'damage') {
+      const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+      if (fmtd) damageStr = damageStr ? `${damageStr} plus ${fmtd}` : fmtd;
+
+    } else if (ptype === 'movement') {
+      if (p.movementType === 'forced') {
+        // These go into "the target is <phrase>"
         const dir = p.direction || 'push';
         const dist = p.distance ? `${evalStr(p.distance)} feet` : '5 feet';
-        if (dir === 'push') targetIsPhrases.push(`pushed up to ${dist} away`);
-        else if (dir === 'pull') targetIsPhrases.push(`pulled up to ${dist} closer`);
-        else targetIsPhrases.push(`moved up to ${dist}`);
+        if (dir === 'push') targetIsPhrasesRaw.push(`pushed up to ${dist} away`);
+        else if (dir === 'pull') targetIsPhrasesRaw.push(`pulled up to ${dist} closer`);
+        else targetIsPhrasesRaw.push(`moved up to ${dist}`);
       } else {
-        const formattedMove = formatPayload(p, evalStr, formatDiceObj);
-        if (formattedMove) otherParts.push(formattedMove);
+        const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+        if (fmtd) otherParts.push(fmtd);
       }
-    } else if (type === 'condition') {
-      const formattedCondStr = formatPayload(p, evalStr, formatDiceObj);
-      if (formattedCondStr) {
-        targetIsPhrases.push(formattedCondStr);
-      }
-    } else if (type === 'action') {
-      actionStr = formatPayload(p, evalStr, formatDiceObj);
+
+    } else if (ptype === 'condition') {
+      // formatPayload returns the bare phrase (e.g. "Prone", "the Poisoned condition")
+      const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+      if (fmtd) targetIsPhrasesRaw.push(fmtd);
+
+    } else if (ptype === 'action') {
+      actionStr = formatPayload(p, evalStr, formatDiceObj, ctx);
+
     } else {
-      const formatted = formatPayload(p, evalStr, formatDiceObj);
-      if (formatted) otherParts.push(formatted);
+      const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+      if (fmtd) otherParts.push(fmtd);
     }
-  });
+  }
 
   const clauseParts = [];
+
   if (damageStr) clauseParts.push(damageStr);
 
-  if (targetIsPhrases.length > 0) {
-    const joinedTarget = targetIsPhrases.length === 1
-      ? targetIsPhrases[0]
-      : `${targetIsPhrases.slice(0, -1).join(', ')} and ${targetIsPhrases[targetIsPhrases.length - 1]}`;
-
-    if (damageStr) {
-      clauseParts.push(`the target is ${joinedTarget}`);
+  if (targetIsPhrasesRaw.length > 0) {
+    // Noun phrases ("the X condition") → "has"; adjective/past-participle → "is"
+    const nounPhrases = targetIsPhrasesRaw.filter(p => /^the /.test(p));
+    const adjPhrases = targetIsPhrasesRaw.filter(p => !/^the /.test(p));
+    if (adjPhrases.length > 0 && nounPhrases.length === 0) {
+      const joined = adjPhrases.length === 1 ? adjPhrases[0]
+        : `${adjPhrases.slice(0, -1).join(', ')} and ${adjPhrases[adjPhrases.length - 1]}`;
+      clauseParts.push(`the target is ${joined}`);
+    } else if (nounPhrases.length > 0 && adjPhrases.length === 0) {
+      const joined = nounPhrases.length === 1 ? nounPhrases[0]
+        : `${nounPhrases.slice(0, -1).join(', ')} and ${nounPhrases[nounPhrases.length - 1]}`;
+      clauseParts.push(`the target has ${joined}`);
     } else {
-      const hasConditionJoined = joinedTarget.replace(/given the ([^)]+?) condition/g, 'has the $1 condition');
-      clauseParts.push(`target ${hasConditionJoined}`);
+      const all = [...adjPhrases.map(p => `is ${p}`), ...nounPhrases.map(p => `has ${p}`)];
+      clauseParts.push(`the target ${all.join(', ')}`);
     }
   }
 
-  if (otherParts.length > 0) {
-    clauseParts.push(...otherParts);
-  }
-
-  if (actionStr) {
-    clauseParts.push(actionStr);
-  }
+  if (otherParts.length > 0) clauseParts.push(...otherParts);
+  if (actionStr) clauseParts.push(actionStr);
 
   if (clauseParts.length === 0) return '';
   if (clauseParts.length === 1) return clauseParts[0];
 
-  let resultStr = clauseParts[0];
+  // Join with commas; last item gets "and" only if it isn't a block-level choice
+  let result = clauseParts[0];
   for (let i = 1; i < clauseParts.length; i++) {
     const part = clauseParts[i];
-    if (part.includes('\n\n') || part.startsWith('and choose ')) {
-      resultStr = `${resultStr.replace(/\.$/, '')}, ${part}`;
+    result = result.replace(/\.$/, '');
+    if (part.includes('\n\n') || part.startsWith('choose ')) {
+      result = `${result}, ${part}`;
     } else if (i === clauseParts.length - 1) {
-      resultStr = `${resultStr.replace(/\.$/, '')}, and ${part}`;
+      result = `${result}, and ${part}`;
     } else {
-      resultStr = `${resultStr.replace(/\.$/, '')}, ${part}`;
+      result = `${result}, ${part}`;
     }
   }
-  return resultStr;
+  return result;
 }
 
+// ─── Subject and text classification helpers ──────────────────────────────────
+
+/**
+ * Builds the target noun phrase used as the sentence subject for automatic and
+ * healing blocks. Returns a full noun phrase like:
+ *   "You" / "One creature you touch" / "Up to 10 creatures within 30 feet"
+ */
+function buildSubjectNounPhrase(targetObj, activityRange, evalStr) {
+  if (!targetObj) return 'You';
+
+  const type = (evalStr(targetObj.type || '') || '').toLowerCase();
+  const cleanRange = evalStr(targetObj.range || activityRange || '').trim()
+    .replace(/^(range|reach)\s*/i, '');
+  const filter = targetObj.filter
+    ? formatFilterText(targetObj.filter, evalStr, false)
+    : 'creature';
+  const filterPlural = targetObj.filter
+    ? formatFilterText(targetObj.filter, evalStr, true)
+    : 'creatures';
+
+  if (targetObj.inherit === 'trigger') return 'The target';
+  if (targetObj.inherit === 'prev_step') return '';
+
+  const lowerRange = cleanRange.toLowerCase();
+
+  if (type === 'self' || lowerRange === 'self') return 'You';
+
+  if (type === 'touch' || lowerRange === 'touch') {
+    return `One ${filter} you touch`;
+  }
+
+  const countRaw = targetObj.count !== undefined ? evalStr(targetObj.count) : '';
+  const countNum = parseInt(countRaw, 10);
+  const isMultiple = type === 'multiple' || type === 'multi'
+    || (!isNaN(countNum) && countNum > 1);
+
+  if (isMultiple) {
+    const cntStr = countRaw || String(countNum);
+    const rangePart = cleanRange && !/^self$/i.test(cleanRange) ? ` within ${cleanRange}` : '';
+    const count = parseInt(cntStr, 10);
+    return `Up to ${cntStr} ${!isNaN(count) && count === 1 ? filter : filterPlural}${rangePart}`;
+  }
+
+  // single
+  if (cleanRange && !/^self$/i.test(cleanRange)) {
+    return `One ${filter} within ${cleanRange}`;
+  }
+
+  return `One ${filter}`;
+}
+
+/**
+ * Classifies a raw body string to determine how to wrap it in a sentence.
+ *
+ * Returns one of:
+ *   'STRUCTURED'  — the body came entirely from typed payloads; caller wraps freely
+ *   'INFINITIVE'  — body starts with a bare infinitive verb (gain, add, take, ...)
+ *   'HAS_SUBJECT' — body already contains a subject ("the target", "you", "allies")
+ *   'NARRATIVE'   — body is a full narrative clause (when, while, if, at, the area...)
+ *
+ * @param {string}  body        — the composed body string (post-payload formatting)
+ * @param {boolean} fromPayloads — true if body came entirely from typed payloads
+ */
+function classifyBodyText(body, fromPayloads) {
+  if (fromPayloads) return 'STRUCTURED';
+  if (!body) return 'STRUCTURED';
+
+  const lower = body.trim().toLowerCase();
+
+  // Already-subject forms:
+  if (
+    lower.startsWith('you ') || lower.startsWith('you\'') ||
+    lower.startsWith('the target') ||
+    lower.startsWith('target ') ||
+    lower.startsWith('target\'s ') ||
+    lower.startsWith('the attacker') ||
+    lower.startsWith('allies ') ||
+    lower.startsWith('targets ') ||
+    lower.startsWith('drinker ') ||
+    lower.startsWith('gains ') ||
+    lower.startsWith('its ')
+  ) return 'HAS_SUBJECT';
+
+  // Narrative clauses — emit verbatim
+  const narrativeStarters = [
+    'when ', 'while ', 'if ', 'once ', 'at the', 'on each', 'on a ',
+    'a flickering', 'a creature', 'any creature', 'any attack',
+    'creates an area', 'fire jumps', 'for the duration',
+    'against an effect', 'also command', 'command your',
+    '60-foot sphere', 'until ', 'whenever ',
+  ];
+  if (narrativeStarters.some(s => lower.startsWith(s))) return 'NARRATIVE';
+
+  // Bare infinitive verbs — we add subject and conjugate
+  const infinitiveStarters = [
+    'gain ', 'add ', 'take ', 'reduce ', 'increase ', 'move ', 'roll ',
+    'reroll ', 'get ', 'learn ', 'cast ', 'teleport ', 'create ', 'detect ',
+    'end ', 'ends ', 'double ', 'halve ', 'change ', 'choose ', 'give ',
+    'grant ', 'make ', 'cause ', 'drop ', 'either ', 'deal ', 'regain ',
+    'swap ', 'spend ', 'use ', 'ignore ', 'suppress ', 'activate ',
+  ];
+  if (infinitiveStarters.some(s => lower.startsWith(s))) return 'INFINITIVE';
+
+  // Default: treat as narrative
+  return 'NARRATIVE';
+}
+
+/**
+ * Conjugates the leading infinitive verb in a body string to third-person singular.
+ * Used when the subject is singular third-person ("One creature you touch").
+ */
+function conjugateToThirdPerson(body) {
+  return body.replace(
+    /^(gain|add|take|roll|reroll|lose|move|make|use|deal|halve|push|pull|reduce|increase|swap|spend|regain|get|learn|cast|teleport|create|detect|end|double|change|give|grant|cause|drop|ignore|suppress|activate|have|become)\b/i,
+    match => {
+      const m = match.toLowerCase();
+      // Irregular
+      if (m === 'have') return 'has';
+      if (m === 'do') return 'does';
+      if (m === 'go') return 'goes';
+      // Regular: verbs ending in -e → add s; others → add s
+      if (/e$/.test(m)) return `${m}s`;
+      return `${m}s`;
+    }
+  );
+}
+
+
+// ─── Block formatter ──────────────────────────────────────────────────────────
+
+/**
+ * Formats a single mechanic block (attack / save / healing / automatic / aura)
+ * into a complete Markdown string ready to be embedded in the activity line.
+ */
 export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
   if (!block) return '';
 
@@ -521,49 +782,52 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     summary: activity?.summary || '',
     description: activity?.description || '',
     ...(activity?.variables || {}),
-    ...(scope || {})
+    ...(scope || {}),
   };
 
+  // Expression evaluator — resolves $(…) tokens and simple string aliases
   const evalStr = (val) => {
     if (val === null || val === undefined) return '';
     let strVal = String(val);
-    if (strVal === '$(range)' || strVal === 'range') return activity?.range || '';
-    if (strVal.includes('$(range)')) strVal = strVal.replace(/\$\(range\)/g, activity?.range || '');
-    if (strVal === '$(summary)' || strVal === 'summary') return activity?.summary || activity?.description || '';
-    if (strVal.includes('$(summary)')) strVal = strVal.replace(/\$\(summary\)/g, activity?.summary || activity?.description || '');
-    if (strVal === '$(description)' || strVal === 'description') return (activity?.description || activity?.summary || '').trim();
-    if (strVal.includes('$(description)')) strVal = strVal.replace(/\$\(description\)/g, (activity?.description || activity?.summary || '').trim());
+    if (strVal === '$(range)' || strVal === 'range') return String(activity?.range || '');
+    if (strVal.includes('$(range)')) strVal = strVal.replace(/\$\(range\)/g, String(activity?.range || ''));
+    if (strVal === '$(summary)' || strVal === 'summary') return String(activity?.summary || activity?.description || '');
+    if (strVal.includes('$(summary)')) strVal = strVal.replace(/\$\(summary\)/g, String(activity?.summary || activity?.description || ''));
+    if (strVal === '$(description)' || strVal === 'description') return String(activity?.description || activity?.summary || '').trim();
+    if (strVal.includes('$(description)')) strVal = strVal.replace(/\$\(description\)/g, String(activity?.description || activity?.summary || '').trim());
     if (strVal.includes('$')) {
-      const res = evaluator.evaluate(strVal, effectiveScope);
-      return res !== undefined && res !== null ? String(res) : strVal;
+      const res = evaluator ? evaluator.evaluate(strVal, effectiveScope) : strVal;
+      return res !== null && res !== undefined ? String(res) : strVal;
     }
     return strVal;
   };
 
   const formatRange = (range, evalFn) => formatDistance(evalFn(range));
+
+  /** Formats a dice object, string, or number into a display string like "2d8+3" */
   const formatDiceObj = (diceVal, payloadMin, evalFn) => {
-    const fnEval = evalFn || evalStr;
+    const fn = evalFn || evalStr;
     if (!diceVal) return '';
     if (typeof diceVal === 'number' || typeof diceVal === 'string') {
-      return String(fnEval(diceVal));
+      return String(fn(diceVal));
     }
     if (typeof diceVal === 'object') {
-      const cnt = diceVal.count !== undefined ? fnEval(diceVal.count) : '';
-      const sds = diceVal.sides !== undefined ? fnEval(diceVal.sides) : '';
-      const rawBns = (diceVal.bonus !== undefined && diceVal.bonus !== null) ? evaluator.evaluate(diceVal.bonus, effectiveScope) : 0;
+      const cnt = diceVal.count !== undefined ? fn(diceVal.count) : '';
+      const sds = diceVal.sides !== undefined ? fn(diceVal.sides) : '';
+      const rawBns = (diceVal.bonus !== undefined && diceVal.bonus !== null)
+        ? evaluator.evaluate(diceVal.bonus, effectiveScope)
+        : 0;
       const numBns = typeof rawBns === 'number' ? rawBns : Number(rawBns);
       const bnsStr = !isNaN(numBns) && numBns !== 0
         ? formatBonus(numBns)
-        : (diceVal.bonus ? fnEval(diceVal.bonus) : '');
+        : (diceVal.bonus ? fn(diceVal.bonus) : '');
 
       let minSuffix = '';
       const minPerDie = diceVal.min !== undefined ? evaluator.evaluate(diceVal.min, effectiveScope) : null;
       const totalMinOverride = payloadMin !== undefined ? evaluator.evaluate(payloadMin, effectiveScope) : null;
-
       if (minPerDie !== null && minPerDie !== undefined && minPerDie !== '') {
         const numCnt = Number(cnt) || 1;
-        const numMinDie = Number(minPerDie) || 0;
-        const totalCrunchedMin = (numCnt * numMinDie) + (numBns || 0);
+        const totalCrunchedMin = (numCnt * (Number(minPerDie) || 0)) + (numBns || 0);
         minSuffix = ` (min: ${totalCrunchedMin})`;
       } else if (totalMinOverride !== null && totalMinOverride !== undefined && totalMinOverride !== '') {
         minSuffix = ` (min: ${totalMinOverride})`;
@@ -581,23 +845,28 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
   const pattern = block.pattern;
   const rawRange = evalStr(block.target?.range || activity?.range || '').trim();
   const formattedRange = formatRange(rawRange, evalStr);
-
   const text = block.text ? evalStr(block.text).trim() : '';
-
   const triggerStr = formatTrigger(block.trigger, evalStr);
   let mainBody = '';
 
-  // 1. ATTACK PATTERN
+  // ── 1. ATTACK ──────────────────────────────────────────────────────────────
   if (pattern === 'attack' && block.attack) {
     const classif = capitalize(evalStr(block.attack.classification || 'melee'));
     const rawBonus = evaluator.evaluate(block.attack.bonus || '$(attributes.spellcasting.attack)', effectiveScope);
     const numBonus = typeof rawBonus === 'number' ? rawBonus : Number(rawBonus);
-    const bonusStr = !isNaN(numBonus) ? formatBonus(numBonus) : evalStr(block.attack.bonus || '$(attributes.spellcasting.attack)');
+    const bonusStr = !isNaN(numBonus)
+      ? formatBonus(numBonus)
+      : evalStr(block.attack.bonus || '$(attributes.spellcasting.attack)');
+
+    const targetDesc = formatTargetText(block.target, formattedRange, evalStr, true, activity);
+
+    const rangeOutput = formattedRange.startsWith('reach') || formattedRange.startsWith('range')
+      ? formattedRange
+      : `range ${formattedRange}`;
 
     let hitText = '';
-    const hitObj = block.hit || block.damage;
-    if (hitObj) {
-      let formattedHit = formatPayloadList(hitObj, evalStr, formatDiceObj);
+    if (block.hit) {
+      let formattedHit = formatPayloadList(block.hit, evalStr, formatDiceObj);
       if (block.hitOrMiss) {
         const formattedHitOrMiss = formatPayloadList(block.hitOrMiss, evalStr, formatDiceObj);
         if (formattedHitOrMiss) formattedHit = `${formattedHit}, and ${formattedHitOrMiss}`;
@@ -607,202 +876,212 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
 
     let missText = '';
     if (block.miss) {
-      let formattedMiss = formatPayloadList(block.miss, evalStr, formatDiceObj);
-      if (formattedMiss) {
-        formattedMiss = formattedMiss.charAt(0).toUpperCase() + formattedMiss.slice(1);
-        missText = ` _Miss_: ${formattedMiss}.`;
+      const isStructuredOutcome = typeof block.miss === 'object'
+        && !Array.isArray(block.miss)
+        && ('halfDamage' in block.miss || 'payloads' in block.miss
+            || ('text' in block.miss && !('type' in block.miss)));
+
+      if (isStructuredOutcome) {
+        const parts = [];
+        if (block.miss.halfDamage) parts.push('half damage');
+        if (block.miss.payloads) {
+          const pStr = formatPayloadList(block.miss.payloads, evalStr, formatDiceObj);
+          if (pStr) parts.push(pStr);
+        }
+        if (block.miss.text) parts.push(evalStr(block.miss.text));
+        if (parts.length > 0) {
+          missText = ` _Miss_: ${capitalize(parts.join(', '))}.`;
+        }
+      } else {
+        const formattedMiss = formatPayloadList(block.miss, evalStr, formatDiceObj);
+        if (formattedMiss) missText = ` _Miss_: ${capitalize(formattedMiss)}.`;
       }
     }
 
     let critText = '';
     if (block.crit) {
-      let formattedCrit = formatPayloadList(block.crit, evalStr, formatDiceObj);
-      if (formattedCrit) {
-        formattedCrit = formattedCrit.charAt(0).toUpperCase() + formattedCrit.slice(1);
-        critText = ` _Critical Hit_: ${formattedCrit}.`;
-      }
+      const formattedCrit = formatPayloadList(block.crit, evalStr, formatDiceObj);
+      if (formattedCrit) critText = ` _Critical Hit_: ${capitalize(formattedCrit)}.`;
     }
 
-    const targetDesc = formatTargetText(block.target, formattedRange, evalStr, true, activity);
-
-    const rangeOutput = formattedRange.startsWith('reach') || formattedRange.startsWith('range')
-      ? formattedRange
-      : `range ${formattedRange}`;
-
-    const rawRangeStr = rangeOutput.replace(/\.+$/, '');
-    mainBody = `_${classif} Attack Roll_: ${bonusStr}, ${rawRangeStr}${targetDesc}.${hitText}${missText}${critText}${text ? ` ${text}` : ''}`;
+    mainBody = `_${classif} Attack Roll_: ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${missText}${critText}${text ? ` ${text}` : ''}`;
   }
 
-  // 2. SAVE PATTERN
+  // ── 2. SAVE ────────────────────────────────────────────────────────────────
   else if (pattern === 'save' && block.save) {
     const abilityKey = (evalStr(block.save.ability) || 'dex').toLowerCase();
     const fullAbility = ABILITY_NAMES[abilityKey] || capitalize(abilityKey);
     const dcVal = evalStr(block.save.dc || '$(attributes.spellcasting.save)');
-
     const targetDesc = formatTargetText(block.target, formattedRange, evalStr, false, activity);
 
     let alwaysText = '';
     if (block.failureOrSuccess) {
-      const formattedAlways = formatPayloadList(block.failureOrSuccess, evalStr, formatDiceObj);
-      if (formattedAlways) alwaysText = ` _Failure or Success_: ${formattedAlways}.`;
+      const fmtd = formatPayloadList(block.failureOrSuccess, evalStr, formatDiceObj);
+      if (fmtd) alwaysText = ` _Failure or Success_: ${fmtd}.`;
     }
 
     let failText = '';
     if (block.failure) {
-      let formattedFail = formatPayloadList(block.failure, evalStr, formatDiceObj);
-      if (formattedFail) {
-        formattedFail = formattedFail.charAt(0).toUpperCase() + formattedFail.slice(1);
-        failText = ` _Failure_: ${formattedFail}.`;
-      }
+      const fmtd = formatPayloadList(block.failure, evalStr, formatDiceObj);
+      if (fmtd) failText = ` _Failure_: ${capitalize(fmtd)}.`;
     }
 
     let successText = '';
     if (block.success) {
-      if (typeof block.success === 'object') {
+      // Discriminate SaveSuccessOutcome from a bare PayloadList:
+      // SaveSuccessOutcome has at least one of: halfDamage, payloads, text (no `type` key)
+      const isStructuredOutcome = typeof block.success === 'object'
+        && !Array.isArray(block.success)
+        && ('halfDamage' in block.success || 'payloads' in block.success
+            || ('text' in block.success && !('type' in block.success)));
+
+      if (isStructuredOutcome) {
         const parts = [];
         if (block.success.halfDamage) parts.push('half damage');
         if (block.success.payloads) {
-          const payloadStr = formatPayloadList(block.success.payloads, evalStr, formatDiceObj);
-          if (payloadStr) parts.push(payloadStr);
+          const pStr = formatPayloadList(block.success.payloads, evalStr, formatDiceObj);
+          if (pStr) parts.push(pStr);
         }
         if (block.success.text) parts.push(evalStr(block.success.text));
         if (parts.length > 0) {
-          let sText = parts.join(', ');
-          successText = ` _Success_: ${sText.charAt(0).toUpperCase() + sText.slice(1)}.`;
+          successText = ` _Success_: ${capitalize(parts.join(', '))}.`;
         }
       } else {
-        let formattedSucc = formatPayloadList(block.success, evalStr, formatDiceObj);
-        if (formattedSucc) {
-          formattedSucc = formattedSucc.charAt(0).toUpperCase() + formattedSucc.slice(1);
-          successText = ` _Success_: ${formattedSucc}.`;
-        }
+        const fmtd = formatPayloadList(block.success, evalStr, formatDiceObj);
+        if (fmtd) successText = ` _Success_: ${capitalize(fmtd)}.`;
       }
     }
 
     mainBody = `_${fullAbility} Saving Throw_: DC ${dcVal}${targetDesc}.${alwaysText}${failText}${successText}${text ? ` ${text}` : ''}`.replace(/\.\./g, '.');
   }
 
-  // 3. HEALING PATTERN
+  // ── 3. HEALING ─────────────────────────────────────────────────────────────
   else if (pattern === 'healing' && block.healing) {
-    const targetDesc = formatTargetText(block.target, formattedRange, evalStr, false, activity);
-    const targetLabel = targetDesc ? targetDesc.replace(/^,\s*/, '') : 'Self';
+    const subject = buildSubjectNounPhrase(block.target, activity?.range, evalStr);
     const diceStr = formatDiceObj(block.healing.dice, undefined, evalStr);
-    const typeLabel = block.healing.type === 'tempHitPoints' ? 'Temporary Hit Points' : 'Hit Points';
-    const poolSuffix = block.healing.pool ? ' divided among targets' : '';
-    mainBody = `_Healing_: ${targetLabel.charAt(0).toUpperCase() + targetLabel.slice(1)}, ${diceStr} ${typeLabel}${poolSuffix}.${text ? ` ${text}` : ''}`;
+    const isTempHP = block.healing.type === 'tempHitPoints';
+    const typeLabel = isTempHP ? 'Temporary Hit Points' : 'Hit Points';
+    const isPlural = /^up to \d+ /i.test(subject);
+    const verb = subject === 'You' ? 'gain' : (isPlural ? (isTempHP ? 'gain' : 'regain') : (isTempHP ? 'gains' : 'regains'));
+
+    let healStr = diceStr ? `${diceStr} ${typeLabel}` : typeLabel;
+    if (block.healing.pool) healStr += ', divided among the targets';
+
+    mainBody = `${subject} ${verb} ${healStr}.`;
+    if (text) mainBody += ` ${capitalize(text.replace(/\.$/, ''))}.`;
   }
 
-  // 4. AUTOMATIC PATTERN
-  else if (pattern === 'automatic' || pattern === 'utility') {
-    let payloadText = '';
-    const payloadObj = block.payloads || block.damage;
-    if (payloadObj) {
-      payloadText = formatPayloadList(payloadObj, evalStr, formatDiceObj);
-    }
+  // ── 4. AUTOMATIC ───────────────────────────────────────────────────────────
+  else if (pattern === 'automatic') {
+    const payloadObj = block.payloads;
+    const fromPayloads = !!payloadObj && !text;
+    const payloadText = payloadObj ? formatPayloadList(payloadObj, evalStr, formatDiceObj) : '';
 
-    const explicitText = text.trim();
-    let rawCombinedText = '';
-    if (payloadText && explicitText) {
-      rawCombinedText = `${payloadText} ${explicitText}`;
+    // Build the raw body — payloads first, then any narrative text addendum
+    let rawBody = '';
+    if (payloadText && text) {
+      rawBody = `${payloadText}. ${capitalize(text)}`;
     } else if (payloadText) {
-      rawCombinedText = payloadText;
-    } else if (explicitText) {
-      rawCombinedText = explicitText;
+      rawBody = payloadText;
+    } else {
+      rawBody = text;
     }
 
-    const targetType = (evalStr(block.target?.type) || '').toLowerCase();
-    const countRaw = block.target?.count !== undefined ? evalStr(block.target.count) : '';
-    const countNum = parseInt(countRaw, 10);
+    const classification = classifyBodyText(rawBody, fromPayloads);
+    const subject = buildSubjectNounPhrase(block.target, activity?.range, evalStr);
+    const isPlural = /^up to \d+ /i.test(subject);
+    const isSelf = subject === 'You';
 
-    let bodyStr = rawCombinedText;
+    let bodyStr = rawBody;
+
     if (block.target?.aoe) {
+      // ── AOE automatic — describe the area inline
       const shape = capitalize(evalStr(block.target.aoe.shape || 'sphere'));
       const size = evalStr(block.target.aoe.size || '');
-      const rawRangeVal = evalStr(block.target?.range || activity?.range || '').trim();
       const isLine = shape.toLowerCase() === 'line';
       const isWall = shape.toLowerCase() === 'wall';
       const sizePhrase = (isLine || isWall) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
-      const rangePart = rawRangeVal && !/^self$/i.test(rawRangeVal) ? ` centered on a point within ${rawRangeVal}` : '';
-      bodyStr = `A ${sizePhrase}${rangePart} ${rawCombinedText.charAt(0).toLowerCase() + rawCombinedText.slice(1)}`;
-    } else if (targetType === 'multiple' || (!isNaN(countNum) && countNum > 1)) {
-      const cntStr = countRaw || String(countNum);
-      const targetRange = evalStr(block.target?.range || activity?.range || '');
-      const rangePart = targetRange && !/^self$/i.test(targetRange) ? ` within ${targetRange}` : '';
-      
-      if (rawCombinedText.toLowerCase().startsWith('add ')) {
-        bodyStr = `Up to ${cntStr} targets${rangePart} add ${rawCombinedText.slice(4)}`;
-      } else if (rawCombinedText.toLowerCase().startsWith('increase ')) {
-        bodyStr = `Up to ${cntStr} targets${rangePart} increase ${rawCombinedText.slice(9)}`;
-      } else if (rawCombinedText.toLowerCase().startsWith('gain ') || rawCombinedText.toLowerCase().startsWith('gains ')) {
-        bodyStr = `Up to ${cntStr} targets${rangePart} gain ${rawCombinedText.replace(/^(gains?)\s+/i, '')}`;
-      } else if (rawCombinedText.toLowerCase().startsWith('targets gain ') || rawCombinedText.toLowerCase().startsWith('targets gains ')) {
-        bodyStr = `Up to ${cntStr} targets${rangePart} gain ${rawCombinedText.replace(/^(targets\s+gains?)\s+/i, '')}`;
-      } else if (rawCombinedText.toLowerCase().startsWith('targets add ')) {
-        bodyStr = `Up to ${cntStr} targets${rangePart} ${rawCombinedText.slice(8)}`;
-      } else if (rawCombinedText.toLowerCase().startsWith('automatically ')) {
-        bodyStr = `Up to ${cntStr} targets${rangePart} ${rawCombinedText}`;
-      } else if (rawCombinedText.toLowerCase().startsWith('up to ')) {
-        bodyStr = rawCombinedText;
+      const rawRangeVal = evalStr(block.target?.range || activity?.range || '').trim();
+      const rangePart = rawRangeVal && !/^self$/i.test(rawRangeVal)
+        ? ` centered on a point within ${rawRangeVal}`
+        : '';
+      bodyStr = `A ${sizePhrase}${rangePart} ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
+
+    } else if (block.target?.inherit === 'trigger') {
+      // ── Reaction targeting an attacker/triggering creature (handled separately)
+      const lower = rawBody.toLowerCase();
+      if (lower.startsWith('the target') || lower.startsWith('the attacker')) {
+        bodyStr = rawBody;
+      } else if (/\bdamage\s*$/.test(lower)) {
+        bodyStr = `The target takes ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
       } else {
-        bodyStr = `Up to ${cntStr} targets${rangePart} take ${rawCombinedText.charAt(0).toLowerCase() + rawCombinedText.slice(1)} each`;
+        const verbThirdPerson = rawBody.replace(
+          /^(subtract|add|take|roll|reroll|gain|lose|move|make|use|deal|halve|push|pull|reduce|increase|swap|spend|regain)\b/i,
+          match => { const m = match.toLowerCase(); return /e$/.test(m) ? `${m}s` : `${m}s`; }
+        );
+        if (/^target's\s+/i.test(verbThirdPerson)) {
+          bodyStr = `The target's ${verbThirdPerson.replace(/^target's\s+/i, '').trim()}`;
+        } else {
+          const deduped = verbThirdPerson.replace(/^target\s+/i, '');
+          bodyStr = `The target ${deduped.charAt(0).toLowerCase() + deduped.slice(1)}`;
+        }
       }
-    } else if (targetType === 'self') {
-      const lowerComb = rawCombinedText.toLowerCase();
-      if (lowerComb.startsWith('move ')) {
-        bodyStr = `You can ${rawCombinedText.charAt(0).toLowerCase() + rawCombinedText.slice(1)}`;
-      } else if (lowerComb.startsWith('take ') || lowerComb.startsWith('gain ') || lowerComb.startsWith('add ')) {
-        bodyStr = `You ${rawCombinedText.charAt(0).toLowerCase() + rawCombinedText.slice(1)}`;
+
+    } else if (block.target?.inherit === 'prev_step') {
+      bodyStr = rawBody;
+
+    } else if (classification === 'STRUCTURED') {
+      // ── Typed payloads only — build a full subject-verb sentence
+      const lowerBody = rawBody.charAt(0).toLowerCase() + rawBody.slice(1);
+      if (lowerBody.toLowerCase().startsWith('base ac')) {
+        bodyStr = `${subject}'s ${lowerBody}`;
       } else {
-        bodyStr = rawCombinedText;
+        bodyStr = `${subject} ${lowerBody}`;
       }
-    } else if (block.target?.inherit === 'trigger' || targetType === 'trigger') {
-      const lowerComb = rawCombinedText.toLowerCase();
-      if (lowerComb.includes('damage')) {
-        bodyStr = `The target takes an extra ${rawCombinedText.replace(/\s*extra\s+damage/i, ' damage')}`;
-      } else if (lowerComb.startsWith('target knocked ')) {
-        bodyStr = `The target is ${rawCombinedText.slice(7)}`;
-      } else if (lowerComb.startsWith('target ')) {
-        bodyStr = `The ${rawCombinedText}`;
+
+    } else if (classification === 'INFINITIVE') {
+      // ── Bare infinitive: add subject and conjugate for singular 3rd-person
+      const lowerBody = rawBody.charAt(0).toLowerCase() + rawBody.slice(1);
+      if (isSelf) {
+        // "You gain..."
+        bodyStr = `${subject} ${lowerBody}`;
+      } else if (isPlural) {
+        // "Up to 10 targets gain..." — keep bare infinitive
+        bodyStr = `${subject} ${lowerBody}`;
       } else {
-        const verbFixedText = rawCombinedText
-          .replace(/^reroll\b/i, 'rerolls')
-          .replace(/^subtract\b/i, 'subtracts')
-          .replace(/^roll\b/i, 'rolls')
-          .replace(/^take\b/i, 'takes')
-          .replace(/^add\b/i, 'adds');
-        bodyStr = `The target ${verbFixedText}`;
+        // "One creature you touch gains..."
+        const conjugated = conjugateToThirdPerson(lowerBody);
+        bodyStr = `${subject} ${conjugated}`;
       }
-    } else if (targetType === 'single' || targetType === 'creature') {
-      const lowerText = rawCombinedText.toLowerCase();
-      if (lowerText.startsWith('add ') && !lowerText.includes('target')) {
-        bodyStr = `Add ${rawCombinedText.slice(4)} to the triggering roll`;
-      } else if (lowerText.startsWith('gains ') || lowerText.startsWith('gain ')) {
-        const verbFixed = rawCombinedText.replace(/^(gains?)\s+/i, 'gains ');
-        bodyStr = `One target ${verbFixed}`;
-      } else if (lowerText.startsWith('takes ') || lowerText.startsWith('take ')) {
-        const verbFixed = rawCombinedText.replace(/^(takes?)\s+/i, 'takes ');
-        bodyStr = `One target ${verbFixed}`;
-      } else if (lowerText.startsWith('receives ') || lowerText.startsWith('receive ')) {
-        const verbFixed = rawCombinedText.replace(/^(receives?)\s+/i, 'receives ');
-        bodyStr = `One target ${verbFixed}`;
-      } else {
-        bodyStr = rawCombinedText;
+
+    } else if (classification === 'HAS_SUBJECT') {
+      // ── Body already has a subject — apply Option A:
+      // Replace "(the )target('s)" → derived noun phrase for specificity
+      let resolved = rawBody;
+      if (!isSelf && subject && /^(the\s+)?target('s)?\b/i.test(rawBody)) {
+        const isPossessive = /^(the\s+)?target's\b/i.test(rawBody);
+        const repSubject = isPossessive ? `${subject}'s` : subject;
+        resolved = rawBody.replace(/^(the\s+)?target('s)?\b/i, repSubject);
       }
+      bodyStr = resolved;
+
+    } else {
+      // NARRATIVE — emit verbatim
+      bodyStr = rawBody;
     }
 
-    if (bodyStr) {
-      bodyStr = bodyStr.charAt(0).toUpperCase() + bodyStr.slice(1);
-    }
-
+    if (bodyStr) bodyStr = capitalize(bodyStr);
     let cleanBody = bodyStr.trim();
-    if (cleanBody && !/[.!?]$/.test(cleanBody)) {
-      cleanBody = `${cleanBody}.`;
-    }
+    if (cleanBody && !/[.!?]$/.test(cleanBody)) cleanBody = `${cleanBody}.`;
 
+    // Append _Range_ suffix only when range isn't already expressed in the body
     let rangeText = '';
     const explicitBlockRange = block.target?.range ? evalStr(block.target.range).trim() : '';
     const rawRangeVal = explicitBlockRange || (blockIndex === 0 ? evalStr(activity?.range || '').trim() : '');
-    const bodyHasRange = rawRangeVal && (cleanBody.toLowerCase().includes(`within ${rawRangeVal.toLowerCase()}`) || cleanBody.toLowerCase().includes(`range: ${rawRangeVal.toLowerCase()}`));
+    const bodyHasRange = rawRangeVal
+      && (cleanBody.toLowerCase().includes(`within ${rawRangeVal.toLowerCase()}`)
+          || cleanBody.toLowerCase().includes(`range: ${rawRangeVal.toLowerCase()}`)
+          || (rawRangeVal.toLowerCase() === 'touch' && cleanBody.toLowerCase().includes('you touch')));
     if (rawRangeVal && !/^self$/i.test(rawRangeVal) && !bodyHasRange) {
       rangeText = ` _Range_: ${capitalize(rawRangeVal)}.`;
     }
@@ -810,7 +1089,8 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     mainBody = `${cleanBody}${rangeText}`.trim();
   }
 
-  // 5. AURA PATTERN
+
+  // ── 5. AURA ────────────────────────────────────────────────────────────────
   else if (pattern === 'aura') {
     const shape = capitalize(evalStr(block.target?.aoe?.shape || 'sphere'));
     const size = evalStr(block.target?.aoe?.size || '');
@@ -819,23 +1099,15 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     const isWall = shape.toLowerCase() === 'wall';
     const isEmanation = shape.toLowerCase() === 'emanation';
     const sizePhrase = (isLine || isWall) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
+
     let locationPhrase = '';
-    if (isEmanation || cleanRange.toLowerCase() === 'self') {
+    if (isEmanation || /^self$/i.test(cleanRange)) {
       locationPhrase = isLine ? 'originating from you' : 'centered on you';
     } else if (cleanRange) {
       locationPhrase = `centered on a point within ${cleanRange}`;
     }
 
-    let moveStr = '';
-    if (block.move) {
-      const actionRaw = (block.move.action || 'action').toLowerCase();
-      const actionName = (actionRaw === 'bonus_action' || actionRaw === 'bonusaction') ? 'Bonus Action' : 'action';
-      const article = /^[aeiou]/i.test(actionName) ? 'an' : 'a';
-      const dist = block.move.distance ? evalStr(block.move.distance) : '';
-      const distStr = dist ? ` up to ${dist} feet` : '';
-      moveStr = ` You can take ${article} ${actionName} to move the area${distStr}.`;
-    }
-
+    // Normalise aura text: strip leading shape/size boilerplate, trailing location phrases
     let auraText = text.trim();
     if (auraText) {
       auraText = auraText
@@ -849,39 +1121,40 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     const ofPart = auraText ? ` of ${auraText}` : '';
     let bodyStr = `A ${sizePhrase}${ofPart} appears ${locationPhrase}`.trim();
 
-    const extraDescriptors = [];
-    if (block.difficultTerrain) {
-      extraDescriptors.push('creates Difficult Terrain');
-    }
-    if (block.obscured) {
-      extraDescriptors.push('is Heavily Obscured');
-    }
+    const extras = [];
+    if (block.difficultTerrain) extras.push('creates Difficult Terrain');
+    if (block.obscured) extras.push('is Heavily Obscured');
+    if (extras.length > 0) bodyStr += ` and ${extras.join(' and ')}`;
 
-    if (extraDescriptors.length > 0) {
-      bodyStr += ` and ${extraDescriptors.join(' and ')}`;
+    let moveStr = '';
+    if (block.move) {
+      const actionRaw = (block.move.action || 'action').toLowerCase();
+      const actionName = actionRaw === 'bonus_action' ? 'Bonus Action' : 'action';
+      const article = /^[aeiou]/i.test(actionName) ? 'an' : 'a';
+      const dist = block.move.distance ? evalStr(block.move.distance) : '';
+      const distStr = dist ? ` up to ${dist} feet` : '';
+      moveStr = ` You can take ${article} ${actionName} to move the area${distStr}.`;
     }
 
     mainBody = `${bodyStr}.${moveStr}`.replace(/\.\./g, '.');
   }
 
+  // ── Fallback ────────────────────────────────────────────────────────────────
   else {
     mainBody = text || '';
   }
 
+  // ── Reliability, repeat, trigger wrapping ──────────────────────────────────
   const repeatText = formatRepeat(block.repeat, pattern, evalStr);
-
-  const isReliable = block.reliable === true;
-  const reliableText = isReliable ? ' (does not expend resource on failure)' : '';
+  const reliableText = block.reliable === true ? ' (does not expend resource on failure)' : '';
 
   let resultBody = mainBody.trim();
-  if (resultBody && !/[.!?]$/.test(resultBody) && !resultBody.endsWith('.')) {
+  if (resultBody && !/[.!?]$/.test(resultBody)) {
     resultBody = `${resultBody}${reliableText}.`;
   } else if (reliableText) {
     resultBody = resultBody.replace(/\.$/, `${reliableText}.`);
   }
-  if (repeatText) {
-    resultBody = `${resultBody}${repeatText}`;
-  }
+  if (repeatText) resultBody = `${resultBody}${repeatText}`;
 
   if (triggerStr) {
     const cleanBody = resultBody.replace(/\.$/, '');
@@ -891,35 +1164,39 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
   return resultBody;
 }
 
+// ─── Main entry point ─────────────────────────────────────────────────────────
+
 /**
- * Main entry point: formats an Activity node into natural language Markdown for the Activity Sheet
+ * Formats an Activity node into natural-language Markdown for the Activity Sheet.
  */
 export function formatActivityMechanic(activity, characterData) {
   if (!activity) return '';
   const evaluator = new ExpressionEvaluator(characterData || {});
   const scope = activity.variables || {};
-
   const name = activity.name || activity.id || '';
   const mechanic = activity.mechanic;
 
   const formatExtras = () => {
     if (!activity.extra) return '';
     const rawExtras = Array.isArray(activity.extra) ? activity.extra : [activity.extra];
-    const extraParts = rawExtras.map(item => {
-      if (!item) return '';
-      if (typeof item === 'object') {
-        const rawName = item.name || '';
-        if (rawName === 'Using a Higher-Level Spell Slot') return '';
-        const evaluatedName = rawName ? evaluator.evaluate(rawName, scope) : '';
-        if (evaluatedName === 'Using a Higher-Level Spell Slot') return '';
-        const title = evaluatedName ? `_${evaluatedName}_: ` : '';
-        const body = item.description ? evaluator.evaluate(item.description, scope) : '';
-        return `${title}${body}`.trim();
-      }
-      const evaluatedStr = evaluator.evaluate(String(item), scope).trim();
-      if (evaluatedStr === 'Using a Higher-Level Spell Slot') return '';
-      return evaluatedStr;
-    }).filter(Boolean);
+    const extraParts = rawExtras
+      .map(item => {
+        if (!item) return '';
+        if (typeof item === 'object') {
+          const rawName = item.name || '';
+          // Suppress the upcast extra — it's always shown separately
+          if (rawName === 'Using a Higher-Level Spell Slot') return '';
+          const evaluatedName = rawName ? evaluator.evaluate(rawName, scope) : '';
+          if (evaluatedName === 'Using a Higher-Level Spell Slot') return '';
+          const title = evaluatedName ? `_${evaluatedName}_: ` : '';
+          const body = item.description ? evaluator.evaluate(item.description, scope) : '';
+          return `${title}${body}`.trim();
+        }
+        const evaluated = evaluator.evaluate(String(item), scope).trim();
+        if (evaluated === 'Using a Higher-Level Spell Slot') return '';
+        return evaluated;
+      })
+      .filter(Boolean);
 
     if (extraParts.length === 0) return '';
     return '\n\n' + extraParts.map(e => `> ${e}`).join('\n\n');
@@ -930,13 +1207,8 @@ export function formatActivityMechanic(activity, characterData) {
     if (!rawDur || typeof rawDur !== 'string') return '';
     const cleanDur = rawDur.trim();
     if (/^instantaneous$/i.test(cleanDur) || cleanDur === '') return '';
-
     const concMatch = cleanDur.match(/concentration(?:,\s*|\s+)?(?:up to\s+)?(.+)/i);
-    if (concMatch) {
-      const length = concMatch[1].trim();
-      return ` _Concentration_: Up to ${length}.`;
-    }
-
+    if (concMatch) return ` _Concentration_: Up to ${concMatch[1].trim()}.`;
     return ` _Duration_: ${capitalize(cleanDur)}.`;
   };
 
@@ -951,23 +1223,46 @@ export function formatActivityMechanic(activity, characterData) {
 
   if (mechanic.mode) {
     const blocks = Array.isArray(mechanic.blocks) ? mechanic.blocks : [];
+
     if (mechanic.mode === 'choice') {
-      const topTrigger = mechanic.trigger ? formatTrigger(mechanic.trigger, s => evaluator.evaluate(s, scope)) : '';
+      const evalStr = s => evaluator.evaluate(s, scope);
+      const topTrigger = mechanic.trigger ? formatTrigger(mechanic.trigger, evalStr) : '';
       const triggerPart = topTrigger ? ` _Trigger_: ${topTrigger}. _Response_:` : '';
+
+      const hasAuraBlock0 = blocks[0]?.pattern === 'aura';
+      const auraPreamble = hasAuraBlock0 ? formatBlock(blocks[0], activity, evaluator, scope) : '';
+      const choiceBlocks = hasAuraBlock0 ? blocks.slice(1) : blocks;
+
       const preamble = mechanic.text
         ? evaluator.evaluate(String(mechanic.text), scope).trim()
-        : 'choose one of the following:';
-      const preamblePart = preamble ? ` ${preamble}` : '';
-      const choiceLines = blocks.map(b => {
-        const title = b.name ? `**${b.name}**: ` : '';
-        const content = formatBlock(b, activity, evaluator, scope);
-        return `> ${title}${content}`;
-      }).join('\n\n');
-      return `**${name}.**${triggerPart}${preamblePart}${fullSuffix}\n\n${choiceLines}`;
-    } else {
-      const contentParts = blocks.map((b, idx) => formatBlock(b, activity, evaluator, scope, idx)).filter(Boolean);
-      return `**${name}.** ${contentParts.join(' ')}${fullSuffix}`;
+        : (hasAuraBlock0 ? '' : 'choose one of the following:');
+
+      const choiceLines = choiceBlocks
+        .map(b => {
+          const title = b.name ? `**${b.name}**: ` : '';
+          const content = formatBlock(b, activity, evaluator, scope);
+          return `> ${title}${content}`;
+        })
+        .join('\n\n');
+
+      if (hasAuraBlock0) {
+        const preambleText = preamble ? ` ${preamble}` : '';
+        return `**${name}.**${triggerPart} ${auraPreamble}${preambleText}${fullSuffix}\n\n${choiceLines}`;
+      }
+
+      return `**${name}.**${triggerPart} ${preamble}${fullSuffix}\n\n${choiceLines}`;
     }
+
+    // succession (and the now-removed sequence — all treated identically)
+    const contentParts = blocks
+      .map((b, idx) => {
+        const content = formatBlock(b, activity, evaluator, scope, idx);
+        if (!content) return '';
+        const title = b.name && idx > 0 ? `**${b.name}.** ` : '';
+        return `${title}${content}`;
+      })
+      .filter(Boolean);
+    return `**${name}.** ${contentParts.join(' ')}${fullSuffix}`;
   }
 
   const content = formatBlock(mechanic, activity, evaluator, scope);

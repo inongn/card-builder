@@ -1,0 +1,85 @@
+id: warDomain
+name: War Domain
+description: Excel in battle by tapping into the magic of war, inspiring others or offering violence as a prayer.
+type: Folder
+tags:
+  - clericSubclass
+children:
+  - type: Reference
+    target:
+      - guidingBolt
+      - magicWeapon
+      - shieldOfFaith
+      - spiritualWeapon
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - crusadersMantle
+      - spiritGuardians
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - fireShield
+      - freedomOfMovement
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - holdMonster
+      - steelWindStrike
+    condition: $(meta.level >= 9)
+  - id: guidedStrike
+    type: Activity
+    name: Guided Strike
+    time: reaction
+    range: 30 feet
+    duration: Instantaneous
+    resource: channelDivinity
+    description: When you or a creature within range misses with an attack roll, you give that roll a +10 bonus, potentially causing it to hit.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: When you or a creature within 30 feet misses with an attack roll
+      target:
+        inherit: trigger
+      payloads:
+        - type: rollModifier
+          modifierType: add
+          dice:
+            count: 0
+            sides: 0
+            bonus: 10
+          targetRolls: attack
+    condition: $(meta.level >= 3)
+  - id: warPriest
+    type: Activity
+    name: War Priest
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    resource: warPriest
+    description: You make one attack with a weapon or an Unarmed Strike.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: action
+          actionType: attack
+    condition: $(meta.level >= 3)
+  - id: warPriest
+    type: Resource
+    name: War Priest
+    quantity: $(Math.max(1, stats.wis.mod))
+    condition: $(meta.level >= 3)
+  - id: warGodsBlessingShield
+    type: Effect
+    target: activities[id=shieldOfFaith].resource
+    operation: set
+    value: channelDivinity
+    condition: $(meta.level >= 6)
+  - id: warGodsBlessingSpirit
+    type: Effect
+    target: activities[id=spiritualWeapon].resource
+    operation: set
+    value: channelDivinity
+    condition: $(meta.level >= 6)

@@ -1,0 +1,45 @@
+id: psiWarper
+name: Psi Warper
+description: Tune psionic powers to manipulate space between objects, teleporting across battlefields and warping space.
+type: Folder
+tags:
+  - psionSubclass
+children:
+  - type: Reference
+    target:
+      - expeditiousRetreat
+      - featherFall
+      - mistyStep
+      - shatter
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - blink
+      - haste
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - banishment
+      - dimensionDoor
+    condition: $(meta.level >= 7)
+  - id: teleportationMistyStep
+    type: Effect
+    target: activities[id=mistyStep].resource
+    operation: set
+    value: psionicEnergyDice
+  - id: warpPropel
+    type: Effect
+    target: activities[id=telekineticPropel].mechanic.failure
+    operation: push
+    value:
+      pattern: automatic
+      text: "instead of pushing it, you can teleport it to an unoccupied horizontal space you can see within 30 feet of you."
+    condition: $(meta.level >= 3)
+  - id: teleporterCombat
+    type: Effect
+    target: activities[id=mistyStep].mechanic
+    operation: push
+    value:
+      pattern: automatic
+      text: "You can cast one of your Psion cantrips with a casting time of an Action as part of this Bonus Action."
+    condition: $(meta.level >= 6)

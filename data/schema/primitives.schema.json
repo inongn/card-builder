@@ -83,7 +83,8 @@
           ]
         },
         "type": {
-          "type": "string"
+          "type": "string",
+          "enum": ["hitPoints", "tempHitPoints"]
         },
         "pool": {
           "anyOf": [
@@ -127,7 +128,8 @@
               "items": { "type": "string" }
             }
           ]
-        }
+        },
+        "text": { "type": "string" }
       },
       "additionalProperties": false
     },
@@ -370,29 +372,7 @@
             }
           ]
         },
-        "end": {
-          "anyOf": [
-            {
-              "type": "string",
-              "enum": [
-                "take_damage",
-                "repeat_save_on_damage",
-                "action_check",
-                "turn_repeat_save",
-                "end_of_next_turn",
-                "end_of_your_next_turn",
-                "end_of_its_next_turn"
-              ]
-            },
-            {
-              "type": "object",
-              "properties": {
-                "text": { "type": "string" }
-              },
-              "additionalProperties": false
-            }
-          ]
-        },
+        "end": { "$ref": "#/$defs/EndSpec" },
         "text": { "type": "string" }
       },
       "additionalProperties": false
@@ -451,6 +431,21 @@
             { "$ref": "#/$defs/DiceFormula" },
             { "type": "string" }
           ]
+        },
+        "saveFilter": {
+          "type": "object",
+          "properties": {
+            "ability": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
         },
         "text": { "type": "string" },
         "end": {
@@ -541,6 +536,7 @@
           "enum": ["add", "subtract", "set", "multiply"],
           "default": "add"
         },
+        "end": { "$ref": "#/$defs/EndSpec" },
         "text": { "type": "string" }
       },
       "additionalProperties": false
@@ -563,7 +559,7 @@
             { "type": "string" }
           ]
         },
-        "oppAttacks": { "type": "boolean" },
+        "provokesOpportunityAttacks": { "type": "boolean" },
         "text": { "type": "string" }
       },
       "additionalProperties": false
@@ -686,7 +682,33 @@
           },
           "additionalProperties": false
         },
-        { "type": "string" }
+        {
+          "type": "string",
+          "enum": ["action", "bonus_action", "free_action", "reaction"]
+        }
+      ]
+    },
+    "EndSpec": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "take_damage",
+            "repeat_save_on_damage",
+            "action_check",
+            "turn_repeat_save",
+            "end_of_next_turn",
+            "end_of_your_next_turn",
+            "end_of_its_next_turn"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "text": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
       ]
     }
   }

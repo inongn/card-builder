@@ -1,0 +1,29 @@
+id: shadowShot
+name: Shadow Shot
+summary: Deal extra psychic damage and blind the target beyond 5 feet.
+tags:
+  - arcaneShotOption
+type: Activity
+duration: instantaneous
+range: self
+time: free action
+resource: arcaneShot
+description: When you hit a creature with a weapon attack using a bow, add 2d6 Psychic damage to the attack's damage roll. The target must succeed on a DC $(attributes.spellcasting.save) Wisdom saving throw or be unable to see anything farther than 5 feet away until the start of your next turn.
+mechanic:
+  pattern: save
+  trigger:
+    text: When you hit a creature with a weapon attack using a bow
+  save:
+    ability: wis
+    dc: $(attributes.spellcasting.save)
+  target:
+    inherit: trigger
+  failureOrSuccess:
+    type: damage
+    dice:
+      count: 2
+      sides: 6
+    damageType: psychic
+  failure:
+    - type: text
+      text: unable to see anything farther than 5 feet away until the start of your next turn

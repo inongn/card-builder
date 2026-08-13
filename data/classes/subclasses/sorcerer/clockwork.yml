@@ -1,0 +1,71 @@
+id: clockwork
+name: Clockwork Sorcery
+description: Channel the cosmic force of order, utilizing clockwork magic from Mechanus to manipulate reality.
+type: Folder
+tags:
+  - sorcererSubclass
+children:
+  - type: Reference
+    target:
+      - aid
+      - alarm
+      - lesserRestoration
+      - protectionFromEvilAndGood
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - dispelMagic
+      - protectionFromEnergy
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - freedomOfMovement
+      - summonConstruct
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - greaterRestoration
+      - wallOfForce
+    condition: $(meta.level >= 9)
+  - id: restoreBalance
+    type: Activity
+    duration: instantaneous
+    name: Restore Balance
+    time: reaction
+    range: 60 feet
+    resource: restoreBalance
+    description: When a creature you can see rolls with Advantage or Disadvantage, you prevent the roll from being affected by it.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: When a creature you can see within 60 feet rolls with Advantage or Disadvantage
+      target:
+        type: self
+      text: prevent the roll from being affected by Advantage or Disadvantage
+    condition: $(meta.level >= 3)
+  - id: restoreBalance
+    type: Resource
+    name: Restore Balance
+    quantity: $(Math.max(1, stats.cha.mod))
+    condition: $(meta.level >= 3)
+    sr: 0
+  - id: bastionOfLaw
+    type: Activity
+    duration: instantaneous
+    name: Bastion of Law
+    time: action
+    range: 30 feet
+    resource: sorceryPoints
+    description: |
+      You tap into the grand equation of existence to imbue a creature with a shimmering shield of order. Create a magical ward around a creature within range. The ward is represented by a number of d8s equal to the number of Sorcery Points spent to create it. When the warded creature takes damage, it can expend a number of those dice, roll them, and reduce the damage taken by the total rolled on those dice.
+
+      The ward lasts until you finish a Long Rest or until you use this feature again.
+    mechanic:
+      pattern: automatic
+      target:
+        type: single
+        range: 30 feet
+      payloads:
+        - type: text
+          text: gains a magical ward represented by d8s equal to the Sorcery Points spent; when taking damage, expend dice to reduce damage by the total rolled
+    condition: $(meta.level >= 6)

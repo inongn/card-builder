@@ -5,9 +5,37 @@ type: Folder
 tags:
   - armorModel
 children:
-  - type: Reference
-    target:
-      - lightningLauncher
+  - id: lightningLauncher
+    type: Activity
+    duration: instantaneous
+    name: Lightning Launcher
+    time: action
+    range: 90 feet
+    tags:
+      - weaponAttack
+      - attack
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))) attack. On a hit, the target takes $(meta.level >= 15 ? '2d6' : '1d6')$(formatBonus(stats.int.mod + (meta.level >= 9 ? 1 : 0))) Lightning damage.
+
+      Once on each of your turns when you hit a creature with the launcher, you can deal an extra 1d6 Lightning damage to that target.
+
+      $(meta.level >= 15 ? 'Any creature that takes Lightning damage from your Lightning Launcher glimmers with magical light until the start of your next turn. The glimmering creature sheds Dim Light in a 5-foot radius, and it has Disadvantage on attack rolls against you, as the light jolts it if it attacks you.' : '')
+    mechanic:
+      pattern: attack
+      attack:
+        classification: ranged
+        type: weapon
+        bonus: '$(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))'
+      target:
+        type: single
+        range: 90 feet
+      hit:
+        type: damage
+        dice:
+          count: '$(meta.level >= 15 ? 2 : 1)'
+          sides: 6
+          bonus: '$(stats.int.mod + (meta.level >= 9 ? 1 : 0))'
+        damageType: lightning
   - name: Powered Steps
     type: Effect
     target: attributes.movement.walk

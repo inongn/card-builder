@@ -1,0 +1,16 @@
+id: burstingShot
+name: Bursting Shot
+summary: Cause an explosion of force damage around the target.
+tags:
+  - arcaneShotOption
+type: Activity
+duration: instantaneous
+range: self
+time: free action
+resource: arcaneShot
+description: When you hit a creature with a weapon attack using a bow, the arrow creates a burst of force. The target and all other creatures within 10 feet of it take 2d6 Force damage.
+mechanic:
+  pattern: automatic
+  trigger:
+    text: When you hit a creature with a weapon attack using a bow
+  text: The target and all other creatures within 10 feet of it take 2d6 Force damage.

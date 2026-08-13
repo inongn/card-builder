@@ -1,0 +1,53 @@
+id: battleSmith
+name: Battle Smith
+description: Combine protection and healing, accompanied by a loyal Steel Defender of your own creation.
+tags:
+  - artificerSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - smithsTools
+      - martialWeaponProficiency
+  - type: Reference
+    target:
+      - heroism
+      - shield
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - shiningSmite
+      - wardingBond
+    condition: $(meta.level >= 5)
+  - id: pactOfTheBlade
+    type: Attribute
+    value: true
+  - type: Reference
+    target: steelDefender
+  - id: steelDefenderName
+    type: Input
+    name: Steel Defender Name
+    inputType: text
+    label: Steel Defender Name
+  - type: Effect
+    target: statblocks[steelDefender].name
+    operation: set
+    value: '$(meta.steeldefendername ? meta.steeldefendername : ''Steel Defender'')'
+  - id: commandSteelDefender
+    type: Activity
+    name: Command Steel Defender
+    time: bonus action
+    range: 60 feet
+    duration: Instantaneous
+    description: You command your Steel Defender to take an action. In combat, the defender acts during your turn and can move and take its Reaction on its own, but only takes the Dodge action unless you command it.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        type: text
+        text: command your Steel Defender to take an action in its stat block
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)

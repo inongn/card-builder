@@ -1,0 +1,50 @@
+id: necromancer
+name: Necromancer
+description: Explore the cosmic forces of life and death, draining life force and raising loyal undead thralls.
+tags:
+  - wizardSubclass
+type: Folder
+children:
+  - id: necroticResistance
+    type: Reference
+    target: necroticResistance
+  - id: grimHarvest
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Grim Harvest
+    description: When you cast a Necromancy spell using a spell slot, choose an Undead creature within 60 feet to regain 1+$(meta.level) Hit Points, plus the spell slot level.
+    mechanic:
+      pattern: healing
+      trigger:
+        text: When you cast a Necromancy spell using a spell slot
+      target:
+        type: single
+        range: 60 feet
+        filter: Undead creature
+      healing:
+        type: hitPoints
+        dice:
+          count: 0
+          sides: 0
+          bonus: $(1+meta.level)
+  - id: overwhelmingNecrosis
+    type: Trait
+    name: Overwhelming Necrosis
+    description: Your Necromancy spells ignore Resistance to Necrotic damage.
+    condition: $(meta.level >= 6)
+  - id: undeadThralls
+    type: Reference
+    target: animateDead
+    condition: $(meta.level >= 6)
+    overwrite:
+      resource: limited
+  - id: undeadThrallsDamageEffect
+    type: Effect
+    target: statblocks[classification=Undead].traits
+    operation: push
+    condition: $(meta.level >= 6)
+    value:
+      name: Withering Strike
+      description: Whenever the undead hits a creature with an attack roll, you deal an extra $(Math.max(1, stats.int.mod)) Necrotic damage.

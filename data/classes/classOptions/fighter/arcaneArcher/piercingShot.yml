@@ -1,0 +1,28 @@
+id: piercingShot
+name: Piercing Shot
+summary: Fire an arrow that pierces through all creatures in a 30-foot line.
+tags:
+  - arcaneShotOption
+type: Activity
+duration: instantaneous
+range: self
+time: free action
+resource: arcaneShot
+description: You shoot an ethereal arrow in a 30-foot line that is 1 foot wide. Each creature in the line must succeed on a DC $(attributes.spellcasting.save) Dexterity saving throw or take damage equal to the arrow's damage plus 1d6 Piercing damage. On a success, a target takes half damage.
+mechanic:
+  pattern: save
+  save:
+    ability: dex
+    dc: $(attributes.spellcasting.save)
+  target:
+    type: area
+    aoe:
+      shape: line
+      size: 30
+    range: self
+  failure:
+    type: damage
+    damageType: piercing
+    text: damage equal to the arrow's damage plus 1d6 Piercing damage
+  success:
+    halfDamage: true

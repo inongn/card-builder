@@ -1,0 +1,47 @@
+id: zealot
+name: Path of the Zealot
+description: Receive boons from a god, experiencing Rage as a divine union that infuses you with holy power.
+tags:
+  - barbarianSubclass
+type: Folder
+children:
+  - id: divineFury
+    type: Effect
+    name: Divine Fury
+    target: activities[id=rage].mechanic.payloads
+    operation: push
+    value:
+      type: text
+      text: the first creature hit on each of your turns takes an extra 1d6+$(Math.floor(meta.level/2)) Necrotic or Radiant damage
+  - id: warriorOfTheGods
+    type: Activity
+    name: Warrior of the Gods
+    time: bonus action
+    range: self
+    duration: Instantaneous
+    resource: warriorOfTheGods
+    description: A divine entity helps ensure you can continue the fight. You regain 1d12 Hit Points per charge expended.
+    mechanic:
+      pattern: healing
+      healing:
+        dice:
+          count: 1
+          sides: 12
+        type: hitPoints
+      target:
+        type: self
+      text: per charge expended
+  - id: warriorOfTheGods
+    type: Resource
+    name: Warrior of the Gods
+    quantity: $(progression(0,0,4,4,4,5,5,5,5,5,5,6,6,6,6,6,7,7,7,7))
+    icon: d12
+  - id: fanaticalFocus
+    type: Effect
+    name: Fanatical Focus
+    target: activities[id=rage].mechanic.payloads
+    operation: push
+    value:
+      type: text
+      text: once per active Rage, if you fail a saving throw, you can reroll it with a $(formatBonus(attributes.rageDamage)) bonus
+    condition: $(meta.level >= 6)

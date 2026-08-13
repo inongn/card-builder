@@ -1,0 +1,58 @@
+id: bladesinger
+name: Bladesinger
+description: Master a wizardry tradition mixing swordplay and dance to channel magic into your singing blades.
+tags:
+  - wizardSubclass
+type: Folder
+children:
+  - id: bladesong
+    type: Activity
+    range: self
+    name: Bladesong
+    time: bonus action
+    resource: bladesong
+    duration: 1 minute
+    description: |
+      You invoke an elven magic called the Bladesong, provided you aren't wearing armor or using a Shield. While the Bladesong is active, you gain the following benefits:
+        * **Agility:** You gain a +$(Math.min(1, stats.int.mod)) bonus to AC, your Speed increases by 10 feet, and gain Advantage on Acrobatics checks.
+        * **Bladework:** Whenever you attack with a weapon with which you have proficiency, you can do so with a $(formatBonus(attributes.spellcasting.attack)) attack roll and a $(formatBonus(attributes.spellcasting.bonus)) damage bonus.
+        * **Focus:** When you make a Constitution saving throw to maintain Concentration, you can add +$(Math.min(1, stats.int.mod)) to the total.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: statModifier
+          stat: ac
+          value: $(Math.min(1, stats.int.mod))
+          operation: add
+        - type: rollModifier
+          modifierType: add
+          dice:
+            count: 0
+            sides: 0
+            bonus: $(Math.min(1, stats.int.mod))
+          targetRolls: save
+          saveFilter:
+            ability: con
+          text: add a $(Math.max(1, stats.int.mod)) bonus to Concentration saving throws
+        - type: text
+          text: your speed increases by 10 feet, you gain Advantage on Acrobatics checks, and whenever you attack with a weapon with which you have proficiency, you can do so with a $(formatBonus(attributes.spellcasting.attack)) attack roll and a $(formatBonus(attributes.spellcasting.bonus)) damage bonus.
+    condition: $(meta.level >= 3)
+  - id: bladesong
+    type: Resource
+    name: Bladesong
+    quantity: $(Math.max(1, stats.int.mod))
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - martialWeaponProficiency
+  - id: bladesingerSkillProficiencies
+    type: Slot
+    name: Bladesinger Skill Proficiencies
+    quantity: 1
+    target: acrobaticsProficiency OR athleticsProficiency OR performanceProficiency OR persuasionProficiency
+  - type: Reference
+    target:
+      - extraAttack
+    condition: $(meta.level >= 5)

@@ -2045,7 +2045,7 @@ mdui-navigation-drawer[mobile]::part(panel) {
 .print-mode .card-content {
   font-size: inherit !important;
   font-family: 'Google Sans Flex', sans-serif !important;
-  font-stretch: 90% !important;
+  font-stretch: 75% !important;
 }
 
 .print-mode .card-description-paragraph {}
@@ -3169,18 +3169,21 @@ mdui-list-item.card-vertical-item::part(container) {
 }
 
 /* Container: tight gap between categories */
-.print-mode .activity-sheet-print-slot .activity-sheet-container {
+.print-mode .activity-sheet-print-slot .activity-sheet-container,
+.print-mode .cps-activity-slot .activity-sheet-container {
   gap: 6px !important;
   display: flex !important;
   flex-direction: column !important;
 }
 
-.print-mode .activity-sheet-print-slot .aside-card-group {
+.print-mode .activity-sheet-print-slot .aside-card-group,
+.print-mode .cps-activity-slot .aside-card-group {
   margin-bottom: 0 !important;
 }
 
 /* Category label — subtle rule underneath */
-.print-mode .activity-sheet-print-slot .title-primary {
+.print-mode .activity-sheet-print-slot .title-primary,
+.print-mode .cps-activity-slot .title-primary {
   font-size: 0.7rem !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
@@ -3193,13 +3196,15 @@ mdui-list-item.card-vertical-item::part(container) {
 
 /* Print-style list: no card backgrounds, no borders, no border-radius.
    Each item is a plain row separated by a hairline rule. */
-.print-mode .activity-sheet-print-slot .activity-sheet-list {
+.print-mode .activity-sheet-print-slot .activity-sheet-list,
+.print-mode .cps-activity-slot .activity-sheet-list {
   gap: 0 !important;
   display: flex !important;
   flex-direction: column !important;
 }
 
-.print-mode .activity-sheet-print-slot .activity-sheet-item {
+.print-mode .activity-sheet-print-slot .activity-sheet-item,
+.print-mode .cps-activity-slot .activity-sheet-item {
   padding: 2px 4px !important;
   background: transparent !important;
   border: none !important;
@@ -3211,23 +3216,26 @@ mdui-list-item.card-vertical-item::part(container) {
   transition: none !important;
 }
 
-.print-mode .activity-sheet-print-slot .activity-sheet-item:last-child {
+.print-mode .activity-sheet-print-slot .activity-sheet-item:last-child,
+.print-mode .cps-activity-slot .activity-sheet-item:last-child {
   border-bottom: none !important;
 }
 
 /* No hover highlight in print context */
-.print-mode .activity-sheet-print-slot .activity-sheet-item:hover {
+.print-mode .activity-sheet-print-slot .activity-sheet-item:hover,
+.print-mode .cps-activity-slot .activity-sheet-item:hover {
   background: transparent !important;
   border-color: transparent !important;
   border-bottom-color: #e8e8e8 !important;
 }
 
-.print-mode .activity-sheet-print-slot .activity-sheet-content {
+.print-mode .activity-sheet-print-slot .activity-sheet-content,
+.print-mode .cps-activity-slot .activity-sheet-content {
   font-size: 0.75rem !important;
   line-height: 1.3 !important;
   color: #111 !important;
   font-family: 'Google Sans Flex', sans-serif !important;
-  font-stretch: 90% !important;
+  font-stretch: 75% !important;
 }
 
 .print-mode .trait-list-item {
@@ -3237,12 +3245,14 @@ mdui-list-item.card-vertical-item::part(container) {
 }
 
 /* Icon stays small and neutral */
-.print-mode .activity-sheet-print-slot .activity-sheet-icon {
+.print-mode .activity-sheet-print-slot .activity-sheet-icon,
+.print-mode .cps-activity-slot .activity-sheet-icon {
   margin-top: 1px !important;
 }
 
 /* Cap resource icons to a compact size — keep their color */
-.print-mode .activity-sheet-print-slot .activity-sheet-icon mdui-icon {
+.print-mode .activity-sheet-print-slot .activity-sheet-icon mdui-icon,
+.print-mode .cps-activity-slot .activity-sheet-icon mdui-icon {
   font-size: 14px !important;
 }
 
@@ -3251,12 +3261,18 @@ mdui-list-item.card-vertical-item::part(container) {
 .print-mode .activity-sheet-print-slot .activity-sheet-line,
 .print-mode .activity-sheet-print-slot .activity-sheet-line span,
 .print-mode .activity-sheet-print-slot .activity-sheet-line p,
-.print-mode .activity-sheet-print-slot .activity-sheet-line strong {
+.print-mode .activity-sheet-print-slot .activity-sheet-line strong,
+.print-mode .cps-activity-slot .activity-sheet-content,
+.print-mode .cps-activity-slot .activity-sheet-line,
+.print-mode .cps-activity-slot .activity-sheet-line span,
+.print-mode .cps-activity-slot .activity-sheet-line p,
+.print-mode .cps-activity-slot .activity-sheet-line strong {
   color: #111 !important;
 }
 
 /* Italic is fine; just no accent color on em */
-.print-mode .activity-sheet-print-slot .activity-sheet-line em {
+.print-mode .activity-sheet-print-slot .activity-sheet-line em,
+.print-mode .cps-activity-slot .activity-sheet-line em {
   color: #444 !important;
 }
 
@@ -3326,7 +3342,7 @@ mdui-list-item.card-vertical-item::part(container) {
   line-height: 1.3 !important;
   color: #111 !important;
   font-family: 'Google Sans Flex', sans-serif !important;
-  font-stretch: 90% !important;
+  font-stretch: 75% !important;
 }
 
 .print-mode .activity-overflow-slot .activity-sheet-content span,
@@ -3350,5 +3366,379 @@ mdui-list-item.card-vertical-item::part(container) {
 
   .print-mode .activity-overflow-slot {
     overflow: hidden !important;
+  }
+
+  .cps-page {
+    overflow: hidden !important;
+  }
+}
+
+/* ==========================================================================
+   COMPACT PRINT PAGE  (cps-*)
+   Two-column first-page layout: 2fr left | 3fr right
+   ========================================================================== */
+
+.print-mode .cps-page {
+  /* Fills the print-page-wrapper exactly like a print-page */
+  width: 11in;
+  height: 8.5in;
+  padding: 0.25in;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  page-break-after: always;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.2in;
+  align-items: start;
+  color: black;
+}
+
+/* ── Shared heading style (same as activity-sheet heading) ── */
+.print-mode .cps-heading {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* ── Left column ── */
+.print-mode .cps-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.print-mode .cps-name-block {
+  margin-bottom: 4px;
+}
+
+.print-mode .cps-char-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111;
+  font-family: 'Google Sans Flex', sans-serif;
+}
+
+.print-mode .cps-char-sub {
+  font-size: 0.7rem;
+  color: #555;
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.print-mode .cps-char-sub2 {
+  color: #777;
+}
+
+/* Combat boxes */
+.print-mode .cps-combat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.print-mode .cps-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 3px 4px;
+  background: white;
+}
+
+.print-mode .cps-stat-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #777;
+  line-height: 1.1;
+}
+
+.print-mode .cps-stat-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.print-mode .cps-stat-sub {
+  font-size: 0.58rem;
+  color: #999;
+  line-height: 1;
+}
+
+/* HP row */
+.print-mode .cps-hp-row {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.print-mode .cps-hp-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 3px 6px;
+  background: white;
+}
+
+.print-mode .cps-hp-input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 2px 4px;
+  background: white;
+}
+
+.print-mode .cps-hp-blank {
+  width: 100%;
+  height: 20px;
+  border-bottom: 1px solid #999;
+  margin-bottom: 2px;
+}
+
+/* Skill list */
+.print-mode .cps-skill-list,
+.print-mode .cps-saves-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2px;
+}
+
+.print-mode .cps-skill-row,
+.print-mode .cps-save-row {
+  display: grid;
+  align-items: center;
+  font-size: 0.68rem;
+  line-height: 1.25;
+  padding: 1px 2px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #111;
+}
+
+.print-mode .cps-skill-row {
+  grid-template-columns: 22px 14px 22px 1fr;
+  gap: 2px;
+}
+
+.print-mode .cps-save-row {
+  grid-template-columns: 14px 22px 1fr;
+  gap: 2px;
+}
+
+.print-mode .cps-skill-row:last-child,
+.print-mode .cps-save-row:last-child {
+  border-bottom: none;
+}
+
+.print-mode .cps-skill-stat {
+  color: #888;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.print-mode .cps-skill-bonus {
+  font-weight: 700;
+  color: #111;
+  font-size: 0.68rem;
+  text-align: right;
+}
+
+.print-mode .cps-skill-name {
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.print-mode .cps-prof-icon {
+  font-size: 10px !important;
+  color: #555;
+}
+
+/* ── Right column ── */
+.print-mode .cps-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  height: 100%;
+  border-left: 1px solid #e0e0e0;
+  padding-left: 0.15in;
+}
+
+/* Shared item list (activities / resources / traits / info) */
+.print-mode .cps-sheet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2px;
+}
+
+/* Activity-style item row */
+.print-mode .cps-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 1px 3px;
+  border-bottom: 1px solid #eeeeee;
+  background: transparent;
+  transition: none;
+}
+
+.print-mode .cps-item:last-child {
+  border-bottom: none;
+}
+
+.print-mode .cps-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.print-mode .cps-icon mdui-icon {
+  font-size: 12px !important;
+}
+
+.print-mode .cps-content {
+  flex: 1;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: #111;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-stretch: 75%;
+}
+
+.print-mode .cps-line {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.print-mode .cps-line p {
+  margin: 0;
+}
+
+.print-mode .cps-line strong {
+  font-weight: 700;
+  color: #111;
+}
+
+.print-mode .cps-line em {
+  font-style: italic;
+  color: #444;
+}
+
+.print-mode .cps-extra {
+  margin-left: 10px;
+  margin-top: 1px;
+  font-size: 0.68rem;
+  color: #444;
+  font-style: italic;
+}
+
+/* Resource quantity badge */
+.print-mode .cps-resource-qty {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #111;
+}
+
+/* Resource item: spread name vs qty */
+.print-mode .cps-resource-item .cps-content {
+  justify-content: space-between;
+}
+
+/* ── Compact Activity Layout: left half-page = compact 2-col panel ── */
+
+/* Left half-page slot: mirrors activity-sheet-print-slot styling */
+.print-mode .compact-charsheet-print-slot {
+  grid-column: 1;
+  grid-row: 1 / span 1;
+  height: 100% !important;
+  overflow: hidden !important;
+  border: 1px solid #ccc !important;
+  border-radius: 0 !important;
+  padding: 8px 10px !important;
+  background: white !important;
+  color: black !important;
+  box-sizing: border-box !important;
+}
+
+/* Inner 2fr / 3fr two-column layout — matches cps-page grid but contained */
+.print-mode .cps-two-col-panel {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.15in;
+  height: 100%;
+  overflow: hidden;
+  align-items: start;
+}
+
+/* Right sub-column in the panel: border separator & flex column */
+.print-mode .cps-two-col-panel .cps-right-col {
+  border-left: 1px solid #e0e0e0;
+  padding-left: 0.1in;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Activity slot inside compact right col: takes remaining height */
+.print-mode .cps-activity-slot {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Print media overrides */
+@media print {
+  .print-mode .cps-page {
+    position: relative !important;
+    transform: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
   }
 }

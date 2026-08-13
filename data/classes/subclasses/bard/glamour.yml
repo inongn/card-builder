@@ -1,0 +1,94 @@
+id: glamour
+name: College of Glamour
+description: Weave threads of Feywild beauty and terror into your performances to cloak yourself in majesty.
+type: Folder
+tags:
+  - bardSubclass
+children:
+  - type: Reference
+    target:
+      - charmPerson
+      - mirrorImage
+  - id: beguilingMagic
+    type: Activity
+    time: free action
+    range: self
+    name: Beguiling Magic
+    resource: bardicInspiration
+    duration: 1 minute
+    description: After casting an Enchantment or Illusion spell using a spell slot, you force a creature within 60 feet to make a Wisdom save. On a failure, it has the Charmed or Frightened condition (your choice).
+    mechanic:
+      pattern: save
+      trigger:
+        event: cast_spell
+        text: After casting an Enchantment or Illusion spell using a spell slot
+      save:
+        ability: wis
+        dc: $(attributes.spellcasting.save)
+      target:
+        type: single
+        range: 60 feet
+      failure:
+        - type: condition
+          condition:
+            - charmed
+            - frightened
+    condition: $(meta.level >= 3)
+  - id: mantleOfInspiration
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Mantle of Inspiration
+    time: bonus action
+    resource: bardicInspiration
+    description: You provide $(2 * attributes.bardicDie) Temporary Hit Points to up to $(Math.max(1, stats.cha.mod)) creatures within 60 feet. Each can use its Reaction to move up to its Speed without provoking Opportunity Attacks.
+    mechanic:
+      mode: succession
+      blocks:
+        - pattern: healing
+          target:
+            type: multiple
+            count: $(Math.max(1, stats.cha.mod))
+            range: 60 feet
+          healing:
+            dice:
+              count: $(2 * attributes.bardicDie)
+              sides: 0
+            type: tempHitPoints
+        - pattern: automatic
+          target:
+            inherit: prev_step
+          payloads:
+            - type: movement
+              movementType: allow
+              provokesOpportunityAttacks: false
+              text: each target can use its Reaction to move up to its Speed without provoking Opportunity Attacks
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target: command
+    condition: $(meta.level >= 6)
+  - id: mantleOfMajesty
+    type: Activity
+    range: self
+    name: Mantle of Majesty
+    time: bonus action
+    duration: Concentration, up to 1 minute
+    resource: limited
+    description: |
+      You cast Command without expending a spell slot and assume an unearthly appearance for the duration. 
+
+      While active, you can cast Command as a Bonus Action without expending a spell slot. Any creature Charmed by you automatically fails its save against this Command.
+    mechanic:
+      mode: succession
+      blocks:
+        - pattern: automatic
+          target:
+            type: self
+          payloads:
+            - type: text
+              text: cast Command without expending a spell slot
+            - type: text
+              text: while active, cast Command as a Bonus Action without expending a spell slot
+            - type: text
+              text: any creature Charmed by you automatically fails its save against this Command
+    condition: $(meta.level >= 6)

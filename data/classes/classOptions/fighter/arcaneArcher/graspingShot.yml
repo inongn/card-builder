@@ -1,0 +1,25 @@
+id: graspingShot
+name: Grasping Shot
+summary: Entangle the target with brambles, reducing speed and dealing damage when moving.
+tags:
+  - arcaneShotOption
+type: Activity
+duration: 1 minute
+range: self
+time: free action
+resource: arcaneShot
+description: When you hit a creature with a weapon attack using a bow, brambles entangle the target. Add 2d6 Slashing damage to the attack's damage roll, its Speed is reduced by 10 feet, and it takes 2d6 Slashing damage the first time it moves on a turn without teleporting.
+mechanic:
+  pattern: automatic
+  trigger:
+    text: When you hit a creature with a weapon attack using a bow
+  target:
+    inherit: trigger
+  payloads:
+    - type: damage
+      dice:
+        count: 2
+        sides: 6
+      damageType: slashing
+    - type: text
+      text: has its Speed is reduced by 10 feet, and target takes 2d6 Slashing damage the first time it moves on a turn without teleporting

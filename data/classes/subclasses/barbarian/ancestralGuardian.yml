@@ -1,0 +1,75 @@
+id: ancestralGuardian
+name: Path of the Ancestral Guardian
+description: Commune with the spirits of your ancestors, calling them forth to shield allies and harass enemies.
+type: Folder
+tags:
+  - barbarianSubclass
+children:
+  - id: spiritualProtectors
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Spiritual Protectors
+    time: free action
+    description: |
+      While your Rage is active, when you hit a creature with a weapon or an Unarmed Strike, you choose one of these effects:
+
+      **Distract.** Until the start of your next turn, the target has Disadvantage on attack rolls against targets other than you or another Barbarian with this feature.
+
+      **Protect.** Until the end of the target's next turn, the next time it hits a creature other than you with an attack roll, that creature has Resistance to the damage dealt by that attack.
+
+      **Strike.** The target takes an extra 1d6 Acid, Cold, Fire, Force, Lightning, or Thunder damage (your choice).
+    mechanic:
+      mode: choice
+      trigger:
+        text: while Raging, when you hit a creature with a weapon or Unarmed Strike
+      blocks:
+        - pattern: automatic
+          name: Distract
+          target:
+            inherit: trigger
+          payloads:
+            type: text
+            text: has Disadvantage on attack rolls against targets other than you until the start of your next turn
+        - pattern: automatic
+          name: Protect
+          target:
+            inherit: trigger
+          payloads:
+            type: text
+            text: the next creature it hits (other than you) has Resistance to that attack's damage until the end of the target's next turn
+        - pattern: automatic
+          name: Strike
+          target:
+            inherit: trigger
+          payloads:
+            type: damage
+            dice:
+              count: 1
+              sides: 6
+            damageType:
+              - acid
+              - cold
+              - fire
+              - force
+              - lightning
+              - thunder
+    condition: $(meta.level >= 3)
+  - id: spiritShield
+    type: Activity
+    name: Spirit Shield
+    time: reaction
+    range: 30 feet
+    duration: Instantaneous
+    description: While your Rage is active, when another creature you can see within range takes damage, you reduce that damage by $(attributes.rageDamage)d6.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: while Raging, when a creature takes damage
+      target:
+        type: single
+        range: $(range)
+      payloads:
+        type: text
+        text: reduce the damage taken by $(attributes.rageDamage)d6
+    condition: $(meta.level >= 6)

@@ -1,0 +1,131 @@
+id: archfeyPatron
+name: Archfey Patron
+description: Draw power from the Feywild, making a pact with a powerful archfey to weave beguiling, mirthful magic.
+tags:
+  - warlockSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - calmEmotions
+      - faerieFire
+      - phantasmalForce
+      - sleep
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - blink
+      - plantGrowth
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - dominateBeast
+      - greaterInvisibility
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - dominatePerson
+      - seeming
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target: mistyStep
+    condition: $(meta.level >= 3)
+  - id: mistyStepUses
+    type: Effect
+    target: activities[id=mistyStep].resource
+    operation: set
+    value: stepsOfTheFey
+
+  - id: setpsOfTheFeyChoice
+    type: Effect
+    target: activities[id=mistyStep].mechanic
+    operation: set
+    value: 
+      mode: choice
+      text: "You teleport up to 30 feet to an unoccupied space you can see. Then, you can choose one of the following options:"
+
+  - id: stepsOfTheFeyOptions
+    type: Effect
+    name: Steps of the Fey Options
+    target: activities[id=mistyStep].mechanic
+    operation: push
+    value:
+      - pattern: healing
+        name: Refreshing Step
+        target:
+          type: single
+          range: 10 feet
+        healing:
+          dice:
+            count: 1
+            sides: 10
+          type: tempHitPoints
+      - pattern: save
+        name: Taunting Step
+        save:
+          ability: wis
+          dc: $(attributes.spellcasting.save)
+        target:
+          type: area
+          aoe:
+            shape: emanation
+            size: 5
+          range: self
+        failure:
+          - type: rollModifier
+            modifierType: disadvantage
+            targetRolls: attack
+            text: Disadvantage on attacks against creatures other than you until the start of your next turn
+    condition: $(meta.level >= 3)
+  - id: stepsOfTheFeyLevel6Options
+    type: Effect
+    name: Steps of the Fey Level 6 Options
+    target: activities[id=mistyStep].mechanic.blocks
+    operation: push
+    value:
+      - pattern: automatic
+        name: Disappearing Step
+        text: You have the Invisible condition until the start of your next turn or until immediately after you attack or cast a spell
+      - pattern: save
+        name: Dreadful Step
+        save:
+          ability: wis
+          dc: $(attributes.spellcasting.save)
+        target:
+          type: area
+          aoe:
+            shape: emanation
+            size: 5
+          range: self
+        failure:
+          - type: damage
+            dice:
+              count: 2
+              sides: 10
+            damageType: psychic
+    condition: $(meta.level >= 6)
+  - id: stepsOfTheFey
+    type: Resource
+    name: Steps of the Fey
+    quantity: $(Math.max(1, stats.cha.mod))
+    sr: all
+    condition: $(meta.level >= 3)
+  - id: mistyEscape
+    type: Activity
+    name: Misty Escape
+    time: reaction
+    range: self
+    duration: instantaneous
+    description: When you take damage, you cast Misty Step.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: take_damage
+        text: When you take damage
+      target:
+        type: self
+      payloads:
+        - type: action
+          actionType: castSpell
+          text: cast Misty Step
+    condition: $(meta.level >= 6)

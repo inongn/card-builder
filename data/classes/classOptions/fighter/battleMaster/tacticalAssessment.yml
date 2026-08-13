@@ -1,0 +1,23 @@
+id: tacticalAssessment
+summary: Add a maneuver die to History, Insight, or Investigation checks.
+name: Tactical Assessment
+tags:
+  - maneuver
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+resource: superiorityDice
+description: When you make an Intelligence (History or Investigation) check or a Wisdom (Insight) check, you add 1d$(attributes.superiorityDie) to the ability check.
+mechanic:
+  pattern: automatic
+  target:
+    type: self
+  payloads:
+    - type: rollModifier
+      modifierType: add
+      dice:
+        count: 1
+        sides: $(attributes.superiorityDie)
+      targetRolls: check
+      text: add 1d$(attributes.superiorityDie) to a History, Insight, or Investigation check

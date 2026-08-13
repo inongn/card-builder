@@ -1,0 +1,18 @@
+id: baitAndSwitch
+summary: Swap places with a willing ally and boost AC.
+name: Bait and Switch
+tags:
+  - maneuver
+type: Activity
+duration: instantaneous
+range: 5 feet
+time: bonus action
+resource: superiorityDice
+description: When you are within 5 feet of a willing creature on your turn, you can spend 5 feet of movement to swap places with that creature. Choose yourself or that creature; the chosen target adds 1d$(attributes.superiorityDie) to its AC until the start of your next turn.
+mechanic:
+  pattern: automatic
+  target:
+    type: self
+  payloads:
+    - type: text
+      text: swap places with a willing creature; choose yourself or that creature to gain 1d$(attributes.superiorityDie) to AC until the start of your next turn

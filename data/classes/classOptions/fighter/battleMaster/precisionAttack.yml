@@ -1,0 +1,25 @@
+id: precisionAttack
+summary: Add a maneuver die to an attack roll to ensure a hit.
+name: Precision Attack
+tags:
+  - maneuver
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+resource: superiorityDice
+description: When you miss with an attack roll, you add 1d$(attributes.superiorityDie) to the attack roll, potentially causing the attack to hit.
+mechanic:
+  pattern: automatic
+  trigger:
+    event: miss_with_attack
+  target:
+    type: self
+  payloads:
+    - type: rollModifier
+      modifierType: add
+      dice:
+        count: 1
+        sides: $(attributes.superiorityDie)
+      targetRolls: attack
+      text: add 1d$(attributes.superiorityDie) to the attack roll, potentially causing the attack to hit

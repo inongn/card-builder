@@ -54,7 +54,7 @@ children:
         type: self
       payloads:
         - type: text
-          text: "the spell save DC of your Sorcerer spells increases by 1, you have Advantage on attack rolls of Sorcerer spells you cast$(meta.level >= 7 ? ', and you can use up to two Metamagic options on each spell you cast' : '')"
+          text: "Gain a plus 1 bonus to your spell save DC, you have Advantage on the attack rolls of Sorcerer spells you cast$(meta.level >= 7 ? ', and you can use up to two Metamagic options on each spell you cast' : '')"
     condition: $(meta.level >= 1)
   - id: innateSorcery
     type: Resource

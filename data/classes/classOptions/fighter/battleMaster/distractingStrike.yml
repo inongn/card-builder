@@ -1,0 +1,25 @@
+id: distractingStrike
+summary: Deal extra damage and distract the target, giving an ally Advantage on its next attack.
+name: Distracting Strike
+tags:
+  - maneuver
+type: Activity
+time: free action
+duration: instantaneous
+range: self
+resource: superiorityDice
+description: When you hit a creature with an attack roll, add 1d$(attributes.superiorityDie) to the attack's damage roll. The next attack roll against the target by an attacker other than you has Advantage if made before the start of your next turn.
+mechanic:
+  pattern: automatic
+  trigger:
+    event: hit_with_attack
+  target:
+    inherit: trigger
+  payloads:
+    - type: damage
+      dice:
+        count: 1
+        sides: $(attributes.superiorityDie)
+      damageType: extra
+    - type: rollModifier
+      text: the next attack roll against the target by an attacker other than you has Advantage before the start of your next turn

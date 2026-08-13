@@ -1,0 +1,92 @@
+id: graveDomain
+name: Grave Domain
+description: Guard the boundary between life and death, drawing upon transitional energy to heal or smite.
+type: Folder
+tags:
+  - clericSubclass
+children:
+  - type: Reference
+    target:
+      - detectEvilAndGood
+      - falseLife
+      - gentleRepose
+      - rayOfEnfeeblement
+      - spareTheDying
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - revivify
+      - vampiricTouch
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - blight
+      - deathWard
+    condition: $(meta.level >= 7)
+  - id: circleOfMortalityPull
+    type: Effect
+    name: Pull of Death
+    target: activities[tags=weaponAttack or tags=damageSpell].mechanic.hit
+    operation: push
+    value:
+      type: text
+      text: once per turn, if the target is missing any Hit Points, deal extra 1d4 Necrotic damage
+    condition: $(meta.level >= 3)
+  - id: returnToLifeSpareTheDying
+    type: Effect
+    target: activities[id=spareTheDying].time
+    operation: set
+    value: bonus action
+    condition: $(meta.level >= 3)
+  - id: circleOfMortalityHealing
+    type: Trait
+    name: Circle of Mortality
+    description: When restoring Hit Points to a creature at 0 Hit Points, use the highest possible roll for each die.
+    condition: $(meta.level >= 3)
+  - id: pathToTheGrave
+    type: Activity
+    duration: instantaneous
+    name: Path to the Grave
+    time: bonus action
+    range: 30 feet
+    resource: channelDivinity
+    description: You curse a creature within range. Until the start of your next turn, it has Disadvantage on attack rolls and saving throws. The curse ends early when you or an ally hits the target, making the attack deal extra Necrotic or Radiant damage (your choice) equal to $(meta.level).
+    mechanic:
+      pattern: automatic
+      target:
+        type: single
+        range: 30 feet
+      payloads:
+        - type: rollModifier
+          modifierType: disadvantage
+          targetRolls:
+            - attack
+            - save
+          end: end_of_your_next_turn
+        - type: text
+          text: the curse ends early when you or an ally hits the target, dealing an extra $(meta.level) Necrotic or Radiant damage. 
+    condition: $(meta.level >= 3)
+  - id: sentinelAtDeathsDoor
+    type: Resource
+    name: Sentinel at Death's Door
+    quantity: $(Math.max(1, stats.wis.mod))
+    condition: $(meta.level >= 6)
+  - id: sentinelAtDeathsDoor
+    type: Activity
+    name: Sentinel at Death's Door
+    time: reaction
+    range: 60 feet
+    duration: Instantaneous
+    resource: sentinelAtDeathsDoor
+    description: When you or a Bloodied creature within range is hit with an attack roll, you use your Reaction to halve that attack's damage. If the attack was a Critical Hit, its Critical Hit effects are canceled.
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: be_hit
+        text: When you or a Bloodied creature within 60 feet is hit with an attack roll
+      target:
+        inherit: trigger
+      payloads:
+        - type: text
+          text: halve the attack's damage, and if the attack was a Critical Hit, its Critical Hit effects are canceled
+    condition: $(meta.level >= 6)

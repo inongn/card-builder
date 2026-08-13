@@ -1,0 +1,76 @@
+id: greatOldOnePatron
+name: Great Old One Patron
+description: Draw power from the Far Realm or an incomprehensible elder god, mastering cosmic mind-bending magic.
+tags:
+  - warlockSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - detectThoughts
+      - dissonantWhispers
+      - phantasmalForce
+      - tashasHideousLaughter
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - clairvoyance
+      - hungerOfHadar
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - confusion
+      - summonAberration
+    condition: $(meta.level >= 7)
+  - type: Reference
+    target:
+      - modifyMemory
+      - telekinesis
+    condition: $(meta.level >= 9)
+  - id: awakenedMind
+    type: Activity
+    name: Awakened Mind
+    time: bonus action
+    range: 30 feet
+    duration: $(meta.level) minutes
+    description: |
+      You form a telepathic connection between your mind and the mind of another. Choose one creature you can see within 30 feet of yourself. You and the chosen creature can communicate telepathically with each other while the two of you are within $(Math.max(1, stats.cha.mod)) miles of each other. To understand each other, you each must mentally use a language the other knows.
+    mechanic:
+      pattern: automatic
+      text: You form a telepathic connection between your mind and the mind of another to communicate telepathically while within $(Math.max(1, stats.cha.mod)) miles
+    condition: $(meta.level >= 3)
+  - id: psychicSpellsDamage
+    type: Effect
+    name: Psychic Spells
+    target: activities[tags=warlock and tags=damageSpell].mechanic.hit.damageType
+    operation: push
+    value: psychic
+    condition: $(meta.level >= 3)
+  - id: clairvoyantCombatant
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Clairvoyant Combatant
+    time: free action
+    resource: level1SpellSlot
+    description: |
+      When you form a telepathic bond with a creature using your Awakened Mind, you force that creature to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the creature has Disadvantage on attack rolls against you, and you have Advantage on attack rolls against that creature for the duration of the bond.
+    mechanic:
+      pattern: save
+      trigger:
+        text: When you form a telepathic bond with a creature using your Awakened Mind
+      save:
+        ability: wis
+        dc: $(attributes.spellcasting.save)
+      target:
+        inherit: trigger
+      failure:
+        - type: rollModifier
+          modifierType: disadvantage
+          targetRolls: attack
+          text: Disadvantage on attack rolls against you
+        - type: rollModifier
+          modifierType: advantage
+          targetRolls: attack
+          text: you have Advantage on attack rolls against that creature
+    condition: $(meta.level >= 6)

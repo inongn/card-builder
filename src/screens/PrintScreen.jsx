@@ -3,7 +3,9 @@ import { CharacterSheet } from '../components/cards/CharacterSheet';
 import { ActivityCard } from '../components/cards/ActivityCard';
 import { ActivitySheet, groupActivities, sortByResource } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
+import { CompactPrintPage, CompactActivityPrintPage } from '../components/cards/CompactPrintPage';
 import 'mdui/components/button.js';
+import 'mdui/components/tooltip.js';
 
 const categoryOrder = ['core', 'action', 'bonus action', 'reaction', 'free action', 'other'];
 
@@ -23,6 +25,30 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
     const activitySlotRef = useRef(null);
     const overflowSlotRefs = useRef([]);
     const [scale, setScale] = useState(1);
+
+    // Compact sheet toggle (for non-activity-sheet mode)
+    const [useCompactSheet, setUseCompactSheet] = useState(() =>
+        localStorage.getItem('use_compact_sheet') === 'true'
+    );
+    const handleToggleCompactSheet = () => {
+        setUseCompactSheet(prev => {
+            const next = !prev;
+            localStorage.setItem('use_compact_sheet', String(next));
+            return next;
+        });
+    };
+
+    // Compact activity layout toggle (for activity-sheet mode)
+    const [useCompactActivityLayout, setUseCompactActivityLayout] = useState(() =>
+        localStorage.getItem('use_compact_activity_layout') === 'true'
+    );
+    const handleToggleCompactActivityLayout = () => {
+        setUseCompactActivityLayout(prev => {
+            const next = !prev;
+            localStorage.setItem('use_compact_activity_layout', String(next));
+            return next;
+        });
+    };
 
     // Iterative bin packing state
     const [activitySlots, setActivitySlots] = useState(null);
@@ -44,9 +70,22 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         return () => observer.disconnect();
     }, []);
 
-    // Track character & mode key to reset measurement on change during render
+    const leftColRef = useRef(null);
+    const [col1Placement, setCol1Placement] = useState({ resources: true, traits: true });
+
+    // Reset col1Placement on character change
+    const prevCharIdRef = useRef('');
+    const currentCharId = char?.id || char?.meta?.name || 'char';
+    if (prevCharIdRef.current !== currentCharId) {
+        prevCharIdRef.current = currentCharId;
+        if (!col1Placement.resources || !col1Placement.traits) {
+            setCol1Placement({ resources: true, traits: true });
+        }
+    }
+
+    // Track character, mode, & placement key to reset measurement on change during render
     const prevKeyRef = useRef('');
-    const currentKey = `${char?.id || char?.meta?.name || 'char'}-${useActivitySheet}`;
+    const currentKey = `${currentCharId}-${useActivitySheet}-${useCompactActivityLayout}-${col1Placement.resources}-${col1Placement.traits}`;
     if (prevKeyRef.current !== currentKey) {
         prevKeyRef.current = currentKey;
         overflowSlotRefs.current = [];
@@ -59,6 +98,20 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
     // Measure overflowing activities and optimize category packing
     useLayoutEffect(() => {
         if (!useActivitySheet || !char) return;
+
+        // First check if Column 1 overflows in compact activity mode
+        if (useCompactActivityLayout && leftColRef.current) {
+            const el = leftColRef.current;
+            if (el.scrollHeight > el.clientHeight + 2) {
+                if (col1Placement.traits) {
+                    setCol1Placement({ resources: true, traits: false });
+                    return;
+                } else if (col1Placement.resources) {
+                    setCol1Placement({ resources: false, traits: false });
+                    return;
+                }
+            }
+        }
 
         const rawActivities = char.activities || [];
         const allActivities = sortActivitiesByCategory(rawActivities);
@@ -162,7 +215,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                 return newSlots;
             });
         }
-    }, [char, useActivitySheet, activitySlots, deferredActs]);
+    }, [char, useActivitySheet, useCompactActivityLayout, activitySlots, deferredActs]);
 
     if (!char) return null;
 
@@ -175,11 +228,15 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         const page1Acts = activitySlots !== null ? activitySlots[0] : allActivities;
         const overflowSlotsArr = activitySlots !== null ? activitySlots.slice(1) : [];
 
+        // For compact layout, slot 1 (overflowSlotsArr[0]) is on Page 1 Right; Page 2+ takes overflowSlotsArr.slice(1).
+        // For standard layout, slot 1 (overflowSlotsArr[0]) is on Page 2 Left; Page 2+ takes overflowSlotsArr.
+        const page2PlusSlots = useCompactActivityLayout ? overflowSlotsArr.slice(1) : overflowSlotsArr;
+
         const overflowPages = [];
-        for (let i = 0; i < overflowSlotsArr.length; i += 2) {
+        for (let i = 0; i < page2PlusSlots.length; i += 2) {
             overflowPages.push([
-                overflowSlotsArr[i],
-                overflowSlotsArr[i + 1]
+                page2PlusSlots[i],
+                page2PlusSlots[i + 1]
             ]);
         }
 
@@ -190,26 +247,48 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                 <mdui-top-app-bar scroll-behavior="hide" variant="small">
                     <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
                     <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                    <mdui-tooltip content={useCompactActivityLayout ? 'Switch to standard layout' : 'Switch to compact two-column layout'}>
+                        <mdui-button-icon
+                            icon={useCompactActivityLayout ? 'view_agenda' : 'view_compact_alt'}
+                            onClick={handleToggleCompactActivityLayout}
+                        />
+                    </mdui-tooltip>
                     <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
                 </mdui-top-app-bar>
 
                 <div className="content print-content print-mode" ref={containerRef}>
-                    <div className="print-page-wrapper">
-                        <div className="print-page first-page activity-sheet-print-page" style={pageStyle}>
-                            <div className="print-grid activity-sheet-2x1-grid">
-                                <div className="main-card-print-slot">
-                                    <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} />
-                                </div>
-                                <div className="activity-sheet-print-slot" ref={activitySlotRef}>
-                                    <ActivitySheet
-                                        groupedActivities={groupActivities(page1Acts)}
-                                        characterData={char}
-                                        printMode={true}
-                                    />
+                    {useCompactActivityLayout ? (
+                        <div className="print-page-wrapper">
+                            <CompactActivityPrintPage
+                                char={char}
+                                style={pageStyle}
+                                leftColRef={leftColRef}
+                                activitySlotRef={activitySlotRef}
+                                page1OverflowRef={el => overflowSlotRefs.current[0] = el}
+                                groupedActivities={groupActivities(page1Acts)}
+                                page1OverflowActivities={overflowSlotsArr[0] ? groupActivities(overflowSlotsArr[0]) : null}
+                                showResourcesInCol1={col1Placement.resources}
+                                showTraitsInCol1={col1Placement.traits}
+                            />
+                        </div>
+                    ) : (
+                        <div className="print-page-wrapper">
+                            <div className="print-page first-page activity-sheet-print-page" style={pageStyle}>
+                                <div className="print-grid activity-sheet-2x1-grid">
+                                    <div className="main-card-print-slot">
+                                        <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} />
+                                    </div>
+                                    <div className="activity-sheet-print-slot" ref={activitySlotRef}>
+                                        <ActivitySheet
+                                            groupedActivities={groupActivities(page1Acts)}
+                                            characterData={char}
+                                            printMode={true}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    )}
 
                     {overflowPages.map((pageSlots, pageIdx) => (
                         <div key={pageIdx} className="print-page-wrapper">
@@ -217,7 +296,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                                 <div className="print-grid activity-sheet-2x1-grid">
                                     <div
                                         className="activity-sheet-print-slot"
-                                        ref={el => overflowSlotRefs.current[pageIdx * 2] = el}
+                                        ref={el => overflowSlotRefs.current[(useCompactActivityLayout ? 1 : 0) + pageIdx * 2] = el}
                                     >
                                         {pageSlots[0] && (
                                             <ActivitySheet
@@ -229,7 +308,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                                     </div>
                                     <div
                                         className="activity-sheet-print-slot"
-                                        ref={el => overflowSlotRefs.current[pageIdx * 2 + 1] = el}
+                                        ref={el => overflowSlotRefs.current[(useCompactActivityLayout ? 1 : 0) + pageIdx * 2 + 1] = el}
                                     >
                                         {pageSlots[1] && (
                                             <ActivitySheet
@@ -282,29 +361,41 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
             <mdui-top-app-bar scroll-behavior="hide" variant="small">
                 <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                <mdui-tooltip content={useCompactSheet ? 'Switch to standard layout' : 'Switch to compact layout'}>
+                    <mdui-button-icon
+                        icon={useCompactSheet ? 'view_agenda' : 'view_compact'}
+                        onClick={handleToggleCompactSheet}
+                    />
+                </mdui-tooltip>
                 <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
             </mdui-top-app-bar>
 
             <div className="content print-content print-mode" ref={containerRef}>
-                <div className="print-page-wrapper">
-                    <div className="print-page first-page" style={pageStyle}>
-                        <div className="print-grid">
-                            <div className="main-card-print-slot">
-                                <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} />
-                            </div>
-                            {page1Cards.map((card, idx) => (
-                                <div key={idx} className="action-card-print-slot">
-                                    {card._isStatblock
-                                        ? <StatblockCard statblock={card} variant="static" />
-                                        : <ActivityCard activity={card} variant="static" char={char} />
-                                    }
+                {useCompactSheet ? (
+                    <div className="print-page-wrapper">
+                        <CompactPrintPage char={char} style={pageStyle} />
+                    </div>
+                ) : (
+                    <div className="print-page-wrapper">
+                        <div className="print-page first-page" style={pageStyle}>
+                            <div className="print-grid">
+                                <div className="main-card-print-slot">
+                                    <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} />
                                 </div>
-                            ))}
+                                {page1Cards.map((card, idx) => (
+                                    <div key={idx} className="action-card-print-slot">
+                                        {card._isStatblock
+                                            ? <StatblockCard statblock={card} variant="static" />
+                                            : <ActivityCard activity={card} variant="static" char={char} />
+                                        }
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
 
-                {chunks.map((chunk, pageIdx) => (
+                {!useCompactSheet && chunks.map((chunk, pageIdx) => (
                     <div key={pageIdx} className="print-page-wrapper">
                         <div className="print-page" style={pageStyle}>
                             <div className="print-grid">

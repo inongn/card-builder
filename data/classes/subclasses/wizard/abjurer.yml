@@ -1,0 +1,42 @@
+id: abjurer
+name: Abjurer
+description: Focus your magical study on spells that block, banish, and protect, warding against magical harm.
+type: Folder
+tags:
+  - wizardSubclass
+children:
+  - id: arcaneWard
+    type: Activity
+    time: free action
+    duration: instantaneous
+    range: self
+    name: Arcane Ward
+    resource: limited
+    description: |
+      When you cast an Abjuration spell with a spell slot, you weave magic around yourself for protection. You simultaneously use a strand of the spell's magic to create a ward with $(2 * meta.level + stats.int.mod) Hit Points that lasts until you finish a Long Rest. Whenever you take damage, the ward takes the damage instead, and if you have any Resistances or Vulnerabilities, apply them before reducing the ward's Hit Points. If the damage reduces the ward to 0 Hit Points, you take any remaining damage. While the ward has 0 Hit Points, it can't absorb damage, but its magic remains.
+
+      Whenever you cast an Abjuration spell with a spell slot, the ward regains a number of Hit Points equal to twice the level of the spell slot. Alternatively, as a Bonus Action, you can expend a spell slot, and the ward regains a number of Hit Points equal to twice the level of the spell slot expended.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: When you cast an Abjuration spell with a spell slot
+      target:
+        type: self
+      payloads:
+        - type: text
+          text: create a ward with $(2 * meta.level + stats.int.mod) Hit Points that absorbs damage taken; regains HP equal to twice the level of Abjuration spells cast or spell slots expended as a Bonus Action
+    condition: $(meta.level >= 3)
+  - id: projectedWard
+    type: Activity
+    duration: instantaneous
+    time: reaction
+    range: 30 feet
+    name: Projected Ward
+    target: arcaneWard
+    description: When a creature that you can see within range takes damage, you cause your Arcane Ward to absorb that damage. If this damage reduces the ward to 0 Hit Points, the warded creature takes any remaining damage. If that creature has any Resistances or Vulnerabilities, apply them before reducing the ward's Hit Points.
+    mechanic:
+      pattern: automatic
+      trigger:
+        text: When a creature that you can see within 30 feet takes damage
+      text: cause your Arcane Ward to absorb that damage
+    condition: $(meta.level >= 6)

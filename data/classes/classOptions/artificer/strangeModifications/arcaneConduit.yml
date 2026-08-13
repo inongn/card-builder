@@ -1,0 +1,15 @@
+id: arcaneConduit
+summary: "Channel arcane energy through your armor to add Intelligence modifier to damage spells."
+name: Arcane Conduit
+type: Folder
+tags:
+  - strangeModifications
+children:
+  - type: Effect
+    target: activities[tags=damageSpell].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.int.mod)
+  - type: Effect
+    target: activities[tags=damageSpell].mechanic.failure.dice.bonus
+    operation: add
+    value: $(stats.int.mod)

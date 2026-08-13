@@ -1,0 +1,20 @@
+id: commandersStrike
+summary: Forgo an attack to direct an ally to strike with extra damage.
+name: Commander's Strike
+tags:
+  - maneuver
+type: Activity
+time: bonus action
+duration: instantaneous
+range: self
+resource: superiorityDice
+description: When you take the Attack action, you can forgo one of your attacks and use a Bonus Action to direct one of your companions to strike. Choose a willing creature who can see or hear you. That creature can use its Reaction to make one weapon attack, adding 1d$(attributes.superiorityDie) to the attack's damage roll.
+mechanic:
+  pattern: automatic
+  target:
+    type: single
+    range: 60 feet
+    filter: ally
+  payloads:
+    - type: text
+      text: uses its Reaction to make one weapon attack, adding 1d$(attributes.superiorityDie) to the damage roll

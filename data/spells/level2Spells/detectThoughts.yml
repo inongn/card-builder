@@ -31,7 +31,7 @@ mechanic:
     dc: $(attributes.spellcasting.save)
   target:
     type: single
-    range: $(range)
+    range: 30 feet
   failure:
     type: text
     text: you read the target's surface thoughts or probe deeper into its mind

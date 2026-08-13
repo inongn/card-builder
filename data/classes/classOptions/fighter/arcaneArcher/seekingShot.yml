@@ -1,0 +1,26 @@
+id: seekingShot
+name: Seeking Shot
+summary: Fire an arrow that seeks out a hidden target.
+tags:
+  - arcaneShotOption
+type: Activity
+duration: instantaneous
+range: self
+time: free action
+resource: arcaneShot
+description: Choose one creature you have seen in the past minute. The arrow flies toward the target, ignoring cover and invisibility. The target must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or take damage equal to the arrow's damage plus 1d6 Force damage, and you know the target's location. On a success, the target takes half damage.
+mechanic:
+  pattern: save
+  save:
+    ability: str
+    dc: $(attributes.spellcasting.save)
+  target:
+    type: single
+    range: 120 feet
+  failure:
+    - type: text
+      text: damage equal to the arrow's damage plus 1d6 Force damage
+    - type: text
+      text: you know the target's location
+  success:
+    halfDamage: true

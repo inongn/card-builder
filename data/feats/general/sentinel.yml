@@ -14,18 +14,21 @@ children:
   - id: sentinelHalt
     name: Halt
     type: Effect
-    target: activities[id=opportunityAttack].mechanic.hit.payloads
+    target: activities[id=opportunityAttack].mechanic
     operation: push
     value:
-      type: statModifier
-      stat: speed
-      operation: set
-      value: 0
-      text: "target's Speed becomes 0 for the rest of the current turn"
+      pattern: automatic
+      target:
+        inherit: trigger
+      payloads:
+        - type: statModifier
+          stat: speed
+          operation: set
+          value: 0
   - id: sentinelGuardian
     name: Guardian
     type: Effect
     target: activities[id=opportunityAttack].mechanic.trigger
-    operation: merge
+    operation: set
     value:
-      text: when a creature takes the Disengage action or hits a target other than you with an attack
+      text: When a creature leaves your reach, takes the Disengage action or hits a target other than you with an attack

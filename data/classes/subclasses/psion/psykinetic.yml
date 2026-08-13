@@ -23,7 +23,6 @@ children:
       - stoneShape
     condition: $(meta.level >= 7)
   - id: telekineticTechniques
-    name: Telekinetic Techniques
     type: Effect
     target: activities[id=telekineticPropel].mechanic.failure
     operation: push

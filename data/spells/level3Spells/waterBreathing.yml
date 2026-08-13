@@ -23,4 +23,4 @@ mechanic:
     type: multiple
     count: 10
     range: $(range)
-  text: gain the ability to breathe underwater for 24 hours
+  text: gain the ability to breathe underwater

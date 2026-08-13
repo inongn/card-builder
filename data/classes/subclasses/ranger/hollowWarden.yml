@@ -1,0 +1,90 @@
+id: hollowWarden
+name: Hollow Warden
+description: Draw power from ancient horrors to grow bark armor and unleash nature's primal, terrifying vengeance.
+tags:
+  - rangerSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - wrathfulSmite
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target:
+      - alterSelf
+  - type: Reference
+    condition: $(meta.level >= 9)
+    target:
+      - phantomSteed
+  - type: Reference
+    condition: $(meta.level >= 13)
+    target:
+      - dominateBeast
+  - type: Reference
+    condition: $(meta.level >= 17)
+    target:
+      - steelWindStrike
+  - id: wrathOfTheWild
+    type: Activity
+    range: self
+    name: Wrath of the Wild
+    time: bonus action
+    duration: 1 minute
+    resource: favoredEnemy
+    description: |
+      You draw power from the strange and ancient horrors of the land, causing you to sprout unnatural growths, such as bloody antlers or putrid fangs, or causing your shadow to lengthen or twist around you. You gain the following benefits for the duration:
+      * **Ancient Armor:** Gain a +$(meta.level >= 11 ? 2 : 1) bonus to AC.
+      * **Prowling Retribution:** Immediately after a creature within 5 feet deals damage to you or an ally, you can make an Opportunity Attack against it.
+      * **Unnerving Aura:** At transformation and at the start of your subsequent turns, each chosen creature in a 10-foot Emanation makes a DC $(attributes.spellcasting.save) Wisdom save or has the Frightened condition until the start of your next turn.
+    mechanic:
+      mode: succession
+      blocks:
+        - pattern: automatic
+          target:
+            type: self
+          payloads:
+            - type: statModifier
+              stat: ac
+              value: '$(meta.level >= 11 ? 2 : 1)'
+              operation: add
+            - type: text
+              text: you can make an Opportunity Attack against any creature within 5 feet that damages you or an ally
+        - pattern: save
+          trigger:
+            event:
+              - on_cast
+              - start_turn
+          save:
+            ability: wis
+            dc: $(attributes.spellcasting.save)
+          target:
+            type: area
+            aoe:
+              shape: emanation
+              size: 10
+            range: $(range)
+          failure:
+            type: condition
+            condition: frightened
+            end: end_of_your_next_turn
+  - id: hungeringMightConSaves
+    type: Effect
+    target: saves.constitution.bonus
+    operation: add
+    condition: $(meta.level >= 7)
+    value: $(Math.max(1, stats.wis.mod))
+  - id: hungeringMightHeal
+    type: Effect
+    name: Hungering Might
+    target: activities[id=wrathOfTheWild].mechanic.payloads
+    operation: push
+    condition: $(meta.level >= 7)
+    value:
+      type: healing
+      healing:
+        dice:
+          count: 1
+          sides: 10
+          bonus: $(Math.max(1, stats.wis.mod))
+        type: hitPoints
+      text: "once per turn on weapon attack hit while transformed and Bloodied"

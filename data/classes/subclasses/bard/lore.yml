@@ -21,12 +21,24 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        event: [make_attack, make_check, roll_damage]
+        event:
+          - make_attack
+          - make_check
+          - roll_damage
+        text: When a creature you can see within 60 feet makes a damage roll, ability check, or attack roll
       target:
         inherit: trigger
       payloads:
-        type: text
-        text: subtract 1d$(attributes.bardicDie) from the roll
+        - type: rollModifier
+          modifierType: subtract
+          dice:
+            count: 1
+            sides: $(attributes.bardicDie)
+          targetRolls:
+            - attack
+            - check
+            - dmg
+          text: subtract 1d$(attributes.bardicDie) from the roll
     condition: $(meta.level >= 3)
   - id: magicalDiscoveries
     name: Magical Discoveries

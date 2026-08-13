@@ -1,0 +1,101 @@
+id: undeadPatron
+name: Undead Patron
+description: Make a pact with a legendary undead entity, gaining dreadful powers to ward off death and terrify foes.
+tags:
+  - warlockSubclass
+type: Folder
+children:
+  - type: Reference
+    target:
+      - bane
+      - blindnessDeafness
+      - phantasmalForce
+      - rayOfSickness
+  - type: Reference
+    condition: $(meta.level >= 5)
+    target:
+      - speakWithDead
+      - summonUndead
+  - type: Reference
+    condition: $(meta.level >= 7)
+    target:
+      - greaterInvisibility
+      - phantasmalKiller
+  - type: Reference
+    condition: $(meta.level >= 9)
+    target:
+      - antilifeShell
+      - cloudkill
+  - id: formOfDread
+    type: Activity
+    range: self
+    name: Form of Dread
+    time: bonus action
+    duration: 1 minute
+    resource: formOfDread
+    description: |
+      You transform into an avatar of your patron's dreadful power, gaining the following benefits for the duration:
+      * **Facsimile of Life:** You gain 1d10+$(meta.level) Temporary Hit Points.
+      * **Fearless Form:** You have Immunity to the Frightened condition. If you are Frightened when you transform, the condition immediately ends for you.
+      * **Frightful Avatar:** Once per turn, when you hit a creature with an attack roll, you can force it to make a DC $(attributes.spellcasting.save) Wisdom saving throw. On a failed save, the target has the Frightened condition until the end of your next turn.
+    mechanic:
+      mode: choice
+      blocks:
+        - pattern: healing
+          name: Facsimile of Life
+          target:
+            type: self
+          healing:
+            dice:
+              count: 1
+              sides: 10
+              bonus: $(meta.level)
+            type: tempHitPoints
+        - pattern: automatic
+          name: Fearless Form
+          target:
+            type: self
+          payloads:
+            - type: text
+              text: gain immunity to the Frightened condition; if Frightened when you transform, the condition immediately ends for you
+        - pattern: save
+          name: Frightful Avatar
+          trigger:
+            event: hit_with_attack
+            text: Once per turn, when you hit a creature with an attack roll
+          save:
+            ability: wis
+            dc: $(attributes.spellcasting.save)
+          target:
+            inherit: trigger
+          failure:
+            - type: condition
+              condition: frightened
+              end: end_of_your_next_turn
+    condition: $(meta.level >= 3)
+  - id: formOfDread
+    name: Form of Dread
+    type: Resource
+    quantity: $(Math.max(1, stats.cha.mod))
+  - id: arcaneNecrosis
+    type: Trait
+    name: Arcane Necrosis
+    description: Your spells ignore Resistance to Necrotic damage.
+    condition: $(meta.level >= 6)
+  - id: necroticSpellConversion
+    type: Effect
+    name: Necrotic Spell Conversion
+    target: activities[tags=warlock and tags=damageSpell].mechanic.hit.damageType
+    operation: push
+    value: necrotic
+    condition: $(meta.level >= 6)
+  - id: dreadedNecrosis
+    type: Effect
+    name: Dreaded Necrosis
+    target: activities[id=formOfDread].mechanic.blocks
+    operation: push
+    value:
+      - pattern: automatic
+        name: Dreaded Necrosis
+        text: Once per turn when you hit a creature and deal Necrotic damage while transformed, you can roll one additional damage die.
+    condition: $(meta.level >= 6)

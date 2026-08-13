@@ -1,0 +1,29 @@
+id: enfeeblingShot
+name: Enfeebling Shot
+summary: Deal extra necrotic damage and halve the target's weapon attack damage.
+tags:
+  - arcaneShotOption
+type: Activity
+duration: instantaneous
+range: self
+time: free action
+resource: arcaneShot
+description: When you hit a creature with a weapon attack using a bow, add 2d6 Necrotic damage to the attack's damage roll. The target must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or have the damage of its weapon attacks halved until the start of your next turn.
+mechanic:
+  pattern: save
+  trigger:
+    text: When you hit a creature with a weapon attack using a bow
+  save:
+    ability: con
+    dc: $(attributes.spellcasting.save)
+  target:
+    inherit: trigger
+  failureOrSuccess:
+    type: damage
+    dice:
+      count: 2
+      sides: 6
+    damageType: necrotic
+  failure:
+    - type: text
+      text: damage of its weapon attacks is halved until the start of your next turn

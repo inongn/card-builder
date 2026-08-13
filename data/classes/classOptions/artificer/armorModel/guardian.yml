@@ -5,12 +5,53 @@ type: Folder
 tags:
   - armorModel
 children:
-  - type: Reference
-    target:
-      - thunderPulse
-  - type: Reference
-    target:
-      - defensiveField
+  - id: thunderPulse
+    type: Activity
+    duration: instantaneous
+    name: Thunder Pulse
+    time: action
+    range: 5 feet
+    tags:
+      - weaponAttack
+      - attack
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))) attack. On a hit, the target takes $(meta.level >= 15 ? '1d10' : '1d8')$(formatBonus(stats.int.mod + (meta.level >= 9 ? 1 : 0))) Thunder damage.
+
+      A creature hit by the pulse has Disadvantage on attack rolls against targets other than you until the start of your next turn.
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: '$(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))'
+      target:
+        type: single
+        range: 5 feet
+      hit:
+        type: damage
+        dice:
+          count: 1
+          sides: '$(meta.level >= 15 ? 10 : 8)'
+          bonus: '$(stats.int.mod + (meta.level >= 9 ? 1 : 0))'
+        damageType: thunder
+  - id: defensiveField
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Defensive Field
+    time: bonus action
+    description: |
+      While Bloodied, you can gain ($(meta.level)) Temporary Hit Points. You lose these Temporary Hit Points if you doff the armor.
+    mechanic:
+      pattern: healing
+      healing:
+        dice:
+          count: 0
+          sides: 0
+          bonus: $(meta.level)
+        type: tempHitPoints
+      target:
+        type: self
   - id: perfectedGuardianReactionResource
     type: Resource
     name: Perfected Guardian Reaction Uses

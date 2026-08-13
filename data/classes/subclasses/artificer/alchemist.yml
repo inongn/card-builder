@@ -1,0 +1,124 @@
+id: alchemist
+name: Alchemist
+description: Combine reagents to produce magical effects, using creations to give life and to leech it away.
+type: Folder
+tags:
+  - artificerSubclass
+children:
+  - type: Reference
+    target:
+      - alchemistsTools
+      - herbalismKit
+  - type: Reference
+    target:
+      - healingWord
+      - rayOfSickness
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - flamingSphere
+      - melfsAcidArrow
+    condition: $(meta.level >= 5)
+  - type: Reference
+    target:
+      - gaseousForm
+      - massHealingWord
+    condition: $(meta.level >= 9)
+  - type: Reference
+    target:
+      - deathWard
+      - vitriolicSphere
+    condition: $(meta.level >= 13)
+  - type: Reference
+    target:
+      - cloudkill
+      - raiseDead
+    condition: $(meta.level >= 17)
+  - id: experimentalElixirResource
+    name: Experimental Elixir
+    type: Resource
+    quantity: '$(meta.level >= 15 ? 5 : meta.level >= 9 ? 4 : meta.level >= 5 ? 3 : 2)'
+  - id: experimentalElixir
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Experimental Elixir
+    time: bonus action
+    resource: experimentalElixirResource
+    description: |
+      You drink the elixir or administer it to another creature within 5 feet of itself. The elixir has one of the following effects:
+
+      **1. Healing.** The drinker regains hit points equal to 2d8 plus your Intelligence modifier ($(2 + (meta.level >= 9 ? 1 : 0) + (meta.level >= 15 ? 1 : 0))d8$(formatBonus(stats.int.mod))).
+
+      **2. Swiftness.** The drinker's Speed increases by $(meta.level >= 15 ? 20 : meta.level >= 9 ? 15 : 10) feet for 1 hour.
+
+      **3. Resilience.** The drinker gains a +1 bonus to AC for $(meta.level >= 15 ? '8 hours' : meta.level >= 9 ? '1 hour' : '10 minutes').
+
+      **4. Boldness.** The drinker rolls 1d4 and adds it to attack rolls and saving throws for $(meta.level >= 15 ? '1 hour' : meta.level >= 9 ? '10 minutes' : '1 minute').
+
+      **5. Flight.** The drinker gains a Fly Speed of $(meta.level >= 15 ? 30 : meta.level >= 9 ? 20 : 10) feet for 10 minutes.
+
+      **6. Choice.** Choose one of the above.
+    mechanic:
+      mode: choice
+      text: 'Roll 1d6 to determine the effect:'
+      blocks:
+        - pattern: healing
+          name: 1. Healing
+          healing:
+            dice:
+              count: '$(2 + (meta.level >= 9 ? 1 : 0) + (meta.level >= 15 ? 1 : 0))'
+              sides: 8
+              bonus: $(stats.int.mod)
+            type: hitPoints
+          target:
+            type: touch
+        - pattern: automatic
+          name: 2. Hwiftness
+          target:
+            type: touch
+          payloads:
+            type: statModifier
+            stat: speed
+            value: '$(meta.level >= 15 ? 20 : meta.level >= 9 ? 15 : 10)'
+            operation: add
+        - pattern: automatic
+          name: 3. Resilience
+          target:
+            type: touch
+          payloads:
+            type: statModifier
+            stat: ac
+            value: 1
+            operation: add
+        - pattern: automatic
+          name: 4. Boldness
+          target:
+            type: touch
+          payloads:
+            type: text
+            text: drinker rolls 1d4 and adds it to attack rolls and saving throws
+        - pattern: automatic
+          name: 5. Flight
+          target:
+            type: touch
+          payloads:
+            type: text
+            text: "drinker gains a Fly Speed of $(meta.level >= 15 ? 30 : meta.level >= 9 ? 20 : 10) feet"
+        - pattern: automatic
+          name: 6. Choice
+          target:
+            type: touch
+          payloads:
+            type: text
+            text: Choose any effect
+  - type: Effect
+    target: activities[(tags=damageSpell AND (tags=acidDamage OR tags=fireDamage OR tags=poisonDamage)) OR tags=healingSpell].mechanic.hit.dice.bonus
+    operation: add
+    value: $(stats.int.mod)
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=damageSpell AND (tags=acidDamage OR tags=fireDamage OR tags=poisonDamage)) OR tags=healingSpell].mechanic.failure.dice.bonus
+    operation: add
+    value: $(stats.int.mod)
+    condition: $(meta.level >= 5)

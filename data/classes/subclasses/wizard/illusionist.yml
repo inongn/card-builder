@@ -1,0 +1,32 @@
+id: illusionist
+name: Illusionist
+description: Specialize in magic that dazzles senses and tricks the mind, crafting illusions that seem utterly real.
+type: Folder
+tags:
+  - wizardSubclass
+children:
+  - type: Reference
+    target: minorIllusion
+    condition: $(meta.level >= 3)
+  - id: improvedIllusionsRange
+    type: Effect
+    target: activities[tags=illusion AND NOT range=self AND NOT range=touch].range
+    operation: add
+    value: 60
+    condition: $(meta.level >= 3)
+  - id: improvedIllusionsMinorIllusionTime
+    type: Effect
+    target: activities[id=minorIllusion].time
+    operation: set
+    value: bonus action
+    condition: $(meta.level >= 3)
+  - id: improvedIllusionsNoVerbal
+    type: Trait
+    name: Improved Illusions
+    description: You can cast Illusion spells without Verbal components.
+    condition: $(meta.level >= 3)
+  - type: Reference
+    target:
+      - summonBeast
+      - summonFey
+    condition: $(meta.level >= 6)

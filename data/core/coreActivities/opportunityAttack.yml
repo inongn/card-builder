@@ -6,3 +6,11 @@ time: reaction
 range: self
 description: |
   When a creature leaves your reach, you make one melee attack with a weapon or an Unarmed Strike against the target. The attack occurs right before the creature leaves your reach.
+mechanic:
+  trigger:
+    text: When a creature leaves your reach
+  pattern: automatic
+  payloads:
+    - type: action
+      actionType: attack
+      

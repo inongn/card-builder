@@ -1403,25 +1403,47 @@ export class CharacterBuilder {
                     nextNodes.push(...matches);
                 }
             } else {
+                const payloadKeys = ['hit', 'failure', 'failureOrSuccess', 'healing', 'payloads', 'damage'];
                 for (const node of currentNodes) {
-                    const checkAndPush = (targetObj) => {
-                        if (!targetObj || typeof targetObj !== 'object') return;
-                        if (targetObj[part] !== undefined) {
-                            if (Array.isArray(targetObj[part])) nextNodes.push(...targetObj[part]);
-                            else nextNodes.push(targetObj[part]);
-                        }
-                    };
+                    const isPayloadPart = payloadKeys.includes(part);
+                    if (isPayloadPart && node && typeof node === 'object') {
+                        const visited = new Set();
+                        const collectPayloads = (targetObj) => {
+                            if (!targetObj || typeof targetObj !== 'object' || visited.has(targetObj)) return;
+                            visited.add(targetObj);
 
-                    if (Array.isArray(node)) {
-                        node.forEach(item => checkAndPush(item));
-                    } else if (node && typeof node === 'object') {
-                        if (node.hit || node.failure || node.blocks) {
-                            if (node.hit) checkAndPush(node.hit);
-                            if (node.failure) checkAndPush(node.failure);
-                            if (node.blocks && Array.isArray(node.blocks)) node.blocks.forEach(b => checkAndPush(b));
-                        }
-                        if (node[part] !== undefined) {
-                            checkAndPush(node);
+                            if (targetObj[part] !== undefined) {
+                                if (Array.isArray(targetObj[part])) nextNodes.push(...targetObj[part]);
+                                else nextNodes.push(targetObj[part]);
+                            }
+                            payloadKeys.forEach(key => {
+                                if (key !== part && targetObj[key] !== undefined) {
+                                    if (Array.isArray(targetObj[key])) nextNodes.push(...targetObj[key]);
+                                    else nextNodes.push(targetObj[key]);
+                                }
+                            });
+                            if (Array.isArray(targetObj.blocks)) {
+                                targetObj.blocks.forEach(b => collectPayloads(b));
+                            }
+                        };
+                        collectPayloads(node);
+                    } else {
+                        const checkAndPush = (targetObj) => {
+                            if (!targetObj || typeof targetObj !== 'object') return;
+                            if (targetObj[part] !== undefined) {
+                                if (Array.isArray(targetObj[part])) nextNodes.push(...targetObj[part]);
+                                else nextNodes.push(targetObj[part]);
+                            }
+                        };
+
+                        if (Array.isArray(node)) {
+                            node.forEach(item => checkAndPush(item));
+                        } else if (node && typeof node === 'object') {
+                            if (node[part] !== undefined) {
+                                checkAndPush(node);
+                            } else if (Array.isArray(node.blocks)) {
+                                node.blocks.forEach(b => checkAndPush(b));
+                            }
                         }
                     }
                 }

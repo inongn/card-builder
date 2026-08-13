@@ -5,13 +5,54 @@ type: Folder
 tags:
   - armorModel
 children:
-  - type: Reference
-    target:
-      - forceDemolisher
+  - id: forceDemolisher
+    type: Activity
+    duration: instantaneous
+    name: Force Demolisher
+    time: action
+    range: 10 feet
+    tags:
+      - weaponAttack
+      - attack
+    description: |
+      Make a $(formatBonus(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))) attack. On a hit, the target takes $(meta.level >= 15 ? '2d6' : '1d10')$(formatBonus(stats.int.mod + (meta.level >= 9 ? 1 : 0))) Force damage.
+
+      If you hit a creature that is at least one size smaller than you with the demolisher, you can push the creature up to 10 feet straight away from yourself or pull the creature up to 10 feet toward yourself.
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: '$(stats.int.mod + attributes.prof + (meta.level >= 9 ? 1 : 0))'
+      target:
+        type: single
+        range: 10 feet
+      hit:
+        type: damage
+        dice:
+          count: '$(meta.level >= 15 ? 2 : 1)'
+          sides: '$(meta.level >= 15 ? 6 : 10)'
+          bonus: '$(stats.int.mod + (meta.level >= 9 ? 1 : 0))'
+        damageType: force
   - id: giantStatureResource
     type: Resource
     name: Giant Stature
     quantity: $(Math.max(1, stats.int.mod))
-  - type: Reference
-    target:
-      - giantStature
+  - id: giantStature
+    type: Activity
+    duration: instantaneous
+    range: self
+    name: Giant Stature
+    time: bonus action
+    resource: giantStatureResource
+    description: |
+      As a Bonus Action, you transform and enlarge your armor for 1 minute. For the duration:
+      - Your reach increases by $(meta.level >= 15 ? '10' : '5') feet.
+      - If you are smaller than Large, you become Large.
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        type: text
+        text: 'transform and enlarge your armor for 1 minute: reach increases by $(meta.level >= 15 ? 10 : 5) feet, and if smaller than Large you become Large'
