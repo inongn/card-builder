@@ -226,9 +226,9 @@ function autoFill(builder, preferences = {}, maxPasses = 20) {
                 const classSpells = {
                     barbarian: [],
                     bard: ['viciousMockery', 'prestidigitation', 'healingWord', 'cureWounds', 'invisibility', 'shatter', 'suggestion', 'disguiseSelf', 'thunderwave', 'detectMagic', 'holdPerson', 'silence', 'mirrorImage', 'compulsion'],
-                    cleric: ['guidance', 'sacredFlame', 'bless', 'healingWord', 'cureWounds', 'spiritualWeapon', 'spiritGuardians', 'revivify', 'guidingBolt', 'inflictWounds', 'holdPerson', 'lesserRestoration', 'aid'],
-                    druid: ['shillelagh', 'guidance', 'produceFlame', 'entangle', 'healingWord', 'spikeGrowth', 'passWithoutTrace', 'callLightning', 'thunderwave', 'fogCloud', 'barkskin', 'heatMetal'],
-                    wizard: ['fireBolt', 'prestidigitation', 'mageHand', 'shield', 'mageArmor', 'magicMissile', 'mistyStep', 'fireball', 'mirrorImage', 'counterspell', 'detectMagic', 'thunderwave', 'shatter', 'web'],
+                    cleric: ['guidance', 'sacredFlame', 'bless', 'healingWord', 'cureWounds', 'spiritualWeapon', 'spiritGuardians', 'revivify', 'guidingBolt', 'inflictWounds', 'controlWater', 'holdPerson', 'lesserRestoration', 'aid'],
+                    druid: ['shillelagh', 'guidance', 'produceFlame', 'entangle', 'healingWord', 'spikeGrowth', 'passWithoutTrace', 'callLightning', 'controlWater', 'thunderwave', 'fogCloud', 'barkskin', 'heatMetal', 'iceStorm'],
+                    wizard: ['fireBolt', 'prestidigitation', 'mageHand', 'shield', 'mageArmor', 'magicMissile', 'mistyStep', 'fireball', 'mirrorImage', 'counterspell', 'controlWater', 'detectMagic', 'thunderwave', 'shatter', 'web', 'polymorph'],
                     sorcerer: ['fireBolt', 'mindSliver', 'prestidigitation', 'shield', 'magicMissile', 'scorchingRay', 'mistyStep', 'fireball', 'haste', 'web', 'shatter'],
                     warlock: ['eldritchBlast', 'prestidigitation', 'hex', 'hellishRebuke', 'mistyStep', 'shatter', 'hungerOfHadar', 'armorOfAgathys', 'holdPerson'],
                     paladin: ['bless', 'heroism', 'cureWounds', 'shieldOfFaith', 'thunderousSmite', 'wrathfulSmite'],
@@ -563,7 +563,7 @@ const CHARACTERS = [
         species: 'Triton', background: 'sailor',
         speciesId: 'triton', classId: 'druid', subcId: 'circleOfTheSea',
         str: 1, dex: 3, con: 3, int: 2, wis: 9, cha: 0,
-        prefs: { druidSubclass: ['circleOfTheSea'], keenObserver: ['perceptionProficiency'] }
+        prefs: { druidSubclass: ['circleOfTheSea'], keenObserver: ['perceptionProficiency'], druidSpell: ['controlWater', 'callLightning', 'fogCloud'] }
     },
     {
         id: 'sample_druid_stars',

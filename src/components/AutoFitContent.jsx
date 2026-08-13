@@ -3,7 +3,7 @@ import React, { useState, useLayoutEffect, useRef } from 'react';
 /**
  * A component that scales its font size down until it fits its container.
  */
-export const AutoFitContent = ({ children, maxFontSize = 1, minFontSize = 0.45, step = 0.005, unit = 'rem' }) => {
+export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 8, step = 1, unit = 'pt' }) => {
     const containerRef = useRef(null);
     const innerRef = useRef(null);
 

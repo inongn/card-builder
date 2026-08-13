@@ -5734,7 +5734,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'protectionFromEvilAndGood'
+                        propertyId: 'detectPoisonAndDisease'
                 },
                 {
                         path: [
@@ -5758,7 +5758,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -5770,7 +5770,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'lesserRestoration'
                 },
                 {
                         path: [
@@ -5782,7 +5782,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'bless'
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -5794,7 +5794,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'healingWord'
+                        propertyId: 'bless'
                 },
                 {
                         path: [
@@ -5806,7 +5806,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'cureWounds'
+                        propertyId: 'healingWord'
                 },
                 {
                         path: [
@@ -5818,7 +5818,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'cureWounds'
                 },
                 {
                         path: [
@@ -5830,7 +5830,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'purifyFoodAndDrink'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -5842,7 +5842,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'detectPoisonAndDisease'
+                        propertyId: 'protectionFromEvilAndGood'
                 },
                 {
                         path: [
@@ -6362,7 +6362,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -6374,7 +6374,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -6386,7 +6386,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'lesserRestoration'
                 },
                 {
                         path: [
@@ -6398,7 +6398,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'sanctuary'
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -6869,7 +6869,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateClericPreparedSpell'
                                 }
                         ],
-                        propertyId: 'bane'
+                        propertyId: 'sanctuary'
                 },
                 {
                         path: [
@@ -6973,7 +6973,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'blindnessdeafness'
+                        propertyId: 'shieldOfFaith'
                 },
                 {
                         path: [
@@ -7009,7 +7009,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'calmEmotions'
+                        propertyId: 'augury'
                 },
                 {
                         path: [
@@ -7045,7 +7045,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -7057,7 +7057,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'continualFlame'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -7069,7 +7069,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'enhanceAbility'
+                        propertyId: 'blindnessdeafness'
                 },
                 {
                         path: [
@@ -7081,7 +7081,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'shieldOfFaith'
+                        propertyId: 'calmEmotions'
                 },
                 {
                         path: [
@@ -7093,7 +7093,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'augury'
+                        propertyId: 'purifyFoodAndDrink'
                 },
                 {
                         path: [
@@ -7609,7 +7609,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -7621,7 +7621,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -7633,7 +7633,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'lesserRestoration'
                 },
                 {
                         path: [
@@ -7645,7 +7645,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'findTraps'
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -7657,7 +7657,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'gentleRepose'
+                        propertyId: 'continualFlame'
                 },
                 {
                         path: [
@@ -8192,7 +8192,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -8204,7 +8204,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -8216,7 +8216,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'lesserRestoration'
                 },
                 {
                         path: [
@@ -8228,7 +8228,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'locateObject'
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -8691,7 +8691,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'protectionFromPoison'
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -8703,7 +8703,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'wardingBond'
+                        propertyId: 'findTraps'
                 },
                 {
                         path: [
@@ -8727,7 +8727,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'zoneOfTruth'
+                        propertyId: 'gentleRepose'
                 },
                 {
                         path: [
@@ -8751,7 +8751,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'animateDead'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -8763,7 +8763,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'prayerOfHealing'
+                        propertyId: 'locateObject'
                 },
                 {
                         path: [
@@ -8775,7 +8775,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'enhanceAbility'
                 },
                 {
                         path: [
@@ -8787,7 +8787,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'lesserRestoration'
                 },
                 {
                         path: [
@@ -9238,7 +9238,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'entangle'
+                        propertyId: 'iceStorm'
                 },
                 {
                         path: [
@@ -9250,7 +9250,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'healingWord'
+                        propertyId: 'entangle'
                 },
                 {
                         path: [
@@ -9262,7 +9262,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'healingWord'
                 },
                 {
                         path: [
@@ -9274,7 +9274,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'faerieFire'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -9286,7 +9286,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'goodberry'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -9298,7 +9298,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'iceKnife'
+                        propertyId: 'faerieFire'
                 },
                 {
                         path: [
@@ -9814,7 +9814,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'darkvision'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -9826,7 +9826,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'barkskin'
+                        propertyId: 'longstrider'
                 },
                 {
                         path: [
@@ -9838,7 +9838,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'heatMetal'
+                        propertyId: 'barkskin'
                 },
                 {
                         path: [
@@ -9850,7 +9850,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'jump'
+                        propertyId: 'heatMetal'
                 },
                 {
                         path: [
@@ -9862,7 +9862,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'longstrider'
+                        propertyId: 'iceStorm'
                 },
                 {
                         path: [
@@ -9874,7 +9874,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'speakWithAnimals'
+                        propertyId: 'goodberry'
                 },
                 {
                         path: [
@@ -9886,7 +9886,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'animalMessenger'
+                        propertyId: 'iceKnife'
                 },
                 {
                         path: [
@@ -9898,7 +9898,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'beastSense'
+                        propertyId: 'jump'
                 },
                 {
                         path: [
@@ -10364,7 +10364,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -10376,7 +10376,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'fogCloud'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -10388,7 +10388,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'barkskin'
+                        propertyId: 'fogCloud'
                 },
                 {
                         path: [
@@ -10400,7 +10400,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'heatMetal'
+                        propertyId: 'barkskin'
                 },
                 {
                         path: [
@@ -10412,7 +10412,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'enlargereduce'
+                        propertyId: 'heatMetal'
                 },
                 {
                         path: [
@@ -10424,7 +10424,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'flameBlade'
+                        propertyId: 'iceStorm'
                 },
                 {
                         path: [
@@ -10436,7 +10436,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'flamingSphere'
+                        propertyId: 'speakWithAnimals'
                 },
                 {
                         path: [
@@ -10951,7 +10951,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -10963,7 +10963,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'fogCloud'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -10975,7 +10975,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'barkskin'
+                        propertyId: 'fogCloud'
                 },
                 {
                         path: [
@@ -10987,7 +10987,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'heatMetal'
+                        propertyId: 'barkskin'
                 },
                 {
                         path: [
@@ -10999,7 +10999,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'gustOfWind'
+                        propertyId: 'heatMetal'
                 },
                 {
                         path: [
@@ -11011,7 +11011,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'locateAnimalsOrPlants'
+                        propertyId: 'iceStorm'
                 },
                 {
                         path: [
@@ -11023,7 +11023,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'auraOfVitality'
+                        propertyId: 'animalMessenger'
                 },
                 {
                         path: [
@@ -11035,7 +11035,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'summonBeast'
+                        propertyId: 'beastSense'
                 },
                 {
                         path: [
@@ -11504,7 +11504,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'feignDeath'
+                        propertyId: 'flameBlade'
                 },
                 {
                         path: [
@@ -11516,7 +11516,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'barkskin'
+                        propertyId: 'flamingSphere'
                 },
                 {
                         path: [
@@ -11528,7 +11528,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'heatMetal'
+                        propertyId: 'barkskin'
                 },
                 {
                         path: [
@@ -11540,7 +11540,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'conjureAnimals'
+                        propertyId: 'heatMetal'
                 },
                 {
                         path: [
@@ -11552,7 +11552,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'daylight'
+                        propertyId: 'locateAnimalsOrPlants'
                 },
                 {
                         path: [
@@ -11564,7 +11564,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'dispelMagic'
+                        propertyId: 'darkvision'
                 },
                 {
                         path: [
@@ -11576,7 +11576,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'elementalWeapon'
+                        propertyId: 'enlargereduce'
                 },
                 {
                         path: [
@@ -12111,7 +12111,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'fogCloud'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -12123,7 +12123,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'barkskin'
+                        propertyId: 'fogCloud'
                 },
                 {
                         path: [
@@ -12135,7 +12135,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'heatMetal'
+                        propertyId: 'barkskin'
                 },
                 {
                         path: [
@@ -12147,7 +12147,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'meldIntoStone'
+                        propertyId: 'heatMetal'
                 },
                 {
                         path: [
@@ -12159,7 +12159,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'plantGrowth'
+                        propertyId: 'iceStorm'
                 },
                 {
                         path: [
@@ -12171,7 +12171,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'protectionFromEnergy'
+                        propertyId: 'gustOfWind'
                 },
                 {
                         path: [
@@ -12183,7 +12183,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'sleetStorm'
+                        propertyId: 'moonbeam'
                 },
                 {
                         path: [
@@ -17965,7 +17965,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'shiningSmite'
+                        propertyId: 'prayerOfHealing'
                 },
                 {
                         path: [
@@ -18014,6 +18014,18 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'wrathfulSmite'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'paladinSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'protectionFromPoison'
                 },
                 {
                         path: [
@@ -18482,7 +18494,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'command'
+                        propertyId: 'shiningSmite'
                 },
                 {
                         path: [
@@ -18494,7 +18506,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'compelledDuel'
+                        propertyId: 'wardingBond'
                 },
                 {
                         path: [
@@ -18920,7 +18932,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'command'
+                        propertyId: 'zoneOfTruth'
                 },
                 {
                         path: [
@@ -19368,7 +19380,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'compelledDuel'
+                        propertyId: 'command'
                 },
                 {
                         path: [
@@ -19392,7 +19404,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'command'
+                        propertyId: 'compelledDuel'
                 },
                 {
                         path: [
@@ -20842,7 +20854,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'animalFriendship'
+                        propertyId: 'summonBeast'
                 },
                 {
                         path: [
@@ -26778,7 +26790,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'enemiesAbound'
+                        propertyId: 'daylight'
                 },
                 {
                         path: [
@@ -26790,7 +26802,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'gaseousForm'
+                        propertyId: 'dispelMagic'
                 },
                 {
                         path: [
@@ -26802,7 +26814,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'enemiesAbound'
                 },
                 {
                         path: [
@@ -27374,7 +27386,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'intellectFortress'
+                        propertyId: 'fear'
                 },
                 {
                         path: [
@@ -27386,7 +27398,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'lightningBolt'
+                        propertyId: 'fly'
                 },
                 {
                         path: [
@@ -27398,7 +27410,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'majorImage'
+                        propertyId: 'gaseousForm'
                 },
                 {
                         path: [
@@ -27410,7 +27422,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'slow'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -27900,7 +27912,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'stinkingCloud'
+                        propertyId: 'intellectFortress'
                 },
                 {
                         path: [
@@ -27912,7 +27924,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'tongues'
+                        propertyId: 'lightningBolt'
                 },
                 {
                         path: [
@@ -27924,7 +27936,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'vampiricTouch'
+                        propertyId: 'majorImage'
                 },
                 {
                         path: [
@@ -27936,7 +27948,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'waterBreathing'
+                        propertyId: 'protectionFromEnergy'
                 },
                 {
                         path: [
@@ -28391,7 +28403,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'confusion'
+                        propertyId: 'tongues'
                 },
                 {
                         path: [
@@ -28415,7 +28427,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'waterWalk'
+                        propertyId: 'sleetStorm'
                 },
                 {
                         path: [
@@ -28427,7 +28439,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'banishment'
+                        propertyId: 'slow'
                 },
                 {
                         path: [
@@ -28439,7 +28451,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'blight'
+                        propertyId: 'stinkingCloud'
                 },
                 {
                         path: [
@@ -28451,7 +28463,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'charmMonster'
+                        propertyId: 'telekineticCrush'
                 },
                 {
                         path: [
@@ -30085,7 +30097,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'hallucinatoryTerrain'
+                        propertyId: 'banishment'
                 },
                 {
                         path: [
@@ -30121,7 +30133,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'dimensionDoor'
+                        propertyId: 'vampiricTouch'
                 },
                 {
                         path: [
@@ -30613,7 +30625,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'armsOfHadar'
+                        propertyId: 'hallucinatoryTerrain'
                 },
                 {
                         path: [
@@ -30649,7 +30661,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'raulothimsPsychicLance'
+                        propertyId: 'blight'
                 },
                 {
                         path: [
@@ -30661,7 +30673,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'bane'
+                        propertyId: 'charmMonster'
                 },
                 {
                         path: [
@@ -30673,7 +30685,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'charmPerson'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -31222,7 +31234,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'armsOfHadar'
+                        propertyId: 'raulothimsPsychicLance'
                 },
                 {
                         path: [
@@ -31234,7 +31246,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'comprehendLanguages'
+                        propertyId: 'summonAberration'
                 },
                 {
                         path: [
@@ -31246,7 +31258,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'charmPerson'
+                        propertyId: 'armsOfHadar'
                 },
                 {
                         path: [
@@ -32259,7 +32271,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'mageArmor'
+                        propertyId: 'polymorph'
                 },
                 {
                         path: [
@@ -32271,7 +32283,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'magicMissile'
+                        propertyId: 'mageArmor'
                 },
                 {
                         path: [
@@ -32283,7 +32295,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'mistyStep'
+                        propertyId: 'magicMissile'
                 },
                 {
                         path: [
@@ -32295,7 +32307,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'fireball'
+                        propertyId: 'mistyStep'
                 },
                 {
                         path: [
@@ -32307,7 +32319,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'mirrorImage'
+                        propertyId: 'fireball'
                 },
                 {
                         path: [
@@ -32319,7 +32331,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'counterspell'
+                        propertyId: 'mirrorImage'
                 },
                 {
                         path: [
@@ -32331,7 +32343,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'counterspell'
                 },
                 {
                         path: [
@@ -32343,7 +32355,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -32355,7 +32367,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -32367,7 +32379,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'web'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -32379,7 +32391,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'magicMouth'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -32391,7 +32403,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'melfsAcidArrow'
+                        propertyId: 'web'
                 },
                 {
                         path: [
@@ -32863,7 +32875,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -32875,7 +32887,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -32887,7 +32899,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -32899,7 +32911,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'web'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -32911,7 +32923,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'nystulsMagicAura'
+                        propertyId: 'web'
                 },
                 {
                         path: [
@@ -32923,7 +32935,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'ropeTrick'
+                        propertyId: 'polymorph'
                 },
                 {
                         path: [
@@ -33420,7 +33432,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -33432,7 +33444,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -33444,7 +33456,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -33456,7 +33468,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'web'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -33468,7 +33480,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'bestowCurse'
+                        propertyId: 'web'
                 },
                 {
                         path: [
@@ -33480,7 +33492,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'glyphOfWarding'
+                        propertyId: 'polymorph'
                 },
                 {
                         path: [
@@ -33979,7 +33991,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -33991,7 +34003,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -34003,7 +34015,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -34015,7 +34027,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'web'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -34027,7 +34039,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'leomundsTinyHut'
+                        propertyId: 'web'
                 },
                 {
                         path: [
@@ -34547,7 +34559,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -34559,7 +34571,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -34571,7 +34583,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -34583,7 +34595,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'web'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -34595,7 +34607,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'nondetection'
+                        propertyId: 'web'
                 },
                 {
                         path: [
@@ -35094,7 +35106,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'controlWater'
                 },
                 {
                         path: [
@@ -35106,7 +35118,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -35118,7 +35130,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -35130,7 +35142,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'web'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -35142,7 +35154,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'phantomSteed'
+                        propertyId: 'web'
                 },
                 {
                         path: [
@@ -35154,7 +35166,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'sending'
+                        propertyId: 'polymorph'
                 },
                 {
                         path: [
@@ -36522,7 +36534,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'summonAstralEntity'
+                        propertyId: 'magicMouth'
                 },
                 {
                         path: [
@@ -36582,7 +36594,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'arcaneEye'
+                        propertyId: 'bestowCurse'
                 },
                 {
                         path: [
@@ -37077,7 +37089,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'freedomOfMovement'
+                        propertyId: 'nondetection'
                 },
                 {
                         path: [
@@ -38236,7 +38248,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'lifeInversionField'
+                        propertyId: 'summonAstralEntity'
                 },
                 {
                         path: [
@@ -38272,7 +38284,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'locateCreature'
+                        propertyId: 'arcaneEye'
                 },
                 {
                         path: [
@@ -38284,7 +38296,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'greaterInvisibility'
+                        propertyId: 'sending'
                 },
                 {
                         path: [
@@ -38698,7 +38710,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'falseLife'
+                        propertyId: 'ropeTrick'
                 },
                 {
                         path: [
@@ -38710,7 +38722,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'alarm'
+                        propertyId: 'faerieFire'
                 },
                 {
                         path: [
@@ -38722,7 +38734,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'cureWounds'
+                        propertyId: 'alarm'
                 },
                 {
                         path: [
@@ -38734,7 +38746,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'cureWounds'
                 },
                 {
                         path: [
@@ -38746,7 +38758,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'disguiseSelf'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -38758,7 +38770,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'expeditiousRetreat'
+                        propertyId: 'disguiseSelf'
                 },
                 {
                         path: [
@@ -38770,7 +38782,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'faerieFire'
+                        propertyId: 'expeditiousRetreat'
                 },
                 {
                         path: [
@@ -38830,7 +38842,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'fabricate'
+                        propertyId: 'waterBreathing'
                 },
                 {
                         path: [
@@ -39290,7 +39302,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'createFoodAndWater'
+                        propertyId: 'fabricate'
                 },
                 {
                         path: [
@@ -39302,7 +39314,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'leomundsSecretChest'
+                        propertyId: 'waterWalk'
                 },
                 {
                         path: [
@@ -39314,7 +39326,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'waterBreathing'
+                        propertyId: 'createFoodAndWater'
                 },
                 {
                         path: [
