@@ -9,6 +9,7 @@ children:
     target:
       - bladesong
   - id: bladesong
+    name: Bladesong
     type: Resource
     quantity: (Math.max(1, stats.int.mod))
   - type: Reference

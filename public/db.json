@@ -3858,15 +3858,13 @@
   {
     "id": "improvedCritical",
     "name": "Improved Critical",
-    "type": "Extra",
-    "target": "weaponAttack",
+    "type": "Trait",
     "description": "You score a Critical Hit on a roll of $(meta.level >= 15 ? '18-20' : '19 or 20')."
   },
   {
     "id": "remarkableAthlete",
     "name": "Remarkable Athlete",
-    "type": "Extra",
-    "target": "weaponAttack",
+    "type": "Trait",
     "description": "On a Critical Hit, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks."
   },
   {
@@ -11865,6 +11863,7 @@
       },
       {
         "id": "bladesong",
+        "name": "Bladesong",
         "type": "Resource",
         "quantity": "(Math.max(1, stats.int.mod))"
       },
@@ -12499,8 +12498,7 @@
   },
   {
     "id": "extraAttack",
-    "type": "Extra",
-    "target": "weaponAttack",
+    "type": "Trait",
     "name": "Extra Attack",
     "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn."
   },
@@ -15915,8 +15913,7 @@
   },
   {
     "name": "Concentration Breaker",
-    "type": "Extra",
-    "target": "weaponAttack or attackSpell",
+    "type": "Trait",
     "description": "On a hit, the target has Disadvantage on any saving throw it makes to maintain Concentration.",
     "id": "mageSlayerConcentrationBreaker"
   },
@@ -15959,8 +15956,7 @@
     "id": "savageAttackerExtra",
     "summary": "Reroll weapon damage dice once per turn and take the higher total.",
     "name": "Savage Attacker",
-    "type": "Extra",
-    "target": "weaponAttack",
+    "type": "Trait",
     "description": "On a hit, roll the damage dice twice and use either roll against the target."
   },
   {
@@ -17695,7 +17691,7 @@
       "feat",
       "originFeat"
     ],
-    "type": "Extra",
+    "type": "Trait",
     "target": "weaponAttack",
     "description": "On a hit, roll the damage dice twice and use either roll against the target."
   },
@@ -26375,7 +26371,7 @@
   },
   {
     "type": "Statblock",
-    "name": "Psionic Spirit (Crystal Entity)",
+    "name": "Astral Spirit (Crystal)",
     "tags": [
       "summon"
     ],
@@ -26422,7 +26418,7 @@
   },
   {
     "type": "Statblock",
-    "name": "Psionic Spirit (Ectoplasmic Entity)",
+    "name": "Astral Spirit (Ectoplasmic)",
     "tags": [
       "summon"
     ],
@@ -26469,7 +26465,7 @@
   },
   {
     "type": "Statblock",
-    "name": "Psionic Spirit (Ghostly Entity)",
+    "name": "Astral Spirit (Ghostly)",
     "tags": [
       "summon"
     ],

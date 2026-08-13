@@ -312,7 +312,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
 
     if (variant === 'static') {
         return (
-            <mdui-card variant="outlined" class="card-container static-card">
+            <mdui-card variant="outlined" class="card-container static-card activity-card">
                 {headerContent}
                 {bodyContent}
             </mdui-card>

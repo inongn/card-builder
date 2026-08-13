@@ -24,7 +24,7 @@
 
   /* Spacing Scale */
   --space-1: 2px;
-  --space-2: 8px;
+  --space-2: 6px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 24px;
@@ -727,6 +727,19 @@ blockquote {
 .list-item.resource-list-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.resource-name-group {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.resource-print-qty {
+  font-weight: 700;
+  font-size: var(--mdui-typescale-body-medium-size, 0.9rem);
+  color: rgb(var(--mdui-color-on-surface));
 }
 
 .resource-dots {
@@ -746,6 +759,15 @@ blockquote {
 
 .list-item.weapon-item {
   grid-template-columns: 30px 20px auto auto;
+}
+
+.list-item.trait-list-item {
+  display: block;
+  font-size: var(--mdui-typescale-body-small-size, 0.8rem);
+}
+
+.trait-primary {
+  font-weight: bold;
 }
 
 /* ==========================================================================

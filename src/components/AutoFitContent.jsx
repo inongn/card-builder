@@ -1,9 +1,10 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 
 /**
- * A component that scales its font size down until it fits its container.
+ * A component that scales further paragraphs (and extras) down until content fits its container,
+ * keeping the first paragraph at maxFontSize.
  */
-export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 8, step = 1, unit = 'pt' }) => {
+export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 6, step = 2, unit = 'pt' }) => {
     const containerRef = useRef(null);
     const innerRef = useRef(null);
 
@@ -20,15 +21,45 @@ export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 8, ste
                 return;
             }
 
+            // Set base font size for the inner container
+            inner.style.fontSize = `${maxFontSize}${unit}`;
+
+            // Find all paragraph-level elements
+            const paragraphs = Array.from(
+                inner.querySelectorAll('.card-description-paragraph, p:not(.card-description-paragraph p), li')
+            );
+            const extraContainers = Array.from(inner.querySelectorAll('.card-description.extra'));
+
+            // The first paragraph is always at maxFontSize
+            if (paragraphs.length > 0) {
+                paragraphs[0].style.fontSize = `${maxFontSize}${unit}`;
+            }
+
+            const furtherParagraphs = paragraphs.slice(1);
+
+            const applySizeToFurther = (size) => {
+                furtherParagraphs.forEach(el => {
+                    el.style.fontSize = `${size}${unit}`;
+                });
+                extraContainers.forEach(el => {
+                    el.style.fontSize = `${size}${unit}`;
+                });
+            };
+
             let currentSize = maxFontSize;
-            inner.style.fontSize = `${currentSize}${unit}`;
+            applySizeToFurther(currentSize);
+
+            // If there are no further paragraphs or extras, inner stays at maxFontSize
+            if (furtherParagraphs.length === 0 && extraContainers.length === 0) {
+                return;
+            }
 
             const maxIterations = 100;
             let iteration = 0;
 
             while (inner.scrollHeight > containerHeight + 1 && currentSize > minFontSize && iteration < maxIterations) {
                 currentSize = Math.max(minFontSize, currentSize - step);
-                inner.style.fontSize = `${currentSize}${unit}`;
+                applySizeToFurther(currentSize);
                 iteration++;
             }
         };

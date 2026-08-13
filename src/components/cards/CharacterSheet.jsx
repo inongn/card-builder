@@ -373,21 +373,46 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
                                     return (
                                         <div className="list-item resource-list-item" key={i}>
-                                            <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
-                                            <div className="text-primary">{res.name || res.id}</div>
-                                            <div className="resource-dots" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
-                                                {Array(q).fill(0).map((_, j) => {
-                                                    const isUsed = j < usedCount;
-                                                    return (
-                                                        <mdui-icon
-                                                            key={j}
-                                                            name={isUsed ? 'square' : 'crop_square'}
-                                                            class={`icon-small icon-rotated ${isPlayMode ? 'resource-dot-interactive' : ''} ${isUsed ? 'used' : ''}`}
-                                                            onClick={() => handleToggleResourceDot(resKey, j)}
-                                                        ></mdui-icon>
-                                                    );
-                                                })}
+                                            <div className="resource-name-group">
+                                                <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
+                                                <div className="text-primary">{res.name || res.id}</div>
                                             </div>
+                                            {isPlayMode ? (
+                                                <>
+                                                    <div className="resource-dots hide-on-print" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
+                                                        {Array(q).fill(0).map((_, j) => {
+                                                            const isUsed = j < usedCount;
+                                                            return (
+                                                                <mdui-icon
+                                                                    key={j}
+                                                                    name={isUsed ? 'square' : 'crop_square'}
+                                                                    class={`icon-small icon-rotated resource-dot-interactive ${isUsed ? 'used' : ''}`}
+                                                                    onClick={() => handleToggleResourceDot(resKey, j)}
+                                                                ></mdui-icon>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                    <div className="resource-print-qty show-on-print text-primary">/ {q}</div>
+                                                </>
+                                            ) : (
+                                                <div className="resource-print-qty text-secondary">/ {q}</div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </mdui-card>
+                    )}
+
+                    {/* Traits */}
+                    {char.traits && char.traits.length > 0 && (
+                        <mdui-card variant="filled" className="inner-card">
+                            <div className="main-card-list trait-list">
+                                {char.traits.map((trait, idx) => {
+                                    const desc = Array.isArray(trait.description) ? trait.description.join(' ') : trait.description;
+                                    return (
+                                        <div className="list-item trait-list-item" key={trait.id || idx}>
+                                            <span className="trait-primary">{trait.name}.</span> <span className="trait-description">{trait.description}</span>
                                         </div>
                                     );
                                 })}

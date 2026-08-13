@@ -1,6 +1,5 @@
 id: savageAttackerExtra
 summary: Reroll weapon damage dice once per turn and take the higher total.
 name: Savage Attacker
-type: Extra
-target: weaponAttack
+type: Trait
 description: On a hit, roll the damage dice twice and use either roll against the target.

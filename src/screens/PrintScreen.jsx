@@ -17,10 +17,10 @@ export const PrintScreen = ({ char, onNavigate }) => {
     const containerRef = useRef(null);
     const [scale, setScale] = useState(1);
     const [gridCols, setGridCols] = useState(3);
-    const [gridRows, setGridRows] = useState(2);
-    const [fontWidth, setFontWidth] = useState(100);
+    const [gridRows, setGridRows] = useState(3);
+    const [fontWidth, setFontWidth] = useState(75);
     const [hideCoreActivities, setHideCoreActivities] = useState(false);
-    const [orientation, setOrientation] = useState('landscape');
+    const [orientation, setOrientation] = useState('portrait');
 
     useEffect(() => {
         const updateScale = () => {
@@ -73,12 +73,6 @@ export const PrintScreen = ({ char, onNavigate }) => {
         chunks.push(remainingCards.slice(i, i + cardsPerPage));
     }
 
-    const fontWidthStyle = {
-        fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif",
-        fontStretch: `${fontWidth}%`,
-        fontVariationSettings: `'wdth' ${fontWidth}`
-    };
-
     return (
         <div className="container print-screen">
             <style>{`
@@ -87,6 +81,14 @@ export const PrintScreen = ({ char, onNavigate }) => {
                         size: letter ${orientation};
                         margin: 0;
                     }
+                }
+                .print-mode {
+                    font-family: 'Google Sans', sans-serif;
+                }
+                .print-mode .activity-card .card-description {
+                    font-family: 'Google Sans Flex', 'Google Sans', sans-serif !important;
+                    font-stretch: ${fontWidth}%;
+                    font-variation-settings: 'wdth' ${fontWidth};
                 }
             `}</style>
 
@@ -168,7 +170,7 @@ export const PrintScreen = ({ char, onNavigate }) => {
                 <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
             </mdui-top-app-bar>
 
-            <div className={`content print-content print-mode print-${orientation}`} ref={containerRef} style={fontWidthStyle}>
+            <div className={`content print-content print-mode print-${orientation}`} ref={containerRef}>
                 <div className="print-page-wrapper">
                     <div className="print-page first-page" style={{ transform: scale < 1 ? `scale(${scale})` : undefined }}>
                         <div
@@ -185,7 +187,7 @@ export const PrintScreen = ({ char, onNavigate }) => {
                                     gridRow: `span ${mainRowsSpan}`
                                 }}
                             >
-                                <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} fontWidth={fontWidth} />
+                                <CharacterSheet char={char} onNavigate={onNavigate} variant="static" interactive={false} />
                             </div>
                             {page1Cards.map((card, idx) => (
                                 <div key={idx} className="action-card-print-slot">

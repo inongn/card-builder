@@ -282,6 +282,7 @@ export class CharacterBuilder {
             saves: {},
             resources: [],
             features: [],
+            traits: [],
             activities: [],
             statblocks: [],
             forms: {},
@@ -1693,6 +1694,24 @@ export class CharacterBuilder {
                     };
 
                     this.characterData.statblocks.push(statblockObj);
+                }
+                break;
+            case 'Trait':
+                {
+                    const scope = prop.variables || {};
+                    const traitClone = structuredClone(prop);
+
+                    const traitObj = {
+                        ...traitClone,
+                        id: evaluator.bakeVariables(prop.id, scope),
+                        name: prop.name,
+                        description: prop.description,
+                        tags: evaluator.bakeVariables(prop.tags, scope),
+                        variables: { ...scope, ...(prop.variables || {}) },
+                        sourceAncestry: prop.sourceAncestry || []
+                    };
+
+                    this.characterData.traits.push(traitObj);
                 }
                 break;
         }
