@@ -1534,7 +1534,7 @@
           },
           "payloads": {
             "type": "text",
-            "text": "gains one of your Bardic Inspiration dice (1d$(attributes.bardicDie)). Once within the next hour when the target fails a D20 Test, the target can roll the die and add the number rolled to the d20"
+            "text": "the target gains one of your Bardic Inspiration dice (1d$(attributes.bardicDie)). Once within the next hour when the target fails a D20 Test, the target can roll the die and add the number rolled to the d20"
           }
         }
       },
@@ -5709,8 +5709,7 @@
         "time": "reaction",
         "range": "self",
         "duration": "Instantaneous",
-        "resource": "1 focusPoints",
-        "description": "When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). \n\nIf you reduce the damage to 0, the Focus Point is expended and you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.\n",
+        "description": "When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). \n",
         "mechanic": {
           "mode": "succession",
           "blocks": [
@@ -5726,12 +5725,27 @@
                 "type": "text",
                 "text": "reduce the damage by 1d10+$(stats.dex.mod + meta.level)"
               }
-            },
+            }
+          ]
+        },
+        "condition": "$(meta.level >= 3)"
+      },
+      {
+        "id": "redirectAttacks",
+        "type": "Activity",
+        "range": "self",
+        "name": "Redirect Attacks",
+        "resource": "1 focusPoints",
+        "duration": "Instantaneous",
+        "description": "If you reduce the damage to 0, you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.\n",
+        "mechanic": {
+          "mode": "succession",
+          "blocks": [
             {
               "pattern": "save",
               "name": "Redirect Attack",
               "trigger": {
-                "text": "If you reduce the damage to 0"
+                "text": "If you reduce the damage to 0 with Deflect Attacks"
               },
               "save": {
                 "ability": "dex",
@@ -15817,7 +15831,6 @@
         "operation": "push",
         "value": {
           "pattern": "save",
-          "name": "Topple",
           "save": {
             "ability": "con",
             "dc": "$(Math.max(8 + attributes.prof + stats.str.mod, 8 + attributes.prof + stats.dex.mod))"
@@ -23953,7 +23966,7 @@
       "target": {
         "type": "touch"
       },
-      "text": "Target willing creature adds 1d4 to any ability check using a chosen skill."
+      "text": "the target adds 1d4 to any ability check using a chosen skill."
     }
   },
   {

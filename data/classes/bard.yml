@@ -51,7 +51,7 @@ children:
         range: $(range)
       payloads:
         type: text
-        text: gains one of your Bardic Inspiration dice (1d$(attributes.bardicDie)). Once within the next hour when the target fails a D20 Test, the target can roll the die and add the number rolled to the d20
+        text: the target gains one of your Bardic Inspiration dice (1d$(attributes.bardicDie)). Once within the next hour when the target fails a D20 Test, the target can roll the die and add the number rolled to the d20
   - id: spellcasting
     type: Reference
     target:

@@ -152,11 +152,8 @@ children:
     time: reaction
     range: self
     duration: Instantaneous
-    resource: 1 focusPoints
     description: |
       When an attack hits you and deals $(meta.level >= 13 ? 'any damage type' : 'Bludgeoning, Piercing, or Slashing damage'), you reduce the total damage by 1d10+$(stats.dex.mod + meta.level). 
-
-      If you reduce the damage to 0, the Focus Point is expended and you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.
     mechanic:
       mode: succession
       blocks:
@@ -168,10 +165,24 @@ children:
           payloads:
             type: text
             text: 'reduce the damage by 1d10+$(stats.dex.mod + meta.level)'
+    condition: $(meta.level >= 3)
+
+
+  - id: redirectAttacks
+    type: Activity
+    range: self
+    name: Redirect Attacks
+    resource: 1 focusPoints
+    duration: Instantaneous
+    description: |
+          If you reduce the damage to 0, you redirect the force. Choose creature within $(meta.level >= 13 ? '60' : '5') feet. The target must succeed on a DC $(attributes.monkSaveDC) Dexterity saving throw or take 2d$(attributes.martialArtsDie)+$(stats.dex.mod) damage of the same type.
+    mechanic:
+      mode: succession
+      blocks:
         - pattern: save
           name: Redirect Attack
           trigger:
-            text: If you reduce the damage to 0
+            text: If you reduce the damage to 0 with Deflect Attacks
           save:
             ability: dex
             dc: $(attributes.monkSaveDC)
@@ -188,6 +199,8 @@ children:
           success:
             halfDamage: true
     condition: $(meta.level >= 3)
+
+
   - id: monkSubclass
     name: Monk Subclass
     condition: $(meta.level >= 3)

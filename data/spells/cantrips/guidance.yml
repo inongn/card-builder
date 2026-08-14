@@ -17,4 +17,4 @@ mechanic:
   pattern: automatic
   target:
     type: touch
-  text: Target willing creature adds 1d4 to any ability check using a chosen skill.
+  text: the target adds 1d4 to any ability check using a chosen skill.

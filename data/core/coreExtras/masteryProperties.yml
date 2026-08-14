@@ -54,7 +54,6 @@ children:
     operation: push
     value:
       pattern: save
-      name: Topple
       save:
         ability: con
         dc: '$(Math.max(8 + attributes.prof + stats.str.mod, 8 + attributes.prof + stats.dex.mod))'

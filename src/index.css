@@ -3547,13 +3547,13 @@ mdui-list-item.card-vertical-item::part(container) {
 }
 
 .print-mode .cps-skill-row {
-  grid-template-columns: 22px 14px 22px 1fr;
-  gap: 2px;
+  grid-template-columns: 22px 10px 12px 1fr;
+  gap: 4px;
 }
 
 .print-mode .cps-save-row {
-  grid-template-columns: 14px 22px 1fr;
-  gap: 2px;
+  grid-template-columns: 10px 10px 1fr;
+  gap: 4px;
 }
 
 .print-mode .cps-skill-row:last-child,

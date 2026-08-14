@@ -43,6 +43,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         localStorage.getItem('use_compact_activity_layout') === 'true'
     );
     const handleToggleCompactActivityLayout = () => {
+        setCol1Placement({ resources: true, traits: true });
         setUseCompactActivityLayout(prev => {
             const next = !prev;
             localStorage.setItem('use_compact_activity_layout', String(next));
@@ -215,7 +216,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                 return newSlots;
             });
         }
-    }, [char, useActivitySheet, useCompactActivityLayout, activitySlots, deferredActs]);
+    }, [char, useActivitySheet, useCompactActivityLayout, col1Placement, activitySlots, deferredActs]);
 
     if (!char) return null;
 
