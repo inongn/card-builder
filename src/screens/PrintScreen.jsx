@@ -85,7 +85,10 @@ export const PrintScreen = ({ char, onNavigate }) => {
                 .print-mode {
                     font-family: 'Google Sans', sans-serif;
                 }
-                .print-mode .activity-card .card-description {
+                .print-mode .activity-card .card-description,
+                .print-mode .statblock-card .card-description,
+                .print-mode .statblock-card .statblock-content,
+                .print-mode .statblock-card {
                     font-family: 'Google Sans Flex', 'Google Sans', sans-serif !important;
                     font-stretch: ${fontWidth}%;
                     font-variation-settings: 'wdth' ${fontWidth};
@@ -95,80 +98,79 @@ export const PrintScreen = ({ char, onNavigate }) => {
             <mdui-top-app-bar scroll-behavior="hide" variant="small" class="hide-on-print">
                 <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginRight: '16px' }}>
-                    <mdui-select
-                        label="Orientation"
-                        value={orientation}
-                        style={{ width: '130px' }}
-                        onchange={(e) => setOrientation(e.target.value)}
-                        onChange={(e) => setOrientation(e.target.value)}
-                    >
-                        <mdui-menu-item value="landscape">Landscape</mdui-menu-item>
-                        <mdui-menu-item value="portrait">Portrait</mdui-menu-item>
-                    </mdui-select>
-
-                    <mdui-select
-                        label="Columns"
-                        value={gridCols}
-                        style={{ width: '110px' }}
-                        onchange={(e) => setGridCols(Number(e.target.value))}
-                        onChange={(e) => setGridCols(Number(e.target.value))}
-                    >
-                        {[1, 2, 3, 4, 5, 6].map(num => (
-                            <mdui-menu-item key={num} value={num} onClick={() => setGridCols(num)}>
-                                {num} {num === 1 ? 'Col' : 'Cols'}
-                            </mdui-menu-item>
-                        ))}
-                    </mdui-select>
-
-                    <mdui-select
-                        label="Rows"
-                        value={gridRows}
-                        style={{ width: '110px' }}
-                        onchange={(e) => setGridRows(Number(e.target.value))}
-                        onChange={(e) => setGridRows(Number(e.target.value))}
-                    >
-                        {[1, 2, 3, 4, 5, 6].map(num => (
-                            <mdui-menu-item key={num} value={num} onClick={() => setGridRows(num)}>
-                                {num} {num === 1 ? 'Row' : 'Rows'}
-                            </mdui-menu-item>
-                        ))}
-                    </mdui-select>
-
-                    <mdui-select
-                        label="Font Width"
-                        value={fontWidth}
-                        style={{ width: '150px' }}
-                        onchange={(e) => setFontWidth(Number(e.target.value))}
-                        onChange={(e) => setFontWidth(Number(e.target.value))}
-                    >
-                        {[
-                            { val: 50, label: '50%' },
-                            { val: 75, label: '75%' },
-                            { val: 85, label: '85%' },
-                            { val: 100, label: '100%' },
-                            { val: 115, label: '115%' },
-                            { val: 125, label: '125%' },
-                            { val: 150, label: '150%' }
-                        ].map(opt => (
-                            <mdui-menu-item key={opt.val} value={opt.val} onClick={() => setFontWidth(opt.val)}>
-                                {opt.label}
-                            </mdui-menu-item>
-                        ))}
-                    </mdui-select>
-
-                    <mdui-checkbox
-                        checked={hideCoreActivities}
-                        onchange={(e) => setHideCoreActivities(e.target.checked)}
-                        onChange={(e) => setHideCoreActivities(e.target.checked)}
-                    >
-                        Hide Core Actions
-                    </mdui-checkbox>
-                </div>
-
                 <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
             </mdui-top-app-bar>
+
+            <div className="print-params-bar hide-on-print">
+                <mdui-select
+                    label="Orientation"
+                    value={orientation}
+                    style={{ width: '130px' }}
+                    onchange={(e) => setOrientation(e.target.value)}
+                    onChange={(e) => setOrientation(e.target.value)}
+                >
+                    <mdui-menu-item value="landscape">Landscape</mdui-menu-item>
+                    <mdui-menu-item value="portrait">Portrait</mdui-menu-item>
+                </mdui-select>
+
+                <mdui-select
+                    label="Columns"
+                    value={gridCols}
+                    style={{ width: '110px' }}
+                    onchange={(e) => setGridCols(Number(e.target.value))}
+                    onChange={(e) => setGridCols(Number(e.target.value))}
+                >
+                    {[1, 2, 3, 4, 5, 6].map(num => (
+                        <mdui-menu-item key={num} value={num} onClick={() => setGridCols(num)}>
+                            {num} {num === 1 ? 'Col' : 'Cols'}
+                        </mdui-menu-item>
+                    ))}
+                </mdui-select>
+
+                <mdui-select
+                    label="Rows"
+                    value={gridRows}
+                    style={{ width: '110px' }}
+                    onchange={(e) => setGridRows(Number(e.target.value))}
+                    onChange={(e) => setGridRows(Number(e.target.value))}
+                >
+                    {[1, 2, 3, 4, 5, 6].map(num => (
+                        <mdui-menu-item key={num} value={num} onClick={() => setGridRows(num)}>
+                            {num} {num === 1 ? 'Row' : 'Rows'}
+                        </mdui-menu-item>
+                    ))}
+                </mdui-select>
+
+                <mdui-select
+                    label="Font Width"
+                    value={fontWidth}
+                    style={{ width: '150px' }}
+                    onchange={(e) => setFontWidth(Number(e.target.value))}
+                    onChange={(e) => setFontWidth(Number(e.target.value))}
+                >
+                    {[
+                        { val: 50, label: '50%' },
+                        { val: 75, label: '75%' },
+                        { val: 85, label: '85%' },
+                        { val: 100, label: '100%' },
+                        { val: 115, label: '115%' },
+                        { val: 125, label: '125%' },
+                        { val: 150, label: '150%' }
+                    ].map(opt => (
+                        <mdui-menu-item key={opt.val} value={opt.val} onClick={() => setFontWidth(opt.val)}>
+                            {opt.label}
+                        </mdui-menu-item>
+                    ))}
+                </mdui-select>
+
+                <mdui-checkbox
+                    checked={hideCoreActivities}
+                    onchange={(e) => setHideCoreActivities(e.target.checked)}
+                    onChange={(e) => setHideCoreActivities(e.target.checked)}
+                >
+                    Hide Core Actions
+                </mdui-checkbox>
+            </div>
 
             <div className={`content print-content print-mode print-${orientation}`} ref={containerRef}>
                 <div className="print-page-wrapper">

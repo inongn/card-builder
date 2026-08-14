@@ -78,7 +78,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
     };
 
     const bodyContent = (
-        <div className="card-content card-description">
+        <div className="card-content card-description statblock-content">
             <div>
                 <div>
                     <strong>Armor Class</strong> {ac}
@@ -171,7 +171,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
         return (
             <mdui-card variant="outlined" class="card-container static-card statblock-card">
                 {headerContent}
-                <AutoFitContent>
+                <AutoFitContent maxFontSize={9} minFontSize={6}>
                     {bodyContent}
                 </AutoFitContent>
             </mdui-card>

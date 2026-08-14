@@ -590,6 +590,7 @@ blockquote {
    ========================================================================== */
 
 
+
 .statblock-stats-row {
   display: flex;
   justify-content: space-between;
@@ -613,6 +614,54 @@ blockquote {
 
 .statblock-section-header mdui-divider {
   flex: 1;
+}
+
+.auto-fit-inner .card-description,
+.auto-fit-inner .statblock-content {
+  font-size: inherit;
+}
+
+.auto-fit-inner .statblock-section-header {
+  font-size: 0.75em;
+}
+
+/* ==========================================================================
+   PRINT SCREEN PARAMETERS BAR
+   ========================================================================== */
+
+.print-params-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md, 12px);
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  background-color: rgb(var(--mdui-color-surface-container, 240, 240, 240));
+  border-bottom: 1px solid rgb(var(--mdui-color-outline-variant, 220, 220, 220));
+  position: relative;
+  z-index: 5;
+}
+
+.print-params-bar mdui-select {
+  min-width: 110px;
+}
+
+@media (max-width: 768px) {
+  .print-params-bar {
+    padding: 12px;
+    gap: 10px 8px;
+  }
+
+  .print-params-bar mdui-select {
+    flex: 1 1 calc(50% - 8px);
+    width: auto !important;
+    min-width: 0;
+  }
+
+  .print-params-bar mdui-checkbox {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-top: 4px;
+  }
 }
 
 
@@ -2046,15 +2095,15 @@ mdui-navigation-drawer[mobile]::part(panel) {
 }
 
 .print-mode .card-title {
-  font-size: 12pt !important;
+  font-size: 11pt !important;
 }
 
 .print-mode .card-subtitle {
-  font-size: 10pt !important;
+  font-size: 8pt !important;
 }
 
 .print-mode .card-content {
-  font-size: 10pt;
+  font-size: 9pt;
   font-family: inherit !important;
 }
 

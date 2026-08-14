@@ -1,10 +1,10 @@
 import React, { useLayoutEffect, useRef } from 'react';
 
 /**
- * A component that scales further paragraphs (and extras) down until content fits its container,
- * keeping the first paragraph at maxFontSize.
+ * A component that scales content down from maxFontSize (default 9pt) until it fits its container,
+ * down to minFontSize (default 6pt). If content still overflows at minFontSize, sets font width to 50%.
  */
-export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 6, step = 2, unit = 'pt' }) => {
+export const AutoFitContent = ({ children, maxFontSize = 9, minFontSize = 6, step = 0.5, unit = 'pt' }) => {
     const containerRef = useRef(null);
     const innerRef = useRef(null);
 
@@ -21,46 +21,54 @@ export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 6, ste
                 return;
             }
 
-            // Set base font size for the inner container
-            inner.style.fontSize = `${maxFontSize}${unit}`;
+            // Reset width / stretch styles before measuring
+            inner.style.fontStretch = '';
+            inner.style.fontVariationSettings = '';
 
-            // Find all paragraph-level elements
-            const paragraphs = Array.from(
-                inner.querySelectorAll('.card-description-paragraph, p:not(.card-description-paragraph p), li')
-            );
-            const extraContainers = Array.from(inner.querySelectorAll('.card-description.extra'));
+            const allDescendants = inner.querySelectorAll('*');
+            allDescendants.forEach(el => {
+                el.style.fontStretch = '';
+                el.style.fontVariationSettings = '';
+            });
 
-            // The first paragraph is always at maxFontSize
-            if (paragraphs.length > 0) {
-                paragraphs[0].style.fontSize = `${maxFontSize}${unit}`;
-            }
+            const applySize = (size) => {
+                inner.style.fontSize = `${size}${unit}`;
 
-            const furtherParagraphs = paragraphs.slice(1);
-
-            const applySizeToFurther = (size) => {
-                furtherParagraphs.forEach(el => {
-                    el.style.fontSize = `${size}${unit}`;
-                });
-                extraContainers.forEach(el => {
+                // Target text blocks and description containers so inline or CSS rules don't lock them
+                const textElements = inner.querySelectorAll(
+                    '.card-description, .card-description-paragraph, p, li, .statblock-content, .card-content'
+                );
+                textElements.forEach(el => {
                     el.style.fontSize = `${size}${unit}`;
                 });
             };
 
             let currentSize = maxFontSize;
-            applySizeToFurther(currentSize);
-
-            // If there are no further paragraphs or extras, inner stays at maxFontSize
-            if (furtherParagraphs.length === 0 && extraContainers.length === 0) {
-                return;
-            }
+            applySize(currentSize);
 
             const maxIterations = 100;
             let iteration = 0;
 
             while (inner.scrollHeight > containerHeight + 1 && currentSize > minFontSize && iteration < maxIterations) {
                 currentSize = Math.max(minFontSize, currentSize - step);
-                applySizeToFurther(currentSize);
+                applySize(currentSize);
                 iteration++;
+            }
+
+            // If even at minFontSize (smallest font size) the content still overflows, set font width to 50%
+            if (inner.scrollHeight > containerHeight + 1) {
+                const fontWidthVal = '50%';
+                const varSettings = "'wdth' 50";
+
+                inner.style.fontStretch = fontWidthVal;
+                inner.style.fontVariationSettings = varSettings;
+                inner.style.fontFamily = "'Google Sans Flex', 'Google Sans', sans-serif";
+
+                const elementsToCondensed = inner.querySelectorAll('*');
+                elementsToCondensed.forEach(el => {
+                    el.style.fontStretch = fontWidthVal;
+                    el.style.fontVariationSettings = varSettings;
+                });
             }
         };
 
@@ -95,7 +103,7 @@ export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 6, ste
                 style={{
                     height: 'auto',
                     width: '100%',
-                    display: 'block' // Ensure it's not flex to get correct scrollHeight
+                    display: 'block'
                 }}
             >
                 {children}
@@ -103,3 +111,4 @@ export const AutoFitContent = ({ children, maxFontSize = 8, minFontSize = 6, ste
         </div>
     );
 };
+
