@@ -37,8 +37,6 @@ mechanic:
     - type: condition
       condition: frightened
       end: turn_repeat_save
-    - type: text
-      text: the target can take an Action to make a Wisdom check against your spell save DC to end the condition
   upcast:
     resourceStep: 1
     modifications:

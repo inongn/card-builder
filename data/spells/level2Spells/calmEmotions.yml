@@ -32,4 +32,4 @@ mechanic:
     range: $(range)
   failure:
     type: text
-    text: suppresses Charmed and Frightened conditions, or makes hostile creatures indifferent
+    text: each target has Charmed and Frightened conditions suppressed, or becomes indifferent to creatures you choose

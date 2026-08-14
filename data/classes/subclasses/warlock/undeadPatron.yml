@@ -61,7 +61,6 @@ children:
         - pattern: save
           name: Frightful Avatar
           trigger:
-            event: hit_with_attack
             text: Once per turn, when you hit a creature with an attack roll
           save:
             ability: wis

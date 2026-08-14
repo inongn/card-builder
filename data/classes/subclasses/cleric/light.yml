@@ -46,7 +46,7 @@ children:
           shape: emanation
           size: 30
         range: self
-        filter: chosen creatures
+        filter: creatures of your choice
       failure:
         type: damage
         dice:

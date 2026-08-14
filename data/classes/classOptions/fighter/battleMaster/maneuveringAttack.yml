@@ -21,4 +21,4 @@ mechanic:
         count: 1
         sides: $(attributes.superiorityDie)
     - type: text
-      text: choose a willing creature to use its Reaction to move up to half its Speed without provoking Opportunity Attacks from the target
+      text: you can choose a willing creature to use its Reaction to move up to half its Speed without provoking Opportunity Attacks from the target

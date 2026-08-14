@@ -1630,10 +1630,18 @@
           "target": {
             "inherit": "trigger"
           },
-          "payloads": {
-            "type": "text",
-            "text": "reroll the saving throw with Advantage"
-          }
+          "payloads": [
+            {
+              "type": "rollModifier",
+              "modifierType": "reroll",
+              "targetRolls": "save"
+            },
+            {
+              "type": "rollModifier",
+              "modifierType": "advantage",
+              "targetRolls": "save"
+            }
+          ]
         },
         "condition": "$(meta.level >= 7)"
       },
@@ -2788,8 +2796,10 @@
       },
       "payloads": [
         {
-          "type": "text",
-          "text": "have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll."
+          "type": "rollModifier",
+          "modifierType": "advantage",
+          "targetRolls": "attack",
+          "text": "have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll"
         }
       ]
     }
@@ -9308,8 +9318,10 @@
           },
           "payloads": [
             {
-              "type": "text",
-              "text": "gains advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again."
+              "type": "rollModifier",
+              "modifierType": "advantage",
+              "targetRolls": "check",
+              "text": "Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again"
             }
           ]
         },
@@ -10796,7 +10808,6 @@
         "mechanic": {
           "pattern": "automatic",
           "trigger": {
-            "event": "hit_with_attack",
             "text": "Once per turn when you hit a creature with an Unarmed Strike and deal damage"
           },
           "target": {
@@ -14801,7 +14812,6 @@
               "pattern": "save",
               "name": "Frightful Avatar",
               "trigger": {
-                "event": "hit_with_attack",
                 "text": "Once per turn, when you hit a creature with an attack roll"
               },
               "save": {
@@ -27773,10 +27783,6 @@
           "type": "condition",
           "condition": "frightened",
           "end": "turn_repeat_save"
-        },
-        {
-          "type": "text",
-          "text": "the target can take an Action to make a Wisdom check against your spell save DC to end the condition"
         }
       ],
       "upcast": {

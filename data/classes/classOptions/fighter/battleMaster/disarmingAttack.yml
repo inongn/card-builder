@@ -26,4 +26,4 @@ mechanic:
     damageType: extra
   failure:
     - type: text
-      text: drop one object of your choice that it is holding
+      text: the target drops one object of your choice that it is holding

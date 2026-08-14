@@ -18,8 +18,10 @@ children:
         type: single
         range: 30 feet
       payloads:
-        - type: text
-          text: gains advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again.
+        - type: rollModifier
+          modifierType: advantage
+          targetRolls: check
+          text: Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again
     condition: $(meta.level >= 3)
   - type: Reference
     target:

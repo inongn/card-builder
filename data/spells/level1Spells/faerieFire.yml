@@ -33,4 +33,4 @@ mechanic:
       modifierType: attacksAgainstAdvantage
       targetRolls: attack
     - type: text
-      text: the target outlines in light and can't benefit from the Invisible condition
+      text: the target is outlined in light and can't benefit from the Invisible condition

@@ -27,4 +27,4 @@ mechanic:
     - type: rollModifier
       modifierType: disadvantage
       targetRolls: attack
-      text: Disadvantage on attack rolls against targets other than you until the end of your next turn
+      text: has Disadvantage on attack rolls against targets other than you until the end of your next turn

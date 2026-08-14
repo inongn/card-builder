@@ -110,14 +110,20 @@ export function formatFilterText(filterVal, evalStr, plural = false) {
   return formattedList
     .map(s => {
       const evalS = String(s).trim();
+      const lower = evalS.toLowerCase();
+      if (lower === 'creatures of your choice' || lower === 'creature of your choice') {
+        return plural ? 'creatures of your choice' : 'creature of your choice';
+      }
+      if (lower === 'self or creature' || lower === 'creature or self') {
+        return 'creature (or yourself)';
+      }
       if (plural) {
-        const lower = evalS.toLowerCase();
         if (lower === 'creature') return 'creatures';
         if (lower === 'undead') return 'Undead';
-        if (lower.endsWith('s')) return capitalize(evalS);
-        return `${capitalize(evalS)}s`;
+        if (lower.endsWith('s')) return lower;
+        return `${lower}s`;
       }
-      return capitalize(evalS);
+      return lower;
     })
     .join(' or ');
 }
@@ -433,8 +439,10 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
       const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
       return `rerolls the ${rollsStr}${endStr}`;
     }
-    if (modType === 'attacksAgainstAdvantage') return `attack rolls against the target have Advantage${endStr}`;
-    if (modType === 'attacksAgainstDisadvantage') return `attack rolls against the target have Disadvantage${endStr}`;
+    const isTargetSelf = ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self');
+    const targetPronoun = isTargetSelf ? 'you' : 'the target';
+    if (modType === 'attacksAgainstAdvantage') return `attack rolls against ${targetPronoun} have Advantage${endStr}`;
+    if (modType === 'attacksAgainstDisadvantage') return `attack rolls against ${targetPronoun} have Disadvantage${endStr}`;
 
     const formulaStr = formatDiceObj(payload.dice || payload.formula, undefined, evalStr);
     if (modType === 'add') {
@@ -553,12 +561,13 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
 
   const isSave = ctx?.pattern === 'save';
   const targetObj = ctx?.targetObj;
+  const isTargetSelf = targetObj?.type === 'self' || (typeof targetObj?.range === 'string' && targetObj?.range.toLowerCase() === 'self');
   const isMultiSave = isSave && targetObj && (
     targetObj.aoe || targetObj.type === 'multiple' || targetObj.type === 'multi' ||
     (targetObj.count && parseInt(evalStr(targetObj.count), 10) > 1)
   );
-  const targetSubject = isMultiSave ? 'each target' : 'the target';
-  const targetSubjectCap = isMultiSave ? 'Each target' : 'The target';
+  const targetSubject = isTargetSelf ? 'you' : (isMultiSave ? 'each target' : 'the target');
+  const targetSubjectCap = isTargetSelf ? 'You' : (isMultiSave ? 'Each target' : 'The target');
 
   // Merge contiguous forced-movement entries of the same direction to avoid
   // "pushed 5 feet away and pushed 5 feet away" when two payloads contribute.
@@ -615,9 +624,9 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       if (p.movementType === 'forced') {
         const dir = p.direction || 'push';
         const dist = p.distance ? `${evalStr(p.distance)} feet` : '5 feet';
-        if (dir === 'push') targetPredicates.push(`is pushed up to ${dist} away`);
-        else if (dir === 'pull') targetPredicates.push(`is pulled up to ${dist} closer`);
-        else targetPredicates.push(`is moved up to ${dist}`);
+        if (dir === 'push') targetPredicates.push(isTargetSelf ? `are pushed up to ${dist} away` : `is pushed up to ${dist} away`);
+        else if (dir === 'pull') targetPredicates.push(isTargetSelf ? `are pulled up to ${dist} closer` : `is pulled up to ${dist} closer`);
+        else targetPredicates.push(isTargetSelf ? `are moved up to ${dist}` : `is moved up to ${dist}`);
       } else {
         const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
         if (fmtd) otherParts.push(fmtd);
@@ -627,31 +636,38 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^the /.test(fmtd)) {
-          targetPredicates.push(`has ${fmtd}`);
+          targetPredicates.push(isTargetSelf ? `have ${fmtd}` : `has ${fmtd}`);
         } else {
-          targetPredicates.push(`is ${fmtd}`);
+          targetPredicates.push(isTargetSelf ? `are ${fmtd}` : `is ${fmtd}`);
         }
       }
 
     } else if (ptype === 'statModifier') {
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
-        if (/^(has|gains|base)\b/i.test(fmtd)) {
-          targetPredicates.push(fmtd);
+        if (/^(has|gains|base|have|gain)\b/i.test(fmtd)) {
+          if (isTargetSelf) {
+            targetPredicates.push(fmtd.replace(/^has\b/i, 'have').replace(/^gains\b/i, 'gain'));
+          } else {
+            targetPredicates.push(fmtd);
+          }
         } else {
-          targetPredicates.push(`has ${fmtd}`);
+          targetPredicates.push(isTargetSelf ? `have ${fmtd}` : `has ${fmtd}`);
         }
       }
 
     } else if (ptype === 'rollModifier') {
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
-        if (/^(has|adds|subtracts|rerolls)\b/i.test(fmtd)) {
-          targetPredicates.push(fmtd);
-        } else if (/^attack rolls against/i.test(fmtd)) {
-          otherParts.push(fmtd);
+        if (/^(has|adds|subtracts|rerolls|have|add|subtract|reroll)\b/i.test(fmtd)) {
+          if (isTargetSelf) {
+            const selfFmtd = fmtd.replace(/^has\b/i, 'have').replace(/^adds\b/i, 'add').replace(/^subtracts\b/i, 'subtract').replace(/^rerolls\b/i, 'reroll');
+            targetPredicates.push(selfFmtd);
+          } else {
+            targetPredicates.push(fmtd);
+          }
         } else {
-          targetPredicates.push(fmtd);
+          otherParts.push(fmtd);
         }
       }
 
@@ -807,7 +823,7 @@ function isPluralSubject(subject) {
 function isDamageBody(str) {
   if (!str) return false;
   const s = str.trim().toLowerCase();
-  return /^(\d+d\d+|\$\([^)]+\)|\d+)\s+([a-z/,\s]+)?damage\b/i.test(s) || /^[a-z/]+\s+damage\b/i.test(s);
+  return /^(\d+d[a-z0-9$()._+-]+|\$\([^)]+\)|\d+)\s+([a-z/,\s]+)?damage\b/i.test(s) || /^[a-z/]+\s+damage\b/i.test(s);
 }
 
 /**
@@ -838,7 +854,8 @@ function classifyBodyText(body, fromPayloads) {
     lower.startsWith('targets ') ||
     lower.startsWith('drinker ') ||
     lower.startsWith('gains ') ||
-    lower.startsWith('its ')
+    lower.startsWith('its ') ||
+    lower.startsWith('attack rolls ')
   ) return 'HAS_SUBJECT';
 
   // Narrative clauses — emit verbatim
@@ -847,7 +864,7 @@ function classifyBodyText(body, fromPayloads) {
     'a flickering', 'a creature', 'any creature', 'any attack',
     'creates an area', 'fire jumps', 'for the duration',
     'against an effect', 'also command', 'command your',
-    '60-foot sphere', 'until ', 'whenever ',
+    '60-foot sphere', 'until ', 'whenever ', 'attack rolls ',
   ];
   if (narrativeStarters.some(s => lower.startsWith(s))) return 'NARRATIVE';
 
@@ -1104,7 +1121,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
   else if (pattern === 'automatic') {
     const payloadObj = block.payloads;
     const fromPayloads = !!payloadObj && !text;
-    const payloadText = payloadObj ? formatPayloadList(payloadObj, evalStr, formatDiceObj) : '';
+    const payloadText = payloadObj ? formatPayloadList(payloadObj, evalStr, formatDiceObj, { pattern: 'automatic', targetObj: block.target }) : '';
 
     // Build the raw body — payloads first, then any narrative text addendum
     let rawBody = '';

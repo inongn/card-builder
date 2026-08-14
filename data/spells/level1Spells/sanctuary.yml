@@ -31,4 +31,4 @@ mechanic:
         dc: $(attributes.spellcasting.save)
       failure:
         type: text
-        text: either choose a new target or lose the attack or spell
+        text: the attacker must either choose a new target or lose the attack or spell

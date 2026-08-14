@@ -30,4 +30,4 @@ mechanic:
     range: $(range)
   failure:
     type: text
-    text: encloses target in a sphere of force, preventing all damage and effects into or out of the sphere
+    text: the target is enclosed in a sphere of force, preventing all damage and effects into or out of the sphere

@@ -80,11 +80,7 @@ children:
         event: [fail_check, fail_save]
       pattern: automatic
       target:
-        type: single
-        range: $(range)
-        filter:
-          - self
-          - creature
+        inherit: trigger
       payloads:
         type: rollModifier
         modifierType: add

@@ -14,5 +14,7 @@ mechanic:
   target:
     type: self
   payloads:
-    - type: text
-      text: have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll.
+    - type: rollModifier
+      modifierType: advantage
+      targetRolls: attack
+      text: have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll

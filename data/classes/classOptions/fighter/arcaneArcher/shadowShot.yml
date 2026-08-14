@@ -26,4 +26,4 @@ mechanic:
     damageType: psychic
   failure:
     - type: text
-      text: unable to see anything farther than 5 feet away until the start of your next turn
+      text: the target is unable to see anything farther than 5 feet away until the start of your next turn

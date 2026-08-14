@@ -68,7 +68,7 @@ children:
         - type: rollModifier
           modifierType: disadvantage
           targetRolls: attack
-          text: Disadvantage on attack rolls against you
+          text: has Disadvantage on attack rolls against you
         - type: rollModifier
           modifierType: advantage
           targetRolls: attack

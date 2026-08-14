@@ -26,4 +26,4 @@ mechanic:
     damageType: necrotic
   failure:
     - type: text
-      text: damage of its weapon attacks is halved until the start of your next turn
+      text: the damage of its weapon attacks is halved until the start of your next turn

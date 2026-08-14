@@ -125,8 +125,12 @@ children:
       target:
         inherit: trigger
       payloads:
-        type: text
-        text: reroll the saving throw with Advantage
+        - type: rollModifier
+          modifierType: reroll
+          targetRolls: save
+        - type: rollModifier
+          modifierType: advantage
+          targetRolls: save
     condition: $(meta.level >= 7)
   - id: level8Feat
     name: Level 8 Feat
