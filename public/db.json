@@ -1036,7 +1036,8 @@
         "reference": [
           "weaponProperties",
           "extraProperties",
-          "opportunityAttack"
+          "opportunityAttack",
+          "unarmed"
         ]
       },
       {

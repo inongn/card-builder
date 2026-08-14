@@ -2,6 +2,7 @@ import React from 'react';
 import PropertySelectionTree from '../components/PropertySelectionTree';
 import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
+import { formatActivityMechanic } from '../utils/mechanicFormatter';
 import { getSpeciesArtwork, getClassArtwork, getSubclassArtwork, getBackgroundArtwork, getAssetUrl } from '../data/artworkData.js';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -177,9 +178,124 @@ const getOptionChips = (option, onGetProperty, characterData) => {
         } else {
             chips.push('Utility');
         }
+        return chips;
     }
 
-    // Equipment / Weapons / Armor
+    const isWeapon = tags.includes('weaponAttack') || tags.includes('simple') || tags.includes('martial') || vars.classification || fullOpt.mechanic?.pattern === 'attack' || fullOpt.mechanic?.blocks?.[0]?.pattern === 'attack';
+
+    if (isWeapon) {
+        // 1. Classification (melee / ranged / finesse)
+        let classification = vars.classification;
+        if (!classification) {
+            const mechanic = fullOpt.mechanic;
+            const block = mechanic?.pattern === 'attack' ? mechanic : mechanic?.blocks?.[0];
+            if (block?.attack?.classification) {
+                classification = block.attack.classification;
+            }
+        }
+        if (!classification) {
+            if (tags.includes('finesse')) classification = 'finesse';
+            else if (tags.includes('ranged')) classification = 'ranged';
+            else if (tags.includes('melee')) classification = 'melee';
+        }
+
+        if (classification) {
+            chips.push(String(classification).charAt(0).toUpperCase() + String(classification).slice(1).toLowerCase());
+        }
+
+        // 2. Properties (light / heavy / two-handed / versatile / reach / thrown / etc.)
+        const propMap = {
+            light: 'Light',
+            heavy: 'Heavy',
+            twohanded: 'Two-Handed',
+            'two-handed': 'Two-Handed',
+            versatile: 'Versatile',
+            reach: 'Reach',
+            thrown: 'Thrown',
+            loading: 'Loading',
+            ammunition: 'Ammunition',
+        };
+
+        const addedProps = new Set();
+
+        if (vars.property) {
+            const propStr = String(vars.property).toLowerCase();
+            for (const [k, v] of Object.entries(propMap)) {
+                if (propStr.includes(k) && !addedProps.has(v)) {
+                    addedProps.add(v);
+                    chips.push(v);
+                }
+            }
+        }
+
+        tags.forEach(t => {
+            const lower = String(t).toLowerCase();
+            if (propMap[lower] && !addedProps.has(propMap[lower])) {
+                addedProps.add(propMap[lower]);
+                chips.push(propMap[lower]);
+            }
+        });
+
+        // 3. Damage Meta (XdY damageType)
+        let dmgMeta = formatDamageMeta(vars);
+
+        if (!dmgMeta && fullOpt.mechanic) {
+            const mechanic = fullOpt.mechanic;
+            const block = mechanic.hit ? mechanic : (mechanic.blocks?.find(b => b.hit) || mechanic.blocks?.[0]);
+            if (block?.hit?.type === 'damage' || block?.hit?.dice) {
+                const hit = block.hit;
+                let rollStr = '';
+                const dice = hit.dice;
+                if (dice) {
+                    if (typeof dice === 'string' || typeof dice === 'number') {
+                        rollStr = String(dice);
+                    } else if (typeof dice === 'object') {
+                        const cnt = dice.count !== undefined ? String(dice.count) : '1';
+                        const sides = dice.sides !== undefined ? String(dice.sides) : '';
+                        if (sides.includes('?')) {
+                            const nums = sides.match(/\d+/g);
+                            if (nums && nums.length >= 2) {
+                                rollStr = `${cnt}d${nums[0]}/${cnt}d${nums[1]}`;
+                            } else if (nums && nums.length === 1) {
+                                rollStr = `${cnt}d${nums[0]}`;
+                            }
+                        } else if (cnt === '0' || sides === '0') {
+                            rollStr = dice.bonus ? String(dice.bonus) : '1';
+                        } else if (cnt && sides) {
+                            rollStr = `${cnt}d${sides}`;
+                        }
+                    }
+                }
+
+                let typeStr = hit.damageType || vars.damageType || '';
+                if (!typeStr) {
+                    const dmgTag = tags.find(t => String(t).toLowerCase().endsWith('damage'));
+                    if (dmgTag) {
+                        typeStr = String(dmgTag).replace(/damage$/i, '');
+                    }
+                }
+                if (typeStr) {
+                    typeStr = String(typeStr).charAt(0).toUpperCase() + String(typeStr).slice(1).toLowerCase();
+                }
+
+                if (rollStr && typeStr) {
+                    dmgMeta = `${rollStr} ${typeStr}`;
+                } else if (rollStr) {
+                    dmgMeta = rollStr;
+                } else if (typeStr) {
+                    dmgMeta = typeStr;
+                }
+            }
+        }
+
+        if (dmgMeta) {
+            chips.push(dmgMeta);
+        }
+
+        return chips;
+    }
+
+    // Equipment / Armor
     const isEquipment = tags.includes('item') || vars.classification || vars.damageType || tags.some(t => t.includes('Armor') || t.includes('Weapon'));
 
     if (isEquipment) {
@@ -206,22 +322,6 @@ const getOptionChips = (option, onGetProperty, characterData) => {
             chips.push('Medium');
         } else if (tags.includes('heavyArmor')) {
             chips.push('Heavy');
-        }
-
-        // Weapons properties or tags
-        if (tags.includes('light') && !chips.includes('Light')) {
-            chips.push('Light');
-        }
-        if (tags.includes('heavy') && !chips.includes('Heavy')) {
-            chips.push('Heavy');
-        }
-        if (tags.includes('medium') && !chips.includes('Medium')) {
-            chips.push('Medium');
-        }
-
-        const dmgMeta = formatDamageMeta(vars);
-        if (dmgMeta) {
-            chips.push(dmgMeta);
         }
 
         const acCalc = formatAcCalculation(fullOpt, characterData);
@@ -534,9 +634,32 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         return null;
     }, [option.id, option.name, option.displayName, tags]);
 
+    const fullOpt = React.useMemo(() => {
+        let opt = option;
+        if (!opt.mechanic && onGetProperty) {
+            const fetched = onGetProperty(opt.id);
+            if (fetched) opt = { ...opt, ...fetched };
+        }
+        return opt;
+    }, [option, onGetProperty]);
+
     const evaluatedSummary = React.useMemo(() => {
-        const rawText = option.summary || option.description;
+        if (fullOpt.summary) {
+            const evaluator = new ExpressionEvaluator(characterData);
+            try {
+                const evaluated = evaluator.evaluate(fullOpt.summary);
+                return String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
+            } catch (e) {
+                return String(fullOpt.summary).replace(/\r?\n|\r/g, ' ').trim();
+            }
+        }
+
+        const rawText = fullOpt.description;
         if (!rawText) return '';
+
+        // Suppress generic "You strike with your X" boilerplate descriptions since the chip line handles weapon summaries
+        if (rawText.includes('You strike with your')) return '';
+
         const evaluator = new ExpressionEvaluator(characterData);
         let evaluated = '';
         try {
@@ -546,12 +669,10 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
             evaluated = rawText;
         }
 
-        if (option.summary) return String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
-
         const clean = String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
         const match = clean.match(/^.*?[.!?](?:\s|$)/);
         return match ? match[0].trim() : clean;
-    }, [option.summary, option.description, characterData]);
+    }, [fullOpt, characterData]);
 
     return (
         <mdui-list-item
