@@ -2000,6 +2000,14 @@ mdui-navigation-drawer[mobile]::part(panel) {
   grid-row: span 2;
 }
 
+.print-mode .action-card-print-slot {
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
 .print-mode .card-container,
 .print-mode .main-card,
 .print-mode mdui-card {

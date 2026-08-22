@@ -241,6 +241,11 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
             ]);
         }
 
+        const statblockChunks = [];
+        for (let i = 0; i < statblocks.length; i += 6) {
+            statblockChunks.push(statblocks.slice(i, i + 6));
+        }
+
         const pageStyle = scale < 1 ? { transform: `scale(${scale})` } : undefined;
 
         return (
@@ -324,11 +329,11 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                         </div>
                     ))}
 
-                    {statblocks.length > 0 && (
-                        <div className="print-page-wrapper">
+                    {statblockChunks.map((chunk, pageIdx) => (
+                        <div key={pageIdx} className="print-page-wrapper">
                             <div className="print-page" style={pageStyle}>
                                 <div className="print-grid">
-                                    {statblocks.map((card, cardIdx) => (
+                                    {chunk.map((card, cardIdx) => (
                                         <div key={cardIdx} className="action-card-print-slot">
                                             <StatblockCard statblock={card} variant="static" />
                                         </div>
@@ -336,7 +341,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    ))}
                 </div>
             </div>
         );

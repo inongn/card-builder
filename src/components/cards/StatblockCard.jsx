@@ -171,7 +171,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
         return (
             <mdui-card variant="outlined" class="card-container static-card statblock-card">
                 {headerContent}
-                <AutoFitContent>
+                <AutoFitContent minFontSize={0.35}>
                     {bodyContent}
                 </AutoFitContent>
             </mdui-card>

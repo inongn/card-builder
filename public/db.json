@@ -1190,12 +1190,7 @@
           },
           "pattern": "automatic",
           "target": {
-            "type": "single",
-            "range": "$(range)",
-            "filter": [
-              "self",
-              "creature"
-            ]
+            "inherit": "trigger"
           },
           "payloads": {
             "type": "rollModifier",
@@ -2393,7 +2388,7 @@
       "failure": [
         {
           "type": "text",
-          "text": "damage of its weapon attacks is halved until the start of your next turn"
+          "text": "the damage of its weapon attacks is halved until the start of your next turn"
         }
       ]
     }
@@ -2430,7 +2425,7 @@
         },
         {
           "type": "text",
-          "text": "has its Speed is reduced by 10 feet, and target takes 2d6 Slashing damage the first time it moves on a turn without teleporting"
+          "text": "has its Speed reduced by 10 feet, and takes 2d6 Slashing damage the first time it moves on a turn without teleporting"
         }
       ]
     }
@@ -2546,7 +2541,7 @@
       "failure": [
         {
           "type": "text",
-          "text": "unable to see anything farther than 5 feet away until the start of your next turn"
+          "text": "the target is unable to see anything farther than 5 feet away until the start of your next turn"
         }
       ]
     }
@@ -2708,7 +2703,7 @@
       "failure": [
         {
           "type": "text",
-          "text": "drop one object of your choice that it is holding"
+          "text": "the target drops one object of your choice that it is holding"
         }
       ]
     }
@@ -2841,7 +2836,7 @@
           "type": "rollModifier",
           "modifierType": "disadvantage",
           "targetRolls": "attack",
-          "text": "Disadvantage on attack rolls against targets other than you until the end of your next turn"
+          "text": "has Disadvantage on attack rolls against targets other than you until the end of your next turn"
         }
       ]
     }
@@ -2903,7 +2898,7 @@
         },
         {
           "type": "text",
-          "text": "choose a willing creature to use its Reaction to move up to half its Speed without provoking Opportunity Attacks from the target"
+          "text": "you can choose a willing creature to use its Reaction to move up to half its Speed without provoking Opportunity Attacks from the target"
         }
       ]
     }
@@ -7975,7 +7970,7 @@
           "failure": [
             {
               "type": "text",
-              "text": "teleported to an unoccupied space within 5 feet of you, and you can reduce its Speed to 0 until the end of its turn"
+              "text": "the target is teleported to an unoccupied space within 5 feet of you, and you can reduce its Speed to 0 until the end of its turn"
             }
           ]
         },
@@ -9213,7 +9208,7 @@
               "size": 30
             },
             "range": "self",
-            "filter": "chosen creatures"
+            "filter": "creatures of your choice"
           },
           "failure": {
             "type": "damage",
@@ -14712,7 +14707,7 @@
               "type": "rollModifier",
               "modifierType": "disadvantage",
               "targetRolls": "attack",
-              "text": "Disadvantage on attack rolls against you"
+              "text": "has Disadvantage on attack rolls against you"
             },
             {
               "type": "rollModifier",
@@ -26055,7 +26050,7 @@
         },
         {
           "type": "text",
-          "text": "the target outlines in light and can't benefit from the Invisible condition"
+          "text": "the target is outlined in light and can't benefit from the Invisible condition"
         }
       ]
     }
@@ -27203,7 +27198,7 @@
           },
           "failure": {
             "type": "text",
-            "text": "either choose a new target or lose the attack or spell"
+            "text": "the attacker must either choose a new target or lose the attack or spell"
           }
         }
       ]
@@ -28167,7 +28162,7 @@
       },
       "failure": {
         "type": "text",
-        "text": "suppresses Charmed and Frightened conditions, or makes hostile creatures indifferent"
+        "text": "each target has Charmed and Frightened conditions suppressed, or becomes indifferent to creatures you choose"
       }
     }
   },
@@ -34124,7 +34119,7 @@
       },
       "failure": {
         "type": "text",
-        "text": "encloses target in a sphere of force, preventing all damage and effects into or out of the sphere"
+        "text": "the target is enclosed in a sphere of force, preventing all damage and effects into or out of the sphere"
       }
     }
   },
