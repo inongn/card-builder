@@ -140,7 +140,7 @@ export default function App() {
         return enabledRaw !== 'false';
     });
     const [useActivitySheet, setUseActivitySheet] = useState(() => {
-        return localStorage.getItem('use_activity_sheet') === 'true';
+        return localStorage.getItem('use_activity_sheet') !== 'false';
     });
 
     const handleToggleActivitySheet = useCallback(() => {
