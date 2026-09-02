@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { getAssetUrl } from '../data/artworkData';
 
-export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved }) => {
+export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, onOpenImport, onOpenExport }) => {
     useEffect(() => {
         const savedScroll = sessionStorage.getItem('dashboard_scroll_position');
         if (savedScroll) {
@@ -91,6 +91,25 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
             <mdui-top-app-bar variant="small" scroll-behavior="hide">
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                {onOpenImport && (
+                    <>
+                        <mdui-button
+                            variant="outlined"
+                            icon="file_download"
+                            onClick={onOpenImport}
+                            className="mobile-hidden"
+                            style={{ marginRight: '8px' }}
+                        >
+                            Import Recipe
+                        </mdui-button>
+                        <mdui-button-icon
+                            icon="file_download"
+                            onClick={onOpenImport}
+                            className="desktop-hidden"
+                            title="Import Recipe"
+                        ></mdui-button-icon>
+                    </>
+                )}
                 <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">
                     New Character
                 </mdui-button>
@@ -165,7 +184,14 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                     <div className="empty-state">
                         <mdui-icon name="person_add" class="icon-large"></mdui-icon>
                         <p>No characters found.</p>
-                        <mdui-button onClick={handleNewCharacter}>Create your first character</mdui-button>
+                        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <mdui-button onClick={handleNewCharacter}>Create your first character</mdui-button>
+                            {onOpenImport && (
+                                <mdui-button variant="tonal" icon="file_download" onClick={onOpenImport}>
+                                    Import Recipe
+                                </mdui-button>
+                            )}
+                        </div>
                     </div>
                 )}
             </div>

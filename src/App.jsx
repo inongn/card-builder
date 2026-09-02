@@ -35,6 +35,9 @@ import { BuilderScreen } from './screens/BuilderScreen';
 import { PlayScreen } from './screens/PlayScreen';
 import { PrintScreen } from './screens/PrintScreen';
 import DebugDrawer from './components/DebugDrawer';
+import { ExportRecipeDialog } from './components/ExportRecipeDialog';
+import { ImportRecipeDialog } from './components/ImportRecipeDialog';
+import { decodeRecipe } from './utils/recipeCodec';
 
 import { getColorFromImage } from 'mdui/functions/getColorFromImage.js';
 import { getAssetUrl } from './data/artworkData.js';
@@ -472,6 +475,81 @@ export default function App() {
     }, [library, builder]);
 
     const [isDebugOpen, setIsDebugOpen] = useState(false);
+    const [exportDialog, setExportDialog] = useState({ open: false, character: null, recipe: null });
+    const [importDialog, setImportDialog] = useState({ open: false, target: 'play' });
+
+    const handleOpenExport = useCallback((characterOrRecipe) => {
+        if (!builder) return;
+        if (characterOrRecipe && characterOrRecipe.recipe) {
+            setExportDialog({
+                open: true,
+                character: characterOrRecipe,
+                recipe: characterOrRecipe.recipe
+            });
+        } else if (characterOrRecipe && characterOrRecipe.inputs && characterOrRecipe.slots) {
+            setExportDialog({
+                open: true,
+                character: characterData,
+                recipe: characterOrRecipe
+            });
+        } else {
+            setExportDialog({
+                open: true,
+                character: characterData,
+                recipe: builder.getRecipe()
+            });
+        }
+    }, [builder, characterData]);
+
+    const handleOpenImport = useCallback((target = 'play') => {
+        setImportDialog({ open: true, target });
+    }, []);
+
+    const handleImportRecipe = useCallback(async (recipeString) => {
+        if (!builder) return;
+        const recipe = await decodeRecipe(recipeString);
+        if (!recipe || !recipe.inputs || !recipe.slots) {
+            throw new Error('Invalid recipe: missing inputs or slots');
+        }
+
+        builder.applyRecipe(recipe);
+        syncState();
+
+        if (importDialog.target === 'builder') {
+            const newId = Date.now();
+            setLoadedCharacterId(newId);
+            setIsNewCharacterCreation(false);
+            setActiveTab('builder');
+            return;
+        }
+
+        const newId = Date.now();
+        const charData = builder.getCharacterData();
+        const characterName = charData.meta?.name || 'Imported Character';
+        const timestamp = new Date().toISOString();
+
+        const charSummary = {
+            id: newId,
+            name: characterName,
+            class: charData.meta?.class || 'Unknown Class',
+            sub: charData.meta?.sub || '',
+            species: charData.meta?.species || '',
+            background: charData.meta?.background || '',
+            level: charData.meta?.level || 1,
+            image: charData.meta?.image || '',
+            recipe,
+            timestamp,
+            lastPlayed: timestamp
+        };
+
+        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
+        const updated = [charSummary, ...saved.filter(c => c.id !== newId)];
+        localStorage.setItem('saved_characters', JSON.stringify(updated));
+        setSavedCharacters(updated);
+        setLoadedCharacterId(newId);
+        setIsNewCharacterCreation(false);
+        setActiveTab('play');
+    }, [builder, syncState, importDialog.target]);
 
     if (loading) return null;
 
@@ -494,6 +572,19 @@ export default function App() {
                 width={"1200px"}
             />
 
+            <ExportRecipeDialog
+                open={exportDialog.open}
+                onClose={() => setExportDialog(prev => ({ ...prev, open: false }))}
+                character={exportDialog.character}
+                recipe={exportDialog.recipe}
+            />
+
+            <ImportRecipeDialog
+                open={importDialog.open}
+                onClose={() => setImportDialog(prev => ({ ...prev, open: false }))}
+                onImport={handleImportRecipe}
+            />
+
             <mdui-layout-main className="app-main-layout">
                 {activeTab === 'dashboard' && (
                     <DashboardScreen
@@ -502,6 +593,8 @@ export default function App() {
                         handleOpenSaved={handleOpenSaved}
                         handleDeleteSaved={handleDeleteSaved}
                         onNavigate={handleNavigate}
+                        onOpenImport={() => handleOpenImport('play')}
+                        onOpenExport={handleOpenExport}
                     />
                 )}
                 {activeTab === 'builder' && (
@@ -520,6 +613,8 @@ export default function App() {
                         builderSource={builderSource}
                         isNewCharacterCreation={isNewCharacterCreation}
                         setIsNewCharacterCreation={setIsNewCharacterCreation}
+                        onOpenExport={() => handleOpenExport()}
+                        onOpenImport={() => handleOpenImport('builder')}
                     />
                 )}
                 {activeTab === 'play' && (
@@ -532,6 +627,7 @@ export default function App() {
                         handleDeleteSaved={handleDeleteSaved}
                         onToggleDebug={() => setIsDebugOpen(prev => !prev)}
                         useActivitySheet={useActivitySheet}
+                        onOpenExport={() => handleOpenExport()}
                     />
                 )}
                 {activeTab === 'print' && (

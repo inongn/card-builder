@@ -889,7 +889,9 @@ export const BuilderScreen = ({
     onSave,
     builderSource,
     isNewCharacterCreation,
-    setIsNewCharacterCreation
+    setIsNewCharacterCreation,
+    onOpenExport,
+    onOpenImport
 }) => {
     const isMobile = window.innerWidth <= 890;
 
@@ -1518,7 +1520,24 @@ export const BuilderScreen = ({
         ? <mdui-button-icon icon="arrow_back" onClick={() => setSelectedSlotItem(null)}></mdui-button-icon>
         : <mdui-button-icon icon="arrow_back" onClick={() => onNavigate(builderSource)}></mdui-button-icon>;
 
-    const topAppBarRightAction = null;
+    const topAppBarRightAction = (onOpenExport || onOpenImport) ? (
+        <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+            {onOpenImport && (
+                <mdui-button-icon
+                    icon="file_download"
+                    title="Import Recipe Code"
+                    onClick={onOpenImport}
+                ></mdui-button-icon>
+            )}
+            {onOpenExport && (
+                <mdui-button-icon
+                    icon="share"
+                    title="Export Recipe Code"
+                    onClick={onOpenExport}
+                ></mdui-button-icon>
+            )}
+        </div>
+    ) : null;
 
     const renderAbilitiesPane = () => {
         const attr = characterData.attributes || {};
