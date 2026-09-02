@@ -35,7 +35,7 @@ mechanic:
     name: Shove
     save:
       ability: dex
-      dc: '$(8 +attributes.prof + stats.str.mod)'
+      dc: '$(8 +attributes.prof + (attributes.monkSaveDC || stats.str.mod))'
     target:
       type: single
       range: 5 feet
@@ -46,7 +46,7 @@ mechanic:
     name: Grapple
     save:
       ability: str
-      dc: '$(8 + attributes.prof + stats.str.mod)'
+      dc: '$(8 + attributes.prof + (attributes.monkSaveDC || stats.str.mod))'
     target:
       type: single
       range: 5 feet

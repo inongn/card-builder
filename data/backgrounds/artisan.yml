@@ -9,7 +9,7 @@ children:
     target:
       - investigationProficiency
       - persuasionProficiency
-      - crafter
+      - skilled
   - type: Effect
     target: attributes.originEligible
     operation: push
