@@ -20,4 +20,7 @@ mechanic:
   pattern: automatic
   target:
     type: touch
-  text: target gains Darkvision with a range of 60 feet
+  payloads:
+    - type: statModifier
+      stat: darkvision
+      value: 150

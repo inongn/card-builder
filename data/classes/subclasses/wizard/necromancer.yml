@@ -8,6 +8,12 @@ children:
   - id: necroticResistance
     type: Reference
     target: necroticResistance
+  - type: Reference
+    target: findFamiliar
+  - id: necromancerCommandFamiliar
+    type: Trait
+    name: Command Familiar
+    description: When you take the Attack action on your turn, you can replace one attack with a command to your familiar to make one attack with its Reaction.
   - id: grimHarvest
     type: Activity
     time: free action
@@ -47,4 +53,4 @@ children:
     condition: $(meta.level >= 6)
     value:
       name: Withering Strike
-      description: Whenever the undead hits a creature with an attack roll, you deal an extra $(Math.max(1, stats.int.mod)) Necrotic damage.
+      description: Whenever the undead hits a creature with an attack roll, it deals an extra $(Math.max(1, stats.int.mod)) Necrotic damage.

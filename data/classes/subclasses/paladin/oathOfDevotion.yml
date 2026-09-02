@@ -55,6 +55,7 @@ children:
     target: activities[id=auraOfProtection].mechanic.payloads
     operation: push
     value:
-      type: text
-      text: has Immunity to the Charmed condition
+      type: defense
+      defense: immunity
+      conditions: [charmed]
     condition: $(meta.level >= 7)

@@ -25,7 +25,15 @@ mechanic:
   target:
     type: single
     range: $(range)
-  text: target gains Resistance to Psychic damage and Advantage on Intelligence, Wisdom, and Charisma saving throws
+  payloads:
+    - type: defense
+      defense: resistance
+      damageTypes: [psychic]
+    - type: rollModifier
+      modifierType: advantage
+      targetRolls: save
+      saveFilter:
+        ability: [int, wis, cha]
   upcast:
     resourceStep: 1
     modifications:

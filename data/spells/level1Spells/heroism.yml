@@ -21,4 +21,9 @@ mechanic:
   target:
     type: single
     range: $(range)
-  text: target is immune to Frightened condition and gains $(attributes.spellcasting.bonus) Temporary Hit Points at start of each of its turns
+  payloads:
+    - type: defense
+      defense: immunity
+      conditions: [frightened]
+    - type: text
+      text: "gains $(attributes.spellcasting.bonus) Temporary Hit Points at the start of each of its turns"

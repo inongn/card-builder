@@ -23,4 +23,5 @@ children:
   - type: Reference
     target:
       - extraAttack
+      - extraAttackCantrip
     condition: $(meta.level >= 5)

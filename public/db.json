@@ -1283,7 +1283,13 @@
           },
           "payloads": [
             {
-              "text": "gain resistance to Bludgeoning, Piercing, and Slashing damage"
+              "type": "defense",
+              "defense": "resistance",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
             },
             {
               "text": "add $(formatBonus(attributes.rageDamage)) to Strength-based attack damage"
@@ -2967,8 +2973,12 @@
       },
       "payloads": [
         {
-          "type": "text",
-          "text": "reduce the damage by 1d$(attributes.superiorityDie)$(formatBonus(Math.max(1, stats.str.mod, stats.dex.mod)))"
+          "type": "damageReduction",
+          "dice": {
+            "count": 1,
+            "sides": "$(attributes.superiorityDie)",
+            "bonus": "$(Math.max(1, stats.str.mod, stats.dex.mod))"
+          }
         }
       ]
     }
@@ -4466,11 +4476,23 @@
         "id": "commandFamiliar",
         "type": "Activity",
         "duration": "instantaneous",
-        "range": "self",
+        "range": "60 feet",
         "time": "bonus action",
         "name": "Command Familiar",
         "description": "You command the familiar to make an attack.",
-        "condition": "$(attributes.pactOfTheChain == true)"
+        "condition": "$(attributes.pactOfTheChain == true)",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "single",
+            "range": "$(range)",
+            "filter": "familiar"
+          },
+          "payloads": {
+            "type": "text",
+            "text": "command your familiar to take the Attack action"
+          }
+        }
       },
       {
         "id": "familiarResistance",
@@ -4643,10 +4665,19 @@
         "target": "findFamiliar"
       },
       {
-        "id": "pactOfTheChainExtra",
-        "name": "Pact of the Chain",
+        "id": "pactOfTheChainAttack",
+        "name": "Command Familiar",
         "type": "Trait",
-        "description": "You can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction."
+        "description": "When you take the Attack action on your turn, you can replace one attack with a command to your familiar to make one attack with its Reaction.",
+        "condition": "$(!attributes.thirstingBlade)"
+      },
+      {
+        "id": "pactOfTheChainExtraAttack",
+        "type": "Effect",
+        "target": "traits[id=extraAttack].description[\"per turn.\"]",
+        "operation": "replace",
+        "condition": "$(attributes.thirstingBlade == true)",
+        "value": "per turn, and you can replace one attack with a command to your familiar to make one attack of its own with its Reaction."
       }
     ]
   },
@@ -4715,6 +4746,12 @@
         "target": [
           "extraAttack"
         ],
+        "condition": "$(attributes.pactOfTheBlade == true)"
+      },
+      {
+        "id": "thirstingBlade",
+        "type": "Attribute",
+        "value": true,
         "condition": "$(attributes.pactOfTheBlade == true)"
       }
     ]
@@ -5846,12 +5883,14 @@
           "failure": {
             "type": "condition",
             "condition": "stunned",
-            "end": "end_of_next_turn"
+            "end": {
+              "text": "until the start of your next turn"
+            }
           },
           "success": [
             {
               "type": "text",
-              "text": "speed is halved until the end of your next turn"
+              "text": "the target's Speed is halved until the start of your next turn"
             },
             {
               "type": "rollModifier",
@@ -6532,7 +6571,7 @@
               "type": "rollModifier",
               "modifierType": "advantage",
               "targetRolls": "attack",
-              "text": "on your next attack roll on the current turn (only if you haven't moved this turn; your Speed becomes 0 until end of turn)"
+              "text": "gain Advantage on your next attack roll on the current turn (only if you haven't moved this turn; your Speed becomes 0 until the end of the current turn)"
             }
           ]
         }
@@ -7291,11 +7330,13 @@
         "mechanic": {
           "pattern": "automatic",
           "target": {
-            "type": "self"
+            "type": "single",
+            "range": "$(range)",
+            "filter": "steelDefender"
           },
           "payloads": {
             "type": "text",
-            "text": "command your Steel Defender to take an action in its stat block"
+            "text": "command your Steel Defender to take an action in its stat block (it otherwise only Dodges)"
           }
         }
       },
@@ -7305,6 +7346,14 @@
           "extraAttack"
         ],
         "condition": "$(meta.level >= 5)"
+      },
+      {
+        "id": "extraAttackSteelDefender",
+        "type": "Effect",
+        "target": "traits[id=extraAttack].description[\"per turn.\"]",
+        "operation": "replace",
+        "condition": "$(meta.level >= 5)",
+        "value": "per turn, and you can replace one attack with a command to your Steel Defender to take an action in its stat block."
       }
     ]
   },
@@ -7577,6 +7626,28 @@
       {
         "type": "Reference",
         "target": "reanimatedCompanion"
+      },
+      {
+        "id": "commandReanimatedCompanion",
+        "type": "Activity",
+        "name": "Command Reanimated Companion",
+        "time": "bonus action",
+        "range": "60 feet",
+        "duration": "instantaneous",
+        "description": "You command your Reanimated Companion to take an action. In combat, the companion acts during your turn and can move and take its Reaction on its own, but only takes the Dodge action unless you command it.",
+        "condition": "$(meta.level >= 3)",
+        "mechanic": {
+          "pattern": "automatic",
+          "target": {
+            "type": "single",
+            "range": "$(range)",
+            "filter": "reanimatedCompanion"
+          },
+          "payloads": {
+            "type": "text",
+            "text": "command your Reanimated Companion to take an action in its stat block (it otherwise only Dodges)"
+          }
+        }
       },
       {
         "id": "strangeModifications",
@@ -7902,21 +7973,11 @@
         "id": "vitalitySurge",
         "type": "Effect",
         "name": "Vitality Surge",
-        "target": "activities[id=rage].mechanic",
+        "target": "activities[id=rage].mechanic.payloads",
         "operation": "push",
         "value": {
-          "pattern": "healing",
-          "healing": {
-            "dice": {
-              "count": 0,
-              "sides": 0,
-              "bonus": "$(meta.level)"
-            },
-            "type": "tempHitPoints"
-          },
-          "target": {
-            "type": "self"
-          }
+          "type": "text",
+          "text": "gain $(meta.level) Temporary Hit Points"
         }
       },
       {
@@ -7969,8 +8030,13 @@
           },
           "failure": [
             {
-              "type": "text",
-              "text": "the target is teleported to an unoccupied space within 5 feet of you, and you can reduce its Speed to 0 until the end of its turn"
+              "type": "teleport",
+              "target": "target",
+              "distance": 30,
+              "text": "to an unoccupied space within 5 feet of you"
+            },
+            {
+              "text": "you can reduce its Speed to 0 until the end of its turn"
             }
           ]
         },
@@ -8774,10 +8840,10 @@
         "id": "combatInspirationExtra",
         "type": "Effect",
         "name": "Combat Inspiration",
-        "target": "activities[id=bardicInspiration].mechanic",
+        "target": "activities[id=bardicInspiration].mechanic.payloads",
         "operation": "push",
         "value": {
-          "pattern": "automatic",
+          "type": "text",
           "text": "Defense: when hit by an attack roll, the target can use a Reaction to roll the die and add the result to AC. Offense: when hitting with an attack roll, the target can use a Reaction to roll the die and add the result to the damage roll."
         },
         "condition": "$(meta.level >= 3)"
@@ -8794,7 +8860,8 @@
       {
         "type": "Reference",
         "target": [
-          "extraAttack"
+          "extraAttack",
+          "extraAttackCantrip"
         ],
         "condition": "$(meta.level >= 5)"
       }
@@ -10509,10 +10576,10 @@
         "condition": "$(meta.level >= 3)"
       },
       {
-        "type": "Trait",
-        "id": "warMagic",
-        "name": "War Magic",
-        "description": "You can replace one of your attacks with a cantrip.",
+        "type": "Reference",
+        "target": [
+          "extraAttackCantrip"
+        ],
         "condition": "$(meta.level >= 7)"
       }
     ]
@@ -10850,8 +10917,15 @@
           },
           "payloads": [
             {
-              "type": "text",
-              "text": "end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned"
+              "type": "conditionCleanse",
+              "count": 1,
+              "conditions": [
+                "blinded",
+                "deafened",
+                "paralyzed",
+                "poisoned",
+                "stunned"
+              ]
             }
           ]
         }
@@ -10901,10 +10975,10 @@
         "condition": "$(meta.level >= 3)"
       },
       {
-        "type": "Trait",
-        "id": "mysticArtsFightingStyle",
-        "name": "Mystic Fighting Style",
-        "description": "You can replace one of your attacks with a cantrip.",
+        "type": "Reference",
+        "target": [
+          "extraAttackCantrip"
+        ],
         "condition": "$(meta.level >= 6)"
       }
     ]
@@ -11055,8 +11129,9 @@
           },
           "payloads": [
             {
-              "type": "text",
-              "text": "teleport up to 60 feet to an unoccupied space in Dim Light or Darkness"
+              "type": "teleport",
+              "distance": 60,
+              "text": "to an unoccupied space in Dim Light or Darkness"
             },
             {
               "type": "rollModifier",
@@ -11297,8 +11372,11 @@
         "target": "activities[id=auraOfProtection].mechanic.payloads",
         "operation": "push",
         "value": {
-          "type": "text",
-          "text": "have Immunity to the Charmed condition"
+          "type": "defense",
+          "defense": "immunity",
+          "conditions": [
+            "charmed"
+          ]
         },
         "condition": "$(meta.level >= 7)"
       }
@@ -11480,7 +11558,7 @@
         "condition": "$(meta.level >= 7)",
         "value": {
           "type": "text",
-          "text": "have Resistance to one damage type of your choice (Acid, Cold, Fire, Lightning, or Thunder); you can change the type at the start of each of your turns"
+          "text": "has Resistance to one damage type of your choice (Acid, Cold, Fire, Lightning, or Thunder); you can change the type at the start of each of your turns"
         }
       }
     ]
@@ -11600,7 +11678,7 @@
         "condition": "$(meta.level >= 7)",
         "value": {
           "type": "text",
-          "text": "gain +10 Speed until the end of their next turn (when entering the aura or starting their turn there)"
+          "text": "gains +10 Speed until the end of their next turn (when entering the aura or starting their turn there)"
         }
       }
     ]
@@ -11687,8 +11765,13 @@
         "operation": "push",
         "condition": "$(meta.level >= 7)",
         "value": {
-          "type": "text",
-          "text": "have Resistance to Necrotic, Psychic, and Radiant damage"
+          "type": "defense",
+          "defense": "resistance",
+          "damageTypes": [
+            "necrotic",
+            "psychic",
+            "radiant"
+          ]
         }
       }
     ]
@@ -11871,7 +11954,7 @@
         "condition": "$(meta.level >= 7)",
         "value": {
           "type": "text",
-          "text": "deal an extra $(stats.cha.mod) Necrotic damage on melee attack hits (you and friendly Fiends and Undead in the aura)"
+          "text": "deals an extra $(stats.cha.mod) Necrotic damage on melee attack hits (you and friendly Fiends and Undead in the aura)"
         }
       }
     ]
@@ -12243,8 +12326,14 @@
           },
           "payloads": [
             {
+              "type": "statModifier",
+              "stat": "flySpeed",
+              "value": 20,
+              "hover": true
+            },
+            {
               "type": "text",
-              "text": "gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell"
+              "text": "when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell"
             }
           ]
         },
@@ -12685,12 +12774,19 @@
         "value": "$(meta.beastcompanionname ? meta.beastcompanionname: 'Beast of the Sky')"
       },
       {
+        "id": "commandPrimalCompanionAttack",
+        "type": "Trait",
+        "name": "Primal Companion Command",
+        "description": "When you take the Attack action on your turn, you can replace one attack with a command to your Primal Companion to take the Beast's Strike action.",
+        "condition": "$(meta.level < 5)"
+      },
+      {
         "id": "commandCompanionExtraAttack",
         "type": "Effect",
-        "target": "activities[tags=weaponAttack].extra[\"instead of once, whenever you take the Attack action on your turn.\"]",
+        "target": "traits[id=extraAttack].description[\"per turn.\"]",
         "operation": "replace",
         "condition": "$(meta.level >= 5)",
-        "value": "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
+        "value": "per turn, and you can replace one attack with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
       },
       {
         "id": "commandPrimalCompanion",
@@ -12703,7 +12799,9 @@
         "mechanic": {
           "pattern": "automatic",
           "target": {
-            "type": "self"
+            "type": "single",
+            "range": "$(range)",
+            "filter": "primalCompanion"
           },
           "payloads": {
             "type": "text",
@@ -14923,12 +15021,19 @@
         "target": "vestigeType OR classOption"
       },
       {
+        "id": "commandVestigeAttack",
+        "type": "Trait",
+        "name": "Command Vestige",
+        "description": "When you take the Attack action on your turn, you can replace one attack with a command to your Vestige to take an action in its stat block.",
+        "condition": "$(!attributes.thirstingBlade)"
+      },
+      {
         "id": "vestigeCompanionExtraAttack",
         "type": "Effect",
-        "target": "activities[tags=weaponAttack].extra[\"instead of once, whenever you take the Attack action on your turn.\"]",
+        "target": "traits[id=extraAttack].description[\"per turn.\"]",
         "operation": "replace",
-        "condition": "$(meta.level >= 5)",
-        "value": "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Vestige to take an action in its stat block."
+        "condition": "$(attributes.thirstingBlade == true)",
+        "value": "per turn, and you can replace one attack with a command to your Vestige to take an action in its stat block."
       },
       {
         "id": "commandVestige",
@@ -14942,15 +15047,12 @@
           "pattern": "automatic",
           "target": {
             "type": "single",
-            "range": "60 feet"
+            "range": "$(range)"
           },
-          "payloads": [
-            {
-              "type": "action",
-              "actionType": "takeAction",
-              "text": "command your Vestige to take an action in its stat block"
-            }
-          ]
+          "payloads": {
+            "type": "text",
+            "text": "command your Vestige to take an action in its stat block (it otherwise only Dodges)"
+          }
         }
       }
     ]
@@ -15085,7 +15187,8 @@
       {
         "type": "Reference",
         "target": [
-          "extraAttack"
+          "extraAttack",
+          "extraAttackCantrip"
         ],
         "condition": "$(meta.level >= 5)"
       }
@@ -15228,6 +15331,16 @@
         "target": "necroticResistance"
       },
       {
+        "type": "Reference",
+        "target": "findFamiliar"
+      },
+      {
+        "id": "necromancerCommandFamiliar",
+        "type": "Trait",
+        "name": "Command Familiar",
+        "description": "When you take the Attack action on your turn, you can replace one attack with a command to your familiar to make one attack with its Reaction."
+      },
+      {
         "id": "grimHarvest",
         "type": "Activity",
         "time": "free action",
@@ -15279,7 +15392,7 @@
         "condition": "$(meta.level >= 6)",
         "value": {
           "name": "Withering Strike",
-          "description": "Whenever the undead hits a creature with an attack roll, you deal an extra $(Math.max(1, stats.int.mod)) Necrotic damage."
+          "description": "Whenever the undead hits a creature with an attack roll, it deals an extra $(Math.max(1, stats.int.mod)) Necrotic damage."
         }
       }
     ]
@@ -15762,6 +15875,13 @@
     "type": "Trait",
     "name": "Extra Attack",
     "description": "You can attack twice per turn."
+  },
+  {
+    "type": "Effect",
+    "id": "extraAttackCantrip",
+    "target": "traits[id=extraAttack].description[\"per turn.\"]",
+    "operation": "replace",
+    "value": "per turn, and you can replace one attack with a cantrip."
   },
   {
     "id": "extraProperties",
@@ -19787,8 +19907,12 @@
       },
       "payloads": [
         {
-          "type": "text",
-          "text": "reduce damage taken by 1d10 + $(attributes.prof)"
+          "type": "damageReduction",
+          "dice": {
+            "count": 1,
+            "sides": 10,
+            "bonus": "$(attributes.prof)"
+          }
         }
       ]
     }
@@ -20590,8 +20714,13 @@
           },
           "payloads": [
             {
-              "type": "text",
-              "text": "reduce Bludgeoning, Piercing, or Slashing damage taken by $(attributes.prof)"
+              "type": "damageReduction",
+              "flat": "$(attributes.prof)",
+              "damageTypes": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ]
             }
           ]
         },
@@ -22360,8 +22489,9 @@
           },
           "payloads": [
             {
-              "type": "text",
-              "text": "gain a Fly Speed of $(attributes.movement.walk) feet"
+              "type": "statModifier",
+              "stat": "flySpeed",
+              "value": "$(attributes.movement.walk)"
             }
           ]
         },
@@ -22424,8 +22554,10 @@
           },
           "payloads": [
             {
-              "type": "text",
-              "text": "gain Tremorsense 60 feet while on or touching a stone surface"
+              "type": "statModifier",
+              "stat": "tremorsense",
+              "value": 60,
+              "text": "while on or touching a stone surface"
             }
           ]
         }
@@ -23007,8 +23139,12 @@
           },
           "payloads": [
             {
-              "type": "text",
-              "text": "reduce damage taken by 1d12 + $(stats.con.mod)"
+              "type": "damageReduction",
+              "dice": {
+                "count": 1,
+                "sides": 12,
+                "bonus": "$(stats.con.mod)"
+              }
             }
           ]
         }
@@ -26166,7 +26302,7 @@
         "id": "familiarType",
         "name": "Familiar Type",
         "quantity": 1,
-        "target": "familiarCelestial OR familiarFey OR familiarFiend"
+        "target": "familiarCelestial OR familiarFey OR familiarFiend $(meta.sub == 'Necromancer' ? 'OR familiarUndead' : '')"
       },
       {
         "type": "Slot",
@@ -26556,7 +26692,19 @@
         "type": "single",
         "range": "$(range)"
       },
-      "text": "target is immune to Frightened condition and gains $(attributes.spellcasting.bonus) Temporary Hit Points at start of each of its turns"
+      "payloads": [
+        {
+          "type": "defense",
+          "defense": "immunity",
+          "conditions": [
+            "frightened"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "gains $(attributes.spellcasting.bonus) Temporary Hit Points at the start of each of its turns"
+        }
+      ]
     }
   },
   {
@@ -27299,7 +27447,7 @@
             "type": "self",
             "range": "$(range)"
           },
-          "text": "gains +5 bonus to your AC until start of your next turn, including against the triggering attack, and you take no damage from Magic Missile"
+          "text": "gain a +5 bonus to your AC until the start of your next turn, including against the triggering attack, and take no damage from Magic Missile"
         }
       ]
     }
@@ -28401,7 +28549,13 @@
       "target": {
         "type": "touch"
       },
-      "text": "target gains Darkvision with a range of 60 feet"
+      "payloads": [
+        {
+          "type": "statModifier",
+          "stat": "darkvision",
+          "value": 150
+        }
+      ]
     }
   },
   {
@@ -29089,7 +29243,7 @@
         },
         {
           "type": "text",
-          "text": "the target drops the metal object or has Disadvantage on attack rolls and ability checks until start of your next turn"
+          "text": "the target drops the metal object or has Disadvantage on attack rolls and ability checks until the start of your next turn"
         }
       ],
       "repeat": {
@@ -29600,7 +29754,12 @@
         "type": "self",
         "range": "$(range)"
       },
-      "text": "teleport up to 30 feet to an unoccupied space you can see"
+      "payloads": [
+        {
+          "type": "teleport",
+          "distance": 30
+        }
+      ]
     }
   },
   {
@@ -29856,7 +30015,27 @@
       "target": {
         "type": "touch"
       },
-      "text": "neutralizes one poison affecting the target, and target gains Resistance to Poison damage and Advantage on saves against poison"
+      "payloads": [
+        {
+          "type": "defense",
+          "defense": "resistance",
+          "damageTypes": [
+            "poison"
+          ]
+        },
+        {
+          "type": "rollModifier",
+          "modifierType": "advantage",
+          "targetRolls": "save",
+          "saveFilter": {
+            "text": "against poison"
+          }
+        },
+        {
+          "type": "text",
+          "text": "one poison affecting the target is neutralized"
+        }
+      ]
     }
   },
   {
@@ -30879,7 +31058,7 @@
         "type": "self",
         "range": "$(range)"
       },
-      "text": "at the end of your turn, roll d20; on 11+, you vanish into the Ethereal Plane until start of your next turn"
+      "text": "at the end of your turn, roll 1d6; on 4–6, you vanish into the Ethereal Plane until the start of your next turn"
     }
   },
   {
@@ -31746,7 +31925,27 @@
         "type": "single",
         "range": "$(range)"
       },
-      "text": "target gains Resistance to Psychic damage and Advantage on Intelligence, Wisdom, and Charisma saving throws",
+      "payloads": [
+        {
+          "type": "defense",
+          "defense": "resistance",
+          "damageTypes": [
+            "psychic"
+          ]
+        },
+        {
+          "type": "rollModifier",
+          "modifierType": "advantage",
+          "targetRolls": "save",
+          "saveFilter": {
+            "ability": [
+              "int",
+              "wis",
+              "cha"
+            ]
+          }
+        }
+      ],
       "upcast": {
         "resourceStep": 1,
         "modifications": [
@@ -33930,7 +34129,7 @@
       "success": {
         "halfDamage": true
       },
-      "text": "area becomes Difficult Terrain until end of your next turn",
+      "text": "the area becomes Difficult Terrain until the end of your next turn",
       "upcast": {
         "resourceStep": 1,
         "modifications": [
@@ -34346,7 +34545,17 @@
       "target": {
         "type": "touch"
       },
-      "text": "gain Resistance to nonmagical Bludgeoning, Piercing, and Slashing damage"
+      "payloads": [
+        {
+          "type": "defense",
+          "defense": "resistance",
+          "damageTypes": [
+            "bludgeoning",
+            "piercing",
+            "slashing"
+          ]
+        }
+      ]
     }
   },
   {
@@ -34826,6 +35035,23 @@
     ]
   },
   {
+    "id": "familiarUndead",
+    "type": "Feature",
+    "name": "Undead",
+    "tags": [
+      "familiarOption"
+    ],
+    "condition": "$(meta.sub == 'Necromancer')",
+    "children": [
+      {
+        "type": "Effect",
+        "target": "meta.familiarType",
+        "operation": "set",
+        "value": "Undead"
+      }
+    ]
+  },
+  {
     "id": "familiarWater",
     "type": "Feature",
     "name": "Water (swim speed)",
@@ -34959,6 +35185,56 @@
       "darkvision": 60
     },
     "languages": "Telepathy 120 ft. (only between you and the familiar)",
+    "traits": [
+      {
+        "name": "Extradimensional Escape (Recharges after a Long Rest)",
+        "description": "When the familiar would drop to 0 Hit Points, it instead drops to 1 Hit Point and vanishes into an extradimensional space, leaving behind anything it was wearing or carrying. It remains there for 1 hour or until you summon it as a Magic action, and then it reappears in your space."
+      },
+      {
+        "name": "Deliver Spell",
+        "description": "When you cast a spell with a range of touch, the familiar can deliver the spell with its touch. To do so, the familiar must be within 120 feet of you."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Otherworldly Scratch",
+        "description": "_Melee Spell Attack:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft., one target. _Hit:_ $(1 + (local.maxLevel || 1)) Necrotic damage."
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')",
+    "tags": [
+      "familiar"
+    ],
+    "id": "otherworldlyFamiliarAirUndead",
+    "size": "Tiny",
+    "category": "companion",
+    "classification": "Undead",
+    "ac": "$(10 + (local.maxLevel || 1))",
+    "hp": "$(2 + 2 * (local.maxLevel || 1))",
+    "movement": {
+      "walk": 30,
+      "fly": 30
+    },
+    "stats": {
+      "str": 3,
+      "dex": 14,
+      "con": 10,
+      "int": 10,
+      "wis": 14,
+      "cha": 8
+    },
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "Telepathy 120 ft. (only between you and the familiar)",
+    "immunities": [
+      "Poison",
+      "Exhaustion",
+      "Poisoned"
+    ],
     "traits": [
       {
         "name": "Extradimensional Escape (Recharges after a Long Rest)",
@@ -35117,6 +35393,56 @@
     "tags": [
       "familiar"
     ],
+    "id": "otherworldlyFamiliarLandUndead",
+    "size": "Tiny",
+    "category": "companion",
+    "classification": "Undead",
+    "ac": "$(12 + (local.maxLevel || 1))",
+    "hp": "$(2 + 2 * (local.maxLevel || 1))",
+    "movement": {
+      "walk": 30,
+      "climb": 30
+    },
+    "stats": {
+      "str": 3,
+      "dex": 14,
+      "con": 10,
+      "int": 10,
+      "wis": 14,
+      "cha": 8
+    },
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "Telepathy 120 ft. (only between you and the familiar)",
+    "immunities": [
+      "Poison",
+      "Exhaustion",
+      "Poisoned"
+    ],
+    "traits": [
+      {
+        "name": "Extradimensional Escape (Recharges after a Long Rest)",
+        "description": "When the familiar would drop to 0 Hit Points, it instead drops to 1 Hit Point and vanishes into an extradimensional space, leaving behind anything it was wearing or carrying. It remains there for 1 hour or until you summon it as a Magic action, and then it reappears in your space."
+      },
+      {
+        "name": "Deliver Spell",
+        "description": "When you cast a spell with a range of touch, the familiar can deliver the spell with its touch. To do so, the familiar must be within 120 feet of you."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Otherworldly Scratch",
+        "description": "_Melee Spell Attack:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft., one target. _Hit:_ $(1 + (local.maxLevel || 1)) Necrotic damage."
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')",
+    "tags": [
+      "familiar"
+    ],
     "id": "otherworldlyFamiliarWaterCelestial",
     "size": "Tiny",
     "category": "companion",
@@ -35237,6 +35563,60 @@
       "darkvision": 60
     },
     "languages": "Telepathy 120 ft. (only between you and the familiar)",
+    "traits": [
+      {
+        "name": "Amphibious",
+        "description": "The familiar can breathe air and water."
+      },
+      {
+        "name": "Extradimensional Escape (Recharges after a Long Rest)",
+        "description": "When the familiar would drop to 0 Hit Points, it instead drops to 1 Hit Point and vanishes into an extradimensional space, leaving behind anything it was wearing or carrying. It remains there for 1 hour or until you summon it as a Magic action, and then it reappears in your space."
+      },
+      {
+        "name": "Deliver Spell",
+        "description": "When you cast a spell with a range of touch, the familiar can deliver the spell with its touch. To do so, the familiar must be within 120 feet of you."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Otherworldly Scratch",
+        "description": "_Melee Spell Attack:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft., one target. _Hit:_ $(1 + (local.maxLevel || 1)) Necrotic damage."
+      }
+    ]
+  },
+  {
+    "type": "Statblock",
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')",
+    "tags": [
+      "familiar"
+    ],
+    "id": "otherworldlyFamiliarWaterUndead",
+    "size": "Tiny",
+    "category": "companion",
+    "classification": "Undead",
+    "ac": "$(10 + (local.maxLevel || 1))",
+    "hp": "$(2 + 2 * (local.maxLevel || 1))",
+    "movement": {
+      "walk": 30,
+      "swim": 30
+    },
+    "stats": {
+      "str": 3,
+      "dex": 14,
+      "con": 10,
+      "int": 10,
+      "wis": 14,
+      "cha": 8
+    },
+    "senses": {
+      "darkvision": 60
+    },
+    "languages": "Telepathy 120 ft. (only between you and the familiar)",
+    "immunities": [
+      "Poison",
+      "Exhaustion",
+      "Poisoned"
+    ],
     "traits": [
       {
         "name": "Amphibious",

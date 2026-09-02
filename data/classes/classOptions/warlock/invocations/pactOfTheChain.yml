@@ -10,7 +10,14 @@ children:
     value: true
   - type: Reference
     target: findFamiliar
-  - id: pactOfTheChainExtra
-    name: Pact of the Chain
+  - id: pactOfTheChainAttack
+    name: Command Familiar
     type: Trait
-    description: You can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.
+    description: When you take the Attack action on your turn, you can replace one attack with a command to your familiar to make one attack with its Reaction.
+    condition: $(!attributes.thirstingBlade)
+  - id: pactOfTheChainExtraAttack
+    type: Effect
+    target: traits[id=extraAttack].description["per turn."]
+    operation: replace
+    condition: $(attributes.thirstingBlade == true)
+    value: "per turn, and you can replace one attack with a command to your familiar to make one attack of its own with its Reaction."

@@ -57,8 +57,12 @@ children:
       target:
         type: self
       payloads:
+        - type: statModifier
+          stat: flySpeed
+          value: 20
+          hover: true
         - type: text
-          text: "gain a Fly Speed of 20 feet (hover), and when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell"
+          text: "when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell"
     condition: $(meta.level >= 6)
   - id: reboundingField
     type: Effect

@@ -20,4 +20,14 @@ mechanic:
   pattern: automatic
   target:
     type: touch
-  text: neutralizes one poison affecting the target, and target gains Resistance to Poison damage and Advantage on saves against poison
+  payloads:
+    - type: defense
+      defense: resistance
+      damageTypes: [poison]
+    - type: rollModifier
+      modifierType: advantage
+      targetRolls: save
+      saveFilter:
+        text: "against poison"
+    - type: text
+      text: "one poison affecting the target is neutralized"

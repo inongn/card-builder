@@ -87,6 +87,23 @@ children:
     condition: $(meta.level >= 3)
   - type: Reference
     target: reanimatedCompanion
+  - id: commandReanimatedCompanion
+    type: Activity
+    name: Command Reanimated Companion
+    time: bonus action
+    range: 60 feet
+    duration: instantaneous
+    description: You command your Reanimated Companion to take an action. In combat, the companion acts during your turn and can move and take its Reaction on its own, but only takes the Dodge action unless you command it.
+    condition: $(meta.level >= 3)
+    mechanic:
+      pattern: automatic
+      target:
+        type: single
+        range: $(range)
+        filter: reanimatedCompanion
+      payloads:
+        type: text
+        text: command your Reanimated Companion to take an action in its stat block (it otherwise only Dodges)
   - id: strangeModifications
     name: Strange Modifications
     type: Slot

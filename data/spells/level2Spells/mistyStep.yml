@@ -19,4 +19,6 @@ mechanic:
   target:
     type: self
     range: $(range)
-  text: teleport up to 30 feet to an unoccupied space you can see
+  payloads:
+    - type: teleport
+      distance: 30

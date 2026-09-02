@@ -3439,7 +3439,7 @@ mdui-list-item.card-vertical-item::part(container) {
   font-weight: 700;
   line-height: 1.2;
   color: #111;
-  font-family: 'Google Sans Flex', sans-serif;
+  font-family: 'Google Sans', sans-serif;
 }
 
 .print-mode .cps-char-sub {

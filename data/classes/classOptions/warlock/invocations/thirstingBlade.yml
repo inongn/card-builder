@@ -12,3 +12,7 @@ children:
     target:
       - extraAttack
     condition: $(attributes.pactOfTheBlade == true)
+  - id: thirstingBlade
+    type: Attribute
+    value: true
+    condition: $(attributes.pactOfTheBlade == true)

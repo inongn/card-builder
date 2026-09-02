@@ -1,7 +1,7 @@
 /**
  * Sample characters for debug/testing purposes.
  * One character per subclass across all 12 classes.
- * Auto-generated at level 6 by scripts/generateSamples.mjs
+ * Auto-generated at level 8 by scripts/generateSamples.mjs
  * 
  * To regenerate: node scripts/generateSamples.mjs
  */
@@ -14,7 +14,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Ancestral Guardian',
         species: 'Human',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/ancestralguardian.webp',
         recipe: {
         inputs: [
@@ -40,7 +40,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -147,7 +147,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -169,7 +170,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -317,6 +319,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -329,7 +342,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Lament',
         species: 'Leonin',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/lament.webp',
         recipe: {
         inputs: [
@@ -355,7 +368,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -633,7 +646,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Berserker',
         species: 'Human',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/berserker.webp',
         recipe: {
         inputs: [
@@ -659,7 +672,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -773,7 +786,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -935,6 +949,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'crusher'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'charger'
                 }
         ]
 }
@@ -947,7 +972,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Wild Heart',
         species: 'Satyr',
         background: 'Guide',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/wildheart.webp',
         recipe: {
         inputs: [
@@ -973,7 +998,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -1080,7 +1105,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -1285,6 +1311,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'durable'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'charger'
                 }
         ]
 }
@@ -1297,7 +1334,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'World Tree',
         species: 'Elf',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/worldtree.webp',
         recipe: {
         inputs: [
@@ -1323,7 +1360,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -1437,7 +1474,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -1599,6 +1637,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'charger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'speedy'
                 }
         ]
 }
@@ -1611,7 +1660,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Zealot',
         species: 'Dragonborn',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/zealot.webp',
         recipe: {
         inputs: [
@@ -1637,7 +1686,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -1751,7 +1800,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -1946,6 +1996,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'greatWeaponMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sentinel'
                 }
         ]
 }
@@ -1958,7 +2019,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Moon',
         species: 'Elf',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/moon.webp',
         recipe: {
         inputs: [
@@ -1984,7 +2045,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -2090,7 +2151,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -2365,7 +2427,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'silence'
+                        propertyId: 'compulsion'
                 },
                 {
                         path: [
@@ -2390,6 +2452,30 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'holdPerson'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'silence'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'mirrorImage'
                 },
                 {
                         path: [
@@ -2478,6 +2564,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'comprehendLanguages'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8Feat'
+                                }
+                        ],
+                        propertyId: 'telekinetic'
                 }
         ]
 }
@@ -2490,7 +2587,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Spirits',
         species: 'Goliath',
         background: 'Charlatan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/spirits.webp',
         recipe: {
         inputs: [
@@ -2516,7 +2613,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -2630,7 +2727,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -2834,7 +2932,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'mirrorImage'
+                        propertyId: 'healingWord'
                 },
                 {
                         path: [
@@ -2846,7 +2944,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'healingWord'
+                        propertyId: 'cureWounds'
                 },
                 {
                         path: [
@@ -2858,7 +2956,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'cureWounds'
+                        propertyId: 'invisibility'
                 },
                 {
                         path: [
@@ -2870,7 +2968,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'invisibility'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -2882,7 +2980,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'suggestion'
                 },
                 {
                         path: [
@@ -2894,7 +2992,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'suggestion'
+                        propertyId: 'disguiseSelf'
                 },
                 {
                         path: [
@@ -2906,7 +3004,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'disguiseSelf'
+                        propertyId: 'thunderwave'
                 },
                 {
                         path: [
@@ -2918,7 +3016,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'thunderwave'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -2930,7 +3028,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'detectMagic'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -2942,7 +3040,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'silence'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'mirrorImage'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'compulsion'
                 },
                 {
                         path: [
@@ -2989,6 +3111,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8Feat'
+                                }
+                        ],
+                        propertyId: 'actor'
                 }
         ]
 }
@@ -3001,7 +3134,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Dance',
         species: 'Human',
         background: 'Entertainer',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/dance.webp',
         recipe: {
         inputs: [
@@ -3027,7 +3160,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -3133,7 +3266,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -3426,6 +3560,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'bardSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'mirrorImage'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'compulsion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'expertise',
                                         slotIndex: 0
                                 }
@@ -3464,7 +3622,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level4Feat'
                                 }
                         ],
-                        propertyId: 'actor'
+                        propertyId: 'athlete'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8Feat'
+                                }
+                        ],
+                        propertyId: 'speedy'
                 }
         ]
 }
@@ -3477,7 +3646,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Glamour',
         species: 'Elf',
         background: 'Noble',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/glamour.webp',
         recipe: {
         inputs: [
@@ -3503,7 +3672,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -3609,7 +3778,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -3947,6 +4117,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'bardSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'colorSpray'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'compulsion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'expertise',
                                         slotIndex: 0
                                 }
@@ -3974,6 +4168,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'actor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8Feat'
+                                }
+                        ],
+                        propertyId: 'inspiringLeader'
                 }
         ]
 }
@@ -3986,7 +4191,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Lore',
         species: 'Human',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/lore.webp',
         recipe: {
         inputs: [
@@ -4012,7 +4217,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -4455,6 +4660,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'bardSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'compulsion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'expertise',
                                         slotIndex: 0
                                 }
@@ -4557,7 +4786,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'command'
+                        propertyId: 'createOrDestroyWater'
                 },
                 {
                         path: [
@@ -4597,6 +4826,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'arcanaExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8Feat'
+                                }
+                        ],
+                        propertyId: 'alert'
                 }
         ]
 }
@@ -4609,7 +4849,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Valor',
         species: 'Dragonborn',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/valor.webp',
         recipe: {
         inputs: [
@@ -4635,7 +4875,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -4734,7 +4974,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -5042,6 +5283,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'bardSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'mirrorImage'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'bardSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'compulsion'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'bardSubclass'
                                 }
                         ],
@@ -5057,6 +5322,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'heavilyArmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8Feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -5069,7 +5345,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Grave',
         species: 'Elf',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/gravedomain.webp',
         recipe: {
         inputs: [
@@ -5095,7 +5371,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -5201,7 +5477,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -5457,7 +5734,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'createOrDestroyWater'
+                        propertyId: 'protectionFromEvilAndGood'
                 },
                 {
                         path: [
@@ -5549,6 +5826,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'purifyFoodAndDrink'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'detectPoisonAndDisease'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'divineOrder'
                                 }
                         ],
@@ -5589,6 +5890,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'blessedStrikes'
+                                }
+                        ],
+                        propertyId: 'divineStrike'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'chef'
                 }
         ]
 }
@@ -5601,7 +5924,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Knowledge',
         species: 'Orc',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/knowledgedomain.webp',
         recipe: {
         inputs: [
@@ -5627,7 +5950,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -5747,7 +6070,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -6058,6 +6382,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'aid'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'sanctuary'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'divineOrder'
                                 }
                         ],
@@ -6157,6 +6505,42 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'observant'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'blessedStrikes'
+                                }
+                        ],
+                        propertyId: 'potentSpellcastingCleric'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'keenMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'loreKnowledge'
+                                }
+                        ],
+                        propertyId: 'investigationProficiency'
                 }
         ]
 }
@@ -6169,7 +6553,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Life',
         species: 'Human',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/lifedomain.webp',
         recipe: {
         inputs: [
@@ -6195,7 +6579,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -6308,7 +6692,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -6432,7 +6817,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateDruidPreparedSpell'
                                 }
                         ],
-                        propertyId: 'detectPoisonAndDisease'
+                        propertyId: 'entangle'
                 },
                 {
                         path: [
@@ -6484,7 +6869,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateClericPreparedSpell'
                                 }
                         ],
-                        propertyId: 'detectEvilAndGood'
+                        propertyId: 'bane'
                 },
                 {
                         path: [
@@ -6588,7 +6973,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'protectionFromEvilAndGood'
+                        propertyId: 'blindnessdeafness'
                 },
                 {
                         path: [
@@ -6624,7 +7009,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'purifyFoodAndDrink'
+                        propertyId: 'calmEmotions'
                 },
                 {
                         path: [
@@ -6672,7 +7057,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'sanctuary'
+                        propertyId: 'continualFlame'
                 },
                 {
                         path: [
@@ -6684,7 +7069,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
+                        propertyId: 'enhanceAbility'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
                         propertyId: 'shieldOfFaith'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'augury'
                 },
                 {
                         path: [
@@ -6718,6 +7127,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'heavyArmorMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'blessedStrikes'
+                                }
+                        ],
+                        propertyId: 'divineStrike'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -6730,7 +7161,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Light',
         species: 'Elf',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/lightdomain.webp',
         recipe: {
         inputs: [
@@ -6756,7 +7187,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -6876,7 +7307,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -7209,6 +7641,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'findTraps'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'gentleRepose'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'divineOrder'
                                 }
                         ],
@@ -7249,6 +7705,42 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'spellSniper'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'blessedStrikes'
+                                }
+                        ],
+                        propertyId: 'divineStrike'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'feyTouched'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'feyMagicSpell'
+                                }
+                        ],
+                        propertyId: 'huntersMark'
                 }
         ]
 }
@@ -7261,7 +7753,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Trickery',
         species: 'Halfling',
         background: 'Charlatan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/trickerydomain.webp',
         recipe: {
         inputs: [
@@ -7287,7 +7779,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -7393,7 +7885,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -7719,6 +8212,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'aid'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'locateObject'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'divineOrder'
                                 }
                         ],
@@ -7772,7 +8289,43 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'feyMagicSpell'
                                 }
                         ],
-                        propertyId: 'huntersMark'
+                        propertyId: 'identify'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'blessedStrikes'
+                                }
+                        ],
+                        propertyId: 'divineStrike'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'shadowTouched'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'shadowMagicSpell'
+                                }
+                        ],
+                        propertyId: 'illusoryScript'
                 }
         ]
 }
@@ -7785,7 +8338,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'War',
         species: 'Tiefling',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/wardomain.webp',
         recipe: {
         inputs: [
@@ -7811,7 +8364,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -7924,7 +8477,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -8137,7 +8691,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'protectionFromPoison'
                 },
                 {
                         path: [
@@ -8149,7 +8703,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'wardingBond'
                 },
                 {
                         path: [
@@ -8173,7 +8727,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'blindnessdeafness'
+                        propertyId: 'zoneOfTruth'
                 },
                 {
                         path: [
@@ -8197,7 +8751,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'calmEmotions'
+                        propertyId: 'animateDead'
                 },
                 {
                         path: [
@@ -8209,7 +8763,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'augury'
+                        propertyId: 'prayerOfHealing'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'lesserRestoration'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'clericPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -8243,6 +8821,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'alert'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'blessedStrikes'
+                                }
+                        ],
+                        propertyId: 'divineStrike'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sentinel'
                 }
         ]
 }
@@ -8255,7 +8855,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Preservation',
         species: 'Gnome',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/circleofpreservation.webp',
         recipe: {
         inputs: [
@@ -8281,7 +8881,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -8387,7 +8987,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -8565,7 +9166,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'entangle'
+                        propertyId: 'spikeGrowth'
                 },
                 {
                         path: [
@@ -8577,7 +9178,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'spikeGrowth'
+                        propertyId: 'passWithoutTrace'
                 },
                 {
                         path: [
@@ -8589,7 +9190,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'passWithoutTrace'
+                        propertyId: 'callLightning'
                 },
                 {
                         path: [
@@ -8601,7 +9202,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'callLightning'
+                        propertyId: 'fogCloud'
                 },
                 {
                         path: [
@@ -8613,7 +9214,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'fogCloud'
+                        propertyId: 'barkskin'
                 },
                 {
                         path: [
@@ -8625,7 +9226,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'barkskin'
+                        propertyId: 'heatMetal'
                 },
                 {
                         path: [
@@ -8637,7 +9238,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'heatMetal'
+                        propertyId: 'entangle'
                 },
                 {
                         path: [
@@ -8674,6 +9275,30 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'faerieFire'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'goodberry'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'iceKnife'
                 },
                 {
                         path: [
@@ -8763,6 +9388,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'elementalFury'
+                                }
+                        ],
+                        propertyId: 'potentSpellcasting'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'crossbowExpert'
                 }
         ]
 }
@@ -8775,7 +9422,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Titan',
         species: 'Triton',
         background: 'Guide',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/circleofthetitan.webp',
         recipe: {
         inputs: [
@@ -8801,7 +9448,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -8900,7 +9547,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -9175,7 +9823,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'longstrider'
+                        propertyId: 'darkvision'
                 },
                 {
                         path: [
@@ -9211,7 +9859,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'goodberry'
+                        propertyId: 'jump'
                 },
                 {
                         path: [
@@ -9223,7 +9871,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'iceKnife'
+                        propertyId: 'longstrider'
                 },
                 {
                         path: [
@@ -9235,7 +9883,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'jump'
+                        propertyId: 'speakWithAnimals'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'animalMessenger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'beastSense'
                 },
                 {
                         path: [
@@ -9297,6 +9969,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'elementalFury'
+                                }
+                        ],
+                        propertyId: 'primalStrike'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'defensiveDuelist'
                 }
         ]
 }
@@ -9309,7 +10003,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Land',
         species: 'Gnome',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/circleoftheland.webp',
         recipe: {
         inputs: [
@@ -9335,7 +10029,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -9455,7 +10149,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -9726,7 +10421,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'speakWithAnimals'
+                        propertyId: 'enlargereduce'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'flameBlade'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'flamingSphere'
                 },
                 {
                         path: [
@@ -9816,6 +10535,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'chef'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'elementalFury'
+                                }
+                        ],
+                        propertyId: 'potentSpellcasting'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'telekinetic'
                 }
         ]
 }
@@ -9828,7 +10569,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Moon',
         species: 'Aasimar',
         background: 'Guide',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/circleofthemoon.webp',
         recipe: {
         inputs: [
@@ -9854,7 +10595,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -9967,7 +10708,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -10266,7 +11008,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'animalMessenger'
+                        propertyId: 'gustOfWind'
                 },
                 {
                         path: [
@@ -10278,7 +11020,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'beastSense'
+                        propertyId: 'locateAnimalsOrPlants'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'auraOfVitality'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'summonBeast'
                 },
                 {
                         path: [
@@ -10354,6 +11120,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'resilient'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'elementalFury'
+                                }
+                        ],
+                        propertyId: 'potentSpellcasting'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'durable'
                 }
         ]
 }
@@ -10366,7 +11154,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Sea',
         species: 'Triton',
         background: 'Sailor',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/circleofthesea.webp',
         recipe: {
         inputs: [
@@ -10392,7 +11180,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -10498,7 +11286,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -10724,7 +11513,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'enhanceAbility'
+                        propertyId: 'feignDeath'
                 },
                 {
                         path: [
@@ -10760,7 +11549,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'continualFlame'
+                        propertyId: 'conjureAnimals'
                 },
                 {
                         path: [
@@ -10772,7 +11561,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'darkvision'
+                        propertyId: 'daylight'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'dispelMagic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'elementalWeapon'
                 },
                 {
                         path: [
@@ -10848,6 +11661,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'telekinetic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'elementalFury'
+                                }
+                        ],
+                        propertyId: 'potentSpellcasting'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'observant'
                 }
         ]
 }
@@ -10860,7 +11695,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Stars',
         species: 'Elf',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/circleofthestars.webp',
         recipe: {
         inputs: [
@@ -10886,7 +11721,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -11006,7 +11841,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -11320,7 +12156,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'enlargereduce'
+                        propertyId: 'meldIntoStone'
                 },
                 {
                         path: [
@@ -11332,7 +12168,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'findTraps'
+                        propertyId: 'plantGrowth'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'protectionFromEnergy'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'sleetStorm'
                 },
                 {
                         path: [
@@ -11422,6 +12282,28 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'investigationProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'elementalFury'
+                                }
+                        ],
+                        propertyId: 'potentSpellcasting'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'spellSniper'
                 }
         ]
 }
@@ -11434,7 +12316,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Arcane Archer',
         species: 'Elf',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/arcanearcher.webp',
         recipe: {
         inputs: [
@@ -11460,7 +12342,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -11583,7 +12465,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -11822,6 +12705,21 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'arcaneShotOptions',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'burstingShot'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -11836,7 +12734,32 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level6feat'
                                 }
                         ],
-                        propertyId: 'athlete'
+                        propertyId: 'dualWielder'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'elementalAdept'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'energyMastery'
+                                }
+                        ],
+                        propertyId: 'acidResistance'
                 }
         ]
 }
@@ -11849,7 +12772,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Banneret',
         species: 'Human',
         background: 'Noble',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/banneret.webp',
         recipe: {
         inputs: [
@@ -11875,7 +12798,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -11982,7 +12905,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -12265,7 +13189,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level6feat'
                                 }
                         ],
-                        propertyId: 'crossbowExpert'
+                        propertyId: 'grappler'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'inspiringLeader'
                 }
         ]
 }
@@ -12278,7 +13213,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Battle Master',
         species: 'Dragonborn',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/battlemaster.webp',
         recipe: {
         inputs: [
@@ -12304,7 +13239,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -12411,7 +13346,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -12614,6 +13550,36 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fighterSubclass'
                                 },
                                 {
+                                        id: 'maneuvers',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'commandingPresence'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'maneuvers',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'disarmingAttack'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
                                         id: 'studentOfWarSkill'
                                 }
                         ],
@@ -12653,7 +13619,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level6feat'
                                 }
                         ],
-                        propertyId: 'defensiveDuelist'
+                        propertyId: 'lightlyArmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sentinel'
                 }
         ]
 }
@@ -12666,7 +13643,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Champion',
         species: 'Human',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/champion.webp',
         recipe: {
         inputs: [
@@ -12692,7 +13669,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -12799,7 +13776,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -13009,6 +13987,20 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'additionalFightingStyle'
+                                }
+                        ],
+                        propertyId: 'interception'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -13023,7 +14015,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level6feat'
                                 }
                         ],
-                        propertyId: 'dualWielder'
+                        propertyId: 'mageSlayer'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'greatWeaponMaster'
                 }
         ]
 }
@@ -13036,7 +14039,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Eldritch Knight',
         species: 'Human',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/eldritch_knight.webp',
         recipe: {
         inputs: [
@@ -13062,7 +14065,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -13169,7 +14172,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -13210,7 +14214,7 @@ export const SAMPLE_CHARACTERS = [
                                 },
                                 {
                                         id: 'eldritchKnightSpells',
-                                        slotIndex: 3
+                                        slotIndex: 2
                                 },
                                 {
                                         id: 'familiarName'
@@ -13334,7 +14338,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateWizardPreparedSpell'
                                 }
                         ],
-                        propertyId: 'colorSpray'
+                        propertyId: 'expeditiousRetreat'
                 },
                 {
                         path: [
@@ -13433,7 +14437,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'expeditiousRetreat'
+                        propertyId: 'falseLife'
                 },
                 {
                         path: [
@@ -13448,7 +14452,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'falseLife'
+                        propertyId: 'featherFall'
                 },
                 {
                         path: [
@@ -13463,21 +14467,6 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'featherFall'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fighterSubclass'
-                                },
-                                {
-                                        id: 'eldritchKnightSpells',
-                                        slotIndex: 3
-                                }
-                        ],
                         propertyId: 'findFamiliar'
                 },
                 {
@@ -13490,7 +14479,7 @@ export const SAMPLE_CHARACTERS = [
                                 },
                                 {
                                         id: 'eldritchKnightSpells',
-                                        slotIndex: 3
+                                        slotIndex: 2
                                 },
                                 {
                                         id: 'familiarType'
@@ -13508,13 +14497,58 @@ export const SAMPLE_CHARACTERS = [
                                 },
                                 {
                                         id: 'eldritchKnightSpells',
-                                        slotIndex: 3
+                                        slotIndex: 2
                                 },
                                 {
                                         id: 'familiarEnvironment'
                                 }
                         ],
                         propertyId: 'familiarLand'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'grease'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'mageArmor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'eldritchKnightSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'magicMissile'
                 },
                 {
                         path: [
@@ -13536,6 +14570,17 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level6feat'
                                 }
                         ],
+                        propertyId: 'mediumArmorMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
                         propertyId: 'elementalAdept'
                 },
                 {
@@ -13544,13 +14589,13 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level6feat'
+                                        id: 'level8feat'
                                 },
                                 {
                                         id: 'energyMastery'
                                 }
                         ],
-                        propertyId: 'acidResistance'
+                        propertyId: 'coldResistance'
                 }
         ]
 }
@@ -13563,7 +14608,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Psi Warrior',
         species: 'Human',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/psiwarrior.webp',
         recipe: {
         inputs: [
@@ -13589,7 +14634,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -13703,7 +14748,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -13844,7 +14890,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateWizardPreparedSpell'
                                 }
                         ],
-                        propertyId: 'grease'
+                        propertyId: 'rayOfSickness'
                 },
                 {
                         path: [
@@ -13920,7 +14966,32 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level6feat'
                                 }
                         ],
-                        propertyId: 'grappler'
+                        propertyId: 'moderatelyArmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'keenMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'loreKnowledge'
+                                }
+                        ],
+                        propertyId: 'investigationProficiency'
                 }
         ]
 }
@@ -13933,7 +15004,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Mystic Arts',
         species: 'Human',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/mysticarts.webp',
         recipe: {
         inputs: [
@@ -13959,7 +15030,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -14088,7 +15159,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -14250,7 +15322,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'magicInitiateWizardPreparedSpell'
                                 }
                         ],
-                        propertyId: 'identify'
+                        propertyId: 'shield'
                 },
                 {
                         path: [
@@ -14349,7 +15421,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'mageArmor'
+                        propertyId: 'silentImage'
                 },
                 {
                         path: [
@@ -14364,7 +15436,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'magicMissile'
+                        propertyId: 'sleep'
                 },
                 {
                         path: [
@@ -14379,7 +15451,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'rayOfSickness'
+                        propertyId: 'witchBolt'
                 },
                 {
                         path: [
@@ -14394,7 +15466,37 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'shield'
+                        propertyId: 'alterSelf'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'monkSubclass'
+                                },
+                                {
+                                        id: 'mysticArtsPreparedSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'arcaneVigor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'monkSubclass'
+                                },
+                                {
+                                        id: 'mysticArtsPreparedSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'blur'
                 },
                 {
                         path: [
@@ -14406,6 +15508,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'mountedCombatant'
                 }
         ]
 }
@@ -14418,7 +15531,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Venom',
         species: 'Human',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/venom.webp',
         recipe: {
         inputs: [
@@ -14444,7 +15557,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -14573,7 +15686,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -14712,6 +15826,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'piercer'
                 }
         ]
 }
@@ -14724,7 +15849,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Elements',
         species: 'Orc',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/elements.webp',
         recipe: {
         inputs: [
@@ -14750,7 +15875,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -14878,7 +16003,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -14995,6 +16121,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'speedy'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'elementalAdept'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'energyMastery'
+                                }
+                        ],
+                        propertyId: 'fireResistance'
                 }
         ]
 }
@@ -15007,7 +16158,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Mercy',
         species: 'Human',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/mercy.webp',
         recipe: {
         inputs: [
@@ -15033,7 +16184,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -15161,7 +16312,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -15344,6 +16496,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'grappler'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'athlete'
                 }
         ]
 }
@@ -15356,7 +16519,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Open Hand',
         species: 'Human',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/openhand.webp',
         recipe: {
         inputs: [
@@ -15382,7 +16545,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -15510,7 +16673,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -15649,6 +16813,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'athlete'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'charger'
                 }
         ]
 }
@@ -15661,7 +16836,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Shadow',
         species: 'Elf',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/shadows.webp',
         recipe: {
         inputs: [
@@ -15687,7 +16862,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -15815,7 +16990,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -15954,6 +17130,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'weaponMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'skulker'
                 }
         ]
 }
@@ -15966,7 +17153,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Devotion',
         species: 'Human',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/oathofdevotion.webp',
         recipe: {
         inputs: [
@@ -15992,7 +17179,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -16127,7 +17314,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_cha'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -16351,7 +17539,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'divineFavor'
+                        propertyId: 'searingSmite'
                 },
                 {
                         path: [
@@ -16371,10 +17559,22 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'divineFavor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'interception'
+                        propertyId: 'protection'
                 },
                 {
                         path: [
@@ -16411,6 +17611,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'otherworldlySteedCelestial'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'shieldMaster'
                 }
         ]
 }
@@ -16423,7 +17634,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Glory',
         species: 'Tiefling',
         background: 'Noble',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/oathofglory.webp',
         recipe: {
         inputs: [
@@ -16449,7 +17660,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -16584,7 +17795,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_cha'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -16762,7 +17974,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'searingSmite'
+                        propertyId: 'shiningSmite'
                 },
                 {
                         path: [
@@ -16821,7 +18033,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'protection'
+                        propertyId: 'thrownWeaponFighting'
                 },
                 {
                         path: [
@@ -16858,6 +18070,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'otherworldlySteedFey'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'charger'
                 }
         ]
 }
@@ -16870,7 +18093,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Ancients',
         species: 'Elf',
         background: 'Guide',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/oathoftheancients.webp',
         recipe: {
         inputs: [
@@ -16896,7 +18119,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -17010,7 +18233,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -17267,7 +18491,19 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'gentleRepose'
+                        propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'paladinSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'compelledDuel'
                 },
                 {
                         path: [
@@ -17278,7 +18514,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'thrownWeaponFighting'
+                        propertyId: 'twoWeaponFighting'
                 },
                 {
                         path: [
@@ -17315,6 +18551,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'otherworldlySteedFiend'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'polearmMaster'
                 }
         ]
 }
@@ -17327,7 +18574,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Vengeance',
         species: 'Dragonborn',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/oathofvengeance.webp',
         recipe: {
         inputs: [
@@ -17353,7 +18600,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -17488,7 +18735,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_cha'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -17677,10 +18925,22 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'twoWeaponFighting'
+                        propertyId: 'unarmedFighting'
                 },
                 {
                         path: [
@@ -17717,6 +18977,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'otherworldlySteedCelestial'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'greatWeaponMaster'
                 }
         ]
 }
@@ -17729,7 +19000,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Noble Genies',
         species: 'Dragonborn',
         background: 'Noble',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/oathofgenies.webp',
         recipe: {
         inputs: [
@@ -17755,7 +19026,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -17869,7 +19140,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -18105,7 +19377,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'locateObject'
+                        propertyId: 'compelledDuel'
                 },
                 {
                         path: [
@@ -18125,10 +19397,52 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'unarmedFighting'
+                        propertyId: 'blessedWarrior'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fightingStyle'
+                                },
+                                {
+                                        id: 'blessedWarriorCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'guidance'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fightingStyle'
+                                },
+                                {
+                                        id: 'blessedWarriorCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'lightSpell'
                 },
                 {
                         path: [
@@ -18165,6 +19479,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'otherworldlySteedCelestial'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'poisoner'
                 }
         ]
 }
@@ -18177,7 +19502,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Oathbreaker',
         species: 'Tiefling',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/oathbreaker.webp',
         recipe: {
         inputs: [
@@ -18203,7 +19528,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -18317,7 +19642,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -18528,10 +19854,11 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'fightingStyle'
+                                        id: 'paladinSpells',
+                                        slotIndex: 6
                                 }
                         ],
-                        propertyId: 'blessedWarrior'
+                        propertyId: 'command'
                 },
                 {
                         path: [
@@ -18540,28 +19867,9 @@ export const SAMPLE_CHARACTERS = [
                                 },
                                 {
                                         id: 'fightingStyle'
-                                },
-                                {
-                                        id: 'blessedWarriorCantrips',
-                                        slotIndex: 0
                                 }
                         ],
-                        propertyId: 'guidance'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fightingStyle'
-                                },
-                                {
-                                        id: 'blessedWarriorCantrips',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'lightSpell'
+                        propertyId: 'archery'
                 },
                 {
                         path: [
@@ -18598,6 +19906,62 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'otherworldlySteedCelestial'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'ritualCaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'tensersFloatingDisk'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'unseenServant'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'ritualCasterSpells',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'alarm'
                 }
         ]
 }
@@ -18610,7 +19974,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Beast Master',
         species: 'Human',
         background: 'Guide',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/beastmaster.webp',
         recipe: {
         inputs: [
@@ -18636,7 +20000,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -18735,7 +20099,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -18764,7 +20129,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -19027,6 +20393,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'rangerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'cordonOfArrows'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'fightingStyle'
                                 }
                         ],
@@ -19097,6 +20475,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'sharpshooter'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement'
                 }
         ]
 }
@@ -19109,7 +20498,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Fey Wanderer',
         species: 'Elf',
         background: 'Wayfarer',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/feywanderer.webp',
         recipe: {
         inputs: [
@@ -19135,7 +20524,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -19263,7 +20652,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -19461,7 +20851,30 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'cordonOfArrows'
+                        propertyId: 'animalFriendship'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'alarm'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'deftExplorerExpertise'
+                                }
+                        ],
+                        propertyId: 'acrobaticsExpertise'
                 },
                 {
                         path: [
@@ -19523,6 +20936,45 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'dissonantWhispers'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'skillExpert'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'skillExpertSkillProficiency'
+                                }
+                        ],
+                        propertyId: 'acrobaticsProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'skillExpertExpertise'
+                                }
+                        ],
+                        propertyId: 'animalHandlingExpertise'
                 }
         ]
 }
@@ -19535,7 +20987,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Gloom Stalker',
         species: 'Dwarf',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/gloomstalker.webp',
         recipe: {
         inputs: [
@@ -19561,7 +21013,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -19689,7 +21141,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -19865,7 +21318,19 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'gustOfWind'
+                        propertyId: 'alarm'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'animalFriendship'
                 },
                 {
                         path: [
@@ -19906,10 +21371,35 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'rangerSubclass'
+                                },
+                                {
+                                        id: 'ironMind'
+                                }
+                        ],
+                        propertyId: 'wisSave'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
                         propertyId: 'skulker'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sharpshooter'
                 }
         ]
 }
@@ -19922,7 +21412,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Hunter',
         species: 'Human',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/hunter.webp',
         recipe: {
         inputs: [
@@ -19948,7 +21438,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -20047,7 +21537,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -20274,7 +21765,19 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'locateAnimalsOrPlants'
+                        propertyId: 'alarm'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'animalFriendship'
                 },
                 {
                         path: [
@@ -20329,10 +21832,35 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'rangerSubclass'
+                                },
+                                {
+                                        id: 'defensiveTactics'
+                                }
+                        ],
+                        propertyId: 'escapeTheHorde'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
                         propertyId: 'crossbowExpert'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sharpshooter'
                 }
         ]
 }
@@ -20345,7 +21873,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Winter Walker',
         species: 'Goliath',
         background: 'Guide',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/winterwalker.webp',
         recipe: {
         inputs: [
@@ -20371,7 +21899,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -20499,7 +22027,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -20718,7 +22247,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'magicWeapon'
+                        propertyId: 'alarm'
                 },
                 {
                         path: [
@@ -20730,7 +22259,19 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'protectionFromPoison'
+                        propertyId: 'animalFriendship'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -20764,6 +22305,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'mediumArmorMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'slasher'
                 }
         ]
 }
@@ -20776,7 +22328,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Hollow Warden',
         species: 'Dragonborn',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/hollowwarden.webp',
         recipe: {
         inputs: [
@@ -20802,7 +22354,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -20901,7 +22453,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -20916,7 +22469,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -21118,7 +22672,19 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'summonBeast'
+                        propertyId: 'alarm'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rangerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'animalFriendship'
                 },
                 {
                         path: [
@@ -21152,6 +22718,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -21164,7 +22741,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Arcane Trickster',
         species: 'Orc',
         background: 'Charlatan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/arcanetrickster.webp',
         recipe: {
         inputs: [
@@ -21190,7 +22767,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -21311,7 +22888,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -21559,7 +23137,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'illusoryScript'
+                        propertyId: 'tashasHideousLaughter'
                 },
                 {
                         path: [
@@ -21574,7 +23152,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'silentImage'
+                        propertyId: 'arcaneLock'
                 },
                 {
                         path: [
@@ -21589,7 +23167,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'sleep'
+                        propertyId: 'cloudOfDaggers'
                 },
                 {
                         path: [
@@ -21604,7 +23182,37 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'tashasHideousLaughter'
+                        propertyId: 'crownOfMadness'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rogueSubclass'
+                                },
+                                {
+                                        id: 'arcaneTricksterSpells',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'darkness'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'rogueSubclass'
+                                },
+                                {
+                                        id: 'arcaneTricksterSpells',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'detectThoughts'
                 },
                 {
                         path: [
@@ -21630,7 +23238,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'tensersFloatingDisk'
+                        propertyId: 'alarm'
                 },
                 {
                         path: [
@@ -21645,7 +23253,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'unseenServant'
+                        propertyId: 'comprehendLanguages'
                 },
                 {
                         path: [
@@ -21660,7 +23268,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'alarm'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -21685,6 +23293,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'investigationExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -21697,7 +23316,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Assassin',
         species: 'Dragonborn',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/assassin.webp',
         recipe: {
         inputs: [
@@ -21723,7 +23342,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -21844,7 +23463,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -22049,6 +23669,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'acrobaticsExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'piercer'
                 }
         ]
 }
@@ -22061,7 +23692,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Soulknife',
         species: 'Aasimar',
         background: 'Wayfarer',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/soulknife.webp',
         recipe: {
         inputs: [
@@ -22087,7 +23718,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -22208,7 +23839,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -22402,6 +24034,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'stealthExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'speedy'
                 }
         ]
 }
@@ -22414,7 +24057,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Thief',
         species: 'Human',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/thief.webp',
         recipe: {
         inputs: [
@@ -22440,7 +24083,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -22554,7 +24197,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -22777,6 +24421,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'acrobaticsExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'defensiveDuelist'
                 }
         ]
 }
@@ -22789,7 +24444,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Phantom',
         species: 'Human',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/phantom.webp',
         recipe: {
         inputs: [
@@ -22815,7 +24470,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -22937,14 +24592,16 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -23167,6 +24824,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'deceptionExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -23179,7 +24847,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Scion',
         species: 'Orc',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/scion.webp',
         recipe: {
         inputs: [
@@ -23205,7 +24873,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -23304,7 +24972,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -23319,7 +24988,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -23535,6 +25205,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'investigationExpertise'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -23547,7 +25228,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Aberrant',
         species: 'Dragonborn',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/aberrant.webp',
         recipe: {
         inputs: [
@@ -23573,7 +25254,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -23693,7 +25374,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -23913,7 +25595,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mistyStep'
+                        propertyId: 'seeInvisibility'
                 },
                 {
                         path: [
@@ -23985,7 +25667,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'witchBolt'
+                        propertyId: 'dragonsBreath'
                 },
                 {
                         path: [
@@ -23997,7 +25679,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'alterSelf'
+                        propertyId: 'knock'
                 },
                 {
                         path: [
@@ -24009,7 +25691,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'arcaneVigor'
+                        propertyId: 'levitate'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'mindSpike'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'phantasmalForce'
                 },
                 {
                         path: [
@@ -24056,6 +25762,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'telepathic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'feyTouched'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'feyMagicSpell'
+                                }
+                        ],
+                        propertyId: 'hex'
                 }
         ]
 }
@@ -24068,7 +25799,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Clockwork',
         species: 'Dwarf',
         background: 'Artisan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/clockwork.webp',
         recipe: {
         inputs: [
@@ -24094,7 +25825,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -24214,7 +25945,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -24474,7 +26206,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'blur'
+                        propertyId: 'spiderClimb'
                 },
                 {
                         path: [
@@ -24486,7 +26218,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'cloudOfDaggers'
+                        propertyId: 'tashasMindWhip'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'blink'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'clairvoyance'
                 },
                 {
                         path: [
@@ -24533,6 +26289,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'telekinetic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -24545,7 +26312,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Draconic',
         species: 'Human',
         background: 'Noble',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/draconic.webp',
         recipe: {
         inputs: [
@@ -24571,7 +26338,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -24677,7 +26444,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -25007,7 +26775,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'crownOfMadness'
+                        propertyId: 'counterspell'
                 },
                 {
                         path: [
@@ -25019,7 +26787,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'darkness'
+                        propertyId: 'enemiesAbound'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'gaseousForm'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -25093,7 +26885,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'energyMastery'
                                 }
                         ],
-                        propertyId: 'coldResistance'
+                        propertyId: 'lightningResistance'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'spellSniper'
                 }
         ]
 }
@@ -25106,7 +26909,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Wild Magic',
         species: 'Human',
         background: 'Charlatan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/wildmagic.webp',
         recipe: {
         inputs: [
@@ -25132,7 +26935,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -25238,14 +27041,16 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -25578,7 +27383,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'detectThoughts'
+                        propertyId: 'intellectFortress'
                 },
                 {
                         path: [
@@ -25590,7 +27395,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'dragonsBreath'
+                        propertyId: 'lightningBolt'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'majorImage'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'slow'
                 },
                 {
                         path: [
@@ -25637,6 +27466,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'lightlyArmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement'
                 }
         ]
 }
@@ -25649,7 +27489,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Shadow',
         species: 'Human',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/shadow.webp',
         recipe: {
         inputs: [
@@ -25675,7 +27515,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -25789,14 +27629,16 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -26067,7 +27909,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'flameBlade'
+                        propertyId: 'stinkingCloud'
                 },
                 {
                         path: [
@@ -26079,7 +27921,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'flamingSphere'
+                        propertyId: 'telekineticCrush'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'tongues'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'vampiricTouch'
                 },
                 {
                         path: [
@@ -26126,6 +27992,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -26138,7 +28015,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Demonic',
         species: 'Tiefling',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/demonic.webp',
         recipe: {
         inputs: [
@@ -26164,7 +28041,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -26270,7 +28147,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -26285,7 +28163,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -26521,7 +28400,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'mindSpike'
+                        propertyId: 'charmMonster'
                 },
                 {
                         path: [
@@ -26545,7 +28424,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'knock'
+                        propertyId: 'waterBreathing'
                 },
                 {
                         path: [
@@ -26557,7 +28436,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'levitate'
+                        propertyId: 'waterWalk'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'banishment'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'sorcererPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'blight'
                 },
                 {
                         path: [
@@ -26604,6 +28507,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -26616,7 +28530,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Archfey',
         species: 'Elf',
         background: 'Wayfarer',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/archfeypatron.webp',
         recipe: {
         inputs: [
@@ -26642,7 +28556,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -26748,7 +28662,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -26933,7 +28848,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'hex'
+                        propertyId: 'hellishRebuke'
                 },
                 {
                         path: [
@@ -26945,7 +28860,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'hellishRebuke'
+                        propertyId: 'hungerOfHadar'
                 },
                 {
                         path: [
@@ -26957,7 +28872,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'hungerOfHadar'
+                        propertyId: 'armorOfAgathys'
                 },
                 {
                         path: [
@@ -26969,7 +28884,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'armorOfAgathys'
+                        propertyId: 'hex'
                 },
                 {
                         path: [
@@ -26981,7 +28896,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'ectoplasmicTrail'
+                        propertyId: 'rayOfEnfeeblement'
                 },
                 {
                         path: [
@@ -27006,6 +28921,30 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'armsOfHadar'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'ectoplasmicTrail'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'enthrall'
                 },
                 {
                         path: [
@@ -27115,6 +29054,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'eldritchInvocations',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'ascendantStep'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'warlockSubclass'
                                 }
                         ],
@@ -27144,6 +29095,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'comprehendLanguages'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'spellSniper'
                 }
         ]
 }
@@ -27156,7 +29118,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Celestial',
         species: 'Dwarf',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/celestialpatron.webp',
         recipe: {
         inputs: [
@@ -27182,7 +29144,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -27288,7 +29250,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -27547,7 +29510,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'enthrall'
+                        propertyId: 'bleedingDarkness'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'magicCircle'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'removeCurse'
                 },
                 {
                         path: [
@@ -27710,6 +29697,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'eldritchInvocations',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'giftOfTheDepths'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'warlockSubclass'
                                 }
                         ],
@@ -27725,6 +29724,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'inspiringLeader'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'resilient'
                 }
         ]
 }
@@ -27737,7 +29747,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Fiend',
         species: 'Tiefling',
         background: 'Criminal',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/fiendpatron.webp',
         recipe: {
         inputs: [
@@ -27763,7 +29773,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -27862,7 +29872,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -28083,7 +30094,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'spiderClimb'
+                        propertyId: 'hallucinatoryTerrain'
                 },
                 {
                         path: [
@@ -28095,7 +30106,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'rayOfEnfeeblement'
+                        propertyId: 'summonFey'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'summonUndead'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -28155,6 +30190,18 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
+                        propertyId: 'whispersOfTheGrave'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'eldritchInvocations',
+                                        slotIndex: 5
+                                }
+                        ],
                         propertyId: 'eldritchMind'
                 },
                 {
@@ -28192,6 +30239,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'colorSpray'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'elementalAdept'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'energyMastery'
+                                }
+                        ],
+                        propertyId: 'thunderResistance'
                 }
         ]
 }
@@ -28204,7 +30276,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Great Old One',
         species: 'Human',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/greatoldonepatron.webp',
         recipe: {
         inputs: [
@@ -28230,7 +30302,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -28344,7 +30416,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -28549,7 +30622,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'counterspell'
+                        propertyId: 'armsOfHadar'
                 },
                 {
                         path: [
@@ -28585,7 +30658,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'bleedingDarkness'
+                        propertyId: 'raulothimsPsychicLance'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'bane'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'charmPerson'
                 },
                 {
                         path: [
@@ -28668,6 +30765,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'eldritchInvocations',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'agonizingBlast'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'warlockSubclass'
                                 }
                         ],
@@ -28683,6 +30792,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'moderatelyArmored'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'observant'
                 }
         ]
 }
@@ -28695,7 +30815,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Undead',
         species: 'Human',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/undeadpatron.webp',
         recipe: {
         inputs: [
@@ -28721,7 +30841,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -28827,7 +30947,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -28842,7 +30963,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -29109,7 +31231,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'dispelMagic'
+                        propertyId: 'armsOfHadar'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'comprehendLanguages'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'charmPerson'
                 },
                 {
                         path: [
@@ -29121,7 +31267,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'ascendantStep'
+                        propertyId: 'agonizingBlast'
                 },
                 {
                         path: [
@@ -29133,7 +31279,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'giftOfTheDepths'
+                        propertyId: 'armorOfShadows'
                 },
                 {
                         path: [
@@ -29145,7 +31291,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'agonizingBlast'
+                        propertyId: 'ascendantStep'
                 },
                 {
                         path: [
@@ -29157,7 +31303,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'armorOfShadows'
+                        propertyId: 'devilSight'
                 },
                 {
                         path: [
@@ -29169,7 +31315,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'devilSight'
+                        propertyId: 'eldritchMind'
                 },
                 {
                         path: [
@@ -29192,6 +31338,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -29204,7 +31361,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Vestige',
         species: 'Tiefling',
         background: 'Acolyte',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/vestigepatron.webp',
         recipe: {
         inputs: [
@@ -29230,7 +31387,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -29336,7 +31493,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -29351,7 +31509,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -29608,7 +31767,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'fear'
+                        propertyId: 'detectMagic'
                 },
                 {
                         path: [
@@ -29620,7 +31779,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'enemiesAbound'
+                        propertyId: 'armsOfHadar'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'charmPerson'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'warlockPreparedSpells',
+                                        slotIndex: 8
+                                }
+                        ],
+                        propertyId: 'comprehendLanguages'
                 },
                 {
                         path: [
@@ -29731,6 +31914,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -29743,7 +31937,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Abjurer',
         species: 'Dwarf',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/abjurer.webp',
         recipe: {
         inputs: [
@@ -29769,7 +31963,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -30190,6 +32384,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'magicMouth'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'melfsAcidArrow'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'scholar'
                                 }
                         ],
@@ -30216,6 +32434,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'warCaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'alert'
                 }
         ]
 }
@@ -30228,7 +32457,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Diviner',
         species: 'Tiefling',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/diviner.webp',
         recipe: {
         inputs: [
@@ -30254,7 +32483,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -30382,7 +32611,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -30686,6 +32916,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'nystulsMagicAura'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'ropeTrick'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'scholar'
                                 }
                         ],
@@ -30726,6 +32980,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'natureProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'observant'
                 }
         ]
 }
@@ -30738,7 +33003,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Evoker',
         species: 'Elf',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/evoker.webp',
         recipe: {
         inputs: [
@@ -30764,7 +33029,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -30877,7 +33142,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -31207,6 +33473,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'bestowCurse'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'glyphOfWarding'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'scholar'
                                 }
                         ],
@@ -31233,6 +33523,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'spellSniper'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'elementalAdept'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'energyMastery'
+                                }
+                        ],
+                        propertyId: 'acidResistance'
                 }
         ]
 }
@@ -31245,7 +33560,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Illusionist',
         species: 'Gnome',
         background: 'Charlatan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/illusionist.webp',
         recipe: {
         inputs: [
@@ -31271,7 +33586,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -31377,7 +33692,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -31704,6 +34020,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'web'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'leomundsTinyHut'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'scholar'
                                 }
                         ],
@@ -31730,6 +34070,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'actor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'shadowTouched'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'shadowMagicSpell'
+                                }
+                        ],
+                        propertyId: 'colorSpray'
                 }
         ]
 }
@@ -31742,7 +34107,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Bladesinger',
         species: 'Elf',
         background: 'Noble',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/bladesinger.webp',
         recipe: {
         inputs: [
@@ -31768,7 +34133,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -31874,7 +34239,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -32222,6 +34588,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'web'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'nondetection'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'scholar'
                                 }
                         ],
@@ -32262,6 +34652,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'defensiveDuelist'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -32274,7 +34675,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Necromancer',
         species: 'Human',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/necromancer.webp',
         recipe: {
         inputs: [
@@ -32300,7 +34701,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -32406,7 +34807,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -32429,7 +34831,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_wis'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -32744,6 +35147,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'phantomSteed'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'sending'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'scholar'
                                 }
                         ],
@@ -32770,6 +35197,51 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardSubclass'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarType'
+                                }
+                        ],
+                        propertyId: 'familiarUndead'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardSubclass'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarEnvironment'
+                                }
+                        ],
+                        propertyId: 'familiarAir'
                 }
         ]
 }
@@ -32782,7 +35254,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Metamorph',
         species: 'Goliath',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/metamorph.webp',
         recipe: {
         inputs: [
@@ -32808,7 +35280,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -32921,7 +35393,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -33068,7 +35541,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'shield'
                 },
                 {
                         path: [
@@ -33080,7 +35553,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'mageArmor'
                 },
                 {
                         path: [
@@ -33092,7 +35565,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'shield'
+                        propertyId: 'mindSpike'
                 },
                 {
                         path: [
@@ -33104,7 +35577,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'mageArmor'
+                        propertyId: 'dissonantWhispers'
                 },
                 {
                         path: [
@@ -33116,7 +35589,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'mindSpike'
+                        propertyId: 'detectThoughts'
                 },
                 {
                         path: [
@@ -33128,7 +35601,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'dissonantWhispers'
+                        propertyId: 'levitate'
                 },
                 {
                         path: [
@@ -33140,7 +35613,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'detectThoughts'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -33152,7 +35625,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'levitate'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -33164,7 +35637,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'invisibility'
                 },
                 {
                         path: [
@@ -33176,7 +35649,31 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'fly'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'hypnoticPattern'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -33235,6 +35732,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'resilient'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -33247,7 +35755,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Psi Warper',
         species: 'Elf',
         background: 'Wayfarer',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/psiwarper.webp',
         recipe: {
         inputs: [
@@ -33273,7 +35781,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -33379,7 +35887,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -33616,7 +36125,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'lifeSiphon'
                 },
                 {
                         path: [
@@ -33653,6 +36162,30 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'fly'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'hypnoticPattern'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'egoWhip'
                 },
                 {
                         path: [
@@ -33711,6 +36244,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'telekinetic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'speedy'
                 }
         ]
 }
@@ -33723,7 +36267,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Psykinetic',
         species: 'Human',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/psykinetic.webp',
         recipe: {
         inputs: [
@@ -33749,7 +36293,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -33862,7 +36406,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -34020,7 +36565,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'summonAstralEntity'
                 },
                 {
                         path: [
@@ -34080,7 +36625,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'lifeSiphon'
+                        propertyId: 'arcaneEye'
                 },
                 {
                         path: [
@@ -34129,6 +36674,30 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'fly'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'hypnoticPattern'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -34187,6 +36756,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'warCaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'telekinetic'
                 }
         ]
 }
@@ -34199,7 +36779,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Seer',
         species: 'Elf',
         background: 'Sage',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/seer.webp',
         recipe: {
         inputs: [
@@ -34225,7 +36805,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -34345,7 +36925,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_int'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -34539,7 +37120,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'egoWhip'
+                        propertyId: 'confusion'
                 },
                 {
                         path: [
@@ -34655,6 +37236,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'hypnoticPattern'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'dimensionDoor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'psionicDiscipline',
                                         slotIndex: 0
                                 }
@@ -34706,6 +37311,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'alert'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'keenMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'loreKnowledge'
+                                }
+                        ],
+                        propertyId: 'natureProficiency'
                 }
         ]
 }
@@ -34718,7 +37348,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Shaper',
         species: 'Gnome',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/shaper.webp',
         recipe: {
         inputs: [
@@ -34744,7 +37374,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -34857,7 +37487,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -35136,6 +37767,30 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'hypnoticPattern'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'dimensionDoor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'psionicDiscipline',
                                         slotIndex: 0
                                 }
@@ -35221,6 +37876,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'resilient'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'telekinetic'
                 }
         ]
 }
@@ -35233,7 +37899,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Telepath',
         species: 'Tiefling',
         background: 'Charlatan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/telepath.webp',
         recipe: {
         inputs: [
@@ -35259,7 +37925,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -35372,7 +38038,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_con'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -35588,7 +38255,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -35612,7 +38279,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'greaterInvisibility'
                 },
                 {
                         path: [
@@ -35648,7 +38315,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'phantasmalForce'
+                        propertyId: 'lifeInversionField'
                 },
                 {
                         path: [
@@ -35660,7 +38327,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'magicMouth'
+                        propertyId: 'freedomOfMovement'
                 },
                 {
                         path: [
@@ -35673,6 +38340,30 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'invisibility'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 10
+                                }
+                        ],
+                        propertyId: 'fly'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'psionPreparedSpells',
+                                        slotIndex: 11
+                                }
+                        ],
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -35731,6 +38422,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'telepathic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'keenMind'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'loreKnowledge'
+                                }
+                        ],
+                        propertyId: 'natureProficiency'
                 }
         ]
 }
@@ -35743,7 +38459,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Alchemist',
         species: 'Gnome',
         background: 'Artisan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/alchemist.webp',
         recipe: {
         inputs: [
@@ -35769,7 +38485,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -36025,7 +38741,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'arcaneLock'
+                        propertyId: 'falseLife'
                 },
                 {
                         path: [
@@ -36037,7 +38753,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'ropeTrick'
+                        propertyId: 'alarm'
                 },
                 {
                         path: [
@@ -36049,7 +38765,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'seeInvisibility'
+                        propertyId: 'cureWounds'
                 },
                 {
                         path: [
@@ -36073,7 +38789,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'alarm'
+                        propertyId: 'disguiseSelf'
                 },
                 {
                         path: [
@@ -36085,7 +38801,19 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'cureWounds'
+                        propertyId: 'expeditiousRetreat'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'faerieFire'
                 },
                 {
                         path: [
@@ -36145,7 +38873,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'waterBreathing'
+                        propertyId: 'fabricate'
                 },
                 {
                         path: [
@@ -36182,6 +38910,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'natureProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'alert'
                 }
         ]
 }
@@ -36194,7 +38933,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Artillerist',
         species: 'Gnome',
         background: 'Artisan',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/artillerist.webp',
         recipe: {
         inputs: [
@@ -36220,7 +38959,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -36326,7 +39065,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -36553,6 +39293,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'falseLife'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'artificerCantrips',
                                         slotIndex: 0
                                 }
@@ -36581,7 +39333,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'fabricate'
+                        propertyId: 'createFoodAndWater'
                 },
                 {
                         path: [
@@ -36593,7 +39345,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'sending'
+                        propertyId: 'leomundsSecretChest'
                 },
                 {
                         path: [
@@ -36605,7 +39357,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'waterWalk'
+                        propertyId: 'waterBreathing'
                 },
                 {
                         path: [
@@ -36628,6 +39380,31 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'spellSniper'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'elementalAdept'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                },
+                                {
+                                        id: 'energyMastery'
+                                }
+                        ],
+                        propertyId: 'acidResistance'
                 }
         ]
 }
@@ -36640,7 +39417,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Cartographer',
         species: 'Human',
         background: 'Guide',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/cartographer.webp',
         recipe: {
         inputs: [
@@ -36666,7 +39443,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -36772,7 +39549,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -37026,6 +39804,18 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
+                        propertyId: 'featherFall'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
                         propertyId: 'falseLife'
                 },
                 {
@@ -37109,6 +39899,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'telekinetic'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'observant'
                 }
         ]
 }
@@ -37121,7 +39922,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Armorer',
         species: 'Dwarf',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/armorer.webp',
         recipe: {
         inputs: [
@@ -37147,7 +39948,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -37253,7 +40054,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -37449,6 +40251,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'falseLife'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'artificerCantrips',
                                         slotIndex: 0
                                 }
@@ -37538,6 +40352,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'heavyArmorMaster'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'sentinel'
                 }
         ]
 }
@@ -37550,7 +40375,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Reanimator',
         species: 'Human',
         background: 'Hermit',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/reanimator.webp',
         recipe: {
         inputs: [
@@ -37576,7 +40401,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -37682,7 +40507,8 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -37900,6 +40726,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'featherFall'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'artificerCantrips',
                                         slotIndex: 0
                                 }
@@ -37989,6 +40827,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'resilient'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'warCaster'
                 }
         ]
 }
@@ -38001,7 +40850,7 @@ export const SAMPLE_CHARACTERS = [
         sub: 'Battle Smith',
         species: 'Human',
         background: 'Soldier',
-        level: 6,
+        level: 8,
         image: 'subclass_headshot/battlesmith.webp',
         recipe: {
         inputs: [
@@ -38027,7 +40876,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'level'
                                 }
                         ],
-                        value: 6
+                        value: 8
                 },
                 {
                         path: [
@@ -38126,14 +40975,16 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'asi_str'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
                                 {
                                         id: 'asi_dex'
                                 }
-                        ]
+                        ],
+                        value: 1
                 },
                 {
                         path: [
@@ -38374,6 +41225,18 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'artificerSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'falseLife'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'artificerCantrips',
                                         slotIndex: 0
                                 }
@@ -38449,6 +41312,17 @@ export const SAMPLE_CHARACTERS = [
                                 }
                         ],
                         propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }

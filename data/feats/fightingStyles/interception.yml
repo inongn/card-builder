@@ -18,5 +18,8 @@ mechanic:
     filter: target of attack
     range: $(range)
   payloads:
-    - type: text
-      text: "reduce damage taken by 1d10 + $(attributes.prof)"
+    - type: damageReduction
+      dice:
+        count: 1
+        sides: 10
+        bonus: $(attributes.prof)

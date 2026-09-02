@@ -32,12 +32,17 @@ children:
     name: Vestige Domain
     quantity: 1
     target: vestigeType OR classOption
+  - id: commandVestigeAttack
+    type: Trait
+    name: Command Vestige
+    description: When you take the Attack action on your turn, you can replace one attack with a command to your Vestige to take an action in its stat block.
+    condition: $(!attributes.thirstingBlade)
   - id: vestigeCompanionExtraAttack
     type: Effect
-    target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    target: traits[id=extraAttack].description["per turn."]
     operation: replace
-    condition: $(meta.level >= 5)
-    value: instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Vestige to take an action in its stat block.
+    condition: $(attributes.thirstingBlade == true)
+    value: "per turn, and you can replace one attack with a command to your Vestige to take an action in its stat block."
   - id: commandVestige
     type: Activity
     duration: instantaneous
@@ -49,8 +54,7 @@ children:
       pattern: automatic
       target:
         type: single
-        range: 60 feet
+        range: $(range)
       payloads:
-        - type: action
-          actionType: takeAction
-          text: command your Vestige to take an action in its stat block
+        type: text
+        text: command your Vestige to take an action in its stat block (it otherwise only Dodges)

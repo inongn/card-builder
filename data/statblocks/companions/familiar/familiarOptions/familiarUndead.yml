@@ -1,0 +1,10 @@
+id: familiarUndead
+type: Feature
+name: Undead
+tags: [familiarOption]
+condition: $(meta.sub == 'Necromancer')
+children:
+  - type: Effect
+    target: meta.familiarType
+    operation: set
+    value: Undead

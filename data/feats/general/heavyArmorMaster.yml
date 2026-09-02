@@ -25,6 +25,7 @@ children:
       target:
         type: self
       payloads:
-        - type: text
-          text: "reduce Bludgeoning, Piercing, or Slashing damage taken by $(attributes.prof)"
+        - type: damageReduction
+          flat: $(attributes.prof)
+          damageTypes: [bludgeoning, piercing, slashing]
     id: heavyArmorMasterDamageReduction

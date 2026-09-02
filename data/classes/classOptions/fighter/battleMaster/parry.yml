@@ -16,5 +16,8 @@ mechanic:
   target:
     type: self
   payloads:
-    - type: text
-      text: reduce the damage by 1d$(attributes.superiorityDie)$(formatBonus(Math.max(1, stats.str.mod, stats.dex.mod)))
+    - type: damageReduction
+      dice:
+        count: 1
+        sides: $(attributes.superiorityDie)
+        bonus: $(Math.max(1, stats.str.mod, stats.dex.mod))

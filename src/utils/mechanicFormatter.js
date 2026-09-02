@@ -15,13 +15,17 @@ const ABILITY_NAMES = {
 /** Canonical display order for payloads within a clause */
 const PAYLOAD_ORDER = {
   damage: 1,
-  healing: 2,
-  movement: 3,
-  condition: 4,
-  statModifier: 5,
-  rollModifier: 6,
-  text: 7,
-  action: 8
+  damageReduction: 2,
+  healing: 3,
+  movement: 4,
+  teleport: 5,
+  condition: 6,
+  conditionCleanse: 7,
+  defense: 8,
+  statModifier: 9,
+  rollModifier: 10,
+  text: 11,
+  action: 12
 };
 
 /**
@@ -428,6 +432,18 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
     }
 
     if (modType === 'advantage') {
+      if (payload.saveFilter?.ability) {
+        const rawAbils = Array.isArray(payload.saveFilter.ability) ? payload.saveFilter.ability : [payload.saveFilter.ability];
+        const abils = rawAbils.map(a => ABILITY_NAMES[evalStr(a).toLowerCase()] || capitalize(evalStr(a)));
+        let abilJoin = '';
+        if (abils.length === 1) abilJoin = `${abils[0]}`;
+        else if (abils.length === 2) abilJoin = `${abils[0]} and ${abils[1]}`;
+        else abilJoin = `${abils.slice(0, -1).join(', ')}, and ${abils[abils.length - 1]}`;
+        return `has Advantage on ${abilJoin} saving throws${endStr}`;
+      }
+      if (payload.saveFilter?.text) {
+        return `has Advantage on saving throws ${evalStr(payload.saveFilter.text)}${endStr}`;
+      }
       const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
       return `has Advantage on its next ${rollsStr}${endStr}`;
     }
@@ -490,6 +506,22 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
     const absVal = !isNaN(numVal) ? Math.abs(numVal) : rawVal;
     const speedSuffix = rawStat === 'speed' ? ' feet' : '';
 
+    if (rawStat === 'flyspeed') {
+      const hoverStr = payload.hover ? ' (hover)' : '';
+      const suffix = payload.text ? ` ${evalStr(payload.text)}` : '';
+      return `gain a Fly Speed of ${rawVal} feet${hoverStr}${suffix}`;
+    }
+    if (['swimspeed', 'climbspeed', 'burrowspeed'].includes(rawStat)) {
+      const name = rawStat === 'swimspeed' ? 'Swim Speed' : (rawStat === 'climbspeed' ? 'Climb Speed' : 'Burrow Speed');
+      const suffix = payload.text ? ` ${evalStr(payload.text)}` : '';
+      return `gain a ${name} of ${rawVal} feet${suffix}`;
+    }
+    if (['darkvision', 'blindsight', 'truesight', 'tremorsense'].includes(rawStat)) {
+      const name = capitalize(rawStat);
+      const suffix = payload.text ? ` ${evalStr(payload.text)}` : '';
+      return `gain ${name} with a range of ${rawVal} feet${suffix}`;
+    }
+
     if (payload.operation === 'set') {
       return `base ${statName} becomes ${rawVal}`;
     }
@@ -497,6 +529,115 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
       return `has its ${statName} reduced by ${absVal}${speedSuffix}`;
     }
     return `gains a +${absVal} bonus to ${statName}${speedSuffix}`;
+  }
+
+  // ── Defense payload ──────────────────────────────────────────────────────────
+  if (type === 'defense') {
+    const defType = evalStr(payload.defense || 'resistance').toLowerCase();
+    const label = defType === 'immunity' ? 'Immunity' : (defType === 'vulnerability' ? 'Vulnerability' : 'Resistance');
+    const parts = [];
+
+    if (payload.damageTypes) {
+      const rawList = Array.isArray(payload.damageTypes) ? payload.damageTypes : [payload.damageTypes];
+      const formatted = rawList.map(t => capitalize(evalStr(t))).filter(Boolean);
+      let dmgStr = '';
+      if (formatted.length === 1) dmgStr = formatted[0];
+      else if (formatted.length === 2) dmgStr = `${formatted[0]} and ${formatted[1]}`;
+      else dmgStr = `${formatted.slice(0, -1).join(', ')}, and ${formatted[formatted.length - 1]}`;
+      if (dmgStr) parts.push(`${dmgStr} damage`);
+    }
+
+    if (payload.conditions) {
+      const rawConds = Array.isArray(payload.conditions) ? payload.conditions : [payload.conditions];
+      const condStrs = rawConds.map(c => capitalize(evalStr(c)));
+      let condJoin = '';
+      if (condStrs.length === 1) condJoin = `${condStrs[0]} condition`;
+      else if (condStrs.length === 2) condJoin = `${condStrs[0]} and ${condStrs[1]} conditions`;
+      else condJoin = `${condStrs.slice(0, -1).join(', ')}, and ${condStrs[condStrs.length - 1]} conditions`;
+      parts.push(`the ${condJoin}`);
+    }
+
+    let endStr = '';
+    if (payload.end) {
+      if (typeof payload.end === 'string') {
+        const endMap = {
+          end_of_your_next_turn: ' until the end of your next turn',
+          end_of_its_next_turn: ' until the end of its next turn',
+          start_of_your_next_turn: ' until the start of your next turn',
+        };
+        endStr = endMap[payload.end] ?? ` (${evalStr(payload.end)})`;
+      } else if (payload.end.text) {
+        endStr = ` (${evalStr(payload.end.text)})`;
+      }
+    }
+
+    if (parts.length === 0) return payload.text ? evalStr(payload.text) : '';
+    const joined = parts.join(' and ');
+    return `gain ${label} to ${joined}${endStr}`;
+  }
+
+  // ── Damage reduction payload ─────────────────────────────────────────────────
+  if (type === 'damageReduction') {
+    let valStr = '';
+    if (payload.dice) {
+      valStr = formatDiceObj(payload.dice, undefined, evalStr);
+    } else if (payload.flat) {
+      valStr = evalStr(payload.flat);
+    }
+
+    let typeStr = '';
+    if (payload.damageTypes) {
+      const rawList = Array.isArray(payload.damageTypes) ? payload.damageTypes : [payload.damageTypes];
+      const formatted = rawList.map(t => capitalize(evalStr(t))).filter(Boolean);
+      let dt = '';
+      if (formatted.length === 1) dt = formatted[0];
+      else if (formatted.length === 2) dt = `${formatted[0]}, or ${formatted[1]}`;
+      else dt = `${formatted.slice(0, -1).join(', ')}, or ${formatted[formatted.length - 1]}`;
+      if (dt) typeStr = `${dt} `;
+    }
+
+    if (payload.halve) {
+      return `${typeStr}damage taken is halved`;
+    }
+    if (valStr) {
+      return `reduce ${typeStr}damage taken by ${valStr}`;
+    }
+    return payload.text ? evalStr(payload.text) : '';
+  }
+
+  // ── Teleport payload ─────────────────────────────────────────────────────────
+  if (type === 'teleport') {
+    if (payload.text && /^(you|the target)\b/i.test(payload.text.trim())) {
+      return evalStr(payload.text).trim();
+    }
+    const rawDist = String(evalStr(payload.distance || '30')).trim();
+    const dist = /feet$/i.test(rawDist) ? rawDist : `${rawDist} feet`;
+    const custom = payload.text ? ` ${evalStr(payload.text).trim()}` : ' to an unoccupied space you can see';
+    if (payload.target === 'target') {
+      return `the target is teleported up to ${dist}${custom}`;
+    }
+    return `teleport up to ${dist}${custom}`;
+  }
+
+  // ── Condition cleanse payload ────────────────────────────────────────────────
+  if (type === 'conditionCleanse') {
+    if (payload.conditions === 'all') {
+      return `end all conditions on the target`;
+    }
+    const rawConds = Array.isArray(payload.conditions) ? payload.conditions : [payload.conditions];
+    const condStrs = rawConds.map(c => capitalize(evalStr(c)));
+    let listStr = '';
+    if (condStrs.length === 1) listStr = `the ${condStrs[0]} condition`;
+    else if (condStrs.length === 2) listStr = `${condStrs[0]} or ${condStrs[1]}`;
+    else listStr = `${condStrs.slice(0, -1).join(', ')}, or ${condStrs[condStrs.length - 1]}`;
+
+    const count = payload.count ? evalStr(payload.count) : 'one';
+    const countStr = (count === '1' || count === 1) ? 'one' : count;
+
+    if (condStrs.length === 1) {
+      return `end ${listStr} on the target`;
+    }
+    return `end ${countStr} condition on the target: ${listStr}`;
   }
 
   // ── Action payload ──────────────────────────────────────────────────────────
@@ -649,7 +790,7 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
           if (isTargetSelf) {
             targetPredicates.push(fmtd.replace(/^has\b/i, 'have').replace(/^gains\b/i, 'gain'));
           } else {
-            targetPredicates.push(fmtd);
+            targetPredicates.push(fmtd.replace(/^have\b/i, 'has').replace(/^gain\b/i, 'gains'));
           }
         } else {
           targetPredicates.push(isTargetSelf ? `have ${fmtd}` : `has ${fmtd}`);
@@ -673,6 +814,42 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
 
     } else if (ptype === 'action') {
       actionStr = formatPayload(p, evalStr, formatDiceObj, ctx);
+
+    } else if (ptype === 'defense') {
+      const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+      if (fmtd) {
+        if (isTargetSelf) {
+          targetPredicates.push(fmtd.replace(/^gain\b/i, 'gain'));
+        } else {
+          targetPredicates.push(fmtd.replace(/^gain\b/i, 'has'));
+        }
+      }
+
+    } else if (ptype === 'damageReduction') {
+      const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+      if (fmtd) {
+        if (/^damage taken/i.test(fmtd)) {
+          otherParts.push(fmtd);
+        } else if (isTargetSelf) {
+          targetPredicates.push(fmtd);
+        } else {
+          targetPredicates.push(fmtd.replace(/^reduce\b/i, 'reduces'));
+        }
+      }
+
+    } else if (ptype === 'teleport') {
+      const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+      if (fmtd) {
+        if (/^the target is\b/i.test(fmtd)) {
+          targetPredicates.push(isTargetSelf ? fmtd.replace(/^the target is\b/i, 'are') : fmtd.replace(/^the target is\b/i, 'is'));
+        } else {
+          otherParts.push(fmtd);
+        }
+      }
+
+    } else if (ptype === 'conditionCleanse') {
+      const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
+      if (fmtd) otherParts.push(fmtd);
 
     } else {
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
@@ -1113,7 +1290,22 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     let healStr = diceStr ? `${diceStr} ${typeLabel}` : typeLabel;
     if (block.healing.pool) healStr += ', divided among the targets';
 
-    mainBody = `${subject} ${verb} ${healStr}.`;
+    let payloadPart = '';
+    if (block.payloads) {
+      const pArr = Array.isArray(block.payloads) ? block.payloads : [block.payloads];
+      const pTexts = pArr.map(p => {
+        let t = formatPayload(p, evalStr, formatDiceObj, { pattern: 'healing', targetObj: block.target });
+        if (p.type === 'conditionCleanse') {
+          t = `you can ${t}`;
+        }
+        return t;
+      }).filter(Boolean);
+      if (pTexts.length > 0) {
+        payloadPart = `, and ${pTexts.join(', and ')}`;
+      }
+    }
+
+    mainBody = `${subject} ${verb} ${healStr}${payloadPart}.`;
     if (text) mainBody += ` ${capitalize(text.replace(/\.$/, ''))}.`;
   }
 

@@ -443,7 +443,8 @@
                   "items": { "type": "string" }
                 }
               ]
-            }
+            },
+            "text": { "type": "string" }
           },
           "additionalProperties": false
         },
@@ -537,6 +538,7 @@
           "default": "add"
         },
         "end": { "$ref": "#/$defs/EndSpec" },
+        "hover": { "type": "boolean" },
         "text": { "type": "string" }
       },
       "additionalProperties": false
@@ -605,6 +607,82 @@
       "required": ["type", "options"],
       "additionalProperties": false
     },
+    "DefensePayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "defense" },
+        "defense": { "type": "string", "enum": ["resistance", "immunity", "vulnerability"] },
+        "damageTypes": {
+          "anyOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ]
+        },
+        "conditions": {
+          "anyOf": [
+            { "$ref": "#/$defs/ConditionEnum" },
+            { "type": "string" },
+            { "type": "array", "items": { "anyOf": [{ "$ref": "#/$defs/ConditionEnum" }, { "type": "string" }] } }
+          ]
+        },
+        "end": { "$ref": "#/$defs/EndSpec" },
+        "text": { "type": "string" }
+      },
+      "required": ["type", "defense"],
+      "additionalProperties": false
+    },
+    "DamageReductionPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "damageReduction" },
+        "dice": {
+          "anyOf": [
+            { "$ref": "#/$defs/DiceFormula" },
+            { "$ref": "#/$defs/RollModifierFormula" },
+            { "type": "string" },
+            { "type": "number" }
+          ]
+        },
+        "flat": { "$ref": "#/$defs/NumberOrExpression" },
+        "damageTypes": {
+          "anyOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ]
+        },
+        "halve": { "type": "boolean" },
+        "text": { "type": "string" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "TeleportPayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "teleport" },
+        "distance": { "$ref": "#/$defs/NumberOrExpression" },
+        "target": { "type": "string", "enum": ["self", "target", "willing_creature"] },
+        "text": { "type": "string" }
+      },
+      "required": ["type", "distance"],
+      "additionalProperties": false
+    },
+    "ConditionCleansePayload": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "conditionCleanse" },
+        "conditions": {
+          "anyOf": [
+            { "type": "string", "const": "all" },
+            { "type": "array", "items": { "anyOf": [{ "$ref": "#/$defs/ConditionEnum" }, { "type": "string" }] } }
+          ]
+        },
+        "count": { "$ref": "#/$defs/NumberOrExpression" },
+        "text": { "type": "string" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
     "Payload": {
       "anyOf": [
         { "$ref": "#/$defs/DamagePayload" },
@@ -616,6 +694,10 @@
         { "$ref": "#/$defs/StatModifierPayload" },
         { "$ref": "#/$defs/MovementPayload" },
         { "$ref": "#/$defs/HealingPayload" },
+        { "$ref": "#/$defs/DefensePayload" },
+        { "$ref": "#/$defs/DamageReductionPayload" },
+        { "$ref": "#/$defs/TeleportPayload" },
+        { "$ref": "#/$defs/ConditionCleansePayload" },
         { "$ref": "#/$defs/TextPayload" },
         { "$ref": "#/$defs/ChoicePayload" },
         { "$ref": "#/$defs/DamageEntry" },

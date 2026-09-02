@@ -51,6 +51,9 @@ children:
         type: single
         range: $(range)
       failure:
-        - type: text
-          text: the target is teleported to an unoccupied space within 5 feet of you, and you can reduce its Speed to 0 until the end of its turn
+        - type: teleport
+          target: target
+          distance: 30
+          text: to an unoccupied space within 5 feet of you
+        - text: "you can reduce its Speed to 0 until the end of its turn"
     condition: $(meta.level >= 6)

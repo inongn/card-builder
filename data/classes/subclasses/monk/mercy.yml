@@ -53,5 +53,6 @@ children:
           bonus: $(stats.wis.mod)
         type: hitPoints
       payloads:
-        - type: text
-          text: "end one condition on the creature: Blinded, Deafened, Paralyzed, Poisoned, or Stunned"
+        - type: conditionCleanse
+          count: 1
+          conditions: [blinded, deafened, paralyzed, poisoned, stunned]

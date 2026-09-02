@@ -31,8 +31,9 @@ children:
       target:
         type: self
       payloads:
-        - type: text
-          text: teleport up to 60 feet to an unoccupied space in Dim Light or Darkness
+        - type: teleport
+          distance: 60
+          text: to an unoccupied space in Dim Light or Darkness
         - type: rollModifier
           modifierType: advantage
           targetRolls: attack

@@ -1,0 +1,5 @@
+type: Effect
+id: extraAttackCantrip
+target: traits[id=extraAttack].description["per turn."]
+operation: replace
+value: "per turn, and you can replace one attack with a cantrip."

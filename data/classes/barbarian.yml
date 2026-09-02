@@ -42,7 +42,9 @@ children:
       target:
         type: self
       payloads:
-        - text: "gain resistance to Bludgeoning, Piercing, and Slashing damage"
+        - type: defense
+          defense: resistance
+          damageTypes: [bludgeoning, piercing, slashing]
         - text: "add $(formatBonus(attributes.rageDamage)) to Strength-based attack damage"
         - text: "gain Advantage on Strength checks and Strength saving throws"
   - id: rage

@@ -17,7 +17,7 @@ children:
     id: familiarType
     name: Familiar Type
     quantity: 1
-    target: familiarCelestial OR familiarFey OR familiarFiend
+    target: "familiarCelestial OR familiarFey OR familiarFiend $(meta.sub == 'Necromancer' ? 'OR familiarUndead' : '')"
   - type: Slot
     id: familiarEnvironment
     name: Familiar Environment

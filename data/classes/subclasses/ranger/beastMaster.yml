@@ -27,12 +27,17 @@ children:
     target: statblocks[beastOfTheSky].name
     operation: set
     value: '$(meta.beastcompanionname ? meta.beastcompanionname: ''Beast of the Sky'')'
+  - id: commandPrimalCompanionAttack
+    type: Trait
+    name: Primal Companion Command
+    description: When you take the Attack action on your turn, you can replace one attack with a command to your Primal Companion to take the Beast's Strike action.
+    condition: $(meta.level < 5)
   - id: commandCompanionExtraAttack
     type: Effect
-    target: activities[tags=weaponAttack].extra["instead of once, whenever you take the Attack action on your turn."]
+    target: traits[id=extraAttack].description["per turn."]
     operation: replace
     condition: $(meta.level >= 5)
-    value: 'instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a command to your Primal Companion beast to take the Beast''s Strike action$(meta.level >= 11 ? '' twice'' : '''').'
+    value: "per turn, and you can replace one attack with a command to your Primal Companion beast to take the Beast's Strike action$(meta.level >= 11 ? ' twice' : '')."
   - id: commandPrimalCompanion
     type: Activity
     duration: instantaneous
@@ -43,7 +48,9 @@ children:
     mechanic:
       pattern: automatic
       target:
-        type: self
+        type: single
+        range: $(range)
+        filter: primalCompanion
       payloads:
         type: text
         text: command your Primal Companion beast to take any action (it otherwise only Dodges)

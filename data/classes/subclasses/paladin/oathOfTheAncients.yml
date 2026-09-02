@@ -56,5 +56,6 @@ children:
     operation: push
     condition: $(meta.level >= 7)
     value:
-      type: text
-      text: has Resistance to Necrotic, Psychic, and Radiant damage
+      type: defense
+      defense: resistance
+      damageTypes: [necrotic, psychic, radiant]

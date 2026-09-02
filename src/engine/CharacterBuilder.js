@@ -888,11 +888,11 @@ export class CharacterBuilder {
         // 3. Sync pass: update characterData with the final structural children
         this.runRebuildPasses();
 
-        // 4. Update labels and descriptions
-        this.refreshTreeLabels();
-
         // Implicit metadata binding: sync species, background, class, and sub from active filled slots
         this.syncSlotMetadata();
+
+        // 4. Update labels and descriptions
+        this.refreshTreeLabels();
 
         // 5. Perform two-pass validation for slot selections
         const inherentIds = new Set();
@@ -960,6 +960,7 @@ export class CharacterBuilder {
      */
     runRebuildPasses() {
         this.characterData = this.createEmptyCharacter();
+        this.syncSlotMetadata();
         this.fieldPriorities = new Map();
 
         // Single collection pass: gather all properties from the tree

@@ -34,8 +34,10 @@ children:
       target:
         type: self
       payloads:
-        - type: text
-          text: "gain Tremorsense 60 feet while on or touching a stone surface"
+        - type: statModifier
+          stat: tremorsense
+          value: 60
+          text: while on or touching a stone surface
   - id: stonecunning
     type: Resource
     name: Stonecunning

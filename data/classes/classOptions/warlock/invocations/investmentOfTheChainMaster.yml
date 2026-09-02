@@ -11,11 +11,20 @@ children:
   - id: commandFamiliar
     type: Activity
     duration: instantaneous
-    range: self
+    range: 60 feet
     time: bonus action
     name: Command Familiar
     description: You command the familiar to make an attack.
     condition: $(attributes.pactOfTheChain == true)
+    mechanic:
+      pattern: automatic
+      target:
+        type: single
+        range: $(range)
+        filter: familiar
+      payloads:
+        type: text
+        text: command your familiar to take the Attack action
   - id: familiarResistance
     type: Activity
     duration: instantaneous

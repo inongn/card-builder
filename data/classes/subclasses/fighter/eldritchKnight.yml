@@ -34,8 +34,7 @@ children:
         - type: text
           text: summon your bonded weapon to teleport instantly to your hand; cannot be disarmed unless Incapacitated
     condition: $(meta.level >= 3)
-  - type: Trait
-    id: warMagic
-    name: War Magic
-    description: You can replace one of your attacks with a cantrip.
+  - type: Reference
+    target:
+      - extraAttackCantrip
     condition: $(meta.level >= 7)

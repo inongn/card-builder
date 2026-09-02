@@ -19,8 +19,11 @@ children:
       target:
         type: self
       payloads:
-        - type: text
-          text: "reduce damage taken by 1d12 + $(stats.con.mod)"
+        - type: damageReduction
+          dice:
+            count: 1
+            sides: 12
+            bonus: $(stats.con.mod)
   - id: giantAncestry
     type: Resource
     name: Giant Ancestry

@@ -43,11 +43,19 @@ children:
     mechanic:
       pattern: automatic
       target:
-        type: self
+        type: single
+        range: $(range)
+        filter: steelDefender
       payloads:
         type: text
-        text: command your Steel Defender to take an action in its stat block
+        text: command your Steel Defender to take an action in its stat block (it otherwise only Dodges)
   - type: Reference
     target:
       - extraAttack
     condition: $(meta.level >= 5)
+  - id: extraAttackSteelDefender
+    type: Effect
+    target: traits[id=extraAttack].description["per turn."]
+    operation: replace
+    condition: $(meta.level >= 5)
+    value: "per turn, and you can replace one attack with a command to your Steel Defender to take an action in its stat block."
