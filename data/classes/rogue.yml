@@ -84,7 +84,7 @@ children:
         - type: rollModifier
           modifierType: advantage
           targetRolls: attack
-          text: on your next attack roll on the current turn (only if you haven't moved this turn; your Speed becomes 0 until end of turn)
+          text: gain Advantage on your next attack roll on the current turn (only if you haven't moved this turn; your Speed becomes 0 until the end of the current turn)
   - id: rogueSubclass
     name: Rogue Subclass
     condition: $(meta.level >= 3)

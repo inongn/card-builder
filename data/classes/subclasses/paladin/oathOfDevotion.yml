@@ -56,5 +56,5 @@ children:
     operation: push
     value:
       type: text
-      text: have Immunity to the Charmed condition
+      text: has Immunity to the Charmed condition
     condition: $(meta.level >= 7)

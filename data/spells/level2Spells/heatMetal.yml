@@ -35,7 +35,7 @@ mechanic:
         sides: 8
       damageType: fire
     - type: text
-      text: the target drops the metal object or has Disadvantage on attack rolls and ability checks until start of your next turn
+      text: the target drops the metal object or has Disadvantage on attack rolls and ability checks until the start of your next turn
   repeat:
     action: bonus_action
   upcast:

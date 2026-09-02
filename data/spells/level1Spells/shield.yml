@@ -23,4 +23,4 @@ mechanic:
       target:
         type: self
         range: $(range)
-      text: gains +5 bonus to your AC until start of your next turn, including against the triggering attack, and you take no damage from Magic Missile
+      text: gain a +5 bonus to your AC until the start of your next turn, including against the triggering attack, and take no damage from Magic Missile

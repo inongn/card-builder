@@ -10509,11 +10509,11 @@
         "condition": "$(meta.level >= 3)"
       },
       {
-        "type": "Effect",
-        "target": "activities[tags=weaponAttack].extra[\"instead of once, whenever you take the Attack action on your turn.\"]",
-        "operation": "replace",
-        "condition": "$(meta.level >= 7)",
-        "value": "instead of once, whenever you take the Attack action on your turn. You can replace one of the attacks with a cantrip."
+        "type": "Trait",
+        "id": "warMagic",
+        "name": "War Magic",
+        "description": "You can replace one of your attacks with a cantrip.",
+        "condition": "$(meta.level >= 7)"
       }
     ]
   },
@@ -10899,6 +10899,13 @@
         },
         "quantity": "$(meta.level >= 8 ? 6 : meta.level >= 7 ? 5 : meta.level >= 4 ? 4 : 3)",
         "condition": "$(meta.level >= 3)"
+      },
+      {
+        "type": "Trait",
+        "id": "mysticArtsFightingStyle",
+        "name": "Mystic Fighting Style",
+        "description": "You can replace one of your attacks with a cantrip.",
+        "condition": "$(meta.level >= 6)"
       }
     ]
   },

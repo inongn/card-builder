@@ -82,4 +82,4 @@ children:
     condition: $(meta.level >= 7)
     value:
       type: text
-      text: deal an extra $(stats.cha.mod) Necrotic damage on melee attack hits (you and friendly Fiends and Undead in the aura)
+      text: deals an extra $(stats.cha.mod) Necrotic damage on melee attack hits (you and friendly Fiends and Undead in the aura)

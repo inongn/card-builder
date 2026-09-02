@@ -120,4 +120,4 @@ children:
     condition: $(meta.level >= 7)
     value:
       type: text
-      text: have Resistance to one damage type of your choice (Acid, Cold, Fire, Lightning, or Thunder); you can change the type at the start of each of your turns
+      text: has Resistance to one damage type of your choice (Acid, Cold, Fire, Lightning, or Thunder); you can change the type at the start of each of your turns

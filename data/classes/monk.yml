@@ -253,10 +253,11 @@ children:
       failure:
         type: condition
         condition: stunned
-        end: end_of_next_turn
+        end:
+          text: until the start of your next turn
       success:
         - type: text
-          text: speed is halved until the end of your next turn
+          text: the target's Speed is halved until the start of your next turn
         - type: rollModifier
           modifierType: attacksAgainstAdvantage
           targetRolls: attack

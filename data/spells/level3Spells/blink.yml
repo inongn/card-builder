@@ -21,4 +21,4 @@ mechanic:
   target:
     type: self
     range: $(range)
-  text: at the end of your turn, roll d20; on 11+, you vanish into the Ethereal Plane until start of your next turn
+  text: at the end of your turn, roll 1d6; on 4–6, you vanish into the Ethereal Plane until the start of your next turn

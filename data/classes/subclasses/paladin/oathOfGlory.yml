@@ -79,4 +79,4 @@ children:
     condition: $(meta.level >= 7)
     value:
       type: text
-      text: gain +10 Speed until the end of their next turn (when entering the aura or starting their turn there)
+      text: gains +10 Speed until the end of their next turn (when entering the aura or starting their turn there)

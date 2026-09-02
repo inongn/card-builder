@@ -8,10 +8,10 @@ children:
   - id: combatInspirationExtra
     type: Effect
     name: Combat Inspiration
-    target: activities[id=bardicInspiration].mechanic
+    target: activities[id=bardicInspiration].mechanic.payloads
     operation: push
     value:
-      pattern: automatic
+      type: text
       text: "Defense: when hit by an attack roll, the target can use a Reaction to roll the die and add the result to AC. Offense: when hitting with an attack roll, the target can use a Reaction to roll the die and add the result to the damage roll."
     condition: $(meta.level >= 3)
   - type: Reference

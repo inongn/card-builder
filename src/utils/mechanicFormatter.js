@@ -1372,20 +1372,24 @@ export function formatActivityMechanic(activity, characterData) {
     return `**${name}.** ${fallbackText}${fullSuffix}`;
   }
 
-  if (mechanic.mode) {
-    const blocks = Array.isArray(mechanic.blocks) ? mechanic.blocks : [];
+  const mechanicObj = Array.isArray(mechanic)
+    ? { mode: 'succession', blocks: mechanic }
+    : (mechanic && Array.isArray(mechanic.blocks) && !mechanic.mode ? { mode: 'succession', ...mechanic } : mechanic);
 
-    if (mechanic.mode === 'choice') {
+  if (mechanicObj.mode || Array.isArray(mechanicObj.blocks)) {
+    const blocks = Array.isArray(mechanicObj.blocks) ? mechanicObj.blocks : [];
+
+    if (mechanicObj.mode === 'choice') {
       const evalStr = s => evaluator.evaluate(s, scope);
-      const topTrigger = mechanic.trigger ? formatTrigger(mechanic.trigger, evalStr) : '';
+      const topTrigger = mechanicObj.trigger ? formatTrigger(mechanicObj.trigger, evalStr) : '';
       const triggerPart = topTrigger ? ` _Trigger_: ${topTrigger}. _Response_:` : '';
 
       const hasAuraBlock0 = blocks[0]?.pattern === 'aura';
       const auraPreamble = hasAuraBlock0 ? formatBlock(blocks[0], activity, evaluator, scope) : '';
       const choiceBlocks = hasAuraBlock0 ? blocks.slice(1) : blocks;
 
-      const preamble = mechanic.text
-        ? evaluator.evaluate(String(mechanic.text), scope).trim()
+      const preamble = mechanicObj.text
+        ? evaluator.evaluate(String(mechanicObj.text), scope).trim()
         : (hasAuraBlock0 ? '' : 'Choose one of the following:');
 
       const choiceLines = choiceBlocks

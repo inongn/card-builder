@@ -47,7 +47,7 @@ mechanic:
       damageType: cold
   success:
     halfDamage: true
-  text: area becomes Difficult Terrain until end of your next turn
+  text: the area becomes Difficult Terrain until the end of your next turn
   upcast:
     resourceStep: 1
     modifications:

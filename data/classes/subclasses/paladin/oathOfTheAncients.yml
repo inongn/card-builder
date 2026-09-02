@@ -57,4 +57,4 @@ children:
     condition: $(meta.level >= 7)
     value:
       type: text
-      text: have Resistance to Necrotic, Psychic, and Radiant damage
+      text: has Resistance to Necrotic, Psychic, and Radiant damage

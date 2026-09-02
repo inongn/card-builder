@@ -28,3 +28,8 @@ children:
       maxLevel: '$(meta.level >= 19 ? 4 : meta.level >= 13 ? 3 : meta.level >= 7 ? 2 : 1)'
     quantity: '$(meta.level >= 8 ? 6 : meta.level >= 7 ? 5 : meta.level >= 4 ? 4 : 3)'
     condition: $(meta.level >= 3)
+  - type: Trait
+    id: mysticArtsFightingStyle
+    name: Mystic Fighting Style
+    description: You can replace one of your attacks with a cantrip.
+    condition: $(meta.level >= 6)
