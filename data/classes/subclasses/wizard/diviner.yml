@@ -25,5 +25,5 @@ children:
   - id: expertDivination
     type: Trait
     name: Expert Divination
-    description: When you cast a Divination spell of 2nd level or higher, you regain an expended spell slot of a lower level (up to 5th level).
+    description: When you cast a Divination spell of 2nd level or higher, you regain an expended spell slot of a lower level.
     condition: $(meta.level >= 6)

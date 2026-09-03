@@ -174,16 +174,16 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* HP row (No SectionHeading) */}
             <div className="cps-hp-row">
                 <div className="cps-hp-box">
-                    <div className="cps-stat-label">Max</div>
+                    <div className="cps-stat-label">HP</div>
                     <div className="cps-stat-value">{char.attributes.hp}</div>
                     <div className="cps-stat-sub">d{char.attributes.hitDie}{char.stats.con.mod >= 0 ? `+${char.stats.con.mod}` : char.stats.con.mod}</div>
                 </div>
                 <div className="cps-hp-input-box">
-                    <div className="cps-stat-label">Current HP</div>
+                    <div className="cps-stat-label">Current</div>
                     <div className="cps-hp-blank" />
                 </div>
                 <div className="cps-hp-input-box">
-                    <div className="cps-stat-label">Temp HP</div>
+                    <div className="cps-stat-label">Temp</div>
                     <div className="cps-hp-blank" />
                 </div>
             </div>

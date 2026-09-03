@@ -43,7 +43,7 @@
         "target": [
           "investigationProficiency",
           "persuasionProficiency",
-          "crafter"
+          "skilled"
         ]
       },
       {
@@ -1036,8 +1036,7 @@
         "reference": [
           "weaponProperties",
           "extraProperties",
-          "opportunityAttack",
-          "unarmed"
+          "opportunityAttack"
         ]
       },
       {
@@ -5694,16 +5693,6 @@
             {
               "type": "text",
               "text": "take both the Disengage and Dodge actions"
-            },
-            {
-              "type": "healing",
-              "healing": {
-                "dice": {
-                  "count": "$(meta.level >= 10 ? 2 : 0)",
-                  "sides": "$(attributes.martialArtsDie)"
-                },
-                "type": "tempHitPoints"
-              }
             }
           ]
         },
@@ -5904,7 +5893,7 @@
       {
         "id": "martialArtsEmpoweredStrikes",
         "type": "Effect",
-        "target": "activities[tags=weaponAttack].mechanic.hit.damageType",
+        "target": "activities[tags=unarmed].mechanic.hit.damageType",
         "operation": "set",
         "condition": "$(meta.level >= 6)",
         "value": "force"
@@ -15232,7 +15221,7 @@
         "id": "expertDivination",
         "type": "Trait",
         "name": "Expert Divination",
-        "description": "When you cast a Divination spell of 2nd level or higher, you regain an expended spell slot of a lower level (up to 5th level).",
+        "description": "When you cast a Divination spell of 2nd level or higher, you regain an expended spell slot of a lower level.",
         "condition": "$(meta.level >= 6)"
       }
     ]
@@ -19702,7 +19691,7 @@
           "name": "Shove",
           "save": {
             "ability": "dex",
-            "dc": "$(attributes.prof + stats.str.mod)"
+            "dc": "$(attributes.monkSaveDC || 8 +attributes.prof + stats.str.mod)"
           },
           "target": {
             "type": "single",
@@ -19718,7 +19707,7 @@
           "name": "Grapple",
           "save": {
             "ability": "str",
-            "dc": "$(attributes.prof + stats.str.mod)"
+            "dc": "$(attributes.monkSaveDC || 8 + attributes.prof + stats.str.mod)"
           },
           "target": {
             "type": "single",
@@ -19851,7 +19840,7 @@
       "fightingStyle"
     ],
     "type": "Effect",
-    "target": "attributes.ranged.bonus",
+    "target": "attributes.ranged.roll",
     "operation": "add",
     "value": 2,
     "id": "archery",
@@ -23305,7 +23294,7 @@
         "id": "resourceful",
         "type": "Trait",
         "name": "Resourceful",
-        "description": "You gain Heroic Inspiration at the end of a Long Rest."
+        "description": "You gain Inspiration at the end of a Long Rest."
       },
       {
         "id": "skillful",

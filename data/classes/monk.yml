@@ -115,12 +115,6 @@ children:
       payloads:
         - type: text
           text: 'take both the Disengage and Dodge actions'
-        - type: healing
-          healing:
-            dice:
-              count: '$(meta.level >= 10 ? 2 : 0)'
-              sides: $(attributes.martialArtsDie)
-            type: tempHitPoints
     condition: $(meta.level >= 2)
   - id: stepOfTheWind
     type: Activity
@@ -264,7 +258,7 @@ children:
     condition: $(meta.level >= 5)
   - id: martialArtsEmpoweredStrikes
     type: Effect
-    target: activities[tags=weaponAttack].mechanic.hit.damageType
+    target: activities[tags=unarmed].mechanic.hit.damageType
     operation: set
     condition: $(meta.level >= 6)
     value: force

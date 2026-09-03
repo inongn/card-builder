@@ -8,7 +8,7 @@ children:
   - id: resourceful
     type: Trait
     name: Resourceful
-    description: You gain Heroic Inspiration at the end of a Long Rest.
+    description: You gain Inspiration at the end of a Long Rest.
   - id: skillful
     name: Skillful Skill Proficiency
     type: Slot
