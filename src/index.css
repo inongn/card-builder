@@ -3751,7 +3751,7 @@ mdui-list-item.card-vertical-item::part(container) {
   font-size: 0.72rem;
   color: #111;
   text-align: center;
-  min-width: 14px;
+  min-width: 12px;
   flex-shrink: 0;
   display: inline-block;
 }
@@ -3763,7 +3763,7 @@ mdui-list-item.card-vertical-item::part(container) {
   color: #555;
   white-space: nowrap;
   text-align: center;
-  min-width: 25px;
+  min-width: 22px;
   flex-shrink: 0;
   display: inline-block;
 }
