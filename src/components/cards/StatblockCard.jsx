@@ -90,7 +90,9 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
             </div>
             <div>
                 {senses && (() => {
-                    const activeSenses = Object.entries(senses)
+                    const sensesObj = { ...senses };
+                    delete sensesObj.passivePerception;
+                    const activeSenses = Object.entries(sensesObj)
                         .filter(([_, range]) => range !== 0)
                         .map(([type, range]) => `${type} ${range} ft.`);
 

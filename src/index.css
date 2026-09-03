@@ -3612,7 +3612,7 @@ mdui-list-item.card-vertical-item::part(container) {
 }
 
 .print-mode .cps-skill-row {
-  grid-template-columns: 22px 10px 12px 1fr;
+  grid-template-columns: 22px 10px 15px 1fr;
   gap: 4px;
 }
 
