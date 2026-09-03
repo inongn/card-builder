@@ -177,6 +177,18 @@ export const getIconInfo = (text) => {
     return NORM_ICONS[termKey] || null;
 };
 
+export const getResourceRecovery = (res) => {
+    const sr = res?.sr;
+    if (sr === undefined || sr === null || sr === 0 || sr === '0' || sr === false) {
+        return 'LR';
+    }
+    const srStr = String(sr).trim();
+    if (srStr.toLowerCase() === 'all') {
+        return 'SR';
+    }
+    return `SR: ${srStr}`;
+};
+
 export const renderGridValue = (text, type = 'range', showLabel = true) => {
     if (!text) return null;
 

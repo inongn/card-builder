@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { formatBonus } from '../../engine/RpgEngine';
-import { getIconInfo, renderIcon } from '../../utils/cardUtils';
+import { getIconInfo, renderIcon, getResourceRecovery } from '../../utils/cardUtils';
 import { AdvantageIndicator } from './AdvantageIndicator';
 import { formatActivityMechanic } from '../../utils/mechanicFormatter';
 import { processDiceInChildren } from './DiceRoller';
@@ -205,6 +205,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                                     <div className="cps-content cps-line">
                                         <strong>{res.name || res.id}</strong>
                                         <span className="cps-resource-qty">{q}</span>
+                                        <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
                                     </div>
                                 </div>
                             );
@@ -324,6 +325,7 @@ const CompactRightColumn = memo(({ char }) => {
                                     <div className="cps-content cps-line">
                                         <strong>{res.name || res.id}</strong>
                                         <span className="cps-resource-qty">{q}</span>
+                                        <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
                                     </div>
                                 </div>
                             );
@@ -404,6 +406,7 @@ const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivit
                                     <div className="cps-content cps-line">
                                         <strong>{res.name || res.id}</strong>
                                         <span className="cps-resource-qty">{q}</span>
+                                        <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
                                     </div>
                                 </div>
                             );

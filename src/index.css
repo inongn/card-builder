@@ -726,7 +726,31 @@ blockquote {
 
 .list-item.resource-list-item {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.resource-name {
+  font-weight: 500;
+}
+
+.resource-qty {
+  font-weight: 700;
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.resource-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.resource-recovery {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  white-space: nowrap;
 }
 
 .resource-total {
@@ -739,7 +763,6 @@ blockquote {
 
 .resource-dots {
   display: grid;
-  margin-left: auto;
   justify-items: end;
   direction: rtl;
   gap: var(--space-1);
@@ -2118,6 +2141,18 @@ mdui-navigation-drawer[mobile]::part(panel) {
   color: #111 !important;
 }
 
+.print-mode .resource-qty {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #111 !important;
+}
+
+.print-mode .resource-recovery {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #555 !important;
+}
+
 /* ==========================================================================
    PRINT-ONLY OVERRIDES
    ========================================================================== */
@@ -3111,9 +3146,7 @@ mdui-list-item.card-vertical-item::part(container) {
 }
 
 .activity-sheet-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  float: left;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -3222,6 +3255,7 @@ mdui-list-item.card-vertical-item::part(container) {
   gap: 6px !important;
   /* Disable web hover transition */
   transition: none !important;
+  display: block;
 }
 
 .print-mode .activity-sheet-print-slot .activity-sheet-item:last-child,
@@ -3255,7 +3289,9 @@ mdui-list-item.card-vertical-item::part(container) {
 /* Icon stays small and neutral */
 .print-mode .activity-sheet-print-slot .activity-sheet-icon,
 .print-mode .cps-activity-slot .activity-sheet-icon {
-  margin-top: 1px !important;
+  margin-top: 0px !important;
+  margin-right: 6px !important;
+  line-height: .9 !important;
 }
 
 /* Cap resource icons to a compact size — keep their color */
@@ -3681,15 +3717,26 @@ mdui-list-item.card-vertical-item::part(container) {
 
 /* Resource quantity badge */
 .print-mode .cps-resource-qty {
-  margin-left: auto;
   font-weight: 700;
   font-size: 0.72rem;
   color: #111;
 }
 
-/* Resource item: spread name vs qty */
+/* Resource recovery badge */
+.print-mode .cps-resource-recovery {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* Resource item: spread name/qty vs recovery */
 .print-mode .cps-resource-item .cps-content {
-  justify-content: space-between;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  justify-content: flex-start;
 }
 
 /* ── Compact Activity Layout: left half-page = compact 2-col panel ── */

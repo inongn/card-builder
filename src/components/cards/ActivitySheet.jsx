@@ -10,7 +10,7 @@ import 'mdui/components/divider.js';
 export const renderResourceIcon = (activity, char) => {
   const rawResource = activity.resource || activity.resources;
   const resourceList = Array.isArray(rawResource) ? rawResource : (rawResource ? [rawResource] : []);
-  
+
   for (const resId of resourceList) {
     if (!resId) continue;
     const lowerId = String(resId).toLowerCase();
@@ -54,15 +54,15 @@ export const ActivitySheetItem = memo(({ activity, char, printMode = false }) =>
   return (
     <div className="activity-sheet-item">
       {resourceIcon && (
-        <div className="activity-sheet-icon">
+        <span className="activity-sheet-icon">
           {resourceIcon}
-        </div>
+        </span>
       )}
-      <div className="activity-sheet-content">
+      <span className="activity-sheet-content">
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
           {formattedLine}
         </ReactMarkdown>
-      </div>
+      </span>
     </div>
   );
 });

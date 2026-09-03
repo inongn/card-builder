@@ -1532,13 +1532,15 @@ export class CharacterBuilder {
     /**
      * Add or merge a resource into characterData
      */
-    addResource(name, quantity, restore, icon, color, id = null) {
+    addResource(name, quantity, restore, icon, color, id = null, sr = undefined) {
         const existingResource = this.characterData.resources.find(r => r.name === name);
         if (existingResource) {
             // Merge quantity additively
             // Update other fields if provided and not already set
             if (icon && !existingResource.icon) existingResource.icon = icon;
             if (color && !existingResource.color) existingResource.color = color;
+            if (restore && !existingResource.restore) existingResource.restore = restore;
+            if (sr !== undefined && existingResource.sr === undefined) existingResource.sr = sr;
         } else {
             this.characterData.resources.push({
                 id: id,
@@ -1546,6 +1548,8 @@ export class CharacterBuilder {
                 quantity: quantity,
                 icon: icon,
                 color: color,
+                restore: restore,
+                sr: sr,
             });
         }
     }
@@ -1654,17 +1658,18 @@ export class CharacterBuilder {
             case 'Resource':
                 {
                     const evaluatedQuantity = evaluator.evaluate(prop.quantity, scope);
-                    this.addResource(prop.name, evaluatedQuantity, prop.restore, prop.icon, prop.color, prop.id);
+                    const evaluatedSr = prop.sr !== undefined ? evaluator.evaluate(prop.sr, scope) : undefined;
+                    this.addResource(prop.name, evaluatedQuantity, prop.restore, prop.icon, prop.color, prop.id, evaluatedSr);
 
                     // Parity with old Feature behavior: auto-add restore note to Short Rest card
-                    if (prop.sr) {
-                        const quantity = prop.sr;
+                    if (evaluatedSr && evaluatedSr !== 0 && evaluatedSr !== '0') {
+                        const quantity = evaluatedSr;
                         this.applyEffect({
                             target: 'activities[shortRest].extra',
                             operation: 'push',
                             value: {
                                 name: prop.name,
-                                description: `Restore ${quantity !== 1 ? quantity : 'a'} ${prop.name} charge${quantity !== 1 ? 's' : ''}.`
+                                description: `Restore ${quantity !== 1 && quantity !== '1' ? quantity : 'a'} ${prop.name} charge${quantity !== 1 && quantity !== '1' ? 's' : ''}.`
                             }
                         }, evaluator);
                     }

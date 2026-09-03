@@ -1,6 +1,6 @@
 import React, { memo, useMemo, useState } from 'react';
 import { formatBonus } from '../../engine/RpgEngine';
-import { getIconInfo } from '../../utils/cardUtils';
+import { getIconInfo, getResourceRecovery } from '../../utils/cardUtils';
 import { AdvantageIndicator } from './AdvantageIndicator';
 import { DiceRoller } from './DiceRoller';
 
@@ -370,13 +370,15 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     const rows = q > RESOURCE_WRAP_THRESHOLD ? Math.ceil(q / RESOURCE_WRAP_THRESHOLD) : 1;
                                     const dotsPerRow = Math.max(1, Math.ceil(q / rows));
                                     const usedCount = playState.usedResources?.[resKey] || 0;
+                                    const recovery = getResourceRecovery(res);
 
                                     return (
                                         <div className="list-item resource-list-item" key={i}>
                                             <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
-                                            <div className="text-primary">{res.name || res.id}</div>
-                                            {isPlayMode ? (
-                                                <>
+                                            <div className="text-primary resource-name">{res.name || res.id}</div>
+                                            <div className="text-secondary resource-qty">{q}</div>
+                                            <div className="resource-right">
+                                                {isPlayMode && (
                                                     <div className="resource-dots hide-on-print" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
                                                         {Array(q).fill(0).map((_, j) => {
                                                             const isUsed = j < usedCount;
@@ -390,11 +392,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                                             );
                                                         })}
                                                     </div>
-                                                    <div className="text-secondary resource-total show-on-print">{q}</div>
-                                                </>
-                                            ) : (
-                                                <div className="text-secondary resource-total">{q}</div>
-                                            )}
+                                                )}
+                                                <div className="text-secondary resource-recovery">{recovery}</div>
+                                            </div>
                                         </div>
                                     );
                                 })}

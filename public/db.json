@@ -32059,16 +32059,24 @@
       }
     ],
     "mechanic": {
-      "pattern": "automatic",
-      "target": {
-        "type": "area",
-        "aoe": {
-          "shape": "cylinder",
-          "size": 10
+      "mode": "succession",
+      "blocks": [
+        {
+          "pattern": "aura",
+          "target": {
+            "type": "area",
+            "aoe": {
+              "shape": "cylinder",
+              "size": 10
+            }
+          },
+          "text": "magical energy"
         },
-        "range": "$(range)"
-      },
-      "text": "$(summary)"
+        {
+          "pattern": "text",
+          "text": "Celestials, Elementals, Fey, Fiends or Undead cannot enter the circle and have disadvantage on attack rolls against targets within the circle. Targets within the circle can't be possessed by or gain the Charmed or Frightened condition from the creature."
+        }
+      ]
     }
   },
   {
