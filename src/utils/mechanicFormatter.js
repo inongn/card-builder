@@ -1555,9 +1555,17 @@ export function formatActivityMechanic(activity, characterData) {
     return ` _Duration_: ${capitalize(cleanDur)}.`;
   };
 
+  const formatRitualSuffix = () => {
+    const tags = Array.isArray(activity.tags) ? activity.tags : (activity.tags ? [activity.tags] : []);
+    const isRitual = activity.ritual === true || tags.some(t => String(t).toLowerCase() === 'ritual');
+    if (isRitual) return ' _Ritual_.';
+    return '';
+  };
+
   const durSuffix = formatDurationSuffix();
+  const ritualSuffix = formatRitualSuffix();
   const extraSuffix = formatExtras();
-  const fullSuffix = `${durSuffix}${extraSuffix}`;
+  const fullSuffix = `${durSuffix}${ritualSuffix}${extraSuffix}`;
 
   if (!mechanic) {
     const fallbackText = (activity.description || activity.summary || '').split('\n')[0].trim();

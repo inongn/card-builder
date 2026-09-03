@@ -376,7 +376,6 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                         <div className="list-item resource-list-item" key={i}>
                                             <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
                                             <div className="text-primary resource-name">{res.name || res.id}</div>
-                                            <div className="text-secondary resource-qty">{q}</div>
                                             <div className="resource-right">
                                                 {isPlayMode && (
                                                     <div className="resource-dots hide-on-print" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
@@ -393,6 +392,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                                         })}
                                                     </div>
                                                 )}
+                                                <div className="text-secondary resource-qty show-on-print">{q}</div>
                                                 <div className="text-secondary resource-recovery">{recovery}</div>
                                             </div>
                                         </div>

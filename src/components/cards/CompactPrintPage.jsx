@@ -114,7 +114,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
         const rows = [];
         const infoSections = [
             { label: 'Senses', data: char?.attributes?.senses },
-            { label: 'Movement', data: char?.attributes?.movement },
+            { label: 'Speed', data: char?.attributes?.movement },
             { label: 'Resistances', data: char?.attributes?.resistances },
             { label: 'Advantages', data: char?.attributes?.advantages },
             { label: 'Immunities', data: char?.attributes?.immunities },
@@ -126,7 +126,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                 displayData = [...data];
             } else if (data && typeof data === 'object') {
                 displayData = Object.entries(data)
-                    .filter(([k, v]) => v && !(label === 'Movement' && k === 'walk'))
+                    .filter(([k, v]) => v && !(label === 'Speed' && k === 'walk'))
                     .map(([k, v]) => {
                         const l = k.charAt(0).toUpperCase() + k.slice(1);
                         const unit = typeof v === 'number' ? ' ft' : '';
@@ -204,8 +204,10 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                                     </div>
                                     <div className="cps-content cps-line">
                                         <strong>{res.name || res.id}</strong>
-                                        <span className="cps-resource-qty">{q}</span>
-                                        <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                        <div className="cps-resource-right">
+                                            <span className="cps-resource-qty">{q}</span>
+                                            <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                        </div>
                                     </div>
                                 </div>
                             );
@@ -324,8 +326,10 @@ const CompactRightColumn = memo(({ char }) => {
                                     </div>
                                     <div className="cps-content cps-line">
                                         <strong>{res.name || res.id}</strong>
-                                        <span className="cps-resource-qty">{q}</span>
-                                        <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                        <div className="cps-resource-right">
+                                            <span className="cps-resource-qty">{q}</span>
+                                            <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                        </div>
                                     </div>
                                 </div>
                             );
@@ -405,8 +409,10 @@ const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivit
                                     </div>
                                     <div className="cps-content cps-line">
                                         <strong>{res.name || res.id}</strong>
-                                        <span className="cps-resource-qty">{q}</span>
-                                        <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                        <div className="cps-resource-right">
+                                            <span className="cps-resource-qty">{q}</span>
+                                            <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                        </div>
                                     </div>
                                 </div>
                             );

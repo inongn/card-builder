@@ -735,8 +735,12 @@ blockquote {
 }
 
 .resource-qty {
+  display: none;
   font-weight: 700;
   color: rgb(var(--mdui-color-on-surface-variant));
+  text-align: center;
+  min-width: 18px;
+  flex-shrink: 0;
 }
 
 .resource-right {
@@ -744,6 +748,7 @@ blockquote {
   align-items: center;
   gap: var(--space-2);
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .resource-recovery {
@@ -751,6 +756,10 @@ blockquote {
   font-size: 0.85rem;
   color: rgb(var(--mdui-color-on-surface-variant));
   white-space: nowrap;
+  text-align: center;
+  min-width: 30px;
+  flex-shrink: 0;
+  display: inline-block;
 }
 
 .resource-total {
@@ -2142,15 +2151,23 @@ mdui-navigation-drawer[mobile]::part(panel) {
 }
 
 .print-mode .resource-qty {
+  display: inline-block !important;
   font-weight: 700;
   font-size: 0.9rem;
   color: #111 !important;
+  text-align: center;
+  min-width: 18px;
+  flex-shrink: 0;
 }
 
 .print-mode .resource-recovery {
   font-weight: 700;
   font-size: 0.8rem;
   color: #555 !important;
+  text-align: center;
+  min-width: 40px;
+  flex-shrink: 0;
+  display: inline-block;
 }
 
 /* ==========================================================================
@@ -2193,6 +2210,10 @@ mdui-navigation-drawer[mobile]::part(panel) {
 
   .show-on-print {
     display: block !important;
+  }
+
+  .resource-qty {
+    display: inline-block !important;
   }
 
   .print-tab-container,
@@ -3451,9 +3472,9 @@ mdui-list-item.card-vertical-item::part(container) {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #555;
-  margin-top: 5px;
-  margin-bottom: 2px;
-  padding-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 1px;
+  padding-bottom: 1px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -3556,7 +3577,7 @@ mdui-list-item.card-vertical-item::part(container) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 2px 4px;
@@ -3596,7 +3617,7 @@ mdui-list-item.card-vertical-item::part(container) {
 }
 
 .print-mode .cps-save-row {
-  grid-template-columns: 10px 10px 1fr;
+  grid-template-columns: 10px 15px 1fr;
   gap: 4px;
 }
 
@@ -3715,28 +3736,45 @@ mdui-list-item.card-vertical-item::part(container) {
   font-style: italic;
 }
 
+/* Resource right-side group (quantity + recovery) */
+.print-mode .cps-resource-right {
+  margin-left: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
 /* Resource quantity badge */
 .print-mode .cps-resource-qty {
   font-weight: 700;
   font-size: 0.72rem;
   color: #111;
+  text-align: center;
+  min-width: 14px;
+  flex-shrink: 0;
+  display: inline-block;
 }
 
 /* Resource recovery badge */
 .print-mode .cps-resource-recovery {
-  margin-left: auto;
   font-weight: 700;
   font-size: 0.72rem;
   color: #555;
   white-space: nowrap;
+  text-align: center;
+  min-width: 25px;
+  flex-shrink: 0;
+  display: inline-block;
 }
 
-/* Resource item: spread name/qty vs recovery */
+/* Resource item: spread name vs qty/recovery */
 .print-mode .cps-resource-item .cps-content {
   display: flex;
   align-items: baseline;
   gap: 6px;
-  justify-content: flex-start;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /* ── Compact Activity Layout: left half-page = compact 2-col panel ── */
