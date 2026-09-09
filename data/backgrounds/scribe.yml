@@ -9,7 +9,7 @@ children:
     target:
       - investigationProficiency
       - perceptionProficiency
-      - calligraphersTools
+      - calligraphersSupplies
       - skilled
   - type: Effect
     target: attributes.originEligible
