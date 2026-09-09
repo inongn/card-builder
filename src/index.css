@@ -2085,7 +2085,7 @@ mdui-navigation-drawer[mobile]::part(panel) {
 .print-mode .card-content {
   font-size: inherit !important;
   font-family: 'Google Sans Flex', sans-serif !important;
-  font-stretch: 75% !important;
+  font-variation-settings: "wdth" 70 !important;
 }
 
 .print-mode .card-description-paragraph {}
@@ -3298,7 +3298,7 @@ mdui-list-item.card-vertical-item::part(container) {
   line-height: 1.3 !important;
   color: #111 !important;
   font-family: 'Google Sans Flex', sans-serif !important;
-  font-stretch: 75% !important;
+  font-variation-settings: "wdth" 70 !important;
 }
 
 .print-mode .trait-list-item {
@@ -3407,7 +3407,7 @@ mdui-list-item.card-vertical-item::part(container) {
   line-height: 1.3 !important;
   color: #111 !important;
   font-family: 'Google Sans Flex', sans-serif !important;
-  font-stretch: 75% !important;
+  font-variation-settings: "wdth" 70 !important;
 }
 
 .print-mode .activity-overflow-slot .activity-sheet-content span,
@@ -3704,7 +3704,7 @@ mdui-list-item.card-vertical-item::part(container) {
   line-height: 1.3;
   color: #111;
   font-family: 'Google Sans Flex', sans-serif;
-  font-stretch: 75%;
+  font-variation-settings: "wdth" 70;
 }
 
 .print-mode .cps-line {

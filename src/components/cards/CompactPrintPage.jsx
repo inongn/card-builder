@@ -130,7 +130,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                     .map(([k, v]) => {
                         const l = k.charAt(0).toUpperCase() + k.slice(1);
                         const unit = typeof v === 'number' ? ' ft' : '';
-                        return `${l} (${v}${unit})`;
+                        return `${l} (${v})`;
                     });
             }
             if (displayData.length > 0) rows.push({ label, displayData });
@@ -144,7 +144,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             <div className="cps-name-block">
                 <div className="cps-char-name">{char.meta.name}</div>
                 <div className="cps-char-sub">
-                    {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || ''}`.trim()].filter(Boolean).join(' ')}
+                    {[`Lv. ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || ''}`.trim()].filter(Boolean).join(' ')}
                     {(char.meta.species || char.meta.background) && (
                         <span className="cps-char-sub2">{' · '}{[char.meta.species, char.meta.background].filter(Boolean).join(' ')}</span>
                     )}
