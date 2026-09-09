@@ -13331,7 +13331,7 @@
         "name": "Fortifying Soul",
         "time": "action",
         "range": "self",
-        "uses": 1,
+        "resource": "limited",
         "description": "You bolster your allies in addition to yourself. Choose up to $(Math.max(1, stats.wis.mod)) creatures you can see. Each chosen creature regains 1d10+$(meta.level) Hit Points and has Advantage on saving throws to avoid or end the Frightened condition for 1 hour.",
         "mechanic": {
           "pattern": "healing",
@@ -14171,7 +14171,7 @@
         "time": "free action",
         "duration": "instantaneous",
         "range": "self",
-        "uses": 1,
+        "resource": "limited",
         "name": "Strength of the Grave",
         "description": "When you would drop to 0 Hit Points and not die outright, you can make a Charisma saving throw (DC 5 + damage taken). On a success, your Hit Points instead change to $(stats.cha.mod + meta.level).",
         "mechanic": {
