@@ -3476,6 +3476,7 @@ mdui-list-item.card-vertical-item::part(container) {
   margin-bottom: 1px;
   padding-bottom: 1px;
   border-bottom: 1px solid #ccc;
+
 }
 
 /* ── Left column ── */
@@ -3797,7 +3798,7 @@ mdui-list-item.card-vertical-item::part(container) {
 .print-mode .cps-two-col-panel {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 0.15in;
+  gap: 0.1in;
   height: 100%;
   overflow: hidden;
   align-items: start;

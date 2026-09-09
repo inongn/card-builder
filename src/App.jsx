@@ -83,7 +83,7 @@ const loadAndSortCharacters = () => {
     const userCharacters = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
 
     const enabledRaw = localStorage.getItem('sample_characters_enabled');
-    const isEnabled = enabledRaw !== 'false';
+    const isEnabled = enabledRaw === 'true';
 
     let merged = userCharacters;
     if (isEnabled) {
@@ -140,7 +140,7 @@ export default function App() {
     const [isNewCharacterCreation, setIsNewCharacterCreation] = useState(false);
     const [sampleCharactersEnabled, setSampleCharactersEnabled] = useState(() => {
         const enabledRaw = localStorage.getItem('sample_characters_enabled');
-        return enabledRaw !== 'false';
+        return enabledRaw === 'true';
     });
     const [useActivitySheet, setUseActivitySheet] = useState(() => {
         return localStorage.getItem('use_activity_sheet') !== 'false';
