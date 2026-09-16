@@ -27441,7 +27441,7 @@
       "failureOrSuccess": {
         "type": "damage",
         "dice": {
-          "count": 1,
+          "count": null,
           "sides": 6
         },
         "damageType": "fire"
