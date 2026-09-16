@@ -30,3 +30,7 @@ mechanic:
     type: single
     range: $(range)
   text: ends any spell of level 3 or lower on target; for higher level spells, make an ability check (DC 10 + spell level)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "auto-dispels spells of slot level or lower"

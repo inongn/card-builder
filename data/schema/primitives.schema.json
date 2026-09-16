@@ -717,6 +717,14 @@
       "type": "object",
       "properties": {
         "resourceStep": { "$ref": "#/$defs/NumberOrExpression" },
+        "display": {
+          "type": "object",
+          "description": "Optional explicit display override for the _Upcast_: label. When absent, the label is auto-derived from modifications.",
+          "properties": {
+            "label": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
         "modifications": {
           "type": "array",
           "items": {

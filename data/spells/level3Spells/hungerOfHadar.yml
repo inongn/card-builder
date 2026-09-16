@@ -61,3 +61,7 @@ mechanic:
           count: 2
           sides: 6
         damageType: cold
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+1d6 Cold or Acid damage (your choice)"

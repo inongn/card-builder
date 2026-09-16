@@ -70,5 +70,7 @@ children:
         type: hitPoints
       target:
         type: multiple
-        range: self
+        count: $(stats.wis.mod)
+        range: 60 feet
+      text: targets have Advantage on saving throws to avoid or end the Frightened condition for 1 hour
     condition: $(meta.level >= 7)

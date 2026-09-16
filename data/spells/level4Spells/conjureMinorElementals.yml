@@ -27,3 +27,7 @@ mechanic:
       size: 15
     range: $(range)
   text: any attack you make deals an extra 2d8 damage (Acid, Cold, Fire, or Lightning) when you hit a creature in the Emanation, and enemies treat the area as Difficult Terrain
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+1d8 extra damage on attacks"

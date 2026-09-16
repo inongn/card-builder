@@ -31,3 +31,7 @@ mechanic:
     type: single
     range: $(range)
   text: $(summary)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+2 Undead targets"

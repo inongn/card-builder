@@ -34,9 +34,8 @@ mechanic:
       condition: restrained
       end: action_check
     - type: text
-      text: target takes 1d6 Piercing damage at start of its turn; a creature can take an Action to make a Strength check against your spell save DC to free the target
+      text: target takes 1d6 Piercing damage at start of its turn
   upcast:
     resourceStep: 1
-    modifications:
-      - path: failure[0].dice.count
-        add: 1
+    display:
+      label: "1d6 extra damage"

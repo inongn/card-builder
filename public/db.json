@@ -13345,8 +13345,10 @@
           },
           "target": {
             "type": "multiple",
-            "range": "self"
-          }
+            "count": "$(stats.wis.mod)",
+            "range": "60 feet"
+          },
+          "text": "targets have Advantage on saving throws to avoid or end the Frightened condition for 1 hour"
         },
         "condition": "$(meta.level >= 7)"
       }
@@ -25701,7 +25703,13 @@
         "type": "single",
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+10 gallons of water, or +5 ft. Cube size"
+        }
+      }
     }
   },
   {
@@ -26051,17 +26059,14 @@
         },
         {
           "type": "text",
-          "text": "target takes 1d6 Piercing damage at start of its turn; a creature can take an Action to make a Strength check against your spell save DC to free the target"
+          "text": "target takes 1d6 Piercing damage at start of its turn"
         }
       ],
       "upcast": {
         "resourceStep": 1,
-        "modifications": [
-          {
-            "path": "failure[0].dice.count",
-            "add": 1
-          }
-        ]
+        "display": {
+          "label": "1d6 extra damage"
+        }
       }
     }
   },
@@ -26343,10 +26348,23 @@
     "mechanic": {
       "pattern": "automatic",
       "target": {
-        "type": "single",
+        "type": "area",
+        "aoe": {
+          "shape": "sphere",
+          "size": 20
+        },
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "heavily obscured fog fills the area",
+      "upcast": {
+        "resourceStep": 1,
+        "modifications": [
+          {
+            "path": "target.aoe.size",
+            "add": 20
+          }
+        ]
+      }
     }
   },
   {
@@ -26699,7 +26717,16 @@
           "type": "text",
           "text": "gains $(attributes.spellcasting.bonus) Temporary Hit Points at the start of each of its turns"
         }
-      ]
+      ],
+      "upcast": {
+        "resourceStep": 1,
+        "modifications": [
+          {
+            "path": "target.count",
+            "add": 1
+          }
+        ]
+      }
     }
   },
   {
@@ -26729,7 +26756,13 @@
         "type": "single",
         "range": "$(range)"
       },
-      "text": "your attacks deal an extra 1d6 Necrotic damage to the target"
+      "text": "your attacks deal an extra 1d6 Necrotic damage to the target",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "longer Concentration (level 2: up to 4 hours, level 3–4: up to 8 hours, level 5+: 24 hours)"
+        }
+      }
     }
   },
   {
@@ -26776,7 +26809,13 @@
             }
           ]
         }
-      ]
+      ],
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "longer Concentration (level 3–4: up to 8 hours, level 5+: 24 hours)"
+        }
+      }
     }
   },
   {
@@ -27004,7 +27043,16 @@
       "target": {
         "type": "touch"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "modifications": [
+          {
+            "path": "target.count",
+            "add": 1
+          }
+        ]
+      }
     }
   },
   {
@@ -28045,7 +28093,13 @@
         "filter": "beast",
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+48 hours duration"
+        }
+      }
     }
   },
   {
@@ -28102,7 +28156,13 @@
         "type": "self",
         "range": "$(range)"
       },
-      "text": "you can expend up to two Hit Point Dice to regain Hit Points equal to the roll plus $(attributes.spellcasting.bonus)"
+      "text": "you can expend up to two Hit Point Dice to regain Hit Points equal to the roll plus $(attributes.spellcasting.bonus)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+1 Hit Die you can roll"
+        }
+      }
     }
   },
   {
@@ -28443,7 +28503,13 @@
       "target": {
         "type": "touch"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+2 affected ammo"
+        }
+      }
     }
   },
   {
@@ -28700,7 +28766,13 @@
         "type": "self",
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+10 ft. Speed while cloaked"
+        }
+      }
     }
   },
   {
@@ -29562,7 +29634,13 @@
       "target": {
         "type": "touch"
       },
-      "text": "weapon becomes magical and gains a +1 bonus to attack and damage rolls"
+      "text": "weapon becomes magical and gains a +1 bonus to attack and damage rolls",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+2 bonus (level 3–5 slot), +3 bonus (level 6+ slot)"
+        }
+      }
     }
   },
   {
@@ -30811,7 +30889,13 @@
         "type": "single",
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+2 Undead targets"
+        }
+      }
     }
   },
   {
@@ -30935,6 +31019,12 @@
       "failure": {
         "type": "text",
         "text": "the target is cursed for the duration; choose one effect: Disadvantage on checks and saves of one attribute, Disadvantage on attack rolls against you, Wis save at start of turn or waste action, or extra 1d8 Necrotic damage from your attacks and spells"
+      },
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "longer Concentration, or no Concentration (level 5+ slot)"
+        }
       }
     }
   },
@@ -31382,7 +31472,13 @@
         "type": "single",
         "range": "$(range)"
       },
-      "text": "ends any spell of level 3 or lower on target; for higher level spells, make an ability check (DC 10 + spell level)"
+      "text": "ends any spell of level 3 or lower on target; for higher level spells, make an ability check (DC 10 + spell level)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "auto-dispels spells of slot level or lower"
+        }
+      }
     }
   },
   {
@@ -31414,7 +31510,13 @@
       "target": {
         "type": "touch"
       },
-      "text": "weapon gains +1 bonus to attack rolls and deals an extra 1d4 damage (Acid, Cold, Fire, Lightning, or Thunder)"
+      "text": "weapon gains +1 bonus to attack rolls and deals an extra 1d4 damage (Acid, Cold, Fire, Lightning, or Thunder)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+2 bonus and 2d4 damage (level 5–6 slot), +3 bonus and 3d4 damage (level 7+ slot)"
+        }
+      }
     }
   },
   {
@@ -31715,7 +31817,13 @@
       "target": {
         "type": "touch"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+1d8 explosive rune damage"
+        }
+      }
     }
   },
   {
@@ -31839,7 +31947,13 @@
             "damageType": "cold"
           }
         }
-      ]
+      ],
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+1d6 Cold or Acid damage (your choice)"
+        }
+      }
     }
   },
   {
@@ -32082,7 +32196,13 @@
           "pattern": "text",
           "text": "Celestials, Elementals, Fey, Fiends or Undead cannot enter the circle and have disadvantage on attack rolls against targets within the circle. Targets within the circle can't be possessed by or gain the Charmed or Frightened condition from the creature."
         }
-      ]
+      ],
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+1 hour duration"
+        }
+      }
     }
   },
   {
@@ -32117,7 +32237,13 @@
         "type": "single",
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "no Concentration required (level 4+ slot)"
+        }
+      }
     }
   },
   {
@@ -33472,7 +33598,13 @@
         },
         "range": "$(range)"
       },
-      "text": "any attack you make deals an extra 2d8 damage (Acid, Cold, Fire, or Lightning) when you hit a creature in the Emanation, and enemies treat the area as Difficult Terrain"
+      "text": "any attack you make deals an extra 2d8 damage (Acid, Cold, Fire, or Lightning) when you hit a creature in the Emanation, and enemies treat the area as Difficult Terrain",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+1d8 extra damage on attacks"
+        }
+      }
     }
   },
   {
@@ -33708,7 +33840,13 @@
           "type": "text",
           "text": "the target repeats the save whenever it takes damage"
         }
-      ]
+      ],
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "longer Concentration (level 5: up to 10 minutes, level 6: up to 1 hour, level 7+: up to 8 hours)"
+        }
+      }
     }
   },
   {
@@ -33959,6 +34097,12 @@
       ],
       "repeat": {
         "action": "bonus_action"
+      },
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+1 grapple capacity"
+        }
       }
     }
   },
@@ -34204,7 +34348,13 @@
         },
         "range": "$(range)"
       },
-      "text": "when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored"
+      "text": "when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+1d8 initial healing"
+        }
+      }
     }
   },
   {
@@ -34296,7 +34446,13 @@
         },
         "range": "$(range)"
       },
-      "text": "$(summary)"
+      "text": "$(summary)",
+      "upcast": {
+        "resourceStep": 1,
+        "display": {
+          "label": "+100 ft. Cube size"
+        }
+      }
     }
   },
   {

@@ -41,3 +41,7 @@ mechanic:
       text: magical energy
     - pattern: text
       text: "Celestials, Elementals, Fey, Fiends or Undead cannot enter the circle and have disadvantage on attack rolls against targets within the circle. Targets within the circle can't be possessed by or gain the Charmed or Frightened condition from the creature."
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+1 hour duration"

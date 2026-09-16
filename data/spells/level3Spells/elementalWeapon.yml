@@ -23,3 +23,7 @@ mechanic:
   target:
     type: touch
   text: weapon gains +1 bonus to attack rolls and deals an extra 1d4 damage (Acid, Cold, Fire, Lightning, or Thunder)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+2 bonus and 2d4 damage (level 5–6 slot), +3 bonus and 3d4 damage (level 7+ slot)"

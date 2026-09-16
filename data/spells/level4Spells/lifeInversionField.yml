@@ -29,3 +29,7 @@ mechanic:
       size: 30
     range: $(range)
   text: when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+1d8 initial healing"

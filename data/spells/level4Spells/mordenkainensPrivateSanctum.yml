@@ -41,3 +41,7 @@ mechanic:
       size: 100
     range: $(range)
   text: $(summary)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+100 ft. Cube size"

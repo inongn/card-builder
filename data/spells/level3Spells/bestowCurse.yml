@@ -39,3 +39,7 @@ mechanic:
   failure:
     type: text
     text: 'the target is cursed for the duration; choose one effect: Disadvantage on checks and saves of one attribute, Disadvantage on attack rolls against you, Wis save at start of turn or waste action, or extra 1d8 Necrotic damage from your attacks and spells'
+  upcast:
+    resourceStep: 1
+    display:
+      label: "longer Concentration, or no Concentration (level 5+ slot)"

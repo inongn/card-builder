@@ -27,3 +27,8 @@ mechanic:
       conditions: [frightened]
     - type: text
       text: "gains $(attributes.spellcasting.bonus) Temporary Hit Points at the start of each of its turns"
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

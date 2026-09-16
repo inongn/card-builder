@@ -46,3 +46,7 @@ mechanic:
       condition: grappled
   repeat:
     action: bonus_action
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+1 grapple capacity"

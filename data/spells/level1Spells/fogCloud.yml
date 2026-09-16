@@ -21,6 +21,14 @@ extra:
 mechanic:
   pattern: automatic
   target:
-    type: single
+    type: area
+    aoe:
+      shape: sphere
+      size: 20
     range: $(range)
-  text: $(summary)
+  text: heavily obscured fog fills the area
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.aoe.size
+        add: 20

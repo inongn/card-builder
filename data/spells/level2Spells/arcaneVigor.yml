@@ -24,3 +24,7 @@ mechanic:
     type: self
     range: $(range)
   text: you can expend up to two Hit Point Dice to regain Hit Points equal to the roll plus $(attributes.spellcasting.bonus)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+1 Hit Die you can roll"

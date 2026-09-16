@@ -25,3 +25,8 @@ mechanic:
   target:
     type: touch
   text: $(summary)
+  upcast:
+    resourceStep: 1
+    modifications:
+      - path: target.count
+        add: 1

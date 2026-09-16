@@ -26,3 +26,7 @@ mechanic:
     type: self
     range: $(range)
   text: $(summary)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+10 ft. Speed while cloaked"

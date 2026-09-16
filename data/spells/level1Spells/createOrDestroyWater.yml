@@ -26,3 +26,7 @@ mechanic:
     type: single
     range: $(range)
   text: $(summary)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+10 gallons of water, or +5 ft. Cube size"

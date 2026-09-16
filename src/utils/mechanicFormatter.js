@@ -62,6 +62,207 @@ const TRIGGER_EVENT_PHRASES = {
   custom: null,
 };
 
+// ─── Upcast utilities ────────────────────────────────────────────────────────
+
+/**
+ * Resolves a dotted/bracketed path against an object.
+ * e.g. "blocks[1].failure.dice.count" or "failure[0].dice.count"
+ */
+function resolveUpcastPath(obj, path) {
+  if (!obj || !path) return undefined;
+  // Split on '.' or on '[N]', keeping numeric segments
+  const parts = [];
+  for (const seg of path.split('.')) {
+    const bracketMatch = seg.match(/^([^[]+)(?:\[(\d+)\])?$/);
+    if (bracketMatch) {
+      parts.push(bracketMatch[1]);
+      if (bracketMatch[2] !== undefined) parts.push(bracketMatch[2]);
+    } else {
+      parts.push(seg);
+    }
+  }
+  let cur = obj;
+  for (const p of parts) {
+    if (cur === null || cur === undefined || typeof cur !== 'object') return undefined;
+    cur = cur[p];
+  }
+  return cur;
+}
+
+/**
+ * Sets a value at a dotted/bracketed path on an object (mutates in-place).
+ */
+function setUpcastPath(obj, path, value) {
+  if (!obj || !path) return;
+  const parts = [];
+  for (const seg of path.split('.')) {
+    const bracketMatch = seg.match(/^([^[]+)(?:\[(\d+)\])?$/);
+    if (bracketMatch) {
+      parts.push(bracketMatch[1]);
+      if (bracketMatch[2] !== undefined) parts.push(bracketMatch[2]);
+    } else {
+      parts.push(seg);
+    }
+  }
+  let cur = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    if (cur === null || cur === undefined || typeof cur !== 'object') return;
+    cur = cur[parts[i]];
+  }
+  if (cur !== null && cur !== undefined && typeof cur === 'object') {
+    cur[parts[parts.length - 1]] = value;
+  }
+}
+
+/**
+ * Deep-clones a mechanic object and applies upcast modifications.
+ * Returns the original object unchanged if upcastSteps <= 0 or no modifications.
+ */
+function applyUpcast(mechanicObj, upcastSpec, upcastSteps) {
+  if (!mechanicObj || !upcastSpec || upcastSteps <= 0) return mechanicObj;
+  const mods = upcastSpec.modifications;
+  if (!mods || mods.length === 0) return mechanicObj;
+
+  const cloned = JSON.parse(JSON.stringify(mechanicObj));
+  for (const { path, add } of mods) {
+    const current = resolveUpcastPath(cloned, path);
+    const addNum = typeof add === 'number' ? add : Number(add);
+    if (typeof current === 'number' && !isNaN(addNum)) {
+      setUpcastPath(cloned, path, current + addNum * upcastSteps);
+    }
+  }
+  return cloned;
+}
+
+/**
+ * Derives the human-readable upcast label fragment (without the "_Upcast_:" prefix).
+ * Uses upcastSpec.display.label if present; otherwise auto-derives from modifications.
+ */
+function deriveUpcastLabel(upcastSpec, mechanicObj, activity, evalStr) {
+  if (!upcastSpec) return '';
+
+  // Explicit override
+  if (upcastSpec.display?.label) return upcastSpec.display.label;
+
+  const mods = upcastSpec.modifications;
+  if (!mods || mods.length === 0) return '';
+
+  const fragments = [];
+
+  for (const { path, add } of mods) {
+    const addNum = typeof add === 'number' ? add : Number(add);
+    const prefix = addNum > 0 ? `+${addNum}` : `${addNum}`;
+
+    // Target count scaling → "+N target"
+    if (path === 'target.count') {
+      const filter = mechanicObj?.target?.filter;
+      const filterText = filter ? ` ${capitalize(evalStr ? evalStr(filter) : String(filter))}` : '';
+      const noun = addNum === 1 ? 'target' : 'targets';
+      fragments.push(`${prefix}${filterText} ${noun}`);
+      continue;
+    }
+
+    // AOE size scaling → "+N ft. Shape radius/length"
+    if (path.endsWith('target.aoe.size') || path === 'target.aoe.size') {
+      const shape = capitalize(String(mechanicObj?.target?.aoe?.shape || 'sphere'));
+      const isLine = shape.toLowerCase() === 'line';
+      const isWall = shape.toLowerCase() === 'wall';
+      const suffix = (isLine || isWall) ? 'length' : 'radius';
+      fragments.push(`${prefix} ft. ${shape} ${suffix}`);
+      continue;
+    }
+
+    // Healing dice count scaling → "+Nd[sides] healing"
+    if (path.includes('healing') && path.includes('dice.count')) {
+      // Walk to the healing dice object to get sides
+      const healPath = path.replace(/\.count$/, '').replace(/\.dice$/, '');
+      let sides = '';
+      // Try to find sides by resolving the parent dice object
+      const dicePath = path.replace(/\.count$/, '');
+      const diceObj = resolveUpcastPath(mechanicObj, dicePath);
+      if (diceObj && typeof diceObj === 'object') {
+        sides = diceObj.sides ? `d${diceObj.sides}` : '';
+      }
+      const healingType = path.includes('tempHitPoints') ? 'Temp HP' : 'healing';
+      fragments.push(`${prefix}${sides} ${healingType}`);
+      continue;
+    }
+
+    // Damage dice count scaling → "+Nd[sides] DamageType damage"
+    if (path.includes('dice.count')) {
+      const dicePath = path.replace(/\.count$/, '');
+      const diceObj = resolveUpcastPath(mechanicObj, dicePath);
+      let sides = '';
+      let dmgType = '';
+
+      if (diceObj && typeof diceObj === 'object') {
+        sides = diceObj.sides ? `d${diceObj.sides}` : '';
+      }
+
+      // Find damageType by walking up the path to the payload
+      // The payload is the parent of "dice"
+      const diceParentPath = dicePath.replace(/\.dice$/, '');
+      const payloadObj = resolveUpcastPath(mechanicObj, diceParentPath);
+      if (payloadObj && typeof payloadObj === 'object') {
+        const rawType = payloadObj.damageType;
+        if (rawType) {
+          const rawList = Array.isArray(rawType) ? rawType : [rawType];
+          const formatted = rawList
+            .map(t => capitalize(evalStr ? evalStr(String(t)) : String(t)))
+            .filter(Boolean);
+          if (formatted.length === 1) dmgType = ` ${formatted[0]}`;
+          else if (formatted.length === 2) dmgType = ` ${formatted[0]} or ${formatted[1]}`;
+          else if (formatted.length > 2) dmgType = ` ${formatted.slice(0, -1).join(', ')}, or ${formatted[formatted.length - 1]}`;
+        }
+      }
+
+      const label = dmgType
+        ? `${prefix}${sides}${dmgType} damage`
+        : `${prefix}${sides} damage`;
+      fragments.push(label);
+      continue;
+    }
+
+    // Fallback — generic numeric add
+    fragments.push(`${prefix}`);
+  }
+
+  if (fragments.length === 0) return '';
+  if (fragments.length === 1) return fragments[0];
+  return fragments.slice(0, -1).join(', ') + ' and ' + fragments[fragments.length - 1];
+}
+
+/**
+ * Returns the number of upcast steps for a Warlock character, or 0 for non-Warlocks.
+ */
+function computeWarlockUpcastSteps(activity, characterData) {
+  const isWarlock = characterData?.resources?.some(r => r.id === 'pactMagicSpellSlot');
+  if (!isWarlock) return 0;
+
+  const resourceId = activity?.resource || '';
+  const baseMatch = resourceId.match(/^level(\d+)SpellSlot$/);
+  if (!baseMatch) return 0;
+  const baseLevel = parseInt(baseMatch[1], 10);
+
+  const charLevel = characterData?.meta?.level || 1;
+  const pactLevel = Math.min(5, Math.ceil(charLevel / 2));
+
+  return Math.max(0, pactLevel - baseLevel);
+}
+
+/**
+ * Returns the highest spell slot level available to the character.
+ * Returns 0 if no spell slots are found.
+ */
+function computeMaxSlotLevel(characterData) {
+  let max = 0;
+  for (const r of (characterData?.resources || [])) {
+    const m = (r.id || '').match(/^level(\d+)SpellSlot$/);
+    if (m) max = Math.max(max, parseInt(m[1], 10));
+  }
+  return max;
+}
+
 // ─── Utility helpers ──────────────────────────────────────────────────────────
 
 export function capitalize(str) {
@@ -1527,7 +1728,7 @@ export function formatActivityMechanic(activity, characterData) {
         if (!item) return '';
         if (typeof item === 'object') {
           const rawName = item.name || '';
-          // Suppress the upcast extra — it's always shown separately
+          // Suppress the upcast extra — it's always shown via the _Upcast_: suffix instead
           if (rawName === 'Using a Higher-Level Spell Slot') return '';
           const evaluatedName = rawName ? evaluator.evaluate(rawName, scope) : '';
           if (evaluatedName === 'Using a Higher-Level Spell Slot') return '';
@@ -1565,31 +1766,63 @@ export function formatActivityMechanic(activity, characterData) {
   const durSuffix = formatDurationSuffix();
   const ritualSuffix = formatRitualSuffix();
   const extraSuffix = formatExtras();
-  const fullSuffix = `${durSuffix}${ritualSuffix}${extraSuffix}`;
 
   if (!mechanic) {
     const fallbackText = (activity.description || activity.summary || '').split('\n')[0].trim();
-    return `**${name}.** ${fallbackText}${fullSuffix}`;
+    return `**${name}.** ${fallbackText}${durSuffix}${ritualSuffix}${extraSuffix}`;
   }
 
   const mechanicObj = Array.isArray(mechanic)
     ? { mode: 'succession', blocks: mechanic }
     : (mechanic && Array.isArray(mechanic.blocks) && !mechanic.mode ? { mode: 'succession', ...mechanic } : mechanic);
 
-  if (mechanicObj.mode || Array.isArray(mechanicObj.blocks)) {
-    const blocks = Array.isArray(mechanicObj.blocks) ? mechanicObj.blocks : [];
+  // ── Upcast resolution ─────────────────────────────────────────────────────
+  // Find the upcast spec wherever it may live:
+  //   - mechanicObj.upcast  → top-level of a multi-block OR the normalized single-block
+  //   - mechanic.upcast     → original raw mechanic (single pattern block)
+  const upcastSpec = mechanicObj.upcast ?? mechanic.upcast ?? null;
 
-    if (mechanicObj.mode === 'choice') {
+  // Warlock: apply modifications silently — numbers shown correctly, no label.
+  const upcastSteps = computeWarlockUpcastSteps(activity, characterData);
+  const isWarlock = characterData?.resources?.some(r => r.id === 'pactMagicSpellSlot');
+
+  let effectiveMechanic = mechanicObj;
+  if (upcastSpec && upcastSteps > 0) {
+    effectiveMechanic = applyUpcast(mechanicObj, upcastSpec, upcastSteps);
+  }
+
+  // Non-Warlock: show _Upcast_: label when spell level < character's max slot level.
+  const resourceId = activity.resource || '';
+  const baseMatch = resourceId.match(/^level(\d+)SpellSlot$/);
+  const baseLevel = baseMatch ? parseInt(baseMatch[1], 10) : 0;
+  const maxSlotLevel = computeMaxSlotLevel(characterData);
+  const showUpcastLabel = upcastSpec && !isWarlock && baseLevel > 0 && maxSlotLevel > baseLevel;
+
+  const evalStrForLabel = s => evaluator.evaluate(s, scope);
+  const upcastSuffix = showUpcastLabel
+    ? ` _Upcast_: ${deriveUpcastLabel(upcastSpec, effectiveMechanic, activity, evalStrForLabel)}.`
+    : '';
+
+  const fullSuffix = `${durSuffix}${ritualSuffix}${upcastSuffix}${extraSuffix}`;
+  // ─────────────────────────────────────────────────────────────────────────
+
+  // Use effectiveMechanic (possibly upcast-modified clone) for all block formatting.
+  const effectiveBlocks = effectiveMechanic.blocks;
+
+  if (effectiveMechanic.mode || Array.isArray(effectiveBlocks)) {
+    const blocks = Array.isArray(effectiveBlocks) ? effectiveBlocks : [];
+
+    if (effectiveMechanic.mode === 'choice') {
       const evalStr = s => evaluator.evaluate(s, scope);
-      const topTrigger = mechanicObj.trigger ? formatTrigger(mechanicObj.trigger, evalStr) : '';
+      const topTrigger = effectiveMechanic.trigger ? formatTrigger(effectiveMechanic.trigger, evalStr) : '';
       const triggerPart = topTrigger ? ` _Trigger_: ${topTrigger}. _Response_:` : '';
 
       const hasAuraBlock0 = blocks[0]?.pattern === 'aura';
       const auraPreamble = hasAuraBlock0 ? formatBlock(blocks[0], activity, evaluator, scope) : '';
       const choiceBlocks = hasAuraBlock0 ? blocks.slice(1) : blocks;
 
-      const preamble = mechanicObj.text
-        ? evaluator.evaluate(String(mechanicObj.text), scope).trim()
+      const preamble = effectiveMechanic.text
+        ? evaluator.evaluate(String(effectiveMechanic.text), scope).trim()
         : (hasAuraBlock0 ? '' : 'Choose one of the following:');
 
       const choiceLines = choiceBlocks
@@ -1620,6 +1853,6 @@ export function formatActivityMechanic(activity, characterData) {
     return `**${name}.** ${contentParts.join(' ')}${fullSuffix}`;
   }
 
-  const content = formatBlock(mechanic, activity, evaluator, scope);
+  const content = formatBlock(effectiveMechanic, activity, evaluator, scope);
   return `**${name}.** ${content}${fullSuffix}`;
 }

@@ -30,7 +30,7 @@ mechanic:
   failureOrSuccess:
     type: damage
     dice:
-      count: 1
+      count: 
       sides: 6
     damageType: fire
   failure:

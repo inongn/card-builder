@@ -31,3 +31,7 @@ mechanic:
       payloads:
         - type: text
           text: your attacks deal an extra 1d6 Force damage to the target
+  upcast:
+    resourceStep: 1
+    display:
+      label: "longer Concentration (level 3–4: up to 8 hours, level 5+: 24 hours)"

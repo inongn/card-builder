@@ -30,3 +30,7 @@ mechanic:
     type: single
     range: $(range)
   text: $(summary)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "no Concentration required (level 4+ slot)"

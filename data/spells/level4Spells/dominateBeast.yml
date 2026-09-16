@@ -37,3 +37,7 @@ mechanic:
       end: repeat_save_on_damage
     - type: text
       text: the target repeats the save whenever it takes damage
+  upcast:
+    resourceStep: 1
+    display:
+      label: "longer Concentration (level 5: up to 10 minutes, level 6: up to 1 hour, level 7+: up to 8 hours)"

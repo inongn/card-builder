@@ -29,3 +29,7 @@ mechanic:
     filter: beast
     range: $(range)
   text: $(summary)
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+48 hours duration"

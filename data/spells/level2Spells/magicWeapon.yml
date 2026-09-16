@@ -24,3 +24,7 @@ mechanic:
   target:
     type: touch
   text: weapon becomes magical and gains a +1 bonus to attack and damage rolls
+  upcast:
+    resourceStep: 1
+    display:
+      label: "+2 bonus (level 3–5 slot), +3 bonus (level 6+ slot)"
