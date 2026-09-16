@@ -6,6 +6,7 @@ range: 5 feet
 duration: instantaneous
 tags:
   - martial
+  - melee
   - finesse
   - slow
   - weaponAttack

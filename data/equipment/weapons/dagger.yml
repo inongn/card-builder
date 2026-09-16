@@ -6,6 +6,7 @@ range: 20 feet
 duration: instantaneous
 tags:
   - simple
+  - melee
   - finesse
   - nick
   - light

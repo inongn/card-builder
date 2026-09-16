@@ -18419,6 +18419,7 @@
     "duration": "instantaneous",
     "tags": [
       "simple",
+      "melee",
       "finesse",
       "nick",
       "light",
@@ -19347,6 +19348,7 @@
     "duration": "instantaneous",
     "tags": [
       "martial",
+      "melee",
       "finesse",
       "vex",
       "weaponAttack",
@@ -19385,6 +19387,7 @@
     "duration": "instantaneous",
     "tags": [
       "martial",
+      "melee",
       "finesse",
       "nick",
       "light",
@@ -19463,6 +19466,7 @@
     "duration": "instantaneous",
     "tags": [
       "martial",
+      "melee",
       "finesse",
       "vex",
       "light",
@@ -19807,6 +19811,7 @@
     "duration": "instantaneous",
     "tags": [
       "martial",
+      "melee",
       "finesse",
       "slow",
       "weaponAttack",
