@@ -78,7 +78,7 @@ children:
     operation: push
     value:
       type: rollModifier
-      modifierType: advantage
+      modifierType: attacksAgainstAdvantage
       targetRolls: attack
     id: vex
     name: Vex
