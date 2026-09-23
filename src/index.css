@@ -835,9 +835,7 @@ blockquote {
   border-radius: var(--mdui-shape-corner-large, 16px);
   background-color: rgb(var(--mdui-color-surface-container-lowest)) !important;
   border: 1px solid rgb(var(--mdui-color-outline-variant));
-  overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   box-sizing: border-box;
 }
 
@@ -852,7 +850,6 @@ blockquote {
   overflow: hidden;
   background-color: rgb(var(--mdui-color-surface-container-high));
   border-right: 1px solid rgb(var(--mdui-color-outline-variant));
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
   z-index: 2;
 }
 

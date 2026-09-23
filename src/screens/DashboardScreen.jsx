@@ -63,6 +63,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                 clickable
                 onClick={() => handleOpenSaved(charSaved.id, charSaved.recipe, 'play')}
                 className="dashboard-hero-card"
+                variant="tonal"
             >
                 <div className="dashboard-hero-card__media">
                     {heroImage ? (
