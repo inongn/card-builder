@@ -1710,7 +1710,6 @@ export const BuilderScreen = ({
                                     <mdui-text-field
                                         variant="outlined"
                                         type="text"
-                                        label={sectionLabel}
                                         value={val}
                                         onInput={(e) => handleUpdateInput(item.path, e.target.value)}
                                         style={{ width: '100%' }}

@@ -441,9 +441,31 @@ export default function App() {
         }
     }, [sampleCharactersEnabled]);
 
-    const handleToggleSampleCharacters = useCallback(async () => {
+    const handleLoadSampleCharacters = useCallback(async () => {
         const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
+        const { SAMPLE_CHARACTERS } = await import('./data/sampleCharacters.js');
+        const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
+            id: sc.id,
+            name: sc.name,
+            class: sc.class,
+            sub: sc.sub || '',
+            species: sc.species,
+            level: sc.level,
+            image: sc.image || '',
+            recipe: sc.recipe,
+            timestamp: new Date().toISOString()
+        }));
+        const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
+        const merged = [...filtered, ...freshSamples];
+        localStorage.setItem('saved_characters', JSON.stringify(merged));
+        localStorage.setItem('sample_characters_enabled', 'true');
+        setSavedCharacters(merged);
+        setSampleCharactersEnabled(true);
+    }, []);
+
+    const handleToggleSampleCharacters = useCallback(async () => {
         if (sampleCharactersEnabled) {
+            const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
             // Remove all sample characters
             const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
             localStorage.setItem('saved_characters', JSON.stringify(filtered));
@@ -451,27 +473,9 @@ export default function App() {
             setSavedCharacters(filtered);
             setSampleCharactersEnabled(false);
         } else {
-            // Load fresh sample characters dynamically
-            const { SAMPLE_CHARACTERS } = await import('./data/sampleCharacters.js');
-            const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
-                id: sc.id,
-                name: sc.name,
-                class: sc.class,
-                sub: sc.sub || '',
-                species: sc.species,
-                level: sc.level,
-                image: sc.image || '',
-                recipe: sc.recipe,
-                timestamp: new Date().toISOString()
-            }));
-            const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
-            const merged = [...filtered, ...freshSamples];
-            localStorage.setItem('saved_characters', JSON.stringify(merged));
-            localStorage.setItem('sample_characters_enabled', 'true');
-            setSavedCharacters(merged);
-            setSampleCharactersEnabled(true);
+            await handleLoadSampleCharacters();
         }
-    }, [sampleCharactersEnabled]);
+    }, [sampleCharactersEnabled, handleLoadSampleCharacters]);
 
     const handleLoadDebugAllActivities = useCallback(() => {
         if (!library || !builder) return;
@@ -639,6 +643,7 @@ export default function App() {
                         onNavigate={handleNavigate}
                         onOpenImport={() => handleOpenImport('play')}
                         onOpenExport={handleOpenExport}
+                        onLoadSampleCharacters={handleLoadSampleCharacters}
                     />
                 )}
                 {activeTab === 'builder' && (

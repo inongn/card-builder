@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { getAssetUrl } from '../data/artworkData';
 
-export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, onOpenImport, onOpenExport }) => {
+export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, onOpenImport, onOpenExport, onLoadSampleCharacters }) => {
     useEffect(() => {
         const savedScroll = sessionStorage.getItem('dashboard_scroll_position');
         if (savedScroll) {
@@ -190,6 +190,11 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                             {onOpenImport && (
                                 <mdui-button variant="tonal" icon="file_download" onClick={onOpenImport}>
                                     Import Recipe
+                                </mdui-button>
+                            )}
+                            {onLoadSampleCharacters && (
+                                <mdui-button variant="tonal" icon="group_add" onClick={onLoadSampleCharacters}>
+                                    Load sample characters
                                 </mdui-button>
                             )}
                         </div>
