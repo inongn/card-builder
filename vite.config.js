@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from 'fs'
-import path from 'path'
 
 import { VitePWA } from 'vite-plugin-pwa'
 
@@ -13,6 +12,16 @@ bundle();
 // https://vite.dev/config/
 export default defineConfig({
   base: '/card-builder/',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-mdui': ['mdui'],
+          'vendor-markdown': ['react-markdown', 'remark-gfm']
+        }
+      }
+    }
+  },
   plugins: [
     react(),
     VitePWA({
@@ -44,7 +53,21 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}']
+        globPatterns: ['**/*.{js,css,html,ico,svg,json,woff,woff2}'],
+        globIgnores: ['**/*pattern.png', '**/node_modules/**'],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images-runtime-cache',
+              expiration: {
+                maxEntries: 120,
+                maxAgeSeconds: 30 * 24 * 60 * 60
+              }
+            }
+          }
+        ]
       }
     }),
     {

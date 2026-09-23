@@ -594,6 +594,14 @@ const ImageUploadPane = ({ localValue, onUpdate, characterData }) => {
 
 
 // Sub-component for rendering option selection cards
+const OptionSummary = React.memo(function OptionSummary({ text }) {
+    if (!text) return null;
+    if (!/[*_`\\[\]]/.test(text)) {
+        return <p style={{ margin: 0 }}>{text}</p>;
+    }
+    return <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>;
+});
+
 const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData, onGetProperty }) {
     const handleCardClick = () => {
         if (!disabled && onClick) {
@@ -645,12 +653,16 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
 
     const evaluatedSummary = React.useMemo(() => {
         if (fullOpt.summary) {
+            const sumStr = String(fullOpt.summary);
+            if (!sumStr.includes('$') && !sumStr.includes('local.')) {
+                return sumStr.replace(/\r?\n|\r/g, ' ').trim();
+            }
             const evaluator = new ExpressionEvaluator(characterData);
             try {
                 const evaluated = evaluator.evaluate(fullOpt.summary);
                 return String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
             } catch (e) {
-                return String(fullOpt.summary).replace(/\r?\n|\r/g, ' ').trim();
+                return sumStr.replace(/\r?\n|\r/g, ' ').trim();
             }
         }
 
@@ -660,13 +672,14 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         // Suppress generic "You strike with your X" boilerplate descriptions since the chip line handles weapon summaries
         if (rawText.includes('You strike with your')) return '';
 
-        const evaluator = new ExpressionEvaluator(characterData);
-        let evaluated = '';
-        try {
-            evaluated = evaluator.evaluate(rawText);
-        } catch (e) {
-            console.error(e);
-            evaluated = rawText;
+        let evaluated = rawText;
+        if (rawText.includes('$') || rawText.includes('local.')) {
+            const evaluator = new ExpressionEvaluator(characterData);
+            try {
+                evaluated = evaluator.evaluate(rawText);
+            } catch (e) {
+                console.error(e);
+            }
         }
 
         const clean = String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
@@ -702,7 +715,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                             )}
                             {evaluatedSummary && (
                                 <div className="card-vertical__body">
-                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedSummary}</ReactMarkdown>
+                                    <OptionSummary text={evaluatedSummary} />
                                 </div>
                             )}
                         </div>
@@ -722,7 +735,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                         )}
                         {evaluatedSummary && (
                             <div className="card-vertical__body">
-                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{evaluatedSummary}</ReactMarkdown>
+                                <OptionSummary text={evaluatedSummary} />
                             </div>
                         )}
                     </div>
@@ -923,19 +936,24 @@ export const BuilderScreen = ({
         }
     }, [propertyTree, characterData, setSelectedCategory, isNewCharacterCreation, isMobile]);
 
+    const renderableNodes = React.useMemo(() => {
+        if (!propertyTree) return [];
+        return collectRenderableNodes(propertyTree, characterData);
+    }, [propertyTree, characterData]);
+
     const availableCategories = React.useMemo(() =>
-        getAvailableCategories(propertyTree, characterData),
-        [propertyTree, characterData]
+        getAvailableCategories(propertyTree, characterData, renderableNodes),
+        [propertyTree, characterData, renderableNodes]
     );
 
     const isComplete = React.useMemo(() =>
-        isBuilderComplete(propertyTree, characterData),
-        [propertyTree, characterData]
+        isBuilderComplete(propertyTree, characterData, renderableNodes),
+        [propertyTree, characterData, renderableNodes]
     );
 
     const categoryStats = React.useMemo(() =>
-        getCategoryStats(propertyTree, characterData),
-        [propertyTree, characterData]
+        getCategoryStats(propertyTree, characterData, renderableNodes),
+        [propertyTree, characterData, renderableNodes]
     );
 
     // Default to the first available category if current selection is invalid
@@ -946,8 +964,7 @@ export const BuilderScreen = ({
     }, [availableCategories, selectedCategory, setSelectedCategory]);
 
     const items = React.useMemo(() => {
-        if (!propertyTree) return [];
-        const renderableNodes = collectRenderableNodes(propertyTree, characterData);
+        if (!renderableNodes.length) return [];
         const orderedItems = [];
 
         Object.entries(STEP_DEFINITIONS).forEach(([stepKey, stepDef]) => {
@@ -1025,7 +1042,7 @@ export const BuilderScreen = ({
         });
 
         return orderedItems;
-    }, [propertyTree, characterData]);
+    }, [renderableNodes]);
 
     React.useEffect(() => {
         if (isNewCharacterCreation) {
@@ -1057,14 +1074,15 @@ export const BuilderScreen = ({
         newSlotItemToSet = null;
     }
 
-    if (!isSameSlotItem(newSlotItemToSet, selectedSlotItem)) {
-        setSelectedSlotItem(newSlotItemToSet);
-    }
+    React.useEffect(() => {
+        if (!isSameSlotItem(newSlotItemToSet, selectedSlotItem)) {
+            setSelectedSlotItem(newSlotItemToSet);
+        }
+    }, [newSlotItemToSet, selectedSlotItem]);
 
     const abilityNodesMap = React.useMemo(() => {
         const map = { allocated: {}, origin: {}, asi: {} };
-        if (!propertyTree) return map;
-        const renderableNodes = collectRenderableNodes(propertyTree, characterData);
+        if (!renderableNodes.length) return map;
         renderableNodes.forEach(item => {
             if (item.type === 'Input') {
                 const match = item.node.name.match(/^(allocated|origin|asi)_(str|dex|con|int|wis|cha)$/);
@@ -1074,7 +1092,7 @@ export const BuilderScreen = ({
             }
         });
         return map;
-    }, [propertyTree, characterData]);
+    }, [renderableNodes]);
 
     const options = React.useMemo(() => {
         if (!displaySlotItem || displaySlotItem.type === 'Abilities' || displaySlotItem.type === 'Input') return [];

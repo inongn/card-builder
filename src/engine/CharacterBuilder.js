@@ -1982,18 +1982,20 @@ export class CharacterBuilder {
         for (const key in obj) {
             if (['id', 'type', 'subtype', 'variables'].includes(key)) continue;
 
-            if (typeof obj[key] === 'string') {
-                if (lazy && obj[key].includes('$') && (obj[key].includes('stats.') || obj[key].includes('attributes.') || obj[key].includes('meta.'))) {
+            const val = obj[key];
+            if (typeof val === 'string') {
+                if (!val.includes('$') && !val.includes('local.')) continue;
+                if (lazy && (val.includes('stats.') || val.includes('attributes.') || val.includes('meta.'))) {
                     continue;
                 }
 
-                const result = evaluator.evaluate(obj[key], currentScope);
-                if (result !== obj[key]) {
+                const result = evaluator.evaluate(val, currentScope);
+                if (result !== val) {
                     obj[key] = result;
                     modified = true;
                 }
-            } else if (typeof obj[key] === 'object') {
-                if (this._evaluateRecursive(obj[key], evaluator, currentScope, lazy)) {
+            } else if (typeof val === 'object') {
+                if (this._evaluateRecursive(val, evaluator, currentScope, lazy)) {
                     modified = true;
                 }
             }

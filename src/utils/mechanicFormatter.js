@@ -135,7 +135,7 @@ function applyUpcast(mechanicObj, upcastSpec, upcastSteps) {
 }
 
 /**
- * Derives the human-readable upcast label fragment (without the "_Upcast_:" prefix).
+ * Derives the human-readable upcast label fragment (without the "_Upcast:_" prefix).
  * Uses upcastSpec.display.label if present; otherwise auto-derives from modifications.
  */
 function deriveUpcastLabel(upcastSpec, mechanicObj, activity, evalStr) {
@@ -427,12 +427,12 @@ export function formatRepeat(repeat, pattern, evalStr) {
   const article = /^[aeiou]/i.test(actionName) ? 'an' : 'a';
 
   if (pattern === 'attack') {
-    return ` _Repeat_: On subsequent turns, you can take ${article} ${actionName} to repeat the attack.`;
+    return ` _Repeat:_ On subsequent turns, you can take ${article} ${actionName} to repeat the attack.`;
   }
   if (pattern === 'save') {
-    return ` _Repeat_: On subsequent turns, you can take ${article} ${actionName} to move the effect and repeat the save.`;
+    return ` _Repeat:_ On subsequent turns, you can take ${article} ${actionName} to move the effect and repeat the save.`;
   }
-  return ` _Repeat_: On subsequent turns, you can take ${article} ${actionName} to repeat the effect.`;
+  return ` _Repeat:_ On subsequent turns, you can take ${article} ${actionName} to repeat the effect.`;
 }
 
 /**
@@ -1390,7 +1390,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
         const formattedHitOrMiss = formatPayloadList(block.hitOrMiss, evalStr, formatDiceObj, { pattern: 'attack', role: 'hitOrMiss', targetObj: block.target });
         if (formattedHitOrMiss) formattedHit = `${formattedHit}, and ${formattedHitOrMiss}`;
       }
-      if (formattedHit) hitText = ` _Hit_: ${formattedHit}.`;
+      if (formattedHit) hitText = ` _Hit:_ ${formattedHit}.`;
     }
 
     let missText = '';
@@ -1409,21 +1409,21 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
         }
         if (block.miss.text) parts.push(evalStr(block.miss.text));
         if (parts.length > 0) {
-          missText = ` _Miss_: ${capitalize(parts.join(', '))}.`;
+          missText = ` _Miss:_ ${capitalize(parts.join(', '))}.`;
         }
       } else {
         const formattedMiss = formatPayloadList(block.miss, evalStr, formatDiceObj, { pattern: 'attack', role: 'miss', targetObj: block.target });
-        if (formattedMiss) missText = ` _Miss_: ${capitalize(formattedMiss)}.`;
+        if (formattedMiss) missText = ` _Miss:_ ${capitalize(formattedMiss)}.`;
       }
     }
 
     let critText = '';
     if (block.crit) {
       const formattedCrit = formatPayloadList(block.crit, evalStr, formatDiceObj, { pattern: 'attack', role: 'crit', targetObj: block.target });
-      if (formattedCrit) critText = ` _Critical Hit_: ${capitalize(formattedCrit)}.`;
+      if (formattedCrit) critText = ` _Critical Hit:_ ${capitalize(formattedCrit)}.`;
     }
 
-    mainBody = `_${classif} Attack Roll_: ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${missText}${critText}${text ? ` ${text}` : ''}`;
+    mainBody = `_${classif} Attack Roll:_ ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${missText}${critText}${text ? ` ${text}` : ''}`;
   }
 
   // ── 2. SAVE ────────────────────────────────────────────────────────────────
@@ -1438,13 +1438,13 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     let alwaysText = '';
     if (block.failureOrSuccess) {
       const fmtd = formatPayloadList(block.failureOrSuccess, evalStr, formatDiceObj, { ...saveCtx, role: 'failureOrSuccess' });
-      if (fmtd) alwaysText = ` _Failure or Success_: ${fmtd}.`;
+      if (fmtd) alwaysText = ` _Failure or Success:_ ${fmtd}.`;
     }
 
     let failText = '';
     if (block.failure) {
       const fmtd = formatPayloadList(block.failure, evalStr, formatDiceObj, { ...saveCtx, role: 'failure' });
-      if (fmtd) failText = ` _Failure_: ${capitalize(fmtd)}.`;
+      if (fmtd) failText = ` _Failure:_ ${capitalize(fmtd)}.`;
     }
 
     let successText = '';
@@ -1465,15 +1465,15 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
         }
         if (block.success.text) parts.push(evalStr(block.success.text));
         if (parts.length > 0) {
-          successText = ` _Success_: ${capitalize(parts.join(', '))}.`;
+          successText = ` _Success:_ ${capitalize(parts.join(', '))}.`;
         }
       } else {
         const fmtd = formatPayloadList(block.success, evalStr, formatDiceObj, { ...saveCtx, role: 'success' });
-        if (fmtd) successText = ` _Success_: ${capitalize(fmtd)}.`;
+        if (fmtd) successText = ` _Success:_ ${capitalize(fmtd)}.`;
       }
     }
 
-    mainBody = `_${fullAbility} Saving Throw_: DC ${dcVal}${targetDesc}.${alwaysText}${failText}${successText}${text ? ` ${text}` : ''}`.replace(/\.\./g, '.');
+    mainBody = `_${fullAbility} Saving Throw:_ DC ${dcVal}${targetDesc}.${alwaysText}${failText}${successText}${text ? ` ${text}` : ''}`.replace(/\.\./g, '.');
   }
 
   // ── 3. HEALING ─────────────────────────────────────────────────────────────
@@ -1627,7 +1627,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
         || cleanBody.toLowerCase().includes(`range: ${rawRangeVal.toLowerCase()}`)
         || (rawRangeVal.toLowerCase() === 'touch' && cleanBody.toLowerCase().includes('you touch')));
     if (rawRangeVal && !/^self$/i.test(rawRangeVal) && !bodyHasRange) {
-      rangeText = ` _Range_: ${capitalize(rawRangeVal)}.`;
+      rangeText = ` _Range:_ ${capitalize(rawRangeVal)}.`;
     }
 
     mainBody = `${cleanBody}${rangeText}`.trim();
@@ -1702,7 +1702,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
 
   if (triggerStr) {
     const cleanBody = resultBody.replace(/\.$/, '');
-    return `_Trigger_: ${triggerStr}. _Response_: ${cleanBody}.`;
+    return `_Trigger:_ ${triggerStr}. _Response:_ ${cleanBody}.`;
   }
 
   return resultBody;
@@ -1728,11 +1728,11 @@ export function formatActivityMechanic(activity, characterData) {
         if (!item) return '';
         if (typeof item === 'object') {
           const rawName = item.name || '';
-          // Suppress the upcast extra — it's always shown via the _Upcast_: suffix instead
+          // Suppress the upcast extra — it's always shown via the _Upcast:_ suffix instead
           if (rawName === 'Using a Higher-Level Spell Slot') return '';
           const evaluatedName = rawName ? evaluator.evaluate(rawName, scope) : '';
           if (evaluatedName === 'Using a Higher-Level Spell Slot') return '';
-          const title = evaluatedName ? `_${evaluatedName}_: ` : '';
+          const title = evaluatedName ? `_${evaluatedName}:_ ` : '';
           const body = item.description ? evaluator.evaluate(item.description, scope) : '';
           return `${title}${body}`.trim();
         }
@@ -1752,8 +1752,8 @@ export function formatActivityMechanic(activity, characterData) {
     const cleanDur = rawDur.trim();
     if (/^instantaneous$/i.test(cleanDur) || cleanDur === '') return '';
     const concMatch = cleanDur.match(/concentration(?:,\s*|\s+)?(?:up to\s+)?(.+)/i);
-    if (concMatch) return ` _Concentration_: Up to ${concMatch[1].trim()}.`;
-    return ` _Duration_: ${capitalize(cleanDur)}.`;
+    if (concMatch) return ` _Concentration:_ Up to ${concMatch[1].trim()}.`;
+    return ` _Duration:_ ${capitalize(cleanDur)}.`;
   };
 
   const formatRitualSuffix = () => {
@@ -1791,7 +1791,7 @@ export function formatActivityMechanic(activity, characterData) {
     effectiveMechanic = applyUpcast(mechanicObj, upcastSpec, upcastSteps);
   }
 
-  // Non-Warlock: show _Upcast_: label when spell level < character's max slot level.
+  // Non-Warlock: show _Upcast:_ label when spell level < character's max slot level.
   const resourceId = activity.resource || '';
   const baseMatch = resourceId.match(/^level(\d+)SpellSlot$/);
   const baseLevel = baseMatch ? parseInt(baseMatch[1], 10) : 0;
@@ -1800,7 +1800,7 @@ export function formatActivityMechanic(activity, characterData) {
 
   const evalStrForLabel = s => evaluator.evaluate(s, scope);
   const upcastSuffix = showUpcastLabel
-    ? ` _Upcast_: ${deriveUpcastLabel(upcastSpec, effectiveMechanic, activity, evalStrForLabel)}.`
+    ? ` _Upcast:_ ${deriveUpcastLabel(upcastSpec, effectiveMechanic, activity, evalStrForLabel)}.`
     : '';
 
   const fullSuffix = `${durSuffix}${ritualSuffix}${upcastSuffix}${extraSuffix}`;
@@ -1815,7 +1815,7 @@ export function formatActivityMechanic(activity, characterData) {
     if (effectiveMechanic.mode === 'choice') {
       const evalStr = s => evaluator.evaluate(s, scope);
       const topTrigger = effectiveMechanic.trigger ? formatTrigger(effectiveMechanic.trigger, evalStr) : '';
-      const triggerPart = topTrigger ? ` _Trigger_: ${topTrigger}. _Response_:` : '';
+      const triggerPart = topTrigger ? ` _Trigger:_ ${topTrigger}. _Response:_` : '';
 
       const hasAuraBlock0 = blocks[0]?.pattern === 'aura';
       const auraPreamble = hasAuraBlock0 ? formatBlock(blocks[0], activity, evaluator, scope) : '';

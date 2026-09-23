@@ -89,7 +89,7 @@ export const MATCHING_ORDER = [
  * Safely evaluates whether a given node's condition evaluates to true,
  * mirroring the exact truthiness logic used in the CharacterBuilder.
  */
-export const isNodeConditionMet = (node, char) => {
+export const isNodeConditionMet = (node, char, evaluator = null) => {
     if (!node) return false;
 
     // Respect the visibility flag calculated by the CharacterBuilder engine
@@ -98,11 +98,11 @@ export const isNodeConditionMet = (node, char) => {
     // If it has a condition and character data is available, evaluate strictly
     if (node.condition && char) {
         try {
-            const evaluator = new ExpressionEvaluator(char);
-            const result = evaluator.evaluate(node.condition);
+            const ev = evaluator || new ExpressionEvaluator(char);
+            const result = ev.evaluate(node.condition);
             // Strict truthiness: treat null, false, undefined, and unresolvable string expressions as false
             return !!result && !(typeof result === 'string' && result.includes('$('));
-        } catch (e) {
+        } catch {
             return false;
         }
     }
@@ -110,9 +110,10 @@ export const isNodeConditionMet = (node, char) => {
     return true;
 };
 
-export const collectRenderableNodes = (node, char, path = [], logicalPath = []) => {
+export const collectRenderableNodes = (node, char, path = [], logicalPath = [], evaluator = null) => {
+    const ev = evaluator || (char ? new ExpressionEvaluator(char) : null);
     const nodes = [];
-    if (!isNodeConditionMet(node, char)) return nodes;
+    if (!isNodeConditionMet(node, char, ev)) return nodes;
 
     const step = { id: node.id || node.name, slotIndex: node.slotIndex };
     const currentLogicalPath = [...logicalPath, step];
@@ -128,7 +129,7 @@ export const collectRenderableNodes = (node, char, path = [], logicalPath = []) 
 
     if (node.children && Array.isArray(node.children)) {
         node.children.forEach((child, index) => {
-            nodes.push(...collectRenderableNodes(child, char, [...path, index], currentLogicalPath));
+            nodes.push(...collectRenderableNodes(child, char, [...path, index], currentLogicalPath, ev));
         });
     }
     return nodes;
@@ -162,9 +163,9 @@ export const categorizeNode = (item) => {
     return null;
 };
 
-export const getAvailableCategories = (tree, char) => {
+export const getAvailableCategories = (tree, char, precomputedNodes = null) => {
     if (!tree) return [];
-    const renderableNodes = collectRenderableNodes(tree, char);
+    const renderableNodes = precomputedNodes || collectRenderableNodes(tree, char);
     const availableCategories = new Set();
 
     renderableNodes.forEach(item => {
@@ -186,9 +187,9 @@ export const getAvailableCategories = (tree, char) => {
     return Array.from(availableCategories);
 };
 
-export const isBuilderComplete = (tree, char) => {
+export const isBuilderComplete = (tree, char, precomputedNodes = null) => {
     if (!tree) return true;
-    const nodes = collectRenderableNodes(tree, char);
+    const nodes = precomputedNodes || collectRenderableNodes(tree, char);
 
     // 1. Check all Slots are filled
     const hasUnfilledSlot = nodes.some(item => item.type === 'Slot' && !item.node.filled);
@@ -215,11 +216,11 @@ export const isBuilderComplete = (tree, char) => {
     return true;
 };
 
-export const getCategoryStats = (tree, char) => {
+export const getCategoryStats = (tree, char, precomputedNodes = null) => {
     const stats = {};
     if (!tree) return stats;
 
-    const nodes = collectRenderableNodes(tree, char);
+    const nodes = precomputedNodes || collectRenderableNodes(tree, char);
     const attr = char.attributes || {};
     const meta = char.meta || {};
     const statsList = ['str', 'dex', 'con', 'int', 'wis', 'cha'];

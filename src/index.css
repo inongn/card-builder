@@ -4111,3 +4111,32 @@ mdui-list-item.card-vertical-item::part(container) {
   --mdui-color-primary: 74 222 128;
   --mdui-color-on-primary: 0 0 0;
 }
+
+/* ==========================================================================
+   PERFORMANCE OPTIMIZATIONS FOR LOW-POWER DEVICES
+   ========================================================================== */
+
+/* Skip rendering work for off-screen cards in long lists */
+.options-list > *,
+.card-vertical-item,
+.other-characters-list > * {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 88px;
+}
+
+/* Optimize scroll performance and reduce GPU repaint churn */
+.options-list,
+.other-characters-list,
+.activity-sheet-list,
+.play-content-aside {
+  contain: content;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

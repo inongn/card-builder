@@ -3,7 +3,7 @@ import React, { useState, useLayoutEffect, useRef } from 'react';
 /**
  * A component that scales its font size down until it fits its container.
  */
-export const AutoFitContent = ({ children, maxFontSize = 1, minFontSize = 0.45, step = 0.005, unit = 'rem' }) => {
+export const AutoFitContent = ({ children, maxFontSize = 1, minFontSize = 0.45, precision = 0.01, unit = 'rem' }) => {
     const containerRef = useRef(null);
     const innerRef = useRef(null);
 
@@ -12,38 +12,51 @@ export const AutoFitContent = ({ children, maxFontSize = 1, minFontSize = 0.45, 
         const inner = innerRef.current;
         if (!container || !inner) return;
 
+        let frameId;
+
         const fit = () => {
             const containerHeight = container.offsetHeight;
-            if (containerHeight <= 0) {
-                // Wait for layout
-                setTimeout(fit, 1);
-                return;
+            if (containerHeight <= 0) return;
+
+            // Fast path: test maxFontSize
+            inner.style.fontSize = `${maxFontSize}${unit}`;
+            if (inner.scrollHeight <= containerHeight + 1) {
+                return; // Fits at max font size, done in 1 check!
             }
 
-            let currentSize = maxFontSize;
-            inner.style.fontSize = `${currentSize}${unit}`;
+            // Binary search between minFontSize and maxFontSize (max 7 iterations)
+            let low = minFontSize;
+            let high = maxFontSize;
+            let best = minFontSize;
 
-            const maxIterations = 100;
-            let iteration = 0;
-
-            while (inner.scrollHeight > containerHeight + 1 && currentSize > minFontSize && iteration < maxIterations) {
-                currentSize = Math.max(minFontSize, currentSize - step);
-                inner.style.fontSize = `${currentSize}${unit}`;
-                iteration++;
+            for (let i = 0; i < 7; i++) {
+                if (high - low < precision) break;
+                const mid = (low + high) / 2;
+                inner.style.fontSize = `${mid}${unit}`;
+                if (inner.scrollHeight <= containerHeight + 1) {
+                    best = mid;
+                    low = mid;
+                } else {
+                    high = mid;
+                }
             }
+
+            inner.style.fontSize = `${best}${unit}`;
         };
 
-        const resizeObserver = new ResizeObserver(() => fit());
+        const resizeObserver = new ResizeObserver(() => {
+            cancelAnimationFrame(frameId);
+            frameId = requestAnimationFrame(fit);
+        });
         resizeObserver.observe(container);
 
-        // Web components and flex layouts might take a moment to settle
-        const timer = setTimeout(fit, 1);
+        fit();
 
         return () => {
             resizeObserver.disconnect();
-            clearTimeout(timer);
+            cancelAnimationFrame(frameId);
         };
-    }, [children, maxFontSize, minFontSize, step, unit]);
+    }, [children, maxFontSize, minFontSize, precision, unit]);
 
     return (
         <div

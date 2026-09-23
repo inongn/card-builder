@@ -48,7 +48,7 @@ export function bundle() {
         }
     });
 
-    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(db, null, 2));
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(db));
     console.log(`Bundled ${db.length} properties into ${OUTPUT_FILE}`);
 }
 

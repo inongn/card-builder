@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef, Suspense, lazy } from 'react';
 import { PropertyLibrary, CharacterBuilder } from './engine/RpgEngine.js';
 import jsyaml from 'js-yaml';
-import { SAMPLE_CHARACTERS, SAMPLE_ID_PREFIX } from './data/sampleCharacters.js';
 import 'mdui/mdui.css';
 import 'mdui';
 import { setColorScheme } from 'mdui/functions/setColorScheme.js';
@@ -31,16 +30,18 @@ import 'mdui/components/navigation-bar-item.js';
 import 'mdui/components/top-app-bar.js';
 import 'mdui/components/top-app-bar-title.js';
 import { DashboardScreen } from './screens/DashboardScreen';
-import { BuilderScreen } from './screens/BuilderScreen';
 import { PlayScreen } from './screens/PlayScreen';
-import { PrintScreen } from './screens/PrintScreen';
-import DebugDrawer from './components/DebugDrawer';
-import { ExportRecipeDialog } from './components/ExportRecipeDialog';
-import { ImportRecipeDialog } from './components/ImportRecipeDialog';
+const BuilderScreen = lazy(() => import('./screens/BuilderScreen').then(m => ({ default: m.BuilderScreen })));
+const PrintScreen = lazy(() => import('./screens/PrintScreen').then(m => ({ default: m.PrintScreen })));
+const DebugDrawer = lazy(() => import('./components/DebugDrawer'));
+const ExportRecipeDialog = lazy(() => import('./components/ExportRecipeDialog').then(m => ({ default: m.ExportRecipeDialog })));
+const ImportRecipeDialog = lazy(() => import('./components/ImportRecipeDialog').then(m => ({ default: m.ImportRecipeDialog })));
 import { decodeRecipe } from './utils/recipeCodec';
 
 import { getColorFromImage } from 'mdui/functions/getColorFromImage.js';
 import { getAssetUrl } from './data/artworkData.js';
+
+export const SAMPLE_ID_PREFIX = 'sample_';
 
 const DEFAULT_THEME_COLOR = '#ee0feeff';
 
@@ -75,7 +76,7 @@ function debounce(fn, delay) {
 // HELPERS
 // ============================================================================
 
-const loadAndSortCharacters = () => {
+const loadAndSortCharacters = (samples = null) => {
     const savedRaw = localStorage.getItem('saved_characters');
     const saved = JSON.parse(savedRaw || '[]');
 
@@ -87,24 +88,30 @@ const loadAndSortCharacters = () => {
 
     let merged = userCharacters;
     if (isEnabled) {
-        // Load fresh sample characters
-        const freshSamples = SAMPLE_CHARACTERS.map(sc => {
-            const existing = saved.find(c => c.id === sc.id);
-            return {
-                id: sc.id,
-                name: sc.name,
-                class: sc.class,
-                sub: sc.sub || '',
-                species: sc.species,
-                background: sc.background || '',
-                level: sc.level,
-                image: sc.image || '',
-                recipe: sc.recipe,
-                timestamp: existing?.timestamp || new Date().toISOString(),
-                lastPlayed: existing?.lastPlayed
-            };
-        });
-        merged = [...userCharacters, ...freshSamples];
+        if (samples) {
+            // Load fresh sample characters
+            const freshSamples = samples.map(sc => {
+                const existing = saved.find(c => c.id === sc.id);
+                return {
+                    id: sc.id,
+                    name: sc.name,
+                    class: sc.class,
+                    sub: sc.sub || '',
+                    species: sc.species,
+                    background: sc.background || '',
+                    level: sc.level,
+                    image: sc.image || '',
+                    recipe: sc.recipe,
+                    timestamp: existing?.timestamp || new Date().toISOString(),
+                    lastPlayed: existing?.lastPlayed
+                };
+            });
+            merged = [...userCharacters, ...freshSamples];
+        } else {
+            // Retain existing sample characters already in localStorage
+            const existingSamples = saved.filter(c => String(c.id).startsWith(SAMPLE_ID_PREFIX));
+            merged = [...userCharacters, ...existingSamples];
+        }
     }
 
     // Sort by lastPlayed desc, then timestamp desc
@@ -169,14 +176,34 @@ export default function App() {
         setSavedCharacters(loadAndSortCharacters());
     }, [activeTab]);
 
-    // Helper to get extracted color from image URL using HTMLImageElement
+    const colorCache = useRef(new Map());
+
+    // Helper to get extracted color from image URL using HTMLImageElement with caching
     const extractColorFromUrl = useCallback((url) => {
+        if (!url) return Promise.resolve(null);
+        if (colorCache.current.has(url)) {
+            return Promise.resolve(colorCache.current.get(url));
+        }
+        try {
+            const cachedStorage = localStorage.getItem(`extracted_color_${url}`);
+            if (cachedStorage) {
+                colorCache.current.set(url, cachedStorage);
+                return Promise.resolve(cachedStorage);
+            }
+        } catch (e) {}
+
         return new Promise((resolve) => {
             const img = new Image();
             img.crossOrigin = 'Anonymous';
             img.onload = () => {
                 getColorFromImage(img)
-                    .then(color => resolve(color))
+                    .then(color => {
+                        if (color) {
+                            colorCache.current.set(url, color);
+                            try { localStorage.setItem(`extracted_color_${url}`, color); } catch (e) {}
+                        }
+                        resolve(color);
+                    })
                     .catch((err) => {
                         console.warn('Failed to extract color from image:', err);
                         resolve(null);
@@ -406,7 +433,15 @@ export default function App() {
         setActiveTab('builder');
     }, [builder, syncState]);
 
-    const handleToggleSampleCharacters = useCallback(() => {
+    useEffect(() => {
+        if (sampleCharactersEnabled) {
+            import('./data/sampleCharacters.js').then(({ SAMPLE_CHARACTERS }) => {
+                setSavedCharacters(loadAndSortCharacters(SAMPLE_CHARACTERS));
+            });
+        }
+    }, [sampleCharactersEnabled]);
+
+    const handleToggleSampleCharacters = useCallback(async () => {
         const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
         if (sampleCharactersEnabled) {
             // Remove all sample characters
@@ -416,7 +451,8 @@ export default function App() {
             setSavedCharacters(filtered);
             setSampleCharactersEnabled(false);
         } else {
-            // Add sample characters
+            // Load fresh sample characters dynamically
+            const { SAMPLE_CHARACTERS } = await import('./data/sampleCharacters.js');
             const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
                 id: sc.id,
                 name: sc.name,
@@ -555,35 +591,43 @@ export default function App() {
 
     return (
         <mdui-layout className="app-container">
-            <DebugDrawer
-                open={isDebugOpen}
-                onClose={() => setIsDebugOpen(false)}
-                characterData={characterData}
-                builder={builder}
-                propertyTree={propertyTree}
-                library={library}
-                sampleCharactersEnabled={sampleCharactersEnabled}
-                handleToggleSampleCharacters={handleToggleSampleCharacters}
-                savedCharacters={savedCharacters}
-                setSavedCharacters={setSavedCharacters}
-                useActivitySheet={useActivitySheet}
-                onToggleActivitySheet={handleToggleActivitySheet}
-                onLoadDebugAllActivities={handleLoadDebugAllActivities}
-                width={"1200px"}
-            />
+            <Suspense fallback={null}>
+                {isDebugOpen && (
+                    <DebugDrawer
+                        open={isDebugOpen}
+                        onClose={() => setIsDebugOpen(false)}
+                        characterData={characterData}
+                        builder={builder}
+                        propertyTree={propertyTree}
+                        library={library}
+                        sampleCharactersEnabled={sampleCharactersEnabled}
+                        handleToggleSampleCharacters={handleToggleSampleCharacters}
+                        savedCharacters={savedCharacters}
+                        setSavedCharacters={setSavedCharacters}
+                        useActivitySheet={useActivitySheet}
+                        onToggleActivitySheet={handleToggleActivitySheet}
+                        onLoadDebugAllActivities={handleLoadDebugAllActivities}
+                        width={"1200px"}
+                    />
+                )}
 
-            <ExportRecipeDialog
-                open={exportDialog.open}
-                onClose={() => setExportDialog(prev => ({ ...prev, open: false }))}
-                character={exportDialog.character}
-                recipe={exportDialog.recipe}
-            />
+                {exportDialog.open && (
+                    <ExportRecipeDialog
+                        open={exportDialog.open}
+                        onClose={() => setExportDialog(prev => ({ ...prev, open: false }))}
+                        character={exportDialog.character}
+                        recipe={exportDialog.recipe}
+                    />
+                )}
 
-            <ImportRecipeDialog
-                open={importDialog.open}
-                onClose={() => setImportDialog(prev => ({ ...prev, open: false }))}
-                onImport={handleImportRecipe}
-            />
+                {importDialog.open && (
+                    <ImportRecipeDialog
+                        open={importDialog.open}
+                        onClose={() => setImportDialog(prev => ({ ...prev, open: false }))}
+                        onImport={handleImportRecipe}
+                    />
+                )}
+            </Suspense>
 
             <mdui-layout-main className="app-main-layout">
                 {activeTab === 'dashboard' && (
@@ -598,24 +642,26 @@ export default function App() {
                     />
                 )}
                 {activeTab === 'builder' && (
-                    <BuilderScreen
-                        selectedCategory={selectedCategory}
-                        setSelectedCategory={setSelectedCategory}
-                        propertyTree={propertyTree}
-                        characterData={characterData}
-                        handleUpdateInput={handleUpdateInput}
-                        handleFillSlot={handleFillSlot}
-                        handleClearSlot={handleClearSlot}
-                        handleGetSlotOptions={handleGetSlotOptions}
-                        onGetProperty={handleGetProperty}
-                        onNavigate={handleNavigate}
-                        onSave={handleSaveCharacter}
-                        builderSource={builderSource}
-                        isNewCharacterCreation={isNewCharacterCreation}
-                        setIsNewCharacterCreation={setIsNewCharacterCreation}
-                        onOpenExport={() => handleOpenExport()}
-                        onOpenImport={() => handleOpenImport('builder')}
-                    />
+                    <Suspense fallback={null}>
+                        <BuilderScreen
+                            selectedCategory={selectedCategory}
+                            setSelectedCategory={setSelectedCategory}
+                            propertyTree={propertyTree}
+                            characterData={characterData}
+                            handleUpdateInput={handleUpdateInput}
+                            handleFillSlot={handleFillSlot}
+                            handleClearSlot={handleClearSlot}
+                            handleGetSlotOptions={handleGetSlotOptions}
+                            onGetProperty={handleGetProperty}
+                            onNavigate={handleNavigate}
+                            onSave={handleSaveCharacter}
+                            builderSource={builderSource}
+                            isNewCharacterCreation={isNewCharacterCreation}
+                            setIsNewCharacterCreation={setIsNewCharacterCreation}
+                            onOpenExport={() => handleOpenExport()}
+                            onOpenImport={() => handleOpenImport('builder')}
+                        />
+                    </Suspense>
                 )}
                 {activeTab === 'play' && (
                     <PlayScreen
@@ -631,11 +677,13 @@ export default function App() {
                     />
                 )}
                 {activeTab === 'print' && (
-                    <PrintScreen
-                        char={characterData}
-                        onNavigate={handleNavigate}
-                        useActivitySheet={useActivitySheet}
-                    />
+                    <Suspense fallback={null}>
+                        <PrintScreen
+                            char={characterData}
+                            onNavigate={handleNavigate}
+                            useActivitySheet={useActivitySheet}
+                        />
+                    </Suspense>
                 )}
             </mdui-layout-main>
         </mdui-layout>

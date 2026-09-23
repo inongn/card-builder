@@ -61,7 +61,7 @@ children:
       **6. Choice.** Choose one of the above.
     mechanic:
       mode: choice
-      text: 'Roll 1d6 to determine the effect:'
+      text: 'When you finish a Long Rest, roll 1d6 to determine the effect:'
       blocks:
         - pattern: healing
           name: 1. Healing
@@ -74,7 +74,7 @@ children:
           target:
             type: touch
         - pattern: automatic
-          name: 2. Hwiftness
+          name: 2. Swiftness
           target:
             type: touch
           payloads:
