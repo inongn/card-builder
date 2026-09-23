@@ -1,0 +1,4969 @@
+{
+  "aasimar": {
+    "name": "Aasimar",
+    "description": "Mortales que llevan una chispa de los Planos Superiores, trayendo luz, curación y furia celestial."
+  },
+  "aberrant": {
+    "name": "Hechicería Aberrante",
+    "description": "Empuña poder psiónico concedido por una influencia alienígena, tocando mentes y alterando el mundo a tu alrededor."
+  },
+  "aberrantSpiritBeholderkin": {
+    "name": "Espíritu Aberrante (Contemplador)"
+  },
+  "aberrantSpiritMindFlayer": {
+    "name": "Espíritu Aberrante (Azotamentes)"
+  },
+  "aberrantSpiritSlaad": {
+    "name": "Espíritu Aberrante (Slaad)"
+  },
+  "abilityScoreImprovement": {
+    "name": "Mejora de característica I",
+    "summary": "Aumenta en 2 una puntuación de característica que elijas o aumenta dos en 1 cada una."
+  },
+  "abilityScoreImprovement2": {
+    "name": "Mejora de característica II",
+    "summary": "Aumenta en 2 una puntuación de característica que elijas o aumenta dos en 1 cada una."
+  },
+  "abilityScoreImprovement3": {
+    "name": "Mejora de característica III",
+    "summary": "Aumenta en 2 una puntuación de característica que elijas o aumenta dos en 1 cada una."
+  },
+  "abjurer": {
+    "name": "Abjurador",
+    "description": "Centra tu estudio mágico en conjuros que bloquean, destierran y protegen, resguardando contra el daño mágico."
+  },
+  "abyssalRealm": {
+    "name": "Reino Abisal"
+  },
+  "abyssalRupture": {
+    "name": "Ruptura Abisal"
+  },
+  "acidAffinity": {
+    "name": "Afinidad al ácido",
+    "summary": "Obtén resistencia al ácido y suma tu modificador de Carisma a los conjuros de daño por ácido."
+  },
+  "acidImmunity": {
+    "name": "Inmunidad al ácido"
+  },
+  "acidResistance": {
+    "name": "Resistencia al ácido"
+  },
+  "acidSplash": {
+    "name": "Salpicadura ácida",
+    "summary": "Lanzas una burbuja de ácido que estalla en una salpicadura dañina."
+  },
+  "acolyte": {
+    "name": "Acólito",
+    "description": "Dedicaste tu juventud al servicio del templo, aprendiendo ritos sagrados y canalizando el favor divino."
+  },
+  "acrobatics": {
+    "name": "Acrobacias"
+  },
+  "acrobaticsAdvantage": {
+    "name": "Ventaja en Acrobacias"
+  },
+  "acrobaticsDisadvantage": {
+    "name": "Desventaja en Acrobacias"
+  },
+  "acrobaticsExpertise": {
+    "name": "Acrobacias",
+    "summary": "Conservar el equilibrio en situaciones difíciles o realizar una proeza acrobática."
+  },
+  "acrobaticsHalfProficiency": {
+    "name": "Media competencia en Acrobacias"
+  },
+  "acrobaticsProficiency": {
+    "name": "Acrobacias",
+    "summary": "Conservar el equilibrio en situaciones difíciles o realizar una proeza acrobática."
+  },
+  "actionSurge": {
+    "name": "Acción súbita",
+    "summary": "En tu turno, puedes llevar a cabo una acción más."
+  },
+  "actor": {
+    "name": "Actor",
+    "summary": "Domina la mímica y la suplantación teatral para engañar a otros."
+  },
+  "additionalFightingStyle": {
+    "name": "Estilo de combate adicional"
+  },
+  "adrenalineRush": {
+    "name": "Descarga de adrenalina"
+  },
+  "adventurersAtlas": {
+    "name": "Atlas del Aventurero"
+  },
+  "agonizingBlast": {
+    "name": "Descarga agónica",
+    "summary": "Suma tu modificador por Carisma a las tiradas de daño del conjuro de Descarga sobrenatural."
+  },
+  "aid": {
+    "name": "Auxilio",
+    "summary": "Refuerzas a tus aliados con resistencia y puntos de golpe adicionales."
+  },
+  "alarm": {
+    "name": "Alarma",
+    "summary": "Estableces una alarma mágica contra intrusiones."
+  },
+  "alchemist": {
+    "name": "Alquimista",
+    "description": "Combina reactivos para producir efectos mágicos, usando creaciones para dar vida y arrebatarla."
+  },
+  "alchemistsTools": {
+    "name": "Suministros de alquimista"
+  },
+  "alert": {
+    "name": "Alerta",
+    "summary": "Intercambia la iniciativa con aliados dispuestos y evita ser sorprendido."
+  },
+  "alterSelf": {
+    "name": "Alterar el propio aspecto",
+    "summary": "Alteras tu forma física con rasgos acuáticos, de armas o cosméticos."
+  },
+  "ambush": {
+    "name": "Emboscada",
+    "summary": "Añade un dado de maniobra a una prueba de Destreza (Sigilo) o a una tirada de iniciativa."
+  },
+  "ancestralGuardian": {
+    "name": "Senda del Guardián Ancestral",
+    "description": "Comunícate con los espíritus de tus ancestros, invocándolos para proteger aliados y acosar enemigos."
+  },
+  "animal_handling": {
+    "name": "Trato con animales"
+  },
+  "animalFriendship": {
+    "name": "Encantar animal",
+    "summary": "Convences a una bestia de que no tienes intenciones hostiles."
+  },
+  "animalHandlingAdvantage": {
+    "name": "Ventaja en Trato con animales"
+  },
+  "animalHandlingDisadvantage": {
+    "name": "Desventaja en Trato con animales"
+  },
+  "animalHandlingExpertise": {
+    "name": "Trato con animales",
+    "summary": "Tranquilizar o adiestrar a un animal, o conseguir que se comporte de una determinada forma."
+  },
+  "animalHandlingHalfProficiency": {
+    "name": "Media competencia en Trato con animales"
+  },
+  "animalHandlingProficiency": {
+    "name": "Trato con animales",
+    "summary": "Tranquilizar o adiestrar a un animal, o conseguir que se comporte de una determinada forma."
+  },
+  "animalMessenger": {
+    "name": "Mensajero animal",
+    "summary": "Ordenas a una bestia diminuta que entregue un mensaje en un lugar distante."
+  },
+  "animateDead": {
+    "name": "Animar a los muertos",
+    "summary": "Alzas a un sirviente muerto viviente a partir de un cadáver o un montón de huesos."
+  },
+  "arcana": {
+    "name": "Conocimiento arcano"
+  },
+  "arcanaAdvantage": {
+    "name": "Ventaja en Conocimiento arcano"
+  },
+  "arcanaDisadvantage": {
+    "name": "Desventaja en Conocimiento arcano"
+  },
+  "arcanaExpertise": {
+    "name": "Conocimiento arcano",
+    "summary": "Recordar información acerca de conjuros, objetos mágicos y los planos de existencia."
+  },
+  "arcanaHalfProficiency": {
+    "name": "Media competencia en Conocimiento arcano"
+  },
+  "arcanaProficiency": {
+    "name": "Conocimiento arcano",
+    "summary": "Recordar información acerca de conjuros, objetos mágicos y los planos de existencia."
+  },
+  "arcaneArcher": {
+    "name": "Arquero Arcano",
+    "description": "Estudia un método único de arquería élfica que entreteje magia en los disparos para crear efectos sobrenaturales."
+  },
+  "arcaneArcherLoreCantrip": {
+    "name": "Truco de Tradición de Arquero Arcano"
+  },
+  "arcaneConduit": {
+    "name": "Conducto Arcano",
+    "summary": "Canaliza energía arcana a través de tu armadura para añadir tu modificador de Inteligencia a los conjuros de daño."
+  },
+  "arcaneEye": {
+    "name": "Ojo arcano",
+    "summary": "Creas un sensor invisible que flota para explorar a distancia."
+  },
+  "arcaneLock": {
+    "name": "Cerradura arcana",
+    "summary": "Cierras mágicamente un punto de entrada o un contenedor."
+  },
+  "arcaneNecrosis": {
+    "name": "Necrosis Arcana",
+    "description": "Tus conjuros ignoran la resistencia al daño necrótico."
+  },
+  "arcaneShot": {
+    "name": "Disparo Arcano"
+  },
+  "arcaneShotOptions": {
+    "name": "Opciones de Disparo Arcano"
+  },
+  "arcaneTrickster": {
+    "name": "Embaucador Arcano",
+    "description": "Mejora tu sigilo y agilidad con conjuros, aprendiendo trucos mágicos para robos o bromas."
+  },
+  "arcaneTricksterCantrips": {
+    "name": "Trucos de Embaucador Arcano"
+  },
+  "arcaneTricksterSpells": {
+    "name": "Conjuros de Embaucador Arcano"
+  },
+  "arcaneVigor": {
+    "name": "Vigor Arcano",
+    "summary": "Aprovechas tu fuerza vital para curarte."
+  },
+  "arcaneWard": {
+    "name": "Guarda Arcana"
+  },
+  "archery": {
+    "name": "Tiro con arco",
+    "summary": "Recibes un bonificador de +2 a las tiradas de ataque con armas a distancia."
+  },
+  "archfeyPatron": {
+    "name": "Patrón Archifeérico",
+    "description": "Extrae poder de Feywild, forjando un pacto con un poderoso archifeérico para tejer una magia alegre y cautivadora."
+  },
+  "aridLand": {
+    "name": "Terreno árido",
+    "summary": "Adapta tu magia del círculo a desiertos y entornos abrasados por el sol."
+  },
+  "armamentSlot": {
+    "name": "Armamento"
+  },
+  "armor": {
+    "name": "Armadura"
+  },
+  "armorer": {
+    "name": "Armero",
+    "description": "Modifica la armadura para que funcione como una segunda piel, mejorando la magia, los ataques y generando defensa."
+  },
+  "armorModel": {
+    "name": "Modelo de Armadura"
+  },
+  "armorOfAgathys": {
+    "name": "Armadura de Agathys",
+    "summary": "Una escarcha protectora te rodea, otorgándote puntos de golpe temporales y daño de frío en represalia."
+  },
+  "armorOfShadows": {
+    "name": "Armadura de sombras",
+    "summary": "Puedes lanzar armadura de mago sobre ti sin gastar un espacio de conjuro."
+  },
+  "armsOfHadar": {
+    "name": "Brazos de Hadar",
+    "summary": "Zarcillos oscuros brotan a tu alrededor para golpear a los enemigos cercanos."
+  },
+  "artificer": {
+    "name": "Artífice",
+    "description": "Maestros de la invención que utilizan el ingenio y la magia para infundir un poder extraordinario a los objetos."
+  },
+  "artificerCantrips": {
+    "name": "Trucos de Artífice"
+  },
+  "artificerSkillProficiencies": {
+    "name": "Competencias en Habilidades de Artífice"
+  },
+  "artificerSpells": {
+    "name": "Conjuros de Artífice"
+  },
+  "artificerSubclass": {
+    "name": "Subclase de Artífice"
+  },
+  "artillerist": {
+    "name": "Artillero",
+    "description": "Especialízate en usar magia para arrojar energía, proyectiles y explosiones mortales en el campo de batalla."
+  },
+  "artisan": {
+    "name": "Artesano",
+    "description": "Perfeccionaste un oficio en el taller de un artesano, ganando un ojo agudo para el detalle y el comercio con los clientes."
+  },
+  "artisansTools": {
+    "name": "Herramientas de artesano"
+  },
+  "ascendantStep": {
+    "name": "Paso ascendente",
+    "summary": "Puedes lanzar levitar sobre ti sin gastar un espacio de conjuro."
+  },
+  "aspectOfTheWilds": {
+    "name": "Aspecto de las Tierras Salvajes"
+  },
+  "assassin": {
+    "name": "Asesino",
+    "description": "Utiliza el sigilo, el veneno y el disfraz para eliminar a los enemigos con una eficacia letal como asesino entrenado."
+  },
+  "astralEntityCrystal": {
+    "name": "Espíritu Psiónico (Entidad de Cristal)"
+  },
+  "astralEntityEctoplasmic": {
+    "name": "Espíritu Psiónico (Entidad Ectoplásmica)"
+  },
+  "astralEntityGhostly": {
+    "name": "Espíritu Psiónico (Entidad Fantasmal)"
+  },
+  "athlete": {
+    "name": "Atleta",
+    "summary": "Mejora la agilidad física, la velocidad trepando y la recuperación rápida de estar derribado."
+  },
+  "athletics": {
+    "name": "Atletismo"
+  },
+  "athleticsAdvantage": {
+    "name": "Ventaja en Atletismo"
+  },
+  "athleticsDisadvantage": {
+    "name": "Desventaja en Atletismo"
+  },
+  "athleticsExpertise": {
+    "name": "Atletismo",
+    "summary": "Saltar más lejos de lo normal, mantenerse a flote en aguas revueltas o romper algo."
+  },
+  "athleticsHalfProficiency": {
+    "name": "Media competencia en Atletismo"
+  },
+  "athleticsProficiency": {
+    "name": "Atletismo",
+    "summary": "Saltar más lejos de lo normal, mantenerse a flote en aguas revueltas o romper algo."
+  },
+  "augury": {
+    "name": "Augurio",
+    "summary": "Consultas presagios de otros mundos sobre una acción futura específica."
+  },
+  "auraOfAlacrity": {
+    "name": "Aura de Celeridad"
+  },
+  "auraOfDevotion": {
+    "name": "Aura de entrega"
+  },
+  "auraOfElementalShielding": {
+    "name": "Aura de Protección Elemental"
+  },
+  "auraOfHate": {
+    "name": "Aura de Odio"
+  },
+  "auraOfLife": {
+    "name": "Aura de vida",
+    "summary": "Un aura irradia de ti, restaurando a los aliados inconscientes y otorgando resistencia necrótica."
+  },
+  "auraOfProtection": {
+    "name": "Aura de protección"
+  },
+  "auraOfPurity": {
+    "name": "Aura de pureza",
+    "summary": "Un aura irradia de ti, protegiendo a tus aliados contra estados y enfermedades."
+  },
+  "auraOfVitality": {
+    "name": "Aura de vitalidad",
+    "summary": "Un aura irradia de ti en una emanación de 9 metros durante la duración del conjuro."
+  },
+  "auraOfWarding": {
+    "name": "Aura de Protección"
+  },
+  "awakenedMind": {
+    "name": "Mente Despierta"
+  },
+  "background": {
+    "name": "Trasfondo"
+  },
+  "baitAndSwitch": {
+    "name": "Maniobra de Distracción",
+    "summary": "Intercambia lugares con un aliado dispuesto y aumenta la CA."
+  },
+  "bane": {
+    "name": "Perdición",
+    "summary": "Debilitas la determinación y la precisión de hasta tres objetivos."
+  },
+  "banePact": {
+    "name": "Aspecto de Tiranía"
+  },
+  "banishingShot": {
+    "name": "Disparo de destierro",
+    "summary": "Destierra temporalmente al objetivo a un semiplano inofensivo."
+  },
+  "banishment": {
+    "name": "Destierro",
+    "summary": "Destierras a un objetivo a un semiplano inofensivo o a su reino nativo."
+  },
+  "banneret": {
+    "name": "Abanderado",
+    "description": "Reúne a los aliados para luchar contra el mal como un dechado de valor, utilizando presencia inspiradora y diplomacia."
+  },
+  "bansheesWail": {
+    "name": "Lamento de la Banshee"
+  },
+  "barbarian": {
+    "name": "Bárbaro",
+    "description": "Feroces guerreros impulsados por la furia primigenia, personificando la ferocidad y la resistencia salvaje de la naturaleza."
+  },
+  "barbarianSkillProficiencies": {
+    "name": "Competencias en Habilidades de Bárbaro"
+  },
+  "barbarianSubclass": {
+    "name": "Subclase de bárbaro"
+  },
+  "bard": {
+    "name": "Bardo",
+    "description": "Inspiradores intérpretes que tejen magia en la música, las palabras y el saber para manipular el combate y la mente."
+  },
+  "bardCantrips": {
+    "name": "Trucos de Bardo"
+  },
+  "bardicInspiration": {
+    "name": "Inspiración bárdica",
+    "summary": "Inspira a un aliado con un dado de bonificación para tiradas de dados."
+  },
+  "bardSpells": {
+    "name": "Conjuros preparados de Bardo"
+  },
+  "bardSubclass": {
+    "name": "Subclase de bardo"
+  },
+  "barkskin": {
+    "name": "Piel robliza",
+    "summary": "Tu piel se vuelve como la corteza, otorgándote protección de armadura."
+  },
+  "bastionOfLaw": {
+    "name": "Bastión de la Ley"
+  },
+  "battleaxe": {
+    "name": "Hacha de guerra"
+  },
+  "battleMaster": {
+    "name": "Maestro de Batalla",
+    "description": "Combina habilidades de combate perfeccionadas con el estudio académico para dominar técnicas marciales transmitidas por generaciones."
+  },
+  "battleMedic": {
+    "name": "Médico de Batalla"
+  },
+  "battleSmith": {
+    "name": "Herrero de Batalla",
+    "description": "Combina protección y curación, acompañado por un leal Defensor de Acero de tu propia creación."
+  },
+  "beaconOfHope": {
+    "name": "Señal de esperanza",
+    "summary": "Otorgas esperanza y curación máxima a los aliados en un área."
+  },
+  "beastCompanionName": {
+    "name": "Nombre del Compañero Bestial"
+  },
+  "beastMaster": {
+    "name": "Maestro de las Bestias",
+    "description": "Forma un vínculo místico con un animal especial, recurriendo a la magia primigenia y a una profunda conexión natural."
+  },
+  "beastOfTheLand": {
+    "name": "Bestia de la Tierra"
+  },
+  "beastOfTheSea": {
+    "name": "Bestia del Mar"
+  },
+  "beastOfTheSky": {
+    "name": "Bestia del Cielo"
+  },
+  "beastSense": {
+    "name": "Sentido bestial",
+    "summary": "Tocas a una bestia dispuesta."
+  },
+  "beguilingMagic": {
+    "name": "Magia Cautivadora"
+  },
+  "beguilingShot": {
+    "name": "Disparo Cautivador",
+    "summary": "Inflige daño psíquico adicional y hechiza al objetivo hacia un aliado."
+  },
+  "beguilingTwist": {
+    "name": "Giro Cautivador"
+  },
+  "behemothTitanForm": {
+    "name": "Behemoth"
+  },
+  "bendLuck": {
+    "name": "Doblegar la Suerte"
+  },
+  "berserker": {
+    "name": "Senda del berserker",
+    "description": "Los bárbaros que recorren la senda del berserker ponen su furia principalmente al servicio de la violencia. Su senda se asienta en una rabia sin cortapisas y estos bárbaros se embriagan del caos del combate."
+  },
+  "bestialSpiritAir": {
+    "name": "Espíritu Bestial (Aire)"
+  },
+  "bestialSpiritLand": {
+    "name": "Espíritu Bestial (Tierra)"
+  },
+  "bestialSpiritWater": {
+    "name": "Espíritu Bestial (Agua)"
+  },
+  "bestowCurse": {
+    "name": "Imponer maldición",
+    "summary": "Tocas a un objetivo para infligir una maldición debilitante personalizada."
+  },
+  "bhaalPact": {
+    "name": "Aspecto de la Matanza",
+    "summary": "Ganas resistencia al veneno y aprendes el truco Guardia de cuchillas."
+  },
+  "biofeedback": {
+    "name": "Biorretroalimentación",
+    "summary": "Obtienes Puntos de Golpe Temporales cuando lanzas conjuros de Nigromancia o Transmutación."
+  },
+  "bitingCold": {
+    "name": "Frío Penetrante",
+    "description": "Tu daño de Frío ignora la Resistencia al daño de frío."
+  },
+  "bladesinger": {
+    "name": "Cantor de la Hoja",
+    "description": "Domina una tradición mágica que mezcla el juego de espadas y la danza para canalizar magia en tus hojas cantarinas."
+  },
+  "bladesingerSkillProficiencies": {
+    "name": "Competencias en Habilidades de Cantor de la Hoja"
+  },
+  "bladesong": {
+    "name": "Canción de la Hoja"
+  },
+  "bladeWard": {
+    "name": "Guardia de cuchillas",
+    "summary": "Te proteges contra ataques de armas."
+  },
+  "bleedingDarkness": {
+    "name": "Oscuridad Sangrante",
+    "summary": "Creas un vacío de tinta que emana oscuridad mágica y causa daño de frío."
+  },
+  "bless": {
+    "name": "Bendición",
+    "summary": "Bendices a hasta tres aliados, potenciando sus ataques y salvaciones."
+  },
+  "blessedHealer": {
+    "name": "Sanador bendito",
+    "description": "Si lanzas esto sobre otra criatura, recuperas $(2+(stats.wis.mod)) Puntos de Golpe."
+  },
+  "blessedStrikes": {
+    "name": "Golpes benditos"
+  },
+  "blessedWarrior": {
+    "name": "Guerrero bendito",
+    "summary": "Aprendes dos trucos de clérigo de tu elección."
+  },
+  "blessedWarriorCantrips": {
+    "name": "Trucos de Guerrero Bendito"
+  },
+  "blessingOfMoonlight": {
+    "name": "Bendición de la Luz de Luna"
+  },
+  "blessingOfTheTrickster": {
+    "name": "Bendición del Embaucador"
+  },
+  "blessingsOfKnowledgeExpertise": {
+    "name": "Pericia de Bendiciones del Conocimiento"
+  },
+  "blessingsOfKnowledgeSkills": {
+    "name": "Competencias en Habilidades de Bendiciones del Conocimiento"
+  },
+  "blessingsOfKnowledgeTools": {
+    "name": "Competencia con Herramientas de Bendiciones del Conocimiento"
+  },
+  "blight": {
+    "name": "Marchitar",
+    "summary": "Drenas la humedad y la fuerza vital de un objetivo, infligiendo daño necrótico."
+  },
+  "blindedAdvantage": {
+    "name": "Ventaja en estado Cegado"
+  },
+  "blindedImmunity": {
+    "name": "Inmunidad al estado Cegado"
+  },
+  "blindnessdeafness": {
+    "name": "Sordera/ceguera",
+    "summary": "Ciegas o ensordeces a un objetivo con una maldición oscura."
+  },
+  "blink": {
+    "name": "Parpadeo",
+    "summary": "Desapareces aleatoriamente en el Plano Etéreo y reapareces en tus turnos."
+  },
+  "bloodthirst": {
+    "name": "Sed de Sangre"
+  },
+  "bloodthirstResource": {
+    "name": "Sed de Sangre"
+  },
+  "blowgun": {
+    "name": "Cerbatana"
+  },
+  "bludgeoningImmunity": {
+    "name": "Inmunidad al daño contundente"
+  },
+  "bludgeoningResistance": {
+    "name": "Resistencia al daño contundente"
+  },
+  "blur": {
+    "name": "Contorno borroso",
+    "summary": "Tu cuerpo se vuelve borroso, imponiendo desventaja en las tiradas de ataque contra ti."
+  },
+  "bolsteringPerformance": {
+    "name": "Interpretación Reforzadora"
+  },
+  "bolsteringPrecognition": {
+    "name": "Precognición Reforzadora",
+    "summary": "Otorga un bonificador a la siguiente prueba con d20 de una criatura cuando lanzas conjuros de Abjuración o Adivinación."
+  },
+  "boneBlade": {
+    "name": "Hoja de Hueso"
+  },
+  "bonusProficiencies": {
+    "name": "Competencias adicionales"
+  },
+  "bonusUnarmedStrike": {
+    "name": "Ataque sin armas adicional"
+  },
+  "branchesOfTheTree": {
+    "name": "Ramas del Árbol"
+  },
+  "breastplate": {
+    "name": "Coraza"
+  },
+  "breathWeapon": {
+    "name": "Ataque de aliento"
+  },
+  "brewersSupplies": {
+    "name": "Suministros de cervecero"
+  },
+  "bulwarkMind": {
+    "name": "Mente Baluarte"
+  },
+  "burningHands": {
+    "name": "Manos ardientes",
+    "summary": "Una fina capa de llamas sale disparada de las yemas de tus dedos."
+  },
+  "burstingShot": {
+    "name": "Disparo Explosivo",
+    "summary": "Causa una explosión de daño de fuerza alrededor del objetivo."
+  },
+  "calligraphersSupplies": {
+    "name": "Suministros de calígrafo"
+  },
+  "callLightning": {
+    "name": "Llamar al relámpago",
+    "summary": "Una nube de tormenta se acumula y lanza rayos a tu orden."
+  },
+  "calmEmotions": {
+    "name": "Calmar emociones",
+    "summary": "Suprimes emociones fuertes o efectos de encantamiento/miedo en un área."
+  },
+  "carefulSpell": {
+    "name": "Conjuro cuidadoso",
+    "summary": "Protege a los aliados elegidos de recibir el daño completo de los conjuros de área."
+  },
+  "carefulSpellActivity": {
+    "name": "Conjuro cuidadoso"
+  },
+  "carpentersTools": {
+    "name": "Herramientas de carpintero"
+  },
+  "cartographer": {
+    "name": "Cartógrafo",
+    "description": "Navega y explora, usando tus creaciones para destacar amenazas, salvaguardar aliados y abrir portales."
+  },
+  "cartographersTools": {
+    "name": "Herramientas de cartógrafo"
+  },
+  "celestialPatron": {
+    "name": "Patrón Celestial",
+    "description": "Extrae poder de los Planos Superiores, forjando un pacto con entidades celestiales para empuñar la luz y la curación."
+  },
+  "celestialRevelation": {
+    "name": "Revelación Celestial"
+  },
+  "celestialVestige": {
+    "name": "Vestigio Celestial"
+  },
+  "cha": {
+    "name": "CAR"
+  },
+  "chaAdvantage": {
+    "name": "Ventaja en Carisma"
+  },
+  "chaCaster": {
+    "name": "Lanzador por Carisma"
+  },
+  "chainMail": {
+    "name": "Cota de malla"
+  },
+  "chainShirt": {
+    "name": "Camisa de malla"
+  },
+  "champion": {
+    "name": "Campeón",
+    "description": "Se centra en el desarrollo de la destreza marcial en su incansable afán de victoria para asestar golpes devastadores y alcanzar la gloria."
+  },
+  "channelDivinity": {
+    "name": "Canalizar divinidad",
+    "summary": "Canaliza energía divina para alimentar efectos mágicos sagrados."
+  },
+  "charger": {
+    "name": "Cargador",
+    "summary": "Obtén impulso adicional y daño al cargar cuerpo a cuerpo tras correr."
+  },
+  "chargerCharge": {
+    "name": "Carga"
+  },
+  "chargerImprovedDash": {
+    "name": "Carrera Mejorada",
+    "description": "Tu Velocidad aumenta en 3 metros para esa acción."
+  },
+  "charlatan": {
+    "name": "Charlatán",
+    "description": "Dominaste el arte de las estafas de taberna, vendiendo mentiras reconfortantes y bienes falsificados a los ingenuos."
+  },
+  "charmedAdvantage": {
+    "name": "Ventaja en estado Hechizado"
+  },
+  "charmMonster": {
+    "name": "Hechizar monstruo",
+    "summary": "Hechizas a un tipo de criatura para que te considere un conocido amistoso."
+  },
+  "charmPerson": {
+    "name": "Hechizar persona",
+    "summary": "Hechizas a un humanoide para que te considere un conocido amistoso."
+  },
+  "chaSave": {
+    "name": "Tirada de salvación de Carisma"
+  },
+  "chef": {
+    "name": "Cocinero",
+    "summary": "Cocina deliciosas comidas que refuerzan a los aliados con curación adicional y puntos de golpe temporales."
+  },
+  "chefBolsteringTreats": {
+    "name": "Tentempiés Reforzadores"
+  },
+  "chefReplenishingMeal": {
+    "name": "Comida Reparadora"
+  },
+  "chillTouch": {
+    "name": "Toque helado",
+    "summary": "Canalizas frío cadavérico para golpear a un objetivo y dificultar su curación."
+  },
+  "chooseCaster": {
+    "name": "Elegir Lanzador"
+  },
+  "chromaticOrb": {
+    "name": "Orbe cromático",
+    "summary": "Arrojas un orbe de energía elemental a un objetivo."
+  },
+  "circleOfMortalityHealing": {
+    "name": "Círculo de Mortalidad",
+    "description": "Cuando restaures Puntos de Golpe a una criatura a 0 Puntos de Golpe, usa la tirada más alta posible para cada dado."
+  },
+  "circleOfMortalityPull": {
+    "name": "Tirón de la Muerte"
+  },
+  "circleOfPreservation": {
+    "name": "Círculo de Preservación",
+    "description": "Defiende santuarios naturales, revitaliza la tierra dañada y protege a los aliados de elementos tóxicos u hostiles."
+  },
+  "circleOfTheLand": {
+    "name": "Círculo de la tierra",
+    "description": "El círculo de la tierra se compone de místicos y sabios que custodian ritos y conocimientos antiguos, susurrando secretos primordiales en lengua druídica."
+  },
+  "circleOfTheLandType": {
+    "name": "Tipo de terreno"
+  },
+  "circleOfTheMoon": {
+    "name": "Círculo de la Luna",
+    "description": "Recurre a la magia lunar para transformarte en diversas bestias, cambiantes y poderosas como la luna."
+  },
+  "circleOfTheSea": {
+    "name": "Círculo del Mar",
+    "description": "Extrae poder de las tempestuosas fuerzas de océanos y tormentas, encarnando la ira de la naturaleza o la unidad mística."
+  },
+  "circleOfTheStars": {
+    "name": "Círculo de las Estrellas",
+    "description": "Rastrea patrones celestes para descubrir secretos cósmicos, aprovechando el poder de las constelaciones."
+  },
+  "circleOfTheTitan": {
+    "name": "Círculo del Titán",
+    "description": "Canaliza el poder cataclísmico de los monstruos gigantes, adoptando Formas de Titán colosales y desatando ondas de choque."
+  },
+  "clairvoyance": {
+    "name": "Clarividencia",
+    "summary": "Creas un sensor invisible para ver u oír una ubicación distante."
+  },
+  "clairvoyantCombatant": {
+    "name": "Combatiente Clarividente"
+  },
+  "class": {
+    "name": "Clase"
+  },
+  "cleave": {
+    "name": "Hender"
+  },
+  "cleric": {
+    "name": "Clérigo",
+    "description": "Campeones divinos que canalizan magia sagrada para curar aliados, castigar enemigos y servir a su deidad."
+  },
+  "clericCantrips": {
+    "name": "Trucos de Clérigo"
+  },
+  "clericPreparedSpells": {
+    "name": "Conjuros preparados de Clérigo"
+  },
+  "clericSkillProficiencies": {
+    "name": "Competencias en Habilidades de Clérigo"
+  },
+  "clericSubclass": {
+    "name": "Subclase de clérigo"
+  },
+  "clockwork": {
+    "name": "Hechicería Mecánica",
+    "description": "Canaliza la fuerza cósmica del orden, utilizando magia mecánica de Mechanus para manipular la realidad."
+  },
+  "clockworkDevice": {
+    "name": "Dispositivo Mecánico"
+  },
+  "cloudOfDaggers": {
+    "name": "Nube de dagas",
+    "summary": "Conjuras una nube arremolinada de dagas afiladas como cuchillas en un área."
+  },
+  "cloudsJaunt": {
+    "name": "Paseo de las Nubes"
+  },
+  "club": {
+    "name": "Garrote"
+  },
+  "cobblersTools": {
+    "name": "Herramientas de zapatero"
+  },
+  "coldAffinity": {
+    "name": "Afinidad al frío",
+    "summary": "Obtén resistencia al frío y suma tu modificador de Carisma a los conjuros de daño por frío."
+  },
+  "coldImmunity": {
+    "name": "Inmunidad al daño de frío"
+  },
+  "coldResistance": {
+    "name": "Resistencia al daño de frío"
+  },
+  "colorSpray": {
+    "name": "Rociada de color",
+    "summary": "Lanzas una deslumbrante serie de luces intermitentes para cegar a los objetivos."
+  },
+  "colossusSlayer": {
+    "name": "Azote de colosos",
+    "summary": "Cuando aciertes a una criatura con un arma, esta inflige daño adicional si el objetivo no tiene todos sus puntos de golpe.",
+    "description": "Cuando aciertes a una criatura con un arma, esta inflige 1d8 de daño adicional si el objetivo no tiene todos sus puntos de golpe. Solo puedes infligir este daño adicional una vez por turno."
+  },
+  "combatInspirationExtra": {
+    "name": "Inspiración en Combate"
+  },
+  "command": {
+    "name": "Orden imperiosa",
+    "summary": "Dices una orden de una sola palabra que un objetivo debe obedecer."
+  },
+  "commandersStrike": {
+    "name": "Ataque de Comandante",
+    "summary": "Renuncia a un ataque para ordenar a un aliado que golpee con daño adicional."
+  },
+  "commandFamiliar": {
+    "name": "Comandar Familiar"
+  },
+  "commandingPresence": {
+    "name": "Presencia Imponente",
+    "summary": "Añade un dado de maniobra a pruebas de Carisma (Intimidación, Interpretación o Persuasión)."
+  },
+  "commandPrimalCompanion": {
+    "name": "Comandar Compañero"
+  },
+  "commandPrimalCompanionAttack": {
+    "name": "Comandar Compañero Primigenio",
+    "description": "Cuando realizas la acción de Atacar en tu turno, puedes reemplazar un ataque con una orden a tu Compañero Primigenio para que realice la acción de Golpe de la Bestia."
+  },
+  "commandReanimatedCompanion": {
+    "name": "Comandar Compañero Reanimado"
+  },
+  "commandSteelDefender": {
+    "name": "Comandar Defensor de Acero"
+  },
+  "commandVestige": {
+    "name": "Comandar Vestigio"
+  },
+  "commandVestigeAttack": {
+    "name": "Comandar Vestigio",
+    "description": "Cuando realizas la acción de Atacar en tu turno, puedes reemplazar un ataque con una orden a tu Vestigio para que realice una acción de su bloque de estadísticas."
+  },
+  "compelledDuel": {
+    "name": "Duelo compulsivo",
+    "summary": "Obligas a una criatura a concentrar sus ataques en ti."
+  },
+  "comprehendLanguages": {
+    "name": "Entender idiomas",
+    "summary": "Comprendes el significado literal de cualquier idioma hablado o escrito."
+  },
+  "compulsion": {
+    "name": "Compulsión",
+    "summary": "Obligas a las criaturas de un área a moverse en una dirección designada."
+  },
+  "con": {
+    "name": "CON"
+  },
+  "conAdvantage": {
+    "name": "Ventaja en Constitución"
+  },
+  "concentrationAdvantage": {
+    "name": "Concentración"
+  },
+  "confusion": {
+    "name": "Confusión",
+    "summary": "Asaltas las mentes en un área, causando acciones erráticas impredecibles."
+  },
+  "conjureAnimals": {
+    "name": "Conjurar animales",
+    "summary": "Invocas a una manada de animales espectrales para protegerte y golpear enemigos."
+  },
+  "conjureMinorElementals": {
+    "name": "Conjurar elementales menores",
+    "summary": "Conjuras espíritus elementales que se arremolinan a tu alrededor con energía elemental."
+  },
+  "conjureUndead": {
+    "name": "Conjurar Muertos Vivientes"
+  },
+  "conjureWoodlandBeings": {
+    "name": "Conjurar seres del bosque",
+    "summary": "Conjuras espíritus de la naturaleza que se arremolinan a tu alrededor para protegerte y atacar."
+  },
+  "conSave": {
+    "name": "Tirada de salvación de Constitución"
+  },
+  "constructSpiritClay": {
+    "name": "Espíritu Constructo (Arcilla)"
+  },
+  "constructSpiritMetal": {
+    "name": "Espíritu Constructo (Metal)"
+  },
+  "constructSpiritStone": {
+    "name": "Espíritu Constructo (Piedra)"
+  },
+  "continualFlame": {
+    "name": "Llama permanente",
+    "summary": "Creas una llama permanente y sin calor que arroja luz."
+  },
+  "controlWater": {
+    "name": "Controlar agua",
+    "summary": "Manipulas el agua en un área para inundar, separar o formar remolinos."
+  },
+  "cooksUtensils": {
+    "name": "Útiles de cocinero"
+  },
+  "cordonOfArrows": {
+    "name": "Cordón de Flechas",
+    "summary": "Proteges un área con munición que se alza para golpear a los enemigos que se acercan."
+  },
+  "cosmicOmen": {
+    "name": "Presagio Cósmico"
+  },
+  "countercharm": {
+    "name": "Contraencantamiento"
+  },
+  "counterspell": {
+    "name": "Contrahechizo",
+    "summary": "Intentas interrumpir a una criatura en el proceso de lanzar un conjuro."
+  },
+  "crafter": {
+    "name": "Fabricante",
+    "summary": "Crea equipo durante los descansos largos con descuento y tiempo reducido."
+  },
+  "createFoodAndWater": {
+    "name": "Crear comida y agua",
+    "summary": "Creas comida y agua limpia para sustentar a un grupo."
+  },
+  "createOrDestroyWater": {
+    "name": "Crear o destruir agua",
+    "summary": "Creas o destruyes una cantidad de agua o niebla."
+  },
+  "criminal": {
+    "name": "Criminal",
+    "description": "Aprendiste a sobrevivir en callejones oscuros vaciando bolsillos, robando y siendo astuto en la calle."
+  },
+  "crossbowExpert": {
+    "name": "Experto en Ballestas",
+    "summary": "Ignora la propiedad de recarga y dispara ballestas cuerpo a cuerpo sin penalizador."
+  },
+  "crownOfMadness": {
+    "name": "Corona de locura",
+    "summary": "Coronas a un humanoide con locura, obligándolo a atacar a criaturas cercanas."
+  },
+  "crusadersMantle": {
+    "name": "Manto del cruzado",
+    "summary": "El poder sagrado irradia de ti, potenciando el daño de las armas de los aliados con radiancia."
+  },
+  "crusher": {
+    "name": "Aplastador",
+    "summary": "Los golpes contundentes empujan a los objetivos y potencian los impactos críticos."
+  },
+  "crusherEnhancedCritical": {
+    "name": "Crítico Mejorado"
+  },
+  "crusherPush": {
+    "name": "Empuje"
+  },
+  "cunningAction": {
+    "name": "Acción astuta",
+    "summary": "En tu turno, puedes llevar a cabo una de las siguientes acciones como acción adicional: correr, destrabarse o esconderse."
+  },
+  "cunningStrike": {
+    "name": "Golpe astuto"
+  },
+  "cureWounds": {
+    "name": "Curar heridas",
+    "summary": "Una criatura que tocas recupera puntos de golpe."
+  },
+  "curvingShot": {
+    "name": "Disparo Curvo"
+  },
+  "cuttingWords": {
+    "name": "Palabras cortantes"
+  },
+  "dagger": {
+    "name": "Daga"
+  },
+  "dance": {
+    "name": "Colegio de la Danza",
+    "description": "Armoniza con el cosmos en movimiento a través de danzas ágiles, rápidas y elegantes que tejen magia."
+  },
+  "dancingLights": {
+    "name": "Luces danzantes",
+    "summary": "Creas hasta cuatro luces que flotan o se mueven a tus órdenes."
+  },
+  "darkness": {
+    "name": "Oscuridad",
+    "summary": "Una oscuridad mágica se esparce desde un punto, bloqueando la visión y la visión en la oscuridad."
+  },
+  "darkOnesBlessing": {
+    "name": "Bendición del oscuro"
+  },
+  "darkOnesOwnLuck": {
+    "name": "La suerte del oscuro"
+  },
+  "darkvision": {
+    "name": "Visión en la oscuridad",
+    "summary": "Puedes ver con normalidad en luz tenue y en la oscuridad."
+  },
+  "dart": {
+    "name": "Dardo"
+  },
+  "dash": {
+    "name": "Correr"
+  },
+  "dauntingRoar": {
+    "name": "Rugido Intimidante"
+  },
+  "daylight": {
+    "name": "Luz del día",
+    "summary": "Una esfera de 18 metros de luz brillante ilumina el área y disipa la oscuridad."
+  },
+  "dazzlingFootworkAgileStrike": {
+    "name": "Golpes Ágiles"
+  },
+  "deafenedAdvantage": {
+    "name": "Ventaja en estado Ensordecido"
+  },
+  "deafenedImmunity": {
+    "name": "Inmunidad al estado Ensordecido"
+  },
+  "deathSaveAdvantage": {
+    "name": "Ventaja en Tirada de salvación contra muerte"
+  },
+  "deathWard": {
+    "name": "Guarda contra la muerte",
+    "summary": "Otorgas a una criatura protección contra quedar a 0 puntos de golpe."
+  },
+  "deception": {
+    "name": "Engaño"
+  },
+  "deceptionAdvantage": {
+    "name": "Ventaja en Engaño"
+  },
+  "deceptionDisadvantage": {
+    "name": "Desventaja en Engaño"
+  },
+  "deceptionExpertise": {
+    "name": "Engaño",
+    "summary": "Contar una mentira convincente o llevar un disfraz de manera creíble."
+  },
+  "deceptionHalfProficiency": {
+    "name": "Media competencia en Engaño"
+  },
+  "deceptionProficiency": {
+    "name": "Engaño",
+    "summary": "Contar una mentira convincente o llevar un disfraz de manera creíble."
+  },
+  "defense": {
+    "name": "Defensa",
+    "summary": "Mientras lleves puesta una armadura ligera, media o pesada, recibes un bonificador de +1 a la clase de armadura."
+  },
+  "defensiveDuelist": {
+    "name": "Duelista Defensivo",
+    "summary": "Usa tu reacción con un arma sutil para potenciar tu CA contra un ataque inminente."
+  },
+  "defensiveDuelistParry": {
+    "name": "Parada"
+  },
+  "defensiveField": {
+    "name": "Campo Defensivo"
+  },
+  "defensiveTactics": {
+    "name": "Tácticas defensivas"
+  },
+  "deflectAttacks": {
+    "name": "Desviar ataques"
+  },
+  "deftExplorerExpertise": {
+    "name": "Pericia de Explorador hábil"
+  },
+  "demonic": {
+    "name": "Hechicería Demoníaca",
+    "description": "Extrae magia de una fisura hacia el Abismo, abriendo rupturas para canalizar el caótico poder demoníaco."
+  },
+  "destructiveThoughts": {
+    "name": "Pensamientos Destructivos",
+    "summary": "Infliges daño psíquico adicional a un objetivo cuando lanzas conjuros de Conjuración o Evocación con tirada de salvación."
+  },
+  "destructiveTrance": {
+    "name": "Trance Destructivo"
+  },
+  "detectEvilAndGood": {
+    "name": "Detectar el bien y el mal",
+    "summary": "Sientes la presencia de criaturas de otros mundos cercanas."
+  },
+  "detectMagic": {
+    "name": "Detectar magia",
+    "summary": "Sientes la presencia y el aura de efectos mágicos cercanos."
+  },
+  "detectPoisonAndDisease": {
+    "name": "Detectar venenos y enfermedades",
+    "summary": "Sientes la ubicación de venenos, toxinas y enfermedades."
+  },
+  "detectThoughts": {
+    "name": "Detectar pensamientos",
+    "summary": "Lees los pensamientos superficiales o profundizas en la mente de un objetivo."
+  },
+  "devilishTongue": {
+    "name": "Lengua Diabólica",
+    "summary": "Añade un Dado de Energía Psiónica a una prueba de característica de Influencia."
+  },
+  "devilSight": {
+    "name": "Vista del diablo",
+    "summary": "Puedes ver con normalidad en luz tenue y en la oscuridad, tanto si son mágicas como si no, a una distancia de 36 m o menos de ti."
+  },
+  "dex": {
+    "name": "DES"
+  },
+  "dexAdvantage": {
+    "name": "Ventaja en Destreza"
+  },
+  "dexSave": {
+    "name": "Tirada de salvación de Destreza"
+  },
+  "dimensionDoor": {
+    "name": "Puerta dimensional",
+    "summary": "Te teletransportas a ti mismo y a un compañero a una ubicación elegida."
+  },
+  "disarmingAttack": {
+    "name": "Ataque de Desarme",
+    "summary": "Inflige daño adicional y obliga al objetivo a soltar un objeto."
+  },
+  "discipleOfLife": {
+    "name": "Discípulo de la vida",
+    "description": "La criatura recupera $(2+(stats.wis.mod)) Puntos de Golpe adicionales."
+  },
+  "disengage": {
+    "name": "Destrabarse"
+  },
+  "disguiseKit": {
+    "name": "Útiles para disfrazarse"
+  },
+  "disguiseSelf": {
+    "name": "Disfrazarse",
+    "summary": "Alteras tu apariencia con magia ilusoria."
+  },
+  "dispelMagic": {
+    "name": "Disipar magia",
+    "summary": "Pones fin a efectos mágicos sobre un objetivo, objeto o área."
+  },
+  "dissonantWhispers": {
+    "name": "Susurros discordantes",
+    "summary": "Susurras una melodía discordante que causa agonía psíquica y obliga a la retirada."
+  },
+  "distantSpell": {
+    "name": "Conjuro distante",
+    "summary": "Duplicas el alcance de un conjuro o conviertes un conjuro de toque a alcance."
+  },
+  "distantSpellActivity": {
+    "name": "Conjuro distante"
+  },
+  "distractingStrike": {
+    "name": "Golpe Distractor",
+    "summary": "Inflige daño adicional y distrae al objetivo, dando ventaja a un aliado en su siguiente ataque."
+  },
+  "divination": {
+    "name": "Adivinación",
+    "summary": "Contactas a una deidad o a un sirviente para recibir una respuesta veraz sobre una meta futura."
+  },
+  "divineFavor": {
+    "name": "Favor divino",
+    "summary": "Tus ataques con arma infligen daño radiante adicional."
+  },
+  "divineFury": {
+    "name": "Furia Divina"
+  },
+  "divineOrder": {
+    "name": "Orden divina"
+  },
+  "diviner": {
+    "name": "Adivino",
+    "description": "Atraviesa los velos del espacio y el tiempo como Adivino, dominando conjuros de discernimiento, previsión y verdad."
+  },
+  "divineSense": {
+    "name": "Sentidos divinos"
+  },
+  "divineSmite": {
+    "name": "Castigo divino",
+    "summary": "Canaliza poder sagrado a través de tu arma para infligir daño radiante adicional."
+  },
+  "divineSpark": {
+    "name": "Chispa divina"
+  },
+  "divineStrike": {
+    "name": "Golpe divino",
+    "summary": "Imbuyes tus ataques con arma de energía sagrada adicional una vez por turno."
+  },
+  "dodge": {
+    "name": "Esquivar"
+  },
+  "dominateBeast": {
+    "name": "Dominar bestia",
+    "summary": "Tomas control telepático de una bestia."
+  },
+  "draconic": {
+    "name": "Hechicería dracónica",
+    "description": "Empuña magia innata concedida por dragones, canalizando su antiguo poder en conjuros devastadores."
+  },
+  "draconicAncestry": {
+    "name": "Linaje dracónico"
+  },
+  "draconicAncestryBlack": {
+    "name": "Dragón negro"
+  },
+  "draconicAncestryBlue": {
+    "name": "Dragón azul"
+  },
+  "draconicAncestryBrass": {
+    "name": "Dragón de oropel"
+  },
+  "draconicAncestryBronze": {
+    "name": "Dragón de bronce"
+  },
+  "draconicAncestryCopper": {
+    "name": "Dragón de cobre"
+  },
+  "draconicAncestryGold": {
+    "name": "Dragón de oro"
+  },
+  "draconicAncestryGreen": {
+    "name": "Dragón verde"
+  },
+  "draconicAncestryRed": {
+    "name": "Dragón rojo"
+  },
+  "draconicAncestrySilver": {
+    "name": "Dragón de plata"
+  },
+  "draconicAncestryWhite": {
+    "name": "Dragón blanco"
+  },
+  "draconicFlight": {
+    "name": "Vuelo dracónico"
+  },
+  "dragonborn": {
+    "name": "Dracónido",
+    "description": "Descendientes de progenitores dragones con piel escamosa y ataques de aliento mágico."
+  },
+  "dragonsBreath": {
+    "name": "Aliento de dragón",
+    "summary": "Tocas a una criatura dispuesta, y eliges Ácido, Frío, Fuego, Relámpago o Veneno."
+  },
+  "dreadAllegiance": {
+    "name": "Lealtad Pavorosa"
+  },
+  "dreadAmbusherLeap": {
+    "name": "Salto del Emboscador"
+  },
+  "dreadedNecrosis": {
+    "name": "Necrosis Temida"
+  },
+  "dreadfulAspect": {
+    "name": "Aspecto Pavoroso"
+  },
+  "dreadfulStrike": {
+    "name": "Golpe Pavoroso"
+  },
+  "dreadfulStrikes": {
+    "name": "Golpes Pavorosos"
+  },
+  "dreadnaughtModel": {
+    "name": "Acorazado",
+    "summary": "Optimiza el modelo de armadura para defensa pesada, puntos de golpe temporales y golpes de trueno."
+  },
+  "druid": {
+    "name": "Druida",
+    "description": "Guardianes de la naturaleza que empuñan magia primigenia y cambian de forma en peligrosas bestias salvajes."
+  },
+  "druidCantrips": {
+    "name": "Trucos de Druida"
+  },
+  "druidcraft": {
+    "name": "Saber druídico",
+    "summary": "Canalizas magia de la naturaleza para crear efectos sutiles de la espesura."
+  },
+  "druidicWarrior": {
+    "name": "Guerrero druídico",
+    "summary": "Aprendes dos trucos de druida de tu elección."
+  },
+  "druidicWarriorCantrips": {
+    "name": "Trucos de Guerrero druídico"
+  },
+  "druidSkillProficiencies": {
+    "name": "Competencias en Habilidades de Druida"
+  },
+  "druidSpells": {
+    "name": "Conjuros preparados de Druida"
+  },
+  "druidSubclass": {
+    "name": "Subclase de druida"
+  },
+  "dualWielder": {
+    "name": "Combatiente con Dos Armas",
+    "summary": "Maneja dos armas de manera más efectiva y obtén un aumento de defensa."
+  },
+  "durable": {
+    "name": "Duradero",
+    "summary": "Obtén recuperación rápida y curación adicional al gastar dados de golpe."
+  },
+  "durableSpeedyRecovery": {
+    "name": "Recuperación Rápida"
+  },
+  "dwarf": {
+    "name": "Enano",
+    "description": "Pueblo resistente forjado de piedra y metal, duradero como las montañas y con gran afinidad por la artesanía."
+  },
+  "dwarvenToughness": {
+    "name": "Aguante enano"
+  },
+  "ectoplasmicTrail": {
+    "name": "Rastro Ectoplásmico",
+    "summary": "Te envuelves en espíritus, evitando ataques de oportunidad y dejando ectoplasma ralentizador."
+  },
+  "egoWhip": {
+    "name": "Látigo de Ego",
+    "summary": "Azotas la mente de una criatura como reacción cuando hace una prueba o salvación de Carisma."
+  },
+  "eldritchBlast": {
+    "name": "Descarga sobrenatural",
+    "summary": "Un rayo de energía crepitante se lanza hacia un objetivo."
+  },
+  "eldritchCannonFlamethrower": {
+    "name": "Lanzallamas"
+  },
+  "eldritchCannonForceBallista": {
+    "name": "Balista de Fuerza"
+  },
+  "eldritchCannonProtector": {
+    "name": "Protector"
+  },
+  "eldritchInvocations": {
+    "name": "Invocaciones sobrenaturales",
+    "summary": "Fragmentos de conocimiento prohibido que te otorgan habilidades mágicas permanentes u otros saberes."
+  },
+  "eldritchKnight": {
+    "name": "Caballero Arcano",
+    "description": "Combina el dominio marcial con un cuidadoso estudio de la magia, lanzando conjuros para ampliar tus habilidades en combate."
+  },
+  "eldritchKnightCantrips": {
+    "name": "Trucos de Caballero Arcano"
+  },
+  "eldritchKnightSpells": {
+    "name": "Conjuros preparados de Caballero Arcano"
+  },
+  "eldritchMind": {
+    "name": "Mente sobrenatural",
+    "summary": "Tienes ventaja en las tiradas de salvación de Constitución que realices para mantener la concentración."
+  },
+  "eldritchSmite": {
+    "name": "Castigo arcano",
+    "summary": "Gasta un espacio de conjuro para infligir daño de fuerza adicional y derribar a un objetivo."
+  },
+  "eldritchSmiteActivity": {
+    "name": "Castigo arcano"
+  },
+  "eldritchSpear": {
+    "name": "Lanza sobrenatural",
+    "summary": "Aumenta el alcance de tu truco Descarga sobrenatural."
+  },
+  "elementalAdept": {
+    "name": "Adepto Elemental",
+    "summary": "Ignora la resistencia elemental y potencia los conjuros de un tipo de daño elegido."
+  },
+  "elementalAffinity": {
+    "name": "Afinidad elemental"
+  },
+  "elementalAttunement": {
+    "name": "Sintonía Elemental"
+  },
+  "elementalBurst": {
+    "name": "Estallido Elemental"
+  },
+  "elementalFury": {
+    "name": "Furia elemental"
+  },
+  "elementalism": {
+    "name": "Elementalismo",
+    "summary": "Manipulas las fuerzas elementales para crear efectos elementales menores."
+  },
+  "elementalSmite": {
+    "name": "Castigo Elemental"
+  },
+  "elementalSpiritAir": {
+    "name": "Espíritu Elemental (Aire)"
+  },
+  "elementalSpiritEarth": {
+    "name": "Espíritu Elemental (Tierra)"
+  },
+  "elementalSpiritFire": {
+    "name": "Espíritu Elemental (Fuego)"
+  },
+  "elementalSpiritWater": {
+    "name": "Espíritu Elemental (Agua)"
+  },
+  "elementalWeapon": {
+    "name": "Arma elemental",
+    "summary": "Un arma no mágica se vuelve mágica con daño adicional elemental."
+  },
+  "elements": {
+    "name": "Guerrero de los Elementos",
+    "description": "Aprovecha el poder elemental para dar forma a los golpes, manifestar zarcillos de largo alcance y desatar estallidos devastadores."
+  },
+  "elf": {
+    "name": "Elfo",
+    "description": "Seres mágicos y longevos que forman parte de un linaje que otorga capacidades sobrenaturales y entran en un trance meditativo en lugar de dormir."
+  },
+  "elvenLineage": {
+    "name": "Linaje élfico"
+  },
+  "elvenLineageDrow": {
+    "name": "Drow"
+  },
+  "elvenLineageHighElf": {
+    "name": "Alto elfo"
+  },
+  "elvenLineageWoodElf": {
+    "name": "Elfo de los bosques"
+  },
+  "empoweredSpell": {
+    "name": "Conjuro potenciado",
+    "summary": "Vuelve a tirar los dados de daño de un conjuro para maximizar el daño infligido."
+  },
+  "empoweredSpellActivity": {
+    "name": "Conjuro potenciado"
+  },
+  "encouragingSong": {
+    "name": "Canción Alentadora"
+  },
+  "enemiesAbound": {
+    "name": "Abundan Enemigos",
+    "summary": "Entras en la mente de una criatura y la obligas a ver a todas las criaturas como enemigas."
+  },
+  "energyMastery": {
+    "name": "Maestría de Energía"
+  },
+  "enfeeblingShot": {
+    "name": "Disparo Debilitador",
+    "summary": "Inflige daño necrótico adicional y reduce a la mitad el daño de ataque con armas del objetivo."
+  },
+  "enhanceAbility": {
+    "name": "Potenciar característica",
+    "summary": "Tocas a una criatura y eliges Fuerza, Destreza, Inteligencia, Sabiduría o Carisma."
+  },
+  "enlargereduce": {
+    "name": "Agrandar/reducir",
+    "summary": "Haces que una criatura u objeto crezca o encoja de tamaño."
+  },
+  "ensnaringStrike": {
+    "name": "Golpe apresador",
+    "summary": "El golpe de tu arma invoca enredaderas agarradoras para apresar al objetivo."
+  },
+  "entangle": {
+    "name": "Enmarañar",
+    "summary": "Plantas agarradoras brotan para enmarañar a las criaturas en un área."
+  },
+  "entertainer": {
+    "name": "Animador",
+    "description": "Viajaste con carnavales y ferias, cautivando multitudes con canciones, bailes y acrobacias."
+  },
+  "enthrall": {
+    "name": "Embelesar",
+    "summary": "Tejes palabras distractoras para retener la atención de las criaturas cercanas."
+  },
+  "envenomWeapon": {
+    "name": "Envenenar Arma"
+  },
+  "escapeTheHorde": {
+    "name": "Escapar de la horda",
+    "summary": "Los ataques de oportunidad tienen desventaja contra ti.",
+    "description": "Los ataques de oportunidad tienen desventaja contra ti."
+  },
+  "evardsBlackTentacles": {
+    "name": "Tentáculos negros",
+    "summary": "Tentáculos retorcidos llenan un área para apresar y aplastar a los enemigos."
+  },
+  "evasion": {
+    "name": "Evasión",
+    "description": "Cuando sufras un efecto que te permita hacer una tirada de salvación de Destreza para sufrir solo la mitad de daño, no recibes daño alguno si la superas y solo sufres la mitad si la fallas."
+  },
+  "evasiveFootwork": {
+    "name": "Juego de Pies Evasivo",
+    "summary": "Añade un dado de maniobra a tu CA mientras te mueves."
+  },
+  "evoker": {
+    "name": "Evocador",
+    "description": "Haces hincapié en el estudio de la magia capaz de crear poderosos efectos elementales, como llamas abrasadoras o violentos relámpagos."
+  },
+  "exceptionalTraining": {
+    "name": "Entrenamiento Excepcional"
+  },
+  "exhaustionAdvantage": {
+    "name": "Ventaja contra Cansancio"
+  },
+  "exhaustionImmunity": {
+    "name": "Inmunidad al Cansancio"
+  },
+  "expandedAwareness": {
+    "name": "Conciencia Expandida",
+    "summary": "Añade un Dado de Energía Psiónica a una prueba de característica de Búsqueda."
+  },
+  "expeditiousRetreat": {
+    "name": "Retirada expeditiva",
+    "summary": "Te mueves con velocidad repentina, lo que permite carreras continuas."
+  },
+  "experimentalElixir": {
+    "name": "Elixir Experimental"
+  },
+  "experimentalElixirResource": {
+    "name": "Elixir Experimental"
+  },
+  "expertDivination": {
+    "name": "Adivinación Experta",
+    "description": "Cuando lanzas un conjuro de Adivinación de nivel 2 o superior, recuperas un espacio de conjuro gastado de nivel inferior."
+  },
+  "expertise": {
+    "name": "Pericia de Bardo"
+  },
+  "extendedSpell": {
+    "name": "Conjuro extendido",
+    "summary": "Duplicas la duración de un conjuro hasta un máximo de 24 horas."
+  },
+  "extendedSpellActivity": {
+    "name": "Conjuro extendido"
+  },
+  "extraAttack": {
+    "name": "Ataque adicional",
+    "description": "Cuando lleves a cabo la acción de atacar en tu turno, podrás hacer dos ataques en lugar de uno."
+  },
+  "extraProperties": {
+    "name": "Propiedades Adicionales"
+  },
+  "fabricate": {
+    "name": "Fabricar",
+    "summary": "Conviertes materias primas en productos terminados del mismo material."
+  },
+  "faerieFire": {
+    "name": "Fuego feérico",
+    "summary": "Siluetas de luz iluminan a los objetivos, otorgando ventaja en las tiradas de ataque contra ellos."
+  },
+  "falseLife": {
+    "name": "Falsa vida",
+    "summary": "Te refuerzas con un impulso de vitalidad de puntos de golpe temporales."
+  },
+  "familiarAir": {
+    "name": "Aéreo (velocidad volando)"
+  },
+  "familiarCelestial": {
+    "name": "Celestial"
+  },
+  "familiarEnvironment": {
+    "name": "Entorno del Familiar"
+  },
+  "familiarFey": {
+    "name": "Feérico"
+  },
+  "familiarFiend": {
+    "name": "Infernal"
+  },
+  "familiarLand": {
+    "name": "Terrestre (velocidad trepando)"
+  },
+  "familiarName": {
+    "name": "Nombre del Familiar"
+  },
+  "familiarResistance": {
+    "name": "Resistencia del Familiar"
+  },
+  "familiarType": {
+    "name": "Tipo de Familiar"
+  },
+  "familiarUndead": {
+    "name": "Muerto Viviente"
+  },
+  "familiarWater": {
+    "name": "Acuático (velocidad nadando)"
+  },
+  "fanaticalFocus": {
+    "name": "Foco Fanático"
+  },
+  "farmer": {
+    "name": "Granjero",
+    "description": "Años cuidando cultivos y ganado te dieron paciencia, resistencia y un profundo respeto por la naturaleza."
+  },
+  "fastCrafting": {
+    "name": "Fabricación Rápida"
+  },
+  "fastHands": {
+    "name": "Manos rápidas"
+  },
+  "favoredEnemy": {
+    "name": "Enemigo predilecto"
+  },
+  "fear": {
+    "name": "Terror",
+    "summary": "Proyectas una imagen aterradora que hace que las criaturas suelten objetos y huyan."
+  },
+  "featherFall": {
+    "name": "Caída de pluma",
+    "summary": "Ralentizas el descenso de las criaturas que caen para que aterricen a salvo."
+  },
+  "feignDeath": {
+    "name": "Fingir muerte",
+    "summary": "Pones a una criatura dispuesta en un estado cataléptico indistinguible de la muerte."
+  },
+  "feintingAttack": {
+    "name": "Ataque de Finta",
+    "summary": "Fintas para ganar ventaja y daño adicional en tu próxima tirada de ataque."
+  },
+  "ferocity": {
+    "name": "Ferocidad",
+    "summary": "Potencia a tu defensor de acero con reflejos de combate feroces."
+  },
+  "feyMagicSpell": {
+    "name": "Conjuro de Magia Feérica"
+  },
+  "feySpiritFuming": {
+    "name": "Espíritu Feérico (Humeante)"
+  },
+  "feySpiritMirthful": {
+    "name": "Espíritu Feérico (Alegre)"
+  },
+  "feySpiritTricksy": {
+    "name": "Espíritu Feérico (Tramposo)"
+  },
+  "feyTouched": {
+    "name": "Tocado por las Hadas",
+    "summary": "Aprende Paso brumoso y un conjuro de nivel 1 con lanzamientos diarios gratuitos."
+  },
+  "feyWanderer": {
+    "name": "Errante Feérico",
+    "description": "Encarna un misticismo feérico para alegrar corazones con risas jubilosas y sembrar el terror con destreza marcial."
+  },
+  "fiendishLegacy": {
+    "name": "Legado infernal"
+  },
+  "fiendishLegacyAbyssal": {
+    "name": "Abisal"
+  },
+  "fiendishLegacyChthonic": {
+    "name": "Ctónico"
+  },
+  "fiendishLegacyInfernal": {
+    "name": "Infernal"
+  },
+  "fiendishVigor": {
+    "name": "Vigor infernal",
+    "summary": "Puedes lanzar falsa vida sobre ti sin gastar un espacio de conjuro."
+  },
+  "fiendPatron": {
+    "name": "Patrón infernal",
+    "description": "Tu pacto recurre a los Planos Inferiores, negociando con un señor demoníaco, archidiablo o infernal notable."
+  },
+  "fiendVestige": {
+    "name": "Vestigio Infernal"
+  },
+  "fighter": {
+    "name": "Guerrero",
+    "description": "Expertos marciales inigualables hábiles con cualquier arma y armadura para dominar el campo de batalla."
+  },
+  "fighterskillproficiencies": {
+    "name": "Competencias en Habilidades de Guerrero"
+  },
+  "fighterSubclass": {
+    "name": "Subclase de guerrero"
+  },
+  "fightingStyle": {
+    "name": "Dotes de estilo de combate"
+  },
+  "findFamiliar": {
+    "name": "Encontrar familiar",
+    "summary": "Obtienes el servicio de un espíritu de otro mundo que adopta forma animal."
+  },
+  "findSteed": {
+    "name": "Hallar corcel",
+    "summary": "Invocas un espíritu de otro mundo que adopta la forma de una leal montura."
+  },
+  "findTraps": {
+    "name": "Detectar trampas",
+    "summary": "Sientes la presencia de cualquier trampa repentina o peligrosa cercana."
+  },
+  "finesseWeaponProficiency": {
+    "name": "Competencia con Armas Sutiles"
+  },
+  "fireAffinity": {
+    "name": "Afinidad al fuego",
+    "summary": "Obtén resistencia al fuego y suma tu modificador de Carisma a los conjuros de daño por fuego."
+  },
+  "fireball": {
+    "name": "Bola de fuego",
+    "summary": "Un trazo brillante destella y florece en una explosión ardiente."
+  },
+  "fireBolt": {
+    "name": "Descarga de fuego",
+    "summary": "Arrojas una mota de fuego a una criatura o a un objeto."
+  },
+  "fireImmunity": {
+    "name": "Inmunidad al daño de fuego"
+  },
+  "fireResistance": {
+    "name": "Resistencia al daño de fuego"
+  },
+  "firesBurn": {
+    "name": "Quemadura de Fuego"
+  },
+  "fireShield": {
+    "name": "Escudo de fuego",
+    "summary": "Llamas tenues envuelven tu cuerpo, otorgando resistencia elemental y daño de represalia."
+  },
+  "flail": {
+    "name": "Mangual"
+  },
+  "flameBlade": {
+    "name": "Hoja de fuego",
+    "summary": "Evocas una espada ardiente de luz en tu mano."
+  },
+  "flamingSphere": {
+    "name": "Esfera de llamas",
+    "summary": "Aparece una esfera de fuego que puedes hacer rodar hacia los objetivos."
+  },
+  "flashOfGenius": {
+    "name": "Destello de Genialidad"
+  },
+  "flashOfGeniusResource": {
+    "name": "Destello de Genialidad"
+  },
+  "fleshMaul": {
+    "name": "Maza de Carne"
+  },
+  "flurryOfBlows": {
+    "name": "Ráfaga de golpes"
+  },
+  "fly": {
+    "name": "Volar",
+    "summary": "Tocas a una criatura para otorgarle velocidad volando."
+  },
+  "focusPoints": {
+    "name": "Puntos de concentración"
+  },
+  "fogCloud": {
+    "name": "Nube de oscurecimiento",
+    "summary": "Creas un banco de niebla densa que bloquea la visión."
+  },
+  "forceDemolisher": {
+    "name": "Demoledor de Fuerza"
+  },
+  "forceImmunity": {
+    "name": "Inmunidad al daño de fuerza"
+  },
+  "forceResistance": {
+    "name": "Resistencia al daño de fuerza"
+  },
+  "forestGnomeSpeakWithAnimalsUses": {
+    "name": "Hablar con los animales"
+  },
+  "forgeryKit": {
+    "name": "Útiles para falsificar"
+  },
+  "formOfDread": {
+    "name": "Forma de Pavor"
+  },
+  "fortifyingSoul": {
+    "name": "Alma Fortificante"
+  },
+  "fountOfMoonlight": {
+    "name": "Fuente de Luz de Luna",
+    "summary": "Luz de luna fría envuelve tu cuerpo, cegando a los enemigos y potenciando ataques cuerpo a cuerpo."
+  },
+  "freedomOfMovement": {
+    "name": "Libertad de movimiento",
+    "summary": "Tocas a una criatura para hacerla inmune a restricciones de movimiento y parálisis."
+  },
+  "friends": {
+    "name": "Amistad",
+    "summary": "Mejoras mágicamente tu carisma contra una sola criatura."
+  },
+  "frightenedAdvantage": {
+    "name": "Ventaja en estado Asustado"
+  },
+  "frostsChill": {
+    "name": "Escalofrío de Escarcha"
+  },
+  "fullCaster": {
+    "name": "Lanzador Completo"
+  },
+  "gamingSet": {
+    "name": "Juego"
+  },
+  "gaseousForm": {
+    "name": "Forma gaseosa",
+    "summary": "Transformas a una criatura dispuesta en una nube brumosa."
+  },
+  "gazeOfTwoMinds": {
+    "name": "Mirada de las dos mentes",
+    "summary": "Puedes usar una acción adicional para tocar a una criatura voluntaria y percibir el mundo a través de sus sentidos."
+  },
+  "geniesSplendorSkill": {
+    "name": "Habilidad de Esplendor de Genio"
+  },
+  "gentleRepose": {
+    "name": "Dulce descanso",
+    "summary": "Preservas un cadáver contra la descomposición y el alzamiento como muerto viviente."
+  },
+  "giantAncestry": {
+    "name": "Linaje gigante"
+  },
+  "giantAncestryCloud": {
+    "name": "Gigante de las nubes"
+  },
+  "giantAncestryFire": {
+    "name": "Gigante de fuego"
+  },
+  "giantAncestryFrost": {
+    "name": "Gigante de escarcha"
+  },
+  "giantAncestryHill": {
+    "name": "Gigante de las colinas"
+  },
+  "giantAncestryStone": {
+    "name": "Gigante de piedra"
+  },
+  "giantAncestryStorm": {
+    "name": "Gigante de las tormentas"
+  },
+  "giantStature": {
+    "name": "Estatura Gigante"
+  },
+  "giantStatureResource": {
+    "name": "Estatura Gigante"
+  },
+  "giftOfTheDepths": {
+    "name": "Don de las profundidades",
+    "summary": "Puedes respirar bajo el agua y obtienes una velocidad nadando igual a tu velocidad."
+  },
+  "gith": {
+    "name": "Gith",
+    "description": "Viajeros planares forjados por un potencial psiónico ancestral, divididos entre los marciales Githyanki y los disciplinados Githzerai."
+  },
+  "githLineage": {
+    "name": "Linaje Gith"
+  },
+  "githLineageGithyanki": {
+    "name": "Githyanki"
+  },
+  "githLineageGithzerai": {
+    "name": "Githzerai"
+  },
+  "githyankiSkillProficiency": {
+    "name": "Competencia en Habilidades Githyanki"
+  },
+  "glaive": {
+    "name": "Guja"
+  },
+  "glamour": {
+    "name": "Colegio del Glamour",
+    "description": "Entreteje hilos de belleza y terror de Feywild en tus actuaciones para envolverte en majestad."
+  },
+  "glassblowersTools": {
+    "name": "Herramientas de soplador de vidrio"
+  },
+  "gloomStalker": {
+    "name": "Acechador de la Penumbra",
+    "description": "Siéntete como en casa en los lugares más oscuros, empuñando la magia de Shadowfell para combatir a los enemigos que acechan en la oscuridad."
+  },
+  "glyphOfWarding": {
+    "name": "Glifo custodio",
+    "summary": "Inscribes una runa oculta que desata una trampa mágica cuando se activa."
+  },
+  "gnome": {
+    "name": "Gnomo",
+    "description": "Gente menuda e inventiva imbuida de asombro salvaje, agudo intelecto y magia natural."
+  },
+  "gnomishLineage": {
+    "name": "Linaje gnomo"
+  },
+  "gnomishLineageForestGnome": {
+    "name": "Gnomo de los bosques"
+  },
+  "gnomishLineageRockGnome": {
+    "name": "Gnomo de las rocas"
+  },
+  "goadingAttack": {
+    "name": "Ataque Provocador",
+    "summary": "Provoca a un objetivo para que concentre sus ataques únicamente en ti."
+  },
+  "goliath": {
+    "name": "Goliat",
+    "description": "Imponentes descendientes de gigantes que dominan dones marciales sobrenaturales y crecimiento súbito."
+  },
+  "goodberry": {
+    "name": "Buenas bayas",
+    "summary": "Infundes bayas con magia curativa para restaurar puntos de golpe."
+  },
+  "grappledAdvantage": {
+    "name": "Ventaja en estado Agarrado"
+  },
+  "grappledImmunity": {
+    "name": "Inmunidad al estado Agarrado"
+  },
+  "grappler": {
+    "name": "Apresador",
+    "summary": "Inmoviliza y apresa oponentes agarrados con una técnica superior de lucha libre."
+  },
+  "grapplerAttackAdvantage": {
+    "name": "Ventaja al atacar",
+    "description": "Tienes ventaja en las tiradas de ataque contra una criatura a la que estés agarrando."
+  },
+  "grapplerFastWrestler": {
+    "name": "Luchador rápido",
+    "description": "No tienes que invertir movimiento adicional para mover a una criatura a la que estés agarrando si la criatura es de tu tamaño o más pequeña."
+  },
+  "graspingShot": {
+    "name": "Disparo Agarrador",
+    "summary": "Enreda al objetivo con zarzas, reduciendo la velocidad y causando daño al moverse."
+  },
+  "graspingVine": {
+    "name": "Enredadera Agarradora",
+    "summary": "Conjuras una enredadera que brota y tira de los objetivos hacia ella."
+  },
+  "graveDomain": {
+    "name": "Dominio de la Tumba",
+    "description": "Guarda el límite entre la vida y la muerte, recurriendo a energía transicional para sanar o castigar."
+  },
+  "graze": {
+    "name": "Rozar"
+  },
+  "grease": {
+    "name": "Grasa",
+    "summary": "Una grasa resbaladiza cubre el suelo, convirtiéndolo en terreno difícil."
+  },
+  "greataxe": {
+    "name": "Hacha a dos manos"
+  },
+  "greatclub": {
+    "name": "Garrote grande"
+  },
+  "greaterInvisibility": {
+    "name": "Invisibilidad mejorada",
+    "summary": "Una criatura se vuelve invisible incluso al atacar o lanzar conjuros."
+  },
+  "greatOldOnePatron": {
+    "name": "Patrón del Gran Antiguo",
+    "description": "Extrae poder del Reino Lejano o de un dios primigenio incomprensible, dominando la magia cósmica que altera la mente."
+  },
+  "greatsword": {
+    "name": "Espadón"
+  },
+  "greatWeaponFighting": {
+    "name": "Combate con armas a dos manos",
+    "summary": "Trata cualquier 1 o 2 en un dado de daño como un 3 cuando empuñes armas a dos manos."
+  },
+  "greatWeaponMaster": {
+    "name": "Maestro en Armas a Dos Manos",
+    "summary": "Desata fuertes ataques de poder y obtén golpes adicionales en impactos críticos."
+  },
+  "grimHarvest": {
+    "name": "Cosecha Macabra"
+  },
+  "groupRecoveryEffect": {
+    "name": "Recuperación Grupal"
+  },
+  "guard": {
+    "name": "Guardia",
+    "description": "Pasaste largas guardias en las murallas de la ciudad, entrenado para detectar merodeadores y mantener el orden urbano."
+  },
+  "guardianModel": {
+    "name": "Guardián",
+    "summary": "Optimiza el modelo de armadura para defensa en primera línea, golpes de pulso de trueno y puntos de golpe temporales."
+  },
+  "guardianOfFaith": {
+    "name": "Guardián de la fe",
+    "summary": "Un gran guardián espectral aparece para atacar a los intrusos."
+  },
+  "guidance": {
+    "name": "Guía",
+    "summary": "Tocas a una criatura para otorgar un pequeño impulso a su próxima prueba de habilidad."
+  },
+  "guide": {
+    "name": "Guía",
+    "description": "Creciste explorando tierras salvajes indómitas, guiando a los viajeros a través de fronteras peligrosas."
+  },
+  "guidedPrecision": {
+    "name": "Precisión Guiada"
+  },
+  "guidedStrike": {
+    "name": "Golpe Guiado"
+  },
+  "guidingBolt": {
+    "name": "Saeta guía",
+    "summary": "Arrojas un virote de radiación que ilumina al objetivo para el siguiente ataque."
+  },
+  "gustOfWind": {
+    "name": "Ráfaga de viento",
+    "summary": "Una fuerte ráfaga de viento sale de ti, empujando objetivos."
+  },
+  "hailOfThorns": {
+    "name": "Lluvia de espinas",
+    "summary": "Tu ataque a distancia crea un estallido de lluvia espinosa."
+  },
+  "halberd": {
+    "name": "Alabarda"
+  },
+  "halfCaster": {
+    "name": "Medio Lanzador"
+  },
+  "halfling": {
+    "name": "Mediano",
+    "description": "Gente pequeña y ágil bendecida con una suerte extraordinaria, valentía y amor por el hogar."
+  },
+  "halflingNimbleness": {
+    "name": "Agilidad de mediano",
+    "description": "Puedes moverte a través del espacio ocupado por cualquier criatura de tamaño superior al tuyo."
+  },
+  "halfPlateArmor": {
+    "name": "Media armadura"
+  },
+  "hallucinatoryTerrain": {
+    "name": "Terreno alucinatorio",
+    "summary": "Disfrazas el terreno natural para que parezca, suene y huela a otro paisaje."
+  },
+  "handaxe": {
+    "name": "Hacha de mano"
+  },
+  "handCrossbow": {
+    "name": "Ballesta de mano"
+  },
+  "handOfHarm": {
+    "name": "Mano de Daño"
+  },
+  "handOfHealing": {
+    "name": "Mano de Sanación"
+  },
+  "haste": {
+    "name": "Acelerar",
+    "summary": "Potencias a un objetivo con velocidad extraordinaria y acciones adicionales."
+  },
+  "healer": {
+    "name": "Sanador",
+    "summary": "Usa útiles de sanador para restaurar puntos de golpe y estabilizar aliados moribundos."
+  },
+  "healingHands": {
+    "name": "Manos Sanadoras"
+  },
+  "healingLight": {
+    "name": "Luz Curativa"
+  },
+  "healingRerolls": {
+    "name": "Repeticiones Curativas",
+    "description": "Puedes volver a tirar la curación una vez por turno."
+  },
+  "healingWord": {
+    "name": "Palabra de curación",
+    "summary": "Una palabra rápida de magia cura a un objetivo a distancia."
+  },
+  "heatMetal": {
+    "name": "Calentar metal",
+    "summary": "Haces que un objeto de metal manufacturado brille al rojo vivo, quemando a su portador."
+  },
+  "heavilyArmored": {
+    "name": "Fuertemente Blindado",
+    "summary": "Obtén competencia con Armaduras Pesadas y aumenta tu Fuerza."
+  },
+  "heavyArmorMaster": {
+    "name": "Maestro en Armaduras Pesadas",
+    "summary": "Reduce el daño físico entrante mientras usas armadura pesada."
+  },
+  "heavyArmorMasterDamageReduction": {
+    "name": "Reducción de Daño"
+  },
+  "heavyArmorTraining": {
+    "name": "Entrenamiento con Armaduras Pesadas"
+  },
+  "heavyCrossbow": {
+    "name": "Ballesta pesada"
+  },
+  "heightenedSpell": {
+    "name": "Conjuro intensificado",
+    "summary": "Impón desventaja en la primera tirada de salvación de un objetivo contra tu conjuro."
+  },
+  "heightenedSpellActivity": {
+    "name": "Conjuro intensificado"
+  },
+  "hellishRebuke": {
+    "name": "Reprensión infernal",
+    "summary": "Tomas represalias contra el daño con fuego infernal verde."
+  },
+  "help": {
+    "name": "Ayudar"
+  },
+  "herbalismKit": {
+    "name": "Útiles de herborista"
+  },
+  "hermit": {
+    "name": "Ermitaño",
+    "description": "Viviste en tranquila soledad lejos de la civilización, contemplando la creación y los misterios salvajes."
+  },
+  "heroism": {
+    "name": "Heroísmo",
+    "summary": "Una criatura dispuesta se infunde de valentía y puntos de golpe temporales."
+  },
+  "hew": {
+    "name": "Talar"
+  },
+  "hex": {
+    "name": "Maleficio",
+    "summary": "Maldices a un objetivo, infligiendo daño necrótico adicional con los ataques."
+  },
+  "hide": {
+    "name": "Esconderse"
+  },
+  "hideArmor": {
+    "name": "Armadura de pieles"
+  },
+  "highElfCantrip": {
+    "name": "Truco de Alto Elfo"
+  },
+  "hillsTumble": {
+    "name": "Caída de las Colinas"
+  },
+  "history": {
+    "name": "Historia"
+  },
+  "historyAdvantage": {
+    "name": "Ventaja en Historia"
+  },
+  "historyDisadvantage": {
+    "name": "Desventaja en Historia"
+  },
+  "historyExpertise": {
+    "name": "Historia",
+    "summary": "Recordar información sobre acontecimientos, personas, naciones y culturas de carácter histórico."
+  },
+  "historyHalfProficiency": {
+    "name": "Media competencia en Historia"
+  },
+  "historyProficiency": {
+    "name": "Historia",
+    "summary": "Recordar información sobre acontecimientos, personas, naciones y culturas de carácter histórico."
+  },
+  "hitDice": {
+    "name": "Dados de golpe"
+  },
+  "holdPerson": {
+    "name": "Inmovilizar persona",
+    "summary": "Paralizas a un humanoide con magia de atadura."
+  },
+  "hollowWarden": {
+    "name": "Celador Hueco",
+    "description": "Extrae poder de horrores antiguos para hacer crecer armadura de corteza y desatar la venganza primigenia y aterradora de la naturaleza."
+  },
+  "hordeBreaker": {
+    "name": "Destructor de hordas",
+    "summary": "Realiza otro ataque con arma contra una criatura distinta cerca del objetivo original.",
+    "description": "Una vez en cada uno de tus turnos, cuando hagas un ataque con un arma, puedes realizar otro con la misma arma contra una criatura distinta que se encuentre a 1,5 m o menos del objetivo original si no la has atacado este turno y está dentro del alcance del arma."
+  },
+  "horrifyingStrike": {
+    "name": "Golpe Horripilante"
+  },
+  "human": {
+    "name": "Humano",
+    "description": "Mortales ambiciosos y llenos de recursos cuyos diversos talentos los impulsan a través de todos los reinos."
+  },
+  "hungeringMightHeal": {
+    "name": "Poder Hambriento"
+  },
+  "hungerOfHadar": {
+    "name": "Hambre de Hadar",
+    "summary": "Abres un portal al Reino Lejano, una región infestada de horrores indecibles."
+  },
+  "hunter": {
+    "name": "Cazador",
+    "description": "Acechas a tus presas en las tierras salvajes y en otros lugares, empleando tus habilidades de cazador para proteger la naturaleza y a la gente."
+  },
+  "huntersLore": {
+    "name": "Tradición del Cazador"
+  },
+  "huntersMark": {
+    "name": "Marca del cazador",
+    "summary": "Marcas mágicamente a un objetivo como tu presa, infligiendo daño adicional con arma."
+  },
+  "huntersPrey": {
+    "name": "El cazador y la presa"
+  },
+  "huntersRimeHeal": {
+    "name": "Escarcha del Cazador"
+  },
+  "hypnoticPattern": {
+    "name": "Patrón hipnótico",
+    "summary": "Creas un patrón retorcido de colores que hechiza e incapacita."
+  },
+  "iceKnife": {
+    "name": "Cuchillo de hielo",
+    "summary": "Lanzas un fragmento de hielo que perfora a un objetivo y explota en esquirlas frías."
+  },
+  "iceStorm": {
+    "name": "Tormenta de hielo",
+    "summary": "Granizo y lluvia helada caen en un cilindro, dañando y creando terreno difícil."
+  },
+  "identify": {
+    "name": "Identificar",
+    "summary": "Aprendes las propiedades mágicas de un objeto o efecto de conjuro."
+  },
+  "idInsinuation": {
+    "name": "Insinuación del Id",
+    "summary": "Resta la mitad de una tirada de Dado de Energía Psiónica de la salvación de un objetivo contra tus conjuros de Encantamiento o Ilusión."
+  },
+  "illuminatedCartography": {
+    "name": "Cartografía Iluminada"
+  },
+  "illusionist": {
+    "name": "Ilusionista",
+    "description": "Especialízate en magia que deslumbra los sentidos y engaña la mente, elaborando ilusiones que parecen completamente reales."
+  },
+  "illusoryScript": {
+    "name": "Texto ilusorio",
+    "summary": "Escribes un mensaje que parece normal solo para los lectores designados."
+  },
+  "image": {
+    "name": "Imagen"
+  },
+  "improvedCritical": {
+    "name": "Crítico mejorado",
+    "description": "Causas un Crítico con un resultado de 19 o 20. Luego, puedes moverte $(Math.floor(attributes.movement.walk / 2 / 5) * 5) pies."
+  },
+  "improvedIllusionsNoVerbal": {
+    "name": "Ilusiones Mejoradas",
+    "description": "Puedes lanzar conjuros de Ilusionismo sin componentes Verbales."
+  },
+  "incapacitatedAdvantage": {
+    "name": "Ventaja en estado Incapacitado"
+  },
+  "incapacitatedImmunity": {
+    "name": "Inmunidad al estado Incapacitado"
+  },
+  "inerrantAim": {
+    "name": "Puntería Infalible",
+    "summary": "Añade un Dado de Energía Psiónica a una tirada de ataque fallida."
+  },
+  "infiltratorModel": {
+    "name": "Infiltrador",
+    "summary": "Optimiza el modelo de armadura para sigilo, velocidad y ataques de relámpago a distancia."
+  },
+  "inflictWounds": {
+    "name": "Infligir heridas",
+    "summary": "Tu toque inflige gran daño necrótico."
+  },
+  "influence": {
+    "name": "Influir"
+  },
+  "initiativeSwap": {
+    "name": "Intercambio de iniciativa"
+  },
+  "innateSorcery": {
+    "name": "Hechicería innata"
+  },
+  "insectoidTitanForm": {
+    "name": "Insectoide"
+  },
+  "insight": {
+    "name": "Perspicacia"
+  },
+  "insightAdvantage": {
+    "name": "Ventaja en Perspicacia"
+  },
+  "insightDisadvantage": {
+    "name": "Desventaja en Perspicacia"
+  },
+  "insightExpertise": {
+    "name": "Perspicacia",
+    "summary": "Discernir el estado de ánimo y las intenciones de una persona."
+  },
+  "insightHalfProficiency": {
+    "name": "Media competencia en Perspicacia"
+  },
+  "insightProficiency": {
+    "name": "Perspicacia",
+    "summary": "Discernir el estado de ánimo y las intenciones de una persona."
+  },
+  "inspiredEclipse": {
+    "name": "Eclipse Inspirado",
+    "description": "Puedes obtener el estado Invisible y teletransportarte hasta 9 m a un espacio sin ocupar que puedas ver. La invisibilidad dura hasta el principio de tu siguiente turno o hasta que ataques, causes daño o lances un conjuro."
+  },
+  "inspiringLeader": {
+    "name": "Líder Inspirador",
+    "summary": "Inspira a tus compañeros con discursos para otorgar puntos de golpe temporales."
+  },
+  "inspiringMovement": {
+    "name": "Movimiento Inspirador"
+  },
+  "inspiringSmite": {
+    "name": "Castigo Inspirador"
+  },
+  "instantSlip": {
+    "name": "Deslizamiento Instantáneo"
+  },
+  "int": {
+    "name": "INT"
+  },
+  "intAdvantage": {
+    "name": "Ventaja en Inteligencia"
+  },
+  "intCaster": {
+    "name": "Lanzador por Inteligencia"
+  },
+  "integratedProtection": {
+    "name": "Protección Integrada"
+  },
+  "intellectFortress": {
+    "name": "Fortaleza Intelectual",
+    "summary": "Escudas la mente de una criatura dispuesta, otorgando Resistencia Psíquica y Ventaja en salvaciones mentales."
+  },
+  "interception": {
+    "name": "Intercepción",
+    "summary": "Usa tu reacción para reducir el daño entrante a un aliado cercano."
+  },
+  "intimidation": {
+    "name": "Intimidación"
+  },
+  "intimidationAdvantage": {
+    "name": "Ventaja en Intimidación"
+  },
+  "intimidationDisadvantage": {
+    "name": "Desventaja en Intimidación"
+  },
+  "intimidationExpertise": {
+    "name": "Intimidación",
+    "summary": "Asustar o amenazar a alguien para que haga lo que tú quieres."
+  },
+  "intimidationHalfProficiency": {
+    "name": "Media competencia en Intimidación"
+  },
+  "intimidationProficiency": {
+    "name": "Intimidación",
+    "summary": "Asustar o amenazar a alguien para que haga lo que tú quieres."
+  },
+  "intSave": {
+    "name": "Tirada de salvación de Inteligencia"
+  },
+  "investigation": {
+    "name": "Investigación"
+  },
+  "investigationAdvantage": {
+    "name": "Ventaja en Investigación"
+  },
+  "investigationDisadvantage": {
+    "name": "Desventaja en Investigación"
+  },
+  "investigationExpertise": {
+    "name": "Investigación",
+    "summary": "Encontrar información oculta en libros o deducir cómo funciona algo."
+  },
+  "investigationHalfProficiency": {
+    "name": "Media competencia en Investigación"
+  },
+  "investigationProficiency": {
+    "name": "Investigación",
+    "summary": "Encontrar información oculta en libros o deducir cómo funciona algo."
+  },
+  "investmentOfTheChainMaster": {
+    "name": "Inversión del Maestro de la Cadena",
+    "summary": "Mejora tu familiar con velocidad volando/nadando y ataques potenciados."
+  },
+  "invisibility": {
+    "name": "Invisibilidad",
+    "summary": "Una criatura que tocas se vuelve invisible hasta que ataque o lance conjuros."
+  },
+  "invisibleAdvantage": {
+    "name": "Ventaja en estado Invisible"
+  },
+  "invisibleImmunity": {
+    "name": "Inmunidad al estado Invisible"
+  },
+  "invokeDuplicity": {
+    "name": "Invocar Duplicidad"
+  },
+  "ironMind": {
+    "name": "Mente de Hierro"
+  },
+  "javelin": {
+    "name": "Jabalina"
+  },
+  "jewelersTools": {
+    "name": "Herramientas de joyero"
+  },
+  "joltToLife": {
+    "name": "Sacudida a la Vida"
+  },
+  "joltToLifeResource": {
+    "name": "Sacudida a la Vida"
+  },
+  "jump": {
+    "name": "Salto",
+    "summary": "Tocas a una criatura para triplicar su distancia de salto."
+  },
+  "keenMind": {
+    "name": "Mente Aguda",
+    "summary": "Agudiza tu memoria y rapidez mental para recordar detalles perfectamente."
+  },
+  "keenObserver": {
+    "name": "Competencia en Habilidad de Observador Agudo"
+  },
+  "keenSenses": {
+    "name": "Sentidos agudos"
+  },
+  "knock": {
+    "name": "Abrir",
+    "summary": "Un fuerte golpe resuena al abrir cerraduras, barrotes y pestillos."
+  },
+  "knowledgeDomain": {
+    "name": "Dominio del Conocimiento",
+    "description": "Valora el aprendizaje y la información, utilizando percepciones divinas para descubrir secretos e influir en las mentes."
+  },
+  "knowYourEnemy": {
+    "name": "Conoce a tu Enemigo"
+  },
+  "lament": {
+    "name": "Senda del Lamento",
+    "description": "Recurre a espíritus de difuntos enlutados, desatando su dolor en chillidos y ataques aterradores."
+  },
+  "lance": {
+    "name": "Lanza de caballería"
+  },
+  "landsAid": {
+    "name": "Ayuda de la tierra"
+  },
+  "largeForm": {
+    "name": "Forma grande"
+  },
+  "layOnHands": {
+    "name": "Imponer las manos",
+    "summary": "Canalizas una reserva de poder de curación para restaurar puntos de golpe o purificar el estado de envenenado."
+  },
+  "leatherArmor": {
+    "name": "Armadura de cuero"
+  },
+  "leatherworkersTools": {
+    "name": "Herramientas de curtidor"
+  },
+  "leomundsSecretChest": {
+    "name": "Cofre oculto",
+    "summary": "Ocultas de forma segura un cofre y su contenido en el Plano Etéreo."
+  },
+  "leomundsTinyHut": {
+    "name": "Pequeña choza",
+    "summary": "Una cúpula opaca y protectora de fuerza surge alrededor de tu grupo."
+  },
+  "leonin": {
+    "name": "Leonino",
+    "description": "Feroces cazadores de pelaje dorado que valoran el orgullo, la destreza marcial y una feroz independencia."
+  },
+  "leoninSkillProficiency": {
+    "name": "Competencia en Habilidades de Proeza Leonina"
+  },
+  "lesserRestoration": {
+    "name": "Restablecimiento menor",
+    "summary": "Curas una enfermedad o un estado que afecte a una criatura."
+  },
+  "lessonsOfTheFirstOnes": {
+    "name": "Lecciones de los primeros",
+    "summary": "Obtienes una dote de origen de tu elección."
+  },
+  "level": {
+    "name": "Nivel"
+  },
+  "level1SpellSlot": {
+    "name": "Espacio de Conjuro Nv. 1"
+  },
+  "level2SpellSlot": {
+    "name": "Espacio de Conjuro Nv. 2"
+  },
+  "level3SpellSlot": {
+    "name": "Espacio de Conjuro Nv. 3"
+  },
+  "level4feat": {
+    "name": "Dote Nivel 4"
+  },
+  "level4Feat": {
+    "name": "Dote Nivel 4"
+  },
+  "level4SpellSlot": {
+    "name": "Espacio de Conjuro Nv. 4"
+  },
+  "level6feat": {
+    "name": "Dote Nivel 6"
+  },
+  "level8feat": {
+    "name": "Dote Nivel 8"
+  },
+  "level8Feat": {
+    "name": "Dote Nivel 8"
+  },
+  "leviathanTitanForm": {
+    "name": "Leviatán"
+  },
+  "levitate": {
+    "name": "Levitar",
+    "summary": "Haces que una criatura u objeto se eleve verticalmente en el aire."
+  },
+  "lifeDomain": {
+    "name": "Dominio de la vida",
+    "description": "Se centra en la energía positiva que ayuda a sustentar la vida en el multiverso. Eres un maestro de la curación que emplea la fuerza vital para sanar."
+  },
+  "lifeDomainVestige": {
+    "name": "Dominio de la Vida",
+    "summary": "Obtén conjuros de sanación divinos y competencia con armadura pesada del Dominio de la Vida."
+  },
+  "lifeGivingForce": {
+    "name": "Fuerza Vital"
+  },
+  "lifeInversionField": {
+    "name": "Campo de Inversión de Vida",
+    "summary": "Creas un aura que te sana y convierte tu curación en daño necrótico para los enemigos."
+  },
+  "lifeSiphon": {
+    "name": "Sifón de Vida",
+    "summary": "Disparas un orbe de energía psiónica a un objetivo, opcionalmente gastando Dados de Golpe para daño extra."
+  },
+  "lightArmorTraining": {
+    "name": "Entrenamiento con armaduras ligeras"
+  },
+  "lightCrossbow": {
+    "name": "Ballesta ligera"
+  },
+  "lightDomain": {
+    "name": "Dominio de la Luz",
+    "description": "Enfatiza el poder divino del fuego abrasador y la revelación, quemando la oscuridad y ahuyentando las mentiras."
+  },
+  "lightDomainVestige": {
+    "name": "Dominio de la Luz",
+    "summary": "Obtén conjuros de fuego radiante y destellos protectores del Dominio de la Luz."
+  },
+  "lightHammer": {
+    "name": "Martillo ligero"
+  },
+  "lightlyArmored": {
+    "name": "Ligeramente Blindado",
+    "summary": "Ganas competencia con armaduras ligeras y entrenamiento con escudos."
+  },
+  "lightningAffinity": {
+    "name": "Afinidad al relámpago",
+    "summary": "Obtén resistencia al relámpago y suma tu modificador de Carisma a los conjuros de daño de relámpago."
+  },
+  "lightningBolt": {
+    "name": "Relámpago",
+    "summary": "Un rayo estalla en una larga línea recta."
+  },
+  "lightningImmunity": {
+    "name": "Inmunidad al daño de relámpago"
+  },
+  "lightningLauncher": {
+    "name": "Lanzador de Relámpagos"
+  },
+  "lightningResistance": {
+    "name": "Resistencia al daño de relámpago"
+  },
+  "lightSpell": {
+    "name": "Luz",
+    "summary": "Haces que un objeto brille con luz resplandeciente."
+  },
+  "lightWeaponProficiency": {
+    "name": "Competencia con Armas Ligeras"
+  },
+  "locateAnimalsOrPlants": {
+    "name": "Localizar animales o plantas",
+    "summary": "Sientes la dirección de un tipo específico de bestia o planta."
+  },
+  "locateCreature": {
+    "name": "Localizar criatura",
+    "summary": "Sientes la dirección hacia una criatura familiar o descrita."
+  },
+  "locateObject": {
+    "name": "Localizar objeto",
+    "summary": "Sientes la dirección hacia un objeto familiar cercano."
+  },
+  "longbow": {
+    "name": "Arco largo"
+  },
+  "longRest": {
+    "name": "Descanso largo"
+  },
+  "longstrider": {
+    "name": "Zancada prodigiosa",
+    "summary": "Tocas a una criatura para aumentar su velocidad de movimiento."
+  },
+  "longsword": {
+    "name": "Espada larga"
+  },
+  "lore": {
+    "name": "Colegio del conocimiento",
+    "description": "Recaba conjuros y secretos de diversas fuentes, explorando las profundidades del conocimiento mágico y ritos místicos."
+  },
+  "loreKnowledge": {
+    "name": "Competencia en Habilidades de Tradición"
+  },
+  "luck": {
+    "name": "Suerte",
+    "description": "Puedes volver a tirar cualquier 1 en un d20."
+  },
+  "luckPoints": {
+    "name": "Puntos de Suerte"
+  },
+  "lucky": {
+    "name": "Suertudo",
+    "summary": "Gasta puntos de suerte para ganar ventaja en tiradas o imponer desventaja a enemigos."
+  },
+  "luckyAdvantage": {
+    "name": "Suerte"
+  },
+  "lunarVitality": {
+    "name": "Vitalidad Lunar"
+  },
+  "lungingAttack": {
+    "name": "Ataque en Embestida",
+    "summary": "Aumenta el alcance de tu ataque cuerpo a cuerpo y causa daño extra."
+  },
+  "mace": {
+    "name": "Maza"
+  },
+  "mageArmor": {
+    "name": "Armadura de mago",
+    "summary": "Tocas a una criatura sin armadura para otorgarle un campo de fuerza mágico protector."
+  },
+  "mageHand": {
+    "name": "Mano de mago",
+    "summary": "Creas una mano espectral para manipular objetos a distancia."
+  },
+  "mageSlayer": {
+    "name": "Asesino de Magos",
+    "summary": "Castiga a los lanzadores de conjuros en proximidad y altera su concentración."
+  },
+  "mageSlayerConcentrationBreaker": {
+    "name": "Rompedor de Concentración",
+    "description": "En un impacto, el objetivo tiene Desventaja en cualquier tirada de salvación que haga para mantener la Concentración."
+  },
+  "mageSlayerGuardedMind": {
+    "name": "Mente Guardada"
+  },
+  "magicalAmmunition": {
+    "name": "Munición Mágica"
+  },
+  "magicalDiscoveries": {
+    "name": "Descubrimientos mágicos"
+  },
+  "magicCircle": {
+    "name": "Círculo mágico",
+    "summary": "Creas un cilindro mágico que protege contra tipos específicos de criaturas."
+  },
+  "magician": {
+    "name": "Mago de la Naturaleza",
+    "summary": "Aprende trucos adicionales de la naturaleza y obtén pruebas de habilidad de Naturaleza de bonificación."
+  },
+  "magicianCantrip": {
+    "name": "Truco de Mago"
+  },
+  "magicInitiateCleric": {
+    "name": "Iniciado en la magia (clérigo)",
+    "summary": "Aprendes trucos divinos y un conjuro de clérigo de nivel 1."
+  },
+  "magicInitiateClericCantrips": {
+    "name": "Trucos de Iniciado en Magia (Clérigo)"
+  },
+  "magicInitiateClericPreparedSpell": {
+    "name": "Conjuro de Iniciado en Magia (Clérigo)"
+  },
+  "magicInitiateDruid": {
+    "name": "Iniciado en la magia (druida)",
+    "summary": "Aprendes trucos de la naturaleza y un conjuro de druida de nivel 1."
+  },
+  "magicInitiateDruidCantrips": {
+    "name": "Trucos de Iniciado en Magia (Druida)"
+  },
+  "magicInitiateDruidPreparedSpell": {
+    "name": "Conjuro de Iniciado en Magia (Druida)"
+  },
+  "magicInitiateWizard": {
+    "name": "Iniciado en la magia (mago)",
+    "summary": "Aprendes trucos arcanos y un conjuro de mago de nivel 1."
+  },
+  "magicInitiateWizardCantrips": {
+    "name": "Trucos de Iniciado en Magia (Mago)"
+  },
+  "magicInitiateWizardPreparedSpell": {
+    "name": "Conjuro de Iniciado en Magia (Mago)"
+  },
+  "magicMissile": {
+    "name": "Proyectil mágico",
+    "summary": "Creas dardos de fuerza mágica que golpean automáticamente a sus objetivos."
+  },
+  "magicMouth": {
+    "name": "Boca mágica",
+    "summary": "Encantas un objeto para que diga un mensaje cuando ocurre un desencadenante."
+  },
+  "magicWeapon": {
+    "name": "Arma mágica",
+    "summary": "Tocas un arma no mágica para convertirla en un arma mágica +1."
+  },
+  "majorImage": {
+    "name": "Imagen mayor",
+    "summary": "Creas una ilusión compleja con sonido, vista y efectos térmicos."
+  },
+  "maneuveringAttack": {
+    "name": "Ataque de Maniobra",
+    "summary": "Inflige daño adicional y permite a un aliado reposicionarse de forma segura."
+  },
+  "maneuvers": {
+    "name": "Maniobras"
+  },
+  "mantleOfInspiration": {
+    "name": "Manto de Inspiración"
+  },
+  "mantleOfMajesty": {
+    "name": "Manto de Majestad"
+  },
+  "martialWeaponProficiency": {
+    "name": "Competencia con armas marciales"
+  },
+  "maskOfManyFaces": {
+    "name": "Máscara de los mil rostros",
+    "summary": "Puedes lanzar disfrazarse sin gastar un espacio de conjuro."
+  },
+  "masonsTools": {
+    "name": "Herramientas de albañil"
+  },
+  "massHealingWord": {
+    "name": "Palabra de curación en masa",
+    "summary": "Un estallido rápido de magia cura hasta a seis objetivos a distancia."
+  },
+  "masterOfMyriadForms": {
+    "name": "Maestro de las formas innumerables",
+    "summary": "Puedes lanzar alterar el propio aspecto sin gastar un espacio de conjuro."
+  },
+  "masteryProperties": {
+    "name": "Propiedades de maestría"
+  },
+  "maul": {
+    "name": "Maza a dos manos"
+  },
+  "medicine": {
+    "name": "Medicina"
+  },
+  "medicineAdvantage": {
+    "name": "Ventaja en Medicina"
+  },
+  "medicineDisadvantage": {
+    "name": "Desventaja en Medicina"
+  },
+  "medicineExpertise": {
+    "name": "Medicina",
+    "summary": "Diagnosticar una enfermedad o determinar de qué ha muerto un fallecido reciente."
+  },
+  "medicineHalfProficiency": {
+    "name": "Media competencia en Medicina"
+  },
+  "medicineProficiency": {
+    "name": "Medicina",
+    "summary": "Diagnosticar una enfermedad o determinar de qué ha muerto un fallecido reciente."
+  },
+  "mediumArmorMaster": {
+    "name": "Maestro en Armaduras Medias",
+    "summary": "Muévete sigilosamente con armadura media y maximiza los beneficios defensivos de Destreza."
+  },
+  "mediumArmorTraining": {
+    "name": "Entrenamiento con armaduras medias"
+  },
+  "meldIntoStone": {
+    "name": "Fundirse con la piedra",
+    "summary": "Entras en una superficie de piedra, fusionándote tú y tu equipo con la roca."
+  },
+  "melfsAcidArrow": {
+    "name": "Flecha ácida",
+    "summary": "Una flecha verde reluciente sale disparada, infligiendo daño de salpicadura de ácido."
+  },
+  "menacingAttack": {
+    "name": "Ataque Amenazante",
+    "summary": "Inflige daño extra y asusta al objetivo."
+  },
+  "mending": {
+    "name": "Reparar",
+    "summary": "Reparas una sola rotura o desgarro en un objeto."
+  },
+  "merchant": {
+    "name": "Mercader",
+    "description": "Aprendiste el flujo del comercio, comprando y vendiendo bienes en ajetreados mercados y caravanas."
+  },
+  "mercy": {
+    "name": "Guerrero de la Misericordia",
+    "description": "Manipula la fuerza vital como un médico errante enmascarado, actuando como un portador sin rostro de vida y muerte."
+  },
+  "message": {
+    "name": "Mensaje",
+    "summary": "Susurras un mensaje secreto a un objetivo a distancia."
+  },
+  "metamagic": {
+    "name": "Metamagia",
+    "summary": "Altera tus conjuros y adáptalos a conveniencia."
+  },
+  "metamorph": {
+    "name": "Metamorfo",
+    "description": "Esculpe psíquicamente la vida y la carne, moldeando tu cuerpo para convertirlo en el arma y recipiente supremo de poder psiónico."
+  },
+  "mindMagic": {
+    "name": "Magia Mental"
+  },
+  "mindSliver": {
+    "name": "Esquirla Mental",
+    "summary": "Incrustas una púa desorientadora de energía psíquica en la mente de un objetivo."
+  },
+  "mindSpike": {
+    "name": "Púa Mental",
+    "summary": "Incrustas una púa de energía psíquica en una mente, rastreando sus movimientos."
+  },
+  "minorIllusion": {
+    "name": "Ilusión menor",
+    "summary": "Creas un sonido o una imagen de un objeto dentro del alcance."
+  },
+  "minotaur": {
+    "name": "Minotauro",
+    "description": "Poderosos humanoides con cuernos dotados de un sentido de orientación infalible y una carga implacable."
+  },
+  "mirrorImage": {
+    "name": "Imagen múltiple",
+    "summary": "Aparecen tres duplicados ilusorios tuyos para desviar ataques."
+  },
+  "mistyEscape": {
+    "name": "Escape Brumoso"
+  },
+  "mistyStep": {
+    "name": "Paso brumoso",
+    "summary": "En un remolino de niebla plateada, te teletransportas a un espacio sin ocupar que puedas ver."
+  },
+  "mistyVisions": {
+    "name": "Visiones brumosas",
+    "summary": "Puedes lanzar imagen silenciosa sin gastar un espacio de conjuro."
+  },
+  "moderatelyArmored": {
+    "name": "Medianamente Blindado",
+    "summary": "Obtén competencia con armaduras medias y entrenamiento con escudos."
+  },
+  "monk": {
+    "name": "Monje",
+    "description": "Artistas marciales ascéticos que aprovechan el enfoque interior para golpear con velocidad y precisión relámpago."
+  },
+  "monkSkillProficiencies": {
+    "name": "Competencias en Habilidades de Monje"
+  },
+  "monkSubclass": {
+    "name": "Subclase de monje"
+  },
+  "monkToolProficiency": {
+    "name": "Competencia con Herramientas de Monje"
+  },
+  "moon": {
+    "name": "Colegio de la Luna",
+    "description": "Busca inspiración en las fases lunares, mezclando secretos de la luz de la luna con magia marcial y druídica."
+  },
+  "moonbeam": {
+    "name": "Rayo de luna",
+    "summary": "Un rayo plateado de luz pálida brilla desde lo alto, abrasando a los enemigos con radiación."
+  },
+  "mordenkainensFaithfulHound": {
+    "name": "Mastín fiel",
+    "summary": "Conjuras un perro guardián fantasmal para vigilar un área y atacar a los invasores."
+  },
+  "mordenkainensPrivateSanctum": {
+    "name": "Sanctasanctórum privado",
+    "summary": "Haces que un área sea mágicamente segura contra el escrutinio y los viajes planares."
+  },
+  "morningstar": {
+    "name": "Lucero del alba"
+  },
+  "mountedCombatant": {
+    "name": "Combatiente Montado",
+    "summary": "Obtén ventaja táctica y maniobras protectoras mientras montas."
+  },
+  "mountedCombatantMountedCombatant": {
+    "name": "Combatiente Montado",
+    "description": "Mientras estás montado, tienes Ventaja en las tiradas de ataque contra cualquier criatura no montada a 1,5 m de tu montura que sea al menos un tamaño más pequeña que la montura."
+  },
+  "multiattackDefense": {
+    "name": "Defensa contra ataques múltiples",
+    "summary": "Los ataques de una criatura que te golpee tendrán desventaja durante el resto del turno.",
+    "description": "Cuando una criatura te acierte con una tirada de ataque, esa criatura tendrá desventaja en todas las demás tiradas de ataque contra ti este turno."
+  },
+  "musicalInstrument": {
+    "name": "Instrumento musical"
+  },
+  "musician": {
+    "name": "Músico",
+    "summary": "Interpreta música durante los descansos para otorgar inspiración a los aliados."
+  },
+  "musket": {
+    "name": "Mosquete"
+  },
+  "mutableForm": {
+    "name": "Forma Mutable"
+  },
+  "myrkulPact": {
+    "name": "Aspecto de Mortalidad",
+    "summary": "Ganas resistencia necrótica y aprendes el truco Toque helado."
+  },
+  "mysticArts": {
+    "name": "Guerrero de las Artes Místicas",
+    "description": "Empuña magia para complementar la habilidad marcial, aprovechando un enfoque sobrenatural para potenciar capacidades mágicas y físicas."
+  },
+  "mysticArtsCantrips": {
+    "name": "Trucos de Artes Místicas"
+  },
+  "mysticArtsPreparedSpells": {
+    "name": "Conjuros Preparados de Artes Místicas"
+  },
+  "name": {
+    "name": "Nombre"
+  },
+  "naturallyStealthy": {
+    "name": "Sigiloso por naturaleza",
+    "description": "Puedes llevar a cabo la acción de esconderte incluso tras una criatura cuyo tamaño sea, al menos, una categoría superior al tuyo."
+  },
+  "nature": {
+    "name": "Naturaleza"
+  },
+  "natureAdvantage": {
+    "name": "Ventaja en Naturaleza"
+  },
+  "natureDisadvantage": {
+    "name": "Desventaja en Naturaleza"
+  },
+  "natureExpertise": {
+    "name": "Naturaleza",
+    "summary": "Recordar información acerca del terreno, la flora, la fauna y el clima."
+  },
+  "natureHalfProficiency": {
+    "name": "Media competencia en Naturaleza"
+  },
+  "natureProficiency": {
+    "name": "Naturaleza",
+    "summary": "Recordar información acerca del terreno, la flora, la fauna y el clima."
+  },
+  "naturesWrath": {
+    "name": "Ira de la Naturaleza"
+  },
+  "navigatorsTools": {
+    "name": "Herramientas de navegante"
+  },
+  "necromancer": {
+    "name": "Nigromante",
+    "description": "Explora las fuerzas cósmicas de la vida y la muerte, drenando la fuerza vital y alzando leales siervos muertos vivientes."
+  },
+  "necromancerCommandFamiliar": {
+    "name": "Comandar Familiar",
+    "description": "Cuando realizas la acción de Atacar en tu turno, puedes sustituir un ataque por una orden a tu familiar para hacer un ataque con su Reacción."
+  },
+  "necroticImmunity": {
+    "name": "Inmunidad al daño necrótico"
+  },
+  "necroticResistance": {
+    "name": "Resistencia al daño necrótico"
+  },
+  "necroticSpellConversion": {
+    "name": "Conversión Necrótica de Conjuro"
+  },
+  "nick": {
+    "name": "Mellar"
+  },
+  "noble": {
+    "name": "Noble",
+    "description": "Criado entre la riqueza y la política de la corte, aprendiste liderazgo, etiqueta y privilegios."
+  },
+  "nondetection": {
+    "name": "Indetectable",
+    "summary": "Ocultas a un objetivo de los conjuros de adivinación y de los sensores de escrutinio."
+  },
+  "nystulsMagicAura": {
+    "name": "Aura mágica de arcanista",
+    "summary": "Enmascaras o alteras el aura mágica de un objeto o criatura."
+  },
+  "oathbreaker": {
+    "name": "Rompejuramentos",
+    "description": "Rompe tus votos sagrados para perseguir ambiciones oscuras, extinguiendo la luz en tu corazón por poder demoníaco."
+  },
+  "oathOfDevotion": {
+    "name": "Juramento de entrega",
+    "description": "El juramento de entrega vincula al paladín con los ideales de la justicia y el orden, encarnando el ideal del caballero de brillante armadura."
+  },
+  "oathOfGenies": {
+    "name": "Juramento de los Genios Nobles",
+    "description": "Jura lealtad a los Genios nobles, canalizando magia elemental antigua y empuñando una armadura divina infundida de elementos."
+  },
+  "oathOfGlory": {
+    "name": "Juramento de Gloria",
+    "description": "Abraza un destino de grandeza, guiando a tus compañeros a alcanzar la gloria inmortal a través de actos heroicos."
+  },
+  "oathOfTheAncients": {
+    "name": "Juramento de los Ancestros",
+    "description": "Atesora la luz, amando las cosas bellas y vivificantes del mundo por encima de todos los demás principios."
+  },
+  "oathOfVengeance": {
+    "name": "Juramento de Venganza",
+    "description": "Haz un compromiso solemne de dar caza y castigar implacablemente a aquellos que han cometido actos gravemente malignos."
+  },
+  "observant": {
+    "name": "Observador",
+    "summary": "Potencia tu aguda percepción, lectura de labios y conciencia de detalles ocultos."
+  },
+  "observantMind": {
+    "name": "Mente Observadora",
+    "summary": "Añade un Dado de Energía Psiónica a una prueba de característica de Estudio."
+  },
+  "oneThirdCaster": {
+    "name": "Un Tercio Lanzador"
+  },
+  "oneWithShadows": {
+    "name": "Uno con las sombras",
+    "summary": "Mientras estés en una zona de luz tenue u oscuridad, puedes lanzar invisibilidad sobre ti sin gastar un espacio de conjuro."
+  },
+  "openHand": {
+    "name": "Guerrero de la mano abierta",
+    "description": "Maestros del combate sin armas, aprendiendo técnicas para empujar y derribar adversarios y manipular energía protectora."
+  },
+  "openHandTechnique": {
+    "name": "Técnica de la mano abierta"
+  },
+  "opportunityAttack": {
+    "name": "Ataque de oportunidad"
+  },
+  "orc": {
+    "name": "Orco",
+    "description": "Guerreros fuertes y decididos dotados de aguante incansable, descargas de adrenalina y visión en la oscuridad."
+  },
+  "otherworldlyFamiliarAirCelestial": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarAirFey": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarAirFiend": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarAirUndead": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarLandCelestial": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarLandFey": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarLandFiend": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarLandUndead": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarWaterCelestial": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarWaterFey": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarWaterFiend": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyFamiliarWaterUndead": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+  },
+  "otherworldlyGlamourSkill": {
+    "name": "Competencia en Habilidad de Glamour de Otro Mundo"
+  },
+  "otherworldlyLeap": {
+    "name": "Salto sobrenatural",
+    "summary": "Puedes lanzar salto sobre ti sin gastar un espacio de conjuro."
+  },
+  "otherworldlySteedCelestial": {
+    "name": "Corcel Celestial"
+  },
+  "otherworldlySteedFey": {
+    "name": "Corcel Feérico"
+  },
+  "otherworldlySteedFiend": {
+    "name": "Corcel Infernal"
+  },
+  "otilukesResilientSphere": {
+    "name": "Esfera elástica",
+    "summary": "Una esfera brillante de fuerza encierra a un objetivo para protegerlo o aislarlo."
+  },
+  "overwhelmingNecrosis": {
+    "name": "Necrosis Abrumadora",
+    "description": "Tus conjuros de Nigromancia ignoran la Resistencia al daño necrótico."
+  },
+  "owl": {
+    "name": "Aspecto de Búho",
+    "summary": "Obtén un movimiento rápido y agilidad aérea inspirados en el espíritu del búho."
+  },
+  "pactMagicSpellSlot": {
+    "name": "Espacio de Conjuro Nv. $(Math.min(5, Math.ceil(meta.level / 2)))"
+  },
+  "pactOfTheBladeFolder": {
+    "name": "Pacto del filo",
+    "summary": "Conjura en tu mano o vincúlate con un arma mágica de pacto."
+  },
+  "pactOfTheChainAttack": {
+    "name": "Comandar Familiar",
+    "description": "Cuando realizas la acción de Atacar en tu turno, puedes sustituir un ataque por una orden a tu familiar para hacer un ataque con su Reacción."
+  },
+  "pactOfTheChainFolder": {
+    "name": "Pacto de la cadena",
+    "summary": "Aprendes el conjuro encontrar familiar y accedes a formas especiales como diablillo o pseudodragón."
+  },
+  "pactOfTheTomeFolder": {
+    "name": "Pacto del grimorio",
+    "summary": "Obtén un grimorio con tres trucos y dos rituales mágicos."
+  },
+  "paddedArmor": {
+    "name": "Armadura acolchada"
+  },
+  "paintersSupplies": {
+    "name": "Suministros de pintor"
+  },
+  "paladin": {
+    "name": "Paladín",
+    "description": "Guerreros sagrados vinculados por juramentos solemnes, castigando el mal con poder radiante y auras protectoras."
+  },
+  "paladinSkillProficiencies": {
+    "name": "Competencias en Habilidades de Paladín"
+  },
+  "paladinSpells": {
+    "name": "Conjuros preparados de Paladín"
+  },
+  "paladinSubclass": {
+    "name": "Subclase de paladín"
+  },
+  "panther": {
+    "name": "Aspecto de Pantera",
+    "summary": "Obtén el sigilo al acecho y ataques en salto inspirados en el espíritu de la pantera."
+  },
+  "paralyzedAdvantage": {
+    "name": "Ventaja en estado Paralizado"
+  },
+  "paralyzedImmunity": {
+    "name": "Inmunidad al estado Paralizado"
+  },
+  "parry": {
+    "name": "Parada",
+    "summary": "Usa tu reacción para reducir el daño cuerpo a cuerpo entrante."
+  },
+  "passWithoutTrace": {
+    "name": "Pasar sin rastro",
+    "summary": "Un velo de sombras y silencio otorga +10 a las pruebas de Sigilo para tu grupo."
+  },
+  "pathToTheGrave": {
+    "name": "Senda hacia la Tumba"
+  },
+  "patientDefense": {
+    "name": "Defensa paciente"
+  },
+  "peerlessAthlete": {
+    "name": "Atleta Sin Igual"
+  },
+  "perception": {
+    "name": "Percepción"
+  },
+  "perceptionAdvantage": {
+    "name": "Ventaja en Percepción"
+  },
+  "perceptionDisadvantage": {
+    "name": "Desventaja en Percepción"
+  },
+  "perceptionExpertise": {
+    "name": "Percepción",
+    "summary": "Mediante una combinación de sentidos, darse cuenta de algo que es fácil pasar por alto."
+  },
+  "perceptionHalfProficiency": {
+    "name": "Media competencia en Percepción"
+  },
+  "perceptionProficiency": {
+    "name": "Percepción",
+    "summary": "Mediante una combinación de sentidos, darse cuenta de algo que es fácil pasar por alto."
+  },
+  "perfectedGuardianReactionResource": {
+    "name": "Usos de Reacción de Guardián Perfeccionado"
+  },
+  "perfectedInfiltratorFlightResource": {
+    "name": "Usos de Vuelo de Infiltrador Perfeccionado"
+  },
+  "performance": {
+    "name": "Interpretación"
+  },
+  "performanceAdvantage": {
+    "name": "Ventaja en Interpretación"
+  },
+  "performanceDisadvantage": {
+    "name": "Desventaja en Interpretación"
+  },
+  "performanceExpertise": {
+    "name": "Interpretación",
+    "summary": "Actuar, contar una historia, tocar un instrumento o bailar."
+  },
+  "performanceHalfProficiency": {
+    "name": "Media competencia en Interpretación"
+  },
+  "performanceProficiency": {
+    "name": "Interpretación",
+    "summary": "Actuar, contar una historia, tocar un instrumento o bailar."
+  },
+  "persuasion": {
+    "name": "Persuasión"
+  },
+  "persuasionAdvantage": {
+    "name": "Ventaja en Persuasión"
+  },
+  "persuasionDisadvantage": {
+    "name": "Desventaja en Persuasión"
+  },
+  "persuasionExpertise": {
+    "name": "Persuasión",
+    "summary": "Convencer a alguien de algo de una manera sincera y amable."
+  },
+  "persuasionHalfProficiency": {
+    "name": "Media competencia en Persuasión"
+  },
+  "persuasionProficiency": {
+    "name": "Persuasión",
+    "summary": "Convencer a alguien de algo de una manera sincera y amable."
+  },
+  "petrifiedAdvantage": {
+    "name": "Ventaja en estado Petrificado"
+  },
+  "petrifiedImmunity": {
+    "name": "Inmunidad al estado Petrificado"
+  },
+  "phantasmalForce": {
+    "name": "Fuerza fantasmal",
+    "summary": "Creas un fantasma aterrador en la mente de un objetivo."
+  },
+  "phantasmalKiller": {
+    "name": "Asesino fantasmal",
+    "summary": "Aprovechas los miedos profundos de un objetivo, creando una ilusión que inflige agonía."
+  },
+  "phantom": {
+    "name": "Fantasma",
+    "description": "Deslízate entre los vivos y los muertos, aprovechando el poder espectral para atacar con letalidad sobrenatural."
+  },
+  "phantomSteed": {
+    "name": "Corcel fantasma",
+    "summary": "Conjuras una montura cuasi-real rápida y parecida a un caballo."
+  },
+  "piercer": {
+    "name": "Perforador",
+    "summary": "Vuelve a tirar los dados de daño perforante e inflige daño crítico perforante letal."
+  },
+  "piercerEnhancedCritical": {
+    "name": "Crítico Mejorado"
+  },
+  "piercerPuncture": {
+    "name": "Punción"
+  },
+  "piercingImmunity": {
+    "name": "Inmunidad al daño perforante"
+  },
+  "piercingResistance": {
+    "name": "Resistencia al daño perforante"
+  },
+  "piercingShot": {
+    "name": "Disparo Perforante",
+    "summary": "Dispara una flecha que atraviesa a todas las criaturas en una línea de 9 metros."
+  },
+  "pike": {
+    "name": "Pica"
+  },
+  "pistol": {
+    "name": "Pistola"
+  },
+  "plantGrowth": {
+    "name": "Crecimiento vegetal",
+    "summary": "Canalizas vitalidad en las plantas para cubrir terreno o enriquecer cultivos."
+  },
+  "plateArmor": {
+    "name": "Armadura de placas"
+  },
+  "poisonAffinity": {
+    "name": "Afinidad al veneno",
+    "summary": "Obtén resistencia al veneno y suma tu modificador de Carisma a los conjuros de daño por veneno."
+  },
+  "poisonedAdvantage": {
+    "name": "Ventaja en estado Envenenado"
+  },
+  "poisonedImmunity": {
+    "name": "Inmunidad al estado Envenenado"
+  },
+  "poisoner": {
+    "name": "Envenenador",
+    "summary": "Ignora la resistencia al veneno y cubre armas con veneno potente y debilitante."
+  },
+  "poisonerBrewPoison": {
+    "name": "Elaborar Veneno"
+  },
+  "poisonerPotentPoison": {
+    "name": "Veneno Potente",
+    "description": "Tu daño ignora la resistencia al daño de Veneno."
+  },
+  "poisonersKit": {
+    "name": "Útiles de envenenador"
+  },
+  "poisonImmunity": {
+    "name": "Inmunidad al daño de veneno"
+  },
+  "poisonResistance": {
+    "name": "Resistencia al daño de veneno"
+  },
+  "poisonSpray": {
+    "name": "Rociada venenosa",
+    "summary": "Proyectas una bocanada de gas nocivo a una criatura cercana."
+  },
+  "polarLand": {
+    "name": "Terreno polar",
+    "summary": "Adapta tu magia de círculo a entornos helados y cubiertos de escarcha."
+  },
+  "polarStrikes": {
+    "name": "Golpes Polares"
+  },
+  "polearmMaster": {
+    "name": "Maestro en Armas de Asta",
+    "summary": "Realiza ataques de bonificación con el extremo del arma y ataques de oportunidad cuando los enemigos entran a tu alcance."
+  },
+  "polearmMasterReactiveStrike": {
+    "name": "Ataque Reactivo"
+  },
+  "poleStrike": {
+    "name": "Golpe de Asta"
+  },
+  "polymorph": {
+    "name": "Polimorfar",
+    "summary": "Transformas a una criatura en la forma de una bestia."
+  },
+  "portalJump": {
+    "name": "Salto de Portal"
+  },
+  "portent": {
+    "name": "Portento"
+  },
+  "potentArsenalEnvenom": {
+    "name": "Arsenal Potente"
+  },
+  "potentArsenalWeapon": {
+    "name": "Arsenal Potente"
+  },
+  "potentSpellcasting": {
+    "name": "Lanzamiento potente",
+    "summary": "Suma tu modificador de Sabiduría al daño infligido por tus trucos de clérigo."
+  },
+  "potentSpellcastingCleric": {
+    "name": "Lanzamiento potente",
+    "summary": "Suma tu modificador de Sabiduría al daño infligido por tus trucos de clérigo."
+  },
+  "pottersTools": {
+    "name": "Herramientas de alfarero"
+  },
+  "powerFromBeyondDamage": {
+    "name": "Poder del Más Allá (Daño)"
+  },
+  "powerFromBeyondHealing": {
+    "name": "Poder del Más Allá (Sanación)"
+  },
+  "prayerOfHealing": {
+    "name": "Plegaria de curación",
+    "summary": "Un momento de oración silenciosa restaura puntos de golpe a tu grupo."
+  },
+  "precisionAttack": {
+    "name": "Ataque de Precisión",
+    "summary": "Añade un dado de maniobra a una tirada de ataque para asegurar el golpe."
+  },
+  "preservedLand": {
+    "name": "Tierra Preservada"
+  },
+  "preservedLandLevel6FortifyAndReject": {
+    "name": "Tierra Preservada (Nivel 6 Fortalecer y Rechazar)"
+  },
+  "preserveLife": {
+    "name": "Preservar vida"
+  },
+  "prestidigitation": {
+    "name": "Prestidigitación",
+    "summary": "Realizas trucos mágicos menores y efectos utilitarios."
+  },
+  "primalCompanion": {
+    "name": "Compañero Primigenio"
+  },
+  "primalKnowledge": {
+    "name": "Conocimiento primigenio"
+  },
+  "primalKnowledgeSkill": {
+    "name": "Competencia en Habilidad de Conocimiento Primigenio"
+  },
+  "primalLoreCantrip": {
+    "name": "Truco de Tradición Primigenia"
+  },
+  "primalLoreProficiency": {
+    "name": "Competencia en Habilidades de Tradición Primigenia"
+  },
+  "primalOrder": {
+    "name": "Orden primigenia"
+  },
+  "primalStrike": {
+    "name": "Golpe primordial",
+    "summary": "Infunde los golpes con armas y de bestias con daño elemental adicional."
+  },
+  "produceFlame": {
+    "name": "Crear llama",
+    "summary": "Una llama parpadeante aparece en tu mano para iluminar o ser lanzada."
+  },
+  "projectedWard": {
+    "name": "Guarda Proyectada"
+  },
+  "proneAdvantage": {
+    "name": "Ventaja contra Derribado"
+  },
+  "proneImmunity": {
+    "name": "Inmunidad al estado Derribado"
+  },
+  "protection": {
+    "name": "Protección",
+    "summary": "Usa tu reacción para imponer desventaja en los ataques contra aliados cercanos."
+  },
+  "protectionFromEnergy": {
+    "name": "Protección contra energía",
+    "summary": "Otorgas a una criatura resistencia a un tipo de daño elemental."
+  },
+  "protectionFromEvilAndGood": {
+    "name": "Protección contra el bien y el mal",
+    "summary": "Proteges a una criatura dispuesta contra entidades de otros mundos."
+  },
+  "protectionFromPoison": {
+    "name": "Protección contra veneno",
+    "summary": "Neutralizas el veneno y otorgas resistencia al daño de veneno."
+  },
+  "protectiveField": {
+    "name": "Campo Protector"
+  },
+  "protector": {
+    "name": "Protector",
+    "summary": "Te has entrenado para el combate y ganas competencia con armas marciales y entrenamiento con armaduras pesadas."
+  },
+  "psiBolsteredKnack": {
+    "name": "Destreza Reforzada con Psiónica"
+  },
+  "psion": {
+    "name": "Psiónico",
+    "description": "Maestros del poder psiónico que tejen magia y facultades extraordinarias a través de la pura fuerza de sus mentes."
+  },
+  "psionCantrips": {
+    "name": "Trucos de Psiónico"
+  },
+  "psionicBacklash": {
+    "name": "Reacción Psiónica",
+    "summary": "Reduce el daño de un ataque entrante y devuelve daño psíquico al atacante."
+  },
+  "psionicDiscipline": {
+    "name": "Disciplina Psiónica"
+  },
+  "psionicEnergyDice": {
+    "name": "Energía Psiónica"
+  },
+  "psionicGuards": {
+    "name": "Guardias Psiónicos",
+    "summary": "Obtienes Inmunidad a los estados Hechizado/Asustado y Ventaja en salvaciones de Inteligencia."
+  },
+  "psionicStrike": {
+    "name": "Golpe Psiónico"
+  },
+  "psionPreparedSpells": {
+    "name": "Conjuros preparados de Psiónico"
+  },
+  "psionSkillProficiencies": {
+    "name": "Competencias en Habilidades de Psiónico"
+  },
+  "psionSubclass": {
+    "name": "Subclase de Psiónico"
+  },
+  "psiPoweredLeap": {
+    "name": "Salto Potenciado por Psi"
+  },
+  "psiWarper": {
+    "name": "Alterador Psíquico",
+    "description": "Sintoniza poderes psiónicos para manipular el espacio entre objetos, teletransportándose por los campos de batalla y alterando el espacio."
+  },
+  "psiWarrior": {
+    "name": "Guerrero Psíquico",
+    "description": "Despierta el poder de tu mente para aumentar el poderío físico, infundiendo ataques de armas con poder psiónico."
+  },
+  "psychicBlade": {
+    "name": "Hoja Psíquica"
+  },
+  "psychicImmunity": {
+    "name": "Inmunidad al daño psíquico"
+  },
+  "psychicResistance": {
+    "name": "Resistencia al daño psíquico"
+  },
+  "psychicSpellsDamage": {
+    "name": "Conjuros Psíquicos"
+  },
+  "psychicWhispers": {
+    "name": "Susurros Psíquicos"
+  },
+  "psykinetic": {
+    "name": "Psicoquinético",
+    "description": "Moldea la fuerza psiónica como una herramienta maleable, erigiendo robustas barreras y golpeando con la fuerza de un ariete."
+  },
+  "purifyFoodAndDrink": {
+    "name": "Purificar comida y bebida",
+    "summary": "Limpias de veneno y podredumbre alimentos y bebidas no mágicas."
+  },
+  "push": {
+    "name": "Empujar"
+  },
+  "pushingAttack": {
+    "name": "Ataque de Empuje",
+    "summary": "Inflige daño extra y empuja al objetivo hasta 4,5 m hacia atrás."
+  },
+  "quarterstaff": {
+    "name": "Bastón"
+  },
+  "quickenedSpell": {
+    "name": "Conjuro acelerado",
+    "summary": "Cambia el tiempo de lanzamiento de un conjuro de una acción a una acción adicional."
+  },
+  "quickenedSpellActivity": {
+    "name": "Conjuro acelerado"
+  },
+  "radianceOfTheDawn": {
+    "name": "Resplandor del Alba"
+  },
+  "radiantImmunity": {
+    "name": "Inmunidad al daño radiante"
+  },
+  "radiantResistance": {
+    "name": "Resistencia al daño radiante"
+  },
+  "rage": {
+    "name": "Furia",
+    "summary": "Imbuye tus ataques con fiereza primigenia y obtén resistencia al daño."
+  },
+  "rageOfTheWilds": {
+    "name": "Furia de las Tierras Salvajes"
+  },
+  "rally": {
+    "name": "Reagrupar",
+    "summary": "Refuerza a un aliado con puntos de golpe temporales utilizando tu dado de maniobra."
+  },
+  "ranger": {
+    "name": "Explorador",
+    "description": "Letales exploradores y rastreadores de tierras salvajes que combinan destreza marcial con magia de la naturaleza."
+  },
+  "rangerSkillProficiencies": {
+    "name": "Competencias en Habilidades de Explorador"
+  },
+  "rangerSpells": {
+    "name": "Conjuros preparados de Explorador"
+  },
+  "rangerSubclass": {
+    "name": "Subclase de explorador"
+  },
+  "rapier": {
+    "name": "Estoque"
+  },
+  "raulothimsPsychicLance": {
+    "name": "Lanza Psíquica",
+    "summary": "Desatas una brillante lanza de poder psíquico contra una criatura o un objetivo nombrado."
+  },
+  "rayOfEnfeeblement": {
+    "name": "Rayo debilitador",
+    "summary": "Un rayo negro de energía enervante debilita la fuerza de un objetivo."
+  },
+  "rayOfFrost": {
+    "name": "Rayo de escarcha",
+    "summary": "Un rayo gélido de luz azul blanquecina golpea y ralentiza a un objetivo."
+  },
+  "rayOfSickness": {
+    "name": "Rayo nauseabundo",
+    "summary": "Disparas un rayo verdoso que inflige daño de veneno y una enfermedad repulsiva."
+  },
+  "ready": {
+    "name": "Preparar una acción"
+  },
+  "reanimatedCompanion": {
+    "name": "Compañero Reanimado"
+  },
+  "reanimator": {
+    "name": "Reanimador",
+    "description": "Ensambla sirvientes a partir de cadáveres, transformando el oscuro arte de la nigromancia en una ciencia sombría."
+  },
+  "reboundingField": {
+    "name": "Campo de Rebote",
+    "description": "El atacante debe hacer una tirada de salvación de Destreza (CD $(attributes.spellcasting.save)), sufriendo 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) de daño de Fuerza en un fallo, o la mitad en un éxito. Tú obtienes Puntos de Golpe Temporales iguales al daño infligido."
+  },
+  "recklessAttack": {
+    "name": "Ataque temerario",
+    "summary": "Obtén ventaja en tiradas de ataque de Fuerza a costa de conceder ventaja."
+  },
+  "redirectAttacks": {
+    "name": "Redirigir Ataques"
+  },
+  "relentlessEndurance": {
+    "name": "Aguante incansable"
+  },
+  "religion": {
+    "name": "Religión"
+  },
+  "religionAdvantage": {
+    "name": "Ventaja en Religión"
+  },
+  "religionDisadvantage": {
+    "name": "Desventaja en Religión"
+  },
+  "religionExpertise": {
+    "name": "Religión",
+    "summary": "Recordar información sobre dioses, rituales religiosos y símbolos sagrados."
+  },
+  "religionHalfProficiency": {
+    "name": "Media competencia en Religión"
+  },
+  "religionProficiency": {
+    "name": "Religión",
+    "summary": "Recordar información sobre dioses, rituales religiosos y símbolos sagrados."
+  },
+  "removeCurse": {
+    "name": "Levantar maldición",
+    "summary": "A tu toque, todas las maldiciones que afectan a una criatura u objeto terminan."
+  },
+  "repellingBlast": {
+    "name": "Descarga Ahuyentadora",
+    "summary": "Empuja a un objetivo hasta 3 m de ti cuando aciertes con Descarga sobrenatural."
+  },
+  "replicateMagicItem": {
+    "name": "Conjuros de Replicar Objeto Mágico"
+  },
+  "resilient": {
+    "name": "Resiliente",
+    "summary": "Obtén competencia en tiradas de salvación en una puntuación de característica elegida."
+  },
+  "resistance": {
+    "name": "Resistencia",
+    "summary": "Tocas a una criatura para otorgar un pequeño impulso a su próxima tirada de salvación."
+  },
+  "resourceful": {
+    "name": "Ingenioso",
+    "description": "Obtienes Inspiración al final de un Descanso Largo."
+  },
+  "restoreBalance": {
+    "name": "Restaurar el Equilibrio"
+  },
+  "restrainedAdvantage": {
+    "name": "Ventaja en estado Apresado"
+  },
+  "restrainedImmunity": {
+    "name": "Inmunidad al estado Apresado"
+  },
+  "revivify": {
+    "name": "Revivir",
+    "summary": "Tocas a una criatura que murió en el último minuto para devolverla a la vida."
+  },
+  "ringMail": {
+    "name": "Cota guarnecida"
+  },
+  "riposte": {
+    "name": "Respuesta",
+    "summary": "Usa tu reacción para devolver el golpe cuando un enemigo falla contra ti."
+  },
+  "ritualCaster": {
+    "name": "Lanzador de Rituales",
+    "summary": "Aprende y lanza conjuros de utilidad rituales desde un libro de rituales."
+  },
+  "ritualCasterSpells": {
+    "name": "Conjuros de Lanzador de Rituales"
+  },
+  "rogue": {
+    "name": "Pícaro",
+    "description": "Astutos embaucadores que confían en el sigilo, la precisión y la vulnerabilidad para golpear eficazmente."
+  },
+  "rogueExpertise1": {
+    "name": "Pericia de Pícaro I"
+  },
+  "rogueExpertise2": {
+    "name": "Pericia de Pícaro II"
+  },
+  "rogueSkillProficiencies": {
+    "name": "Competencias en Habilidades de Pícaro"
+  },
+  "rogueSubclass": {
+    "name": "Subclase de pícaro"
+  },
+  "ropeTrick": {
+    "name": "Truco de la cuerda",
+    "summary": "Una cuerda se eleva en el aire, conduciendo a un espacio extradimensional oculto."
+  },
+  "sacredFlame": {
+    "name": "Llama sagrada",
+    "summary": "Un resplandor similar a una llama desciende sobre un objetivo."
+  },
+  "sacredWeapon": {
+    "name": "Arma sagrada"
+  },
+  "sage": {
+    "name": "Erudito",
+    "description": "Pasaste largas noches en archivos antiguos, devorando pergaminos y dominando la tradición arcana."
+  },
+  "sailor": {
+    "name": "Marinero",
+    "description": "Desafiaste las tormentas oceánicas y puertos extranjeros, forjado por una vida navegando en cubiertas oscilantes."
+  },
+  "salmon": {
+    "name": "Aspecto de Salmón",
+    "summary": "Obtén una poderosa capacidad de nado y una tenaz resistencia inspiradas en el espíritu del salmón."
+  },
+  "sanctuary": {
+    "name": "Santuario",
+    "summary": "Proteges a una criatura, haciendo que los atacantes duden antes de golpearla."
+  },
+  "sap": {
+    "name": "Debilitar"
+  },
+  "satyr": {
+    "name": "Sátiro",
+    "description": "Juerguistas feéricos con patas de cabra cuya música y magia florecen con el júbilo desenfrenado."
+  },
+  "savageAttacker": {
+    "name": "Atacante salvaje",
+    "summary": "Vuelve a tirar los dados de daño de arma una vez por turno y elige el total más alto.",
+    "description": "Puedes volver a tirar el daño una vez por turno."
+  },
+  "scaleMail": {
+    "name": "Cota de escamas"
+  },
+  "scholar": {
+    "name": "Pericia de Habilidad de Erudito"
+  },
+  "scimitar": {
+    "name": "Cimitarra"
+  },
+  "scion": {
+    "name": "Vástago",
+    "description": "Canaliza poder oscuro a través de aspectos de pavor malévolos, cambiando tu lealtad para desatar magia siniestra."
+  },
+  "scorchingRay": {
+    "name": "Rayo abrasador",
+    "summary": "Creas tres rayos de fuego y los arrojas a los objetivos."
+  },
+  "scribe": {
+    "name": "Escriba",
+    "description": "Te entrenaste en scriptoriums copiando textos raros, desarrollando una precisión meticulosa y habilidad caligráfica."
+  },
+  "sculptSpells": {
+    "name": "Esculpir conjuros",
+    "description": "Cuando lances un conjuro que obligue a hacer una tirada de salvación, tus aliados automáticamente la superan y no sufren daño si normalmente sufrirían la mitad."
+  },
+  "search": {
+    "name": "Buscar"
+  },
+  "searingSmite": {
+    "name": "Castigo abrasador",
+    "summary": "Tu golpe enciende a un objetivo con un fuego abrasador."
+  },
+  "searUndead": {
+    "name": "Abrasar muertos vivientes"
+  },
+  "secondStoryWorkClimber": {
+    "name": "Balconero Escalador"
+  },
+  "secondWind": {
+    "name": "Tomar aliento",
+    "summary": "Recupera puntos de golpe como acción adicional."
+  },
+  "seeInvisibility": {
+    "name": "Ver invisibilidad",
+    "summary": "Ves criaturas y objetos invisibles como si fueran visibles."
+  },
+  "seekingShot": {
+    "name": "Disparo Buscador",
+    "summary": "Dispara una flecha que busca a un objetivo oculto."
+  },
+  "seekingSpell": {
+    "name": "Conjuro buscador",
+    "summary": "Vuelve a tirar una tirada de ataque de conjuro fallida para intentar que acierte."
+  },
+  "seekingSpellActivity": {
+    "name": "Conjuro buscador"
+  },
+  "seer": {
+    "name": "Vidente",
+    "description": "Domina el flujo del tiempo y la previsión, eludiendo ataques, guiando a tus aliados y alterando los resultados."
+  },
+  "sending": {
+    "name": "Recado",
+    "summary": "Envías un breve mensaje mental a través de cualquier distancia."
+  },
+  "sentinel": {
+    "name": "Centinela",
+    "summary": "Detén a los enemigos en movimiento en seco y castiga a los que ataquen a tus aliados."
+  },
+  "sentinelAtDeathsDoor": {
+    "name": "Centinela a las Puertas de la Muerte"
+  },
+  "sentinelGuardian": {
+    "name": "Guardián"
+  },
+  "sentinelHalt": {
+    "name": "Detener"
+  },
+  "sentrysRest": {
+    "name": "Descanso del Centinela",
+    "description": "No necesitas dormir y la magia no puede dormirte. Puedes finalizar un descanso largo en 6 horas si las pasas en un estado inactivo y sin movimiento. Durante este tiempo pareces inerte pero conservas la consciencia."
+  },
+  "shadow": {
+    "name": "Hechicería Sombría",
+    "description": "Extrae magia de Shadowfell para controlar la oscuridad, envolverte en penumbra y convocar bestias inmundas."
+  },
+  "shadowMagicSpell": {
+    "name": "Conjuro de Magia Sombría"
+  },
+  "shadows": {
+    "name": "Guerrero de la Sombra",
+    "description": "Practica el sigilo y el subterfugio aprovechando el poder de Shadowfell para ocultarte, dar saltos sombríos y volverte fantasmal."
+  },
+  "shadowShot": {
+    "name": "Disparo Sombrío",
+    "summary": "Inflige daño psíquico adicional y ciega al objetivo a más de 1,5 metros."
+  },
+  "shadowStep": {
+    "name": "Paso Sombrío"
+  },
+  "shadowTouched": {
+    "name": "Tocado por las Sombras",
+    "summary": "Aprende Invisibilidad y un conjuro de ilusión/nigromancia con lanzamientos diarios gratuitos."
+  },
+  "shaper": {
+    "name": "Formador",
+    "description": "Manifiesta masa mental pura, ectoplasma y constructos psiónicos del Plano Astral para luchar junto a ti."
+  },
+  "sharpenedMind": {
+    "name": "Mente Afilada",
+    "summary": "Ignora la resistencia Psíquica y sustituye una tirada registrada de dado Psiónico en el daño una vez por turno."
+  },
+  "sharpshooter": {
+    "name": "Tirador de Élite",
+    "summary": "Domina la puntería a larga distancia para ignorar coberturas y alcanzar objetivos lejanos."
+  },
+  "sharpshooterBypassCover": {
+    "name": "Ignorar Cobertura",
+    "description": "Tus ataques ignoran la Cobertura Media y Tres Cuartos."
+  },
+  "sharpshooterFiringInMelee": {
+    "name": "Disparar en Cuerpo a Cuerpo",
+    "description": "Estar a 1,5 m de un enemigo no te impone Desventaja en tus ataques."
+  },
+  "sharpshooterPrecisionShot": {
+    "name": "Disparo de Precisión"
+  },
+  "shatter": {
+    "name": "Hacer añicos",
+    "summary": "Un fuerte ruido repentino de intensidad dolorosa resuena, dañando objetos y enemigos."
+  },
+  "shield": {
+    "name": "Escudo",
+    "summary": "Una barrera imperceptible de fuerza aumenta tu CA para bloquear ataques."
+  },
+  "shieldEquipment": {
+    "name": "Escudo"
+  },
+  "shieldMaster": {
+    "name": "Maestro de los Escudos",
+    "summary": "Usa tu escudo para empujar a los enemigos y bloquear daño direccional de conjuros."
+  },
+  "shieldMasterInterposeShield": {
+    "name": "Interponer Escudo"
+  },
+  "shieldMasterShieldBash": {
+    "name": "Golpe de Escudo"
+  },
+  "shieldOfFaith": {
+    "name": "Escudo de fe",
+    "summary": "Un campo brillante de magia protectora otorga +2 a la CA de un objetivo."
+  },
+  "shieldTraining": {
+    "name": "Entrenamiento con escudos"
+  },
+  "shillelagh": {
+    "name": "Shillelagh",
+    "summary": "Magia de la naturaleza imbuye tu arma de madera con fuerza."
+  },
+  "shiningSmite": {
+    "name": "Castigo Brillante",
+    "summary": "Tu golpe inflige daño radiante adicional y hace que el objetivo emita luz."
+  },
+  "shockingGrasp": {
+    "name": "Agarre electrizante",
+    "summary": "Relámpagos saltan de tu mano para sacudir a un objetivo."
+  },
+  "shortbow": {
+    "name": "Arco corto"
+  },
+  "shortRest": {
+    "name": "Descanso corto"
+  },
+  "shortsword": {
+    "name": "Espada corta"
+  },
+  "sickle": {
+    "name": "Hoz"
+  },
+  "silence": {
+    "name": "Silencio",
+    "summary": "Un área se vuelve completamente silenciosa, bloqueando sonido y conjuros verbales."
+  },
+  "silentImage": {
+    "name": "Imagen silenciosa",
+    "summary": "Creas una ilusión visual de un objeto o criatura."
+  },
+  "skeleton": {
+    "name": "Esqueleto"
+  },
+  "skilled": {
+    "name": "Habilidoso",
+    "summary": "Ganas competencia en cualquier combinación de tres habilidades o herramientas que elijas."
+  },
+  "skilledSkillProficiency": {
+    "name": "Competencias de Habilidoso"
+  },
+  "skillExpert": {
+    "name": "Experto en Habilidad",
+    "summary": "Obtén competencia en una habilidad y duplica tu bonificador de competencia en ella."
+  },
+  "skillExpertExpertise": {
+    "name": "Pericia de Experto en Habilidad"
+  },
+  "skillExpertSkillProficiency": {
+    "name": "Competencia de Experto en Habilidad"
+  },
+  "skillful": {
+    "name": "Competencia en Habilidad Especial"
+  },
+  "skillProficiencies": {
+    "name": "Competencias en Habilidades de Bardo"
+  },
+  "skulker": {
+    "name": "Furtivo",
+    "summary": "Mantente oculto en luz tenue y permanece encubierto cuando los ataques a distancia fallen."
+  },
+  "slasher": {
+    "name": "Cuchillero",
+    "summary": "Los ataques cortantes ralentizan a los enemigos y debilitan sus ataques de represalia."
+  },
+  "slasherEnhancedCritical": {
+    "name": "Crítico Mejorado"
+  },
+  "slasherHamstring": {
+    "name": "Desjarretar"
+  },
+  "slashingImmunity": {
+    "name": "Inmunidad al daño cortante"
+  },
+  "slashingResistance": {
+    "name": "Resistencia al daño cortante"
+  },
+  "sleep": {
+    "name": "Dormir",
+    "summary": "Incapacitas a las criaturas de un área con un sueño mágico."
+  },
+  "sleetStorm": {
+    "name": "Tormenta de aguanieve",
+    "summary": "Aguanieve cae en un área, cegando a las criaturas y creando hielo resbaladizo."
+  },
+  "sleight_of_hand": {
+    "name": "Juego de manos"
+  },
+  "sleightOfHandAdvantage": {
+    "name": "Ventaja en Juego de manos"
+  },
+  "sleightOfHandDisadvantage": {
+    "name": "Desventaja en Juego de manos"
+  },
+  "sleightOfHandExpertise": {
+    "name": "Juego de manos",
+    "summary": "Vaciar los bolsillos a alguien, ocultar un objeto que llevas en la mano o hacer trucos de prestidigitación."
+  },
+  "sleightOfHandHalfProficiency": {
+    "name": "Media competencia en Juego de manos"
+  },
+  "sleightOfHandProficiency": {
+    "name": "Juego de manos",
+    "summary": "Vaciar los bolsillos a alguien, ocultar un objeto que llevas en la mano o hacer trucos de prestidigitación."
+  },
+  "sling": {
+    "name": "Honda"
+  },
+  "slow": {
+    "name": "Ralentizar",
+    "summary": "Alteras el tiempo alrededor de los enemigos para reducir su velocidad y limitar sus acciones."
+  },
+  "slowFall": {
+    "name": "Caída lenta"
+  },
+  "smithsTools": {
+    "name": "Herramientas de herrero"
+  },
+  "sneakAttack": {
+    "name": "Ataque furtivo",
+    "summary": "Inflige daño adicional a una criatura a la que aciertes si tienes ventaja o un aliado a 1,5 m"
+  },
+  "sniper": {
+    "name": "Francotirador",
+    "description": "Si fallas un ataque a distancia mientras estás escondido, realizar la tirada de ataque no revela tu ubicación."
+  },
+  "soldier": {
+    "name": "Soldado",
+    "description": "Entrenado para el combate en el campo de batalla, llevas disciplina marcial y recuerdos de guerra a cada contienda."
+  },
+  "sorcerer": {
+    "name": "Hechicero",
+    "description": "Lanzadores de conjuros que portan magia innata en su linaje, moldeando el arcano puro a su voluntad."
+  },
+  "sorcererCantrips": {
+    "name": "Trucos de Hechicero"
+  },
+  "sorcererPreparedSpells": {
+    "name": "Conjuros preparados de Hechicero"
+  },
+  "sorcererSkillProficiencies": {
+    "name": "Competencias en Habilidades de Hechicero"
+  },
+  "sorcererSubclass": {
+    "name": "Subclase de hechicero"
+  },
+  "sorcerousBurst": {
+    "name": "Estallido mágico",
+    "summary": "Desatas un estallido impredecible de magia elemental."
+  },
+  "sorceryPoints": {
+    "name": "Puntos de hechicería"
+  },
+  "soulknife": {
+    "name": "Cuchillo del Alma",
+    "description": "Golpea con tu mente, canalizando poder psiónico innato para atravesar barreras físicas y psíquicas."
+  },
+  "spareTheDying": {
+    "name": "Piedad con los moribundos",
+    "summary": "Tocas a una criatura agonizante para estabilizarla."
+  },
+  "speakWithAnimals": {
+    "name": "Hablar con los animales",
+    "summary": "Obtienes la capacidad de comprender y hablar con bestias."
+  },
+  "speakWithDead": {
+    "name": "Hablar con los muertos",
+    "summary": "Otorgas consciencia temporal a un cadáver para que responda preguntas."
+  },
+  "speakWithPlants": {
+    "name": "Hablar con las plantas",
+    "summary": "Imbuyes a las plantas de consciencia para comunicarte y darles órdenes."
+  },
+  "spear": {
+    "name": "Lanza"
+  },
+  "specializedDesignSkill": {
+    "name": "Competencia en Habilidad de Diseño Especializado"
+  },
+  "specializedDesignTool": {
+    "name": "Competencia con Herramienta de Diseño Especializado"
+  },
+  "species": {
+    "name": "Especie"
+  },
+  "speedy": {
+    "name": "Veloz",
+    "summary": "Aumenta tu velocidad de movimiento e ignora la penalización de terreno difícil al correr."
+  },
+  "speedyAgileMovement": {
+    "name": "Movimiento Ágil",
+    "description": "El terreno difícil no te cuesta movimiento adicional al realizar la acción de correr."
+  },
+  "spellSniper": {
+    "name": "Francotirador de Conjuros",
+    "summary": "Duplica el alcance de conjuros, ignora coberturas y aprende un truco ofensivo."
+  },
+  "spellSniperBypassCover": {
+    "name": "Ignorar Cobertura",
+    "description": "Tus ataques de conjuro ignoran la cobertura media y tres cuartos."
+  },
+  "spellSniperCastingInMelee": {
+    "name": "Lanzar en Combate Cuerpo a Cuerpo",
+    "description": "Estar a 1,5 m de un enemigo no impone desventaja en tus tiradas de ataque de conjuro."
+  },
+  "spiderClimb": {
+    "name": "Trepar cual arácnido",
+    "summary": "Otorgas a una criatura la capacidad de desplazarse por paredes y techos."
+  },
+  "spikeGrowth": {
+    "name": "Crecimiento espinoso",
+    "summary": "El terreno se convierte en duras espinas que hieren y frenan a los viajeros."
+  },
+  "spiritChanneling": {
+    "name": "Canalización Espiritual"
+  },
+  "spiritGuardians": {
+    "name": "Espíritus guardianes",
+    "summary": "Espíritus protectores revolotean a tu alrededor, dañando y ralentizando a los enemigos cercanos."
+  },
+  "spirits": {
+    "name": "Colegio de los Espíritus",
+    "description": "Comunícate con espíritus del pasado, canalizando sus relatos y sabiduría para realizar magia asombrosa."
+  },
+  "spiritsFromBeyond": {
+    "name": "Espíritus del Más Allá"
+  },
+  "spiritsFromBeyondLevel5Options": {
+    "name": "Espíritus del Más Allá (Opciones de Nivel 5)"
+  },
+  "spiritShield": {
+    "name": "Escudo Espiritual"
+  },
+  "spiritualProtectors": {
+    "name": "Protectores Espirituales"
+  },
+  "spiritualWeapon": {
+    "name": "Arma espiritual",
+    "summary": "Creas un arma espectral flotante que golpea a los enemigos cercanos."
+  },
+  "splintArmor": {
+    "name": "Armadura de bandas"
+  },
+  "starMap": {
+    "name": "Mapa Estelar"
+  },
+  "starryForm": {
+    "name": "Forma Estrellada"
+  },
+  "starryWisp": {
+    "name": "Voluta estelar",
+    "summary": "Lanzas una mota parpadeante de luz que ilumina y daña a un objetivo."
+  },
+  "steadyAim": {
+    "name": "Puntería certera"
+  },
+  "stealth": {
+    "name": "Sigilo"
+  },
+  "stealthAdvantage": {
+    "name": "Ventaja en Sigilo"
+  },
+  "stealthDisadvantage": {
+    "name": "Desventaja en Sigilo"
+  },
+  "stealthExpertise": {
+    "name": "Sigilo",
+    "summary": "Pasar desapercibido al caminar en silencio y ocultarse detrás de las cosas."
+  },
+  "stealthHalfProficiency": {
+    "name": "Media competencia en Sigilo"
+  },
+  "stealthProficiency": {
+    "name": "Sigilo",
+    "summary": "Pasar desapercibido al caminar en silencio y ocultarse detrás de las cosas."
+  },
+  "steedName": {
+    "name": "Nombre del Corcel"
+  },
+  "steedType": {
+    "name": "Corcel de Otro Mundo"
+  },
+  "steelDefender": {
+    "name": "Defensor de Acero"
+  },
+  "steelDefenderName": {
+    "name": "Nombre del Defensor de Acero"
+  },
+  "stepOfTheWind": {
+    "name": "Paso del viento"
+  },
+  "stepsOfTheFey": {
+    "name": "Pasos de los Feéricos"
+  },
+  "stepsOfTheFeyLevel6Options": {
+    "name": "Pasos de los Feéricos (Opciones de Nivel 6)"
+  },
+  "stepsOfTheFeyOptions": {
+    "name": "Pasos de los Feéricos (Opciones)"
+  },
+  "stinkingCloud": {
+    "name": "Nube apestosa",
+    "summary": "Creas una esfera de gas nauseabundo que provoca arcadas."
+  },
+  "stonecunning": {
+    "name": "Afinidad con la piedra",
+    "summary": "Conocimiento y percepción excepcional en contacto con superficies de piedra."
+  },
+  "stonesEndurance": {
+    "name": "Resistencia de la piedra"
+  },
+  "stoneShape": {
+    "name": "Moldear la piedra",
+    "summary": "Moldeas un objeto o sección de piedra en cualquier forma deseada."
+  },
+  "stoneskin": {
+    "name": "Piel pétrea",
+    "summary": "Otorgas a una criatura resistencia al daño físico."
+  },
+  "stormsThunder": {
+    "name": "Trueno de la tormenta"
+  },
+  "str": {
+    "name": "FUE"
+  },
+  "strAdvantage": {
+    "name": "Ventaja en Fuerza"
+  },
+  "strangeModifications": {
+    "name": "Modificaciones Extrañas"
+  },
+  "strengthOfTheGrave": {
+    "name": "Fuerza de la Tumba"
+  },
+  "strSave": {
+    "name": "Tirada de salvación de Fuerza"
+  },
+  "studdedLeatherArmor": {
+    "name": "Armadura de cuero tachonado"
+  },
+  "studentOfPreservationTool": {
+    "name": "Competencia con Herramienta de Estudiante de la Preservación"
+  },
+  "studentOfWarSkill": {
+    "name": "Competencia en Habilidad de Estudiante de la Guerra"
+  },
+  "studentOfWarTool": {
+    "name": "Competencia con Herramienta de Estudiante de la Guerra"
+  },
+  "study": {
+    "name": "Estudiar"
+  },
+  "stunnedAdvantage": {
+    "name": "Ventaja en estado Aturdido"
+  },
+  "stunnedImmunity": {
+    "name": "Inmunidad al estado Aturdido"
+  },
+  "stunningStrike": {
+    "name": "Golpe aturdidor"
+  },
+  "subtleSpell": {
+    "name": "Conjuro sutil",
+    "summary": "Lanzas un conjuro sin componentes verbales, somáticos ni materiales comunes."
+  },
+  "subtleSpellActivity": {
+    "name": "Conjuro sutil"
+  },
+  "suggestion": {
+    "name": "Sugestión",
+    "summary": "Sugieres mágicamente un curso de acción a un objetivo."
+  },
+  "summonAberration": {
+    "name": "Invocar aberración",
+    "summary": "Invocas a un espíritu aberrante para luchar junto a ti."
+  },
+  "summonAstralEntity": {
+    "name": "Invocar Entidad Astral",
+    "summary": "Invocas a una entidad astral del Plano Astral para luchar junto a ti."
+  },
+  "summonBeast": {
+    "name": "Invocar bestia",
+    "summary": "Invocas a un espíritu bestial para luchar junto a ti."
+  },
+  "summonConstruct": {
+    "name": "Invocar constructo",
+    "summary": "Invocas a un espíritu constructo para luchar junto a ti."
+  },
+  "summonElemental": {
+    "name": "Invocar elemental",
+    "summary": "Invocas a un espíritu elemental para luchar junto a ti."
+  },
+  "summonFey": {
+    "name": "Invocar feérico",
+    "summary": "Invocas a un espíritu feérico para luchar junto a ti."
+  },
+  "summonUndead": {
+    "name": "Invocar muerto viviente",
+    "summary": "Invocas a un espíritu muerto viviente para luchar junto a ti."
+  },
+  "superiorityDice": {
+    "name": "Superioridad en Combate"
+  },
+  "surprisingStrikes": {
+    "name": "Daño de Golpes Sorprendentes"
+  },
+  "surprisingStrikesAttack": {
+    "name": "Ventaja de Golpes Sorprendentes",
+    "description": "Durante el primer asalto de cada combate, tienes ventaja en las tiradas de ataque contra cualquier criatura que no haya tenido su turno."
+  },
+  "survival": {
+    "name": "Supervivencia"
+  },
+  "survivalAdvantage": {
+    "name": "Ventaja en Supervivencia"
+  },
+  "survivalDisadvantage": {
+    "name": "Desventaja en Supervivencia"
+  },
+  "survivalExpertise": {
+    "name": "Supervivencia",
+    "summary": "Seguir huellas, forrajear, encontrar un camino o evitar peligros naturales."
+  },
+  "survivalHalfProficiency": {
+    "name": "Media competencia en Supervivencia"
+  },
+  "survivalProficiency": {
+    "name": "Supervivencia",
+    "summary": "Seguir huellas, forrajear, encontrar un camino o evitar peligros naturales."
+  },
+  "sweepingAttack": {
+    "name": "Ataque en Barrido",
+    "summary": "Barres con tu arma para infligir daño a un segundo objetivo adyacente."
+  },
+  "tacticalAssessment": {
+    "name": "Evaluación Táctica",
+    "summary": "Añade un dado de maniobra a pruebas de Historia, Perspicacia o Investigación."
+  },
+  "tacticalMind": {
+    "name": "Mente táctica"
+  },
+  "tandemFootwork": {
+    "name": "Juego de Pies en Tándem"
+  },
+  "tashasHideousLaughter": {
+    "name": "Risa horrible",
+    "summary": "Haces que un objetivo caiga presa de accesos de risa incontrolable."
+  },
+  "tashasMindWhip": {
+    "name": "Clavo mental",
+    "summary": "Atacas psíquicamente a una criatura, restringiendo sus acciones y causando daño psíquico."
+  },
+  "tavernBrawler": {
+    "name": "Pendenciero de Taberna",
+    "summary": "Destaca en combate sin armas, armas improvisadas y agarres rápidos."
+  },
+  "tavernBrawlerPush": {
+    "name": "Empujar"
+  },
+  "teamTacticsEffect": {
+    "name": "Tácticas de Equipo"
+  },
+  "telekinetic": {
+    "name": "Telecinético",
+    "summary": "Aprende Mano de mago invisible y empuja telecinéticamente a enemigos o aliados."
+  },
+  "telekineticCrush": {
+    "name": "Aplastamiento Telecinético",
+    "summary": "Aplasta a un objetivo con una fuerza telecinética devastadora."
+  },
+  "telekineticFling": {
+    "name": "Lanzamiento Telecinético",
+    "summary": "Envuelves un objeto pequeño en energía psiónica y lo arrojas a un objetivo."
+  },
+  "telekineticMovement": {
+    "name": "Movimiento Telecinético"
+  },
+  "telekineticPropel": {
+    "name": "Propulsión Telecinética"
+  },
+  "telekineticShove": {
+    "name": "Empuje Telecinético"
+  },
+  "telekineticTechniques": {
+    "description": "Puedes tirar 5d4 en lugar de gastar un Dado de Energía Psiónica.\n\nCuando un objetivo falle su tirada de salvación, puedes aplicar uno de los siguientes efectos:\n* **Impulso.** La Velocidad del objetivo aumenta en 3 m hasta el principio de tu siguiente turno.\n* **Desorientar.** El objetivo no puede realizar Ataques de Oportunidad hasta el principio de su siguiente turno.\n* **Saeta Telecinética.** El objetivo recibe daño de Fuerza equivalente al número obtenido en el dado."
+  },
+  "telepath": {
+    "name": "Telépata",
+    "description": "Domina tácticas en el paisaje de la mente, reforzando las defensas mentales aliadas y sondeando pensamientos sin ser detectado."
+  },
+  "telepathic": {
+    "name": "Telepático",
+    "summary": "Comunícate telepáticamente con criaturas cercanas y lee pensamientos superficiales."
+  },
+  "telepathicDistraction": {
+    "name": "Distracción Telepática"
+  },
+  "temperateLand": {
+    "name": "Terreno templado",
+    "summary": "Adapta tu magia de círculo a bosques frondosos y entornos templados."
+  },
+  "temporalGlitch": {
+    "name": "Fallo Temporal"
+  },
+  "tensersFloatingDisk": {
+    "name": "Disco flotante",
+    "summary": "Creas un plano flotante de fuerza que te sigue transportando carga."
+  },
+  "thaumaturge": {
+    "name": "Taumaturgo",
+    "summary": "Conoces un truco sagrado adicional y recibes un bonificador a pruebas de Conocimiento arcano y Religión."
+  },
+  "thaumaturgeCantrip": {
+    "name": "Truco de Taumaturgo"
+  },
+  "thaumaturgy": {
+    "name": "Taumaturgia",
+    "summary": "Manifiestas prodigios menores y señales sobrenaturales."
+  },
+  "thief": {
+    "name": "Ladrón",
+    "description": "Mezcla de ladrón, cazatesoros y explorador que destaca por su agilidad, sigilo y dominio de objetos mágicos."
+  },
+  "thirstingBlade": {
+    "name": "Filo sediento",
+    "summary": "Obtienes el rasgo Ataque adicional con tu arma de pacto al llevar a cabo la acción de atacar."
+  },
+  "thornWhip": {
+    "name": "Látigo de espinas",
+    "summary": "Creas un látigo de enredaderas con espinas para golpear y atraer a un objetivo."
+  },
+  "thrownWeaponFighting": {
+    "name": "Combate con Armas Arrojadizas",
+    "summary": "Desenvaina armas arrojadizas al instante como parte del ataque e inflige daño adicional."
+  },
+  "thunderclap": {
+    "name": "Tronada",
+    "summary": "Creas un estallido de ruido atronador que daña a los objetivos adyacentes."
+  },
+  "thunderImmunity": {
+    "name": "Inmunidad al daño de trueno"
+  },
+  "thunderousSmite": {
+    "name": "Castigo atronador",
+    "summary": "Tu golpe resuena con un trueno que empuja y derriba a un objetivo."
+  },
+  "thunderPulse": {
+    "name": "Pulso de Trueno"
+  },
+  "thunderResistance": {
+    "name": "Resistencia al daño de trueno"
+  },
+  "thunderwave": {
+    "name": "Ola atronadora",
+    "summary": "Desatas una onda de energía atronadora que empuja objetos y enemigos cercanos."
+  },
+  "tidesOfChaos": {
+    "name": "Mareas del Caos"
+  },
+  "tiefling": {
+    "name": "Tiefling",
+    "description": "Mortales con un legado infernal que les otorga capacidades sobrenaturales y resistencia planar."
+  },
+  "thievesTools": {
+    "name": "Herramientas de ladrón"
+  },
+  "tinkersTools": {
+    "name": "Herramientas de manitas"
+  },
+  "tireless": {
+    "name": "Infatigable",
+    "description": "Privarte de comida y bebida o pasar necesidades extremas no te aplica niveles de cansancio."
+  },
+  "titanForm": {
+    "name": "Plantillas de Forma de Titán"
+  },
+  "tollTheDead": {
+    "name": "Tañido por los Muertos",
+    "summary": "El eco doloroso del tañido de una campana inflige daño necrótico."
+  },
+  "tomeCantrips": {
+    "name": "Trucos del Grimorio"
+  },
+  "tomeRituals": {
+    "name": "Rituales del Grimorio"
+  },
+  "tongues": {
+    "name": "Don de lenguas",
+    "summary": "Otorgas a una criatura la capacidad de entender y hablar cualquier idioma."
+  },
+  "topple": {
+    "name": "Derribar"
+  },
+  "tough": {
+    "name": "Duro",
+    "summary": "Aumenta considerablemente tus puntos de golpe máximos en cada nivel."
+  },
+  "toxicTouch": {
+    "name": "Toque Tóxico"
+  },
+  "trance": {
+    "name": "Trance",
+    "description": "No necesitas dormir y la magia no puede dormirte. Puedes finalizar un descanso largo en 4 horas si las pasas en una meditación similar a un trance, durante la cual conservas la consciencia.",
+    "summary": "No necesitas dormir; meditas profundamente durante 4 horas"
+  },
+  "transmutedSpell": {
+    "name": "Conjuro transmutado",
+    "summary": "Cambias el tipo de daño elemental de un conjuro por otro tipo elemental."
+  },
+  "transmutedSpellActivity": {
+    "name": "Conjuro transmutado"
+  },
+  "trickeryDomain": {
+    "name": "Dominio del Engaño",
+    "description": "Empuña magia de engaño, ilusión y sigilo como fuerza disruptiva que castiga el orgullo y la tiranía."
+  },
+  "trickeryDomainVestige": {
+    "name": "Dominio del Engaño",
+    "summary": "Obtén conjuros ilusorios de sigilo y duplicados de embaucador del Dominio del Engaño."
+  },
+  "trident": {
+    "name": "Tridente"
+  },
+  "tripAttack": {
+    "name": "Ataque de Tropiezo",
+    "summary": "Inflige daño adicional e impone el estado de derribado al objetivo."
+  },
+  "triton": {
+    "name": "Tritón",
+    "description": "Guardianes acuáticos del Plano del Agua que defienden tanto las profundidades oceánicas como las costas."
+  },
+  "tropicalLand": {
+    "name": "Terreno tropical",
+    "summary": "Adapta tu magia de círculo a densas junglas y entornos tropicales."
+  },
+  "trueStrike": {
+    "name": "Impacto certero",
+    "summary": "Una percepción mágica guía con precisión tu próximo ataque."
+  },
+  "turnUndead": {
+    "name": "Expulsar muertos vivientes"
+  },
+  "twinnedSpell": {
+    "name": "Conjuro gemelo",
+    "summary": "Aumenta el nivel efectivo de un conjuro para hacer objetivo a una criatura adicional."
+  },
+  "twinnedSpellActivity": {
+    "name": "Conjuro gemelo"
+  },
+  "twoWeaponFighting": {
+    "name": "Combate con dos armas",
+    "summary": "Suma tu modificador por característica al daño del ataque extra realizado con un arma ligera."
+  },
+  "umbralSightInvisibility": {
+    "name": "Visión Umbría"
+  },
+  "unarmed": {
+    "name": "Ataque sin armas"
+  },
+  "unarmedFighting": {
+    "name": "Estilo de Combate sin Armas",
+    "summary": "Aumenta el daño de tus ataques sin armas e inflige daño extra a objetivos a los que estés agarrando."
+  },
+  "unarmedFightingUnarmedFighting": {
+    "name": "Combate sin Armas"
+  },
+  "unarmored": {
+    "name": "Sin armadura"
+  },
+  "uncannyDodge": {
+    "name": "Esquiva asombrosa"
+  },
+  "unconsciousAdvantage": {
+    "name": "Ventaja en estado Inconsciente"
+  },
+  "unconsciousImmunity": {
+    "name": "Inmunidad al estado Inconsciente"
+  },
+  "undeadPatron": {
+    "name": "Patrón No Muerto",
+    "description": "Haz un pacto con una entidad muerta viviente legendaria, obteniendo poderes pavorosos para desafiar a la muerte y aterrar enemigos."
+  },
+  "undeadSpiritGhostly": {
+    "name": "Espíritu No Muerto (Fantasmal)"
+  },
+  "undeadSpiritPutrid": {
+    "name": "Espíritu No Muerto (Pútrido)"
+  },
+  "undeadSpiritSkeletal": {
+    "name": "Espíritu No Muerto (Esquelético)"
+  },
+  "undeadVestige": {
+    "name": "Vestigio No Muerto"
+  },
+  "unfetteredMindTelepathy": {
+    "name": "Mente Sin Ataduras"
+  },
+  "unseenServant": {
+    "name": "Sirviente invisible",
+    "summary": "Creas una fuerza invisible para realizar tareas sencillas por ti."
+  },
+  "valor": {
+    "name": "Colegio del Valor",
+    "description": "Entona cantos sobre hazañas en batalla, preservando la memoria de grandes héroes como un narrador intrépido."
+  },
+  "vampiricTouch": {
+    "name": "Toque vampírico",
+    "summary": "Tu toque envuelto en sombras absorbe la fuerza vital enemiga para curar tus heridas."
+  },
+  "venom": {
+    "name": "Guerrero del Veneno",
+    "description": "Recolecta toxinas para impregnar tus armas con veneno debilitante y utiliza toques tóxicos para sedar o encandilar."
+  },
+  "versatile": {
+    "name": "Versátil"
+  },
+  "vestigeCompanion": {
+    "name": "Compañero Vestigio"
+  },
+  "vestigeCompanionName": {
+    "name": "Nombre del Compañero Vestigio"
+  },
+  "vestigeDomainChoice": {
+    "name": "Dominio del Vestigio"
+  },
+  "vestigePatron": {
+    "name": "Patrón del Vestigio",
+    "description": "Extrae poder de los vestigios fantasmales de un dios perdido, manifestando un compañero para canalizar magia divina."
+  },
+  "vex": {
+    "name": "Molestar"
+  },
+  "viciousMockery": {
+    "name": "Burla dañina",
+    "summary": "Desatas sutiles encantamientos con palabras hirientes para desorientar y dañar a una criatura."
+  },
+  "visceraLauncher": {
+    "name": "Lanzador de Vísceras"
+  },
+  "vitalitySurge": {
+    "name": "Oleada de Vitalidad"
+  },
+  "vitriolicSphere": {
+    "name": "Esfera vitriólica",
+    "summary": "Una esfera de ácido vuela a una ubicación y explota en una salpicadura corrosiva."
+  },
+  "vowOfEnmity": {
+    "name": "Voto de Enemistad"
+  },
+  "wailsFromTheGrave": {
+    "name": "Lamentos de la Tumba"
+  },
+  "wailsFromTheGraveResource": {
+    "name": "Lamentos de la Tumba"
+  },
+  "wallOfFire": {
+    "name": "Muro de fuego",
+    "summary": "Creas un muro llameante de fuego que inflige intenso daño de fuego a quien lo cruce."
+  },
+  "warBond": {
+    "name": "Vínculo de Guerra"
+  },
+  "warCaster": {
+    "name": "Lanzador de Conjuros de Guerra",
+    "summary": "Mantén la concentración de conjuros con facilidad y lanza conjuros como ataques de oportunidad."
+  },
+  "warCasterReactiveSpell": {
+    "name": "Conjuro Reactivo"
+  },
+  "warden": {
+    "name": "Guardián",
+    "summary": "Ganas competencia con armas marciales y entrenamiento con armaduras medias."
+  },
+  "wardingBond": {
+    "name": "Vínculo protector",
+    "summary": "Proteges a un aliado, compartiendo su daño y reforzando su defensa."
+  },
+  "wardingFlare": {
+    "name": "Llamarada Protectora"
+  },
+  "wardingFlareTempHP": {
+    "name": "Llamarada Protectora (Nivel 6)"
+  },
+  "warDomain": {
+    "name": "Dominio de la Guerra",
+    "description": "Destaca en combate accediendo a la magia de la guerra, inspirando a otros o dedicando el combate como una oración."
+  },
+  "warDomainVestige": {
+    "name": "Dominio de la Guerra",
+    "summary": "Obtén ataques de arma adicionales y conjuros de barrera protectora del Dominio de la Guerra."
+  },
+  "warforged": {
+    "name": "Forjado",
+    "description": "Seres mecánicos imbuidos de fluidos alquímicos y cuerpos de madera y metal capaces de sentir dolor y emoción."
+  },
+  "warhammer": {
+    "name": "Martillo de guerra"
+  },
+  "warlock": {
+    "name": "Brujo",
+    "description": "Buscadores de poder arcano vinculados por pactos con enigmáticos patrones de otros mundos."
+  },
+  "warlockCantrips": {
+    "name": "Trucos de Brujo"
+  },
+  "warlockPreparedSpells": {
+    "name": "Conjuros preparados de Brujo"
+  },
+  "warlockSkillProficiencies": {
+    "name": "Competencias en Habilidades de Brujo"
+  },
+  "warlockSubclass": {
+    "name": "Subclase de brujo"
+  },
+  "warPick": {
+    "name": "Pico de guerra"
+  },
+  "warPriest": {
+    "name": "Sacerdote de Guerra"
+  },
+  "warriorOfTheGods": {
+    "name": "Guerrero de los Dioses"
+  },
+  "waterBreathing": {
+    "name": "Respirar bajo el agua",
+    "summary": "Otorgas a hasta diez criaturas la capacidad de respirar bajo el agua."
+  },
+  "waterWalk": {
+    "name": "Caminar sobre el agua",
+    "summary": "Otorgas a las criaturas la capacidad de desplazarse sobre superficies líquidas como si fueran terreno sólido."
+  },
+  "wayfarer": {
+    "name": "Caminante",
+    "description": "Criado en las calles urbanas, sobreviviste a las adversidades gracias al ingenio, el coraje y la determinación."
+  },
+  "weaponAttack": {
+    "name": "$(local.name)"
+  },
+  "weaponMaster": {
+    "name": "Maestro de las Armas",
+    "summary": "Consigue maestría y entrenamiento en cuatro armas elegidas."
+  },
+  "weaversTools": {
+    "name": "Herramientas de tejedor"
+  },
+  "web": {
+    "name": "Telaraña",
+    "summary": "Conjuras una densa masa de telarañas pegajosas para atrapar y enredar a los enemigos."
+  },
+  "wellSpokenSkill": {
+    "name": "Competencia en Habilidad Bien Hablado"
+  },
+  "whip": {
+    "name": "Látigo"
+  },
+  "whispersOfTheGrave": {
+    "name": "Susurros del sepulcro",
+    "summary": "Puedes lanzar hablar con los muertos sin gastar un espacio de conjuro."
+  },
+  "wholenessOfBody": {
+    "name": "Plenitud de cuerpo"
+  },
+  "wildHeart": {
+    "name": "Senda del Corazón Salvaje",
+    "description": "Comunícate con animales y canaliza poder sobrenatural mientras tu Furia profundiza tu vínculo primigenio."
+  },
+  "wildMagic": {
+    "name": "Hechicería de Magia Salvaje",
+    "description": "Canaliza el caos primordial de la creación, desatando magia pura e impredecible en estallidos espectaculares."
+  },
+  "wildMagicSurge": {
+    "name": "Sobrecarga de Magia Salvaje"
+  },
+  "wildShape": {
+    "name": "Forma salvaje",
+    "summary": "Asume mágicamente la forma de una bestia que hayas aprendido."
+  },
+  "wildShapeActivity": {
+    "name": "Forma salvaje"
+  },
+  "wildShapeTemplate": {
+    "name": "Plantillas de Forma salvaje"
+  },
+  "windWall": {
+    "name": "Muro de viento",
+    "summary": "Se alza una muralla de viento fuerte que desvía proyectiles, flechas y gases."
+  },
+  "winterWalker": {
+    "name": "Caminante Invernal",
+    "description": "Prospera en tundras heladas, canalizando escarcha y hielo para escudarte y paralizar a tus presas."
+  },
+  "wis": {
+    "name": "SAB"
+  },
+  "wisAdvantage": {
+    "name": "Ventaja en Sabiduría"
+  },
+  "wisCaster": {
+    "name": "Lanzador por Sabiduría"
+  },
+  "wisSave": {
+    "name": "Tirada de salvación de Sabiduría"
+  },
+  "witchBolt": {
+    "name": "Rayo de hechicera",
+    "summary": "Formas un arco sostenido de relámpago crepitante entre ti y un objetivo."
+  },
+  "wizard": {
+    "name": "Mago",
+    "description": "Eruditos de la magia que dominan las artes arcanas mediante el estudio riguroso y sus libros de conjuros."
+  },
+  "wizardCantrips": {
+    "name": "Trucos de Mago"
+  },
+  "wizardPreparedSpells": {
+    "name": "Conjuros preparados de Mago"
+  },
+  "wizardSkillProficiencies": {
+    "name": "Competencias en Habilidades de Mago"
+  },
+  "wizardSubclass": {
+    "name": "Subclase de mago"
+  },
+  "woodcarversTools": {
+    "name": "Herramientas de ebanista"
+  },
+  "wordOfRadiance": {
+    "name": "Palabra de Resplandor",
+    "summary": "Una radiancia abrasadora estalla a tu alrededor dañando a los enemigos cercanos."
+  },
+  "worldTree": {
+    "name": "Senda del Árbol del Mundo",
+    "description": "Conéctate con el Árbol del Mundo cósmico a través de tu Furia, recurriendo a su magia para vitalidad y viaje."
+  },
+  "wrathfulSmite": {
+    "name": "Castigo colérico",
+    "summary": "Tu golpe inflige daño psíquico e impone el estado de asustado al objetivo."
+  },
+  "wrathOfTheSea": {
+    "name": "Ira del Mar"
+  },
+  "wrathOfTheSeaPushEffect": {
+    "name": "Ira del Mar (Empuje Nivel 6)"
+  },
+  "wrathOfTheWild": {
+    "name": "Ira de lo Salvaje"
+  },
+  "zealot": {
+    "name": "Senda del Fanático",
+    "description": "Recibe bendiciones de un dios, experimentando la Furia como una comunión divina que te imbuye de poder sagrado."
+  },
+  "zombie": {
+    "name": "Zombi"
+  },
+  "zoneOfTruth": {
+    "name": "Zona de la verdad",
+    "summary": "Creas una zona que impide que las criaturas digan mentiras de forma deliberada."
+  },
+  "strength": {
+    "name": "Fuerza"
+  },
+  "dexterity": {
+    "name": "Destreza"
+  },
+  "constitution": {
+    "name": "Constitución"
+  },
+  "intelligence": {
+    "name": "Inteligencia"
+  },
+  "wisdom": {
+    "name": "Sabiduría"
+  },
+  "charisma": {
+    "name": "Carisma"
+  },
+  "ac": {
+    "name": "Clase de armadura"
+  },
+  "hp": {
+    "name": "Puntos de golpe"
+  },
+  "initiative": {
+    "name": "Iniciativa"
+  },
+  "speed": {
+    "name": "Velocidad"
+  },
+  "unarmoredDefense": {
+    "name": "Defensa sin armadura",
+    "summary": "Tu clase de armadura base se calcula usando modificadores de característica cuando no llevas armadura."
+  },
+  "fontOfMagic": {
+    "name": "Fuente de magia",
+    "summary": "Accede a tus puntos de hechicería para crear espacios de conjuro o alimentar opciones de metamagia."
+  },
+  "pactBoon": {
+    "name": "Invocaciones de Pacto",
+    "summary": "Un don especial concedido mediante ceremonia ocultista por tu patrón misterioso."
+  },
+  "arcaneRecovery": {
+    "name": "Recuperación arcana",
+    "summary": "Recuperas espacios de conjuro gastados estudiando tu libro de conjuros tras finalizar un descanso corto."
+  },
+  "spellcasting": {
+    "name": "Lanzamiento de conjuros",
+    "summary": "Preparas y lanzas conjuros utilizando tu aptitud mágica y tus espacios de conjuro."
+  },
+  "feyAncestry": {
+    "name": "Linaje feérico",
+    "summary": "Tienes ventaja en las tiradas de salvación para evitar o poner fin al estado de hechizado."
+  },
+  "dwarvenResilience": {
+    "name": "Resistencia enana",
+    "summary": "Tienes resistencia al daño de veneno y ventaja en tiradas de salvación para evitar o poner fin al estado de envenenado."
+  },
+  "halflingLuck": {
+    "name": "Fortuna",
+    "summary": "Cuando saques un 1 en una prueba con d20, podrás repetir la tirada y deberás utilizar el nuevo resultado."
+  },
+  "brave": {
+    "name": "Valiente",
+    "summary": "Tienes ventaja en las tiradas de salvación que hagas para evitar o poner fin al estado de asustado."
+  },
+  "nimble": {
+    "name": "Agilidad de mediano",
+    "summary": "Puedes moverte a través del espacio ocupado por cualquier criatura de tamaño superior al tuyo."
+  }
+}

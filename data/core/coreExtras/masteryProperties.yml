@@ -71,6 +71,7 @@ children:
       type: rollModifier
       modifierType: disadvantage
       targetRolls: attack
+      end: start_of_your_next_turn
     id: sap
     name: Sap
   - type: Effect
@@ -80,5 +81,8 @@ children:
       type: rollModifier
       modifierType: advantage
       targetRolls: attack
+      recipient: self
+      against: target
+      end: end_of_your_next_turn
     id: vex
     name: Vex

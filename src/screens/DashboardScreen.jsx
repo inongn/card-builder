@@ -1,7 +1,24 @@
 import React, { useEffect } from 'react';
 import { getAssetUrl } from '../data/artworkData';
+import { useLocale } from '../i18n';
+import { localizeSubclass } from '../utils/sheetUtils';
+import 'mdui/components/dropdown.js';
+import 'mdui/components/menu.js';
+import 'mdui/components/menu-item.js';
 
-export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, onOpenImport, onOpenExport, onLoadSampleCharacters }) => {
+export const DashboardScreen = ({
+    savedCharacters,
+    handleNewCharacter,
+    handleOpenSaved,
+    handleDeleteSaved,
+    onOpenImport,
+    onOpenExport,
+    onLoadSampleCharacters,
+    toggleTheme,
+    isDarkMode
+}) => {
+    const { t, localize, lang, toggleLang } = useLocale();
+
     useEffect(() => {
         const savedScroll = sessionStorage.getItem('dashboard_scroll_position');
         if (savedScroll) {
@@ -46,11 +63,16 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
     // Helper function to render a hero card
     const renderHeroCard = (charSaved) => {
         const heroImage = charSaved.image ? getAssetUrl(charSaved.image) : null;
-        const bgSpecies = [charSaved.species, charSaved.background].filter(Boolean).join(' ');
+        const displaySpecies = (charSaved.species && localize(charSaved.speciesId || charSaved.species.toLowerCase(), 'name', charSaved.species)) || charSaved.species;
+        const displayBg = (charSaved.background && localize(charSaved.backgroundId || charSaved.background.toLowerCase(), 'name', charSaved.background)) || charSaved.background;
+        const displayClass = (charSaved.class && localize(charSaved.classId || charSaved.class.toLowerCase(), 'name', charSaved.class)) || charSaved.class;
+        const displaySub = localizeSubclass(charSaved.sub, charSaved.subId, localize, lang);
+
+        const bgSpecies = [displaySpecies, displayBg].filter(Boolean).join(' ');
         const levelClass = [
-            `Level ${charSaved.level || 1}`,
-            charSaved.sub,
-            charSaved.class
+            `${t('characterSheet.level')} ${charSaved.level || 1}`,
+            displaySub,
+            displayClass
         ].filter(Boolean).join(' ');
 
         const initials = charSaved.name
@@ -91,28 +113,34 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
         <div className="container">
             <mdui-top-app-bar variant="small" scroll-behavior="hide">
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
-                <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                {onOpenImport && (
-                    <>
-                        <mdui-button
-                            variant="outlined"
-                            icon="file_download"
-                            onClick={onOpenImport}
-                            className="mobile-hidden"
-                            style={{ marginRight: '8px' }}
-                        >
-                            Import Recipe
-                        </mdui-button>
-                        <mdui-button-icon
-                            icon="file_download"
-                            onClick={onOpenImport}
-                            className="desktop-hidden"
-                            title="Import Recipe"
-                        ></mdui-button-icon>
-                    </>
-                )}
+                <mdui-top-app-bar-title>{t('dashboard.appTitle')}</mdui-top-app-bar-title>
+
+                {/* Settings Panel Dropdown */}
+                <mdui-dropdown placement="bottom-end">
+                    <mdui-button-icon
+                        slot="trigger"
+                        icon="settings"
+                        style={{ marginRight: '8px' }}
+                    ></mdui-button-icon>
+                    <mdui-menu>
+                        {onOpenImport && (
+                            <mdui-menu-item icon="file_download" onClick={onOpenImport}>
+                                {t('dashboard.importRecipe')}
+                            </mdui-menu-item>
+                        )}
+                        {toggleTheme && (
+                            <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
+                                {isDarkMode ? t('play.lightMode') : t('play.darkMode')}
+                            </mdui-menu-item>
+                        )}
+                        <mdui-menu-item icon="language" onClick={toggleLang}>
+                            {t('language.switchTo')}
+                        </mdui-menu-item>
+                    </mdui-menu>
+                </mdui-dropdown>
+
                 <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">
-                    New Character
+                    {t('dashboard.newCharacter')}
                 </mdui-button>
             </mdui-top-app-bar>
 
@@ -122,11 +150,16 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         {/* MOBILE-ONLY: Widescreen Hero Banner */}
                         {featuredCharacter && (() => {
                             const heroImage = featuredCharacter.image ? getAssetUrl(featuredCharacter.image) : null;
-                            const bgSpecies = [featuredCharacter.species, featuredCharacter.background].filter(Boolean).join(' ');
+                            const displaySpecies = (featuredCharacter.species && localize(featuredCharacter.speciesId || featuredCharacter.species.toLowerCase(), 'name', featuredCharacter.species)) || featuredCharacter.species;
+                            const displayBg = (featuredCharacter.background && localize(featuredCharacter.backgroundId || featuredCharacter.background.toLowerCase(), 'name', featuredCharacter.background)) || featuredCharacter.background;
+                            const displayClass = (featuredCharacter.class && localize(featuredCharacter.classId || featuredCharacter.class.toLowerCase(), 'name', featuredCharacter.class)) || featuredCharacter.class;
+                            const displaySub = localizeSubclass(featuredCharacter.sub, featuredCharacter.subId, localize, lang);
+
+                            const bgSpecies = [displaySpecies, displayBg].filter(Boolean).join(' ');
                             const levelClass = [
-                                `Level ${featuredCharacter.level || 1}`,
-                                featuredCharacter.sub,
-                                featuredCharacter.class
+                                `${t('characterSheet.level')} ${featuredCharacter.level || 1}`,
+                                displaySub,
+                                displayClass
                             ].filter(Boolean).join(' ');
 
                             const initials = featuredCharacter.name
@@ -152,7 +185,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                                     )}
 
                                     <div className="featured-hero__overlay" />
-                                    <div className="featured-hero__badge">Last Played</div>
+                                    <div className="featured-hero__badge">{t('dashboard.lastPlayed')}</div>
 
                                     <div className="featured-hero__details">
                                         <div className="featured-hero__text-group">
@@ -169,7 +202,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         {/* MOBILE-ONLY: List for remaining characters */}
                         {remainingCharacters.length > 0 && (
                             <div className="desktop-hidden">
-                                <h3 className="dashboard-section-title">Other Characters</h3>
+                                <h3 className="dashboard-section-title">{t('dashboard.otherCharacters')}</h3>
                                 <div className="other-characters-list">
                                     {remainingCharacters.map(renderHeroCard)}
                                 </div>
@@ -184,17 +217,17 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                 ) : (
                     <div className="empty-state">
                         <mdui-icon name="person_add" class="icon-large"></mdui-icon>
-                        <p>No characters found.</p>
+                        <p>{t('dashboard.noCharacters')}</p>
                         <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <mdui-button onClick={handleNewCharacter}>Create your first character</mdui-button>
+                            <mdui-button onClick={handleNewCharacter}>{t('dashboard.createFirst')}</mdui-button>
                             {onOpenImport && (
                                 <mdui-button variant="tonal" icon="file_download" onClick={onOpenImport}>
-                                    Import Recipe
+                                    {t('dashboard.importRecipe')}
                                 </mdui-button>
                             )}
                             {onLoadSampleCharacters && (
                                 <mdui-button variant="tonal" icon="group_add" onClick={onLoadSampleCharacters}>
-                                    Load sample characters
+                                    {t('dashboard.loadSamples')}
                                 </mdui-button>
                             )}
                         </div>
@@ -203,7 +236,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
             </div>
 
             <mdui-fab extended icon="add" onClick={handleNewCharacter} className="desktop-hidden dashboard-fab">
-                New Character
+                {t('dashboard.newCharacter')}
             </mdui-fab>
         </div>
     );

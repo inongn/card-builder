@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
+import { useLocale } from '../i18n';
 import 'mdui/components/collapse.js';
 import 'mdui/components/collapse-item.js';
 import 'mdui/components/button-icon.js';
@@ -26,17 +27,19 @@ export default function PropertySelectionTree({
     onSelectSlot,
     onGetProperty
 }) {
+    const { t, localize } = useLocale();
+
     if (!tree) return null;
 
     const renderableNodes = collectRenderableNodes(tree, char);
 
     const STAT_NAMES = {
-        str: 'Strength',
-        dex: 'Dexterity',
-        con: 'Constitution',
-        int: 'Intelligence',
-        wis: 'Wisdom',
-        cha: 'Charisma'
+        str: t('stats.str', 'Strength'),
+        dex: t('stats.dex', 'Dexterity'),
+        con: t('stats.con', 'Constitution'),
+        int: t('stats.int', 'Intelligence'),
+        wis: t('stats.wis', 'Wisdom'),
+        cha: t('stats.cha', 'Charisma')
     };
 
     const renderInputCard = (item) => {
@@ -47,8 +50,10 @@ export default function PropertySelectionTree({
         let label = node.displayName || node.name;
         if (isAbilityInput) {
             const [prefix, stat] = node.name.split('_');
-            const prefixLabel = prefix === 'allocated' ? 'Allocated' : prefix === 'origin' ? 'Origin' : 'ASI';
+            const prefixLabel = prefix === 'allocated' ? t('builder.allocated', 'Allocated') : prefix === 'origin' ? t('builder.origin', 'Origin') : t('builder.asi', 'ASI');
             label = `${STAT_NAMES[stat.toLowerCase()] || stat.toUpperCase()} (${prefixLabel})`;
+        } else {
+            label = localize(node.id, 'name', label);
         }
 
         const value = node.value ?? node.default ?? '';
@@ -69,7 +74,7 @@ export default function PropertySelectionTree({
             >
                 {label}
                 <span slot="description">
-                    {value !== '' ? value : 'Not configured'}
+                    {value !== '' ? value : t('builder.notConfigured', 'Not configured')}
                 </span>
             </mdui-list-item>
         );
@@ -77,9 +82,11 @@ export default function PropertySelectionTree({
 
     const renderSlot = (item) => {
         const { node, path } = item;
-        const filledValue = node.filled?.displayName || node.filled?.name || '';
+        const filledValue = node.filled?.id
+            ? localize(node.filled.id, 'name', node.filled?.displayName || node.filled?.name)
+            : (node.filled?.displayName || node.filled?.name || '');
         const isActive = selectedSlotPath === getItemUniqueId(item);
-        const label = node.displayName || node.name;
+        const label = localize(node.id, 'name', node.displayName || node.name);
 
         const handleCardClick = () => {
             if (onSelectSlot) {
@@ -110,7 +117,7 @@ export default function PropertySelectionTree({
 
                 {label}
                 <span slot="description">
-                    {filledValue || 'Select...'}
+                    {filledValue || t('builder.selectOption', 'Select...')}
                 </span>
             </mdui-list-item>
         );
@@ -120,7 +127,10 @@ export default function PropertySelectionTree({
         const groupItem = { type: 'Group', id: groupName, items: groupItems, category: filterCategory };
         const pathStr = `group-${groupName}`;
         const isActive = selectedSlotPath === getItemUniqueId(groupItem);
-        const filledValues = groupItems.map(item => item.node.filled?.displayName || item.node.filled?.name).filter(Boolean);
+        const filledValues = groupItems.map(item => {
+            const f = item.node.filled;
+            return f?.id ? localize(f.id, 'name', f.displayName || f.name) : (f?.displayName || f?.name);
+        }).filter(Boolean);
         const totalCount = groupItems.length;
         const filledCount = filledValues.length;
 
@@ -154,15 +164,19 @@ export default function PropertySelectionTree({
                 ></mdui-button-icon>
                 {groupName}
                 <span slot="description">
-                    {filledCount > 0 ? filledValues.join(', ') : 'Select... (' + totalCount + ')'}
+                    {filledCount > 0 ? filledValues.join(', ') : `${t('builder.selectOption', 'Select...')} (${totalCount})`}
                 </span>
             </mdui-list-item>
         );
     };
 
     const renderSingleMergedCard = (cardId, title, slotItems, categoryKey, stepKey) => {
-        const mergedItem = { type: 'MergedCategory', category: categoryKey, step: stepKey, id: cardId, title: title, items: slotItems };
-        const filledValues = slotItems.map(item => item.node.filled?.displayName || item.node.filled?.name).filter(Boolean);
+        const localizedTitle = stepKey ? t(`builder.steps.${stepKey}`, title) : title;
+        const mergedItem = { type: 'MergedCategory', category: categoryKey, step: stepKey, id: cardId, title: localizedTitle, items: slotItems };
+        const filledValues = slotItems.map(item => {
+            const f = item.node.filled;
+            return f?.id ? localize(f.id, 'name', f.displayName || f.name) : (f?.displayName || f?.name);
+        }).filter(Boolean);
         const totalCount = slotItems.length;
         const filledCount = filledValues.length;
 
@@ -197,9 +211,9 @@ export default function PropertySelectionTree({
                         slot="end-icon"
                     ></mdui-button-icon>
                 )}
-                {title}
+                {localizedTitle}
                 <span slot="description">
-                    {filledCount > 0 ? filledValues.join(', ') : `Select... (${totalCount})`}
+                    {filledCount > 0 ? filledValues.join(', ') : `${t('builder.selectOption', 'Select...')} (${totalCount})`}
                 </span>
             </mdui-list-item>
         );
@@ -208,7 +222,8 @@ export default function PropertySelectionTree({
     const renderAllyCard = (allyType, allyItems) => {
         if (!allyItems || allyItems.length === 0) return null;
 
-        const title = STEP_DEFINITIONS[allyType]?.title || allyType;
+        const defaultTitle = STEP_DEFINITIONS[allyType]?.title || allyType;
+        const title = t(`builder.steps.${allyType}`, defaultTitle);
         const allyItem = {
             type: 'Ally',
             allyType: allyType,
@@ -294,9 +309,9 @@ export default function PropertySelectionTree({
                 onClick={() => onSelectSlot && onSelectSlot(abilitiesItem)}
                 active={isActive}
             >
-                Ability Scores
+                {t('builder.steps.stats', t('builder.scores', 'Ability Scores'))}
                 <span slot="description">
-                    Configure Ability Scores
+                    {t('builder.configureScores', 'Configure Ability Scores')}
                 </span>
             </mdui-list-item>
         );
@@ -334,12 +349,12 @@ export default function PropertySelectionTree({
 
                         const baseNames = new Set(slotItems.map(i => (i.node.displayName || i.node.name).replace(/ #\d+$/, '')));
                         if (baseNames.size > 1) {
-                            return renderSingleMergedCard(`merged-classOptions`, 'Class Options', slotItems, stepDef.category, 'classOptions');
+                            return renderSingleMergedCard(`merged-classOptions`, t('builder.steps.classOptions', 'Class Options'), slotItems, stepDef.category, 'classOptions');
                         }
                     } else if (MERGED_CATEGORIES.includes(stepKey)) {
                         const slotItems = itemsForStep.filter(i => i.type === 'Slot');
                         if (slotItems.length === 0) return null;
-                        return renderSingleMergedCard(`merged-${stepKey}`, stepDef.title, slotItems, stepDef.category, stepKey);
+                        return renderSingleMergedCard(`merged-${stepKey}`, t(`builder.steps.${stepKey}`, stepDef.title), slotItems, stepDef.category, stepKey);
                     }
 
                     const groups = groupSlots(itemsForStep);

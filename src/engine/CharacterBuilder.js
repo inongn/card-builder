@@ -635,7 +635,15 @@ export class CharacterBuilder {
             /^Warrior of (the )?/i,
             /^Oath of (the )?/i,
             /^Patron (the )?/i,
-            /^(the )?Patron of (the )?/i
+            /^(the )?Patron of (the )?/i,
+            // Spanish prefixes
+            /^Senda de(l| los| las)?\s+/i,
+            /^Colegio de(l| los| las)?\s+/i,
+            /^C[íi]rculo de(l| la| los| las)?\s+/i,
+            /^Guerrero de(l| la| los| las)?\s+/i,
+            /^Juramento de(l| la| los| las)?\s+/i,
+            /^Patr[oó]n de(l| la| los| las)?\s+/i,
+            /^Dominio de(l| la)?\s+/i
         ];
 
         for (const prefix of prefixes) {
@@ -650,7 +658,17 @@ export class CharacterBuilder {
             .replace(/^Patron\s+/i, '')
             .replace(/\s+Sorcery$/i, '')
             .replace(/^Sorcery\s+/i, '')
+            .replace(/\s+Dominio$/i, '')
+            .replace(/^Dominio\s+/i, '')
+            .replace(/\s+Patr[oó]n$/i, '')
+            .replace(/^Patr[oó]n\s+/i, '')
+            .replace(/\s+Hechicer[íi]a$/i, '')
+            .replace(/^Hechicer[íi]a\s+/i, '')
             .trim();
+
+        if (clean.length > 0) {
+            clean = clean.charAt(0).toUpperCase() + clean.slice(1);
+        }
 
         return clean;
     }
@@ -686,7 +704,7 @@ export class CharacterBuilder {
         if (!this.characterData) return;
         if (!this.characterData.meta) this.characterData.meta = {};
 
-        const findFilledSlotName = (node, key) => {
+        const findFilledSlot = (node, key) => {
             if (!node || !node.children) return null;
             for (const child of node.children) {
                 if (child.type === 'Slot' && child.filled) {
@@ -702,26 +720,38 @@ export class CharacterBuilder {
                     );
 
                     if (isMatch) {
-                        return child.filled.displayName || child.filled.name || child.filled.id || null;
+                        return child.filled;
                     }
                 }
-                const found = findFilledSlotName(child, key);
+                const found = findFilledSlot(child, key);
                 if (found) return found;
             }
             return null;
         };
 
-        const species = findFilledSlotName(this.propertyTree, 'species');
-        if (species) this.characterData.meta.species = species;
+        const species = findFilledSlot(this.propertyTree, 'species');
+        if (species) {
+            this.characterData.meta.species = species.displayName || species.name || species.id || null;
+            this.characterData.meta.speciesId = species.id;
+        }
 
-        const background = findFilledSlotName(this.propertyTree, 'background');
-        if (background) this.characterData.meta.background = background;
+        const background = findFilledSlot(this.propertyTree, 'background');
+        if (background) {
+            this.characterData.meta.background = background.displayName || background.name || background.id || null;
+            this.characterData.meta.backgroundId = background.id;
+        }
 
-        const cls = findFilledSlotName(this.propertyTree, 'class');
-        if (cls) this.characterData.meta.class = cls;
+        const cls = findFilledSlot(this.propertyTree, 'class');
+        if (cls) {
+            this.characterData.meta.class = cls.displayName || cls.name || cls.id || null;
+            this.characterData.meta.classId = cls.id;
+        }
 
-        const sub = findFilledSlotName(this.propertyTree, 'sub');
-        if (sub) this.characterData.meta.sub = this.cleanSubclassName(sub);
+        const sub = findFilledSlot(this.propertyTree, 'sub');
+        if (sub) {
+            this.characterData.meta.sub = this.cleanSubclassName(sub.displayName || sub.name || sub.id);
+            this.characterData.meta.subId = sub.id;
+        }
     }
 
     /**

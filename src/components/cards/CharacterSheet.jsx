@@ -3,6 +3,8 @@ import { formatBonus } from '../../engine/RpgEngine';
 import { getIconInfo, getResourceRecovery } from '../../utils/cardUtils';
 import { AdvantageIndicator } from './AdvantageIndicator';
 import { DiceRoller } from './DiceRoller';
+import { useLocale } from '../../i18n';
+import { localizeSubclass, localizeInfoboxValue, localizeSenseOrMovement, evaluateText } from '../../utils/sheetUtils';
 
 import 'mdui/components/card.js';
 import 'mdui/components/chip.js';
@@ -41,6 +43,7 @@ function evaluateHpFormula(input) {
 }
 
 export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, className, variant, interactive = true }, ref) => {
+    const { t, localize, lang } = useLocale();
     const isPlayMode = variant !== 'static' && interactive !== false;
     const RESOURCE_WRAP_THRESHOLD = 10;
 
@@ -147,6 +150,14 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
     const hitDiceQuantity = char?.resources?.find(r => r.id === 'hitDice' || r.name === 'Hit Dice')?.quantity || char?.meta?.level || 1;
 
+    const displayClass = (char.meta?.class && localize(char.meta.class.toLowerCase(), 'name', char.meta.class)) || char.meta?.class || t('characterSheet.unknownClass');
+    const displaySub = localizeSubclass(char.meta?.sub, char.meta?.subId, localize, lang);
+    const displaySpecies = (char.meta?.species && localize(char.meta.species.toLowerCase(), 'name', char.meta.species)) || char.meta?.species;
+    const displayBg = (char.meta?.background && localize(char.meta.background.toLowerCase(), 'name', char.meta.background)) || char.meta?.background;
+
+    const classLevelStr = [`${t('characterSheet.level')} ${char.meta?.level || 1}`, `${displaySub} ${displayClass}`.trim()].filter(Boolean).join(' ');
+    const speciesBgStr = [displaySpecies, displayBg].filter(Boolean).join(' ');
+
     return (
         <div ref={ref} className={`main-card ${className || ''}`}>
             {/* Header: Name and Level Info */}
@@ -157,23 +168,23 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <span className="title-primary show-on-print">{char.meta.name}</span>
                             <div className="print-subtitle-container show-on-print">
                                 <span className="card-subtitle">
-                                    {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
+                                    {classLevelStr}
                                 </span>
                                 <span className="card-subtitle">
-                                    {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
+                                    {speciesBgStr}
                                 </span>
                             </div>
 
                         </div>
                         <div className="title-primary card-subtitle-container hide-on-print">
-                            {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
+                            {classLevelStr}
 
                             <span className="mobile-hidden title-secondary">
-                                {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
+                                {speciesBgStr}
                             </span>
                         </div>
                         <div className="title-secondary desktop-hidden hide-on-print">
-                            {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
+                            {speciesBgStr}
                         </div>
 
                     </div>
@@ -182,17 +193,20 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
             {/* Ability Scores */}
             <div className="main-card-row stat-box-row hide-on-print">
-                {Object.entries(char.stats).map(([key, value]) => (
-                    <mdui-card variant="filled" className="inner-card main-card-box stat-box" key={key}>
-                        <div className="text-secondary">{key.toUpperCase()}</div>
-                        <div className="important-number">
-                            <DiceRoller formula={formatBonus(value.mod, true)} label={`${key.toUpperCase()} check`} interactive={isPlayMode} showIcon={false}>
-                                {formatBonus(value.mod, true)}
-                            </DiceRoller>
-                        </div>
-                        <div className="text-secondary">{value.score}</div>
-                    </mdui-card>
-                ))}
+                {Object.entries(char.stats).map(([key, value]) => {
+                    const statAbbr = localize(key.toLowerCase(), 'name', value.name || key.toUpperCase());
+                    return (
+                        <mdui-card variant="filled" className="inner-card main-card-box stat-box" key={key}>
+                            <div className="text-secondary">{statAbbr}</div>
+                            <div className="important-number">
+                                <DiceRoller formula={formatBonus(value.mod, true)} label={`${statAbbr} check`} interactive={isPlayMode} showIcon={false}>
+                                    {formatBonus(value.mod, true)}
+                                </DiceRoller>
+                            </div>
+                            <div className="text-secondary">{value.score}</div>
+                        </mdui-card>
+                    );
+                })}
             </div>
 
             {/* Skills and Vitals */}
@@ -205,14 +219,16 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             if (skill.proficiency === 1) profIcon = 'circle';
                             if (skill.proficiency === 2) profIcon = 'add_circle';
                             else if (skill.proficiency === 0.5) profIcon = 'contrast';
+                            const skillName = localize(key, 'name', skill.name);
+                            const statAbbr = localize(skill.stat?.toLowerCase(), 'name', skill.stat?.toUpperCase());
                             return (
                                 <div className="list-item skill-list-item" key={key}>
-                                    <div className="text-secondary">{skill.stat.toUpperCase()}</div>
+                                    <div className="text-secondary">{statAbbr}</div>
                                     <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                     <div className="text-secondary">
                                         <DiceRoller
                                             formula={formatBonus(skill.bonus, true)}
-                                            label={`${skill.name} check`}
+                                            label={`${skillName} check`}
                                             interactive={isPlayMode}
                                             showIcon={false}
                                             rollOptions={{ adv: skill.adv, dis: skill.dis, min: skill.min }}
@@ -226,7 +242,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                         {skill.dis && !skill.adv && <AdvantageIndicator type="dis" />}
                                         {skill.adv && skill.dis && <></>}
                                         {skill.min && <AdvantageIndicator type="min" value={skill.min} />}
-                                        {skill.name}
+                                        {skillName}
                                     </div>
                                 </div>
                             );
@@ -241,7 +257,8 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 if (save.proficiency === 1) profIcon = 'circle';
                                 if (save.proficiency === 2) profIcon = 'adjust';
                                 else if (save.proficiency === 0.5) profIcon = 'circle_circle';
-                                const saveName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+                                const rawSaveName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+                                const saveName = t(`stats.${key.toLowerCase()}`, localize(key.toLowerCase(), 'name', rawSaveName));
                                 return (
                                     <div className="list-item saves-list-item" key={key}>
                                         <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
@@ -273,9 +290,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                 <div className="main-card-column">
                     <mdui-card variant="filled" className="main-card-box main-card-box-hp inner-card">
                         <div className="main-card-box-hp-row">
-                            <div className="text-secondary">Current</div>
-                            <div className="text-secondary">Max</div>
-                            <div className="text-secondary">Temp</div>
+                            <div className="text-secondary">{t('characterSheet.current')}</div>
+                            <div className="text-secondary">{t('characterSheet.max')}</div>
+                            <div className="text-secondary">{t('characterSheet.temp')}</div>
                         </div>
                         <div className="main-card-box-hp-row">
                             <div className="important-number">
@@ -337,7 +354,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
                     <div className="main-card-combat-row">
                         <mdui-card variant="filled" className="inner-card main-card-box">
-                            <div className="text-secondary">Initiative</div>
+                            <div className="text-secondary">{t('characterSheet.initiative')}</div>
                             <div className="important-number">
                                 {char.attributes.initiativeAdvantage && <AdvantageIndicator type="adv" />}
                                 {char.attributes.initiativeDisadvantage && <AdvantageIndicator type="dis" />}
@@ -345,17 +362,17 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     {formatBonus(char.attributes.initiative, true)}
                                 </DiceRoller>
                             </div>
-                            <div className="text-secondary">Mod</div>
+                            <div className="text-secondary">{t('characterSheet.mod')}</div>
                         </mdui-card>
                         <mdui-card variant="filled" className="inner-card main-card-box">
-                            <div className="text-secondary">Armor</div>
+                            <div className="text-secondary">{t('characterSheet.armor')}</div>
                             <div className="important-number">{char.attributes.ac}</div>
-                            <div className="text-secondary">Class</div>
+                            <div className="text-secondary">{t('characterSheet.class')}</div>
                         </mdui-card>
                         <mdui-card variant="filled" className="inner-card main-card-box">
-                            <div className="text-secondary">Movement</div>
+                            <div className="text-secondary">{t('characterSheet.movement')}</div>
                             <div className="important-number">{char.attributes.movement.walk}</div>
-                            <div className="text-secondary">Speed</div>
+                            <div className="text-secondary">{t('characterSheet.speed')}</div>
                         </mdui-card>
                     </div>
 
@@ -370,12 +387,13 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                     const rows = q > RESOURCE_WRAP_THRESHOLD ? Math.ceil(q / RESOURCE_WRAP_THRESHOLD) : 1;
                                     const dotsPerRow = Math.max(1, Math.ceil(q / rows));
                                     const usedCount = playState.usedResources?.[resKey] || 0;
-                                    const recovery = getResourceRecovery(res);
+                                    const recovery = getResourceRecovery(res, lang);
+                                    const resDisplayName = localize(resKey, 'name', res.name || res.id);
 
                                     return (
                                         <div className="list-item resource-list-item" key={i}>
                                             <mdui-icon name={info?.icon || 'circle'} class={`icon-small`} style={{ color: `var(--color-${info?.color})` }}></mdui-icon>
-                                            <div className="text-primary resource-name">{res.name || res.id}</div>
+                                            <div className="text-primary resource-name">{resDisplayName}</div>
                                             <div className="resource-right">
                                                 {isPlayMode && (
                                                     <div className="resource-dots hide-on-print" style={{ gridTemplateColumns: `repeat(${dotsPerRow}, auto)` }}>
@@ -408,8 +426,8 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <div className="main-card-list">
                                 {char.traits.map((trait, i) => (
                                     <div className="list-item trait-list-item" key={trait.id || i}>
-                                        <span className="trait-name">{trait.name}</span>
-                                        <span className=" trait-description">{trait.description}</span>
+                                        <span className="trait-name">{evaluateText(localize(trait.id, 'name', trait.name), char)}</span>
+                                        <span className=" trait-description">{evaluateText(localize(trait.id, 'description', trait.description), char)}</span>
                                     </div>
                                 ))}
                             </div>
@@ -420,24 +438,20 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                     <mdui-card variant="filled" className="inner-card info-card">
                         <div className="main-card-list">
                             {[
-                                { label: 'Senses', data: char?.attributes?.senses },
-                                { label: 'Movement', data: char?.attributes?.movement },
-                                { label: 'Resistances', data: char?.attributes?.resistances },
-                                { label: 'Advantages', data: char?.attributes?.advantages },
-                                { label: 'Immunities', data: char?.attributes?.immunities },
-                                { label: 'Tools', data: char?.attributes?.tools }
+                                { key: 'senses', label: t('characterSheet.senses'), data: char?.attributes?.senses },
+                                { key: 'movement', label: t('characterSheet.movement'), data: char?.attributes?.movement },
+                                { key: 'resistances', label: t('characterSheet.resistances'), data: char?.attributes?.resistances },
+                                { key: 'advantages', label: t('characterSheet.advantages'), data: char?.attributes?.advantages },
+                                { key: 'immunities', label: t('characterSheet.immunities'), data: char?.attributes?.immunities },
+                                { key: 'tools', label: t('characterSheet.tools'), data: char?.attributes?.tools }
                             ].map((info, idx) => {
                                 let displayData = [];
                                 if (Array.isArray(info.data)) {
-                                    displayData = [...info.data];
+                                    displayData = info.data.map(item => localizeInfoboxValue(item, info.key, localize, lang));
                                 } else if (info.data && typeof info.data === 'object') {
                                     displayData = Object.entries(info.data)
-                                        .filter(([k, v]) => v && !(info.label === 'Movement' && k === 'walk'))
-                                        .map(([k, v]) => {
-                                            const label = k.charAt(0).toUpperCase() + k.slice(1);
-                                            const unit = typeof v === 'number' ? ' ft' : '';
-                                            return `${label} (${v}${unit})`;
-                                        });
+                                        .filter(([k, v]) => v && !(info.key === 'movement' && k === 'walk'))
+                                        .map(([k, v]) => localizeSenseOrMovement(k, v, info.key, localize, lang));
                                 }
                                 if (displayData.length === 0) return null;
 

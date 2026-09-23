@@ -120,26 +120,32 @@ children:
     type: Stat
     score: $(8 + meta.allocated_str + meta.origin_str + meta.asi_str)
     mod: $(Math.floor((stats.str.score - 10) / 2))
+    name: STR
   - id: dex
     type: Stat
     score: $(8 + meta.allocated_dex + meta.origin_dex + meta.asi_dex)
     mod: $(Math.floor((stats.dex.score - 10) / 2))
+    name: DEX
   - id: con
     type: Stat
     score: $(8 + meta.allocated_con + meta.origin_con + meta.asi_con)
     mod: $(Math.floor((stats.con.score - 10) / 2))
+    name: CON
   - id: int
     type: Stat
     score: $(8 + meta.allocated_int + meta.origin_int + meta.asi_int)
     mod: $(Math.floor((stats.int.score - 10) / 2))
+    name: INT
   - id: wis
     type: Stat
     score: $(8 + meta.allocated_wis + meta.origin_wis + meta.asi_wis)
     mod: $(Math.floor((stats.wis.score - 10) / 2))
+    name: WIS
   - id: cha
     type: Stat
     score: $(8 + meta.allocated_cha + meta.origin_cha + meta.asi_cha)
     mod: $(Math.floor((stats.cha.score - 10) / 2))
+    name: CHA
   - id: pointBuyLimit
     type: Attribute
     value: 21

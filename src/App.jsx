@@ -97,6 +97,7 @@ const loadAndSortCharacters = (samples = null) => {
                     name: sc.name,
                     class: sc.class,
                     sub: sc.sub || '',
+                    subId: sc.subId || '',
                     species: sc.species,
                     background: sc.background || '',
                     level: sc.level,
@@ -355,9 +356,13 @@ export default function App() {
             id: targetId,
             name: characterName,
             class: characterData.meta?.class || 'Unknown Class',
+            classId: characterData.meta?.classId || '',
             sub: characterData.meta?.sub || '',
+            subId: characterData.meta?.subId || '',
             species: characterData.meta?.species || '',
+            speciesId: characterData.meta?.speciesId || '',
             background: characterData.meta?.background || '',
+            backgroundId: characterData.meta?.backgroundId || '',
             level: characterData.meta?.level || 1,
             image: characterData.meta?.image || '',
             recipe,
@@ -644,6 +649,8 @@ export default function App() {
                         onOpenImport={() => handleOpenImport('play')}
                         onOpenExport={handleOpenExport}
                         onLoadSampleCharacters={handleLoadSampleCharacters}
+                        toggleTheme={toggleTheme}
+                        isDarkMode={isDarkMode}
                     />
                 )}
                 {activeTab === 'builder' && (

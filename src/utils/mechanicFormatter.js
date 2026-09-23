@@ -13,7 +13,7 @@ const ABILITY_NAMES = {
 };
 
 /** Canonical display order for payloads within a clause */
-const PAYLOAD_ORDER = {
+export const PAYLOAD_ORDER = {
   damage: 1,
   damageReduction: 2,
   healing: 3,
@@ -68,7 +68,7 @@ const TRIGGER_EVENT_PHRASES = {
  * Resolves a dotted/bracketed path against an object.
  * e.g. "blocks[1].failure.dice.count" or "failure[0].dice.count"
  */
-function resolveUpcastPath(obj, path) {
+export function resolveUpcastPath(obj, path) {
   if (!obj || !path) return undefined;
   // Split on '.' or on '[N]', keeping numeric segments
   const parts = [];
@@ -92,7 +92,7 @@ function resolveUpcastPath(obj, path) {
 /**
  * Sets a value at a dotted/bracketed path on an object (mutates in-place).
  */
-function setUpcastPath(obj, path, value) {
+export function setUpcastPath(obj, path, value) {
   if (!obj || !path) return;
   const parts = [];
   for (const seg of path.split('.')) {
@@ -118,7 +118,7 @@ function setUpcastPath(obj, path, value) {
  * Deep-clones a mechanic object and applies upcast modifications.
  * Returns the original object unchanged if upcastSteps <= 0 or no modifications.
  */
-function applyUpcast(mechanicObj, upcastSpec, upcastSteps) {
+export function applyUpcast(mechanicObj, upcastSpec, upcastSteps) {
   if (!mechanicObj || !upcastSpec || upcastSteps <= 0) return mechanicObj;
   const mods = upcastSpec.modifications;
   if (!mods || mods.length === 0) return mechanicObj;
@@ -235,12 +235,15 @@ function deriveUpcastLabel(upcastSpec, mechanicObj, activity, evalStr) {
 /**
  * Returns the number of upcast steps for a Warlock character, or 0 for non-Warlocks.
  */
-function computeWarlockUpcastSteps(activity, characterData) {
+export function computeWarlockUpcastSteps(activity, characterData) {
   const isWarlock = characterData?.resources?.some(r => r.id === 'pactMagicSpellSlot');
   if (!isWarlock) return 0;
 
-  const resourceId = activity?.resource || '';
-  const baseMatch = resourceId.match(/^level(\d+)SpellSlot$/);
+  const rawResource = activity?.resource;
+  const resourceId = Array.isArray(rawResource)
+    ? (rawResource[0] || '')
+    : (typeof rawResource === 'string' ? rawResource : (rawResource?.id || ''));
+  const baseMatch = typeof resourceId === 'string' ? resourceId.match(/^level(\d+)SpellSlot$/) : null;
   if (!baseMatch) return 0;
   const baseLevel = parseInt(baseMatch[1], 10);
 
@@ -254,7 +257,7 @@ function computeWarlockUpcastSteps(activity, characterData) {
  * Returns the highest spell slot level available to the character.
  * Returns 0 if no spell slots are found.
  */
-function computeMaxSlotLevel(characterData) {
+export function computeMaxSlotLevel(characterData) {
   let max = 0;
   for (const r of (characterData?.resources || [])) {
     const m = (r.id || '').match(/^level(\d+)SpellSlot$/);
@@ -280,12 +283,12 @@ export function formatDistance(distStr) {
 }
 
 /** Returns the canonical payload type string, requiring an explicit `type` field. */
-function getPayloadType(p) {
+export function getPayloadType(p) {
   if (!p || typeof p !== 'object') return 'text';
   return p.type || 'text';
 }
 
-function getPayloadRank(p) {
+export function getPayloadRank(p) {
   return PAYLOAD_ORDER[getPayloadType(p)] ?? PAYLOAD_ORDER.text;
 }
 
@@ -625,12 +628,19 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
         const endMap = {
           end_of_your_next_turn: ' until the end of your next turn',
           end_of_its_next_turn: ' until the end of its next turn',
+          start_of_your_next_turn: ' until the start of your next turn',
+          start_of_its_next_turn: ' until the start of its next turn',
         };
         endStr = endMap[payload.end] ?? ` (${evalStr(payload.end)})`;
       } else if (payload.end?.text) {
         endStr = ` (${evalStr(payload.end.text)})`;
       }
     }
+
+    const isRecipientSelf = payload.recipient === 'self';
+    const againstStr = payload.against === 'target'
+      ? ' against the target'
+      : (payload.against === 'self' ? ' against you' : '');
 
     if (modType === 'advantage') {
       if (payload.saveFilter?.ability) {
@@ -640,21 +650,31 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
         if (abils.length === 1) abilJoin = `${abils[0]}`;
         else if (abils.length === 2) abilJoin = `${abils[0]} and ${abils[1]}`;
         else abilJoin = `${abils.slice(0, -1).join(', ')}, and ${abils[abils.length - 1]}`;
-        return `has Advantage on ${abilJoin} saving throws${endStr}`;
+        return isRecipientSelf
+          ? `have Advantage on ${abilJoin} saving throws${endStr}`
+          : `has Advantage on ${abilJoin} saving throws${endStr}`;
       }
       if (payload.saveFilter?.text) {
-        return `has Advantage on saving throws ${evalStr(payload.saveFilter.text)}${endStr}`;
+        return isRecipientSelf
+          ? `have Advantage on saving throws ${evalStr(payload.saveFilter.text)}${endStr}`
+          : `has Advantage on saving throws ${evalStr(payload.saveFilter.text)}${endStr}`;
       }
       const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
-      return `has Advantage on its next ${rollsStr}${endStr}`;
+      if (isRecipientSelf) {
+        return `you have Advantage on your next ${rollsStr}${againstStr}${endStr}`;
+      }
+      return `has Advantage on its next ${rollsStr}${againstStr}${endStr}`;
     }
     if (modType === 'disadvantage') {
       const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
-      return `has Disadvantage on its next ${rollsStr}${endStr}`;
+      if (isRecipientSelf) {
+        return `you have Disadvantage on your next ${rollsStr}${againstStr}${endStr}`;
+      }
+      return `has Disadvantage on its next ${rollsStr}${againstStr}${endStr}`;
     }
     if (modType === 'reroll') {
       const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
-      return `rerolls the ${rollsStr}${endStr}`;
+      return isRecipientSelf ? `reroll the ${rollsStr}${endStr}` : `rerolls the ${rollsStr}${endStr}`;
     }
     const isTargetSelf = ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self');
     const targetPronoun = isTargetSelf ? 'you' : 'the target';
@@ -1001,7 +1021,9 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
     } else if (ptype === 'rollModifier') {
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
-        if (/^(has|adds|subtracts|rerolls|have|add|subtract|reroll)\b/i.test(fmtd)) {
+        if (p.recipient === 'self') {
+          otherParts.push(fmtd);
+        } else if (/^(has|adds|subtracts|rerolls|have|add|subtract|reroll)\b/i.test(fmtd)) {
           if (isTargetSelf) {
             const selfFmtd = fmtd.replace(/^has\b/i, 'have').replace(/^adds\b/i, 'add').replace(/^subtracts\b/i, 'subtract').replace(/^rerolls\b/i, 'reroll');
             targetPredicates.push(selfFmtd);
@@ -1716,7 +1738,35 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
 export function formatActivityMechanic(activity, characterData) {
   if (!activity) return '';
   const evaluator = new ExpressionEvaluator(characterData || {});
-  const scope = activity.variables || {};
+  const topScope = {
+    range: activity?.range || '',
+    duration: activity?.duration || '',
+    summary: activity?.summary || '',
+    description: activity?.description || '',
+    ...(activity?.variables || {}),
+  };
+
+  const evalStr = (val) => {
+    if (val === null || val === undefined) return '';
+    let strVal = String(val);
+    if (strVal === '$(range)' || strVal === 'range') return String(activity?.range || '');
+    if (strVal.includes('$(range)')) strVal = strVal.replace(/\$\(range\)/g, String(activity?.range || ''));
+    if (strVal === '$(summary)' || strVal === 'summary') return String(activity?.summary || activity?.description || '');
+    if (strVal.includes('$(summary)')) strVal = strVal.replace(/\$\(summary\)/g, String(activity?.summary || activity?.description || ''));
+    if (strVal === '$(description)' || strVal === 'description') return String(activity?.description || activity?.summary || '').trim();
+    if (strVal.includes('$(description)')) strVal = strVal.replace(/\$\(description\)/g, String(activity?.description || activity?.summary || '').trim());
+    if (strVal.includes('$')) {
+      try {
+        const res = evaluator ? evaluator.evaluate(strVal, topScope) : strVal;
+        return res !== null && res !== undefined ? String(res) : strVal;
+      } catch (e) {
+        return strVal;
+      }
+    }
+    return strVal;
+  };
+
+  const scope = topScope;
   const name = activity.name || activity.id || '';
   const mechanic = activity.mechanic;
 
@@ -1730,13 +1780,13 @@ export function formatActivityMechanic(activity, characterData) {
           const rawName = item.name || '';
           // Suppress the upcast extra — it's always shown via the _Upcast:_ suffix instead
           if (rawName === 'Using a Higher-Level Spell Slot') return '';
-          const evaluatedName = rawName ? evaluator.evaluate(rawName, scope) : '';
+          const evaluatedName = rawName ? evalStr(rawName) : '';
           if (evaluatedName === 'Using a Higher-Level Spell Slot') return '';
           const title = evaluatedName ? `_${evaluatedName}:_ ` : '';
-          const body = item.description ? evaluator.evaluate(item.description, scope) : '';
+          const body = item.description ? evalStr(item.description) : '';
           return `${title}${body}`.trim();
         }
-        const evaluated = evaluator.evaluate(String(item), scope).trim();
+        const evaluated = evalStr(String(item)).trim();
         if (evaluated === 'Using a Higher-Level Spell Slot') return '';
         return evaluated;
       })
@@ -1747,7 +1797,7 @@ export function formatActivityMechanic(activity, characterData) {
   };
 
   const formatDurationSuffix = () => {
-    const rawDur = activity.duration ? evaluator.evaluate(String(activity.duration), scope) : '';
+    const rawDur = activity.duration ? evalStr(String(activity.duration)) : '';
     if (!rawDur || typeof rawDur !== 'string') return '';
     const cleanDur = rawDur.trim();
     if (/^instantaneous$/i.test(cleanDur) || cleanDur === '') return '';
@@ -1768,7 +1818,9 @@ export function formatActivityMechanic(activity, characterData) {
   const extraSuffix = formatExtras();
 
   if (!mechanic) {
-    const fallbackText = (activity.description || activity.summary || '').split('\n')[0].trim();
+    const fallbackRaw = activity.description || activity.summary || '';
+    const fallbackEvaluated = evalStr(fallbackRaw);
+    const fallbackText = fallbackEvaluated.split('\n')[0].trim();
     return `**${name}.** ${fallbackText}${durSuffix}${ritualSuffix}${extraSuffix}`;
   }
 
@@ -1792,8 +1844,11 @@ export function formatActivityMechanic(activity, characterData) {
   }
 
   // Non-Warlock: show _Upcast:_ label when spell level < character's max slot level.
-  const resourceId = activity.resource || '';
-  const baseMatch = resourceId.match(/^level(\d+)SpellSlot$/);
+  const rawResource = activity?.resource;
+  const resourceId = Array.isArray(rawResource)
+    ? (rawResource[0] || '')
+    : (typeof rawResource === 'string' ? rawResource : (rawResource?.id || ''));
+  const baseMatch = typeof resourceId === 'string' ? resourceId.match(/^level(\d+)SpellSlot$/) : null;
   const baseLevel = baseMatch ? parseInt(baseMatch[1], 10) : 0;
   const maxSlotLevel = computeMaxSlotLevel(characterData);
   const showUpcastLabel = upcastSpec && !isWarlock && baseLevel > 0 && maxSlotLevel > baseLevel;
@@ -1813,7 +1868,6 @@ export function formatActivityMechanic(activity, characterData) {
     const blocks = Array.isArray(effectiveBlocks) ? effectiveBlocks : [];
 
     if (effectiveMechanic.mode === 'choice') {
-      const evalStr = s => evaluator.evaluate(s, scope);
       const topTrigger = effectiveMechanic.trigger ? formatTrigger(effectiveMechanic.trigger, evalStr) : '';
       const triggerPart = topTrigger ? ` _Trigger:_ ${topTrigger}. _Response:_` : '';
 
@@ -1822,7 +1876,7 @@ export function formatActivityMechanic(activity, characterData) {
       const choiceBlocks = hasAuraBlock0 ? blocks.slice(1) : blocks;
 
       const preamble = effectiveMechanic.text
-        ? evaluator.evaluate(String(effectiveMechanic.text), scope).trim()
+        ? evalStr(String(effectiveMechanic.text)).trim()
         : (hasAuraBlock0 ? '' : 'Choose one of the following:');
 
       const choiceLines = choiceBlocks

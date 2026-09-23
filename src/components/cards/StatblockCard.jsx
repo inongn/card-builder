@@ -7,10 +7,12 @@ import 'mdui/components/card.js';
 import 'mdui/components/collapse-item.js';
 import 'mdui/components/divider.js';
 import { AutoFitContent } from '../AutoFitContent';
+import { useLocale } from '../../i18n';
 
 export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
     if (!statblock) return null;
 
+    const { t } = useLocale();
     const isPlayMode = variant !== 'static';
 
     const {
@@ -72,7 +74,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
 
         return (
             <div>
-                <strong>Speed</strong> {activeMovements.join(', ')}
+                <strong>{t('statblock.speed')}</strong> {activeMovements.join(', ')}
             </div>
         );
     };
@@ -81,10 +83,10 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
         <div className="card-content card-description">
             <div>
                 <div>
-                    <strong>Armor Class</strong> {ac}
+                    <strong>{t('statblock.armorClass')}</strong> {ac}
                 </div>
                 <div>
-                    <strong>Hit Points</strong> {processDiceInChildren(String(hp || ''), isPlayMode, `${name} HP`)}
+                    <strong>{t('statblock.hitPoints')}</strong> {processDiceInChildren(String(hp || ''), isPlayMode, `${name} HP`)}
                 </div>
                 {renderMovement()}
             </div>
@@ -100,7 +102,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
 
                     return (
                         <div>
-                            <strong>Senses</strong> {activeSenses.join(', ')}
+                            <strong>{t('statblock.senses')}</strong> {activeSenses.join(', ')}
                         </div>
                     );
                 })()}
@@ -113,7 +115,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                 {traits.length > 0 && (
                     <div>
                         <div className="statblock-section-header">
-                            <span>Traits</span>
+                            <span>{t('statblock.traits')}</span>
                             <mdui-divider></mdui-divider>
                         </div>
                         {traits.map((trait, i) => (
@@ -127,7 +129,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                 {actions.length > 0 && (
                     <div>
                         <div className="statblock-section-header">
-                            <span>Actions</span>
+                            <span>{t('statblock.actions')}</span>
                             <mdui-divider></mdui-divider>
                         </div>
                         {actions.map((action, i) => (
@@ -141,7 +143,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                 {bonusActions.length > 0 && (
                     <div>
                         <div className="statblock-section-header">
-                            <span>Bonus Actions</span>
+                            <span>{t('statblock.bonusActions')}</span>
                             <mdui-divider></mdui-divider>
                         </div>
                         {bonusActions.map((action, i) => (
@@ -155,7 +157,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible' }) => {
                 {reactions.length > 0 && (
                     <div>
                         <div className="statblock-section-header">
-                            <span>Reactions</span>
+                            <span>{t('statblock.reactions')}</span>
                             <mdui-divider></mdui-divider>
                         </div>
                         {reactions.map((reaction, i) => (

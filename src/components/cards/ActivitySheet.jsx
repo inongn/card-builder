@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { formatActivityMechanic } from '../../utils/mechanicFormatter';
 import { processDiceInChildren } from './DiceRoller';
 import { renderIcon } from '../../utils/cardUtils';
+import { useLocale } from '../../i18n';
 import 'mdui/components/card.js';
 import 'mdui/components/divider.js';
 
@@ -32,13 +32,21 @@ export const renderResourceIcon = (activity, char) => {
 export const ActivitySheetItem = memo(({ activity, char, printMode = false }) => {
   if (!activity) return null;
 
-  const formattedLine = formatActivityMechanic(activity, char);
+  const { localize, formatMechanic } = useLocale();
+  const localName = localize(activity.id, 'name', activity.name);
+  const localSummary = localize(activity.id, 'summary', activity.summary);
+  const effectiveActivity = {
+    ...activity,
+    name: localName !== activity.name ? localName : activity.name,
+    summary: localSummary !== activity.summary ? localSummary : activity.summary
+  };
+  const formattedLine = formatMechanic(effectiveActivity, char);
   const resourceIcon = renderResourceIcon(activity, char);
 
   const markdownComponents = {
     p: ({ children }) => (
       <div className="activity-sheet-line">
-        {processDiceInChildren(children, !printMode, activity.name)}
+        {processDiceInChildren(children, !printMode, localName)}
       </div>
     ),
     blockquote: ({ children }) => (
@@ -47,7 +55,7 @@ export const ActivitySheetItem = memo(({ activity, char, printMode = false }) =>
       </div>
     ),
     span: ({ children }) => (
-      <span>{processDiceInChildren(children, !printMode, activity.name)}</span>
+      <span>{processDiceInChildren(children, !printMode, localName)}</span>
     )
   };
 
@@ -124,13 +132,14 @@ export const ActivitySheet = memo(({ groupedActivities, characterData, printMode
     return groupActivities(characterData?.activities || []);
   }, [groupedActivities, characterData?.activities]);
 
+  const { t } = useLocale();
   const activityCategories = [
-    { key: 'core', label: 'Core Actions' },
-    { key: 'action', label: 'Actions' },
-    { key: 'bonus action', label: 'Bonus Actions' },
-    { key: 'reaction', label: 'Reactions' },
-    { key: 'free action', label: 'Special Actions' },
-    { key: 'other', label: 'Other Actions' }
+    { key: 'core', label: t('activitySheet.coreActions') },
+    { key: 'action', label: t('activitySheet.actions') },
+    { key: 'bonus action', label: t('activitySheet.bonusActions') },
+    { key: 'reaction', label: t('activitySheet.reactions') },
+    { key: 'free action', label: t('activitySheet.specialActions') },
+    { key: 'other', label: t('activitySheet.otherActions') }
   ];
 
   return (

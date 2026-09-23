@@ -3,7 +3,9 @@ import PropertySelectionTree from '../components/PropertySelectionTree';
 import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
 import { formatActivityMechanic } from '../utils/mechanicFormatter';
+import { useLocale } from '../i18n';
 import { getSpeciesArtwork, getClassArtwork, getSubclassArtwork, getBackgroundArtwork, getAssetUrl } from '../data/artworkData.js';
+import { DAMAGE_TYPES_ES } from '../utils/sheetUtils.js';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import 'mdui/components/button-icon.js';
@@ -36,8 +38,17 @@ const isUnarmored = (opt) => {
     return opt.id === 'unarmored' || tags.includes('unarmored');
 };
 
-const formatAcCalculation = (option, characterData) => {
+const formatAcCalculation = (option, characterData, t = (k, def) => def, lang = 'en') => {
     if (!option) return null;
+    const isEs = lang === 'es';
+    const acLabel = isEs ? 'CA' : 'AC';
+    const dexName = isEs ? 'Destreza' : 'Dexterity';
+    const conName = isEs ? 'Constitución' : 'Constitution';
+    const wisName = isEs ? 'Sabiduría' : 'Wisdom';
+    const chaName = isEs ? 'Carisma' : 'Charisma';
+    const strName = isEs ? 'Fuerza' : 'Strength';
+    const intName = isEs ? 'Inteligencia' : 'Intelligence';
+    const upToStr = isEs ? ', hasta ' : ', up to ';
 
     const isUnarmoredOption = option.id === 'unarmored' || (option.tags || []).includes('unarmored');
 
@@ -46,15 +57,15 @@ const formatAcCalculation = (option, characterData) => {
         const sub = (characterData?.meta?.sub || '').toLowerCase();
 
         if (cls === 'barbarian') {
-            return 'AC: 10 + Dexterity + Constitution';
+            return `${acLabel}: 10 + ${dexName} + ${conName}`;
         }
         if (cls === 'monk') {
-            return 'AC: 10 + Dexterity + Wisdom';
+            return `${acLabel}: 10 + ${dexName} + ${wisName}`;
         }
         if (sub === 'draconic' || sub === 'dance') {
-            return 'AC: 10 + Dexterity + Charisma';
+            return `${acLabel}: 10 + ${dexName} + ${chaName}`;
         }
-        return 'AC: 10 + Dexterity';
+        return `${acLabel}: 10 + ${dexName}`;
     }
 
     const children = option.children || [];
@@ -65,9 +76,9 @@ const formatAcCalculation = (option, characterData) => {
             const val = String(acEffect.value).replace(/\$|\(|\)/g, '').trim();
             const num = parseInt(val, 10);
             if (!isNaN(num)) {
-                return `AC: +${num}`;
+                return `${acLabel}: +${num}`;
             }
-            return `AC: +${val}`;
+            return `${acLabel}: +${val}`;
         }
 
         if (acEffect.operation === 'set' || !acEffect.operation) {
@@ -75,49 +86,49 @@ const formatAcCalculation = (option, characterData) => {
             val = val.replace(/^\$\((.*)\)$/, '$1').trim();
 
             if (/^\d+$/.test(val)) {
-                return `AC: ${val}`;
+                return `${acLabel}: ${val}`;
             }
 
             const minMatch = val.match(/^(\d+)\s*\+\s*Math\.min\((\d+),\s*stats\.dex\.mod\)$/);
             if (minMatch) {
-                return `AC: ${minMatch[1]} + Dexterity, up to ${minMatch[2]}`;
+                return `${acLabel}: ${minMatch[1]} + ${dexName}${upToStr}${minMatch[2]}`;
             }
 
             const dexMatch1 = val.match(/^(\d+)\s*\+\s*stats\.dex\.mod$/);
             if (dexMatch1) {
-                return `AC: ${dexMatch1[1]} + Dexterity`;
+                return `${acLabel}: ${dexMatch1[1]} + ${dexName}`;
             }
             const dexMatch2 = val.match(/^stats\.dex\.mod\s*\+\s*(\d+)$/);
             if (dexMatch2) {
-                return `AC: ${dexMatch2[1]} + Dexterity`;
+                return `${acLabel}: ${dexMatch2[1]} + ${dexName}`;
             }
 
             if (val.includes('stats.')) {
                 let formatted = val
-                    .replace(/stats\.dex\.mod/g, 'Dexterity')
-                    .replace(/stats\.con\.mod/g, 'Constitution')
-                    .replace(/stats\.wis\.mod/g, 'Wisdom')
-                    .replace(/stats\.cha\.mod/g, 'Charisma')
-                    .replace(/stats\.str\.mod/g, 'Strength')
-                    .replace(/stats\.int\.mod/g, 'Intelligence')
-                    .replace(/Math\.min\((\d+),\s*Dexterity\)/g, 'Dexterity, up to $1')
-                    .replace(/Math\.min\(Dexterity,\s*(\d+)\)/g, 'Dexterity, up to $1');
-                return `AC: ${formatted}`;
+                    .replace(/stats\.dex\.mod/g, dexName)
+                    .replace(/stats\.con\.mod/g, conName)
+                    .replace(/stats\.wis\.mod/g, wisName)
+                    .replace(/stats\.cha\.mod/g, chaName)
+                    .replace(/stats\.str\.mod/g, strName)
+                    .replace(/stats\.int\.mod/g, intName)
+                    .replace(/Math\.min\((\d+),\s*[^)]+\)/g, `${dexName}${upToStr}$1`)
+                    .replace(/Math\.min\([^,]+,\s*(\d+)\)/g, `${dexName}${upToStr}$1`);
+                return `${acLabel}: ${formatted}`;
             }
 
-            return `AC: ${val}`;
+            return `${acLabel}: ${val}`;
         }
     }
 
     const tags = option.tags || [];
     if (tags.includes('shieldEquipment') || option.id === 'shieldEquipment') {
-        return 'AC: +2';
+        return `${acLabel}: +2`;
     }
 
     return null;
 };
 
-const formatDamageMeta = (vars) => {
+const formatDamageMeta = (vars, t = (k, def) => def, lang = 'en') => {
     if (!vars) return null;
     let roll = vars.damageRoll ? String(vars.damageRoll) : '';
     let type = vars.damageType ? String(vars.damageType) : '';
@@ -134,7 +145,10 @@ const formatDamageMeta = (vars) => {
         }
     }
 
-    const formattedType = type ? (type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()) : '';
+    const typeKey = type.toLowerCase();
+    const formattedType = lang === 'es' && DAMAGE_TYPES_ES[typeKey]
+        ? DAMAGE_TYPES_ES[typeKey]
+        : (type ? (type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()) : '');
 
     if (roll && formattedType) {
         return `${roll} ${formattedType}`;
@@ -149,7 +163,7 @@ const formatDamageMeta = (vars) => {
 };
 
 // Sub-component for rendering option selection cards
-const getOptionChips = (option, onGetProperty, characterData) => {
+const getOptionChips = (option, onGetProperty, characterData, t = (k, def) => def, lang = 'en') => {
     let fullOpt = option;
     if (!fullOpt.children && onGetProperty) {
         const fetched = onGetProperty(fullOpt.id);
@@ -167,16 +181,17 @@ const getOptionChips = (option, onGetProperty, characterData) => {
         const schools = ['abjuration', 'conjuration', 'divination', 'enchantment', 'evocation', 'illusion', 'necromancy', 'transmutation'];
         const school = tags.find(t => schools.includes(t.toLowerCase()));
         if (school) {
-            chips.push(school.charAt(0).toUpperCase() + school.slice(1).toLowerCase());
+            const sLower = school.toLowerCase();
+            chips.push(t(`builder.chips.${sLower}`, school.charAt(0).toUpperCase() + school.slice(1).toLowerCase()));
         }
 
         // Damage / Healing / Utility
         if (tags.includes('damageSpell')) {
-            chips.push('Damage');
+            chips.push(t('builder.chips.damage', 'Damage'));
         } else if (tags.includes('healingSpell')) {
-            chips.push('Healing');
+            chips.push(t('builder.chips.healing', 'Healing'));
         } else {
-            chips.push('Utility');
+            chips.push(t('builder.chips.utility', 'Utility'));
         }
         return chips;
     }
@@ -200,11 +215,24 @@ const getOptionChips = (option, onGetProperty, characterData) => {
         }
 
         if (classification) {
-            chips.push(String(classification).charAt(0).toUpperCase() + String(classification).slice(1).toLowerCase());
+            const cLower = String(classification).toLowerCase();
+            const defaultStr = String(classification).charAt(0).toUpperCase() + String(classification).slice(1).toLowerCase();
+            chips.push(t(`builder.chips.${cLower}`, defaultStr));
         }
 
         // 2. Properties (light / heavy / two-handed / versatile / reach / thrown / etc.)
-        const propMap = {
+        const propKeys = {
+            light: 'light',
+            heavy: 'heavy',
+            twohanded: 'twoHanded',
+            'two-handed': 'twoHanded',
+            versatile: 'versatile',
+            reach: 'reach',
+            thrown: 'thrown',
+            loading: 'loading',
+            ammunition: 'ammunition',
+        };
+        const propDefaults = {
             light: 'Light',
             heavy: 'Heavy',
             twohanded: 'Two-Handed',
@@ -220,24 +248,25 @@ const getOptionChips = (option, onGetProperty, characterData) => {
 
         if (vars.property) {
             const propStr = String(vars.property).toLowerCase();
-            for (const [k, v] of Object.entries(propMap)) {
-                if (propStr.includes(k) && !addedProps.has(v)) {
-                    addedProps.add(v);
-                    chips.push(v);
+            for (const [k, pKey] of Object.entries(propKeys)) {
+                if (propStr.includes(k) && !addedProps.has(pKey)) {
+                    addedProps.add(pKey);
+                    chips.push(t(`builder.chips.${pKey}`, propDefaults[k]));
                 }
             }
         }
 
-        tags.forEach(t => {
-            const lower = String(t).toLowerCase();
-            if (propMap[lower] && !addedProps.has(propMap[lower])) {
-                addedProps.add(propMap[lower]);
-                chips.push(propMap[lower]);
+        tags.forEach(tTag => {
+            const lower = String(tTag).toLowerCase();
+            const pKey = propKeys[lower];
+            if (pKey && !addedProps.has(pKey)) {
+                addedProps.add(pKey);
+                chips.push(t(`builder.chips.${pKey}`, propDefaults[lower]));
             }
         });
 
         // 3. Damage Meta (XdY damageType)
-        let dmgMeta = formatDamageMeta(vars);
+        let dmgMeta = formatDamageMeta(vars, t, lang);
 
         if (!dmgMeta && fullOpt.mechanic) {
             const mechanic = fullOpt.mechanic;
@@ -274,16 +303,17 @@ const getOptionChips = (option, onGetProperty, characterData) => {
                         typeStr = String(dmgTag).replace(/damage$/i, '');
                     }
                 }
-                if (typeStr) {
-                    typeStr = String(typeStr).charAt(0).toUpperCase() + String(typeStr).slice(1).toLowerCase();
-                }
+                const typeKey = String(typeStr).toLowerCase();
+                const formattedType = lang === 'es' && DAMAGE_TYPES_ES[typeKey]
+                    ? DAMAGE_TYPES_ES[typeKey]
+                    : (typeStr ? (String(typeStr).charAt(0).toUpperCase() + String(typeStr).slice(1).toLowerCase()) : '');
 
-                if (rollStr && typeStr) {
-                    dmgMeta = `${rollStr} ${typeStr}`;
+                if (rollStr && formattedType) {
+                    dmgMeta = `${rollStr} ${formattedType}`;
                 } else if (rollStr) {
                     dmgMeta = rollStr;
-                } else if (typeStr) {
-                    dmgMeta = typeStr;
+                } else if (formattedType) {
+                    dmgMeta = formattedType;
                 }
             }
         }
@@ -300,10 +330,14 @@ const getOptionChips = (option, onGetProperty, characterData) => {
 
     if (isEquipment) {
         if (vars.classification) {
-            chips.push(String(vars.classification).charAt(0).toUpperCase() + String(vars.classification).slice(1).toLowerCase());
+            const cLower = String(vars.classification).toLowerCase();
+            const defaultStr = String(vars.classification).charAt(0).toUpperCase() + String(vars.classification).slice(1).toLowerCase();
+            chips.push(t(`builder.chips.${cLower}`, defaultStr));
         }
         if (vars.category) {
-            chips.push(String(vars.category).charAt(0).toUpperCase() + String(vars.category).slice(1).toLowerCase());
+            const catLower = String(vars.category).toLowerCase();
+            const defaultStr = String(vars.category).charAt(0).toUpperCase() + String(vars.category).slice(1).toLowerCase();
+            chips.push(t(`builder.chips.${catLower}`, defaultStr));
         }
         if (vars.property) {
             const prop = String(vars.property)
@@ -317,14 +351,16 @@ const getOptionChips = (option, onGetProperty, characterData) => {
 
         // Armor classifications/tags
         if (tags.includes('lightArmor')) {
-            chips.push('Light');
+            chips.push(t('builder.chips.lightArmor', 'Light'));
         } else if (tags.includes('mediumArmor')) {
-            chips.push('Medium');
+            chips.push(t('builder.chips.mediumArmor', 'Medium'));
         } else if (tags.includes('heavyArmor')) {
-            chips.push('Heavy');
+            chips.push(t('builder.chips.heavyArmor', 'Heavy'));
+        } else if (tags.includes('shieldEquipment') || fullOpt.id === 'shieldEquipment') {
+            chips.push(t('builder.chips.shield', 'Shield'));
         }
 
-        const acCalc = formatAcCalculation(fullOpt, characterData);
+        const acCalc = formatAcCalculation(fullOpt, characterData, t, lang);
         if (acCalc) {
             chips.push(acCalc);
         }
@@ -603,6 +639,8 @@ const OptionSummary = React.memo(function OptionSummary({ text }) {
 });
 
 const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled, onClick, characterData, onGetProperty }) {
+    const { localize, t, lang } = useLocale();
+
     const handleCardClick = () => {
         if (!disabled && onClick) {
             onClick();
@@ -610,8 +648,8 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
     };
 
     const labels = React.useMemo(() => {
-        return getOptionChips(option, onGetProperty, characterData);
-    }, [option, onGetProperty, characterData]);
+        return getOptionChips(option, onGetProperty, characterData, t, lang);
+    }, [option, onGetProperty, characterData, t, lang]);
 
     const tags = option.tags || [];
     const shouldShowDesc = tags.some(tag => {
@@ -652,21 +690,22 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
     }, [option, onGetProperty]);
 
     const evaluatedSummary = React.useMemo(() => {
-        if (fullOpt.summary) {
-            const sumStr = String(fullOpt.summary);
+        const rawSummary = localize(fullOpt.id, 'summary', fullOpt.summary);
+        if (rawSummary) {
+            const sumStr = String(rawSummary);
             if (!sumStr.includes('$') && !sumStr.includes('local.')) {
                 return sumStr.replace(/\r?\n|\r/g, ' ').trim();
             }
             const evaluator = new ExpressionEvaluator(characterData);
             try {
-                const evaluated = evaluator.evaluate(fullOpt.summary);
+                const evaluated = evaluator.evaluate(sumStr);
                 return String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
             } catch (e) {
                 return sumStr.replace(/\r?\n|\r/g, ' ').trim();
             }
         }
 
-        const rawText = fullOpt.description;
+        const rawText = localize(fullOpt.id, 'description', fullOpt.description);
         if (!rawText) return '';
 
         // Suppress generic "You strike with your X" boilerplate descriptions since the chip line handles weapon summaries
@@ -685,7 +724,9 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         const clean = String(evaluated).replace(/\r?\n|\r/g, ' ').trim();
         const match = clean.match(/^.*?[.!?](?:\s|$)/);
         return match ? match[0].trim() : clean;
-    }, [fullOpt, characterData]);
+    }, [fullOpt, characterData, localize]);
+
+    const displayName = localize(option.id, 'name', option.displayName || option.name);
 
     return (
         <mdui-list-item
@@ -706,7 +747,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                         )}
                         <div className="card-vertical__media-details">
                             <div className="card-vertical__headline">
-                                <span>{option.displayName || option.name}</span>
+                                <span>{displayName}</span>
                             </div>
                             {labels.length > 0 && (
                                 <div className="card-vertical__subhead">
@@ -723,7 +764,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                 ) : (
                     <div className="card-vertical__header-plain">
                         <div className="card-vertical__headline">
-                            <span>{option.displayName || option.name}</span>
+                            <span>{displayName}</span>
                             {isSelected && (
                                 <mdui-icon name="check_circle" class="icon-primary"></mdui-icon>
                             )}
@@ -746,6 +787,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
 });
 
 const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobile, actionButton }) => {
+    const { t, localize } = useLocale();
     const { node, path } = selectedSlotItem;
     const isAbilityInput = node.name.match(/^(allocated|origin|asi)_/);
     const [prefix, stat] = isAbilityInput ? node.name.split('_') : [null, null];
@@ -766,12 +808,12 @@ const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobil
     let isDisabled = false;
 
     const STAT_NAMES = {
-        str: 'Strength',
-        dex: 'Dexterity',
-        con: 'Constitution',
-        int: 'Intelligence',
-        wis: 'Wisdom',
-        cha: 'Charisma'
+        str: t('stats.str', 'Strength'),
+        dex: t('stats.dex', 'Dexterity'),
+        con: t('stats.con', 'Constitution'),
+        int: t('stats.int', 'Intelligence'),
+        wis: t('stats.wis', 'Wisdom'),
+        cha: t('stats.cha', 'Charisma')
     };
 
     if (isAbilityInput && characterData.attributes) {
@@ -799,8 +841,14 @@ const InputPane = ({ selectedSlotItem, characterData, handleUpdateInput, isMobil
     }
 
     if (isAbilityInput) {
-        const prefixLabel = prefix === 'allocated' ? 'Allocated' : prefix === 'origin' ? 'Origin' : 'ASI';
+        const prefixLabel = prefix === 'allocated' ? t('builder.allocated', 'Allocated') : prefix === 'origin' ? t('builder.origin', 'Origin') : t('builder.asi', 'ASI');
         label = `${STAT_NAMES[stat.toLowerCase()] || stat.toUpperCase()} (${prefixLabel})`;
+    } else if (isImageInput) {
+        label = t('builder.characterImage', 'Character Image');
+    } else if (isLevel) {
+        label = t('builder.level', 'Level');
+    } else {
+        label = localize(node.id, 'name', label);
     }
 
     const handleInputChange = (e) => {
@@ -906,7 +954,15 @@ export const BuilderScreen = ({
     onOpenExport,
     onOpenImport
 }) => {
+    const { t, localize, lang } = useLocale();
     const isMobile = window.innerWidth <= 890;
+
+    const categories = React.useMemo(() => [
+        { key: 'origin', icon: 'person', label: t('builder.origin', 'Origin') },
+        { key: 'class', icon: 'school', label: t('builder.class', 'Class') },
+        { key: 'abilities', icon: 'fitness_center', label: t('builder.abilities', 'Abilities') },
+        { key: 'arsenal', icon: 'shield', label: t('builder.arsenal', 'Arsenal') },
+    ], [t]);
 
     const [selectedSlotItem, setSelectedSlotItem] = React.useState(() => {
         if ((isNewCharacterCreation || !isMobile) && propertyTree) {
@@ -983,7 +1039,7 @@ export const BuilderScreen = ({
                     type: 'Ally',
                     allyType: stepKey,
                     id: `ally-${stepKey}`,
-                    title: stepDef.title,
+                    title: t(`builder.steps.${stepKey}`, stepDef.title),
                     items: stepNodes,
                     category: 'arsenal',
                     step: stepKey
@@ -1001,7 +1057,7 @@ export const BuilderScreen = ({
                             category: 'class',
                             step: 'classOptions',
                             id: 'merged-classOptions',
-                            title: 'Class Options',
+                            title: t('builder.steps.classOptions', 'Class Options'),
                             items: slotNodes
                         });
                         return;
@@ -1015,7 +1071,7 @@ export const BuilderScreen = ({
                         category: stepDef.category,
                         step: stepKey,
                         id: `merged-${stepKey}`,
-                        title: stepDef.title,
+                        title: t(`builder.steps.${stepKey}`, stepDef.title),
                         items: slotNodes
                     });
                 }
@@ -1042,7 +1098,7 @@ export const BuilderScreen = ({
         });
 
         return orderedItems;
-    }, [renderableNodes]);
+    }, [renderableNodes, t]);
 
     React.useEffect(() => {
         if (isNewCharacterCreation) {
@@ -1437,16 +1493,16 @@ export const BuilderScreen = ({
 
     const nextButtonLabel = React.useMemo(() => {
         if (isComplete) {
-            return isMobileOverlayActive ? "Review" : "Save";
+            return isMobileOverlayActive ? (lang === 'es' ? 'Revisar' : 'Review') : t('builder.save', 'Save');
         }
         if (isCurrentSelectionFilled) {
-            return "Next";
+            return t('builder.next', 'Next');
         }
         if (!displaySlotItem) {
-            return "Next";
+            return t('builder.next', 'Next');
         }
         if (displaySlotItem.type === 'Input' || displaySlotItem.type === 'Slot') {
-            return "Next";
+            return t('builder.next', 'Next');
         }
         // Calculate missing items (N)
         let missingCount = 1;
@@ -1459,10 +1515,10 @@ export const BuilderScreen = ({
         }
 
         if (displaySlotItem.type === 'Abilities') { // if were in ability selection
-            return `Assign ${missingCount}`;
+            return lang === 'es' ? `Asignar ${missingCount}` : `Assign ${missingCount}`;
         }
-        return `Pick ${missingCount}`;
-    }, [displaySlotItem, isCurrentSelectionFilled, isComplete, categoryStats, isMobileOverlayActive]);
+        return lang === 'es' ? `Elegir ${missingCount}` : `Pick ${missingCount}`;
+    }, [displaySlotItem, isCurrentSelectionFilled, isComplete, categoryStats, isMobileOverlayActive, t, lang]);
 
     const handleNextOrSaveClick = React.useCallback(() => {
         if (isComplete) {
@@ -1508,7 +1564,7 @@ export const BuilderScreen = ({
                 onClick={handleNextOrSaveClick}
                 size="small"
             >
-                {isComplete ? 'Save' : (isCurrentSelectionFilled ? 'Next' : nextButtonLabel)}
+                {isComplete ? t('builder.save', 'Save') : (isCurrentSelectionFilled ? t('builder.next', 'Next') : nextButtonLabel)}
             </mdui-button>
         );
     };
@@ -1518,16 +1574,18 @@ export const BuilderScreen = ({
         if (displaySlotItem.type === 'Group') {
             topAppBarTitle = displaySlotItem.id;
         } else if (displaySlotItem.type === 'MergedCategory') {
-            topAppBarTitle = displaySlotItem.title || STEP_DEFINITIONS[displaySlotItem.step]?.title || CATEGORIES[displaySlotItem.category]?.title || displaySlotItem.category;
+            const stepKey = displaySlotItem.step || displaySlotItem.category;
+            topAppBarTitle = t(`builder.steps.${stepKey}`, displaySlotItem.title || STEP_DEFINITIONS[stepKey]?.title || CATEGORIES[displaySlotItem.category]?.title || displaySlotItem.category);
         } else if (displaySlotItem.type === 'Abilities') {
-            topAppBarTitle = 'Ability Scores';
+            topAppBarTitle = t('builder.steps.stats', t('builder.scores', 'Ability Scores'));
         } else if (displaySlotItem.type === 'Ally') {
-            topAppBarTitle = displaySlotItem.title || STEP_DEFINITIONS[displaySlotItem.allyType]?.title || displaySlotItem.allyType;
+            const allyKey = displaySlotItem.allyType || displaySlotItem.step;
+            topAppBarTitle = t(`builder.steps.${allyKey}`, displaySlotItem.title || STEP_DEFINITIONS[allyKey]?.title || displaySlotItem.allyType);
         } else if (displaySlotItem.node) {
             if (displaySlotItem.node.id === 'level' || displaySlotItem.node.name === 'Level') {
-                topAppBarTitle = `Level ${displaySlotItem.node.value ?? displaySlotItem.node.default ?? 1}`;
+                topAppBarTitle = `${t('builder.level', 'Level')} ${displaySlotItem.node.value ?? displaySlotItem.node.default ?? 1}`;
             } else {
-                topAppBarTitle = displaySlotItem.node.displayName || displaySlotItem.node.name || displaySlotItem.title || "Customize";
+                topAppBarTitle = localize(displaySlotItem.node.id, 'name', displaySlotItem.node.displayName || displaySlotItem.node.name || displaySlotItem.title || t('builder.customize', 'Customize'));
             }
         } else if (displaySlotItem.title) {
             topAppBarTitle = displaySlotItem.title;
@@ -1562,12 +1620,12 @@ export const BuilderScreen = ({
         const meta = characterData.meta || {};
         const statsList = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
         const STAT_NAMES = {
-            str: 'Strength',
-            dex: 'Dexterity',
-            con: 'Constitution',
-            int: 'Intelligence',
-            wis: 'Wisdom',
-            cha: 'Charisma'
+            str: t('stats.str', 'Strength'),
+            dex: t('stats.dex', 'Dexterity'),
+            con: t('stats.con', 'Constitution'),
+            int: t('stats.int', 'Intelligence'),
+            wis: t('stats.wis', 'Wisdom'),
+            cha: t('stats.cha', 'Charisma')
         };
 
         const allocatedSum = statsList.reduce((sum, s) => sum + Number(meta[`allocated_${s}`] || 0), 0);
@@ -1578,23 +1636,23 @@ export const BuilderScreen = ({
             <div className="abilities-pane" key="abilities">
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
-                        <span className="options-pane-title">Ability Scores</span>
+                        <span className="options-pane-title">{t('builder.steps.stats', t('builder.scores', 'Ability Scores'))}</span>
                         {renderNextOrSaveButton()}
                     </div>
                 </div>
 
                 <div className="abilities-summary">
                     <div className="summary-item">
-                        <div className="stat-label">Allocated</div>
+                        <div className="stat-label">{t('builder.allocated', 'Allocated')}</div>
                         <div className="summary-value">{allocatedSum} / {attr.pointBuyLimit}</div>
                     </div>
                     <div className="summary-item">
-                        <div className="stat-label">Origin</div>
+                        <div className="stat-label">{t('builder.origin', 'Origin')}</div>
                         <div className="summary-value">{originSum} / {attr.originPoolLimit}</div>
                     </div>
                     {attr.asiPoolLimit > 0 && (
                         <div className="summary-item">
-                            <div className="stat-label">ASI</div>
+                            <div className="stat-label">{t('builder.asi', 'ASI')}</div>
                             <div className="summary-value">{asiSum} / {attr.asiPoolLimit}</div>
                         </div>
                     )}
@@ -1692,7 +1750,7 @@ export const BuilderScreen = ({
             <div className="options-pane ally-pane" key={`ally-pane-${allyType}`}>
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
-                        <span className="options-pane-title">{title}</span>
+                        <span className="options-pane-title">{t(`builder.steps.${allyType}`, title)}</span>
                         {renderNextOrSaveButton()}
                     </div>
                 </div>
@@ -1701,7 +1759,8 @@ export const BuilderScreen = ({
                     {orderedNodes.flatMap(item => {
                         if (item.type === 'Input') {
                             const val = item.node.value ?? item.node.default ?? '';
-                            const sectionLabel = item.node.label || item.node.displayName || item.node.name;
+                            const defaultLabel = item.node.label || item.node.displayName || item.node.name;
+                            const sectionLabel = item.node.id ? localize(item.node.id, 'name', defaultLabel) : defaultLabel;
                             return [
                                 <div key={`title-input-${item.node.id || item.node.name}`} className="section-title">
                                     {sectionLabel}
@@ -1719,7 +1778,8 @@ export const BuilderScreen = ({
                         }
 
                         const slotNode = item.node;
-                        const slotTitle = slotNode.displayName || slotNode.name;
+                        const defaultSlotTitle = slotNode.displayName || slotNode.name;
+                        const slotTitle = slotNode.id ? localize(slotNode.id, 'name', defaultSlotTitle) : defaultSlotTitle;
                         let opts = handleGetSlotOptions ? handleGetSlotOptions(slotNode) : [];
 
                         const currentFilled = slotNode.filled;
@@ -1767,12 +1827,12 @@ export const BuilderScreen = ({
     const renderOptionsPane = () => {
         if (!displaySlotItem) {
             const isStats = selectedCategory === 'stats';
-            const instructionsTitle = isStats ? "Ability Scores" : "Customize Your Hero";
+            const instructionsTitle = isStats ? t('builder.scores', 'Ability Scores') : t('builder.customizeHero', 'Customize Your Hero');
             return (
                 <div className="instructions-panel">
                     <mdui-icon name="handshake" class="instructions-icon"></mdui-icon>
-                    <span className="instructions-title">Selection Overview</span>
-                    <p className="instructions-text">Select an option on the left to configure your character.</p>
+                    <span className="instructions-title">{t('builder.overviewTitle', 'Selection Overview')}</span>
+                    <p className="instructions-text">{t('builder.overviewText', 'Select an option on the left to configure your character.')}</p>
                 </div>
             );
         }
@@ -1799,9 +1859,20 @@ export const BuilderScreen = ({
 
         const isGroup = displaySlotItem.type === 'Group';
         const isMerged = displaySlotItem.type === 'MergedCategory';
-        const slotName = isMerged
-            ? (displaySlotItem.title || CATEGORIES[displaySlotItem.category]?.title || displaySlotItem.category)
-            : (isGroup ? displaySlotItem.id : (displaySlotItem.node?.displayName || displaySlotItem.node?.name || displaySlotItem.title));
+        let slotName = '';
+        if (isMerged) {
+            const stepKey = displaySlotItem.step || displaySlotItem.category;
+            slotName = t(`builder.steps.${stepKey}`, displaySlotItem.title || STEP_DEFINITIONS[stepKey]?.title || CATEGORIES[displaySlotItem.category]?.title || displaySlotItem.category);
+        } else if (displaySlotItem.type === 'Ally') {
+            const allyKey = displaySlotItem.allyType || displaySlotItem.step;
+            slotName = t(`builder.steps.${allyKey}`, displaySlotItem.title || STEP_DEFINITIONS[allyKey]?.title || displaySlotItem.title);
+        } else if (isGroup) {
+            slotName = displaySlotItem.id;
+        } else {
+            slotName = displaySlotItem.node?.id
+                ? localize(displaySlotItem.node.id, 'name', displaySlotItem.node?.displayName || displaySlotItem.node?.name || displaySlotItem.title)
+                : (displaySlotItem.node?.displayName || displaySlotItem.node?.name || displaySlotItem.title);
+        }
 
         return (
             <div
@@ -1818,8 +1889,8 @@ export const BuilderScreen = ({
                 {options.length === 0 ? (
                     <div className="instructions-panel">
                         <mdui-icon name="info" class="instructions-icon"></mdui-icon>
-                        <span className="instructions-title">No Options Available</span>
-                        <p className="instructions-text">There are no available choices that fit the prerequisites for this slot.</p>
+                        <span className="instructions-title">{t('builder.noOptionsTitle', 'No Options Available')}</span>
+                        <p className="instructions-text">{t('builder.noOptionsText', 'There are no available choices that fit the prerequisites for this slot.')}</p>
                     </div>
                 ) : (
                     <div className="options-list">
@@ -1906,16 +1977,16 @@ export const BuilderScreen = ({
                                     if (lvl !== currentLvl) {
                                         currentLvl = lvl;
                                         const levelNames = {
-                                            0: "Cantrips",
-                                            1: "1st Level Spells",
-                                            2: "2nd Level Spells",
-                                            3: "3rd Level Spells",
-                                            4: "4th Level Spells"
+                                            0: t('builder.cantrips', 'Cantrips'),
+                                            1: t('builder.spellsLevel1', '1st Level Spells'),
+                                            2: t('builder.spellsLevel2', '2nd Level Spells'),
+                                            3: t('builder.spellsLevel3', '3rd Level Spells'),
+                                            4: t('builder.spellsLevel4', '4th Level Spells')
                                         };
                                         if (showHeaders) {
                                             rendered.push(
                                                 <div className="section-title" key={`lvl-header-${lvl}`}>
-                                                    {levelNames[lvl] || `Level ${lvl} Spells`}
+                                                    {levelNames[lvl] || `${t('builder.level', 'Level')} ${lvl} ${t('builder.steps.spellcasting', 'Spells')}`}
                                                 </div>
                                             );
                                         }
@@ -1948,8 +2019,8 @@ export const BuilderScreen = ({
                             } else if (isFeatList) {
                                 const getFeatCategory = (opt) => {
                                     const tags = opt.tags || [];
-                                    if (tags.includes('fightingStyle')) return "Fighting Styles";
-                                    if (tags.includes('feat')) return "Feats";
+                                    if (tags.includes('fightingStyle')) return t('builder.fightingStyles', 'Fighting Styles');
+                                    if (tags.includes('feat')) return t('builder.steps.feats', 'Feats');
                                     return null;
                                 };
 
@@ -1998,15 +2069,15 @@ export const BuilderScreen = ({
                             } else if (isClassOptionList) {
                                 const getClassOptionCategory = (opt) => {
                                     const tags = opt.tags || [];
-                                    if (tags.includes('primalOrder')) return "Primal Order Options";
-                                    if (tags.includes('elementalFury')) return "Elemental Fury Options";
-                                    if (tags.includes('circleLand')) return "Land Types";
-                                    if (tags.includes('blessedStrikes')) return "Blessed Strikes Options";
-                                    if (tags.includes('divineOrder')) return "Divine Order Options";
-                                    if (tags.includes('elementalAffinity')) return "Elemental Affinity Options";
-                                    if (tags.includes('metamagic')) return "Metamagic Options";
-                                    if (tags.includes('eldritchInvocation')) return "Eldritch Invocation Options";
-                                    if (tags.includes('vestigeType')) return "Vestige Options";
+                                    if (tags.includes('primalOrder')) return t('builder.classOptionPrimalOrder', 'Primal Order Options');
+                                    if (tags.includes('elementalFury')) return t('builder.classOptionElementalFury', 'Elemental Fury Options');
+                                    if (tags.includes('circleLand')) return t('builder.classOptionLandTypes', 'Land Types');
+                                    if (tags.includes('blessedStrikes')) return t('builder.classOptionBlessedStrikes', 'Blessed Strikes Options');
+                                    if (tags.includes('divineOrder')) return t('builder.classOptionDivineOrder', 'Divine Order Options');
+                                    if (tags.includes('elementalAffinity')) return t('builder.classOptionElementalAffinity', 'Elemental Affinity Options');
+                                    if (tags.includes('metamagic')) return t('builder.classOptionMetamagic', 'Metamagic Options');
+                                    if (tags.includes('eldritchInvocation')) return t('builder.classOptionEldritchInvocation', 'Eldritch Invocation Options');
+                                    if (tags.includes('vestigeType')) return t('builder.classOptionVestige', 'Vestige Options');
                                     return null;
                                 };
 
@@ -2064,15 +2135,15 @@ export const BuilderScreen = ({
                                     if (cat && cat !== currentCat) {
                                         currentCat = cat;
                                         const headerNames = {
-                                            'unarmored': "Unarmored",
-                                            'light': "Light Armor",
-                                            'medium': "Medium Armor",
-                                            'heavy': "Heavy Armor",
-                                            'simple-melee': "Simple Melee Weapons",
-                                            'simple-ranged': "Simple Ranged Weapons",
-                                            'martial-melee': "Martial Melee Weapons",
-                                            'martial-ranged': "Martial Ranged Weapons",
-                                            'shield': "Shields"
+                                            'unarmored': t('builder.unarmored', 'Unarmored'),
+                                            'light': t('builder.lightArmor', 'Light Armor'),
+                                            'medium': t('builder.mediumArmor', 'Medium Armor'),
+                                            'heavy': t('builder.heavyArmor', 'Heavy Armor'),
+                                            'simple-melee': t('builder.simpleMelee', 'Simple Melee Weapons'),
+                                            'simple-ranged': t('builder.simpleRanged', 'Simple Ranged Weapons'),
+                                            'martial-melee': t('builder.martialMelee', 'Martial Melee Weapons'),
+                                            'martial-ranged': t('builder.martialRanged', 'Martial Ranged Weapons'),
+                                            'shield': t('builder.shields', 'Shields')
                                         };
                                         if (showHeaders && headerNames[cat]) {
                                             rendered.push(
@@ -2163,7 +2234,7 @@ export const BuilderScreen = ({
                         }}
                         className="vertical-stepper"
                     >
-                        {orderedCategories.map((cat, index) => {
+                        {categories.map((cat, index) => {
                             const isAvailable = availableCategories.includes(cat.key);
                             const stats = categoryStats[cat.key] || { pending: 0, isComplete: false };
                             const isActive = selectedCategory === cat.key;
@@ -2240,7 +2311,7 @@ export const BuilderScreen = ({
                             onClick={handlePreviousClick}
                             className="builder-mobile-fab-prev"
                         >
-                            Previous
+                            {t('builder.previous', 'Previous')}
                         </mdui-fab>
                     )}
                     <mdui-fab

@@ -177,16 +177,20 @@ export const getIconInfo = (text) => {
     return NORM_ICONS[termKey] || null;
 };
 
-export const getResourceRecovery = (res) => {
+export const getResourceRecovery = (res, lang = 'en') => {
+    const isEs = lang === 'es' || (typeof localStorage !== 'undefined' && localStorage.getItem('aspida_locale') === 'es');
+    const lrText = isEs ? 'DL' : 'LR';
+    const srText = isEs ? 'DC' : 'SR';
+
     const sr = res?.sr;
     if (sr === undefined || sr === null || sr === 0 || sr === '0' || sr === false) {
-        return 'LR';
+        return lrText;
     }
     const srStr = String(sr).trim();
     if (srStr.toLowerCase() === 'all') {
-        return 'SR';
+        return srText;
     }
-    return `SR: ${srStr}`;
+    return `${srText}: ${srStr}`;
 };
 
 export const renderGridValue = (text, type = 'range', showLabel = true) => {

@@ -7,20 +7,25 @@ import { AdvantageIndicator } from './AdvantageIndicator';
 import { formatActivityMechanic } from '../../utils/mechanicFormatter';
 import { processDiceInChildren } from './DiceRoller';
 import { groupActivities, sortByResource, ActivitySheet } from './ActivitySheet';
-
+import { useLocale } from '../../i18n';
+import { localizeSubclass, localizeInfoboxValue, localizeSenseOrMovement, evaluateText } from '../../utils/sheetUtils';
 
 import 'mdui/components/icon.js';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 const categoryOrder = ['core', 'action', 'bonus action', 'reaction', 'free action', 'other'];
-const categoryLabels = {
-    core: 'Core Actions',
-    action: 'Actions',
-    'bonus action': 'Bonus Actions',
-    reaction: 'Reactions',
-    'free action': 'Special Actions',
-    other: 'Other',
+
+const getCategoryLabel = (key, t) => {
+    switch (key) {
+        case 'core': return t('activitySheet.coreActions');
+        case 'action': return t('activitySheet.actions');
+        case 'bonus action': return t('activitySheet.bonusActions');
+        case 'reaction': return t('activitySheet.reactions');
+        case 'free action': return t('activitySheet.specialActions');
+        case 'other': return t('activitySheet.otherActions');
+        default: return key;
+    }
 };
 
 function sortActivitiesByCategory(activities = []) {
@@ -61,7 +66,15 @@ function sortResources(resources = []) {
 
 const CompactSheetItem = memo(({ activity, char }) => {
     if (!activity) return null;
-    const formattedLine = formatActivityMechanic(activity, char);
+    const { localize, formatMechanic } = useLocale();
+    const localName = localize(activity.id, 'name', activity.name);
+    const localSummary = localize(activity.id, 'summary', activity.summary);
+    const effectiveActivity = {
+        ...activity,
+        name: localName !== activity.name ? localName : activity.name,
+        summary: localSummary !== activity.summary ? localSummary : activity.summary
+    };
+    const formattedLine = formatMechanic(effectiveActivity, char);
     const rawResource = activity.resource || activity.resources;
     const resourceList = Array.isArray(rawResource) ? rawResource : (rawResource ? [rawResource] : []);
     let resourceIcon = null;
@@ -80,10 +93,10 @@ const CompactSheetItem = memo(({ activity, char }) => {
 
     const mdComponents = {
         p: ({ children }) => (
-            <div className="cps-line">{processDiceInChildren(children, false, activity.name)}</div>
+            <div className="cps-line">{processDiceInChildren(children, false, localName)}</div>
         ),
         blockquote: ({ children }) => <div className="cps-extra">{children}</div>,
-        span: ({ children }) => <span>{processDiceInChildren(children, false, activity.name)}</span>,
+        span: ({ children }) => <span>{processDiceInChildren(children, false, localName)}</span>,
     };
 
     return (
@@ -107,36 +120,38 @@ const SectionHeading = ({ label }) => (
 // ── Left column: Name, Combat, HP, Resources?, Skills, Saves, Info, Traits? ─
 
 const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showTraits = false }) => {
+    const { t, localize, lang } = useLocale();
     const sortedResources = showResources ? sortResources(char.resources || []) : [];
 
     // Passive info rows
     const infoRows = (() => {
         const rows = [];
         const infoSections = [
-            { label: 'Senses', data: char?.attributes?.senses },
-            { label: 'Speed', data: char?.attributes?.movement },
-            { label: 'Resistances', data: char?.attributes?.resistances },
-            { label: 'Advantages', data: char?.attributes?.advantages },
-            { label: 'Immunities', data: char?.attributes?.immunities },
-            { label: 'Tools', data: char?.attributes?.tools },
+            { key: 'senses', label: t('characterSheet.senses'), data: char?.attributes?.senses },
+            { key: 'movement', label: t('characterSheet.speed'), data: char?.attributes?.movement },
+            { key: 'resistances', label: t('characterSheet.resistances'), data: char?.attributes?.resistances },
+            { key: 'advantages', label: t('characterSheet.advantages'), data: char?.attributes?.advantages },
+            { key: 'immunities', label: t('characterSheet.immunities'), data: char?.attributes?.immunities },
+            { key: 'tools', label: t('characterSheet.tools'), data: char?.attributes?.tools },
         ];
-        infoSections.forEach(({ label, data }) => {
+        infoSections.forEach(({ key, label, data }) => {
             let displayData = [];
             if (Array.isArray(data)) {
-                displayData = [...data];
+                displayData = data.map(item => localizeInfoboxValue(item, key, localize, lang));
             } else if (data && typeof data === 'object') {
                 displayData = Object.entries(data)
-                    .filter(([k, v]) => v && !(label === 'Speed' && k === 'walk'))
-                    .map(([k, v]) => {
-                        const l = k.charAt(0).toUpperCase() + k.slice(1);
-                        const unit = typeof v === 'number' ? ' ft' : '';
-                        return `${l} (${v})`;
-                    });
+                    .filter(([k, v]) => v && !(key === 'movement' && k === 'walk'))
+                    .map(([k, v]) => localizeSenseOrMovement(k, v, key, localize, lang));
             }
             if (displayData.length > 0) rows.push({ label, displayData });
         });
         return rows;
     })();
+
+    const displayClass = (char.meta?.class && localize(char.meta.class.toLowerCase(), 'name', char.meta.class)) || char.meta?.class || '';
+    const displaySub = localizeSubclass(char.meta?.sub, char.meta?.subId, localize, lang);
+    const displaySpecies = (char.meta?.species && localize(char.meta.species.toLowerCase(), 'name', char.meta.species)) || char.meta?.species;
+    const displayBg = (char.meta?.background && localize(char.meta.background.toLowerCase(), 'name', char.meta.background)) || char.meta?.background;
 
     return (
         <div className="cps-left-col" ref={leftColRef}>
@@ -144,9 +159,9 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             <div className="cps-name-block">
                 <div className="cps-char-name">{char.meta.name}</div>
                 <div className="cps-char-sub">
-                    {[`Lv. ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || ''}`.trim()].filter(Boolean).join(' ')}
-                    {(char.meta.species || char.meta.background) && (
-                        <span className="cps-char-sub2">{' · '}{[char.meta.species, char.meta.background].filter(Boolean).join(' ')}</span>
+                    {[`${t('compactPrint.lv')} ${char.meta.level}`, `${displaySub} ${displayClass}`.trim()].filter(Boolean).join(' ')}
+                    {(displaySpecies || displayBg) && (
+                        <span className="cps-char-sub2">{' · '}{[displaySpecies, displayBg].filter(Boolean).join(' ')}</span>
                     )}
                 </div>
             </div>
@@ -154,7 +169,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Combat row: Initiative, AC, Speed (No SectionHeading) */}
             <div className="cps-combat-row">
                 <div className="cps-stat-box">
-                    <div className="cps-stat-label">Initiative</div>
+                    <div className="cps-stat-label">{t('compactPrint.initiative')}</div>
                     <div className="cps-stat-value">
                         {char.attributes.initiativeAdvantage && <AdvantageIndicator type="adv" />}
                         {char.attributes.initiativeDisadvantage && <AdvantageIndicator type="dis" />}
@@ -162,11 +177,11 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                     </div>
                 </div>
                 <div className="cps-stat-box">
-                    <div className="cps-stat-label">Armor</div>
+                    <div className="cps-stat-label">{t('compactPrint.armor')}</div>
                     <div className="cps-stat-value">{char.attributes.ac}</div>
                 </div>
                 <div className="cps-stat-box">
-                    <div className="cps-stat-label">Speed</div>
+                    <div className="cps-stat-label">{t('compactPrint.speed')}</div>
                     <div className="cps-stat-value">{char.attributes.movement.walk}</div>
                 </div>
             </div>
@@ -174,16 +189,16 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* HP row (No SectionHeading) */}
             <div className="cps-hp-row">
                 <div className="cps-hp-box">
-                    <div className="cps-stat-label">HP</div>
+                    <div className="cps-stat-label">{t('compactPrint.hp')}</div>
                     <div className="cps-stat-value">{char.attributes.hp}</div>
                     <div className="cps-stat-sub">d{char.attributes.hitDie}{char.stats.con.mod >= 0 ? `+${char.stats.con.mod}` : char.stats.con.mod}</div>
                 </div>
                 <div className="cps-hp-input-box">
-                    <div className="cps-stat-label">Current</div>
+                    <div className="cps-stat-label">{t('compactPrint.current')}</div>
                     <div className="cps-hp-blank" />
                 </div>
                 <div className="cps-hp-input-box">
-                    <div className="cps-stat-label">Temp</div>
+                    <div className="cps-stat-label">{t('compactPrint.temp')}</div>
                     <div className="cps-hp-blank" />
                 </div>
             </div>
@@ -191,22 +206,23 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Resources (rendered in Col 1 if space permits) */}
             {showResources && sortedResources.length > 0 && (
                 <>
-                    <SectionHeading label="Resources" />
+                    <SectionHeading label={t('compactPrint.resources')} />
                     <div className="cps-sheet-list">
                         {sortedResources.map((res, i) => {
                             const resKey = res.id || res.name;
                             const info = getIconInfo(resKey);
                             const q = res.quantity || 0;
+                            const resDisplayName = localize(resKey, 'name', res.name || res.id);
                             return (
                                 <div className="cps-item cps-resource-item" key={i}>
                                     <div className="cps-icon">
                                         <mdui-icon name={info?.icon || 'circle'} class="icon-small" style={{ color: `var(--color-${info?.color})` }} />
                                     </div>
                                     <div className="cps-content cps-line">
-                                        <strong>{res.name || res.id}</strong>
+                                        <strong>{resDisplayName}</strong>
                                         <div className="cps-resource-right">
                                             <span className="cps-resource-qty">{q}</span>
-                                            <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                            <span className="cps-resource-recovery">{getResourceRecovery(res, lang)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -217,13 +233,14 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             )}
 
             {/* Skills */}
-            <SectionHeading label="Skills" />
+            <SectionHeading label={t('compactPrint.skills')} />
             <div className="cps-skill-list">
                 {Object.entries(char.skills).map(([key, skill]) => {
                     let profIcon = 'radio_button_unchecked';
                     if (skill.proficiency === 1) profIcon = 'circle';
                     if (skill.proficiency === 2) profIcon = 'add_circle';
                     else if (skill.proficiency === 0.5) profIcon = 'contrast';
+                    const skillName = localize(key, 'name', skill.name);
                     return (
                         <div className="cps-skill-row" key={key}>
                             <span className="cps-skill-stat">{skill.stat.toUpperCase()}</span>
@@ -233,7 +250,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                                 {skill.adv && !skill.dis && <AdvantageIndicator type="adv" />}
                                 {skill.dis && !skill.adv && <AdvantageIndicator type="dis" />}
                                 {skill.min && <AdvantageIndicator type="min" value={skill.min} />}
-                                {skill.name}
+                                {skillName}
                             </span>
                         </div>
                     );
@@ -241,14 +258,15 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             </div>
 
             {/* Saving Throws */}
-            <SectionHeading label="Saving Throws" />
+            <SectionHeading label={t('compactPrint.savingThrows')} />
             <div className="cps-saves-list">
                 {Object.entries(char.saves).map(([key, save]) => {
                     let profIcon = 'radio_button_unchecked';
                     if (save.proficiency === 1) profIcon = 'circle';
                     if (save.proficiency === 2) profIcon = 'adjust';
                     else if (save.proficiency === 0.5) profIcon = 'circle_circle';
-                    const saveName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+                    const rawSaveName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+                    const saveName = localize(key.toLowerCase(), 'name', rawSaveName);
                     return (
                         <div className="cps-save-row" key={key}>
                             <mdui-icon name={profIcon} class="icon-small cps-prof-icon" />
@@ -267,7 +285,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Info */}
             {infoRows.length > 0 && (
                 <>
-                    <SectionHeading label="Info" />
+                    <SectionHeading label={t('compactPrint.info')} />
                     <div className="cps-sheet-list">
                         {infoRows.map(({ label, displayData }, idx) => (
                             <div className="cps-item" key={idx}>
@@ -283,12 +301,12 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Traits (rendered in Col 1 if space permits) */}
             {showTraits && char.traits && char.traits.length > 0 && (
                 <>
-                    <SectionHeading label="Traits" />
+                    <SectionHeading label={t('compactPrint.traits')} />
                     <div className="cps-sheet-list">
                         {char.traits.map((trait, i) => (
                             <div className="cps-item" key={trait.id || i}>
                                 <div className="cps-content">
-                                    <strong>{trait.name}.</strong>{' '}<em>{trait.description}</em>
+                                    <strong>{evaluateText(localize(trait.id, 'name', trait.name), char)}.</strong>{' '}<em>{evaluateText(localize(trait.id, 'description', trait.description), char)}</em>
                                 </div>
                             </div>
                         ))}
@@ -302,6 +320,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
 // ── Right column: Resources?, Traits?, Activities ─────────────────────────────
 
 const CompactRightColumn = memo(({ char }) => {
+    const { t, localize, lang } = useLocale();
     const sortedResources = sortResources(char.resources || []);
 
     // Activities grouped by category
@@ -313,22 +332,23 @@ const CompactRightColumn = memo(({ char }) => {
             {/* Resources */}
             {sortedResources.length > 0 && (
                 <>
-                    <SectionHeading label="Resources" />
+                    <SectionHeading label={t('compactPrint.resources')} />
                     <div className="cps-sheet-list">
                         {sortedResources.map((res, i) => {
                             const resKey = res.id || res.name;
                             const info = getIconInfo(resKey);
                             const q = res.quantity || 0;
+                            const resDisplayName = localize(resKey, 'name', res.name || res.id);
                             return (
                                 <div className="cps-item cps-resource-item" key={i}>
                                     <div className="cps-icon">
                                         <mdui-icon name={info?.icon || 'circle'} class="icon-small" style={{ color: `var(--color-${info?.color})` }} />
                                     </div>
                                     <div className="cps-content cps-line">
-                                        <strong>{res.name || res.id}</strong>
+                                        <strong>{resDisplayName}</strong>
                                         <div className="cps-resource-right">
                                             <span className="cps-resource-qty">{q}</span>
-                                            <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                            <span className="cps-resource-recovery">{getResourceRecovery(res, lang)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -341,12 +361,12 @@ const CompactRightColumn = memo(({ char }) => {
             {/* Traits */}
             {char.traits && char.traits.length > 0 && (
                 <>
-                    <SectionHeading label="Traits" />
+                    <SectionHeading label={t('compactPrint.traits')} />
                     <div className="cps-sheet-list">
                         {char.traits.map((trait, i) => (
                             <div className="cps-item" key={trait.id || i}>
                                 <div className="cps-content">
-                                    <strong>{trait.name}.</strong>{' '}<em>{trait.description}</em>
+                                    <strong>{evaluateText(localize(trait.id, 'name', trait.name), char)}.</strong>{' '}<em>{evaluateText(localize(trait.id, 'description', trait.description), char)}</em>
                                 </div>
                             </div>
                         ))}
@@ -360,7 +380,7 @@ const CompactRightColumn = memo(({ char }) => {
                 if (acts.length === 0) return null;
                 return (
                     <div key={catKey} className="aside-card-group">
-                        <SectionHeading label={categoryLabels[catKey]} />
+                        <SectionHeading label={getCategoryLabel(catKey, t)} />
                         <div className="cps-sheet-list">
                             {acts.map((act, idx) => (
                                 <CompactSheetItem key={`${act.id || 'act'}-${idx}`} activity={act} char={char} />
@@ -388,6 +408,7 @@ export const CompactPrintPage = memo(({ char, style }) => {
 // ── Right column for compact activity layout ───────────────────────────────────
 
 const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivities, showResources = true, showTraits = true }) => {
+    const { t, localize, lang } = useLocale();
     const sortedResources = showResources ? [] : sortResources(char.resources || []);
     const renderTraits = !showTraits;
 
@@ -396,22 +417,23 @@ const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivit
             {/* Resources (rendered in Col 2 only if NOT in Col 1) */}
             {sortedResources.length > 0 && (
                 <>
-                    <SectionHeading label="Resources" />
+                    <SectionHeading label={t('compactPrint.resources')} />
                     <div className="cps-sheet-list">
                         {sortedResources.map((res, i) => {
                             const resKey = res.id || res.name;
                             const info = getIconInfo(resKey);
                             const q = res.quantity || 0;
+                            const resDisplayName = localize(resKey, 'name', res.name || res.id);
                             return (
                                 <div className="cps-item cps-resource-item" key={i}>
                                     <div className="cps-icon">
                                         <mdui-icon name={info?.icon || 'circle'} class="icon-small" style={{ color: `var(--color-${info?.color})` }} />
                                     </div>
                                     <div className="cps-content cps-line">
-                                        <strong>{res.name || res.id}</strong>
+                                        <strong>{resDisplayName}</strong>
                                         <div className="cps-resource-right">
                                             <span className="cps-resource-qty">{q}</span>
-                                            <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>
+                                            <span className="cps-resource-recovery">{getResourceRecovery(res, lang)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -424,12 +446,12 @@ const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivit
             {/* Traits (rendered in Col 2 only if NOT in Col 1) */}
             {renderTraits && char.traits && char.traits.length > 0 && (
                 <>
-                    <SectionHeading label="Traits" />
+                    <SectionHeading label={t('compactPrint.traits')} />
                     <div className="cps-sheet-list">
                         {char.traits.map((trait, i) => (
                             <div className="cps-item" key={trait.id || i}>
                                 <div className="cps-content">
-                                    <strong>{trait.name}.</strong>{' '}<em>{trait.description}</em>
+                                    <strong>{evaluateText(localize(trait.id, 'name', trait.name), char)}.</strong>{' '}<em>{evaluateText(localize(trait.id, 'description', trait.description), char)}</em>
                                 </div>
                             </div>
                         ))}

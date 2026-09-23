@@ -10,25 +10,30 @@ import 'mdui/components/collapse-item.js';
 import 'mdui/components/divider.js';
 
 import { AutoFitContent } from '../AutoFitContent';
+import { useLocale } from '../../i18n';
+import { evaluateText } from '../../utils/sheetUtils';
 
 export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) => {
     if (!activity) return null;
 
+    const { t, localize, formatMechanic } = useLocale();
     const isPlayMode = variant !== 'static';
     const RESOURCE_WRAP_THRESHOLD = 10;
     const [usedDots, setUsedDots] = useState(0);
 
+    const activityName = localize(activity.id, 'name', activity.name);
+
     const markdownComponents = {
         p: ({ children }) => (
             <div className="card-description-paragraph">
-                <p>{processDiceInChildren(children, isPlayMode, activity.name)}</p>
+                <p>{processDiceInChildren(children, isPlayMode, activityName)}</p>
             </div>
         ),
         li: ({ children }) => (
-            <li>{processDiceInChildren(children, isPlayMode, activity.name)}</li>
+            <li>{processDiceInChildren(children, isPlayMode, activityName)}</li>
         ),
         span: ({ children }) => (
-            <span>{processDiceInChildren(children, isPlayMode, activity.name)}</span>
+            <span>{processDiceInChildren(children, isPlayMode, activityName)}</span>
         )
     };
 
@@ -94,7 +99,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
 
     const headerContent = (
         <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
-            <span className="card-title">{activity.name}</span>
+            <span className="card-title">{activityName}</span>
             <div className="card-meta">
                 <div className="card-meta-resource">
                     {(() => {
@@ -112,7 +117,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                             options.forEach((opt, i) => {
                                 elements.push(opt);
                                 if (i < options.length - 1) {
-                                    elements.push(<span key={`sep-${i}`} className="text-or-separator">or</span>);
+                                    elements.push(<span key={`sep-${i}`} className="text-or-separator">{t('activityCard.or')}</span>);
                                 }
                             });
                             return elements;
@@ -152,7 +157,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
             tags.some(t => String(t).toLowerCase() === 'weaponattack');
 
         if (isWeaponAttack) {
-            return 'Weapon Attack';
+            return t('activityCard.weaponAttack');
         }
 
         // 1. Spells check
@@ -167,7 +172,7 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
 
             const isCantrip = tags.includes('cantrip');
             if (isCantrip) {
-                return schoolName ? `${schoolName} Cantrip` : 'Cantrip';
+                return schoolName ? `${schoolName} ${t('activityCard.cantrip')}` : t('activityCard.cantrip');
             }
 
             let levelNum = null;
@@ -181,10 +186,10 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
             }
 
             if (levelNum) {
-                return schoolName ? `Level ${levelNum} ${schoolName}` : `Level ${levelNum} Spell`;
+                return schoolName ? `${t('activityCard.level')} ${levelNum} ${schoolName}` : `${t('activityCard.level')} ${levelNum} ${t('activityCard.spell')}`;
             }
 
-            return schoolName ? `${schoolName} Spell` : 'Spell';
+            return schoolName ? `${schoolName} ${t('activityCard.spell')}` : t('activityCard.spell');
         }
 
         // 2. Ancestry / Parent tags check for Species, Subclass, Class
@@ -201,30 +206,37 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
             allAncestryFilledTags.some(t => t.includes('feat')) ||
             allAncestryIds.some(id => id.includes('feat'));
 
-        if (isFeat) return 'Feat Benefit';
+        if (isFeat) return t('activityCard.featBenefit');
 
         const isSpecies = tags.some(t => String(t).toLowerCase() === 'species') ||
             allAncestryTags.includes('species') ||
             allAncestryIds.some(id => id.startsWith('species-') || id === 'species');
 
-        if (isSpecies) return 'Species Trait';
+        if (isSpecies) return t('activityCard.speciesTrait');
 
         const isSubclass = tags.some(t => String(t).toLowerCase().includes('subclass')) ||
             allAncestryTags.some(t => t.includes('subclass')) ||
             allAncestryIds.some(id => id.includes('subclass'));
 
-        if (isSubclass) return 'Subclass Feature';
+        if (isSubclass) return t('activityCard.subclassFeature');
 
         const isClass = tags.some(t => String(t).toLowerCase() === 'class') ||
             allAncestryTags.includes('class') ||
             allAncestryIds.some(id => id.startsWith('class-') || id.includes('class'));
 
-        if (isClass) return 'Class Feature';
+        if (isClass) return t('activityCard.classFeature');
 
-        return 'Core Feature';
+        return t('activityCard.coreFeature');
     };
 
-    const displayDescription = activity.description || formatActivityMechanic(activity, char);
+    const activitySummary = localize(activity.id, 'summary', activity.summary);
+    const effectiveActivity = {
+        ...activity,
+        name: activityName !== activity.name ? activityName : activity.name,
+        summary: activitySummary !== activity.summary ? activitySummary : activity.summary
+    };
+    const rawDescription = localize(activity.id, 'description', null);
+    const displayDescription = (rawDescription ? evaluateText(rawDescription, char) : null) || formatMechanic(effectiveActivity, char);
 
     let subtitleText = getActivitySubtitle();
 

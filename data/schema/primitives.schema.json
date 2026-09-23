@@ -448,6 +448,14 @@
           },
           "additionalProperties": false
         },
+        "recipient": {
+          "type": "string",
+          "enum": ["self", "target"]
+        },
+        "against": {
+          "type": "string",
+          "enum": ["target", "self"]
+        },
         "text": { "type": "string" },
         "end": {
           "anyOf": [
