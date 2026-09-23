@@ -76,13 +76,10 @@ children:
             aoe:
               shape: emanation
               size: 10
-            filter: creature other than your allies
             range: $(range)
           failure:
             type: condition
             condition: frightened
             end: end_of_your_next_turn
-          failureOrSuccess:
-            type: text
-            text: once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Necrotic damage
+          text: 'Once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Necrotic damage'
     condition: $(meta.level >= 3)

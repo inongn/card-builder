@@ -841,12 +841,6 @@ blockquote {
   box-sizing: border-box;
 }
 
-.dashboard-hero-card:hover {
-  border-color: rgb(var(--mdui-color-primary));
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-}
-
 .dashboard-hero-card__media {
   position: relative;
   width: 96px;
@@ -4117,9 +4111,9 @@ mdui-list-item.card-vertical-item::part(container) {
    ========================================================================== */
 
 /* Skip rendering work for off-screen cards in long lists */
-.options-list > *,
+.options-list>*,
 .card-vertical-item,
-.other-characters-list > * {
+.other-characters-list>* {
   content-visibility: auto;
   contain-intrinsic-size: 0 88px;
 }
