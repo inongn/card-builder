@@ -8,28 +8,54 @@ import 'mdui/components/chip.js';
 
 export const TERM_ICONS = {
     'bonus action': { icon: 'warning', color: 'bonus', shortName: 'Bonus' }, // Triangle
+    'acción adicional': { icon: 'warning', color: 'bonus', shortName: 'Bonus' },
     'atWill': { icon: '', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
     'free action': { icon: 'auto_awesome', color: 'accent', shortName: 'Special' }, // Dashed circle/loader
+    'acción libre': { icon: 'auto_awesome', color: 'accent', shortName: 'Especial' },
     'action': { icon: 'circle', color: 'action', shortName: 'Action' },
+    'acción': { icon: 'circle', color: 'action', shortName: 'Acción' },
     'reaction': { icon: 'emergency', color: 'reaction', shortName: 'Reaction' }, // Sparkle
+    'reacción': { icon: 'emergency', color: 'reaction', shortName: 'Reacción' },
     'ritual': { icon: 'self_improvement', color: 'accent', shortName: 'Ritual' },
     'bludgeoning': { icon: 'explosion', color: 'physical', shortName: 'Bludgeoning' },
+    'contundente': { icon: 'explosion', color: 'physical', shortName: 'Contundente' },
     'piercing': { icon: 'ads_click', color: 'physical', shortName: 'Piercing' }, // Target/arrow feel
+    'perforante': { icon: 'ads_click', color: 'physical', shortName: 'Perforante' },
     'slashing': { icon: 'content_cut', color: 'physical', shortName: 'Slashing' }, // Nearest to sword/cut
+    'cortante': { icon: 'content_cut', color: 'physical', shortName: 'Cortante' },
     'fire': { icon: 'local_fire_department', color: 'fire', shortName: 'Fire' },
+    'fuego': { icon: 'local_fire_department', color: 'fire', shortName: 'Fuego' },
     'cold': { icon: 'ac_unit', color: 'cold', shortName: 'Cold' },
+    'frío': { icon: 'ac_unit', color: 'cold', shortName: 'Frío' },
+    'frio': { icon: 'ac_unit', color: 'cold', shortName: 'Frío' },
     'acid': { icon: 'water_drop', color: 'acid', shortName: 'Acid' },
+    'ácido': { icon: 'water_drop', color: 'acid', shortName: 'Ácido' },
+    'acido': { icon: 'water_drop', color: 'acid', shortName: 'Ácido' },
     'lightning': { icon: 'bolt', color: 'lightning', shortName: 'Lightning' },
+    'relámpago': { icon: 'bolt', color: 'lightning', shortName: 'Relámpago' },
+    'relampago': { icon: 'bolt', color: 'lightning', shortName: 'Relámpago' },
     'poison': { icon: 'test_tube', color: 'poison', shortName: 'Poison' },
+    'veneno': { icon: 'test_tube', color: 'poison', shortName: 'Veneno' },
     'necrotic': { icon: 'skull', color: 'necrotic', shortName: 'Necrotic' },
+    'necrótico': { icon: 'skull', color: 'necrotic', shortName: 'Necrótico' },
+    'necrotico': { icon: 'skull', color: 'necrotic', shortName: 'Necrótico' },
     'radiant': { icon: 'light_mode', color: 'radiant', shortName: 'Radiant' },
+    'radiante': { icon: 'light_mode', color: 'radiant', shortName: 'Radiante' },
     'force': { icon: 'flare', color: 'force', shortName: 'Force' },
     'thunder': { icon: 'graphic_eq', color: 'thunder', shortName: 'Thunder' }, // Waveform
+    'trueno': { icon: 'graphic_eq', color: 'thunder', shortName: 'Trueno' },
     'psychic': { icon: 'psychology', color: 'psychic', shortName: 'Psychic' },
+    'psíquico': { icon: 'psychology', color: 'psychic', shortName: 'Psíquico' },
+    'psiquico': { icon: 'psychology', color: 'psychic', shortName: 'Psíquico' },
     'instantaneous': { icon: 'bolt', color: 'accent', shortName: 'Instant' },
+    'instantáneo': { icon: 'bolt', color: 'accent', shortName: 'Instantáneo' },
+    'instantaneo': { icon: 'bolt', color: 'accent', shortName: 'Instantáneo' },
     'healing': { icon: 'favorite', color: 'healing', shortName: 'Healing' },
+    'curación': { icon: 'favorite', color: 'healing', shortName: 'Curación' },
 
     'concentration, up to ': { icon: 'psychology', color: 'accent', shortName: 'Concentration' },
+    'concentración, hasta ': { icon: 'psychology', color: 'accent', shortName: 'Concentración' },
+    'concentracion, hasta ': { icon: 'psychology', color: 'accent', shortName: 'Concentración' },
     'spellSlot': { icon: 'filter_none', color: 'spell', shortName: 'Spell Slot' },
     'level1SpellSlot': { icon: 'filter_1', color: 'spell', shortName: 'Spell Slot' },
     'level2SpellSlot': { icon: 'filter_2', color: 'spell', shortName: 'Spell Slot' },

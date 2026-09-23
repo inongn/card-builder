@@ -181,6 +181,28 @@ export default function DebugDrawer({
         }
     }, [open]);
 
+    // Handle MDUI drawer closed & unmount cleanup to ensure mdui-layout-main shifts back
+    useEffect(() => {
+        const drawer = drawerRef.current;
+        if (!drawer) return;
+
+        const handleClosed = () => {
+            const mainLayout = document.querySelector('.app-main-layout');
+            if (mainLayout && !drawer.open) {
+                mainLayout.style.paddingRight = '';
+            }
+        };
+
+        drawer.addEventListener('closed', handleClosed);
+        return () => {
+            drawer.removeEventListener('closed', handleClosed);
+            const mainLayout = document.querySelector('.app-main-layout');
+            if (mainLayout) {
+                mainLayout.style.paddingRight = '';
+            }
+        };
+    }, []);
+
     // Handle MDUI drawer closing (backdrop click or keyboard escape)
     useEffect(() => {
         const drawer = drawerRef.current;

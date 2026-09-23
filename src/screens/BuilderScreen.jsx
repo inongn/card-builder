@@ -4,6 +4,7 @@ import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRen
 import { ExpressionEvaluator } from '../engine/RpgEngine';
 import { formatActivityMechanic } from '../utils/mechanicFormatter';
 import { getSpeciesArtwork, getClassArtwork, getSubclassArtwork, getBackgroundArtwork, getAssetUrl } from '../data/artworkData.js';
+import { useI18n, getLocale } from '../i18n/I18nContext.jsx';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import 'mdui/components/button-icon.js';
@@ -38,6 +39,7 @@ const isUnarmored = (opt) => {
 
 const formatAcCalculation = (option, characterData) => {
     if (!option) return null;
+    const isEs = getLocale() === 'es';
 
     const isUnarmoredOption = option.id === 'unarmored' || (option.tags || []).includes('unarmored');
 
@@ -45,29 +47,30 @@ const formatAcCalculation = (option, characterData) => {
         const cls = (characterData?.meta?.class || '').toLowerCase();
         const sub = (characterData?.meta?.sub || '').toLowerCase();
 
-        if (cls === 'barbarian') {
-            return 'AC: 10 + Dexterity + Constitution';
+        if (cls === 'barbarian' || cls === 'bárbaro') {
+            return isEs ? 'CA: 10 + Destreza + Constitución' : 'AC: 10 + Dexterity + Constitution';
         }
-        if (cls === 'monk') {
-            return 'AC: 10 + Dexterity + Wisdom';
+        if (cls === 'monk' || cls === 'monje') {
+            return isEs ? 'CA: 10 + Destreza + Sabiduría' : 'AC: 10 + Dexterity + Wisdom';
         }
         if (sub === 'draconic' || sub === 'dance') {
-            return 'AC: 10 + Dexterity + Charisma';
+            return isEs ? 'CA: 10 + Destreza + Carisma' : 'AC: 10 + Dexterity + Charisma';
         }
-        return 'AC: 10 + Dexterity';
+        return isEs ? 'CA: 10 + Destreza' : 'AC: 10 + Dexterity';
     }
 
     const children = option.children || [];
     const acEffect = children.find(c => c && c.type === 'Effect' && (c.target === 'attributes.ac' || c.target === 'ac'));
 
     if (acEffect) {
+        const acPrefix = isEs ? 'CA' : 'AC';
         if (acEffect.operation === 'add') {
             const val = String(acEffect.value).replace(/\$|\(|\)/g, '').trim();
             const num = parseInt(val, 10);
             if (!isNaN(num)) {
-                return `AC: +${num}`;
+                return `${acPrefix}: +${num}`;
             }
-            return `AC: +${val}`;
+            return `${acPrefix}: +${val}`;
         }
 
         if (acEffect.operation === 'set' || !acEffect.operation) {
@@ -75,43 +78,55 @@ const formatAcCalculation = (option, characterData) => {
             val = val.replace(/^\$\((.*)\)$/, '$1').trim();
 
             if (/^\d+$/.test(val)) {
-                return `AC: ${val}`;
+                return `${acPrefix}: ${val}`;
             }
 
             const minMatch = val.match(/^(\d+)\s*\+\s*Math\.min\((\d+),\s*stats\.dex\.mod\)$/);
             if (minMatch) {
-                return `AC: ${minMatch[1]} + Dexterity, up to ${minMatch[2]}`;
+                return isEs
+                    ? `CA: ${minMatch[1]} + Destreza, hasta ${minMatch[2]}`
+                    : `AC: ${minMatch[1]} + Dexterity, up to ${minMatch[2]}`;
             }
 
             const dexMatch1 = val.match(/^(\d+)\s*\+\s*stats\.dex\.mod$/);
             if (dexMatch1) {
-                return `AC: ${dexMatch1[1]} + Dexterity`;
+                return isEs ? `CA: ${dexMatch1[1]} + Destreza` : `AC: ${dexMatch1[1]} + Dexterity`;
             }
             const dexMatch2 = val.match(/^stats\.dex\.mod\s*\+\s*(\d+)$/);
             if (dexMatch2) {
-                return `AC: ${dexMatch2[1]} + Dexterity`;
+                return isEs ? `CA: ${dexMatch2[1]} + Destreza` : `AC: ${dexMatch2[1]} + Dexterity`;
             }
 
             if (val.includes('stats.')) {
-                let formatted = val
-                    .replace(/stats\.dex\.mod/g, 'Dexterity')
-                    .replace(/stats\.con\.mod/g, 'Constitution')
-                    .replace(/stats\.wis\.mod/g, 'Wisdom')
-                    .replace(/stats\.cha\.mod/g, 'Charisma')
-                    .replace(/stats\.str\.mod/g, 'Strength')
-                    .replace(/stats\.int\.mod/g, 'Intelligence')
-                    .replace(/Math\.min\((\d+),\s*Dexterity\)/g, 'Dexterity, up to $1')
-                    .replace(/Math\.min\(Dexterity,\s*(\d+)\)/g, 'Dexterity, up to $1');
-                return `AC: ${formatted}`;
+                let formatted = isEs
+                    ? val
+                        .replace(/stats\.dex\.mod/g, 'Destreza')
+                        .replace(/stats\.con\.mod/g, 'Constitución')
+                        .replace(/stats\.wis\.mod/g, 'Sabiduría')
+                        .replace(/stats\.cha\.mod/g, 'Carisma')
+                        .replace(/stats\.str\.mod/g, 'Fuerza')
+                        .replace(/stats\.int\.mod/g, 'Inteligencia')
+                        .replace(/Math\.min\((\d+),\s*Destreza\)/g, 'Destreza, hasta $1')
+                        .replace(/Math\.min\(Destreza,\s*(\d+)\)/g, 'Destreza, hasta $1')
+                    : val
+                        .replace(/stats\.dex\.mod/g, 'Dexterity')
+                        .replace(/stats\.con\.mod/g, 'Constitution')
+                        .replace(/stats\.wis\.mod/g, 'Wisdom')
+                        .replace(/stats\.cha\.mod/g, 'Charisma')
+                        .replace(/stats\.str\.mod/g, 'Strength')
+                        .replace(/stats\.int\.mod/g, 'Intelligence')
+                        .replace(/Math\.min\((\d+),\s*Dexterity\)/g, 'Dexterity, up to $1')
+                        .replace(/Math\.min\(Dexterity,\s*(\d+)\)/g, 'Dexterity, up to $1');
+                return `${acPrefix}: ${formatted}`;
             }
 
-            return `AC: ${val}`;
+            return `${acPrefix}: ${val}`;
         }
     }
 
     const tags = option.tags || [];
     if (tags.includes('shieldEquipment') || option.id === 'shieldEquipment') {
-        return 'AC: +2';
+        return isEs ? 'CA: +2' : 'AC: +2';
     }
 
     return null;
@@ -907,6 +922,7 @@ export const BuilderScreen = ({
     onOpenImport
 }) => {
     const isMobile = window.innerWidth <= 890;
+    const { t, locale } = useI18n();
 
     const [selectedSlotItem, setSelectedSlotItem] = React.useState(() => {
         if ((isNewCharacterCreation || !isMobile) && propertyTree) {
@@ -2188,7 +2204,7 @@ export const BuilderScreen = ({
                                         </div>
                                         <div className="step-header">
                                             <div className="step-title-group">
-                                                <span className="step-title">{cat.label}</span>
+                                                <span className="step-title">{t(`ui.builder.categories.${cat.key}`, cat.label)}</span>
                                                 {stats.pending > 0 && (
                                                     <mdui-badge>{stats.pending}</mdui-badge>
                                                 )}

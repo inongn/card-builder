@@ -4,6 +4,7 @@ import { ActivityCard } from '../components/cards/ActivityCard';
 import { ActivitySheet, sortByResource } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
 import { getAssetUrl } from '../data/artworkData';
+import { useI18n } from '../i18n/I18nContext';
 import 'mdui/components/button.js';
 import 'mdui/components/icon.js';
 import 'mdui/components/avatar.js';
@@ -12,6 +13,7 @@ import 'mdui/components/dropdown.js';
 import 'mdui/components/menu-item.js';
 
 export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode, loadedCharacterId, handleDeleteSaved, onToggleDebug, useActivitySheet, onOpenExport }) => {
+    const { t } = useI18n();
     const mainCardRef = React.useRef(null);
     const asideRef = React.useRef(null);
     const charImage = characterData?.meta?.image ? getAssetUrl(characterData.meta.image) : undefined;
@@ -109,18 +111,18 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
 
     // Define the order and display names for categories
     const activityCategories = [
-        { key: 'core', label: 'Core Actions' },
-        { key: 'action', label: 'Actions' },
-        { key: 'bonus action', label: 'Bonus Actions' },
-        { key: 'reaction', label: 'Reactions' },
-        { key: 'free action', label: 'Special Actions' },
-        { key: 'other', label: 'Other Actions' }
+        { key: 'core', label: t('ui.play.categories.core', 'Core Actions') },
+        { key: 'action', label: t('ui.play.categories.action', 'Actions') },
+        { key: 'bonus action', label: t('ui.play.categories.bonus action', 'Bonus Actions') },
+        { key: 'reaction', label: t('ui.play.categories.reaction', 'Reactions') },
+        { key: 'free action', label: t('ui.play.categories.free action', 'Special Actions') },
+        { key: 'other', label: t('ui.play.categories.other', 'Other Actions') }
     ];
 
     const allyCategories = [
-        { key: 'companions', label: 'Companions' },
-        { key: 'wildshapes', label: 'Wild Shapes' },
-        { key: 'summons', label: 'Summons' }
+        { key: 'companions', label: t('ui.play.categories.companions', 'Companions') },
+        { key: 'wildshapes', label: t('ui.play.categories.wildshapes', 'Wild Shapes') },
+        { key: 'summons', label: t('ui.play.categories.summons', 'Summons') }
     ];
 
     const hasStatblocks = (characterData.statblocks || []).length > 0;
@@ -142,17 +144,17 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
                         {!charImage ? (characterData?.meta?.name?.[0]?.toUpperCase() || 'A') : undefined}
                     </mdui-avatar>
                     <mdui-menu>
-                        <mdui-menu-item icon="edit" onClick={() => onNavigate('builder')}>Edit Character</mdui-menu-item>
+                        <mdui-menu-item icon="edit" onClick={() => onNavigate('builder')}>{t('ui.dashboard.edit', 'Edit Character')}</mdui-menu-item>
                         {onOpenExport && (
-                            <mdui-menu-item icon="share" onClick={onOpenExport}>Export Recipe</mdui-menu-item>
+                            <mdui-menu-item icon="share" onClick={onOpenExport}>{t('ui.dialogs.exportTitle', 'Export Recipe')}</mdui-menu-item>
                         )}
-                        <mdui-menu-item icon="print" onClick={() => onNavigate('print')}>Print Sheet</mdui-menu-item>
-                        <mdui-menu-item icon="delete" onClick={() => { handleDeleteSaved(loadedCharacterId); onNavigate('dashboard'); }}>Delete</mdui-menu-item>
+                        <mdui-menu-item icon="print" onClick={() => onNavigate('print')}>{t('ui.dashboard.print', 'Print Sheet')}</mdui-menu-item>
+                        <mdui-menu-item icon="delete" onClick={() => { handleDeleteSaved(loadedCharacterId); onNavigate('dashboard'); }}>{t('ui.dashboard.delete', 'Delete')}</mdui-menu-item>
                         <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
-                            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                            {isDarkMode ? t('ui.nav.themeLight', 'Light Mode') : t('ui.nav.themeDark', 'Dark Mode')}
                         </mdui-menu-item>
                         <mdui-menu-item icon={'bug_report'} onClick={onToggleDebug}>
-                            Debug
+                            {t('ui.nav.debug', 'Debug')}
                         </mdui-menu-item>
 
                     </mdui-menu>
@@ -185,7 +187,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
 
                     {hasStatblocks && (
                         <>
-                            <div className="section-title">Allies & Forms</div>
+                            <div className="section-title">{t('ui.play.categories.allies_forms', 'Allies & Forms')}</div>
                             {allyCategories.map(({ key, label }) => {
                                 const allies = groupedAllies[key];
                                 if (allies.length === 0) return null;

@@ -7,7 +7,7 @@ import { AdvantageIndicator } from './AdvantageIndicator';
 import { formatActivityMechanic } from '../../utils/mechanicFormatter';
 import { processDiceInChildren } from './DiceRoller';
 import { groupActivities, sortByResource, ActivitySheet } from './ActivitySheet';
-
+import { translate } from '../../i18n/I18nContext';
 
 import 'mdui/components/icon.js';
 
@@ -22,6 +22,8 @@ const categoryLabels = {
     'free action': 'Special Actions',
     other: 'Other',
 };
+
+const getCategoryLabel = (key) => translate(`ui.play.categories.${key}`, categoryLabels[key] || key);
 
 function sortActivitiesByCategory(activities = []) {
     const grouped = groupActivities(activities);
@@ -113,20 +115,20 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
     const infoRows = (() => {
         const rows = [];
         const infoSections = [
-            { label: 'Senses', data: char?.attributes?.senses },
-            { label: 'Speed', data: char?.attributes?.movement },
-            { label: 'Resistances', data: char?.attributes?.resistances },
-            { label: 'Advantages', data: char?.attributes?.advantages },
-            { label: 'Immunities', data: char?.attributes?.immunities },
-            { label: 'Tools', data: char?.attributes?.tools },
+            { key: 'senses', label: translate('rules.info.senses', 'Senses'), data: char?.attributes?.senses },
+            { key: 'speed', label: translate('rules.info.speed', 'Speed'), data: char?.attributes?.movement },
+            { key: 'resistances', label: translate('rules.info.resistances', 'Resistances'), data: char?.attributes?.resistances },
+            { key: 'advantages', label: translate('rules.info.advantages', 'Advantages'), data: char?.attributes?.advantages },
+            { key: 'immunities', label: translate('rules.info.immunities', 'Immunities'), data: char?.attributes?.immunities },
+            { key: 'tools', label: translate('rules.info.tools', 'Tools'), data: char?.attributes?.tools },
         ];
-        infoSections.forEach(({ label, data }) => {
+        infoSections.forEach(({ key, label, data }) => {
             let displayData = [];
             if (Array.isArray(data)) {
                 displayData = [...data];
             } else if (data && typeof data === 'object') {
                 displayData = Object.entries(data)
-                    .filter(([k, v]) => v && !(label === 'Speed' && k === 'walk'))
+                    .filter(([k, v]) => v && !(key === 'speed' && k === 'walk'))
                     .map(([k, v]) => {
                         const l = k.charAt(0).toUpperCase() + k.slice(1);
                         const unit = typeof v === 'number' ? ' ft' : '';
@@ -154,7 +156,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Combat row: Initiative, AC, Speed (No SectionHeading) */}
             <div className="cps-combat-row">
                 <div className="cps-stat-box">
-                    <div className="cps-stat-label">Initiative</div>
+                    <div className="cps-stat-label">{translate('rules.info.initiative', 'Initiative')}</div>
                     <div className="cps-stat-value">
                         {char.attributes.initiativeAdvantage && <AdvantageIndicator type="adv" />}
                         {char.attributes.initiativeDisadvantage && <AdvantageIndicator type="dis" />}
@@ -162,11 +164,11 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                     </div>
                 </div>
                 <div className="cps-stat-box">
-                    <div className="cps-stat-label">Armor</div>
+                    <div className="cps-stat-label">{translate('rules.info.armor', 'Armor')}</div>
                     <div className="cps-stat-value">{char.attributes.ac}</div>
                 </div>
                 <div className="cps-stat-box">
-                    <div className="cps-stat-label">Speed</div>
+                    <div className="cps-stat-label">{translate('rules.info.speed', 'Speed')}</div>
                     <div className="cps-stat-value">{char.attributes.movement.walk}</div>
                 </div>
             </div>
@@ -174,16 +176,16 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* HP row (No SectionHeading) */}
             <div className="cps-hp-row">
                 <div className="cps-hp-box">
-                    <div className="cps-stat-label">HP</div>
+                    <div className="cps-stat-label">{translate('rules.info.hp', 'HP')}</div>
                     <div className="cps-stat-value">{char.attributes.hp}</div>
                     <div className="cps-stat-sub">d{char.attributes.hitDie}{char.stats.con.mod >= 0 ? `+${char.stats.con.mod}` : char.stats.con.mod}</div>
                 </div>
                 <div className="cps-hp-input-box">
-                    <div className="cps-stat-label">Current</div>
+                    <div className="cps-stat-label">{translate('rules.info.current', 'Current')}</div>
                     <div className="cps-hp-blank" />
                 </div>
                 <div className="cps-hp-input-box">
-                    <div className="cps-stat-label">Temp</div>
+                    <div className="cps-stat-label">{translate('rules.info.temp', 'Temp')}</div>
                     <div className="cps-hp-blank" />
                 </div>
             </div>
@@ -191,7 +193,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Resources (rendered in Col 1 if space permits) */}
             {showResources && sortedResources.length > 0 && (
                 <>
-                    <SectionHeading label="Resources" />
+                    <SectionHeading label={translate('rules.info.resources', 'Resources')} />
                     <div className="cps-sheet-list">
                         {sortedResources.map((res, i) => {
                             const resKey = res.id || res.name;
@@ -217,16 +219,17 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             )}
 
             {/* Skills */}
-            <SectionHeading label="Skills" />
+            <SectionHeading label={translate('ui.builder.steps.skills', 'Skills')} />
             <div className="cps-skill-list">
                 {Object.entries(char.skills).map(([key, skill]) => {
                     let profIcon = 'radio_button_unchecked';
                     if (skill.proficiency === 1) profIcon = 'circle';
                     if (skill.proficiency === 2) profIcon = 'add_circle';
                     else if (skill.proficiency === 0.5) profIcon = 'contrast';
+                    const statLabel = translate(`rules.abilitiesShort.${skill.stat.toLowerCase()}`, skill.stat.toUpperCase());
                     return (
                         <div className="cps-skill-row" key={key}>
-                            <span className="cps-skill-stat">{skill.stat.toUpperCase()}</span>
+                            <span className="cps-skill-stat">{statLabel}</span>
                             <mdui-icon name={profIcon} class="icon-small cps-prof-icon" />
                             <span className="cps-skill-bonus">{formatBonus(skill.bonus, true)}</span>
                             <span className="cps-skill-name">
@@ -241,14 +244,14 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             </div>
 
             {/* Saving Throws */}
-            <SectionHeading label="Saving Throws" />
+            <SectionHeading label={translate('ui.builder.steps.saves', 'Saving Throws')} />
             <div className="cps-saves-list">
                 {Object.entries(char.saves).map(([key, save]) => {
                     let profIcon = 'radio_button_unchecked';
                     if (save.proficiency === 1) profIcon = 'circle';
                     if (save.proficiency === 2) profIcon = 'adjust';
                     else if (save.proficiency === 0.5) profIcon = 'circle_circle';
-                    const saveName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+                    const saveName = translate(`rules.abilities.${key.toLowerCase()}`, key.charAt(0).toUpperCase() + key.slice(1).toLowerCase());
                     return (
                         <div className="cps-save-row" key={key}>
                             <mdui-icon name={profIcon} class="icon-small cps-prof-icon" />
@@ -267,7 +270,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Info */}
             {infoRows.length > 0 && (
                 <>
-                    <SectionHeading label="Info" />
+                    <SectionHeading label={translate('rules.info.info', 'Info')} />
                     <div className="cps-sheet-list">
                         {infoRows.map(({ label, displayData }, idx) => (
                             <div className="cps-item" key={idx}>
@@ -283,7 +286,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             {/* Traits (rendered in Col 1 if space permits) */}
             {showTraits && char.traits && char.traits.length > 0 && (
                 <>
-                    <SectionHeading label="Traits" />
+                    <SectionHeading label={translate('rules.info.traits', 'Traits')} />
                     <div className="cps-sheet-list">
                         {char.traits.map((trait, i) => (
                             <div className="cps-item" key={trait.id || i}>
@@ -313,7 +316,7 @@ const CompactRightColumn = memo(({ char }) => {
             {/* Resources */}
             {sortedResources.length > 0 && (
                 <>
-                    <SectionHeading label="Resources" />
+                    <SectionHeading label={translate('rules.info.resources', 'Resources')} />
                     <div className="cps-sheet-list">
                         {sortedResources.map((res, i) => {
                             const resKey = res.id || res.name;
@@ -341,7 +344,7 @@ const CompactRightColumn = memo(({ char }) => {
             {/* Traits */}
             {char.traits && char.traits.length > 0 && (
                 <>
-                    <SectionHeading label="Traits" />
+                    <SectionHeading label={translate('rules.info.traits', 'Traits')} />
                     <div className="cps-sheet-list">
                         {char.traits.map((trait, i) => (
                             <div className="cps-item" key={trait.id || i}>
@@ -360,7 +363,7 @@ const CompactRightColumn = memo(({ char }) => {
                 if (acts.length === 0) return null;
                 return (
                     <div key={catKey} className="aside-card-group">
-                        <SectionHeading label={categoryLabels[catKey]} />
+                        <SectionHeading label={getCategoryLabel(catKey)} />
                         <div className="cps-sheet-list">
                             {acts.map((act, idx) => (
                                 <CompactSheetItem key={`${act.id || 'act'}-${idx}`} activity={act} char={char} />
@@ -396,7 +399,7 @@ const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivit
             {/* Resources (rendered in Col 2 only if NOT in Col 1) */}
             {sortedResources.length > 0 && (
                 <>
-                    <SectionHeading label="Resources" />
+                    <SectionHeading label={translate('rules.info.resources', 'Resources')} />
                     <div className="cps-sheet-list">
                         {sortedResources.map((res, i) => {
                             const resKey = res.id || res.name;
@@ -424,7 +427,7 @@ const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivit
             {/* Traits (rendered in Col 2 only if NOT in Col 1) */}
             {renderTraits && char.traits && char.traits.length > 0 && (
                 <>
-                    <SectionHeading label="Traits" />
+                    <SectionHeading label={translate('rules.info.traits', 'Traits')} />
                     <div className="cps-sheet-list">
                         {char.traits.map((trait, i) => (
                             <div className="cps-item" key={trait.id || i}>

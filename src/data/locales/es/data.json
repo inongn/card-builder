@@ -1,0 +1,4880 @@
+{
+  "acolyte": {
+    "name": "Acolyte",
+    "description": "You devoted your youth to temple service, learning sacred rites and channeling divine favor."
+  },
+  "artisan": {
+    "name": "Artisan",
+    "description": "You honed a craft in an artisan's workshop, gaining a sharp eye for detail and customer trade."
+  },
+  "artisansTools": {
+    "name": "Artisan's Tools Proficiency"
+  },
+  "charlatan": {
+    "name": "Charlatan",
+    "description": "You mastered the art of tavern scams, selling comforting lies and forged goods to the gullible."
+  },
+  "criminal": {
+    "name": "Criminal",
+    "description": "You learned to survive in dark alleyways through picking pockets, burglary, and street smarts."
+  },
+  "entertainer": {
+    "name": "Entertainer",
+    "description": "You traveled with carnivals and fairs, captivating crowds with song, dance, and acrobatics."
+  },
+  "farmer": {
+    "name": "Farmer",
+    "description": "Years tending crops and livestock gave you patience, endurance, and deep respect for nature."
+  },
+  "guard": {
+    "name": "Guard",
+    "description": "You spent long watches on city walls, trained to spot marauders and keep urban order."
+  },
+  "guide": {
+    "name": "Guide",
+    "description": "You grew up exploring untamed wilds, guiding travelers through perilous frontiers."
+  },
+  "hermit": {
+    "name": "Hermit",
+    "description": "You lived in quiet solitude away from civilization, contemplating creation and wild mysteries."
+  },
+  "merchant": {
+    "name": "Merchant",
+    "description": "You learned the flow of trade, buying and selling goods across busy markets and caravans."
+  },
+  "noble": {
+    "name": "Noble",
+    "description": "Raised among wealth and courtly politics, you learned leadership, etiquette, and privilege."
+  },
+  "sage": {
+    "name": "Sage",
+    "description": "You spent long nights in ancient archives, devouring scrolls and mastering arcane lore."
+  },
+  "sailor": {
+    "name": "Sailor",
+    "description": "You braved ocean storms and foreign ports, forged by a life navigating swaying decks."
+  },
+  "scribe": {
+    "name": "Scribe",
+    "description": "You trained in scriptoriums copying rare texts, developing meticulous precision and calligraphic skill."
+  },
+  "soldier": {
+    "name": "Soldier",
+    "description": "Trained for battlefield combat, you carry martial discipline and war memories into every fight."
+  },
+  "wayfarer": {
+    "name": "Wayfarer",
+    "description": "Raised on city streets, you survived hardship through resourcefulness, grit, and hope."
+  },
+  "name": {
+    "name": "Name"
+  },
+  "image": {
+    "name": "Character Image"
+  },
+  "level": {
+    "name": "Level"
+  },
+  "acrobatics": {
+    "name": "Acrobatics"
+  },
+  "animal_handling": {
+    "name": "Animal Handling"
+  },
+  "arcana": {
+    "name": "Arcana"
+  },
+  "athletics": {
+    "name": "Athletics"
+  },
+  "deception": {
+    "name": "Deception"
+  },
+  "history": {
+    "name": "History"
+  },
+  "insight": {
+    "name": "Insight"
+  },
+  "intimidation": {
+    "name": "Intimidation"
+  },
+  "investigation": {
+    "name": "Investigation"
+  },
+  "medicine": {
+    "name": "Medicine"
+  },
+  "nature": {
+    "name": "Nature"
+  },
+  "perception": {
+    "name": "Perception"
+  },
+  "performance": {
+    "name": "Performance"
+  },
+  "persuasion": {
+    "name": "Persuasion"
+  },
+  "religion": {
+    "name": "Religion"
+  },
+  "sleight_of_hand": {
+    "name": "Sleight of Hand"
+  },
+  "stealth": {
+    "name": "Stealth"
+  },
+  "survival": {
+    "name": "Survival"
+  },
+  "armor": {
+    "name": "Armor"
+  },
+  "armamentSlot": {
+    "name": "Armament"
+  },
+  "hitDice": {
+    "name": "Hit Dice"
+  },
+  "background": {
+    "name": "Background"
+  },
+  "class": {
+    "name": "Class"
+  },
+  "artificer": {
+    "name": "Artificer",
+    "description": "Masters of invention who use ingenuity and magic to infuse extraordinary power into objects."
+  },
+  "artificerSkillProficiencies": {
+    "name": "Artificer Skill Proficiencies"
+  },
+  "artificerSpells": {
+    "name": "Artificer Spells"
+  },
+  "artificerCantrips": {
+    "name": "Artificer Cantrips"
+  },
+  "replicateMagicItem": {
+    "name": "Replicate Magic Item Spells"
+  },
+  "artificerSubclass": {
+    "name": "Artificer Subclass"
+  },
+  "level4feat": {
+    "name": "Level 4 Feat"
+  },
+  "flashOfGenius": {
+    "name": "Flash of Genius"
+  },
+  "flashOfGeniusResource": {
+    "name": "Flash of Genius"
+  },
+  "level8feat": {
+    "name": "Level 8 Feat"
+  },
+  "barbarian": {
+    "name": "Barbarian",
+    "description": "Fierce warriors fueled by primal rage, embodying the raw ferocity and stamina of nature."
+  },
+  "barbarianSkillProficiencies": {
+    "name": "Barbarian Skill Proficiencies"
+  },
+  "rage": {
+    "name": "Rage"
+  },
+  "recklessAttack": {
+    "name": "Reckless Attack"
+  },
+  "primalKnowledgeSkill": {
+    "name": "Primal Knowledge Skill Proficiency"
+  },
+  "primalKnowledge": {
+    "name": "Primal Knowledge"
+  },
+  "barbarianSubclass": {
+    "name": "Barbarian Subclass"
+  },
+  "bard": {
+    "name": "Bard",
+    "description": "Inspiring performers who weave magic into music, words, and lore to manipulate battle and mind."
+  },
+  "skillProficiencies": {
+    "name": "Bard Skill Proficiencies"
+  },
+  "bardicInspiration": {
+    "name": "Bardic Inspiration"
+  },
+  "bardCantrips": {
+    "name": "Bard Cantrips"
+  },
+  "bardSpells": {
+    "name": "Bard Prepared Spells"
+  },
+  "expertise": {
+    "name": "Bard Skill Expertise"
+  },
+  "bardSubclass": {
+    "name": "Bard Subclass"
+  },
+  "level4Feat": {
+    "name": "Level 4 Feat"
+  },
+  "countercharm": {
+    "name": "Countercharm"
+  },
+  "level8Feat": {
+    "name": "Level 8 Feat"
+  },
+  "dreadnaughtModel": {
+    "name": "Dreadnaught",
+    "summary": "Optimize armor model for heavy defense, temporary hit points, and thunder strikes."
+  },
+  "forceDemolisher": {
+    "name": "Force Demolisher"
+  },
+  "giantStatureResource": {
+    "name": "Giant Stature"
+  },
+  "giantStature": {
+    "name": "Giant Stature"
+  },
+  "guardianModel": {
+    "name": "Guardian",
+    "summary": "Optimize armor model for front-line defense, thunder pulse strikes, and temporary hit points."
+  },
+  "thunderPulse": {
+    "name": "Thunder Pulse"
+  },
+  "defensiveField": {
+    "name": "Defensive Field"
+  },
+  "perfectedGuardianReactionResource": {
+    "name": "Perfected Guardian Reaction Uses"
+  },
+  "infiltratorModel": {
+    "name": "Infiltrator",
+    "summary": "Optimize armor model for stealth, speed, and ranged lightning attacks."
+  },
+  "lightningLauncher": {
+    "name": "Lightning Launcher"
+  },
+  "perfectedInfiltratorFlightResource": {
+    "name": "Perfected Infiltrator Flight Uses"
+  },
+  "arcaneConduit": {
+    "name": "Arcane Conduit",
+    "summary": "Channel arcane energy through your armor to add Intelligence modifier to damage spells."
+  },
+  "ferocity": {
+    "name": "Ferocity",
+    "summary": "Empower your steel defender with ferocious combat reflexes."
+  },
+  "owl": {
+    "name": "Owl Aspect",
+    "summary": "Gain swift movement and aerial agility inspired by the owl spirit."
+  },
+  "panther": {
+    "name": "Panther Aspect",
+    "summary": "Gain stalking stealth and pouncing strikes inspired by the panther spirit."
+  },
+  "salmon": {
+    "name": "Salmon Aspect",
+    "summary": "Gain powerful swimming and stubborn endurance inspired by the salmon spirit."
+  },
+  "divineStrike": {
+    "name": "Divine Strike",
+    "summary": "Infuse your weapon attacks with extra holy energy once per turn."
+  },
+  "potentSpellcastingCleric": {
+    "name": "Potent Spellcasting",
+    "summary": "Add Wisdom modifier to the damage dealt by your cleric cantrips."
+  },
+  "protector": {
+    "name": "Protector",
+    "summary": "Gain heavy armor proficiency and martial weapon training."
+  },
+  "thaumaturge": {
+    "name": "Thaumaturge",
+    "summary": "Gain extra holy cantrips and bonus Religion skill checks."
+  },
+  "thaumaturgeCantrip": {
+    "name": "Thaumaturge Cantrip"
+  },
+  "aridLand": {
+    "name": "Arid Land",
+    "summary": "Adapt your circle magic to desert and sun-scorched environments."
+  },
+  "polarLand": {
+    "name": "Polar Land",
+    "summary": "Adapt your circle magic to icy, frost-covered environments."
+  },
+  "temperateLand": {
+    "name": "Temperate Land",
+    "summary": "Adapt your circle magic to lush forests and temperate wilderness."
+  },
+  "tropicalLand": {
+    "name": "Tropical Land",
+    "summary": "Adapt your circle magic to dense jungle and tropical environments."
+  },
+  "potentSpellcasting": {
+    "name": "Potent Spellcasting",
+    "summary": "Add Wisdom modifier to the damage dealt by your cleric cantrips."
+  },
+  "primalStrike": {
+    "name": "Primal Strike",
+    "summary": "Infuse weapon and beast strikes with extra elemental damage."
+  },
+  "magician": {
+    "name": "Magician",
+    "summary": "Learn extra nature cantrips and gain bonus Nature skill checks."
+  },
+  "magicianCantrip": {
+    "name": "Magician Cantrip"
+  },
+  "warden": {
+    "name": "Warden",
+    "summary": "Gain martial weapon training and medium armor defense."
+  },
+  "banishingShot": {
+    "name": "Banishing Shot",
+    "summary": "Temporarily banish the target to a harmless demiplane."
+  },
+  "beguilingShot": {
+    "name": "Beguiling Shot",
+    "summary": "Deal extra psychic damage and charm the target toward an ally."
+  },
+  "burstingShot": {
+    "name": "Bursting Shot",
+    "summary": "Cause an explosion of force damage around the target."
+  },
+  "enfeeblingShot": {
+    "name": "Enfeebling Shot",
+    "summary": "Deal extra necrotic damage and halve the target's weapon attack damage."
+  },
+  "graspingShot": {
+    "name": "Grasping Shot",
+    "summary": "Entangle the target with brambles, reducing speed and dealing damage when moving."
+  },
+  "piercingShot": {
+    "name": "Piercing Shot",
+    "summary": "Fire an arrow that pierces through all creatures in a 30-foot line."
+  },
+  "seekingShot": {
+    "name": "Seeking Shot",
+    "summary": "Fire an arrow that seeks out a hidden target."
+  },
+  "shadowShot": {
+    "name": "Shadow Shot",
+    "summary": "Deal extra psychic damage and blind the target beyond 5 feet."
+  },
+  "ambush": {
+    "name": "Ambush",
+    "summary": "Add a maneuver die to a Dexterity (Stealth) check or Initiative roll."
+  },
+  "baitAndSwitch": {
+    "name": "Bait and Switch",
+    "summary": "Swap places with a willing ally and boost AC."
+  },
+  "commandersStrike": {
+    "name": "Commander's Strike",
+    "summary": "Forgo an attack to direct an ally to strike with extra damage."
+  },
+  "commandingPresence": {
+    "name": "Commanding Presence",
+    "summary": "Add a maneuver die to Charisma (Intimidation, Performance, or Persuasion) checks."
+  },
+  "disarmingAttack": {
+    "name": "Disarming Attack",
+    "summary": "Deal extra damage and force the target to drop an item."
+  },
+  "distractingStrike": {
+    "name": "Distracting Strike",
+    "summary": "Deal extra damage and distract the target, giving an ally Advantage on its next attack."
+  },
+  "evasiveFootwork": {
+    "name": "Evasive Footwork",
+    "summary": "Add a maneuver die to your AC while moving."
+  },
+  "feintingAttack": {
+    "name": "Feinting Attack",
+    "summary": "Feint to gain advantage and extra damage on your next attack roll."
+  },
+  "goadingAttack": {
+    "name": "Goading Attack",
+    "summary": "Goad a target into focusing its attacks solely on you."
+  },
+  "lungingAttack": {
+    "name": "Lunging Attack",
+    "summary": "Increase your melee attack reach and deal extra damage."
+  },
+  "maneuveringAttack": {
+    "name": "Maneuvering Attack",
+    "summary": "Deal extra damage and allow an ally to reposition safely."
+  },
+  "menacingAttack": {
+    "name": "Menacing Attack",
+    "summary": "Deal extra damage and frighten the target."
+  },
+  "parry": {
+    "name": "Parry",
+    "summary": "Use your reaction to reduce incoming melee damage."
+  },
+  "precisionAttack": {
+    "name": "Precision Attack",
+    "summary": "Add a maneuver die to an attack roll to ensure a hit."
+  },
+  "pushingAttack": {
+    "name": "Pushing Attack",
+    "summary": "Deal extra damage and push the target back up to 15 feet."
+  },
+  "rally": {
+    "name": "Rally",
+    "summary": "Bolster an ally with temporary hit points using your maneuver die."
+  },
+  "riposte": {
+    "name": "Riposte",
+    "summary": "Use your reaction to strike back when an enemy misses you."
+  },
+  "sweepingAttack": {
+    "name": "Sweeping Attack",
+    "summary": "Sweep your weapon to deal damage to a second nearby target."
+  },
+  "tacticalAssessment": {
+    "name": "Tactical Assessment",
+    "summary": "Add a maneuver die to History, Insight, or Investigation checks."
+  },
+  "tripAttack": {
+    "name": "Trip Attack",
+    "summary": "Deal extra damage and knock a target prone."
+  },
+  "blessedWarrior": {
+    "name": "Blessed Warrior",
+    "summary": "Learn two cleric cantrips of your choice."
+  },
+  "blessedWarriorCantrips": {
+    "name": "Blessed Warrior Cantrips"
+  },
+  "druidicWarrior": {
+    "name": "Druidic Warrior",
+    "summary": "Learn two druid cantrips of your choice."
+  },
+  "druidicWarriorCantrips": {
+    "name": "Druidic Warrior Cantrips"
+  },
+  "biofeedback": {
+    "name": "Biofeedback",
+    "summary": "Gain Temporary Hit Points when casting Necromancy or Transmutation spells."
+  },
+  "bolsteringPrecognition": {
+    "name": "Bolstering Precognition",
+    "summary": "Grant a bonus to a creature's next D20 Test when casting Abjuration or Divination spells."
+  },
+  "destructiveThoughts": {
+    "name": "Destructive Thoughts",
+    "summary": "Deal extra Psychic damage to a target when casting Conjuration or Evocation saving throw spells."
+  },
+  "devilishTongue": {
+    "name": "Devilish Tongue",
+    "summary": "Add a Psionic Energy Die to an Influence ability check."
+  },
+  "expandedAwareness": {
+    "name": "Expanded Awareness",
+    "summary": "Add a Psionic Energy Die to a Search ability check."
+  },
+  "idInsinuation": {
+    "name": "Id Insinuation",
+    "summary": "Subtract half a Psionic Energy Die roll from a target's save against your Enchantment or Illusion spells."
+  },
+  "inerrantAim": {
+    "name": "Inerrant Aim",
+    "summary": "Add a Psionic Energy Die to a missed attack roll."
+  },
+  "observantMind": {
+    "name": "Observant Mind",
+    "summary": "Add a Psionic Energy Die to a Study ability check."
+  },
+  "psionicBacklash": {
+    "name": "Psionic Backlash",
+    "summary": "Reduce incoming attack damage and deal Psychic damage back to the attacker."
+  },
+  "psionicGuards": {
+    "name": "Psionic Guards",
+    "summary": "Gain Immunity to Charmed/Frightened conditions and Advantage on Int saves."
+  },
+  "sharpenedMind": {
+    "name": "Sharpened Mind",
+    "summary": "Ignore Psychic resistance and substitute a recorded Psionic die roll on damage once per turn."
+  },
+  "escapeTheHorde": {
+    "name": "Escape the Horde",
+    "summary": "Opportunity Attacks have Disadvantage against you.",
+    "description": "Opportunity Attacks have Disadvantage against you."
+  },
+  "multiattackDefense": {
+    "name": "Multiattack Defense",
+    "summary": "Attacks from a creature hit you with have Disadvantage for the rest of the turn.",
+    "description": "When a creature hits you with an attack roll, that creature has Disadvantage on all other attack rolls against you this turn."
+  },
+  "colossusSlayer": {
+    "name": "Colossus Slayer",
+    "summary": "Deal extra damage once per turn to creatures below their hit point max.",
+    "description": "On a hit, once per turn, if the target is missing any of its Hit Points, the target takes an extra 1d8 damage."
+  },
+  "hordeBreaker": {
+    "name": "Horde Breaker",
+    "summary": "Make an extra weapon attack against another creature adjacent to your target.",
+    "description": "Once per turn, you can make another attack against a different creature that is within 5 feet of the target, that is within the weapon's range, and that you haven't attacked this turn."
+  },
+  "banePact": {
+    "name": "Aspect of Tyranny"
+  },
+  "bhaalPact": {
+    "name": "Aspect of Slaughter",
+    "summary": "Gain poison resistance and learn the Blade Ward cantrip."
+  },
+  "myrkulPact": {
+    "name": "Aspect of Mortality",
+    "summary": "Gain necrotic resistance and learn the Chill Touch cantrip."
+  },
+  "acidAffinity": {
+    "name": "Acid Affinity",
+    "summary": "Gain acid resistance and add Charisma modifier to acid damage spells."
+  },
+  "coldAffinity": {
+    "name": "Cold Affinity",
+    "summary": "Gain cold resistance and add Charisma modifier to cold damage spells."
+  },
+  "fireAffinity": {
+    "name": "Fire Affinity",
+    "summary": "Gain fire resistance and add Charisma modifier to fire damage spells."
+  },
+  "lightningAffinity": {
+    "name": "Lightning Affinity",
+    "summary": "Gain lightning resistance and add Charisma modifier to lightning damage spells."
+  },
+  "poisonAffinity": {
+    "name": "Poison Affinity",
+    "summary": "Gain poison resistance and add Charisma modifier to poison damage spells."
+  },
+  "carefulSpell": {
+    "name": "Careful Spell",
+    "summary": "Protect chosen allies from taking full damage from area spells."
+  },
+  "carefulSpellActivity": {
+    "name": "Careful Spell"
+  },
+  "distantSpell": {
+    "name": "Distant Spell",
+    "summary": "Double the range of a spell or turn a touch spell into range."
+  },
+  "distantSpellActivity": {
+    "name": "Distant Spell"
+  },
+  "empoweredSpell": {
+    "name": "Empowered Spell",
+    "summary": "Reroll damage dice on a spell to maximize your damage output."
+  },
+  "empoweredSpellActivity": {
+    "name": "Empowered Spell"
+  },
+  "extendedSpell": {
+    "name": "Extended Spell",
+    "summary": "Double the duration of a spell up to a maximum of 24 hours."
+  },
+  "extendedSpellActivity": {
+    "name": "Extended Spell"
+  },
+  "heightenedSpell": {
+    "name": "Heightened Spell",
+    "summary": "Impose disadvantage on a target's first saving throw against your spell."
+  },
+  "heightenedSpellActivity": {
+    "name": "Heightened Spell"
+  },
+  "quickenedSpell": {
+    "name": "Quickened Spell",
+    "summary": "Change a spell with a casting time of 1 action to 1 Bonus Action."
+  },
+  "quickenedSpellActivity": {
+    "name": "Quickened Spell"
+  },
+  "seekingSpell": {
+    "name": "Seeking Spell",
+    "summary": "Reroll a missed spell attack roll to turn a miss into a hit."
+  },
+  "seekingSpellActivity": {
+    "name": "Seeking Spell"
+  },
+  "subtleSpell": {
+    "name": "Subtle Spell",
+    "summary": "Cast a spell without needing verbal or somatic components."
+  },
+  "subtleSpellActivity": {
+    "name": "Subtle Spell"
+  },
+  "transmutedSpell": {
+    "name": "Transmuted Spell",
+    "summary": "Change the elemental damage type of a spell to another elemental damage type."
+  },
+  "transmutedSpellActivity": {
+    "name": "Transmuted Spell"
+  },
+  "twinnedSpell": {
+    "name": "Twinned Spell",
+    "summary": "Target a second creature with a spell that normally targets only one."
+  },
+  "twinnedSpellActivity": {
+    "name": "Twinned Spell"
+  },
+  "agonizingBlast": {
+    "name": "Agonizing Blast",
+    "summary": "Add your Charisma modifier to the damage of your Eldritch Blast."
+  },
+  "armorOfShadows": {
+    "name": "Armor of Shadows",
+    "summary": "Cast Mage Armor on yourself at will without spell slots."
+  },
+  "ascendantStep": {
+    "name": "Ascendant Step",
+    "summary": "Cast Levitate on yourself at will without spell slots."
+  },
+  "devilSight": {
+    "name": "Devil's Sight",
+    "summary": "See normally in darkness, both magical and nonmagical, to a distance of 120 feet."
+  },
+  "eldritchMind": {
+    "name": "Eldritch Mind",
+    "summary": "Gain advantage on Constitution saves to maintain spell concentration."
+  },
+  "eldritchSmite": {
+    "name": "Eldritch Smite",
+    "summary": "Expend a spell slot to deal extra force damage and knock a target prone."
+  },
+  "eldritchSmiteActivity": {
+    "name": "Eldritch Smite"
+  },
+  "eldritchSpear": {
+    "name": "Eldritch Spear",
+    "summary": "Increase the range of your Eldritch Blast cantrip."
+  },
+  "fiendishVigor": {
+    "name": "Fiendish Vigor",
+    "summary": "Cast False Life on yourself at will to gain temporary hit points."
+  },
+  "gazeOfTwoMinds": {
+    "name": "Gaze of Two Minds",
+    "summary": "Perceive through the senses of a willing humanoid target."
+  },
+  "giftOfTheDepths": {
+    "name": "Gift of the Depths",
+    "summary": "Gain a swimming speed equal to your walking speed and the ability to breathe underwater."
+  },
+  "investmentOfTheChainMaster": {
+    "name": "Investment of the Chain Master",
+    "summary": "Enhance your familiar with flying/swimming speed and boosted attacks."
+  },
+  "commandFamiliar": {
+    "name": "Command Familiar"
+  },
+  "familiarResistance": {
+    "name": "Familiar Resistance"
+  },
+  "lessonsOfTheFirstOnes": {
+    "name": "Lessons of the First Ones",
+    "summary": "Gain an Origin Feat of your choice."
+  },
+  "maskOfManyFaces": {
+    "name": "Mask of Many Faces",
+    "summary": "Cast Disguise Self at will without expending spell slots."
+  },
+  "masterOfMyriadForms": {
+    "name": "Master of Myriad Forms",
+    "summary": "Cast Alter Self at will without expending spell slots."
+  },
+  "mistyVisions": {
+    "name": "Misty Visions",
+    "summary": "Cast Silent Image at will without expending a spell slot."
+  },
+  "oneWithShadows": {
+    "name": "One with Shadows",
+    "summary": "Become invisible in dim light or darkness when remaining still."
+  },
+  "otherworldlyLeap": {
+    "name": "Otherworldly Leap",
+    "summary": "Cast Jump on yourself at will without expending spell slots."
+  },
+  "pactOfTheBladeFolder": {
+    "name": "Pact of the Blade",
+    "summary": "Summon or bind a magical pact weapon in your hand."
+  },
+  "pactOfTheChainFolder": {
+    "name": "Pact of the Chain",
+    "summary": "Gain an upgraded imp, pseudodragon, quasit, or sprite familiar."
+  },
+  "pactOfTheChainAttack": {
+    "name": "Command Familiar",
+    "description": "When you take the Attack action on your turn, you can replace one attack with a command to your familiar to make one attack with its Reaction."
+  },
+  "pactOfTheTomeFolder": {
+    "name": "Pact of the Tome",
+    "summary": "Gain a grimoire containing three cantrips from any spell list."
+  },
+  "tomeCantrips": {
+    "name": "Tome Cantrips"
+  },
+  "tomeRituals": {
+    "name": "Tome Rituals"
+  },
+  "repellingBlast": {
+    "name": "Repelling Blast",
+    "summary": "Push a target up to 10 feet away when hitting with Eldritch Blast."
+  },
+  "thirstingBlade": {
+    "name": "Thirsting Blade",
+    "summary": "Attack twice with your pact weapon whenever you take the Attack action."
+  },
+  "whispersOfTheGrave": {
+    "name": "Whispers of the Grave",
+    "summary": "Cast Speak with Dead at will without expending spell slots."
+  },
+  "lifeDomainVestige": {
+    "name": "Life Domain",
+    "summary": "Gain divine healing spells and heavy armor proficiency from the Life Domain."
+  },
+  "lightDomainVestige": {
+    "name": "Light Domain",
+    "summary": "Gain radiant fire spells and warding flares from the Light Domain."
+  },
+  "trickeryDomainVestige": {
+    "name": "Trickery Domain",
+    "summary": "Gain illusory stealth spells and trickster duplicates from the Trickery Domain."
+  },
+  "warDomainVestige": {
+    "name": "War Domain",
+    "summary": "Gain bonus weapon strikes and protective barrier spells from the War Domain."
+  },
+  "cleric": {
+    "name": "Cleric",
+    "description": "Divine champions who channel holy magic to heal allies, smite foes, and serve their deity."
+  },
+  "clericSkillProficiencies": {
+    "name": "Cleric Skill Proficiencies"
+  },
+  "clericCantrips": {
+    "name": "Cleric Cantrips"
+  },
+  "clericPreparedSpells": {
+    "name": "Cleric Prepared Spells"
+  },
+  "divineOrder": {
+    "name": "Divine Order"
+  },
+  "channelDivinity": {
+    "name": "Channel Divinity"
+  },
+  "divineSpark": {
+    "name": "Divine Spark"
+  },
+  "turnUndead": {
+    "name": "Turn Undead"
+  },
+  "clericSubclass": {
+    "name": "Cleric Subclass"
+  },
+  "searUndead": {
+    "name": "Sear Undead"
+  },
+  "blessedStrikes": {
+    "name": "Blessed Strikesp"
+  },
+  "druid": {
+    "name": "Druid",
+    "description": "Guardians of nature who wield primal magic and shape-shift into dangerous wilderness beasts."
+  },
+  "druidSkillProficiencies": {
+    "name": "Druid Skill Proficiencies"
+  },
+  "druidCantrips": {
+    "name": "Druid Cantrips"
+  },
+  "druidSpells": {
+    "name": "Druid Spells"
+  },
+  "primalOrder": {
+    "name": "Primal Order"
+  },
+  "wildShape": {
+    "name": "Channel Nature"
+  },
+  "wildShapeActivity": {
+    "name": "Wild Shape"
+  },
+  "druidSubclass": {
+    "name": "Druid Subclass"
+  },
+  "elementalFury": {
+    "name": "Elemental Fury"
+  },
+  "fighter": {
+    "name": "Fighter",
+    "description": "Unmatched martial experts skilled with every weapon and armor to dominate the battlefield."
+  },
+  "fighterskillproficiencies": {
+    "name": "Fighter Skill Proficiencies"
+  },
+  "fightingStyle": {
+    "name": "Fighting Style"
+  },
+  "secondWind": {
+    "name": "Second Wind"
+  },
+  "actionSurge": {
+    "name": "Action Surge"
+  },
+  "tacticalMind": {
+    "name": "Tactical Mind"
+  },
+  "fighterSubclass": {
+    "name": "Fighter Subclass"
+  },
+  "level6feat": {
+    "name": "Level 6 Feat"
+  },
+  "monk": {
+    "name": "Monk",
+    "description": "Ascetic martial artists who harness inner focus to strike with lightning speed and precision."
+  },
+  "monkSkillProficiencies": {
+    "name": "Monk Skill Proficiencies"
+  },
+  "monkToolProficiency": {
+    "name": "Monk Tool Proficiency"
+  },
+  "bonusUnarmedStrike": {
+    "name": "Bonus Unarmed Strike"
+  },
+  "focusPoints": {
+    "name": "Focus Points"
+  },
+  "flurryOfBlows": {
+    "name": "Flurry of Blows"
+  },
+  "patientDefense": {
+    "name": "Patient Defense"
+  },
+  "stepOfTheWind": {
+    "name": "Step of the Wind"
+  },
+  "deflectAttacks": {
+    "name": "Deflect Attacks"
+  },
+  "redirectAttacks": {
+    "name": "Redirect Attacks"
+  },
+  "monkSubclass": {
+    "name": "Monk Subclass"
+  },
+  "slowFall": {
+    "name": "Slow Fall"
+  },
+  "stunningStrike": {
+    "name": "Stunning Strike"
+  },
+  "evasion": {
+    "name": "Evasion",
+    "description": "When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed and only half damage if you fail."
+  },
+  "paladin": {
+    "name": "Paladin",
+    "description": "Holy warriors bound by sacred oaths, smiting evil with radiant power and protective auras."
+  },
+  "paladinSkillProficiencies": {
+    "name": "Paladin Skill Proficiencies"
+  },
+  "layOnHands": {
+    "name": "Lay On Hands"
+  },
+  "paladinSpells": {
+    "name": "Paladin Spells"
+  },
+  "paladinSubclass": {
+    "name": "Paladin Subclass"
+  },
+  "divineSense": {
+    "name": "Divine Sense"
+  },
+  "auraOfProtection": {
+    "name": "Aura of Protection"
+  },
+  "psion": {
+    "name": "Psion",
+    "description": "Masters of psionic power who weave magic and extraordinary powers through the raw force of their minds."
+  },
+  "psionSkillProficiencies": {
+    "name": "Psion Skill Proficiencies"
+  },
+  "psionicEnergyDice": {
+    "name": "Psionic Energy"
+  },
+  "telekineticPropel": {
+    "name": "Telekinetic Propel"
+  },
+  "psionCantrips": {
+    "name": "Psion Cantrips"
+  },
+  "psionPreparedSpells": {
+    "name": "Psion Prepared Spells"
+  },
+  "psionicDiscipline": {
+    "name": "Psionic Discipline"
+  },
+  "psionSubclass": {
+    "name": "Psion Subclass"
+  },
+  "ranger": {
+    "name": "Ranger",
+    "description": "Deadly wilderness scouts and trackers who combine martial skill with nature magic."
+  },
+  "rangerSkillProficiencies": {
+    "name": "Ranger Skill Proficiencies"
+  },
+  "rangerSpells": {
+    "name": "Ranger Spells"
+  },
+  "favoredEnemy": {
+    "name": "Favored Enemy"
+  },
+  "deftExplorerExpertise": {
+    "name": "Deft Explorer Expertise"
+  },
+  "rangerSubclass": {
+    "name": "Ranger Subclass"
+  },
+  "rogue": {
+    "name": "Rogue",
+    "description": "Cunning tricksters who rely on stealth, precision, and vulnerability to strike effectively."
+  },
+  "rogueSkillProficiencies": {
+    "name": "Rogue Skill Proficiencies"
+  },
+  "rogueExpertise1": {
+    "name": "Expertise"
+  },
+  "sneakAttack": {
+    "name": "Sneak Attack"
+  },
+  "cunningAction": {
+    "name": "Cunning Action"
+  },
+  "steadyAim": {
+    "name": "Steady Aim"
+  },
+  "rogueSubclass": {
+    "name": "Rogue Subclass"
+  },
+  "cunningStrike": {
+    "name": "Cunning Strike"
+  },
+  "uncannyDodge": {
+    "name": "Uncanny Dodge"
+  },
+  "rogueExpertise2": {
+    "name": "Expertise"
+  },
+  "sorcerer": {
+    "name": "Sorcerer",
+    "description": "Spellcasters carrying innate magic in their bloodline, twisting raw arcana at will."
+  },
+  "sorcererSkillProficiencies": {
+    "name": "Sorcerer Skill Proficiencies"
+  },
+  "sorcererCantrips": {
+    "name": "Sorcerer Cantrips"
+  },
+  "sorcererPreparedSpells": {
+    "name": "Sorcerer Prepared Spells"
+  },
+  "innateSorcery": {
+    "name": "Innate Sorcery"
+  },
+  "sorceryPoints": {
+    "name": "Sorcery Points"
+  },
+  "sorcererSubclass": {
+    "name": "Sorcerer Subclass"
+  },
+  "metamagic": {
+    "name": "Metamagic"
+  },
+  "alchemist": {
+    "name": "Alchemist",
+    "description": "Combine reagents to produce magical effects, using creations to give life and to leech it away."
+  },
+  "experimentalElixirResource": {
+    "name": "Experimental Elixir"
+  },
+  "experimentalElixir": {
+    "name": "Experimental Elixir"
+  },
+  "armorer": {
+    "name": "Armorer",
+    "description": "Modify armor to function as a second skin, enhancing magic, attacks, and generating defense."
+  },
+  "armorModel": {
+    "name": "Armor Model"
+  },
+  "artillerist": {
+    "name": "Artillerist",
+    "description": "Specialize in using magic to hurl energy, projectiles, and deadly explosions on the battlefield."
+  },
+  "eldritchCannonFlamethrower": {
+    "name": "Flamethrower"
+  },
+  "eldritchCannonForceBallista": {
+    "name": "Force Ballista"
+  },
+  "eldritchCannonProtector": {
+    "name": "Protector"
+  },
+  "battleSmith": {
+    "name": "Battle Smith",
+    "description": "Combine protection and healing, accompanied by a loyal Steel Defender of your own creation."
+  },
+  "steelDefenderName": {
+    "name": "Steel Defender Name"
+  },
+  "commandSteelDefender": {
+    "name": "Command Steel Defender"
+  },
+  "cartographer": {
+    "name": "Cartographer",
+    "description": "Navigate and scout, using your creations to highlight threats, safeguard allies, and carve portals."
+  },
+  "adventurersAtlas": {
+    "name": "Adventurer's Atlas"
+  },
+  "portalJump": {
+    "name": "Portal Jump"
+  },
+  "illuminatedCartography": {
+    "name": "Illuminated Cartography"
+  },
+  "guidedPrecision": {
+    "name": "Guided Precision"
+  },
+  "reanimator": {
+    "name": "Reanimator",
+    "description": "Stitch together servants from corpses, transforming the dark art of necromancy into a grim science."
+  },
+  "joltToLifeResource": {
+    "name": "Jolt to Life"
+  },
+  "joltToLife": {
+    "name": "Jolt to Life"
+  },
+  "commandReanimatedCompanion": {
+    "name": "Command Reanimated Companion"
+  },
+  "strangeModifications": {
+    "name": "Strange Modifications"
+  },
+  "ancestralGuardian": {
+    "name": "Path of the Ancestral Guardian",
+    "description": "Commune with the spirits of your ancestors, calling them forth to shield allies and harass enemies."
+  },
+  "spiritualProtectors": {
+    "name": "Spiritual Protectors"
+  },
+  "spiritShield": {
+    "name": "Spirit Shield"
+  },
+  "berserker": {
+    "name": "Path of the Berserker",
+    "description": "Direct your Rage toward violence, thrilling in untrammeled fury and the chaos of battle."
+  },
+  "lament": {
+    "name": "Path of the Lament",
+    "description": "Draw upon mournful departed spirits, unleashing their sorrow in terrifying wails and strikes."
+  },
+  "bansheesWail": {
+    "name": "Banshee's Wail"
+  },
+  "horrifyingStrike": {
+    "name": "Horrifying Strike"
+  },
+  "wildHeart": {
+    "name": "Path of the Wild Heart",
+    "description": "Communicate with animals and channel supernatural might as your Rage deepens your primal connection."
+  },
+  "rageOfTheWilds": {
+    "name": "Rage of the Wilds"
+  },
+  "aspectOfTheWilds": {
+    "name": "Aspect of the Wilds"
+  },
+  "worldTree": {
+    "name": "Path of the World Tree",
+    "description": "Connect with the cosmic World Tree through your Rage, drawing on its magic for vitality and travel."
+  },
+  "vitalitySurge": {
+    "name": "Vitality Surge"
+  },
+  "lifeGivingForce": {
+    "name": "Life-Giving Force"
+  },
+  "branchesOfTheTree": {
+    "name": "Branches of the Tree"
+  },
+  "zealot": {
+    "name": "Path of the Zealot",
+    "description": "Receive boons from a god, experiencing Rage as a divine union that infuses you with holy power."
+  },
+  "divineFury": {
+    "name": "Divine Fury"
+  },
+  "warriorOfTheGods": {
+    "name": "Warrior of the Gods"
+  },
+  "fanaticalFocus": {
+    "name": "Fanatical Focus"
+  },
+  "dance": {
+    "name": "College of Dance",
+    "description": "Harmonize with the whirling cosmos through agile, speedy, and graceful dances that weave magic."
+  },
+  "dazzlingFootworkAgileStrike": {
+    "name": "Agile Strikes"
+  },
+  "inspiringMovement": {
+    "name": "Inspiring Movement"
+  },
+  "tandemFootwork": {
+    "name": "Tandem Footwork"
+  },
+  "glamour": {
+    "name": "College of Glamour",
+    "description": "Weave threads of Feywild beauty and terror into your performances to cloak yourself in majesty."
+  },
+  "beguilingMagic": {
+    "name": "Beguiling Magic"
+  },
+  "mantleOfInspiration": {
+    "name": "Mantle of Inspiration"
+  },
+  "mantleOfMajesty": {
+    "name": "Mantle of Majesty"
+  },
+  "lore": {
+    "name": "College of Lore",
+    "description": "Collect spells and secrets from diverse sources, uncovering ancient knowledge and mystical rites."
+  },
+  "bonusProficiencies": {
+    "name": "Bonus Proficiencies"
+  },
+  "cuttingWords": {
+    "name": "Cutting Words"
+  },
+  "magicalDiscoveries": {
+    "name": "Magical Discoveries"
+  },
+  "moon": {
+    "name": "College of the Moon",
+    "description": "Draw inspiration from lunar phases, blending moonlit secrets with martial and druidic magic."
+  },
+  "inspiredEclipse": {
+    "name": "Inspired Eclipse",
+    "description": "You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell."
+  },
+  "lunarVitality": {
+    "name": "Lunar Vitality"
+  },
+  "primalLoreCantrip": {
+    "name": "Primal Lore Cantrip"
+  },
+  "primalLoreProficiency": {
+    "name": "Primal Lore Skill Proficiency"
+  },
+  "blessingOfMoonlight": {
+    "name": "Blessing of Moonlight"
+  },
+  "spirits": {
+    "name": "College of Spirits",
+    "description": "Commune with past spirits, channeling their stories and wisdom to perform wondrous magic."
+  },
+  "spiritsFromBeyond": {
+    "name": "Spirits from Beyond"
+  },
+  "spiritChanneling": {
+    "name": "Spirit Channeling"
+  },
+  "spiritsFromBeyondLevel5Options": {
+    "name": "Spirits from Beyond (Level 5 Options)"
+  },
+  "powerFromBeyondDamage": {
+    "name": "Power from Beyond (Damage)"
+  },
+  "powerFromBeyondHealing": {
+    "name": "Power from Beyond (Healing)"
+  },
+  "valor": {
+    "name": "College of Valor",
+    "description": "Sing tales of the mighty in combat, preserving the memories of great heroes as a daring storyteller."
+  },
+  "combatInspirationExtra": {
+    "name": "Combat Inspiration"
+  },
+  "graveDomain": {
+    "name": "Grave Domain",
+    "description": "Guard the boundary between life and death, drawing upon transitional energy to heal or smite."
+  },
+  "circleOfMortalityPull": {
+    "name": "Pull of Death"
+  },
+  "circleOfMortalityHealing": {
+    "name": "Circle of Mortality",
+    "description": "When restoring Hit Points to a creature at 0 Hit Points, use the highest possible roll for each die."
+  },
+  "pathToTheGrave": {
+    "name": "Path to the Grave"
+  },
+  "sentinelAtDeathsDoor": {
+    "name": "Sentinel at Death's Door"
+  },
+  "knowledgeDomain": {
+    "name": "Knowledge Domain",
+    "description": "Value learning and information, using divine insights to uncover secrets and influence minds."
+  },
+  "blessingsOfKnowledgeTools": {
+    "name": "Blessings of Knowledge Tool Proficiency"
+  },
+  "blessingsOfKnowledgeSkills": {
+    "name": "Blessings of Knowledge Skill Proficiencies"
+  },
+  "blessingsOfKnowledgeExpertise": {
+    "name": "Blessings of Knowledge Expertises"
+  },
+  "mindMagic": {
+    "name": "Mind Magic"
+  },
+  "unfetteredMindTelepathy": {
+    "name": "Unfettered Mind"
+  },
+  "lifeDomain": {
+    "name": "Life Domain",
+    "description": "Tap into the positive energy of the multiverse as a master of healing, using life force to cure."
+  },
+  "discipleOfLife": {
+    "name": "Disciple of Life",
+    "description": "The creature regains an additional $(2+(stats.wis.mod)) Hit Points."
+  },
+  "preserveLife": {
+    "name": "Preserve Life"
+  },
+  "blessedHealer": {
+    "name": "Blessed Healer",
+    "description": "If you cast this on another creature, you regain $(2+(stats.wis.mod)) Hit Points."
+  },
+  "lightDomain": {
+    "name": "Light Domain",
+    "description": "Emphasize the divine power of blazing fire and revelation, burning away darkness and chasing away lies."
+  },
+  "radianceOfTheDawn": {
+    "name": "Radiance of the Dawn"
+  },
+  "wardingFlare": {
+    "name": "Warding Flare"
+  },
+  "wardingFlareTempHP": {
+    "name": "Warding Flare (Level 6)"
+  },
+  "trickeryDomain": {
+    "name": "Trickery Domain",
+    "description": "Wield magic of deception, illusion, and stealth as a disruptive force puncturing pride and tyranny."
+  },
+  "blessingOfTheTrickster": {
+    "name": "Blessing of the Trickster"
+  },
+  "invokeDuplicity": {
+    "name": "Invoke Duplicity"
+  },
+  "warDomain": {
+    "name": "War Domain",
+    "description": "Excel in battle by tapping into the magic of war, inspiring others or offering violence as a prayer."
+  },
+  "guidedStrike": {
+    "name": "Guided Strike"
+  },
+  "warPriest": {
+    "name": "War Priest"
+  },
+  "circleOfPreservation": {
+    "name": "Circle of Preservation",
+    "description": "Defend natural sanctuaries, revitalize damaged land, and protect allies from toxic or hostile elements."
+  },
+  "preservedLand": {
+    "name": "Preserved Land"
+  },
+  "preservedLandLevel6FortifyAndReject": {
+    "name": "Preserved Land (Level 6 Fortify & Reject)"
+  },
+  "studentOfPreservationTool": {
+    "name": "Student of Preservation Tool Proficiency"
+  },
+  "circleOfTheLand": {
+    "name": "Circle of the Land",
+    "description": "Safeguard ancient knowledge and rites as a mystic and sage, whispering primal secrets in Druidic."
+  },
+  "circleOfTheLandType": {
+    "name": "Land Type"
+  },
+  "landsAid": {
+    "name": "Land's Aid"
+  },
+  "circleOfTheMoon": {
+    "name": "Circle of the Moon",
+    "description": "Draw on lunar magic to transform yourself into various beasts, changeable and powerful as the moon."
+  },
+  "circleOfTheSea": {
+    "name": "Circle of the Sea",
+    "description": "Draw on the tempestuous forces of oceans and storms, embodying nature's wrath or mystical unity."
+  },
+  "wrathOfTheSea": {
+    "name": "Wrath of the Sea"
+  },
+  "wrathOfTheSeaPushEffect": {
+    "name": "Wrath of the Sea (Level 6 Push)"
+  },
+  "circleOfTheStars": {
+    "name": "Circle of the Stars",
+    "description": "Track heavenly patterns to discover cosmic secrets, harnessing the power of constellations."
+  },
+  "starMap": {
+    "name": "Star Map"
+  },
+  "starryForm": {
+    "name": "Starry Form"
+  },
+  "cosmicOmen": {
+    "name": "Cosmic Omen"
+  },
+  "circleOfTheTitan": {
+    "name": "Circle of the Titan",
+    "description": "Channel cataclysmic power of giant monsters, adopting colossal Titan Forms and unleashing shock waves."
+  },
+  "arcaneArcher": {
+    "name": "Arcane Archer",
+    "description": "Study a unique method of elven archery that weaves magic into shots to create supernatural effects."
+  },
+  "arcaneArcherLoreCantrip": {
+    "name": "Arcane Archer Lore Cantrip"
+  },
+  "arcaneShot": {
+    "name": "Arcane Shot"
+  },
+  "arcaneShotOptions": {
+    "name": "Arcane Shot Options"
+  },
+  "curvingShot": {
+    "name": "Curving Shot"
+  },
+  "magicalAmmunition": {
+    "name": "Magical Ammunition"
+  },
+  "banneret": {
+    "name": "Banneret",
+    "description": "Rally allies to fight against evil as a paragon of valor, utilizing inspiring presence and diplomacy."
+  },
+  "wellSpokenSkill": {
+    "name": "Well Spoken Skill Proficiency"
+  },
+  "groupRecoveryEffect": {
+    "name": "Group Recovery"
+  },
+  "teamTacticsEffect": {
+    "name": "Team Tactics"
+  },
+  "battleMaster": {
+    "name": "Battle Master",
+    "description": "Combine honed combat skills with academic study to master martial techniques passed down generations."
+  },
+  "maneuvers": {
+    "name": "Maneuvers"
+  },
+  "studentOfWarSkill": {
+    "name": "Student of War Skill Proficiency"
+  },
+  "studentOfWarTool": {
+    "name": "Student of War Tool Proficiency"
+  },
+  "superiorityDice": {
+    "name": "Combat Superiority"
+  },
+  "knowYourEnemy": {
+    "name": "Know Your Enemy"
+  },
+  "champion": {
+    "name": "Champion",
+    "description": "Focus on martial prowess and relentless pursuit of victory to deal devastating blows and garner glory."
+  },
+  "improvedCritical": {
+    "name": "Improved Critical",
+    "description": "You score a Critical Hit on a roll of 19 or 20. Then, you can move $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet."
+  },
+  "additionalFightingStyle": {
+    "name": "Additional Fighting Style"
+  },
+  "eldritchKnight": {
+    "name": "Eldritch Knight",
+    "description": "Combine martial mastery with a careful study of magic, casting spells to extend your combat skills."
+  },
+  "eldritchKnightCantrips": {
+    "name": "Eldritch Knight Cantrips"
+  },
+  "eldritchKnightSpells": {
+    "name": "Eldritch Knight Spells"
+  },
+  "warBond": {
+    "name": "War Bond"
+  },
+  "psiWarrior": {
+    "name": "Psi Warrior",
+    "description": "Awaken the power of your mind to augment physical might, infusing weapon strikes with psionic power."
+  },
+  "protectiveField": {
+    "name": "Protective Field"
+  },
+  "psionicStrike": {
+    "name": "Psionic Strike"
+  },
+  "telekineticMovement": {
+    "name": "Telekinetic Movement"
+  },
+  "psiPoweredLeap": {
+    "name": "Psi Powered Leap"
+  },
+  "elements": {
+    "name": "Warrior of the Elements",
+    "description": "Harness elemental power to shape strikes, manifest reaching tendrils, and unleash devastating bursts."
+  },
+  "elementalBurst": {
+    "name": "Elemental Burst"
+  },
+  "elementalAttunement": {
+    "name": "Elemental Attunement"
+  },
+  "mercy": {
+    "name": "Warrior of Mercy",
+    "description": "Manipulate life force as a masked wandering physician, acting as a faceless bringer of life and death."
+  },
+  "handOfHarm": {
+    "name": "Hand of Harm"
+  },
+  "handOfHealing": {
+    "name": "Hand of Healing"
+  },
+  "mysticArts": {
+    "name": "Warrior of the Mystic Arts",
+    "description": "Wield magic to supplement martial skill, harnessing supernatural focus to enhance magical and physical abilities."
+  },
+  "mysticArtsCantrips": {
+    "name": "Mystic Arts Cantrips"
+  },
+  "mysticArtsPreparedSpells": {
+    "name": "Mystic Arts Prepared Spells"
+  },
+  "openHand": {
+    "name": "Warrior of the Open Hand",
+    "description": "Master unarmed combat with techniques to push, trip, and manipulate energy to protect against harm."
+  },
+  "openHandTechnique": {
+    "name": "Open Hand Technique"
+  },
+  "wholenessOfBody": {
+    "name": "Wholeness of Body"
+  },
+  "shadows": {
+    "name": "Warrior of Shadow",
+    "description": "Practice stealth and subterfuge by harnessing Shadowfell power to hide, shadow-leap, and become wraithlike."
+  },
+  "shadowStep": {
+    "name": "Shadow Step"
+  },
+  "venom": {
+    "name": "Warrior of Venom",
+    "description": "Harvest blood toxins to coat weapons in debilitating poison and use toxic touches to sedate or charm."
+  },
+  "envenomWeapon": {
+    "name": "Envenom Weapon"
+  },
+  "potentArsenalWeapon": {
+    "name": "Potent Arsenal"
+  },
+  "potentArsenalEnvenom": {
+    "name": "Potent Arsenal"
+  },
+  "toxicTouch": {
+    "name": "Toxic Touch"
+  },
+  "oathOfDevotion": {
+    "name": "Oath of Devotion",
+    "description": "Bind yourself to Justice and Order, embodying the classic archetype of a knight in shining armor."
+  },
+  "sacredWeapon": {
+    "name": "Sacred Weapon"
+  },
+  "auraOfDevotion": {
+    "name": "Aura of Devotion"
+  },
+  "oathOfGenies": {
+    "name": "Oath of the Noble Genies",
+    "description": "Pledge to noble Genies, channeling ancient elemental magic and wielding divine, elementally-infused armor."
+  },
+  "elementalSmite": {
+    "name": "Elemental Smite"
+  },
+  "geniesSplendorSkill": {
+    "name": "Genie's Splendor Skill"
+  },
+  "auraOfElementalShielding": {
+    "name": "Aura of Elemental Shielding"
+  },
+  "oathOfGlory": {
+    "name": "Oath of Glory",
+    "description": "Embrace a destiny of greatness, leading companions to achieve immortal glory through heroic deeds."
+  },
+  "inspiringSmite": {
+    "name": "Inspiring Smite"
+  },
+  "peerlessAthlete": {
+    "name": "Peerless Athlete"
+  },
+  "auraOfAlacrity": {
+    "name": "Aura of Alacrity"
+  },
+  "oathOfTheAncients": {
+    "name": "Oath of the Ancients",
+    "description": "Cherish the light, loving the beautiful and life-giving things of the world above all other principles."
+  },
+  "naturesWrath": {
+    "name": "Nature's Wrath"
+  },
+  "auraOfWarding": {
+    "name": "Aura of Warding"
+  },
+  "oathOfVengeance": {
+    "name": "Oath of Vengeance",
+    "description": "Make a solemn commitment to hunt down and relentlessly punish those who have committed grievously evil acts."
+  },
+  "vowOfEnmity": {
+    "name": "Vow of Enmity"
+  },
+  "oathbreaker": {
+    "name": "Oathbreaker",
+    "description": "Break your sacred vows to pursue dark ambitions, extinguishing the light in your heart for demonic power."
+  },
+  "conjureUndead": {
+    "name": "Conjure Undead"
+  },
+  "dreadfulAspect": {
+    "name": "Dreadful Aspect"
+  },
+  "auraOfHate": {
+    "name": "Aura of Hate"
+  },
+  "metamorph": {
+    "name": "Metamorph",
+    "description": "Psychically sculpt life and flesh, molding your body into the ultimate weapon and vessel for psionic power."
+  },
+  "mutableForm": {
+    "name": "Mutable Form"
+  },
+  "boneBlade": {
+    "name": "Bone Blade"
+  },
+  "fleshMaul": {
+    "name": "Flesh Maul"
+  },
+  "visceraLauncher": {
+    "name": "Viscera Launcher"
+  },
+  "psiWarper": {
+    "name": "Psi Warper",
+    "description": "Tune psionic powers to manipulate space between objects, teleporting across battlefields and warping space."
+  },
+  "psykinetic": {
+    "name": "Psykinetic",
+    "description": "Mold psionic force like a malleable tool, erecting sturdy barriers and striking with the force of a battering ram."
+  },
+  "telekineticTechniques": {
+    "description": "You can roll 5d4 instead of expending a Psionic Energy Die.\n\nWhen a target fails its saving throw, you can impose one of the following effects:\n* **Boost.** The target's Speed increases by 10 feet until the start of your next turn.\n* **Disorient.** The target cannot make Opportunity Attacks until the start of its next turn.\n* **Telekinetic Bolt.** The target takes Force damage equal to the number rolled on the die."
+  },
+  "destructiveTrance": {
+    "name": "Destructive Trance"
+  },
+  "reboundingField": {
+    "name": "Rebounding Field",
+    "description": "The attacker must make a DC $(attributes.spellcasting.save) Dexterity saving throw, taking 1d$(attributes.psiDice)$(formatBonus(stats.int.mod)) Force damage on a failed save, or half on a success. You gain Temporary Hit Points equal to the damage dealt."
+  },
+  "seer": {
+    "name": "Seer",
+    "description": "Master the stream of time and foresight, slipping through attacks, guiding allies, and altering outcomes."
+  },
+  "instantSlip": {
+    "name": "Instant Slip"
+  },
+  "temporalGlitch": {
+    "name": "Temporal Glitch"
+  },
+  "shaper": {
+    "name": "Shaper",
+    "description": "Manifest raw mental mass, ectoplasm, and psionic constructs from the Astral Plane to fight alongside you."
+  },
+  "telepath": {
+    "name": "Telepath",
+    "description": "Master tactics in the landscape of the mind, bolstering mental defenses of allies and probing thoughts undetected."
+  },
+  "telepathicDistraction": {
+    "name": "Telepathic Distraction"
+  },
+  "bulwarkMind": {
+    "name": "Bulwark Mind"
+  },
+  "beastMaster": {
+    "name": "Beast Master",
+    "description": "Form a mystical bond with a special animal, drawing on primal magic and deep natural connection."
+  },
+  "primalCompanion": {
+    "name": "Primal Companion"
+  },
+  "beastCompanionName": {
+    "name": "Beast Companion Name"
+  },
+  "commandPrimalCompanionAttack": {
+    "name": "Primal Companion Command",
+    "description": "When you take the Attack action on your turn, you can replace one attack with a command to your Primal Companion to take the Beast's Strike action."
+  },
+  "commandPrimalCompanion": {
+    "name": "Command Companion"
+  },
+  "exceptionalTraining": {
+    "name": "Exceptional Training"
+  },
+  "feyWanderer": {
+    "name": "Fey Wanderer",
+    "description": "Embody a fey mystique to brighten hearts with joyful laughter and strike terror with martial prowess."
+  },
+  "dreadfulStrikes": {
+    "name": "Dreadful Strikes"
+  },
+  "otherworldlyGlamourSkill": {
+    "name": "Otherworldly Glamour Skill"
+  },
+  "beguilingTwist": {
+    "name": "Beguiling Twist"
+  },
+  "gloomStalker": {
+    "name": "Gloom Stalker",
+    "description": "Feel at home in the darkest places, wielding Shadowfell magic to combat enemies lurking in darkness."
+  },
+  "dreadAmbusherLeap": {
+    "name": "Ambusher's Leap"
+  },
+  "dreadfulStrike": {
+    "name": "Dreadful Strike"
+  },
+  "umbralSightInvisibility": {
+    "name": "Umbral Sight"
+  },
+  "ironMind": {
+    "name": "Iron Mind"
+  },
+  "hollowWarden": {
+    "name": "Hollow Warden",
+    "description": "Draw power from ancient horrors to grow bark armor and unleash nature's primal, terrifying vengeance."
+  },
+  "wrathOfTheWild": {
+    "name": "Wrath of the Wild"
+  },
+  "hungeringMightHeal": {
+    "name": "Hungering Might"
+  },
+  "hunter": {
+    "name": "Hunter",
+    "description": "Stalk prey in the wilds, using your abilities as a Hunter to protect nature and people everywhere."
+  },
+  "huntersLore": {
+    "name": "Hunter's Lore"
+  },
+  "huntersPrey": {
+    "name": "Hunter's Prey"
+  },
+  "defensiveTactics": {
+    "name": "Defensive Tactics"
+  },
+  "winterWalker": {
+    "name": "Winter Walker",
+    "description": "Thrive in frozen tundras, channeling frost and rime to shield yourself and paralyze your prey."
+  },
+  "bitingCold": {
+    "name": "Biting Cold",
+    "description": "Your Cold damage ignores Resistance to Cold damage."
+  },
+  "polarStrikes": {
+    "name": "Polar Strikes"
+  },
+  "huntersRimeHeal": {
+    "name": "Hunter's Rime"
+  },
+  "fortifyingSoul": {
+    "name": "Fortifying Soul"
+  },
+  "arcaneTrickster": {
+    "name": "Arcane Trickster",
+    "description": "Enhance your stealth and agility with spells, learning magical tricks for burglary or pranks."
+  },
+  "arcaneTricksterCantrips": {
+    "name": "Arcane Trickster Cantrips"
+  },
+  "arcaneTricksterSpells": {
+    "name": "Arcane Trickster Spells"
+  },
+  "assassin": {
+    "name": "Assassin",
+    "description": "Use stealth, poison, and disguise to eliminate foes with deadly efficiency as a trained killer."
+  },
+  "surprisingStrikes": {
+    "name": "Surprising Strike Damage"
+  },
+  "surprisingStrikesAttack": {
+    "name": "Surprising Strike Advantage",
+    "description": "During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn."
+  },
+  "phantom": {
+    "name": "Phantom",
+    "description": "Slip between the living and dead, drawing on spectral power to strike with supernatural lethality."
+  },
+  "wailsFromTheGraveResource": {
+    "name": "Wails from the Grave"
+  },
+  "wailsFromTheGrave": {
+    "name": "Wails from the Grave"
+  },
+  "scion": {
+    "name": "Scion",
+    "description": "Channel dark power through malevolent dread aspects, shifting your allegiance to unleash sinister magic."
+  },
+  "bloodthirstResource": {
+    "name": "Bloodthirst"
+  },
+  "bloodthirst": {
+    "name": "Bloodthirst"
+  },
+  "dreadAllegiance": {
+    "name": "Dread Allegiance"
+  },
+  "soulknife": {
+    "name": "Soulknife",
+    "description": "Strike with your mind, channeling innate psionic power to cut through physical and psychic barriers."
+  },
+  "psiBolsteredKnack": {
+    "name": "Psi-Bolstered Knack"
+  },
+  "psychicWhispers": {
+    "name": "Psychic Whispers"
+  },
+  "psychicBlade": {
+    "name": "Psychic Blade"
+  },
+  "thief": {
+    "name": "Thief",
+    "description": "Mix burglary and exploration, gaining abilities to delve into ruins and maximize magic item benefits."
+  },
+  "fastHands": {
+    "name": "Fast Hands"
+  },
+  "secondStoryWorkClimber": {
+    "name": "Climber"
+  },
+  "aberrant": {
+    "name": "Aberrant Sorcery",
+    "description": "Wield psionic power granted by an alien influence, touching minds and altering the world around you."
+  },
+  "clockwork": {
+    "name": "Clockwork Sorcery",
+    "description": "Channel the cosmic force of order, utilizing clockwork magic from Mechanus to manipulate reality."
+  },
+  "restoreBalance": {
+    "name": "Restore Balance"
+  },
+  "bastionOfLaw": {
+    "name": "Bastion of Law"
+  },
+  "demonic": {
+    "name": "Demonic Sorcery",
+    "description": "Draw magic from a rift to the Abyss, tearing open ruptures to channel chaotic demonic power."
+  },
+  "abyssalRupture": {
+    "name": "Abyssal Rupture"
+  },
+  "abyssalRealm": {
+    "name": "Abyssal Realm"
+  },
+  "draconic": {
+    "name": "Draconic Sorcery",
+    "description": "Wield innate magic granted by dragons, channeling their ancient power into devastating spells."
+  },
+  "elementalAffinity": {
+    "name": "Elemental Affinity"
+  },
+  "shadow": {
+    "name": "Shadow Sorcery",
+    "description": "Draw magic from the Shadowfell to command darkness, wrap yourself in gloom, and summon foul beasts."
+  },
+  "strengthOfTheGrave": {
+    "name": "Strength of the Grave"
+  },
+  "wildMagic": {
+    "name": "Wild Magic Sorcery",
+    "description": "Channel the underlying chaos of creation, unleashing unpredictable raw magic in spectacular bursts."
+  },
+  "wildMagicSurge": {
+    "name": "Wild Magic Surge"
+  },
+  "tidesOfChaos": {
+    "name": "Tides of Chaos"
+  },
+  "bendLuck": {
+    "name": "Bend Luck"
+  },
+  "archfeyPatron": {
+    "name": "Archfey Patron",
+    "description": "Draw power from the Feywild, making a pact with a powerful archfey to weave beguiling, mirthful magic."
+  },
+  "stepsOfTheFeyOptions": {
+    "name": "Steps of the Fey Options"
+  },
+  "stepsOfTheFeyLevel6Options": {
+    "name": "Steps of the Fey Level 6 Options"
+  },
+  "stepsOfTheFey": {
+    "name": "Steps of the Fey"
+  },
+  "mistyEscape": {
+    "name": "Misty Escape"
+  },
+  "celestialPatron": {
+    "name": "Celestial Patron",
+    "description": "Draw power from the Upper Planes, forging a pact with heavenly entities to wield light and healing."
+  },
+  "healingLight": {
+    "name": "Healing Light"
+  },
+  "fiendPatron": {
+    "name": "Fiend Patron",
+    "description": "Draw power from the Lower Planes, forging a dark bargain with a demon lord or archdevil."
+  },
+  "darkOnesBlessing": {
+    "name": "Dark One's Blessing"
+  },
+  "darkOnesOwnLuck": {
+    "name": "Dark One's Own Luck"
+  },
+  "greatOldOnePatron": {
+    "name": "Great Old One Patron",
+    "description": "Draw power from the Far Realm or an incomprehensible elder god, mastering cosmic mind-bending magic."
+  },
+  "awakenedMind": {
+    "name": "Awakened Mind"
+  },
+  "psychicSpellsDamage": {
+    "name": "Psychic Spells"
+  },
+  "clairvoyantCombatant": {
+    "name": "Clairvoyant Combatant"
+  },
+  "undeadPatron": {
+    "name": "Undead Patron",
+    "description": "Make a pact with a legendary undead entity, gaining dreadful powers to ward off death and terrify foes."
+  },
+  "formOfDread": {
+    "name": "Form of Dread"
+  },
+  "arcaneNecrosis": {
+    "name": "Arcane Necrosis",
+    "description": "Your spells ignore Resistance to Necrotic damage."
+  },
+  "necroticSpellConversion": {
+    "name": "Necrotic Spell Conversion"
+  },
+  "dreadedNecrosis": {
+    "name": "Dreaded Necrosis"
+  },
+  "vestigePatron": {
+    "name": "Vestige Patron",
+    "description": "Draw power from a ghostly vestige of a lost god, manifesting a companion to channel divine magic."
+  },
+  "vestigeCompanion": {
+    "name": "Vestige Companion"
+  },
+  "vestigeCompanionName": {
+    "name": "Vestige Companion Name"
+  },
+  "vestigeDomainChoice": {
+    "name": "Vestige Domain"
+  },
+  "commandVestigeAttack": {
+    "name": "Command Vestige",
+    "description": "When you take the Attack action on your turn, you can replace one attack with a command to your Vestige to take an action in its stat block."
+  },
+  "commandVestige": {
+    "name": "Command Vestige"
+  },
+  "abjurer": {
+    "name": "Abjurer",
+    "description": "Focus your magical study on spells that block, banish, and protect, warding against magical harm."
+  },
+  "arcaneWard": {
+    "name": "Arcane Ward"
+  },
+  "projectedWard": {
+    "name": "Projected Ward"
+  },
+  "bladesinger": {
+    "name": "Bladesinger",
+    "description": "Master a wizardry tradition mixing swordplay and dance to channel magic into your singing blades."
+  },
+  "bladesong": {
+    "name": "Bladesong"
+  },
+  "bladesingerSkillProficiencies": {
+    "name": "Bladesinger Skill Proficiencies"
+  },
+  "diviner": {
+    "name": "Diviner",
+    "description": "Part the veils of space and time as a Diviner, mastering spells of discernment, foresight, and truth."
+  },
+  "portent": {
+    "name": "Portent"
+  },
+  "expertDivination": {
+    "name": "Expert Divination",
+    "description": "When you cast a Divination spell of 2nd level or higher, you regain an expended spell slot of a lower level."
+  },
+  "evoker": {
+    "name": "Evoker",
+    "description": "Create powerful elemental effects like searing flame and crackling lightning, blasting armies afar."
+  },
+  "sculptSpells": {
+    "name": "Sculpt Spells",
+    "description": "When you cast a spell that requires a Saving Throw, your allies automatically succeed on their saving throw and take no damage if they would normally take half."
+  },
+  "illusionist": {
+    "name": "Illusionist",
+    "description": "Specialize in magic that dazzles senses and tricks the mind, crafting illusions that seem utterly real."
+  },
+  "improvedIllusionsNoVerbal": {
+    "name": "Improved Illusions",
+    "description": "You can cast Illusion spells without Verbal components."
+  },
+  "necromancer": {
+    "name": "Necromancer",
+    "description": "Explore the cosmic forces of life and death, draining life force and raising loyal undead thralls."
+  },
+  "necromancerCommandFamiliar": {
+    "name": "Command Familiar",
+    "description": "When you take the Attack action on your turn, you can replace one attack with a command to your familiar to make one attack with its Reaction."
+  },
+  "grimHarvest": {
+    "name": "Grim Harvest"
+  },
+  "overwhelmingNecrosis": {
+    "name": "Overwhelming Necrosis",
+    "description": "Your Necromancy spells ignore Resistance to Necrotic damage."
+  },
+  "warlock": {
+    "name": "Warlock",
+    "description": "Seekers of arcane power bound by pacts to enigmatic otherworldly patrons."
+  },
+  "warlockSkillProficiencies": {
+    "name": "Warlock Skill Proficiencies"
+  },
+  "pactMagicSpellSlot": {
+    "name": "Lv. $(Math.min(5, Math.ceil(meta.level / 2))) Spell Slot"
+  },
+  "warlockCantrips": {
+    "name": "Warlock Cantrips"
+  },
+  "warlockPreparedSpells": {
+    "name": "Warlock Prepared Spells"
+  },
+  "eldritchInvocations": {
+    "name": "Eldritch Invocations"
+  },
+  "warlockSubclass": {
+    "name": "Warlock Subclass"
+  },
+  "wizard": {
+    "name": "Wizard",
+    "description": "Scholarly mages who master the arcane arts through intense study and spellbooks."
+  },
+  "wizardSkillProficiencies": {
+    "name": "Wizard Skill Proficiencies"
+  },
+  "wizardCantrips": {
+    "name": "Wizard Cantrips"
+  },
+  "wizardPreparedSpells": {
+    "name": "Wizard Prepared Spells"
+  },
+  "scholar": {
+    "name": "Scholar Skill Expertise"
+  },
+  "wizardSubclass": {
+    "name": "Wizard Subclass"
+  },
+  "blindedAdvantage": {
+    "name": "Blinded Advantage"
+  },
+  "charmedAdvantage": {
+    "name": "Charmed Advantage"
+  },
+  "concentrationAdvantage": {
+    "name": "Concentration"
+  },
+  "deafenedAdvantage": {
+    "name": "Deafened Advantage"
+  },
+  "deathSaveAdvantage": {
+    "name": "Death Saves"
+  },
+  "exhaustionAdvantage": {
+    "name": "Exhaustion Advantage"
+  },
+  "frightenedAdvantage": {
+    "name": "Frightened Advantage"
+  },
+  "grappledAdvantage": {
+    "name": "Grappled Advantage"
+  },
+  "incapacitatedAdvantage": {
+    "name": "Incapacitated Advantage"
+  },
+  "invisibleAdvantage": {
+    "name": "Invisible Advantage"
+  },
+  "paralyzedAdvantage": {
+    "name": "Paralyzed Advantage"
+  },
+  "petrifiedAdvantage": {
+    "name": "Petrified Advantage"
+  },
+  "poisonedAdvantage": {
+    "name": "Poisoned Advantage"
+  },
+  "proneAdvantage": {
+    "name": "Prone Advantage"
+  },
+  "restrainedAdvantage": {
+    "name": "Restrained Advantage"
+  },
+  "stunnedAdvantage": {
+    "name": "Stunned Advantage"
+  },
+  "unconsciousAdvantage": {
+    "name": "Unconscious Advantage"
+  },
+  "dash": {
+    "name": "Dash"
+  },
+  "disengage": {
+    "name": "Disengage"
+  },
+  "dodge": {
+    "name": "Dodge"
+  },
+  "help": {
+    "name": "Help"
+  },
+  "hide": {
+    "name": "Hide"
+  },
+  "influence": {
+    "name": "Influence"
+  },
+  "longRest": {
+    "name": "Long Rest"
+  },
+  "opportunityAttack": {
+    "name": "Opportunity Attack"
+  },
+  "ready": {
+    "name": "Ready"
+  },
+  "search": {
+    "name": "Search"
+  },
+  "shortRest": {
+    "name": "Short Rest"
+  },
+  "study": {
+    "name": "Study"
+  },
+  "weaponAttack": {
+    "name": "$(local.name)"
+  },
+  "extraAttack": {
+    "name": "Extra Attack",
+    "description": "You can attack twice per turn."
+  },
+  "extraProperties": {
+    "name": "Extra Properties"
+  },
+  "masteryProperties": {
+    "name": "Mastery Properties"
+  },
+  "graze": {
+    "name": "Graze"
+  },
+  "slow": {
+    "name": "Slow",
+    "summary": "You alter time around foes to slow their movement and limit actions."
+  },
+  "nick": {
+    "name": "Nick"
+  },
+  "cleave": {
+    "name": "Cleave"
+  },
+  "push": {
+    "name": "Push"
+  },
+  "topple": {
+    "name": "Topple"
+  },
+  "sap": {
+    "name": "Sap"
+  },
+  "vex": {
+    "name": "Vex"
+  },
+  "acidImmunity": {
+    "name": "Acid Immunity"
+  },
+  "blindedImmunity": {
+    "name": "Blinded Immunity"
+  },
+  "bludgeoningImmunity": {
+    "name": "Bludgeoning Immunity"
+  },
+  "coldImmunity": {
+    "name": "Cold Immunity"
+  },
+  "deafenedImmunity": {
+    "name": "Deafened Immunity"
+  },
+  "exhaustionImmunity": {
+    "name": "Exhaustion Immunity"
+  },
+  "fireImmunity": {
+    "name": "Fire Immunity"
+  },
+  "forceImmunity": {
+    "name": "Force Immunity"
+  },
+  "grappledImmunity": {
+    "name": "Grappled Immunity"
+  },
+  "incapacitatedImmunity": {
+    "name": "Incapacitated Immunity"
+  },
+  "invisibleImmunity": {
+    "name": "Invisible Immunity"
+  },
+  "lightningImmunity": {
+    "name": "Lightning Immunity"
+  },
+  "necroticImmunity": {
+    "name": "Necrotic Immunity"
+  },
+  "paralyzedImmunity": {
+    "name": "Paralyzed Immunity"
+  },
+  "petrifiedImmunity": {
+    "name": "Petrified Immunity"
+  },
+  "piercingImmunity": {
+    "name": "Piercing Immunity"
+  },
+  "poisonImmunity": {
+    "name": "Poison Immunity"
+  },
+  "poisonedImmunity": {
+    "name": "Poisoned Immunity"
+  },
+  "proneImmunity": {
+    "name": "Prone Immunity"
+  },
+  "psychicImmunity": {
+    "name": "Psychic Immunity"
+  },
+  "radiantImmunity": {
+    "name": "Radiant Immunity"
+  },
+  "restrainedImmunity": {
+    "name": "Restrained Immunity"
+  },
+  "slashingImmunity": {
+    "name": "Slashing Immunity"
+  },
+  "stunnedImmunity": {
+    "name": "Stunned Immunity"
+  },
+  "thunderImmunity": {
+    "name": "Thunder Immunity"
+  },
+  "unconsciousImmunity": {
+    "name": "Unconscious Immunity"
+  },
+  "finesseWeaponProficiency": {
+    "name": "Finesse Weapon Proficiency"
+  },
+  "heavyArmorTraining": {
+    "name": "Heavy Armor Training"
+  },
+  "lightArmorTraining": {
+    "name": "Light Armor Training"
+  },
+  "lightWeaponProficiency": {
+    "name": "Light Weapon Proficiency"
+  },
+  "martialWeaponProficiency": {
+    "name": "Martial Weapon Proficiency"
+  },
+  "mediumArmorTraining": {
+    "name": "Medium Armor Training"
+  },
+  "shieldTraining": {
+    "name": "Shield Training"
+  },
+  "acidResistance": {
+    "name": "Acid Resistance"
+  },
+  "bludgeoningResistance": {
+    "name": "Bludgeoning Resistance"
+  },
+  "coldResistance": {
+    "name": "Cold Resistance"
+  },
+  "fireResistance": {
+    "name": "Fire Resistance"
+  },
+  "forceResistance": {
+    "name": "Force Resistance"
+  },
+  "lightningResistance": {
+    "name": "Lightning Resistance"
+  },
+  "necroticResistance": {
+    "name": "Necrotic Resistance"
+  },
+  "piercingResistance": {
+    "name": "Piercing Resistance"
+  },
+  "poisonResistance": {
+    "name": "Poison Resistance"
+  },
+  "psychicResistance": {
+    "name": "Psychic Resistance"
+  },
+  "radiantResistance": {
+    "name": "Radiant Resistance"
+  },
+  "slashingResistance": {
+    "name": "Slashing Resistance"
+  },
+  "thunderResistance": {
+    "name": "Thunder Resistance"
+  },
+  "chaAdvantage": {
+    "name": "Cha Advantage"
+  },
+  "conAdvantage": {
+    "name": "Con Advantage"
+  },
+  "dexAdvantage": {
+    "name": "Dex Advantage"
+  },
+  "intAdvantage": {
+    "name": "Int Advantage"
+  },
+  "strAdvantage": {
+    "name": "Str Advantage"
+  },
+  "wisAdvantage": {
+    "name": "Wis Advantage"
+  },
+  "chaSave": {
+    "name": "Charisma Saving Throw Proficiency"
+  },
+  "conSave": {
+    "name": "Constitution Saving Throw Proficiency"
+  },
+  "dexSave": {
+    "name": "Dexterity Saving Throw Proficiency"
+  },
+  "intSave": {
+    "name": "Intelligence Saving Throw Proficiency"
+  },
+  "strSave": {
+    "name": "Strength Saving Throw Proficiency"
+  },
+  "wisSave": {
+    "name": "Wisdom Saving Throw Proficiency"
+  },
+  "acrobaticsAdvantage": {
+    "name": "Acrobatics Advantage"
+  },
+  "animalHandlingAdvantage": {
+    "name": "Animal Handling Advantage"
+  },
+  "arcanaAdvantage": {
+    "name": "Arcana Advantage"
+  },
+  "athleticsAdvantage": {
+    "name": "Athletics Advantage"
+  },
+  "deceptionAdvantage": {
+    "name": "Deception Advantage"
+  },
+  "historyAdvantage": {
+    "name": "History Advantage"
+  },
+  "insightAdvantage": {
+    "name": "Insight Advantage"
+  },
+  "intimidationAdvantage": {
+    "name": "Intimidation Advantage"
+  },
+  "investigationAdvantage": {
+    "name": "Investigation Advantage"
+  },
+  "medicineAdvantage": {
+    "name": "Medicine Advantage"
+  },
+  "natureAdvantage": {
+    "name": "Nature Advantage"
+  },
+  "perceptionAdvantage": {
+    "name": "Perception Advantage"
+  },
+  "performanceAdvantage": {
+    "name": "Performance Advantage"
+  },
+  "persuasionAdvantage": {
+    "name": "Persuasion Advantage"
+  },
+  "religionAdvantage": {
+    "name": "Religion Advantage"
+  },
+  "sleightOfHandAdvantage": {
+    "name": "Sleight Of Hand Advantage"
+  },
+  "stealthAdvantage": {
+    "name": "Stealth Advantage"
+  },
+  "survivalAdvantage": {
+    "name": "Survival Advantage"
+  },
+  "acrobaticsDisadvantage": {
+    "name": "Acrobatics Disadvantage"
+  },
+  "animalHandlingDisadvantage": {
+    "name": "Animal Handling Disadvantage"
+  },
+  "arcanaDisadvantage": {
+    "name": "Arcana Disadvantage"
+  },
+  "athleticsDisadvantage": {
+    "name": "Athletics Disadvantage"
+  },
+  "deceptionDisadvantage": {
+    "name": "Deception Disadvantage"
+  },
+  "historyDisadvantage": {
+    "name": "History Disadvantage"
+  },
+  "insightDisadvantage": {
+    "name": "Insight Disadvantage"
+  },
+  "intimidationDisadvantage": {
+    "name": "Intimidation Disadvantage"
+  },
+  "investigationDisadvantage": {
+    "name": "Investigation Disadvantage"
+  },
+  "medicineDisadvantage": {
+    "name": "Medicine Disadvantage"
+  },
+  "natureDisadvantage": {
+    "name": "Nature Disadvantage"
+  },
+  "perceptionDisadvantage": {
+    "name": "Perception Disadvantage"
+  },
+  "performanceDisadvantage": {
+    "name": "Performance Disadvantage"
+  },
+  "persuasionDisadvantage": {
+    "name": "Persuasion Disadvantage"
+  },
+  "religionDisadvantage": {
+    "name": "Religion Disadvantage"
+  },
+  "sleightOfHandDisadvantage": {
+    "name": "Sleight Of Hand Disadvantage"
+  },
+  "stealthDisadvantage": {
+    "name": "Stealth Disadvantage"
+  },
+  "survivalDisadvantage": {
+    "name": "Survival Disadvantage"
+  },
+  "acrobaticsExpertise": {
+    "name": "Acrobatics",
+    "summary": "Stay on your feet in a tricky situation, or perform an acrobatic stunt."
+  },
+  "animalHandlingExpertise": {
+    "name": "Animal Handling",
+    "summary": "Calm or train an animal, or get an animal to behave in a certain way."
+  },
+  "arcanaExpertise": {
+    "name": "Arcana",
+    "summary": "Recall lore about spells, magic items, and the planes of existence."
+  },
+  "athleticsExpertise": {
+    "name": "Athletics",
+    "summary": "Jump farther than normal, stay afloat in rough water, or break something."
+  },
+  "deceptionExpertise": {
+    "name": "Deception",
+    "summary": "Tell a convincing lie, or wear a disguise convincingly."
+  },
+  "historyExpertise": {
+    "name": "History",
+    "summary": "Recall lore about historical events, people, nations, and cultures."
+  },
+  "insightExpertise": {
+    "name": "Insight",
+    "summary": "Discern a person's mood and intentions."
+  },
+  "intimidationExpertise": {
+    "name": "Intimidation",
+    "summary": "Awe or threaten someone into doing what you want."
+  },
+  "investigationExpertise": {
+    "name": "Investigation",
+    "summary": "Find obscure information in books, or deduce how something works."
+  },
+  "medicineExpertise": {
+    "name": "Medicine",
+    "summary": "Diagnose an illness, or determine what killed the recently slain."
+  },
+  "natureExpertise": {
+    "name": "Nature",
+    "summary": "Recall lore about terrain, plants, animals, and weather."
+  },
+  "perceptionExpertise": {
+    "name": "Perception",
+    "summary": "Using a combination of senses, notice something that's easy to miss."
+  },
+  "performanceExpertise": {
+    "name": "Performance",
+    "summary": "Act, tell a story, perform music, or dance."
+  },
+  "persuasionExpertise": {
+    "name": "Persuasion",
+    "summary": "Honestly and graciously convince someone of something."
+  },
+  "religionExpertise": {
+    "name": "Religion",
+    "summary": "Recall lore about gods, religious rituals, and holy symbols."
+  },
+  "sleightOfHandExpertise": {
+    "name": "Sleight of Hand",
+    "summary": "Pick a pocket, conceal a handheld object, or perform legerdemain."
+  },
+  "stealthExpertise": {
+    "name": "Stealth",
+    "summary": "Escape notice by moving quietly and hiding behind things."
+  },
+  "survivalExpertise": {
+    "name": "Survival",
+    "summary": "Follow tracks, forage, find a trail, or avoid natural hazards."
+  },
+  "acrobaticsHalfProficiency": {
+    "name": "Acrobatics Half Proficiency"
+  },
+  "animalHandlingHalfProficiency": {
+    "name": "Animal Handling Half Proficiency"
+  },
+  "arcanaHalfProficiency": {
+    "name": "Arcana Half Proficiency"
+  },
+  "athleticsHalfProficiency": {
+    "name": "Athletics Half Proficiency"
+  },
+  "deceptionHalfProficiency": {
+    "name": "Deception Half Proficiency"
+  },
+  "historyHalfProficiency": {
+    "name": "History Half Proficiency"
+  },
+  "insightHalfProficiency": {
+    "name": "Insight Half Proficiency"
+  },
+  "intimidationHalfProficiency": {
+    "name": "Intimidation Half Proficiency"
+  },
+  "investigationHalfProficiency": {
+    "name": "Investigation Half Proficiency"
+  },
+  "medicineHalfProficiency": {
+    "name": "Medicine Half Proficiency"
+  },
+  "natureHalfProficiency": {
+    "name": "Nature Half Proficiency"
+  },
+  "perceptionHalfProficiency": {
+    "name": "Perception Half Proficiency"
+  },
+  "performanceHalfProficiency": {
+    "name": "Performance Half Proficiency"
+  },
+  "persuasionHalfProficiency": {
+    "name": "Persuasion Half Proficiency"
+  },
+  "religionHalfProficiency": {
+    "name": "Religion Half Proficiency"
+  },
+  "sleightOfHandHalfProficiency": {
+    "name": "Sleight Of Hand Half Proficiency"
+  },
+  "stealthHalfProficiency": {
+    "name": "Stealth Half Proficiency"
+  },
+  "survivalHalfProficiency": {
+    "name": "Survival Half Proficiency"
+  },
+  "acrobaticsProficiency": {
+    "name": "Acrobatics",
+    "summary": "Stay on your feet in a tricky situation, or perform an acrobatic stunt."
+  },
+  "animalHandlingProficiency": {
+    "name": "Animal Handling",
+    "summary": "Calm or train an animal, or get an animal to behave in a certain way."
+  },
+  "arcanaProficiency": {
+    "name": "Arcana",
+    "summary": "Recall lore about spells, magic items, and the planes of existence."
+  },
+  "athleticsProficiency": {
+    "name": "Athletics",
+    "summary": "Jump farther than normal, stay afloat in rough water, or break something."
+  },
+  "deceptionProficiency": {
+    "name": "Deception",
+    "summary": "Tell a convincing lie, or wear a disguise convincingly."
+  },
+  "historyProficiency": {
+    "name": "History",
+    "summary": "Recall lore about historical events, people, nations, and cultures."
+  },
+  "insightProficiency": {
+    "name": "Insight",
+    "summary": "Discern a person's mood and intentions."
+  },
+  "intimidationProficiency": {
+    "name": "Intimidation",
+    "summary": "Awe or threaten someone into doing what you want."
+  },
+  "investigationProficiency": {
+    "name": "Investigation",
+    "summary": "Find obscure information in books, or deduce how something works."
+  },
+  "medicineProficiency": {
+    "name": "Medicine",
+    "summary": "Diagnose an illness, or determine what killed the recently slain."
+  },
+  "natureProficiency": {
+    "name": "Nature",
+    "summary": "Recall lore about terrain, plants, animals, and weather."
+  },
+  "perceptionProficiency": {
+    "name": "Perception",
+    "summary": "Using a combination of senses, notice something that's easy to miss."
+  },
+  "performanceProficiency": {
+    "name": "Performance",
+    "summary": "Act, tell a story, perform music, or dance."
+  },
+  "persuasionProficiency": {
+    "name": "Persuasion",
+    "summary": "Honestly and graciously convince someone of something."
+  },
+  "religionProficiency": {
+    "name": "Religion",
+    "summary": "Recall lore about gods, religious rituals, and holy symbols."
+  },
+  "sleightOfHandProficiency": {
+    "name": "Sleight of Hand",
+    "summary": "Pick a pocket, conceal a handheld object, or perform legerdemain."
+  },
+  "stealthProficiency": {
+    "name": "Stealth",
+    "summary": "Escape notice by moving quietly and hiding behind things."
+  },
+  "survivalProficiency": {
+    "name": "Survival",
+    "summary": "Follow tracks, forage, find a trail, or avoid natural hazards."
+  },
+  "level1SpellSlot": {
+    "name": "Lv. 1 Spell Slot"
+  },
+  "level2SpellSlot": {
+    "name": "Lv. 2 Spell Slot"
+  },
+  "level3SpellSlot": {
+    "name": "Lv. 3 Spell Slot"
+  },
+  "level4SpellSlot": {
+    "name": "Lv. 4 Spell Slot"
+  },
+  "chaCaster": {
+    "name": "Cha Caster"
+  },
+  "chooseCaster": {
+    "name": "Choose Caster"
+  },
+  "fullCaster": {
+    "name": "Full Caster"
+  },
+  "halfCaster": {
+    "name": "Half Caster"
+  },
+  "intCaster": {
+    "name": "Int Caster"
+  },
+  "oneThirdCaster": {
+    "name": "One Third Caster"
+  },
+  "wisCaster": {
+    "name": "Wis Caster"
+  },
+  "breastplate": {
+    "name": "Breastplate"
+  },
+  "chainMail": {
+    "name": "Chain Mail"
+  },
+  "chainShirt": {
+    "name": "Chain Shirt"
+  },
+  "halfPlateArmor": {
+    "name": "Half Plate Armor"
+  },
+  "hideArmor": {
+    "name": "Hide Armor"
+  },
+  "leatherArmor": {
+    "name": "Leather Armor"
+  },
+  "paddedArmor": {
+    "name": "Padded Armor"
+  },
+  "plateArmor": {
+    "name": "Plate Armor"
+  },
+  "ringMail": {
+    "name": "Ring Mail"
+  },
+  "scaleMail": {
+    "name": "Scale Mail"
+  },
+  "shieldEquipment": {
+    "name": "Shield"
+  },
+  "splintArmor": {
+    "name": "Splint Armor"
+  },
+  "studdedLeatherArmor": {
+    "name": "Studded Leather Armor"
+  },
+  "unarmored": {
+    "name": "Unarmored"
+  },
+  "alchemistsTools": {
+    "name": "Alchemist's Tools"
+  },
+  "brewersSupplies": {
+    "name": "Brewer's Supplies"
+  },
+  "calligraphersSupplies": {
+    "name": "Calligrapher's Supplies"
+  },
+  "carpentersTools": {
+    "name": "Carpenter's Tools"
+  },
+  "cartographersTools": {
+    "name": "Cartographer's Tools"
+  },
+  "cobblersTools": {
+    "name": "Cobbler's Tools"
+  },
+  "cooksUtensils": {
+    "name": "Cook's Utensils"
+  },
+  "disguiseKit": {
+    "name": "Disguise Kit"
+  },
+  "forgeryKit": {
+    "name": "Forgery Kit"
+  },
+  "gamingSet": {
+    "name": "Gaming Set"
+  },
+  "glassblowersTools": {
+    "name": "Glassblower's Tools"
+  },
+  "herbalismKit": {
+    "name": "Herbalism Kit"
+  },
+  "jewelersTools": {
+    "name": "Jeweler's Tools"
+  },
+  "leatherworkersTools": {
+    "name": "Leatherworker's Tools"
+  },
+  "masonsTools": {
+    "name": "Mason's Tools"
+  },
+  "musicalInstrument": {
+    "name": "Musical Instrument"
+  },
+  "navigatorsTools": {
+    "name": "Navigator's Tools"
+  },
+  "paintersSupplies": {
+    "name": "Painter's Supplies"
+  },
+  "poisonersKit": {
+    "name": "Poisoner's Kit"
+  },
+  "pottersTools": {
+    "name": "Potter's Tools"
+  },
+  "smithsTools": {
+    "name": "Smith's Tools"
+  },
+  "thievesTools": {
+    "name": "thievesTools"
+  },
+  "tinkersTools": {
+    "name": "Tinker's Tools"
+  },
+  "weaversTools": {
+    "name": "Weaver's Tools"
+  },
+  "woodcarversTools": {
+    "name": "Woodcarver's Tools"
+  },
+  "battleaxe": {
+    "name": "Battleaxe"
+  },
+  "blowgun": {
+    "name": "Blowgun"
+  },
+  "club": {
+    "name": "Club"
+  },
+  "dagger": {
+    "name": "Dagger"
+  },
+  "dart": {
+    "name": "Dart"
+  },
+  "flail": {
+    "name": "Flail"
+  },
+  "glaive": {
+    "name": "Glaive"
+  },
+  "greataxe": {
+    "name": "Greataxe"
+  },
+  "greatclub": {
+    "name": "Greatclub"
+  },
+  "greatsword": {
+    "name": "Greatsword"
+  },
+  "halberd": {
+    "name": "Halberd"
+  },
+  "handCrossbow": {
+    "name": "Hand Crossbow"
+  },
+  "handaxe": {
+    "name": "Handaxe"
+  },
+  "heavyCrossbow": {
+    "name": "Heavy Crossbow"
+  },
+  "javelin": {
+    "name": "Javelin"
+  },
+  "lance": {
+    "name": "Lance"
+  },
+  "lightCrossbow": {
+    "name": "Light Crossbow"
+  },
+  "lightHammer": {
+    "name": "Light Hammer"
+  },
+  "longbow": {
+    "name": "Longbow"
+  },
+  "longsword": {
+    "name": "Longsword"
+  },
+  "mace": {
+    "name": "Mace"
+  },
+  "maul": {
+    "name": "Maul"
+  },
+  "morningstar": {
+    "name": "Morningstar"
+  },
+  "musket": {
+    "name": "Musket"
+  },
+  "pike": {
+    "name": "Pike"
+  },
+  "pistol": {
+    "name": "Pistol"
+  },
+  "quarterstaff": {
+    "name": "Quarterstaff"
+  },
+  "rapier": {
+    "name": "Rapier"
+  },
+  "scimitar": {
+    "name": "Scimitar"
+  },
+  "shortbow": {
+    "name": "Shortbow"
+  },
+  "shortsword": {
+    "name": "Shortsword"
+  },
+  "sickle": {
+    "name": "Sickle"
+  },
+  "sling": {
+    "name": "Sling"
+  },
+  "spear": {
+    "name": "Spear"
+  },
+  "trident": {
+    "name": "Trident"
+  },
+  "unarmed": {
+    "name": "Unarmed Strike"
+  },
+  "warPick": {
+    "name": "War Pick"
+  },
+  "warhammer": {
+    "name": "Warhammer"
+  },
+  "whip": {
+    "name": "Whip"
+  },
+  "archery": {
+    "name": "Archery",
+    "summary": "Gain a +2 bonus to attack rolls made with ranged weapons."
+  },
+  "defense": {
+    "name": "Defense",
+    "summary": "Gain a +1 bonus to Armor Class while wearing armor."
+  },
+  "greatWeaponFighting": {
+    "name": "Great Weapon Fighting",
+    "summary": "Treat any 1 or 2 on a damage die as a 3 when wielding two-handed weapons."
+  },
+  "interception": {
+    "name": "Interception",
+    "summary": "Use your reaction to reduce incoming damage to a nearby ally."
+  },
+  "protection": {
+    "name": "Protection",
+    "summary": "Use your reaction to impose disadvantage on attacks against nearby allies."
+  },
+  "thrownWeaponFighting": {
+    "name": "Thrown Weapon Fighting",
+    "summary": "Draw thrown weapons instantly and deal extra damage with them."
+  },
+  "twoWeaponFighting": {
+    "name": "Two-Weapon Fighting",
+    "summary": "Make an additional attack with a Light weapon."
+  },
+  "unarmedFighting": {
+    "name": "Unarmed Fighting",
+    "summary": "Enhance unarmed strike damage and deal extra damage to grappled targets."
+  },
+  "unarmedFightingUnarmedFighting": {
+    "name": "Unarmed Fighting"
+  },
+  "abilityScoreImprovement": {
+    "name": "Ability Score Improvement I",
+    "summary": "Increase one ability score by 2, or two ability scores by 1."
+  },
+  "abilityScoreImprovement2": {
+    "name": "Ability Score Improvement II",
+    "summary": "Increase one ability score by 2, or two ability scores by 1."
+  },
+  "abilityScoreImprovement3": {
+    "name": "Ability Score Improvement III",
+    "summary": "Increase one ability score by 2, or two ability scores by 1."
+  },
+  "actor": {
+    "name": "Actor",
+    "summary": "Master mimicry and theatrical impersonation to deceive others."
+  },
+  "athlete": {
+    "name": "Athlete",
+    "summary": "Enhance physical agility, climbing speed, and quick recovery from prone."
+  },
+  "charger": {
+    "name": "Charger",
+    "summary": "Gain extra momentum and damage when charging into melee after a dash."
+  },
+  "chargerImprovedDash": {
+    "name": "Improved Dash",
+    "description": "Your Speed increases by 10 feet for that action."
+  },
+  "chargerCharge": {
+    "name": "Charge"
+  },
+  "chef": {
+    "name": "Chef",
+    "summary": "Cook delicious meals that bolster allies with extra healing and temporary hit points."
+  },
+  "chefReplenishingMeal": {
+    "name": "Replenishing Meal"
+  },
+  "chefBolsteringTreats": {
+    "name": "Bolstering Treats"
+  },
+  "crossbowExpert": {
+    "name": "Crossbow Expert",
+    "summary": "Ignore loading properties and shoot crossbows in close melee without penalty."
+  },
+  "crusher": {
+    "name": "Crusher",
+    "summary": "Bludgeoning strikes knock targets back and empower critical hits."
+  },
+  "crusherPush": {
+    "name": "Push"
+  },
+  "crusherEnhancedCritical": {
+    "name": "Enhanced Critical"
+  },
+  "defensiveDuelist": {
+    "name": "Defensive Duelist",
+    "summary": "Use your reaction with a finesse weapon to boost AC against an incoming strike."
+  },
+  "defensiveDuelistParry": {
+    "name": "Parry"
+  },
+  "dualWielder": {
+    "name": "Dual Wielder",
+    "summary": "Wield dual weapons more effectively and gain a defense boost."
+  },
+  "durable": {
+    "name": "Durable",
+    "summary": "Gain rapid recovery and bonus healing when expending hit dice."
+  },
+  "durableSpeedyRecovery": {
+    "name": "Speedy Recovery"
+  },
+  "elementalAdept": {
+    "name": "Elemental Adept",
+    "summary": "Bypass elemental resistance and empower spells of a chosen damage type."
+  },
+  "energyMastery": {
+    "name": "Energy Mastery"
+  },
+  "feyTouched": {
+    "name": "Fey Touched",
+    "summary": "Learn Misty Step and a 1st-level spell with free daily castings."
+  },
+  "feyMagicSpell": {
+    "name": "Fey Magic Spell"
+  },
+  "grappler": {
+    "name": "Grappler",
+    "summary": "Pin and restrain grappled opponents with superior wrestling technique."
+  },
+  "grapplerAttackAdvantage": {
+    "name": "Attack Advantage",
+    "description": "You have Advantage on attack rolls against a creature Grappled by you."
+  },
+  "grapplerFastWrestler": {
+    "name": "Fast Wrestler",
+    "description": "You don't have to spend extra movement to move a creature Grappled by you if the creature is your size or smaller."
+  },
+  "greatWeaponMaster": {
+    "name": "Great Weapon Master",
+    "summary": "Unleash heavy power attacks and gain bonus strikes on critical hits."
+  },
+  "hew": {
+    "name": "Hew"
+  },
+  "heavilyArmored": {
+    "name": "Heavily Armored",
+    "summary": "Gain proficiency with Heavy Armor and increase Strength."
+  },
+  "heavyArmorMaster": {
+    "name": "Heavy Armor Master",
+    "summary": "Reduce incoming physical damage while wearing heavy armor."
+  },
+  "heavyArmorMasterDamageReduction": {
+    "name": "Damage Reduction"
+  },
+  "inspiringLeader": {
+    "name": "Inspiring Leader",
+    "summary": "Inspire companions with speeches to grant temporary hit points."
+  },
+  "bolsteringPerformance": {
+    "name": "Bolstering Performance"
+  },
+  "keenMind": {
+    "name": "Keen Mind",
+    "summary": "Sharpen your memory and mental quickness to recall details perfectly."
+  },
+  "loreKnowledge": {
+    "name": "Lore Knowledge Skill Proficiency"
+  },
+  "lightlyArmored": {
+    "name": "Lightly Armored",
+    "summary": "Gain proficiency with Light Armor and shield training."
+  },
+  "mageSlayer": {
+    "name": "Mage Slayer",
+    "summary": "Punish spellcasters in close proximity and disrupt their concentration."
+  },
+  "mageSlayerConcentrationBreaker": {
+    "name": "Concentration Breaker",
+    "description": "On a hit, the target has Disadvantage on any saving throw it makes to maintain Concentration."
+  },
+  "mageSlayerGuardedMind": {
+    "name": "Guarded Mind"
+  },
+  "mediumArmorMaster": {
+    "name": "Medium Armor Master",
+    "summary": "Move stealthily in medium armor and maximize Dexterity defense benefits."
+  },
+  "moderatelyArmored": {
+    "name": "Moderately Armored",
+    "summary": "Gain proficiency with Medium Armor and Shields."
+  },
+  "mountedCombatant": {
+    "name": "Mounted Combatant",
+    "summary": "Gain tactical advantage and protective maneuvers while mounted."
+  },
+  "mountedCombatantMountedCombatant": {
+    "name": "Mounted Combatant",
+    "description": "While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount."
+  },
+  "observant": {
+    "name": "Observant",
+    "summary": "Boost keen perception, lip reading, and awareness of hidden details."
+  },
+  "keenObserver": {
+    "name": "Keen Observer Skill Proficiency"
+  },
+  "piercer": {
+    "name": "Piercer",
+    "summary": "Reroll piercing damage dice and deal lethal critical piercing damage."
+  },
+  "piercerPuncture": {
+    "name": "Puncture"
+  },
+  "piercerEnhancedCritical": {
+    "name": "Enhanced Critical"
+  },
+  "poisoner": {
+    "name": "Poisoner",
+    "summary": "Bypass poison resistance and coat weapons with potent debilitating venom."
+  },
+  "poisonerPotentPoison": {
+    "name": "Potent Poison",
+    "description": "Your damage ignores resistance to Poison damage."
+  },
+  "poisonerBrewPoison": {
+    "name": "Brew Poison"
+  },
+  "polearmMaster": {
+    "name": "Polearm Master",
+    "summary": "Make bonus reach strikes and opportunity attacks when foes enter reach."
+  },
+  "polearmMasterReactiveStrike": {
+    "name": "Reactive Strike"
+  },
+  "poleStrike": {
+    "name": "Pole Strike"
+  },
+  "resilient": {
+    "name": "Resilient",
+    "summary": "Gain saving throw proficiency in a chosen ability score."
+  },
+  "ritualCaster": {
+    "name": "Ritual Caster",
+    "summary": "Learn and cast utility ritual spells from a ritual book."
+  },
+  "ritualCasterSpells": {
+    "name": "Ritual Caster Spells"
+  },
+  "sentinel": {
+    "name": "Sentinel",
+    "summary": "Halt moving foes in their tracks and punish enemies that attack allies."
+  },
+  "sentinelHalt": {
+    "name": "Halt"
+  },
+  "sentinelGuardian": {
+    "name": "Guardian"
+  },
+  "shadowTouched": {
+    "name": "Shadow Touched",
+    "summary": "Learn Invisibility and an illusion/necromancy spell with free daily castings."
+  },
+  "shadowMagicSpell": {
+    "name": "Shadow Magic Spell"
+  },
+  "sharpshooter": {
+    "name": "Sharpshooter",
+    "summary": "Master long-range marksmanship to bypass cover and strike distant targets."
+  },
+  "sharpshooterBypassCover": {
+    "name": "Bypass Cover",
+    "description": "Your attacks ignore Half Cover and Three-Quarters Cover."
+  },
+  "sharpshooterFiringInMelee": {
+    "name": "Firing in Melee",
+    "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on your attacks."
+  },
+  "sharpshooterPrecisionShot": {
+    "name": "Precision Shot"
+  },
+  "shieldMaster": {
+    "name": "Shield Master",
+    "summary": "Use your shield to shove foes and block directional spell damage."
+  },
+  "shieldMasterShieldBash": {
+    "name": "Shield Bash"
+  },
+  "shieldMasterInterposeShield": {
+    "name": "Interpose Shield"
+  },
+  "skillExpert": {
+    "name": "Skill Expert",
+    "summary": "Gain skill proficiency and double proficiency bonus in one chosen skill."
+  },
+  "skillExpertSkillProficiency": {
+    "name": "Skill Expert Skill Proficiency"
+  },
+  "skillExpertExpertise": {
+    "name": "Skill Expert Expertise"
+  },
+  "skulker": {
+    "name": "Skulker",
+    "summary": "Stay hidden in dim light and remain concealed when ranged attacks miss."
+  },
+  "sniper": {
+    "name": "Sniper",
+    "description": "On a miss, while hidden, making the attack roll doesn't reveal your location."
+  },
+  "slasher": {
+    "name": "Slasher",
+    "summary": "Slashing strikes slow enemies and weaken their retaliatory attacks."
+  },
+  "slasherHamstring": {
+    "name": "Hamstring"
+  },
+  "slasherEnhancedCritical": {
+    "name": "Enhanced Critical"
+  },
+  "speedy": {
+    "name": "Speedy",
+    "summary": "Increase movement speed and ignore difficult terrain penalty when dashing."
+  },
+  "speedyAgileMovement": {
+    "name": "Agile Movement",
+    "description": "Difficult Terrain doesn't cost you extra movement when Dashing."
+  },
+  "spellSniper": {
+    "name": "Spell Sniper",
+    "summary": "Double spell range, ignore cover, and learn a offensive cantrip."
+  },
+  "spellSniperBypassCover": {
+    "name": "Bypass Cover",
+    "description": "Your spell attacks ignore Half Cover and Three-Quarters Cover."
+  },
+  "spellSniperCastingInMelee": {
+    "name": "Casting in Melee",
+    "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on your spell attack rolls."
+  },
+  "telekinetic": {
+    "name": "Telekinetic",
+    "summary": "Learn invisible Mage Hand and telekinetically shove foes or allies."
+  },
+  "telekineticShove": {
+    "name": "Telekinetic Shove"
+  },
+  "telepathic": {
+    "name": "Telepathic",
+    "summary": "Speak telepathically with nearby creatures and read surface thoughts."
+  },
+  "warCaster": {
+    "name": "War Caster",
+    "summary": "Maintain spell concentration effortlessly and cast spells as opportunity attacks."
+  },
+  "warCasterReactiveSpell": {
+    "name": "Reactive Spell"
+  },
+  "weaponMaster": {
+    "name": "Weapon Master",
+    "summary": "Master training in four chosen weapons of your choice."
+  },
+  "alert": {
+    "name": "Alert",
+    "summary": "Swap initiative order with willing allies and avoid being surprised."
+  },
+  "initiativeSwap": {
+    "name": "Initiative Swap"
+  },
+  "crafter": {
+    "name": "Crafter",
+    "summary": "Craft gear during long rests at a discount and reduced time."
+  },
+  "fastCrafting": {
+    "name": "Fast Crafting"
+  },
+  "healer": {
+    "name": "Healer",
+    "summary": "Use healer kits to restore hit points and stabilize dying allies."
+  },
+  "battleMedic": {
+    "name": "Battle Medicine"
+  },
+  "healingRerolls": {
+    "name": "Healing Rerolls",
+    "description": "You can reroll healing once per turn."
+  },
+  "lucky": {
+    "name": "Lucky",
+    "summary": "Expend luck points to gain advantage on rolls or impose disadvantage on foes."
+  },
+  "luckPoints": {
+    "name": "Luck Points"
+  },
+  "luckyAdvantage": {
+    "name": "Luck"
+  },
+  "magicInitiateCleric": {
+    "name": "Cleric Initiate",
+    "summary": "Learn divine cantrips and a 1st-level cleric spell."
+  },
+  "magicInitiateClericCantrips": {
+    "name": "Cleric Initiate Cantrips"
+  },
+  "magicInitiateClericPreparedSpell": {
+    "name": "Cleric Initiate Spell"
+  },
+  "magicInitiateDruid": {
+    "name": "Druid Initiate",
+    "summary": "Learn nature cantrips and a 1st-level druid spell."
+  },
+  "magicInitiateDruidCantrips": {
+    "name": "Druid Initiate Cantrips"
+  },
+  "magicInitiateDruidPreparedSpell": {
+    "name": "Druid Initiate Spell"
+  },
+  "magicInitiateWizard": {
+    "name": "Wizard Initiate",
+    "summary": "Learn arcane cantrips and a 1st-level wizard spell."
+  },
+  "magicInitiateWizardCantrips": {
+    "name": "Wizard Initiate Cantrips"
+  },
+  "magicInitiateWizardPreparedSpell": {
+    "name": "Wizard Initiate Spell"
+  },
+  "musician": {
+    "name": "Musician",
+    "summary": "Perform music during rests to grant allies inspiration."
+  },
+  "encouragingSong": {
+    "name": "Encouraging Song"
+  },
+  "savageAttacker": {
+    "name": "Savage Attacker",
+    "summary": "Reroll weapon damage dice once per turn and take the higher total.",
+    "description": "You can reroll damage once per turn."
+  },
+  "skilled": {
+    "name": "Skilled",
+    "summary": "Gain proficiency in three skills or tools of your choice."
+  },
+  "skilledSkillProficiency": {
+    "name": "Skilled Skill Proficiency"
+  },
+  "tavernBrawler": {
+    "name": "Tavern Brawler",
+    "summary": "Excel in brawling, improvised weapons, and swift grappling."
+  },
+  "tavernBrawlerPush": {
+    "name": "Push"
+  },
+  "tough": {
+    "name": "Tough",
+    "summary": "Increase maximum hit points substantially at every level."
+  },
+  "aasimar": {
+    "name": "Aasimar",
+    "description": "Mortals who carry a spark of the Upper Planes, bringing light, healing, and celestial fury."
+  },
+  "healingHands": {
+    "name": "Healing Hands"
+  },
+  "celestialRevelation": {
+    "name": "Celestial Revelation"
+  },
+  "draconicAncestryBlack": {
+    "name": "Black Dragon"
+  },
+  "draconicAncestryBlue": {
+    "name": "Blue Dragon"
+  },
+  "draconicAncestryBrass": {
+    "name": "Brass Dragon"
+  },
+  "draconicAncestryBronze": {
+    "name": "Bronze Dragon"
+  },
+  "draconicAncestryCopper": {
+    "name": "Copper Dragon"
+  },
+  "draconicAncestryGold": {
+    "name": "Gold Dragon"
+  },
+  "draconicAncestryGreen": {
+    "name": "Green Dragon"
+  },
+  "draconicAncestryRed": {
+    "name": "Red Dragon"
+  },
+  "draconicAncestrySilver": {
+    "name": "Silver Dragon"
+  },
+  "draconicAncestryWhite": {
+    "name": "White Dragon"
+  },
+  "dragonborn": {
+    "name": "Dragonborn",
+    "description": "Descendants of metallic and chromatic dragons with scaly skin and elemental breath weapons."
+  },
+  "breathWeapon": {
+    "name": "Breath Weapon"
+  },
+  "draconicFlight": {
+    "name": "Draconic Flight"
+  },
+  "draconicAncestry": {
+    "name": "Draconic Ancestry"
+  },
+  "dwarf": {
+    "name": "Dwarf",
+    "description": "Resilient folk forged from stone and metal, enduring as the mountains with an affinity for craft."
+  },
+  "dwarvenToughness": {
+    "name": "Dwarven Toughness"
+  },
+  "stonecunning": {
+    "name": "Stonecunning"
+  },
+  "elvenLineageDrow": {
+    "name": "Drow"
+  },
+  "elvenLineageHighElf": {
+    "name": "High Elf"
+  },
+  "highElfCantrip": {
+    "name": "High Elf Cantrip"
+  },
+  "elvenLineageWoodElf": {
+    "name": "Wood Elf"
+  },
+  "elf": {
+    "name": "Elf",
+    "description": "Magical, long-lived beings born of the Feywild who rest in a trance rather than sleep."
+  },
+  "elvenLineage": {
+    "name": "Elven Lineage"
+  },
+  "keenSenses": {
+    "name": "Keen Senses"
+  },
+  "trance": {
+    "name": "Trance",
+    "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+  },
+  "githLineageGithyanki": {
+    "name": "Githyanki"
+  },
+  "githyankiSkillProficiency": {
+    "name": "Githyanki Skill Proficiency"
+  },
+  "githLineageGithzerai": {
+    "name": "Githzerai"
+  },
+  "gith": {
+    "name": "Gith",
+    "description": "Planar travelers forged by ancestral psionic potential, divided into the martial Githyanki and the disciplined Githzerai."
+  },
+  "githLineage": {
+    "name": "Gith Lineage"
+  },
+  "gnomishLineageForestGnome": {
+    "name": "Forest Gnome"
+  },
+  "forestGnomeSpeakWithAnimalsUses": {
+    "name": "Speak with Animals"
+  },
+  "gnomishLineageRockGnome": {
+    "name": "Rock Gnome"
+  },
+  "clockworkDevice": {
+    "name": "Clockwork Device"
+  },
+  "gnome": {
+    "name": "Gnome",
+    "description": "Petite, inventive folk imbued with wild wonder, keen intellect, and natural magic."
+  },
+  "gnomishLineage": {
+    "name": "Gnomish Lineage"
+  },
+  "giantAncestryCloud": {
+    "name": "Cloud Giant"
+  },
+  "cloudsJaunt": {
+    "name": "Cloud's Jaunt"
+  },
+  "giantAncestry": {
+    "name": "Giant Ancestry"
+  },
+  "giantAncestryFire": {
+    "name": "Fire Giant"
+  },
+  "firesBurn": {
+    "name": "Fire's Burn"
+  },
+  "giantAncestryFrost": {
+    "name": "Frost Giant"
+  },
+  "frostsChill": {
+    "name": "Frost's Chill"
+  },
+  "giantAncestryHill": {
+    "name": "Hill Giant"
+  },
+  "hillsTumble": {
+    "name": "Hill's Tumble"
+  },
+  "giantAncestryStone": {
+    "name": "Stone Giant"
+  },
+  "stonesEndurance": {
+    "name": "Stone's Endurance"
+  },
+  "giantAncestryStorm": {
+    "name": "Storm Giant"
+  },
+  "stormsThunder": {
+    "name": "Storm's Thunder"
+  },
+  "goliath": {
+    "name": "Goliath",
+    "description": "Towering descendants of giants who command supernatural martial boons and sudden growth."
+  },
+  "largeForm": {
+    "name": "Large Form"
+  },
+  "halfling": {
+    "name": "Halfling",
+    "description": "Small, nimble folk blessed with extraordinary luck, bravery, and a love for hearth and home."
+  },
+  "halflingNimbleness": {
+    "name": "Halfling Nimbleness",
+    "description": "You can move through the space of any creature that is a size larger than you."
+  },
+  "luck": {
+    "name": "Luck",
+    "description": "You can reroll any 1 on a D20."
+  },
+  "naturallyStealthy": {
+    "name": "Naturally Stealthy",
+    "description": "You can Hide when obscured by a creature at least one size larger than you."
+  },
+  "human": {
+    "name": "Human",
+    "description": "Ambitious and resourceful mortals whose diverse talents drive them across every realm."
+  },
+  "resourceful": {
+    "name": "Resourceful",
+    "description": "You gain Inspiration at the end of a Long Rest."
+  },
+  "skillful": {
+    "name": "Skillful Skill Proficiency"
+  },
+  "versatile": {
+    "name": "Versatile"
+  },
+  "leonin": {
+    "name": "Leonin",
+    "description": "Fierce, golden-furred hunters who value pride, martial prowess, and fierce independence."
+  },
+  "dauntingRoar": {
+    "name": "Daunting Roar"
+  },
+  "leoninSkillProficiency": {
+    "name": "Leonin Prowess Skill Proficiency"
+  },
+  "minotaur": {
+    "name": "Minotaur",
+    "description": "Powerful horned humanoids with an uncanny sense of direction and relentless charge."
+  },
+  "orc": {
+    "name": "Orc",
+    "description": "Strong, driven warriors endowed with Gruumsh's endurance, unyielding grit, and darkvision."
+  },
+  "adrenalineRush": {
+    "name": "Adrenaline Rush"
+  },
+  "relentlessEndurance": {
+    "name": "Relentless Endurance"
+  },
+  "satyr": {
+    "name": "Satyr",
+    "description": "Fey revelers with goatlike legs whose music and magic thrive on unbridled joy."
+  },
+  "fiendishLegacyAbyssal": {
+    "name": "Abyssal"
+  },
+  "fiendishLegacyChthonic": {
+    "name": "Chthonic"
+  },
+  "fiendishLegacyInfernal": {
+    "name": "Infernal"
+  },
+  "tiefling": {
+    "name": "Tiefling",
+    "description": "Mortals carrying a fiendish heritage that sparks supernatural power and planar resistance."
+  },
+  "fiendishLegacy": {
+    "name": "Fiendish Legacy"
+  },
+  "triton": {
+    "name": "Triton",
+    "description": "Aquatic guardians from the Plane of Water who defend both ocean depths and surface shores."
+  },
+  "warforged": {
+    "name": "Warforged",
+    "description": "Mechanical beings, infused with alchemical fluids and wooden-metal bodies capable of pain and emotion."
+  },
+  "integratedProtection": {
+    "name": "Integrated Protection"
+  },
+  "sentrysRest": {
+    "name": "Sentry's Rest",
+    "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious."
+  },
+  "specializedDesignSkill": {
+    "name": "Specialized Design Skill Proficiency"
+  },
+  "specializedDesignTool": {
+    "name": "Specialized Design Tool Proficiency"
+  },
+  "tireless": {
+    "name": "Tireless",
+    "description": "You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation."
+  },
+  "acidSplash": {
+    "name": "Acid Splash",
+    "summary": "You hurl a bubble of acid that bursts into a damaging splash."
+  },
+  "bladeWard": {
+    "name": "Blade Ward",
+    "summary": "You ward yourself against weapon attacks."
+  },
+  "chillTouch": {
+    "name": "Chill Touch",
+    "summary": "You channel skeletal cold to strike a target and hamper its healing."
+  },
+  "dancingLights": {
+    "name": "Dancing Lights",
+    "summary": "You create up to four lights that hover or move at your command."
+  },
+  "druidcraft": {
+    "name": "Druidcraft",
+    "summary": "You channel nature magic to create subtle wilderness effects."
+  },
+  "eldritchBlast": {
+    "name": "Eldritch Blast",
+    "summary": "A beam of crackling energy lances toward a target."
+  },
+  "elementalism": {
+    "name": "Elementalism",
+    "summary": "You manipulate elemental forces to create minor elemental effects."
+  },
+  "fireBolt": {
+    "name": "Fire Bolt",
+    "summary": "You hurl a mote of fire at a creature or an object."
+  },
+  "friends": {
+    "name": "Friends",
+    "summary": "You magically enhance your charisma against a single creature."
+  },
+  "guidance": {
+    "name": "Guidance",
+    "summary": "You touch a creature to grant a minor boost to its next skill check."
+  },
+  "lightSpell": {
+    "name": "Light",
+    "summary": "You make an object shine with bright light."
+  },
+  "mageHand": {
+    "name": "Mage Hand",
+    "summary": "You create a spectral hand to manipulate objects at a distance."
+  },
+  "mending": {
+    "name": "Mending",
+    "summary": "You repair a single break or tear in an object."
+  },
+  "message": {
+    "name": "Message",
+    "summary": "You whisper a secret message to a target at a distance."
+  },
+  "mindSliver": {
+    "name": "Mind Sliver",
+    "summary": "You drive a disorienting spike of psychic energy into a target mind."
+  },
+  "minorIllusion": {
+    "name": "Minor Illusion",
+    "summary": "You create a sound or an image of an object within range."
+  },
+  "poisonSpray": {
+    "name": "Poison Spray",
+    "summary": "You project a puff of noxious gas at a nearby creature."
+  },
+  "prestidigitation": {
+    "name": "Prestidigitation",
+    "summary": "You perform minor magical tricks and utility effects."
+  },
+  "produceFlame": {
+    "name": "Produce Flame",
+    "summary": "A flickering flame appears in your hand for light or throwing."
+  },
+  "rayOfFrost": {
+    "name": "Ray of Frost",
+    "summary": "A frigid beam of blue-white light strikes and slows a target."
+  },
+  "resistance": {
+    "name": "Resistance",
+    "summary": "You touch a creature to grant a minor boost to its next saving throw."
+  },
+  "sacredFlame": {
+    "name": "Sacred Flame",
+    "summary": "Flame-like radiance descends on a target."
+  },
+  "shillelagh": {
+    "name": "Shillelagh",
+    "summary": "Nature magic imbues your wooden weapon with force."
+  },
+  "shockingGrasp": {
+    "name": "Shocking Grasp",
+    "summary": "Lightning springs from your hand to shock a target."
+  },
+  "sorcerousBurst": {
+    "name": "Sorcerous Burst",
+    "summary": "You unleash an unpredictable burst of elemental magic."
+  },
+  "spareTheDying": {
+    "name": "Spare the Dying",
+    "summary": "You touch a dying creature to stabilize it."
+  },
+  "starryWisp": {
+    "name": "Starry Wisp",
+    "summary": "You launch a twinkling mote of light that illuminates a target."
+  },
+  "telekineticFling": {
+    "name": "Telekinetic Fling",
+    "summary": "You wreathe a small object in psionic energy and launch it at a target."
+  },
+  "thaumaturgy": {
+    "name": "Thaumaturgy",
+    "summary": "You manifest minor wonders and supernatural signs."
+  },
+  "thornWhip": {
+    "name": "Thorn Whip",
+    "summary": "You create a thorny whip to strike and pull a target closer."
+  },
+  "thunderclap": {
+    "name": "Thunderclap",
+    "summary": "You create a burst of thunderous noise that damages nearby targets."
+  },
+  "tollTheDead": {
+    "name": "Toll the Dead",
+    "summary": "A painful bell toll echoes, dealing necrotic damage."
+  },
+  "trueStrike": {
+    "name": "True Strike",
+    "summary": "Magical insight guides your next strike."
+  },
+  "viciousMockery": {
+    "name": "Vicious Mockery",
+    "summary": "You unleash subtle enchantments to disorient a creature."
+  },
+  "wordOfRadiance": {
+    "name": "Word of Radiance",
+    "summary": "Burning radiance erupts around you."
+  },
+  "alarm": {
+    "name": "Alarm",
+    "summary": "You set a magical alarm against intrusion."
+  },
+  "animalFriendship": {
+    "name": "Animal Friendship",
+    "summary": "You convince a beast that you mean it no harm."
+  },
+  "armorOfAgathys": {
+    "name": "Eldritch Armor",
+    "summary": "Protective frost surrounds you, granting temporary hit points and cold retaliatory damage."
+  },
+  "armsOfHadar": {
+    "name": "Eldritch Arms",
+    "summary": "Dark tendrils erupt around you to strike nearby foes."
+  },
+  "bane": {
+    "name": "Bane",
+    "summary": "You weaken the resolve and accuracy of up to three targets."
+  },
+  "bless": {
+    "name": "Bless",
+    "summary": "You bless up to three allies, boosting their attacks and saves."
+  },
+  "burningHands": {
+    "name": "Burning Hands",
+    "summary": "A thin sheet of flames shoots forth from your fingertips."
+  },
+  "charmPerson": {
+    "name": "Charm Person",
+    "summary": "You charm a humanoid to regard you as a friendly acquaintance."
+  },
+  "chromaticOrb": {
+    "name": "Chromatic Orb",
+    "summary": "You hurl an orb of elemental energy at a target."
+  },
+  "colorSpray": {
+    "name": "Color Spray",
+    "summary": "You launch a dazzling array of flashing lights to blind targets."
+  },
+  "command": {
+    "name": "Command",
+    "summary": "You speak a one-word command that a target must obey."
+  },
+  "compelledDuel": {
+    "name": "Compelled Duel",
+    "summary": "You compel a creature to focus its attacks on you."
+  },
+  "comprehendLanguages": {
+    "name": "Comprehend Languages",
+    "summary": "You understand the literal meaning of any spoken or written language."
+  },
+  "createOrDestroyWater": {
+    "name": "Create or Destroy Water",
+    "summary": "You create or destroy a quantity of water or fog."
+  },
+  "cureWounds": {
+    "name": "Cure Wounds",
+    "summary": "A creature you touch regains hit points."
+  },
+  "detectEvilAndGood": {
+    "name": "Detect Evil and Good",
+    "summary": "You sense the presence of otherworldly creatures nearby."
+  },
+  "detectMagic": {
+    "name": "Detect Magic",
+    "summary": "You sense the presence and aura of magical effects nearby."
+  },
+  "detectPoisonAndDisease": {
+    "name": "Detect Poison and Disease",
+    "summary": "You sense the location of poisons, venom, and contagions."
+  },
+  "disguiseSelf": {
+    "name": "Disguise Self",
+    "summary": "You alter your appearance with illusory magic."
+  },
+  "dissonantWhispers": {
+    "name": "Dissonant Whispers",
+    "summary": "You whisper a discordant melody that causes psychic agony and forces retreat."
+  },
+  "divineFavor": {
+    "name": "Divine Favor",
+    "summary": "Your weapon attacks deal extra radiant damage."
+  },
+  "divineSmite": {
+    "name": "Divine Smite",
+    "summary": "Your strike unleashes a burst of extra radiant damage."
+  },
+  "ensnaringStrike": {
+    "name": "Ensnaring Strike",
+    "summary": "Your weapon strike summons grasping vines to restrain a target."
+  },
+  "entangle": {
+    "name": "Entangle",
+    "summary": "Grasping plants sprout to entangle creatures in an area."
+  },
+  "expeditiousRetreat": {
+    "name": "Expeditious Retreat",
+    "summary": "You move with sudden speed, allowing continuous dashing."
+  },
+  "faerieFire": {
+    "name": "Faerie Fire",
+    "summary": "Outlines of light illuminate targets, granting advantage on attack rolls against them."
+  },
+  "falseLife": {
+    "name": "False Life",
+    "summary": "You bolster yourself with a vitality boost of temporary hit points."
+  },
+  "featherFall": {
+    "name": "Feather Fall",
+    "summary": "You slow the descent of falling creatures to land safely."
+  },
+  "findFamiliar": {
+    "name": "Find Familiar",
+    "summary": "You gain the service of an otherworldly spirit that takes an animal form."
+  },
+  "familiarName": {
+    "name": "Familiar Name"
+  },
+  "familiarType": {
+    "name": "Familiar Type"
+  },
+  "familiarEnvironment": {
+    "name": "Familiar Environment"
+  },
+  "fogCloud": {
+    "name": "Fog Cloud",
+    "summary": "You create a bank of dense fog that blocks vision."
+  },
+  "goodberry": {
+    "name": "Goodberry",
+    "summary": "You infuse berries with healing magic to restore hit points."
+  },
+  "grease": {
+    "name": "Grease",
+    "summary": "Slick grease covers the ground, turning it into difficult terrain."
+  },
+  "guidingBolt": {
+    "name": "Guiding Bolt",
+    "summary": "You hurl a bolt of radiance that illuminates the target for the next attack."
+  },
+  "hailOfThorns": {
+    "name": "Hail of Thorns",
+    "summary": "Your ranged strike creates a burst of thorny rain."
+  },
+  "healingWord": {
+    "name": "Healing Word",
+    "summary": "A quick word of magic heals a target at a distance."
+  },
+  "hellishRebuke": {
+    "name": "Hellish Rebuke",
+    "summary": "You retaliate against damage with green hellfire."
+  },
+  "heroism": {
+    "name": "Heroism",
+    "summary": "A willing creature is imbued with bravery and temporary hit points."
+  },
+  "hex": {
+    "name": "Hex",
+    "summary": "You curse a target, dealing extra necrotic damage on attacks."
+  },
+  "huntersMark": {
+    "name": "Hunter's Mark",
+    "summary": "You magically mark a target as your quarry, dealing extra weapon damage."
+  },
+  "iceKnife": {
+    "name": "Ice Knife",
+    "summary": "You fling a shard of ice that pierces a target and explodes into cold shards."
+  },
+  "identify": {
+    "name": "Identify",
+    "summary": "You learn the magical properties of an object or spell effect."
+  },
+  "illusoryScript": {
+    "name": "Illusory Script",
+    "summary": "You write a message that appears normal only to designated readers."
+  },
+  "inflictWounds": {
+    "name": "Inflict Wounds",
+    "summary": "Your touch inflicts heavy necrotic damage."
+  },
+  "jump": {
+    "name": "Jump",
+    "summary": "You touch a creature to triple its jump distance."
+  },
+  "lifeSiphon": {
+    "name": "Life Siphon",
+    "summary": "You fire an orb of psionic energy at a target, optionally expending Hit Dice for extra damage."
+  },
+  "longstrider": {
+    "name": "Longstrider",
+    "summary": "You touch a creature to increase its movement speed."
+  },
+  "mageArmor": {
+    "name": "Mage Armor",
+    "summary": "You touch an unarmored creature to grant a protective magical forcefield."
+  },
+  "magicMissile": {
+    "name": "Magic Missile",
+    "summary": "You create darts of magical force that automatically strike their targets."
+  },
+  "protectionFromEvilAndGood": {
+    "name": "Protection from Evil and Good",
+    "summary": "You protect a willing creature against otherworldly entities."
+  },
+  "purifyFoodAndDrink": {
+    "name": "Purify Food and Drink",
+    "summary": "You cleanse nonmagical food and drink of poison and rot."
+  },
+  "rayOfSickness": {
+    "name": "Ray of Sickness",
+    "summary": "You shoot a greenish ray that deals poison damage and sickening illness."
+  },
+  "sanctuary": {
+    "name": "Sanctuary",
+    "summary": "You ward a creature, causing attackers to hesitate before striking it."
+  },
+  "searingSmite": {
+    "name": "Searing Smite",
+    "summary": "Your strike ignites a target with searing fire."
+  },
+  "shield": {
+    "name": "Shield",
+    "summary": "An imperceptible barrier of force raises your AC to block attacks."
+  },
+  "shieldOfFaith": {
+    "name": "Shield of Faith",
+    "summary": "A shimmering field of protective magic grants +2 AC to a target."
+  },
+  "silentImage": {
+    "name": "Silent Image",
+    "summary": "You create a visual illusion of an object or creature."
+  },
+  "sleep": {
+    "name": "Sleep",
+    "summary": "You incapacitate creatures in an area with a magical slumber."
+  },
+  "speakWithAnimals": {
+    "name": "Speak with Animals",
+    "summary": "You gain the ability to comprehend and speak with beasts."
+  },
+  "tashasHideousLaughter": {
+    "name": "Hideous Laughter",
+    "summary": "You cause a target to collapse into fits of uncontrollable laughter."
+  },
+  "tensersFloatingDisk": {
+    "name": "Floating Disk",
+    "summary": "You create a floating plane of force that follows you carrying cargo."
+  },
+  "thunderousSmite": {
+    "name": "Thunderous Smite",
+    "summary": "Your strike rings with thunder that knocks a target back."
+  },
+  "thunderwave": {
+    "name": "Thunderwave",
+    "summary": "You unleash a wave of thunderous energy that pushes nearby objects and foes."
+  },
+  "unseenServant": {
+    "name": "Unseen Servant",
+    "summary": "You create an invisible force to perform simple tasks for you."
+  },
+  "witchBolt": {
+    "name": "Witch Bolt",
+    "summary": "You form a sustained arc of crackling lightning between yourself and a target."
+  },
+  "wrathfulSmite": {
+    "name": "Wrathful Smite",
+    "summary": "Your strike inflicts necrotic damage and frightens the target."
+  },
+  "aid": {
+    "name": "Aid",
+    "summary": "You bolster your allies with toughness and extra hit points."
+  },
+  "alterSelf": {
+    "name": "Alter Self",
+    "summary": "You alter your physical form to aquatic, weaponized, or cosmetic traits."
+  },
+  "animalMessenger": {
+    "name": "Animal Messenger",
+    "summary": "You command a tiny beast to deliver a message to a distant location."
+  },
+  "arcaneLock": {
+    "name": "Arcane Lock",
+    "summary": "You magically lock an entry point or container."
+  },
+  "arcaneVigor": {
+    "name": "Arcane Vigor",
+    "summary": "You tap into your life force to heal yourself."
+  },
+  "augury": {
+    "name": "Augury",
+    "summary": "You consult otherworldly omens regarding a specific future action."
+  },
+  "barkskin": {
+    "name": "Barkskin",
+    "summary": "Your skin turns bark-like, granting armor protection."
+  },
+  "beastSense": {
+    "name": "Beast Sense",
+    "summary": "You touch a willing Beast."
+  },
+  "blindnessdeafness": {
+    "name": "Blindness/Deafness",
+    "summary": "You blind or deafen a target with a dark curse."
+  },
+  "blur": {
+    "name": "Blur",
+    "summary": "Your body becomes blurred, imposing disadvantage on attack rolls against you."
+  },
+  "calmEmotions": {
+    "name": "Calm Emotions",
+    "summary": "You suppress strong emotions or charm/frighten effects in an area."
+  },
+  "cloudOfDaggers": {
+    "name": "Cloud Of Daggers",
+    "summary": "You conjure a swirling cloud of razor-sharp daggers in an area."
+  },
+  "continualFlame": {
+    "name": "Continual Flame",
+    "summary": "You create a permanent, heatless flame that sheds light."
+  },
+  "cordonOfArrows": {
+    "name": "Cordon Of Arrows",
+    "summary": "You ward an area with ammunition that rises to strike approaching foes."
+  },
+  "crownOfMadness": {
+    "name": "Crown Of Madness",
+    "summary": "You crown a humanoid with madness, forcing it to attack nearby creatures."
+  },
+  "darkness": {
+    "name": "Darkness",
+    "summary": "Magical darkness spreads from a point, blocking vision and darkvision."
+  },
+  "darkvision": {
+    "name": "Darkvision",
+    "summary": "You touch a creature to grant it darkvision."
+  },
+  "detectThoughts": {
+    "name": "Detect Thoughts",
+    "summary": "You read the surface thoughts or probe deeper into the mind of a target."
+  },
+  "dragonsBreath": {
+    "name": "Dragon's Breath",
+    "summary": "You touch one willing creature, and choose Acid, Cold, Fire, Lightning, or Poison."
+  },
+  "ectoplasmicTrail": {
+    "name": "Ectoplasmic Trail",
+    "summary": "You cloak yourself in spirits, avoiding opportunity attacks and leaving slowing ectoplasm."
+  },
+  "egoWhip": {
+    "name": "Ego Whip",
+    "summary": "You lash a creature's mind as a reaction when it makes a Charisma check or save."
+  },
+  "enhanceAbility": {
+    "name": "Enhance Ability",
+    "summary": "You touch a creature and choose Strength, Dexterity, Intelligence, Wisdom, or Charisma."
+  },
+  "enlargereduce": {
+    "name": "Enlarge/Reduce",
+    "summary": "You cause a creature or object to grow or shrink in size."
+  },
+  "enthrall": {
+    "name": "Enthrall",
+    "summary": "You weave distracting words to hold the attention of nearby creatures."
+  },
+  "findSteed": {
+    "name": "Find Steed",
+    "summary": "You summon an otherworldly spirit that takes the form of a loyal mount."
+  },
+  "steedType": {
+    "name": "Otherworldly Steed"
+  },
+  "steedName": {
+    "name": "Steed Name"
+  },
+  "findTraps": {
+    "name": "Find Traps",
+    "summary": "You sense the presence of any sudden or dangerous traps nearby."
+  },
+  "flameBlade": {
+    "name": "Flame Blade",
+    "summary": "You evoke a fiery blade of light in your hand."
+  },
+  "flamingSphere": {
+    "name": "Flaming Sphere",
+    "summary": "A sphere of fire appears that you can roll into targets."
+  },
+  "gentleRepose": {
+    "name": "Gentle Repose",
+    "summary": "You preserve a dead body from decay and undead rising."
+  },
+  "gustOfWind": {
+    "name": "Gust of Wind",
+    "summary": "A strong gust of wind blasts out from you, pushing targets."
+  },
+  "heatMetal": {
+    "name": "Heat Metal",
+    "summary": "You cause a manufactured metal object to glow red-hot, burning the wearer."
+  },
+  "holdPerson": {
+    "name": "Hold Person",
+    "summary": "You paralyze a humanoid target with binding magic."
+  },
+  "invisibility": {
+    "name": "Invisibility",
+    "summary": "A creature you touch becomes invisible until it attacks or casts."
+  },
+  "knock": {
+    "name": "Knock",
+    "summary": "A loud knock echoes as you open locks, bars, and latches."
+  },
+  "lesserRestoration": {
+    "name": "Lesser Restoration",
+    "summary": "You cure a disease or condition affecting a creature."
+  },
+  "levitate": {
+    "name": "Levitate",
+    "summary": "You cause a creature or object to rise vertically into the air."
+  },
+  "locateAnimalsOrPlants": {
+    "name": "Locate Animals or Plants",
+    "summary": "You sense the direction of a specific kind of beast or plant."
+  },
+  "locateObject": {
+    "name": "Locate Object",
+    "summary": "You sense the direction to a familiar object nearby."
+  },
+  "magicMouth": {
+    "name": "Magic Mouth",
+    "summary": "You enchant an object to speak a message when a trigger occurs."
+  },
+  "magicWeapon": {
+    "name": "Magic Weapon",
+    "summary": "You touch a nonmagical weapon to make it a magical +1 weapon."
+  },
+  "melfsAcidArrow": {
+    "name": "Acid Arrow",
+    "summary": "A shimmering green arrow streaks forth, dealing acid splash damage."
+  },
+  "mindSpike": {
+    "name": "Mind Spike",
+    "summary": "You drive a spike of psychic energy into a mind, tracking its movements."
+  },
+  "mirrorImage": {
+    "name": "Mirror Image",
+    "summary": "Three illusory duplicates of yourself appear to misdirect attacks."
+  },
+  "mistyStep": {
+    "name": "Misty Step",
+    "summary": "In a swirl of silver mist, you teleport to an unoccupied space you can see."
+  },
+  "moonbeam": {
+    "name": "Moonbeam",
+    "summary": "A silvery beam of pale light shines down, searing foes in radiance."
+  },
+  "nystulsMagicAura": {
+    "name": "Magic Aura",
+    "summary": "You mask or alter the magical aura of an object or creature."
+  },
+  "passWithoutTrace": {
+    "name": "Pass without Trace",
+    "summary": "A veil of shadows and silence grants +10 to Stealth checks for your party."
+  },
+  "phantasmalForce": {
+    "name": "Phantasmal Force",
+    "summary": "You craft a terrifying phantasm in the mind of a target."
+  },
+  "prayerOfHealing": {
+    "name": "Prayer of Healing",
+    "summary": "A moment of quiet prayer restores hit points to your party."
+  },
+  "protectionFromPoison": {
+    "name": "Protection from Poison",
+    "summary": "You neutralize poison and grant resistance to poison damage."
+  },
+  "rayOfEnfeeblement": {
+    "name": "Ray of Enfeeblement",
+    "summary": "A black beam of enervating energy weakens a target's strength."
+  },
+  "ropeTrick": {
+    "name": "Rope Trick",
+    "summary": "A rope rises into the air, leading to a hidden extradimensional space."
+  },
+  "scorchingRay": {
+    "name": "Scorching Ray",
+    "summary": "You create three rays of fire and hurl them at targets."
+  },
+  "seeInvisibility": {
+    "name": "See Invisibility",
+    "summary": "You see invisible creatures and objects as if they were visible."
+  },
+  "shatter": {
+    "name": "Shatter",
+    "summary": "A sudden loud noise of painful intensity rings out, damaging objects and foes."
+  },
+  "shiningSmite": {
+    "name": "Shining Smite",
+    "summary": "Your strike deals extra radiant damage and makes the target shed light."
+  },
+  "silence": {
+    "name": "Silence",
+    "summary": "An area becomes completely silent, blocking sound and verbal spells."
+  },
+  "spiderClimb": {
+    "name": "Spider Climb",
+    "summary": "You grant a creature the ability to walk along walls and ceilings."
+  },
+  "spikeGrowth": {
+    "name": "Spike Growth",
+    "summary": "The ground turns into hard spikes that wound and slow travelers."
+  },
+  "spiritualWeapon": {
+    "name": "Spiritual Weapon",
+    "summary": "You create a floating spectral weapon to strike nearby foes."
+  },
+  "suggestion": {
+    "name": "Suggestion",
+    "summary": "You magically suggest a course of activity to a target."
+  },
+  "summonBeast": {
+    "name": "Summon Beast",
+    "summary": "You call forth a bestial spirit to fight alongside you."
+  },
+  "tashasMindWhip": {
+    "name": "Mind Whip",
+    "summary": "You psychically lash out at a creature, restricting its actions and dealing psychic damage."
+  },
+  "wardingBond": {
+    "name": "Warding Bond",
+    "summary": "You ward an ally, sharing their damage and boosting their defense."
+  },
+  "web": {
+    "name": "Web",
+    "summary": "You conjure a mass of sticky webs to snare and entangle foes."
+  },
+  "zoneOfTruth": {
+    "name": "Zone of Truth",
+    "summary": "You create a zone that prevents creatures from speaking deliberate lies."
+  },
+  "animateDead": {
+    "name": "Animate Dead",
+    "summary": "You raise an undead servant from a corpse or pile of bones."
+  },
+  "auraOfVitality": {
+    "name": "Aura of Vitality",
+    "summary": "An aura radiates from you in a 30-foot Emanation for the duration."
+  },
+  "beaconOfHope": {
+    "name": "Beacon Of Hope",
+    "summary": "You grant hope and maximum healing to allies in an area."
+  },
+  "bestowCurse": {
+    "name": "Bestow Curse",
+    "summary": "You touch a target to inflict a custom debilitating curse."
+  },
+  "bleedingDarkness": {
+    "name": "Bleeding Darkness",
+    "summary": "You create an inky void that pours magical darkness and deals cold damage."
+  },
+  "blink": {
+    "name": "Blink",
+    "summary": "You randomly vanish into the Ethereal Plane and reappear on your turns."
+  },
+  "callLightning": {
+    "name": "Call Lightning",
+    "summary": "A storm cloud gathers and strikes lightning down at your command."
+  },
+  "clairvoyance": {
+    "name": "Clairvoyance",
+    "summary": "You create an invisible sensor to see or hear a distant location."
+  },
+  "conjureAnimals": {
+    "name": "Conjure Animals",
+    "summary": "You summon a pack of spectral animals to protect you and strike foes."
+  },
+  "counterspell": {
+    "name": "Counterspell",
+    "summary": "You attempt to interrupt a creature in the process of casting a spell."
+  },
+  "createFoodAndWater": {
+    "name": "Create Food And Water",
+    "summary": "You create food and clean water to sustain a party."
+  },
+  "crusadersMantle": {
+    "name": "Crusader's Mantle",
+    "summary": "Holy power radiates from you, boosting allies weapon damage with radiance."
+  },
+  "daylight": {
+    "name": "Daylight",
+    "summary": "A 60-foot sphere of bright light illuminates the area and dispels darkness."
+  },
+  "dispelMagic": {
+    "name": "Dispel Magic",
+    "summary": "You end magical effects on a target, object, or area."
+  },
+  "elementalWeapon": {
+    "name": "Elemental Weapon",
+    "summary": "A nonmagical weapon becomes magical with elemental extra damage."
+  },
+  "enemiesAbound": {
+    "name": "Enemies Abound",
+    "summary": "You reach into a creature's mind and force it to see all creatures as foes."
+  },
+  "fear": {
+    "name": "Fear",
+    "summary": "You project a terrifying image that causes creatures to drop items and flee."
+  },
+  "feignDeath": {
+    "name": "Feign Death",
+    "summary": "You put a willing creature into a cataleptic state indistinguishable from death."
+  },
+  "fireball": {
+    "name": "Fireball",
+    "summary": "A bright streak flashes forth and blossoms into a fiery explosion."
+  },
+  "fly": {
+    "name": "Fly",
+    "summary": "You touch a creature to grant it a flying speed."
+  },
+  "gaseousForm": {
+    "name": "Gaseous Form",
+    "summary": "You transform a willing creature into a misty cloud."
+  },
+  "glyphOfWarding": {
+    "name": "Glyph of Warding",
+    "summary": "You scribe a hidden rune that unleashes a magical trap when triggered."
+  },
+  "haste": {
+    "name": "Haste",
+    "summary": "You empower a target with extraordinary speed and extra actions."
+  },
+  "hungerOfHadar": {
+    "name": "Eldritch Hunger",
+    "summary": "You open a gateway to the Far Realm, a region infested with unspeakable horrors."
+  },
+  "hypnoticPattern": {
+    "name": "Hypnotic Pattern",
+    "summary": "You create a twisting pattern of colors that charms and incapacitates."
+  },
+  "intellectFortress": {
+    "name": "Intellect Fortress",
+    "summary": "You shield a willing creature's mind, granting Psychic Resistance and mental save Advantage."
+  },
+  "leomundsTinyHut": {
+    "name": "Tiny Hut",
+    "summary": "A protective, opaque dome of force springs up around your party."
+  },
+  "lightningBolt": {
+    "name": "Lightning Bolt",
+    "summary": "A stroke of lightning blasts out in a long line."
+  },
+  "magicCircle": {
+    "name": "Magic Circle",
+    "summary": "You create a magical cylinder that wards against specific creature types."
+  },
+  "majorImage": {
+    "name": "Major Image",
+    "summary": "You create a complex illusion with sound, sight, and thermal effects."
+  },
+  "massHealingWord": {
+    "name": "Mass Healing Word",
+    "summary": "A quick burst of magic heals up to six targets at a distance."
+  },
+  "meldIntoStone": {
+    "name": "Meld into Stone",
+    "summary": "You step into a stone surface, merging yourself and gear with the rock."
+  },
+  "nondetection": {
+    "name": "Nondetection",
+    "summary": "You hide a target from divination spells and scrying sensors."
+  },
+  "phantomSteed": {
+    "name": "Phantom Steed",
+    "summary": "You conjure a fast, quasi-real horse-like mount."
+  },
+  "plantGrowth": {
+    "name": "Plant Growth",
+    "summary": "You channel vitality into plants to overgrow terrain or enrich crops."
+  },
+  "protectionFromEnergy": {
+    "name": "Protection from Energy",
+    "summary": "You grant a creature resistance to one elemental damage type."
+  },
+  "removeCurse": {
+    "name": "Remove Curse",
+    "summary": "At your touch, all curses affecting a creature or object end."
+  },
+  "revivify": {
+    "name": "Revivify",
+    "summary": "You touch a creature that died within the last minute to return it to life."
+  },
+  "sending": {
+    "name": "Sending",
+    "summary": "You send a short mental message across any distance."
+  },
+  "sleetStorm": {
+    "name": "Sleet Storm",
+    "summary": "Sleet falls in an area, blinding creatures and creating slippery ice."
+  },
+  "speakWithDead": {
+    "name": "Speak with Dead",
+    "summary": "You grant temporary sentience to a corpse so it can answer questions."
+  },
+  "speakWithPlants": {
+    "name": "Speak with Plants",
+    "summary": "You imbue plants with sentience to communicate and follow commands."
+  },
+  "spiritGuardians": {
+    "name": "Spirit Guardians",
+    "summary": "Protective spirits flit around you, damaging and slowing nearby foes."
+  },
+  "stinkingCloud": {
+    "name": "Stinking Cloud",
+    "summary": "You create a sphere of nauseating gas that causes retching."
+  },
+  "summonAstralEntity": {
+    "name": "Summon Astral Entity",
+    "summary": "You call forth an astral entity from the Astral Plane to fight alongside you."
+  },
+  "summonFey": {
+    "name": "Summon Fey",
+    "summary": "You call forth a fey spirit to fight alongside you."
+  },
+  "summonUndead": {
+    "name": "Summon Undead",
+    "summary": "You call forth an undead spirit to fight alongside you."
+  },
+  "telekineticCrush": {
+    "name": "Telekinetic Crush",
+    "summary": "Crush a target with massive telekinetic force."
+  },
+  "tongues": {
+    "name": "Tongues",
+    "summary": "You grant a creature the ability to understand and speak any language."
+  },
+  "vampiricTouch": {
+    "name": "Vampiric Touch",
+    "summary": "Your shadow-wreathed touch siphons life force to heal your wounds."
+  },
+  "waterBreathing": {
+    "name": "Water Breathing",
+    "summary": "You grant up to ten creatures the ability to breathe underwater."
+  },
+  "waterWalk": {
+    "name": "Water Walk",
+    "summary": "You grant creatures the ability to walk across liquid surfaces like solid ground."
+  },
+  "windWall": {
+    "name": "Wind Wall",
+    "summary": "A wall of strong wind rises, deflecting arrows and gas."
+  },
+  "arcaneEye": {
+    "name": "Arcane Eye",
+    "summary": "You create an invisible hovering sensor to scout remotely."
+  },
+  "auraOfLife": {
+    "name": "Aura of Life",
+    "summary": "An aura radiates from you, restoring unconscious allies and granting necrotic resistance."
+  },
+  "auraOfPurity": {
+    "name": "Aura of Purity",
+    "summary": "An aura radiates from you, protecting allies against conditions and disease."
+  },
+  "banishment": {
+    "name": "Banishment",
+    "summary": "You banish a target to a harmless demiplane or its native realm."
+  },
+  "blight": {
+    "name": "Blight",
+    "summary": "You drain the moisture and life force from a target, dealing necrotic damage."
+  },
+  "charmMonster": {
+    "name": "Charm Monster",
+    "summary": "You charm any creature type to regard you as a friendly acquaintance."
+  },
+  "compulsion": {
+    "name": "Compulsion",
+    "summary": "You compel creatures in an area to move in a designated direction."
+  },
+  "confusion": {
+    "name": "Confusion",
+    "summary": "You assault minds in an area, causing unpredictable erratic actions."
+  },
+  "conjureMinorElementals": {
+    "name": "Conjure Minor Elementals",
+    "summary": "You conjure elemental spirits that swirl around you with elemental energy."
+  },
+  "conjureWoodlandBeings": {
+    "name": "Conjure Woodland Beings",
+    "summary": "You conjure nature spirits that swirl around you to protect and strike."
+  },
+  "controlWater": {
+    "name": "Control Water",
+    "summary": "You manipulate water in an area to flood, part, or form whirlpools."
+  },
+  "deathWard": {
+    "name": "Death Ward",
+    "summary": "You grant a creature protection against dropping to 0 hit points."
+  },
+  "dimensionDoor": {
+    "name": "Dimension Door",
+    "summary": "You teleport yourself and a companion to a chosen location."
+  },
+  "divination": {
+    "name": "Divination",
+    "summary": "You contact a deity or servant to receive a truthful reply about a future goal."
+  },
+  "dominateBeast": {
+    "name": "Dominate Beast",
+    "summary": "You take telepathic control of a beast."
+  },
+  "evardsBlackTentacles": {
+    "name": "Black Tentacles",
+    "summary": "Squirming tentacles fill an area to restrain and crush foes."
+  },
+  "fabricate": {
+    "name": "Fabricate",
+    "summary": "You convert raw materials into finished products of the same material."
+  },
+  "fireShield": {
+    "name": "Fire Shield",
+    "summary": "Wispy flames wreathe your body, granting elemental resistance and retaliatory damage."
+  },
+  "fountOfMoonlight": {
+    "name": "Fount of Moonlight",
+    "summary": "Cool moonlight wreathes your body, blinding foes and boosting melee strikes."
+  },
+  "freedomOfMovement": {
+    "name": "Freedom of Movement",
+    "summary": "You touch a creature to make it immune to movement restrictions and paralysis."
+  },
+  "graspingVine": {
+    "name": "Grasping Vine",
+    "summary": "You conjure a vine that sprouts and pulls targets toward it."
+  },
+  "greaterInvisibility": {
+    "name": "Greater Invisibility",
+    "summary": "A creature becomes invisible even while attacking or casting."
+  },
+  "guardianOfFaith": {
+    "name": "Guardian of Faith",
+    "summary": "A large spectral guardian appears to strike trespassers."
+  },
+  "hallucinatoryTerrain": {
+    "name": "Hallucinatory Terrain",
+    "summary": "You disguise natural terrain to look, sound, and smell like another landscape."
+  },
+  "iceStorm": {
+    "name": "Ice Storm",
+    "summary": "Hail and cold rain fall in a cylinder, damaging and creating difficult terrain."
+  },
+  "leomundsSecretChest": {
+    "name": "Secret Chest",
+    "summary": "You hide a chest and its contents safely on the Ethereal Plane."
+  },
+  "lifeInversionField": {
+    "name": "Life Inversion Field",
+    "summary": "You create an aura that heals you and converts your healing into necrotic damage to foes."
+  },
+  "locateCreature": {
+    "name": "Locate Creature",
+    "summary": "You sense the direction to a familiar or described creature."
+  },
+  "mordenkainensFaithfulHound": {
+    "name": "Faithful Hound",
+    "summary": "You conjure a phantom watchdog to guard an area and strike invaders."
+  },
+  "mordenkainensPrivateSanctum": {
+    "name": "Private Sanctum",
+    "summary": "You make an area magically secure against scrying and planar travel."
+  },
+  "otilukesResilientSphere": {
+    "name": "Resilient Sphere",
+    "summary": "A shimmering sphere of force encloses a target to protect or isolate it."
+  },
+  "phantasmalKiller": {
+    "name": "Phantasmal Killer",
+    "summary": "You tap into a target deep fears, creating an illusion that inflicts agony."
+  },
+  "polymorph": {
+    "name": "Polymorph",
+    "summary": "You transform a creature into a beast form."
+  },
+  "raulothimsPsychicLance": {
+    "name": "Psychic Lance",
+    "summary": "You unleash a shimmering lance of psychic power at a creature or named target."
+  },
+  "stoneShape": {
+    "name": "Stone Shape",
+    "summary": "You shape a stone object or section into any form you desire."
+  },
+  "stoneskin": {
+    "name": "Stoneskin",
+    "summary": "You grant a creature resistance to nonmagical physical damage."
+  },
+  "summonAberration": {
+    "name": "Summon Aberration",
+    "summary": "You call forth an aberrant spirit to fight alongside you."
+  },
+  "summonConstruct": {
+    "name": "Summon Construct",
+    "summary": "You call forth a construct spirit to fight alongside you."
+  },
+  "summonElemental": {
+    "name": "Summon Elemental",
+    "summary": "You call forth an elemental spirit to fight alongside you."
+  },
+  "vitriolicSphere": {
+    "name": "Vitriolic Sphere",
+    "summary": "A ball of acid streaks to a location and explodes into a corrosive splash."
+  },
+  "wallOfFire": {
+    "name": "Wall of Fire",
+    "summary": "You create a blazing wall of fire that deals heavy fire damage to passers."
+  },
+  "beastOfTheLand": {
+    "name": "Beast of the Land"
+  },
+  "beastOfTheSea": {
+    "name": "Beast of the Sea"
+  },
+  "beastOfTheSky": {
+    "name": "Beast of the Sky"
+  },
+  "familiarAir": {
+    "name": "Air (fly speed)"
+  },
+  "familiarCelestial": {
+    "name": "Celestial"
+  },
+  "familiarFey": {
+    "name": "Fey"
+  },
+  "familiarFiend": {
+    "name": "Fiend"
+  },
+  "familiarLand": {
+    "name": "Land (climb speed)"
+  },
+  "familiarUndead": {
+    "name": "Undead"
+  },
+  "familiarWater": {
+    "name": "Water (swim speed)"
+  },
+  "otherworldlyFamiliarAirCelestial": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarAirFey": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarAirFiend": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarAirUndead": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarLandCelestial": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarLandFey": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarLandFiend": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarLandUndead": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarWaterCelestial": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarWaterFey": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarWaterFiend": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "otherworldlyFamiliarWaterUndead": {
+    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+  },
+  "reanimatedCompanion": {
+    "name": "Reanimated Companion"
+  },
+  "dreadfulSwipe": {
+    "name": "Dreadful Swipe",
+    "description": "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d4$(formatBonus(stats.int.mod)) Necrotic damage, and the target can't take Opportunity Attacks until the start of its next turn."
+  },
+  "otherworldlySteedCelestial": {
+    "name": "Celestial Steed"
+  },
+  "otherworldlySteedFey": {
+    "name": "Fey Steed"
+  },
+  "otherworldlySteedFiend": {
+    "name": "Fiend Steed"
+  },
+  "steelDefender": {
+    "name": "Steel Defender"
+  },
+  "forceEmpoweredRend": {
+    "name": "Force-Empowered Rend",
+    "description": "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(2 + stats.int.mod)) Force damage."
+  },
+  "repair": {
+    "name": "Repair (3/Day)",
+    "description": "The defender, or one Construct or object it can see within 5 feet of it, regains $(2 + stats.int.mod)d8 Hit Points."
+  },
+  "deflectAttack": {
+    "name": "Deflect Attack",
+    "description": "_Trigger:_ A creature the defender can see within 5 feet of it makes an attack roll targeting a different creature. _Response:_ The triggering creature makes the attack roll with Disadvantage."
+  },
+  "celestialVestige": {
+    "name": "Celestial Vestige"
+  },
+  "fiendVestige": {
+    "name": "Fiend Vestige"
+  },
+  "undeadVestige": {
+    "name": "Undead Vestige"
+  },
+  "aberrantSpiritBeholderkin": {
+    "name": "Aberrant Spirit (Beholderkin)"
+  },
+  "aberrantSpiritMindFlayer": {
+    "name": "Aberrant Spirit (Mind Flayer)"
+  },
+  "aberrantSpiritSlaad": {
+    "name": "Aberrant Spirit (Slaad)"
+  },
+  "astralEntityCrystal": {
+    "name": "Psionic Spirit (Crystal Entity)"
+  },
+  "astralEntityEctoplasmic": {
+    "name": "Psionic Spirit (Ectoplasmic Entity)"
+  },
+  "astralEntityGhostly": {
+    "name": "Psionic Spirit (Ghostly Entity)"
+  },
+  "bestialSpiritAir": {
+    "name": "Bestial Spirit (Air)"
+  },
+  "bestialSpiritLand": {
+    "name": "Bestial Spirit (Land)"
+  },
+  "bestialSpiritWater": {
+    "name": "Bestial Spirit (Water)"
+  },
+  "constructSpiritClay": {
+    "name": "Construct Spirit (Clay)"
+  },
+  "constructSpiritMetal": {
+    "name": "Construct Spirit (Metal)"
+  },
+  "constructSpiritStone": {
+    "name": "Construct Spirit (Stone)"
+  },
+  "elementalSpiritAir": {
+    "name": "Elemental Spirit (Air)"
+  },
+  "elementalSpiritEarth": {
+    "name": "Elemental Spirit (Earth)"
+  },
+  "elementalSpiritFire": {
+    "name": "Elemental Spirit (Fire)"
+  },
+  "elementalSpiritWater": {
+    "name": "Elemental Spirit (Water)"
+  },
+  "feySpiritFuming": {
+    "name": "Fey Spirit (Fuming)"
+  },
+  "feySpiritMirthful": {
+    "name": "Fey Spirit (Mirthful)"
+  },
+  "feySpiritTricksy": {
+    "name": "Fey Spirit (Tricksy)"
+  },
+  "skeleton": {
+    "name": "Skeleton"
+  },
+  "undeadSpiritGhostly": {
+    "name": "Undead Spirit (Ghostly)"
+  },
+  "undeadSpiritPutrid": {
+    "name": "Undead Spirit (Putrid)"
+  },
+  "undeadSpiritSkeletal": {
+    "name": "Undead Spirit (Skeletal)"
+  },
+  "zombie": {
+    "name": "Zombie"
+  },
+  "titanForm": {
+    "name": "Titan Form Templates"
+  },
+  "behemothTitanForm": {
+    "name": "Behemoth"
+  },
+  "leviathanTitanForm": {
+    "name": "Leviathan"
+  },
+  "insectoidTitanForm": {
+    "name": "Insectoid"
+  },
+  "wildShapeTemplate": {
+    "name": "Wild Shape Templates"
+  }
+}

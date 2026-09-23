@@ -1,10 +1,15 @@
 import { ExpressionEvaluator } from '../engine/RpgEngine.js';
+import { translate } from '../i18n/i18nCore.js';
 
 export const CATEGORIES = {
     origin: { title: 'Origin', icon: 'person', order: 1 },
     class: { title: 'Class', icon: 'school', order: 2 },
     abilities: { title: 'Abilities', icon: 'fitness_center', order: 3 },
     arsenal: { title: 'Arsenal', icon: 'shield', order: 4 }
+};
+
+export const getCategoryTitle = (catKey) => {
+    return translate(`ui.builder.categories.${catKey}`, undefined, CATEGORIES[catKey]?.title || catKey);
 };
 
 export const STEP_DEFINITIONS = {
@@ -35,6 +40,10 @@ export const STEP_DEFINITIONS = {
     companion: { title: 'Companion', category: 'arsenal', terms: ['companion', 'primalcompanion'] },
     steed: { title: 'Steed', category: 'arsenal', terms: ['steed'] },
     familiar: { title: 'Familiar', category: 'arsenal', terms: ['familiar'] }
+};
+
+export const getStepTitle = (stepKey) => {
+    return translate(`ui.builder.steps.${stepKey}`, undefined, STEP_DEFINITIONS[stepKey]?.title || stepKey);
 };
 
 export const getCategoryForStep = (stepKey) => {

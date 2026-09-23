@@ -3,6 +3,7 @@ import { formatBonus } from '../../engine/RpgEngine';
 import { getIconInfo, getResourceRecovery } from '../../utils/cardUtils';
 import { AdvantageIndicator } from './AdvantageIndicator';
 import { DiceRoller } from './DiceRoller';
+import { useI18n } from '../../i18n/I18nContext.jsx';
 
 import 'mdui/components/card.js';
 import 'mdui/components/chip.js';
@@ -36,11 +37,143 @@ function evaluateHpFormula(input) {
         const numericOnly = str.replace(/[^\d]/g, '');
         return numericOnly ? String(Math.max(0, parseInt(numericOnly, 10))) : '';
     }
-
     return '';
 }
 
+const SPANISH_DAMAGE_TERMS = {
+    acid: 'Ácido',
+    bludgeoning: 'Contundente',
+    cold: 'Frío',
+    fire: 'Fuego',
+    force: 'Fuerza',
+    lightning: 'Relámpago',
+    necrotic: 'Necrótico',
+    piercing: 'Perforante',
+    poison: 'Veneno',
+    psychic: 'Psíquico',
+    radiant: 'Radiante',
+    slashing: 'Cortante',
+    thunder: 'Trueno'
+};
+
+const SPANISH_CONDITION_TERMS = {
+    blinded: 'Cegado',
+    charmed: 'Hechizado',
+    deafened: 'Ensordecido',
+    frightened: 'Asustado',
+    grappled: 'Agarrado',
+    incapacitated: 'Incapacitado',
+    invisible: 'Invisible',
+    paralyzed: 'Paralizado',
+    petrified: 'Petrificado',
+    poisoned: 'Envenenado',
+    prone: 'Derribado',
+    restrained: 'Apresado',
+    stunned: 'Aturdido',
+    unconscious: 'Inconsciente',
+    exhaustion: 'Agotamiento'
+};
+
+const SPANISH_SENSE_TERMS = {
+    darkvision: 'Visión en la oscuridad',
+    blindsight: 'Vista ciega',
+    tremorsense: 'Sentido del temblor',
+    truesight: 'Visión verdadera'
+};
+
+const SPANISH_MOVEMENT_TERMS = {
+    walk: 'Velocidad',
+    fly: 'Volar',
+    swim: 'Nadar',
+    climb: 'Trepar',
+    burrow: 'Excavar'
+};
+
+const SPANISH_TOOL_TERMS = {
+    thievestools: 'Herramientas de ladrón',
+    smithstools: 'Herramientas de herrero',
+    tinkerstools: 'Herramientas de hojalatero',
+    herbalismkit: 'Kit de herboristería',
+    poisonerskit: 'Kit de envenenador',
+    disguisekit: 'Kit de disfraz',
+    forgerykit: 'Kit de falsificación',
+    navigatorstools: 'Herramientas de navegante',
+    alchemistssupplies: 'Suministros de alquimista',
+    brewerssupplies: 'Suministros de cervecero',
+    calligrapherssupplies: 'Suministros de calígrafo',
+    carpenterstools: 'Herramientas de carpintero',
+    cartographerstools: 'Herramientas de cartógrafo',
+    cobblerstools: 'Herramientas de zapatero',
+    cooksutensils: 'Utensilios de cocinero',
+    glassblowerstools: 'Herramientas de soplador de vidrio',
+    jewelerstools: 'Herramientas de joyero',
+    leatherworkerstools: 'Herramientas de peletero',
+    masonstools: 'Herramientas de albañil',
+    painterssupplies: 'Suministros de pintor',
+    potterstools: 'Herramientas de alfarero',
+    weaverstools: 'Herramientas de tejedor',
+    woodcarverstools: 'Herramientas de tallador de madera',
+    landvehicles: 'Vehículos (terrestres)',
+    watervehicles: 'Vehículos (acuáticos)',
+    musicalinstrument: 'Instrumento musical'
+};
+
+function formatInfoValue(sectionKey, rawVal, locale) {
+    if (rawVal === null || rawVal === undefined) return '';
+    const str = String(rawVal).trim();
+    if (locale !== 'es') return str;
+
+    const lower = str.toLowerCase().replace(/['_\s-]/g, '');
+
+    // Senses
+    if (sectionKey === 'senses') {
+        for (const [k, name] of Object.entries(SPANISH_SENSE_TERMS)) {
+            if (lower.startsWith(k)) {
+                return str.replace(new RegExp(k, 'i'), name).replace(/\bft\.?\b/gi, 'pies').replace(/\bfeet\b/gi, 'pies');
+            }
+        }
+    }
+
+    // Movement
+    if (sectionKey === 'movement') {
+        for (const [k, name] of Object.entries(SPANISH_MOVEMENT_TERMS)) {
+            if (lower.startsWith(k)) {
+                return str.replace(new RegExp(k, 'i'), name).replace(/\bft\.?\b/gi, 'pies').replace(/\bfeet\b/gi, 'pies');
+            }
+        }
+    }
+
+    // Resistances / Immunities
+    if (sectionKey === 'resistances' || sectionKey === 'immunities') {
+        const clean = str.replace(/\s*damage\s*/gi, '').trim().toLowerCase();
+        if (SPANISH_DAMAGE_TERMS[clean]) return SPANISH_DAMAGE_TERMS[clean];
+        if (SPANISH_CONDITION_TERMS[clean]) return SPANISH_CONDITION_TERMS[clean];
+    }
+
+    // Advantages
+    if (sectionKey === 'advantages') {
+        const clean = str.replace(/^saves?\s+against\s+(being\s+)?/i, '').replace(/\s*damage\s*/gi, '').trim().toLowerCase();
+        if (SPANISH_CONDITION_TERMS[clean]) return `Contra ${SPANISH_CONDITION_TERMS[clean].toLowerCase()}`;
+        if (SPANISH_DAMAGE_TERMS[clean]) return `Contra ${SPANISH_DAMAGE_TERMS[clean].toLowerCase()}`;
+    }
+
+    // Tools
+    if (sectionKey === 'tools') {
+        if (SPANISH_TOOL_TERMS[lower]) return SPANISH_TOOL_TERMS[lower];
+    }
+
+    // General damage term fallback
+    for (const [k, name] of Object.entries(SPANISH_DAMAGE_TERMS)) {
+        if (lower.includes(k)) {
+            return str.replace(new RegExp(k, 'i'), name).replace(/\bdamage\b/gi, '');
+        }
+    }
+
+    return str;
+}
+
 export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, className, variant, interactive = true }, ref) => {
+    const { t, locale } = useI18n();
     const isPlayMode = variant !== 'static' && interactive !== false;
     const RESOURCE_WRAP_THRESHOLD = 10;
 
@@ -157,7 +290,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             <span className="title-primary show-on-print">{char.meta.name}</span>
                             <div className="print-subtitle-container show-on-print">
                                 <span className="card-subtitle">
-                                    {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
+                                    {[`${locale === 'es' ? 'Nivel' : 'Level'} ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || (locale === 'es' ? 'Clase desconocida' : 'Unknown Class')}`.trim()].filter(Boolean).join(' ')}
                                 </span>
                                 <span className="card-subtitle">
                                     {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
@@ -166,7 +299,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
                         </div>
                         <div className="title-primary card-subtitle-container hide-on-print">
-                            {[`Level ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || 'Unknown Class'}`.trim()].filter(Boolean).join(' ')}
+                            {[`${locale === 'es' ? 'Nivel' : 'Level'} ${char.meta.level}`, `${char.meta.sub || ''} ${char.meta.class || (locale === 'es' ? 'Clase desconocida' : 'Unknown Class')}`.trim()].filter(Boolean).join(' ')}
 
                             <span className="mobile-hidden title-secondary">
                                 {[char.meta.species, char.meta.background].filter(Boolean).join(' ')}
@@ -182,17 +315,20 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
             {/* Ability Scores */}
             <div className="main-card-row stat-box-row hide-on-print">
-                {Object.entries(char.stats).map(([key, value]) => (
-                    <mdui-card variant="filled" className="inner-card main-card-box stat-box" key={key}>
-                        <div className="text-secondary">{key.toUpperCase()}</div>
-                        <div className="important-number">
-                            <DiceRoller formula={formatBonus(value.mod, true)} label={`${key.toUpperCase()} check`} interactive={isPlayMode} showIcon={false}>
-                                {formatBonus(value.mod, true)}
-                            </DiceRoller>
-                        </div>
-                        <div className="text-secondary">{value.score}</div>
-                    </mdui-card>
-                ))}
+                {Object.entries(char.stats).map(([key, value]) => {
+                    const shortName = t(`rules.abilitiesShort.${key}`, key.toUpperCase());
+                    return (
+                        <mdui-card variant="filled" className="inner-card main-card-box stat-box" key={key}>
+                            <div className="text-secondary">{shortName}</div>
+                            <div className="important-number">
+                                <DiceRoller formula={formatBonus(value.mod, true)} label={`${shortName} check`} interactive={isPlayMode} showIcon={false}>
+                                    {formatBonus(value.mod, true)}
+                                </DiceRoller>
+                            </div>
+                            <div className="text-secondary">{value.score}</div>
+                        </mdui-card>
+                    );
+                })}
             </div>
 
             {/* Skills and Vitals */}
@@ -207,7 +343,7 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                             else if (skill.proficiency === 0.5) profIcon = 'contrast';
                             return (
                                 <div className="list-item skill-list-item" key={key}>
-                                    <div className="text-secondary">{skill.stat.toUpperCase()}</div>
+                                    <div className="text-secondary">{t(`rules.abilitiesShort.${skill.stat}`, skill.stat.toUpperCase())}</div>
                                     <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                     <div className="text-secondary">
                                         <DiceRoller
@@ -241,14 +377,15 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                                 if (save.proficiency === 1) profIcon = 'circle';
                                 if (save.proficiency === 2) profIcon = 'adjust';
                                 else if (save.proficiency === 0.5) profIcon = 'circle_circle';
-                                const saveName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+                                const saveName = t(`rules.abilities.${key}`, key.charAt(0).toUpperCase() + key.slice(1).toLowerCase());
+                                const saveRollLabel = locale === 'es' ? `Tirada de Salvación de ${saveName}` : `${saveName} save`;
                                 return (
                                     <div className="list-item saves-list-item" key={key}>
                                         <mdui-icon name={profIcon} class="icon-small"></mdui-icon>
                                         <div className="text-secondary">
                                             <DiceRoller
                                                 formula={formatBonus(save.bonus, true)}
-                                                label={`${saveName} save`}
+                                                label={saveRollLabel}
                                                 interactive={isPlayMode}
                                                 showIcon={false}
                                                 rollOptions={{ adv: save.adv, dis: save.dis, min: save.min }}
@@ -273,9 +410,9 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                 <div className="main-card-column">
                     <mdui-card variant="filled" className="main-card-box main-card-box-hp inner-card">
                         <div className="main-card-box-hp-row">
-                            <div className="text-secondary">Current</div>
-                            <div className="text-secondary">Max</div>
-                            <div className="text-secondary">Temp</div>
+                            <div className="text-secondary">{t('ui.play.current')}</div>
+                            <div className="text-secondary">{t('ui.play.max')}</div>
+                            <div className="text-secondary">{t('ui.play.temp')}</div>
                         </div>
                         <div className="main-card-box-hp-row">
                             <div className="important-number">
@@ -337,25 +474,25 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
 
                     <div className="main-card-combat-row">
                         <mdui-card variant="filled" className="inner-card main-card-box">
-                            <div className="text-secondary">Initiative</div>
+                            <div className="text-secondary">{t('ui.play.initiative')}</div>
                             <div className="important-number">
                                 {char.attributes.initiativeAdvantage && <AdvantageIndicator type="adv" />}
                                 {char.attributes.initiativeDisadvantage && <AdvantageIndicator type="dis" />}
-                                <DiceRoller formula={formatBonus(char.attributes.initiative, true)} label="Initiative roll" interactive={isPlayMode} showIcon={false}>
+                                <DiceRoller formula={formatBonus(char.attributes.initiative, true)} label={`${t('ui.play.initiative')} roll`} interactive={isPlayMode} showIcon={false}>
                                     {formatBonus(char.attributes.initiative, true)}
                                 </DiceRoller>
                             </div>
-                            <div className="text-secondary">Mod</div>
+                            <div className="text-secondary">{locale === 'es' ? 'Bono' : 'Mod'}</div>
                         </mdui-card>
                         <mdui-card variant="filled" className="inner-card main-card-box">
-                            <div className="text-secondary">Armor</div>
+                            <div className="text-secondary">{locale === 'es' ? 'Clase de' : 'Armor'}</div>
                             <div className="important-number">{char.attributes.ac}</div>
-                            <div className="text-secondary">Class</div>
+                            <div className="text-secondary">{locale === 'es' ? 'Armadura' : 'Class'}</div>
                         </mdui-card>
                         <mdui-card variant="filled" className="inner-card main-card-box">
-                            <div className="text-secondary">Movement</div>
+                            <div className="text-secondary">{t('ui.play.speed')}</div>
                             <div className="important-number">{char.attributes.movement.walk}</div>
-                            <div className="text-secondary">Speed</div>
+                            <div className="text-secondary">{locale === 'es' ? 'Pies' : 'Speed'}</div>
                         </mdui-card>
                     </div>
 
@@ -420,22 +557,29 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
                     <mdui-card variant="filled" className="inner-card info-card">
                         <div className="main-card-list">
                             {[
-                                { label: 'Senses', data: char?.attributes?.senses },
-                                { label: 'Movement', data: char?.attributes?.movement },
-                                { label: 'Resistances', data: char?.attributes?.resistances },
-                                { label: 'Advantages', data: char?.attributes?.advantages },
-                                { label: 'Immunities', data: char?.attributes?.immunities },
-                                { label: 'Tools', data: char?.attributes?.tools }
+                                { key: 'senses', label: t('rules.info.senses', 'Senses'), data: char?.attributes?.senses },
+                                { key: 'movement', label: t('rules.info.movement', 'Movement'), data: char?.attributes?.movement },
+                                { key: 'resistances', label: t('rules.info.resistances', 'Resistances'), data: char?.attributes?.resistances },
+                                { key: 'advantages', label: t('rules.info.advantages', 'Advantages'), data: char?.attributes?.advantages },
+                                { key: 'immunities', label: t('rules.info.immunities', 'Immunities'), data: char?.attributes?.immunities },
+                                { key: 'tools', label: t('rules.info.tools', 'Tools'), data: char?.attributes?.tools }
                             ].map((info, idx) => {
                                 let displayData = [];
                                 if (Array.isArray(info.data)) {
-                                    displayData = [...info.data];
+                                    displayData = info.data.map(item => formatInfoValue(info.key, item, locale)).filter(Boolean);
                                 } else if (info.data && typeof info.data === 'object') {
                                     displayData = Object.entries(info.data)
-                                        .filter(([k, v]) => v && !(info.label === 'Movement' && k === 'walk'))
+                                        .filter(([k, v]) => v && !(info.key === 'movement' && k === 'walk'))
                                         .map(([k, v]) => {
-                                            const label = k.charAt(0).toUpperCase() + k.slice(1);
-                                            const unit = typeof v === 'number' ? ' ft' : '';
+                                            let label = k.charAt(0).toUpperCase() + k.slice(1);
+                                            if (locale === 'es') {
+                                                if (info.key === 'senses' && SPANISH_SENSE_TERMS[k.toLowerCase()]) {
+                                                    label = SPANISH_SENSE_TERMS[k.toLowerCase()];
+                                                } else if (info.key === 'movement' && SPANISH_MOVEMENT_TERMS[k.toLowerCase()]) {
+                                                    label = SPANISH_MOVEMENT_TERMS[k.toLowerCase()];
+                                                }
+                                            }
+                                            const unit = typeof v === 'number' ? (locale === 'es' ? ' pies' : ' ft') : '';
                                             return `${label} (${v}${unit})`;
                                         });
                                 }

@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { getAssetUrl } from '../data/artworkData';
+import { useI18n } from '../i18n/I18nContext.jsx';
 
 export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, onOpenImport, onOpenExport, onLoadSampleCharacters }) => {
+    const { locale, setLocale, t } = useI18n();
+
     useEffect(() => {
         const savedScroll = sessionStorage.getItem('dashboard_scroll_position');
         if (savedScroll) {
@@ -91,7 +94,18 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
         <div className="container">
             <mdui-top-app-bar variant="small" scroll-behavior="hide">
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
-                <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
+                <mdui-top-app-bar-title>{t('ui.dashboard.title')}</mdui-top-app-bar-title>
+
+                <mdui-button
+                    variant="text"
+                    icon="language"
+                    onClick={() => setLocale(locale === 'en' ? 'es' : 'en')}
+                    style={{ marginRight: '8px' }}
+                    title={t('ui.nav.language')}
+                >
+                    {locale === 'en' ? 'ES' : 'EN'}
+                </mdui-button>
+
                 {onOpenImport && (
                     <>
                         <mdui-button
@@ -101,18 +115,18 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                             className="mobile-hidden"
                             style={{ marginRight: '8px' }}
                         >
-                            Import Recipe
+                            {t('ui.dashboard.importCharacter')}
                         </mdui-button>
                         <mdui-button-icon
                             icon="file_download"
                             onClick={onOpenImport}
                             className="desktop-hidden"
-                            title="Import Recipe"
+                            title={t('ui.dashboard.importCharacter')}
                         ></mdui-button-icon>
                     </>
                 )}
                 <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">
-                    New Character
+                    {t('ui.dashboard.newCharacter')}
                 </mdui-button>
             </mdui-top-app-bar>
 
@@ -169,7 +183,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                         {/* MOBILE-ONLY: List for remaining characters */}
                         {remainingCharacters.length > 0 && (
                             <div className="desktop-hidden">
-                                <h3 className="dashboard-section-title">Other Characters</h3>
+                                <h3 className="dashboard-section-title">{t('ui.dashboard.subtitle')}</h3>
                                 <div className="other-characters-list">
                                     {remainingCharacters.map(renderHeroCard)}
                                 </div>
@@ -184,17 +198,17 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
                 ) : (
                     <div className="empty-state">
                         <mdui-icon name="person_add" class="icon-large"></mdui-icon>
-                        <p>No characters found.</p>
+                        <p>{t('ui.dashboard.noCharacters')}</p>
                         <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <mdui-button onClick={handleNewCharacter}>Create your first character</mdui-button>
+                            <mdui-button onClick={handleNewCharacter}>{t('ui.dashboard.createFirst')}</mdui-button>
                             {onOpenImport && (
                                 <mdui-button variant="tonal" icon="file_download" onClick={onOpenImport}>
-                                    Import Recipe
+                                    {t('ui.dashboard.importCharacter')}
                                 </mdui-button>
                             )}
                             {onLoadSampleCharacters && (
                                 <mdui-button variant="tonal" icon="group_add" onClick={onLoadSampleCharacters}>
-                                    Load sample characters
+                                    {t('ui.dashboard.sampleCharacters')}
                                 </mdui-button>
                             )}
                         </div>
@@ -203,7 +217,7 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
             </div>
 
             <mdui-fab extended icon="add" onClick={handleNewCharacter} className="desktop-hidden dashboard-fab">
-                New Character
+                {t('ui.dashboard.newCharacter')}
             </mdui-fab>
         </div>
     );

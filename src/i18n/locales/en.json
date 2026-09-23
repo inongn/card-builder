@@ -1,0 +1,291 @@
+{
+  "ui": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "builder": "Builder",
+      "play": "Play",
+      "print": "Print",
+      "export": "Export",
+      "import": "Import",
+      "debug": "Debug",
+      "settings": "Settings",
+      "theme": "Toggle theme",
+      "language": "Language"
+    },
+    "dashboard": {
+      "title": "Aspida",
+      "subtitle": "D&D 5e Character Sheet & Card Builder",
+      "newCharacter": "New Character",
+      "importCharacter": "Import",
+      "sampleCharacters": "Load Samples",
+      "deleteConfirm": "Are you sure you want to delete this character?",
+      "delete": "Delete",
+      "edit": "Edit",
+      "play": "Play",
+      "print": "Print",
+      "noCharacters": "No characters saved yet",
+      "createFirst": "Create your first character"
+    },
+    "builder": {
+      "complete": "Complete",
+      "incomplete": "Incomplete",
+      "categories": {
+        "origin": "Origin",
+        "class": "Class",
+        "abilities": "Abilities",
+        "arsenal": "Arsenal"
+      },
+      "steps": {
+        "name": "Name",
+        "species": "Species",
+        "lineage": "Lineage",
+        "background": "Background",
+        "image": "Portrait",
+        "level": "Level",
+        "class": "Class",
+        "subclass": "Subclass",
+        "classOptions": "Class Options",
+        "feats": "Feats",
+        "stats": "Ability Scores",
+        "saves": "Saving Throws",
+        "skills": "Skills",
+        "expertise": "Expertise",
+        "tools": "Tools",
+        "spellcasting": "Spellcasting",
+        "equipment": "Equipment",
+        "companion": "Companion",
+        "steed": "Steed",
+        "familiar": "Familiar"
+      },
+      "searchPlaceholder": "Search...",
+      "clearSelection": "Clear selection",
+      "selectPlaceholder": "Choose an option",
+      "acCalculation": "AC",
+      "pointBuyRemaining": "Point Buy Remaining",
+      "originRemaining": "Origin Bonus Remaining",
+      "asiRemaining": "ASI Bonus Remaining"
+    },
+    "play": {
+      "current": "Current",
+      "max": "Max",
+      "temp": "Temp",
+      "hp": "Hit Points",
+      "ac": "Armor Class",
+      "initiative": "Initiative",
+      "speed": "Speed",
+      "passivePerception": "Passive Perception",
+      "spellSaveDc": "Spell Save DC",
+      "spellAttack": "Spell Attack",
+      "categories": {
+        "core": "Core Actions",
+        "action": "Actions",
+        "bonus action": "Bonus Actions",
+        "reaction": "Reactions",
+        "free action": "Special Actions",
+        "other": "Other",
+        "companions": "Companions",
+        "wildshapes": "Wild Shapes",
+        "summons": "Summons",
+        "allies_forms": "Allies & Forms"
+      },
+      "sections": {
+        "activities": "Activities",
+        "allies": "Allies & Companions",
+        "resources": "Resources",
+        "traits": "Traits & Features"
+      }
+    },
+    "print": {
+      "print": "Print",
+      "compactSheet": "Compact Sheet",
+      "cardView": "Card View",
+      "activitySheet": "Activity Sheet",
+      "compactActivities": "Compact Activities",
+      "switchToStandard": "Switch to standard layout",
+      "switchToCompact": "Switch to compact layout",
+      "switchToCompactTwoCol": "Switch to compact two-column layout"
+    },
+    "dialogs": {
+      "importTitle": "Import Character",
+      "exportTitle": "Export Character",
+      "recipePlaceholder": "Paste recipe or code here...",
+      "copyRecipe": "Copy Recipe",
+      "copySuccess": "Copied to clipboard!",
+      "importButton": "Import",
+      "cancel": "Cancel",
+      "close": "Close",
+      "invalidRecipe": "Invalid character recipe format."
+    }
+  },
+  "rules": {
+    "abilities": {
+      "str": "Strength",
+      "dex": "Dexterity",
+      "con": "Constitution",
+      "int": "Intelligence",
+      "wis": "Wisdom",
+      "cha": "Charisma",
+      "strength": "Strength",
+      "dexterity": "Dexterity",
+      "constitution": "Constitution",
+      "intelligence": "Intelligence",
+      "wisdom": "Wisdom",
+      "charisma": "Charisma"
+    },
+    "senses": {
+      "darkvision": "Darkvision",
+      "blindsight": "Blindsight",
+      "tremorsense": "Tremorsense",
+      "truesight": "Truesight"
+    },
+    "movementModes": {
+      "walk": "Speed",
+      "fly": "Fly",
+      "swim": "Swim",
+      "climb": "Climb",
+      "burrow": "Burrow"
+    },
+    "abilitiesShort": {
+      "str": "STR",
+      "dex": "DEX",
+      "con": "CON",
+      "int": "INT",
+      "wis": "WIS",
+      "cha": "CHA"
+    },
+    "skills": {
+      "acrobatics": "Acrobatics",
+      "animal_handling": "Animal Handling",
+      "athletics": "Athletics",
+      "deception": "Deception",
+      "history": "History",
+      "insight": "Insight",
+      "intimidation": "Intimidation",
+      "investigation": "Investigation",
+      "medicine": "Medicine",
+      "nature": "Nature",
+      "perception": "Perception",
+      "performance": "Performance",
+      "persuasion": "Persuasion",
+      "religion": "Religion",
+      "sleight_of_hand": "Sleight of Hand",
+      "stealth": "Stealth",
+      "survival": "Survival"
+    },
+    "damageTypes": {
+      "acid": "Acid",
+      "bludgeoning": "Bludgeoning",
+      "cold": "Cold",
+      "fire": "Fire",
+      "force": "Force",
+      "lightning": "Lightning",
+      "necrotic": "Necrotic",
+      "piercing": "Piercing",
+      "poison": "Poison",
+      "psychic": "Psychic",
+      "radiant": "Radiant",
+      "slashing": "Slashing",
+      "thunder": "Thunder"
+    },
+    "actions": {
+      "action": "Action",
+      "bonus action": "Bonus Action",
+      "reaction": "Reaction",
+      "free action": "Free Action",
+      "special": "Special"
+    },
+    "recovery": {
+      "sr": "SR",
+      "lr": "LR",
+      "shortRest": "Short Rest",
+      "longRest": "Long Rest"
+    },
+    "conditions": {
+      "blinded": "blinded",
+      "charmed": "charmed",
+      "deafened": "deafened",
+      "frightened": "frightened",
+      "grappled": "grappled",
+      "incapacitated": "incapacitated",
+      "invisible": "invisible",
+      "paralyzed": "paralyzed",
+      "petrified": "petrified",
+      "poisoned": "poisoned",
+      "prone": "prone",
+      "restrained": "restrained",
+      "stunned": "stunned",
+      "unconscious": "unconscious",
+      "exhaustion": "exhaustion"
+    },
+    "shapes": {
+      "sphere": "sphere",
+      "cone": "cone",
+      "cube": "cube",
+      "cylinder": "cylinder",
+      "line": "line",
+      "emanation": "emanation",
+      "wall": "wall",
+      "square": "square"
+    },
+    "units": {
+      "feet": "ft.",
+      "minute": "minute",
+      "minutes": "mins",
+      "hour": "hour",
+      "hours": "hours",
+      "round": "round",
+      "rounds": "rounds"
+    },
+    "info": {
+      "senses": "Senses",
+      "speed": "Speed",
+      "movement": "Movement",
+      "resistances": "Resistances",
+      "advantages": "Advantages",
+      "immunities": "Immunities",
+      "tools": "Tools",
+      "info": "Info",
+      "traits": "Traits",
+      "resources": "Resources",
+      "armor": "Armor",
+      "initiative": "Initiative",
+      "hp": "HP",
+      "current": "Current",
+      "temp": "Temp"
+    }
+  },
+  "mechanics": {
+    "save": {
+      "label": "saving throw",
+      "dc": "DC",
+      "failed": "failed save",
+      "success": "successful save",
+      "halfDamage": "half damage"
+    },
+    "attack": {
+      "melee": "Melee",
+      "ranged": "Ranged",
+      "spell": "Spell",
+      "weapon": "Weapon",
+      "hit": "Hit",
+      "miss": "Miss",
+      "onHit": "On a hit",
+      "onMiss": "On a miss"
+    },
+    "healing": {
+      "hitPoints": "Hit Points",
+      "tempHitPoints": "temporary Hit Points",
+      "regains": "regains"
+    },
+    "labels": {
+      "duration": "Duration",
+      "concentration": "Concentration",
+      "upTo": "Up to",
+      "instantaneous": "Instantaneous",
+      "ritual": "Ritual",
+      "upcast": "Upcast",
+      "trigger": "Trigger",
+      "response": "Response"
+    }
+  }
+}

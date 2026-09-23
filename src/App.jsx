@@ -190,7 +190,7 @@ export default function App() {
                 colorCache.current.set(url, cachedStorage);
                 return Promise.resolve(cachedStorage);
             }
-        } catch (e) {}
+        } catch (e) { }
 
         return new Promise((resolve) => {
             const img = new Image();
@@ -200,7 +200,7 @@ export default function App() {
                     .then(color => {
                         if (color) {
                             colorCache.current.set(url, color);
-                            try { localStorage.setItem(`extracted_color_${url}`, color); } catch (e) {}
+                            try { localStorage.setItem(`extracted_color_${url}`, color); } catch (e) { }
                         }
                         resolve(color);
                     })
@@ -441,31 +441,9 @@ export default function App() {
         }
     }, [sampleCharactersEnabled]);
 
-    const handleLoadSampleCharacters = useCallback(async () => {
-        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
-        const { SAMPLE_CHARACTERS } = await import('./data/sampleCharacters.js');
-        const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
-            id: sc.id,
-            name: sc.name,
-            class: sc.class,
-            sub: sc.sub || '',
-            species: sc.species,
-            level: sc.level,
-            image: sc.image || '',
-            recipe: sc.recipe,
-            timestamp: new Date().toISOString()
-        }));
-        const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
-        const merged = [...filtered, ...freshSamples];
-        localStorage.setItem('saved_characters', JSON.stringify(merged));
-        localStorage.setItem('sample_characters_enabled', 'true');
-        setSavedCharacters(merged);
-        setSampleCharactersEnabled(true);
-    }, []);
-
     const handleToggleSampleCharacters = useCallback(async () => {
+        const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
         if (sampleCharactersEnabled) {
-            const saved = JSON.parse(localStorage.getItem('saved_characters') || '[]');
             // Remove all sample characters
             const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
             localStorage.setItem('saved_characters', JSON.stringify(filtered));
@@ -473,9 +451,27 @@ export default function App() {
             setSavedCharacters(filtered);
             setSampleCharactersEnabled(false);
         } else {
-            await handleLoadSampleCharacters();
+            // Load fresh sample characters dynamically
+            const { SAMPLE_CHARACTERS } = await import('./data/sampleCharacters.js');
+            const freshSamples = SAMPLE_CHARACTERS.map(sc => ({
+                id: sc.id,
+                name: sc.name,
+                class: sc.class,
+                sub: sc.sub || '',
+                species: sc.species,
+                level: sc.level,
+                image: sc.image || '',
+                recipe: sc.recipe,
+                timestamp: new Date().toISOString()
+            }));
+            const filtered = saved.filter(c => !String(c.id).startsWith(SAMPLE_ID_PREFIX));
+            const merged = [...filtered, ...freshSamples];
+            localStorage.setItem('saved_characters', JSON.stringify(merged));
+            localStorage.setItem('sample_characters_enabled', 'true');
+            setSavedCharacters(merged);
+            setSampleCharactersEnabled(true);
         }
-    }, [sampleCharactersEnabled, handleLoadSampleCharacters]);
+    }, [sampleCharactersEnabled]);
 
     const handleLoadDebugAllActivities = useCallback(() => {
         if (!library || !builder) return;
@@ -515,6 +511,13 @@ export default function App() {
     }, [library, builder]);
 
     const [isDebugOpen, setIsDebugOpen] = useState(false);
+    const [hasOpenedDebug, setHasOpenedDebug] = useState(false);
+
+    useEffect(() => {
+        if (isDebugOpen) {
+            setHasOpenedDebug(true);
+        }
+    }, [isDebugOpen]);
     const [exportDialog, setExportDialog] = useState({ open: false, character: null, recipe: null });
     const [importDialog, setImportDialog] = useState({ open: false, target: 'play' });
 
@@ -596,7 +599,7 @@ export default function App() {
     return (
         <mdui-layout className="app-container">
             <Suspense fallback={null}>
-                {isDebugOpen && (
+                {hasOpenedDebug && (
                     <DebugDrawer
                         open={isDebugOpen}
                         onClose={() => setIsDebugOpen(false)}
@@ -643,7 +646,6 @@ export default function App() {
                         onNavigate={handleNavigate}
                         onOpenImport={() => handleOpenImport('play')}
                         onOpenExport={handleOpenExport}
-                        onLoadSampleCharacters={handleLoadSampleCharacters}
                     />
                 )}
                 {activeTab === 'builder' && (

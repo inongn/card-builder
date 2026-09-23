@@ -1,4 +1,6 @@
 import jsyaml from 'js-yaml';
+import esData from '../data/locales/es/data.json' with { type: 'json' };
+import { getLocale } from '../i18n/i18nCore.js';
 
 /**
  * Loads and indexes all properties from data files
@@ -6,15 +8,18 @@ import jsyaml from 'js-yaml';
 export class PropertyLibrary {
     constructor() {
         this.properties = new Map(); // id -> parsed property
+        this.baseProperties = new Map(); // id -> canonical unprocessed copy
         this.rawStore = new Map(); // id -> raw string (mostly used for hot updates)
         this.byTag = new Map(); // tag -> id[]
         this.paths = new Map(); // id -> full path
+        this.locale = 'en';
+        this.overlays = { es: esData };
     }
 
     /**
      * Load the pre-bundled JSON database
      */
-    async loadFromData() {
+    async loadFromData(lang = null) {
         try {
             console.log('Fetching database...');
             const response = await fetch(`${import.meta.env.BASE_URL}db.json`);
@@ -28,6 +33,11 @@ export class PropertyLibrary {
                     this.addParsedProperty(prop);
                 }
             });
+
+            const initialLang = lang || getLocale() || 'en';
+            if (initialLang !== 'en') {
+                this.setLanguage(initialLang);
+            }
         } catch (e) {
             console.error('Error loading property database:', e);
             // Fallback to old behavior or empty state
@@ -44,6 +54,8 @@ export class PropertyLibrary {
         if (!property.name) property.name = id;
         if (!property.description) property.description = '';
 
+        // Deep clone for baseProperties to ensure pristine English reference
+        this.baseProperties.set(id, JSON.parse(JSON.stringify(property)));
         this.properties.set(id, property);
         if (path) this.paths.set(id, path);
 
@@ -55,6 +67,35 @@ export class PropertyLibrary {
                     this.byTag.get(tag).push(id);
                 }
             });
+        }
+    }
+
+    /**
+     * Switch language and apply translation overlays
+     */
+    setLanguage(lang = 'en') {
+        this.locale = lang;
+        const overlay = this.overlays[lang] || null;
+
+        const applyNodeOverlay = (node) => {
+            if (!node || typeof node !== 'object') return;
+            if (node.id && overlay && overlay[node.id]) {
+                const trans = overlay[node.id];
+                if (trans.name) node.name = trans.name;
+                if (trans.description !== undefined) node.description = trans.description;
+                if (trans.summary !== undefined) node.summary = trans.summary;
+            }
+            if (Array.isArray(node.children)) {
+                node.children.forEach(applyNodeOverlay);
+            }
+        };
+
+        for (const [id, baseProp] of this.baseProperties) {
+            const prop = JSON.parse(JSON.stringify(baseProp));
+            if (overlay) {
+                applyNodeOverlay(prop);
+            }
+            this.properties.set(id, prop);
         }
     }
 

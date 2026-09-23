@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm';
 import { formatActivityMechanic } from '../../utils/mechanicFormatter';
 import { processDiceInChildren } from './DiceRoller';
 import { renderIcon } from '../../utils/cardUtils';
+import { useI18n } from '../../i18n/I18nContext';
 import 'mdui/components/card.js';
 import 'mdui/components/divider.js';
 
@@ -119,18 +120,19 @@ export const groupActivities = (activities = []) => {
 };
 
 export const ActivitySheet = memo(({ groupedActivities, characterData, printMode = false }) => {
+  const { t } = useI18n();
   const effectiveGroups = React.useMemo(() => {
     if (groupedActivities) return groupedActivities;
     return groupActivities(characterData?.activities || []);
   }, [groupedActivities, characterData?.activities]);
 
   const activityCategories = [
-    { key: 'core', label: 'Core Actions' },
-    { key: 'action', label: 'Actions' },
-    { key: 'bonus action', label: 'Bonus Actions' },
-    { key: 'reaction', label: 'Reactions' },
-    { key: 'free action', label: 'Special Actions' },
-    { key: 'other', label: 'Other Actions' }
+    { key: 'core', label: t('ui.play.categories.core', 'Core Actions') },
+    { key: 'action', label: t('ui.play.categories.action', 'Actions') },
+    { key: 'bonus action', label: t('ui.play.categories.bonus action', 'Bonus Actions') },
+    { key: 'reaction', label: t('ui.play.categories.reaction', 'Reactions') },
+    { key: 'free action', label: t('ui.play.categories.free action', 'Special Actions') },
+    { key: 'other', label: t('ui.play.categories.other', 'Other Actions') }
   ];
 
   return (

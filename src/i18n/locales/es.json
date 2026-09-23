@@ -1,0 +1,291 @@
+{
+  "ui": {
+    "nav": {
+      "dashboard": "Panel",
+      "builder": "Creador",
+      "play": "Jugar",
+      "print": "Imprimir",
+      "export": "Exportar",
+      "import": "Importar",
+      "debug": "Depurar",
+      "settings": "Ajustes",
+      "theme": "Cambiar tema",
+      "language": "Idioma"
+    },
+    "dashboard": {
+      "title": "Aspida",
+      "subtitle": "Generador de Fichas y Cartas de Personaje para D&D 5e",
+      "newCharacter": "Nuevo Personaje",
+      "importCharacter": "Importar",
+      "sampleCharacters": "Cargar Ejemplos",
+      "deleteConfirm": "¿Seguro que deseas eliminar este personaje?",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "play": "Jugar",
+      "print": "Imprimir",
+      "noCharacters": "No hay personajes guardados",
+      "createFirst": "Crea tu primer personaje"
+    },
+    "builder": {
+      "complete": "Completo",
+      "incomplete": "Incompleto",
+      "categories": {
+        "origin": "Origen",
+        "class": "Clase",
+        "abilities": "Características",
+        "arsenal": "Arsenal"
+      },
+      "steps": {
+        "name": "Nombre",
+        "species": "Especie",
+        "lineage": "Linaje",
+        "background": "Trasfondo",
+        "image": "Retrato",
+        "level": "Nivel",
+        "class": "Clase",
+        "subclass": "Subclase",
+        "classOptions": "Opciones de Clase",
+        "feats": "Dotes",
+        "stats": "Puntuaciones de Característica",
+        "saves": "Tiradas de Salvación",
+        "skills": "Habilidades",
+        "expertise": "Pericia",
+        "tools": "Herramientas",
+        "spellcasting": "Lanzamiento de Conjuros",
+        "equipment": "Equipo",
+        "companion": "Compañero",
+        "steed": "Montura",
+        "familiar": "Familiar"
+      },
+      "searchPlaceholder": "Buscar...",
+      "clearSelection": "Limpiar selección",
+      "selectPlaceholder": "Elige una opción",
+      "acCalculation": "CA",
+      "pointBuyRemaining": "Puntos de compra restantes",
+      "originRemaining": "Bono de origen restante",
+      "asiRemaining": "Bono de ME restante"
+    },
+    "play": {
+      "current": "Actual",
+      "max": "Máx",
+      "temp": "Temp",
+      "hp": "Puntos de Golpe",
+      "ac": "Clase de Armadura",
+      "initiative": "Iniciativa",
+      "speed": "Velocidad",
+      "passivePerception": "Percepción Pasiva",
+      "spellSaveDc": "CD de Salvación",
+      "spellAttack": "Ataque de Conjuro",
+      "categories": {
+        "core": "Acciones Básicas",
+        "action": "Acciones",
+        "bonus action": "Acciones Adicionales",
+        "reaction": "Reacciones",
+        "free action": "Acciones Especiales",
+        "other": "Otros",
+        "companions": "Compañeros",
+        "wildshapes": "Formas Salvajes",
+        "summons": "Invocaciones",
+        "allies_forms": "Aliados y Formas"
+      },
+      "sections": {
+        "activities": "Actividades",
+        "allies": "Aliados y Compañeros",
+        "resources": "Recursos",
+        "traits": "Rasgos y Atributos"
+      }
+    },
+    "print": {
+      "print": "Imprimir",
+      "compactSheet": "Ficha Compacta",
+      "cardView": "Vista de Cartas",
+      "activitySheet": "Hoja de Actividades",
+      "compactActivities": "Actividades Compactas",
+      "switchToStandard": "Cambiar a diseño estándar",
+      "switchToCompact": "Cambiar a diseño compacto",
+      "switchToCompactTwoCol": "Cambiar a diseño compacto de dos columnas"
+    },
+    "dialogs": {
+      "importTitle": "Importar Personaje",
+      "exportTitle": "Exportar Personaje",
+      "recipePlaceholder": "Pega la receta o código aquí...",
+      "copyRecipe": "Copiar Receta",
+      "copySuccess": "¡Copiado al portapapeles!",
+      "importButton": "Importar",
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "invalidRecipe": "Formato de receta no válido."
+    }
+  },
+  "rules": {
+    "abilities": {
+      "str": "Fuerza",
+      "dex": "Destreza",
+      "con": "Constitución",
+      "int": "Inteligencia",
+      "wis": "Sabiduría",
+      "cha": "Carisma",
+      "strength": "Fuerza",
+      "dexterity": "Destreza",
+      "constitution": "Constitución",
+      "intelligence": "Inteligencia",
+      "wisdom": "Sabiduría",
+      "charisma": "Carisma"
+    },
+    "senses": {
+      "darkvision": "Visión en la oscuridad",
+      "blindsight": "Vista ciega",
+      "tremorsense": "Sentido del temblor",
+      "truesight": "Visión verdadera"
+    },
+    "movementModes": {
+      "walk": "Velocidad",
+      "fly": "Volar",
+      "swim": "Nadar",
+      "climb": "Trepar",
+      "burrow": "Excavar"
+    },
+    "abilitiesShort": {
+      "str": "FUE",
+      "dex": "DES",
+      "con": "CON",
+      "int": "INT",
+      "wis": "SAB",
+      "cha": "CAR"
+    },
+    "skills": {
+      "acrobatics": "Acrobacias",
+      "animal_handling": "Trato con animales",
+      "athletics": "Atletismo",
+      "deception": "Engaño",
+      "history": "Historia",
+      "insight": "Perspicacia",
+      "intimidation": "Intimidación",
+      "investigation": "Investigación",
+      "medicine": "Medicina",
+      "nature": "Naturaleza",
+      "perception": "Percepción",
+      "performance": "Interpretación",
+      "persuasion": "Persuasión",
+      "religion": "Religión",
+      "sleight_of_hand": "Juego de manos",
+      "stealth": "Sigilo",
+      "survival": "Supervivencia"
+    },
+    "damageTypes": {
+      "acid": "Ácido",
+      "bludgeoning": "Contundente",
+      "cold": "Frío",
+      "fire": "Fuego",
+      "force": "Fuerza",
+      "lightning": "Relámpago",
+      "necrotic": "Necrótico",
+      "piercing": "Perforante",
+      "poison": "Veneno",
+      "psychic": "Psíquico",
+      "radiant": "Radiante",
+      "slashing": "Cortante",
+      "thunder": "Trueno"
+    },
+    "actions": {
+      "action": "Acción",
+      "bonus action": "Acción adicional",
+      "reaction": "Reacción",
+      "free action": "Acción libre",
+      "special": "Especial"
+    },
+    "recovery": {
+      "sr": "DC",
+      "lr": "DL",
+      "shortRest": "Descanso corto",
+      "longRest": "Descanso largo"
+    },
+    "conditions": {
+      "blinded": "cegado",
+      "charmed": "hechizado",
+      "deafened": "ensordecido",
+      "frightened": "asustado",
+      "grappled": "agarrado",
+      "incapacitated": "incapacitado",
+      "invisible": "invisible",
+      "paralyzed": "paralizado",
+      "petrified": "petrificado",
+      "poisoned": "envenenado",
+      "prone": "derribado",
+      "restrained": "apresado",
+      "stunned": "aturdido",
+      "unconscious": "inconsciente",
+      "exhaustion": "agotamiento"
+    },
+    "shapes": {
+      "sphere": "esfera",
+      "cone": "cono",
+      "cube": "cubo",
+      "cylinder": "cilindro",
+      "line": "línea",
+      "emanation": "emanación",
+      "wall": "muro",
+      "square": "cuadrado"
+    },
+    "units": {
+      "feet": "pies",
+      "minute": "minuto",
+      "minutes": "mins",
+      "hour": "hora",
+      "hours": "horas",
+      "round": "asalto",
+      "rounds": "asaltos"
+    },
+    "info": {
+      "senses": "Sentidos",
+      "speed": "Velocidad",
+      "movement": "Movimiento",
+      "resistances": "Resistencias",
+      "advantages": "Ventajas",
+      "immunities": "Inmunidades",
+      "tools": "Herramientas",
+      "info": "Información",
+      "traits": "Rasgos",
+      "resources": "Recursos",
+      "armor": "Armadura",
+      "initiative": "Iniciativa",
+      "hp": "PG",
+      "current": "Actual",
+      "temp": "Temp"
+    }
+  },
+  "mechanics": {
+    "save": {
+      "label": "tirada de salvación",
+      "dc": "CD",
+      "failed": "salvación fallida",
+      "success": "salvación con éxito",
+      "halfDamage": "mitad de daño"
+    },
+    "attack": {
+      "melee": "Cuerpo a cuerpo",
+      "ranged": "A distancia",
+      "spell": "Conjuro",
+      "weapon": "Arma",
+      "hit": "Impacto",
+      "miss": "Fallo",
+      "onHit": "Si impacta",
+      "onMiss": "Si falla"
+    },
+    "healing": {
+      "hitPoints": "puntos de golpe",
+      "tempHitPoints": "puntos de golpe temporales",
+      "regains": "recupera"
+    },
+    "labels": {
+      "duration": "Duración",
+      "concentration": "Concentración",
+      "upTo": "Hasta",
+      "instantaneous": "Instantáneo",
+      "ritual": "Ritual",
+      "upcast": "Nivel superior",
+      "trigger": "Disparador",
+      "response": "Respuesta"
+    }
+  }
+}

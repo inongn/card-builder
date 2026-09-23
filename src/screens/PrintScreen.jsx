@@ -4,6 +4,7 @@ import { ActivityCard } from '../components/cards/ActivityCard';
 import { ActivitySheet, groupActivities, sortByResource } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
 import { CompactPrintPage, CompactActivityPrintPage } from '../components/cards/CompactPrintPage';
+import { useI18n } from '../i18n/I18nContext';
 import 'mdui/components/button.js';
 import 'mdui/components/tooltip.js';
 
@@ -21,6 +22,7 @@ const sortActivitiesByCategory = (activities = []) => {
 };
 
 export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
+    const { t } = useI18n();
     const containerRef = useRef(null);
     const activitySlotRef = useRef(null);
     const overflowSlotRefs = useRef([]);
@@ -253,13 +255,13 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                 <mdui-top-app-bar scroll-behavior="hide" variant="small">
                     <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
                     <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                    <mdui-tooltip content={useCompactActivityLayout ? 'Switch to standard layout' : 'Switch to compact two-column layout'}>
+                    <mdui-tooltip content={useCompactActivityLayout ? t('ui.print.switchToStandard', 'Switch to standard layout') : t('ui.print.switchToCompactTwoCol', 'Switch to compact two-column layout')}>
                         <mdui-button-icon
                             icon={useCompactActivityLayout ? 'view_agenda' : 'view_compact_alt'}
                             onClick={handleToggleCompactActivityLayout}
                         />
                     </mdui-tooltip>
-                    <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
+                    <mdui-button variant="filled" icon="print" onClick={() => window.print()}>{t('ui.print.print', 'Print')}</mdui-button>
                 </mdui-top-app-bar>
 
                 <div className="content print-content print-mode" ref={containerRef}>
@@ -367,13 +369,13 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
             <mdui-top-app-bar scroll-behavior="hide" variant="small">
                 <mdui-button-icon icon="arrow_back" onClick={() => onNavigate('play')}></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                <mdui-tooltip content={useCompactSheet ? 'Switch to standard layout' : 'Switch to compact layout'}>
+                <mdui-tooltip content={useCompactSheet ? t('ui.print.switchToStandard', 'Switch to standard layout') : t('ui.print.switchToCompact', 'Switch to compact layout')}>
                     <mdui-button-icon
                         icon={useCompactSheet ? 'view_agenda' : 'view_compact'}
                         onClick={handleToggleCompactSheet}
                     />
                 </mdui-tooltip>
-                <mdui-button variant="filled" icon="print" onClick={() => window.print()}>Print</mdui-button>
+                <mdui-button variant="filled" icon="print" onClick={() => window.print()}>{t('ui.print.print', 'Print')}</mdui-button>
             </mdui-top-app-bar>
 
             <div className="content print-content print-mode" ref={containerRef}>
