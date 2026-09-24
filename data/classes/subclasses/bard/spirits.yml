@@ -157,16 +157,24 @@ children:
   - id: powerFromBeyondDamage
     type: Effect
     name: Power from Beyond (Damage)
-    target: activities[tags=damageSpell].mechanic.hit.dice.bonus
-    operation: add
-    value: 1d6
+    target: activities[tags=damageSpell NOT cantrip].mechanic.hit.dice.bonus
+    operation: push
+    value: $(stats.cha.mod)
     condition: $(meta.level >= 6)
+  - id: powerFromBeyondDamageSave
+    type: Effect
+    name: Power from Beyond (Damage)
+    target: activities[tags=damageSpell NOT cantrip].mechanic.failure.dice.bonus
+    operation: push
+    value: $(stats.cha.mod)
+    condition: $(meta.level >= 6)
+
   - id: powerFromBeyondHealing
     type: Effect
     name: Power from Beyond (Healing)
     target: activities[tags=healingSpell].mechanic.healing.dice.bonus
     operation: add
-    value: 1d6
+    value: $(stats.cha.mod)
     condition: $(meta.level >= 6)
   - type: Reference
     target:
