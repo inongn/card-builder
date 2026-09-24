@@ -515,6 +515,14 @@ export default function App() {
     }, [library, builder]);
 
     const [isDebugOpen, setIsDebugOpen] = useState(false);
+    const [hasOpenedDebug, setHasOpenedDebug] = useState(false);
+
+    useEffect(() => {
+        if (isDebugOpen) {
+            setHasOpenedDebug(true);
+        }
+    }, [isDebugOpen]);
+
     const [exportDialog, setExportDialog] = useState({ open: false, character: null, recipe: null });
     const [importDialog, setImportDialog] = useState({ open: false, target: 'play' });
 
@@ -596,7 +604,7 @@ export default function App() {
     return (
         <mdui-layout className="app-container">
             <Suspense fallback={null}>
-                {isDebugOpen && (
+                {hasOpenedDebug && (
                     <DebugDrawer
                         open={isDebugOpen}
                         onClose={() => setIsDebugOpen(false)}
