@@ -21,7 +21,9 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: Once per turn when you hit a creature with an Unarmed Strike and deal damage
+        event: hit_with_attack
+        attackFilter:
+          type: unarmed
       target:
         inherit: trigger
       payloads:

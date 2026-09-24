@@ -8,11 +8,17 @@ children:
   - id: vitalitySurge
     type: Effect
     name: Vitality Surge
-    target: activities[id=rage].mechanic.payloads
+    target: activities[id=rage].mechanic.blocks
     operation: push
     value:
-      type: text
-      text: "gain $(meta.level) Temporary Hit Points"
+      pattern: healing
+      name: Vitality Surge
+      healing:
+        dice:
+          bonus: $(meta.level)
+        type: tempHitPoints
+      target:
+        type: self
   - id: lifeGivingForce
     type: Activity
     name: Life-Giving Force
@@ -24,7 +30,7 @@ children:
     mechanic:
       pattern: healing
       trigger:
-        text: at the start of each of your turns while Raging
+        event: start_turn
       healing:
         dice:
           count: $(attributes.rageDamage)

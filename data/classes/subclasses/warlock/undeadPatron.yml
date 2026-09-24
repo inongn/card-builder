@@ -61,7 +61,7 @@ children:
         - pattern: save
           name: Frightful Avatar
           trigger:
-            text: Once per turn, when you hit a creature with an attack roll
+            event: hit_with_attack
           save:
             ability: wis
             dc: $(attributes.spellcasting.save)

@@ -35,8 +35,6 @@ mechanic:
     - type: condition
       condition: charmed
       end: repeat_save_on_damage
-    - type: text
-      text: the target repeats the save whenever it takes damage
   upcast:
     resourceStep: 1
     display:

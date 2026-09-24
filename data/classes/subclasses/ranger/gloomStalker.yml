@@ -18,7 +18,7 @@ children:
         type: self
       payloads:
         type: text
-        text: your Speed increases by 10 feet until the end of this turn
+        text: increase your Speed by 10 feet until the end of this turn
   - id: dreadfulStrike
     type: Activity
     time: free action
@@ -30,7 +30,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: Once per turn when you hit with a weapon attack
+        event: hit_with_attack
       target:
         type: self
       payloads:

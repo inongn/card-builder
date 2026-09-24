@@ -15,7 +15,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: Whenever you finish a Long Rest
+        event: long_rest
       target:
         type: self
       payloads:

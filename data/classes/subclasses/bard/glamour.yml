@@ -21,7 +21,10 @@ children:
       pattern: save
       trigger:
         event: cast_spell
-        text: After casting an Enchantment or Illusion spell using a spell slot
+        spellFilter:
+          school:
+            - enchantment
+            - illusion
       save:
         ability: wis
         dc: $(attributes.spellcasting.save)

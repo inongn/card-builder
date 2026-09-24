@@ -26,8 +26,6 @@ mechanic:
         range: $(range)
       text: life-giving energy
     - pattern: automatic
-      trigger:
-        text: while in the aura
       target:
         type: self
       payloads:

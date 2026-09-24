@@ -216,7 +216,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you fall
+        event: fall
       target:
         type: self
       payloads:
@@ -247,8 +247,7 @@ children:
       failure:
         type: condition
         condition: stunned
-        end:
-          text: until the start of your next turn
+        end: end_of_your_next_turn
       success:
         - type: text
           text: the target's Speed is halved until the start of your next turn

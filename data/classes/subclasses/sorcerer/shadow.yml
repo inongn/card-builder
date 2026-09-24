@@ -42,7 +42,7 @@ children:
     mechanic:
       pattern: save
       trigger:
-        text: When you would drop to 0 Hit Points and not die outright
+        event: drop_to_zero
       save:
         ability: cha
         dc: 5 plus the damage taken

@@ -43,7 +43,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When another creature damages you with an attack roll
+        event: be_hit
       target:
         type: self
       payloads:
@@ -69,7 +69,9 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you fail a Constitution saving throw to maintain Concentration
+        event: fail_save
+        saveFilter:
+          ability: con
       target:
         type: self
       payloads:

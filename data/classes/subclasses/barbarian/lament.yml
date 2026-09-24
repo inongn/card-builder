@@ -33,7 +33,7 @@ children:
           damageType: psychic
         - type: condition
           condition: deafened
-          end: { text: "1 minute" }
+          end: 1_minute
       success:
         halfDamage: true
     condition: $(meta.level >= 3)

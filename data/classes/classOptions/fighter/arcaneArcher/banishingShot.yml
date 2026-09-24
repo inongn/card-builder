@@ -12,7 +12,10 @@ description: When you hit a creature with a weapon attack using a bow, you attem
 mechanic:
   pattern: save
   trigger:
-    text: When you hit a creature with a weapon attack using a bow
+    event: hit_with_attack
+    attackFilter:
+      classification: ranged
+      type: weapon
   save:
     ability: cha
     dc: $(attributes.spellcasting.save)
@@ -21,4 +24,5 @@ mechanic:
   failure:
     - type: condition
       condition: incapacitated
-      text: banished to a harmless demiplane until the end of your next turn
+      location: a harmless demiplane
+      end: end_of_your_next_turn

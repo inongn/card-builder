@@ -8,10 +8,11 @@ children:
   - id: divineFury
     type: Effect
     name: Divine Fury
-    target: activities[id=rage].mechanic.payloads
+    target: activities[id=rage].mechanic.blocks
     operation: push
     value:
-      type: text
+      pattern: automatic
+      name: Divine Fury
       text: the first creature hit on each of your turns takes an extra 1d6+$(Math.floor(meta.level/2)) Necrotic or Radiant damage
   - id: warriorOfTheGods
     type: Activity
@@ -39,9 +40,10 @@ children:
   - id: fanaticalFocus
     type: Effect
     name: Fanatical Focus
-    target: activities[id=rage].mechanic.payloads
+    target: activities[id=rage].mechanic.blocks
     operation: push
     value:
-      type: text
+      pattern: automatic
+      name: Fanatical Focus
       text: once per active Rage, if you fail a saving throw, you can reroll it with a $(formatBonus(attributes.rageDamage)) bonus
     condition: $(meta.level >= 6)

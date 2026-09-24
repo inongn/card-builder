@@ -35,7 +35,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: when the familiar takes damage
+        event: take_damage
       target:
         type: single
         filter: familiar

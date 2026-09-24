@@ -42,7 +42,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When an enemy ends its turn within 5 feet of you
+        event: end_turn
       target:
         type: self
       payloads:

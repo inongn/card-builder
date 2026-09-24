@@ -12,7 +12,7 @@ description: When a creature you can see hits another creature with an attack ro
 mechanic:
   pattern: automatic
   trigger:
-    text: when a creature you can see hits another creature with an attack roll
+    text: when a creature you can see hits another creature within 5 feet of you with an attack roll
   target:
     type: touch
     filter: target of attack

@@ -2010,7 +2010,7 @@ export class CharacterBuilder {
         const currentScope = obj.variables ? { ...scope, ...obj.variables } : scope;
 
         for (const key in obj) {
-            if (['id', 'type', 'subtype', 'variables'].includes(key)) continue;
+            if (['id', 'type', 'subtype', 'variables', 'mechanic'].includes(key)) continue;
 
             const val = obj[key];
             if (typeof val === 'string') {

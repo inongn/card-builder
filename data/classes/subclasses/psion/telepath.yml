@@ -41,7 +41,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When a creature hits with an attack roll
+        event: hit_with_attack
       target:
         inherit: trigger
       payloads:

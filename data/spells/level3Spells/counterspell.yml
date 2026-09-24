@@ -18,7 +18,7 @@ description: |
 mechanic:
   pattern: save
   trigger:
-    text: When you see a creature within range casting a spell
+    event: cast_spell
   save:
     ability: con
     dc: $(attributes.spellcasting.save)

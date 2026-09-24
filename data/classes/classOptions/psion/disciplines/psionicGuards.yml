@@ -16,15 +16,17 @@ description: |
 mechanic:
   pattern: automatic
   trigger:
-    text: at the start of your turn
+    event: start_turn
   target:
     type: self
   payloads:
-    - type: condition
-      condition: [charmed, frightened]
-      end:
-        text: until the start of your next turn
+    - type: defense
+      defense: immunity
+      conditions: [charmed, frightened]
+      end: end_of_your_next_turn
     - type: rollModifier
       modifierType: advantage
       targetRolls: save
-      text: gain Advantage on Intelligence saving throws until the start of your next turn
+      saveFilter:
+        ability: int
+      end: end_of_your_next_turn

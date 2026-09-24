@@ -16,7 +16,9 @@ children:
     mechanic:
       pattern: healing
       trigger:
-        text: Immediately after you cast Divine Smite
+        event: cast_spell
+        spellFilter:
+          name: divineSmite
       healing:
         dice:
           count: 2
@@ -78,5 +80,8 @@ children:
     operation: push
     condition: $(meta.level >= 7)
     value:
-      type: text
-      text: gains +10 Speed until the end of their next turn (when entering the aura or starting their turn there)
+      type: statModifier
+      stat: speed
+      value: 10
+      operation: add
+      end: end_of_next_turn

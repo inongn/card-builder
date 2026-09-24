@@ -66,13 +66,13 @@ export function cleanSubclassName(name) {
         /^Patron (the )?/i,
         /^(the )?Patron of (the )?/i,
         // Spanish prefixes
-        /^Senda de(l| los| las)?\s+/i,
-        /^Colegio de(l| los| las)?\s+/i,
+        /^Senda de(l| la| los| las)?\s+/i,
+        /^Colegio de(l| la| los| las)?\s+/i,
         /^C[íi]rculo de(l| la| los| las)?\s+/i,
         /^Guerrero de(l| la| los| las)?\s+/i,
         /^Juramento de(l| la| los| las)?\s+/i,
         /^Patr[oó]n de(l| la| los| las)?\s+/i,
-        /^Dominio de(l| la)?\s+/i
+        /^Dominio de(l| la| los| las)?\s+/i
     ];
 
     for (const prefix of prefixes) {
@@ -113,7 +113,7 @@ export function toCamelCase(str) {
 }
 
 /**
- * Localizes a subclass name, attempting subId, camelCase, cleaned name, and lowercased lookups.
+ * Localizes a subclass name, attempting subId, camelCase, cleaned name, and derived category lookups.
  */
 export function localizeSubclass(subName, subId, localize, lang) {
     if (!subName && !subId) return '';
@@ -128,30 +128,62 @@ export function localizeSubclass(subName, subId, localize, lang) {
 
     if (!subName) return '';
 
-    const camel = toCamelCase(subName);
-    const byCamel = localize(camel, 'name');
-    if (byCamel && byCamel !== camel) {
-        return cleanSubclassName(byCamel);
-    }
-
     const cleaned = cleanSubclassName(subName);
+    const camel = toCamelCase(subName);
     const cleanedCamel = toCamelCase(cleaned);
-    const byCleanedCamel = localize(cleanedCamel, 'name');
-    if (byCleanedCamel && byCleanedCamel !== cleanedCamel) {
-        return cleanSubclassName(byCleanedCamel);
-    }
+    const pascal = cleanedCamel ? cleanedCamel.charAt(0).toUpperCase() + cleanedCamel.slice(1) : '';
 
-    const byLower = localize(subName.toLowerCase(), 'name');
-    if (byLower && byLower !== subName.toLowerCase()) {
-        return cleanSubclassName(byLower);
-    }
+    const candidates = [
+        camel,
+        cleanedCamel,
+        subName.toLowerCase(),
+        cleaned.toLowerCase(),
+        // Cleric domains (e.g. Life -> lifeDomain)
+        `${cleanedCamel}Domain`,
+        // Paladin oaths (e.g. Devotion -> oathOfDevotion, Ancients -> oathOfTheAncients)
+        `oathOf${pascal}`,
+        `oathOfThe${pascal}`,
+        cleanedCamel.toLowerCase().includes('genies') ? 'oathOfGenies' : null,
+        // Druid circles (e.g. Preservation -> circleOfPreservation, Stars -> circleOfTheStars)
+        `circleOf${pascal}`,
+        `circleOfThe${pascal}`,
+        // Warlock patrons (e.g. Archfey -> archfeyPatron, Great Old One -> greatOldOnePatron)
+        `${cleanedCamel}Patron`,
+        // Sorcerer (e.g. Demonic -> demonicSorcery, Wild Magic -> wildMagicSorcery)
+        `${cleanedCamel}Sorcery`,
+        // Monk traditions
+        `warriorOf${pascal}`,
+        `warriorOfThe${pascal}`,
+        // Bard & Barbarian
+        `collegeOf${pascal}`,
+        `collegeOfThe${pascal}`,
+        `pathOf${pascal}`,
+        `pathOfThe${pascal}`
+    ].filter(Boolean);
 
-    const byCleanedLower = localize(cleaned.toLowerCase(), 'name');
-    if (byCleanedLower && byCleanedLower !== cleaned.toLowerCase()) {
-        return cleanSubclassName(byCleanedLower);
+    for (const key of candidates) {
+        const val = localize(key, 'name');
+        if (val && val !== key) {
+            return cleanSubclassName(val);
+        }
     }
 
     return cleaned;
+}
+
+/**
+ * Formats a class name with its subclass according to locale rules.
+ * English: "Banneret Fighter"
+ * Spanish: "Guerrero (Abanderado)"
+ */
+export function formatClassWithSubclass(displayClass, displaySub, lang) {
+    if (!displayClass && !displaySub) return '';
+    if (!displaySub) return displayClass || '';
+    if (!displayClass) return displaySub || '';
+    if (lang === 'es') {
+        return `${displayClass} (${displaySub})`;
+    }
+    return `${displaySub} ${displayClass}`.trim();
 }
 
 function cleanPrefix(str) {

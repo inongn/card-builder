@@ -17,7 +17,7 @@ description: |
 mechanic:
   pattern: automatic
   trigger:
-    text: at the start of your turn
+    event: start_turn
   target:
     type: self
   payloads:

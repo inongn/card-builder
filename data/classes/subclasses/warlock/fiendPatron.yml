@@ -61,7 +61,6 @@ children:
         event:
           - make_check
           - make_save
-        text: When you make an ability check or a saving throw
       target:
         type: self
       payloads:

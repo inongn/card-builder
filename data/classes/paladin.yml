@@ -135,8 +135,6 @@ children:
             range: $(range)
           text: protective aura
         - pattern: automatic
-          trigger:
-            text: while in the aura
           target:
             inherit: prev_step
           payloads:

@@ -83,7 +83,7 @@
         "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
         "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
         "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
-        "pattern": { "type": "string", "const": "automatic" },
+        "pattern": { "type": "string", "enum": ["automatic", "text"] },
         "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
       },
       "required": ["pattern"],
@@ -107,6 +107,8 @@
         "text": { "type": "string" },
         "obscured": { "type": "boolean" },
         "difficultTerrain": { "type": "boolean" },
+        "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
+        "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
         "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
       },
       "required": ["pattern", "target"],

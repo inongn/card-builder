@@ -14,7 +14,10 @@ mechanic:
   pattern: automatic
   trigger:
     event: cast_spell
-    text: when you cast a Psion spell of the Conjuration or Evocation school that forces a saving throw
+    spellFilter:
+      school:
+        - conjuration
+        - evocation
   target:
     type: single
   payloads:

@@ -53,7 +53,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: when you are reduced to 0 Hit Points but not killed outright
+        event: drop_to_zero
       target:
         type: self
       payloads:

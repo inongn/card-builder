@@ -25,13 +25,16 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you take the Attack action
+        event: make_attack
       target:
         type: single
         range: $(range)
       payloads:
-        type: text
-        text: you have Advantage on attack rolls against the target for the duration
+        - type: rollModifier
+          modifierType: advantage
+          targetRolls: attack
+          recipient: self
+          against: target
   - id: relentlessAvenger
     type: Effect
     target: activities[id=opportunityAttack].mechanic

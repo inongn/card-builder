@@ -49,6 +49,11 @@ const TRIGGER_EVENT_PHRASES = {
   land_crit: { subject: 'you', phrase: 'score a critical hit' },
   drop_enemy_zero: { subject: 'you', phrase: 'reduce an enemy to 0 Hit Points' },
   cast_spell: { subject: 'you', phrase: 'cast a spell' },
+  long_rest: { subject: 'you', phrase: 'finish a Long Rest' },
+  short_rest: { subject: 'you', phrase: 'finish a Short Rest' },
+  fall: { subject: 'you', phrase: 'fall' },
+  activate_rage: { subject: 'you', phrase: 'activate your Rage' },
+  drop_to_zero: { subject: 'you', phrase: 'are reduced to 0 Hit Points without being killed outright' },
   // Aura / area — "When <phrase>"
   on_cast: { subject: null, phrase: 'the area is created' },
   enter_area: { subject: null, phrase: 'a creature enters the area' },
@@ -356,15 +361,58 @@ export function formatTrigger(trigger, evalStr) {
     for (const e of rawEvents) {
       const entry = TRIGGER_EVENT_PHRASES[e];
       if (!entry) {
-        // Unknown event — emit a best-effort form
         personalPhrases.push(e.replace(/_/g, ' '));
         continue;
       }
+      let phrase = entry.phrase;
+      if (trigger.attackFilter) {
+        const { classification, type } = trigger.attackFilter;
+        let qualifier = '';
+        if (classification && type) qualifier = `${classification} ${type}`;
+        else if (classification) qualifier = classification;
+        else if (type) qualifier = type;
+
+        if (qualifier) {
+          const art = /^[aeiou]/i.test(qualifier) ? 'an' : 'a';
+          if (phrase.includes('hit a creature with an attack')) {
+            phrase = phrase.replace('hit a creature with an attack', `hit a creature with ${art} ${qualifier} attack`);
+          } else if (phrase.includes('miss with an attack')) {
+            phrase = phrase.replace('miss with an attack', `miss with ${art} ${qualifier} attack`);
+          } else if (phrase.includes('make an attack')) {
+            phrase = phrase.replace('make an attack', `make ${art} ${qualifier} attack`);
+          }
+        }
+      }
+      if (trigger.spellFilter && e === 'cast_spell') {
+        const { school, name } = trigger.spellFilter;
+        if (name) {
+          const capName = name.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()).trim();
+          phrase = `cast ${capName}`;
+        } else if (school) {
+          const schools = Array.isArray(school) ? school : [school];
+          const capSchools = schools.map(s => capitalize(s)).join(' or ');
+          const art = /^[aeiou]/i.test(capSchools) ? 'an' : 'a';
+          phrase = `cast ${art} ${capSchools} spell`;
+        }
+      }
+      if (trigger.saveFilter && (e === 'fail_save' || e === 'make_save')) {
+        const { ability } = trigger.saveFilter;
+        if (ability) {
+          const abilityNames = {
+            str: 'Strength', dex: 'Dexterity', con: 'Constitution',
+            int: 'Intelligence', wis: 'Wisdom', cha: 'Charisma'
+          };
+          const abilities = Array.isArray(ability) ? ability : [ability];
+          const formatted = abilities.map(a => abilityNames[String(a).toLowerCase()] || capitalize(a));
+          const joinedAb = formatted.length === 1 ? formatted[0] : `${formatted.slice(0, -1).join(', ')}, or ${formatted[formatted.length - 1]}`;
+          const art = /^[aeiou]/i.test(joinedAb) ? 'an' : 'a';
+          phrase = phrase.replace('a saving throw', `${art} ${joinedAb} saving throw`);
+        }
+      }
       if (entry.subject === null) {
-        impersonalPhrases.push(entry.phrase);
+        impersonalPhrases.push(phrase);
       } else {
-        // Group by subject
-        personalPhrases.push({ subject: entry.subject, phrase: entry.phrase });
+        personalPhrases.push({ subject: entry.subject, phrase });
       }
     }
 
@@ -587,13 +635,23 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
           end_of_its_next_turn: ' until the end of its next turn',
           end_of_your_next_turn: ' until the end of your next turn',
           end_of_next_turn: ' until the end of next turn',
+          break_line_of_sight: ' (repeats save if target breaks line of sight)',
+          '1_minute': ' for 1 minute',
         };
         endText = endMap[payload.end] ?? ` (${evalStr(payload.end)})`;
       } else if (payload.end?.text) {
         endText = ` (${evalStr(payload.end.text)})`;
       }
     }
-    return `${condBase}${endText}`;
+    let locText = '';
+    if (payload.location) {
+      locText = `, banished to ${evalStr(payload.location)}`;
+    }
+    let extraText = '';
+    if (payload.text) {
+      extraText = ` ${evalStr(payload.text)}`;
+    }
+    return `${condBase}${locText}${extraText}${endText}`;
   }
 
   // ── Roll modifier payload ───────────────────────────────────────────────────
@@ -1532,8 +1590,8 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     if (text) mainBody += ` ${capitalize(text.replace(/\.$/, ''))}.`;
   }
 
-  // ── 4. AUTOMATIC ───────────────────────────────────────────────────────────
-  else if (pattern === 'automatic') {
+  // ── 4. AUTOMATIC & TEXT ───────────────────────────────────────────────────
+  else if (pattern === 'automatic' || pattern === 'text') {
     const payloadObj = block.payloads;
     const fromPayloads = !!payloadObj && !text;
     const payloadText = payloadObj ? formatPayloadList(payloadObj, evalStr, formatDiceObj, { pattern: 'automatic', targetObj: block.target }) : '';
@@ -1896,6 +1954,34 @@ export function formatActivityMechanic(activity, characterData) {
     }
 
     // succession (and the now-removed sequence — all treated identically)
+    const isNamedSuccession = blocks.length > 1 && (Boolean(blocks[0]?.name) || blocks.filter(b => b.name).length >= 2);
+    if (isNamedSuccession) {
+      const topTrigger = effectiveMechanic.trigger ? formatTrigger(effectiveMechanic.trigger, evalStr) : '';
+      const triggerPart = topTrigger ? ` _Trigger:_ ${topTrigger}. _Response:_` : '';
+
+      const isBlock0Named = Boolean(blocks[0]?.name);
+      let preamble = effectiveMechanic.text ? evalStr(String(effectiveMechanic.text)).trim() : '';
+      let successionBlocks = blocks;
+
+      if (!isBlock0Named) {
+        const block0Content = formatBlock(blocks[0], activity, evaluator, scope, 0);
+        preamble = preamble ? `${block0Content} ${preamble}` : block0Content;
+        successionBlocks = blocks.slice(1);
+      }
+
+      const successionLines = successionBlocks
+        .map((b, idx) => {
+          const title = b.name ? `**${b.name}**: ` : '';
+          const content = formatBlock(b, activity, evaluator, scope, isBlock0Named ? idx : idx + 1);
+          return `> ${title}${content}`;
+        })
+        .filter(Boolean)
+        .join('\n\n');
+
+      const preamblePart = preamble ? ` ${preamble}` : '';
+      return `**${name}.**${triggerPart}${preamblePart}${fullSuffix}\n\n${successionLines}`;
+    }
+
     const contentParts = blocks
       .map((b, idx) => {
         const content = formatBlock(b, activity, evaluator, scope, idx);

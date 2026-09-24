@@ -12,7 +12,7 @@ description: When a creature you can see attacks a target other than you, you im
 mechanic:
   pattern: automatic
   trigger:
-    text: when a creature you can see attacks a target other than you
+    text: when a creature you can see attacks a target within 5 feet of you other than yourself
   target:
     inherit: trigger
     range: $(range)

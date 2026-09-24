@@ -171,6 +171,11 @@
         "move_within_range",
         "area_moves_into_space",
         "move_into_space",
+        "long_rest",
+        "short_rest",
+        "fall",
+        "activate_rage",
+        "drop_to_zero",
         "custom"
       ]
     },
@@ -201,6 +206,31 @@
             },
             "dc": { "$ref": "#/$defs/NumberOrExpression" },
             "text": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "spellFilter": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "school": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              ]
+            },
+            "level": { "$ref": "#/$defs/NumberOrExpression" }
+          },
+          "additionalProperties": false
+        },
+        "weaponFilter": {
+          "type": "object",
+          "properties": {
+            "weaponType": { "type": "string" },
+            "classification": { "type": "string" }
           },
           "additionalProperties": false
         },
@@ -373,6 +403,7 @@
           ]
         },
         "end": { "$ref": "#/$defs/EndSpec" },
+        "location": { "type": "string" },
         "text": { "type": "string" }
       },
       "additionalProperties": false
@@ -797,7 +828,9 @@
             "turn_repeat_save",
             "end_of_next_turn",
             "end_of_your_next_turn",
-            "end_of_its_next_turn"
+            "end_of_its_next_turn",
+            "break_line_of_sight",
+            "1_minute"
           ]
         },
         {

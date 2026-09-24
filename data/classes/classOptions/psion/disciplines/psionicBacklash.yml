@@ -16,7 +16,6 @@ mechanic:
     - pattern: automatic
       trigger:
         event: be_hit
-        text: immediately after a creature you can see hits you with an attack roll
       target:
         type: self
       payloads:

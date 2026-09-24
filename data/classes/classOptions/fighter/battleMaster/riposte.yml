@@ -12,7 +12,9 @@ description: When a creature misses you with a melee attack roll, you make a mel
 mechanic:
   pattern: automatic
   trigger:
-    text: When a creature misses you with a melee attack roll
+    event: miss_with_attack
+    attackFilter:
+      classification: melee
   target:
     type: self
   payloads:

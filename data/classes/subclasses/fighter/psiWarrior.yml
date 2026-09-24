@@ -24,7 +24,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you or another creature you can see takes damage
+        event: take_damage
       target:
         inherit: trigger
       payloads:

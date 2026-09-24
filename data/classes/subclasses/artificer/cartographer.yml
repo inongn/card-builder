@@ -52,7 +52,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: Whenever you finish a Long Rest
+        event: long_rest
       target:
         type: touch
         count: '$(Math.max(1, stats.int.mod))'

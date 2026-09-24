@@ -46,7 +46,9 @@ children:
     mechanic:
       mode: choice
       trigger:
-        text: Immediately after you cast Divine Smite
+        event: cast_spell
+        spellFilter:
+          name: divineSmite
       blocks:
         - pattern: save
           name: "Dao's Crush"

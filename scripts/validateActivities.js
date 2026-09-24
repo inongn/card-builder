@@ -18,9 +18,9 @@ const primitivesSchema = JSON.parse(fs.readFileSync(PRIMITIVES_SCHEMA_PATH, 'utf
 const mechanicSchema = JSON.parse(fs.readFileSync(MECHANIC_SCHEMA_PATH, 'utf8'));
 let esData = {};
 try {
-  esData = JSON.parse(fs.readFileSync(ES_DATA_PATH, 'utf8'));
-  setMechanicFormatterEsTranslations(esData);
-} catch (e) {}
+    esData = JSON.parse(fs.readFileSync(ES_DATA_PATH, 'utf8'));
+    setMechanicFormatterEsTranslations(esData);
+} catch (e) { }
 
 ajv.addSchema(primitivesSchema);
 const validateMechanic = ajv.compile(mechanicSchema);
@@ -111,7 +111,25 @@ const mockCharacter = {
             save: 15,
             bonus: 4,
             ability: 'int'
-        }
+        },
+        melee: { attack: 5, bonus: 2 },
+        ranged: { attack: 5, bonus: 2 },
+        finesse: { attack: 5, bonus: 2 },
+        monkSaveDC: 13,
+        psiDice: 8,
+        cunningStrikeSave: 13,
+        movement: { walk: 30 },
+        hitDie: 8,
+        dragonicAncestryDamage: 'fire',
+        draconicAncestryDamage: 'fire'
+    },
+    skills: {
+        stealth: { bonus: 5 },
+        deception: { bonus: 2 },
+        intimidation: { bonus: 2 },
+        performance: { bonus: 2 },
+        persuasion: { bonus: 2 },
+        animal_handling: { bonus: 3 }
     },
     resources: [
         { id: 'level1SpellSlot', max: 4, value: 4 },
@@ -185,6 +203,11 @@ yamlFiles.forEach(file => {
                         if (/\bReaction\b/i.test(renderedEs)) leaks.push('Reaction');
                         if (/\bHit Points\b/i.test(renderedEs)) leaks.push('Hit Points');
                         if (/\bTemporary Hit Points\b/i.test(renderedEs)) leaks.push('Temporary Hit Points');
+                        if (/\b(when you hit|whenever a creature|if you reduce|takes damage|must make a)\b/i.test(renderedEs)) leaks.push('English trigger/verb');
+                        if (/\b(Large or smaller creature|creature no more than)\b/i.test(renderedEs)) leaks.push('English target filter');
+                        if (/\bsame type\b/i.test(renderedEs)) leaks.push('same type');
+                        if (/\bla mitad de daño\b/i.test(renderedEs)) leaks.push('la mitad de daño');
+                        if (/\b(cono|cubo|cilindro)\b[^\.\n]*\bcentrada\b/i.test(renderedEs)) leaks.push('AoE gender mismatch');
 
                         if (leaks.length > 0) {
                             const isTextFallback = !node.mechanic || (

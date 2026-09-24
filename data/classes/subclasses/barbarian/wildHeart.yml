@@ -20,7 +20,7 @@ children:
     mechanic:
       mode: choice
       trigger:
-        text: When you activate your Rage
+        event: activate_rage
       blocks:
         - pattern: automatic
           name: Bear

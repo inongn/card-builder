@@ -10,6 +10,7 @@ children:
     target: activities[id=recklessAttack].mechanic.payloads
     operation: push
     value:
+      type: text
       text: deal extra $(attributes.rageDamage)d6 damage to the first creature hit on your turn while Rage is active
   - id: mindlessRageCharmed
     type: Reference

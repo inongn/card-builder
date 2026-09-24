@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { getAssetUrl } from '../data/artworkData';
 import { useLocale } from '../i18n';
-import { localizeSubclass } from '../utils/sheetUtils';
+import { localizeSubclass, formatClassWithSubclass } from '../utils/sheetUtils';
 import 'mdui/components/dropdown.js';
 import 'mdui/components/menu.js';
 import 'mdui/components/menu-item.js';
@@ -69,10 +69,10 @@ export const DashboardScreen = ({
         const displaySub = localizeSubclass(charSaved.sub, charSaved.subId, localize, lang);
 
         const bgSpecies = [displaySpecies, displayBg].filter(Boolean).join(' ');
+        const classStr = formatClassWithSubclass(displayClass, displaySub, lang);
         const levelClass = [
             `${t('characterSheet.level')} ${charSaved.level || 1}`,
-            displaySub,
-            displayClass
+            classStr
         ].filter(Boolean).join(' ');
 
         const initials = charSaved.name
@@ -119,7 +119,7 @@ export const DashboardScreen = ({
                 <mdui-dropdown placement="bottom-end">
                     <mdui-button-icon
                         slot="trigger"
-                        icon="settings"
+                        icon="more_vert"
                         style={{ marginRight: '8px' }}
                     ></mdui-button-icon>
                     <mdui-menu>
@@ -156,10 +156,10 @@ export const DashboardScreen = ({
                             const displaySub = localizeSubclass(featuredCharacter.sub, featuredCharacter.subId, localize, lang);
 
                             const bgSpecies = [displaySpecies, displayBg].filter(Boolean).join(' ');
+                            const classStr = formatClassWithSubclass(displayClass, displaySub, lang);
                             const levelClass = [
                                 `${t('characterSheet.level')} ${featuredCharacter.level || 1}`,
-                                displaySub,
-                                displayClass
+                                classStr
                             ].filter(Boolean).join(' ');
 
                             const initials = featuredCharacter.name

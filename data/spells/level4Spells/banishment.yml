@@ -34,8 +34,7 @@ mechanic:
   failure:
     - type: condition
       condition: incapacitated
-    - type: text
-      text: the target is banished to a harmless demiplane (or its home plane if native there)
+      location: a harmless demiplane (or its home plane if native there)
   upcast:
     resourceStep: 1
     modifications:

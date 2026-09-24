@@ -36,4 +36,4 @@ mechanic:
       condition: charmed
       end: repeat_save_on_damage
     - type: text
-      text: the target regards all creatures as enemies and repeats the save whenever it takes damage
+      text: the target regards all creatures it can see as enemies

@@ -45,7 +45,9 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you miss a ranged attack roll with ammunition
+        event: miss_with_attack
+        attackFilter:
+          classification: ranged
       text: make a new attack roll against a creature within 60 feet of the original target
     condition: $(meta.level >= 7)
   - id: magicalAmmunition

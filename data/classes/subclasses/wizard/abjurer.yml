@@ -19,7 +19,9 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you cast an Abjuration spell with a spell slot
+        event: cast_spell
+        spellFilter:
+          school: abjuration
       target:
         type: self
       payloads:
@@ -37,6 +39,6 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When a creature that you can see within 30 feet takes damage
+        event: take_damage
       text: cause your Arcane Ward to absorb that damage
     condition: $(meta.level >= 6)

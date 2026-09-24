@@ -14,7 +14,10 @@ mechanic:
   pattern: automatic
   trigger:
     event: cast_spell
-    text: when you cast a Psion spell of the Enchantment or Illusion school that forces a saving throw
+    spellFilter:
+      school:
+        - enchantment
+        - illusion
   target:
     type: single
   payloads:

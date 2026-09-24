@@ -12,7 +12,10 @@ description: When you hit a creature with a weapon attack using a bow, add 2d6 N
 mechanic:
   pattern: save
   trigger:
-    text: When you hit a creature with a weapon attack using a bow
+    event: hit_with_attack
+    attackFilter:
+      classification: ranged
+      type: weapon
   save:
     ability: con
     dc: $(attributes.spellcasting.save)

@@ -19,7 +19,7 @@ description: |
 mechanic:
   pattern: automatic
   trigger:
-    text: immediately after you or a creature you can see falls
+    event: fall
   target:
     type: multiple
     count: 5

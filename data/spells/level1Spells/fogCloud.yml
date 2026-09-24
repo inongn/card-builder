@@ -19,14 +19,15 @@ extra:
   - name: Using a Higher-Level Spell Slot
     description: The fog's radius increases by 20 feet for each spell slot level above 1.
 mechanic:
-  pattern: automatic
+  pattern: aura
   target:
     type: area
     aoe:
       shape: sphere
       size: 20
     range: $(range)
-  text: heavily obscured fog fills the area
+  obscured: true
+  text: heavily obscured fog
   upcast:
     resourceStep: 1
     modifications:

@@ -12,5 +12,8 @@ description: When you hit a creature with a weapon attack using a bow, the arrow
 mechanic:
   pattern: automatic
   trigger:
-    text: When you hit a creature with a weapon attack using a bow
+    event: hit_with_attack
+    attackFilter:
+      classification: ranged
+      type: weapon
   text: The target and all other creatures within 10 feet of it take 2d6 Force damage.

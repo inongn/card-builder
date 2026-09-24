@@ -38,7 +38,7 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you or a creature within 30 feet misses with an attack roll
+        event: miss_with_attack
       target:
         inherit: trigger
       payloads:

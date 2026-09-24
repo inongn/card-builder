@@ -288,11 +288,32 @@ const TRANSLATIONS = {
 
 function main() {
   const enData = JSON.parse(fs.readFileSync(EN_DATA_PATH, 'utf8'));
+  let existingEsData = {};
+  if (fs.existsSync(ES_DATA_PATH)) {
+    try {
+      existingEsData = JSON.parse(fs.readFileSync(ES_DATA_PATH, 'utf8'));
+    } catch (e) {}
+  }
   const esData = {};
 
   let translatedCount = 0;
   for (const [id, enEntry] of Object.entries(enData)) {
-    const esOverride = TRANSLATIONS[id];
+    if (id === '$mechanic') {
+      const existingMechanic = existingEsData['$mechanic'] || {};
+      esData['$mechanic'] = {
+        texts: {
+          ...(enEntry.texts || {}),
+          ...(existingMechanic.texts || {})
+        },
+        labels: {
+          ...(enEntry.labels || {}),
+          ...(existingMechanic.labels || {})
+        }
+      };
+      continue;
+    }
+
+    const esOverride = TRANSLATIONS[id] || existingEsData[id];
     if (esOverride) {
       esData[id] = {
         ...enEntry,

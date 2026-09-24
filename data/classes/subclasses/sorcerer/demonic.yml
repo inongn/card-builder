@@ -120,9 +120,7 @@ children:
               size: 10
             range: self
           failure:
-            type: condition
-            condition: invisible
-            end: end_of_your_next_turn
+            type: text
             text: you gain the benefits of the Invisible condition against the target until the start of your next turn
         - pattern: save
           name: Slime Pits' Haze
@@ -136,8 +134,6 @@ children:
               size: 10
             range: self
           failure:
-            type: condition
-            condition: charmed
-            end: end_of_your_next_turn
-            text: target has your choice of the Charmed or Poisoned condition until the start of your next turn
+            type: text
+            text: the target has your choice of the Charmed or Poisoned condition until the start of your next turn
     condition: $(meta.level >= 6)

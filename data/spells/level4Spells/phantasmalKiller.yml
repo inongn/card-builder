@@ -39,10 +39,8 @@ mechanic:
         count: 4
         sides: 10
       damageType: psychic
-    - type: text
-      text: the target repeats the save at the end of each of its turns
   upcast:
     resourceStep: 1
     modifications:
-      - path: failure[1].dice.count
+      - path: failure.dice.count
         add: 1

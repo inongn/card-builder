@@ -60,7 +60,9 @@ children:
     mechanic:
       pattern: save
       trigger:
-        text: Immediately after you cast Divine Smite
+        event: cast_spell
+        spellFilter:
+          name: divineSmite
       save:
         ability: wis
         dc: $(attributes.spellcasting.save)

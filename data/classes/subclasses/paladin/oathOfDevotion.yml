@@ -43,12 +43,12 @@ children:
     mechanic:
       pattern: automatic
       trigger:
-        text: When you take the Attack action
+        event: make_attack
       target:
         type: touch
       payloads:
         type: text
-        text: imbue one Melee weapon you are holding. Add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls made with it, and it can deal Radiant damage 
+        text: imbue one Melee weapon you are holding. Add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls made with it, and it can deal Radiant damage
   - id: auraOfDevotion
     type: Effect
     name: Aura of Devotion

@@ -60,7 +60,7 @@ children:
         - pattern: healing
           name: Bolster
           trigger:
-            text: Whenever a creature ends its turn in the Cube
+            event: end_turn
           target:
             inherit: prev_step
           healing:
@@ -72,7 +72,7 @@ children:
         - pattern: automatic
           name: Purify
           trigger:
-            text: Whenever a creature ends its turn in the Cube
+            event: end_turn
           target:
             inherit: prev_step
           payloads:
@@ -91,7 +91,10 @@ children:
       - pattern: save
         name: Reject
         trigger:
-          text: When the Cube enters an enemy's space or an enemy enters or ends its turn in the Cube
+          event:
+            - area_moves_into_space
+            - enter_area
+            - end_turn
         save:
           ability: wis
           dc: $(attributes.spellcasting.save)

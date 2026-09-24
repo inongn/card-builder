@@ -24,7 +24,9 @@ children:
     mechanic:
       pattern: healing
       trigger:
-        text: When you cast a Necromancy spell using a spell slot
+        event: cast_spell
+        spellFilter:
+          school: necromancy
       target:
         type: single
         range: 60 feet

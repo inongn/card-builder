@@ -8,7 +8,7 @@ import { formatActivityMechanic } from '../../utils/mechanicFormatter';
 import { processDiceInChildren } from './DiceRoller';
 import { groupActivities, sortByResource, ActivitySheet } from './ActivitySheet';
 import { useLocale } from '../../i18n';
-import { localizeSubclass, localizeInfoboxValue, localizeSenseOrMovement, evaluateText } from '../../utils/sheetUtils';
+import { localizeSubclass, formatClassWithSubclass, localizeInfoboxValue, localizeSenseOrMovement, evaluateText } from '../../utils/sheetUtils';
 
 import 'mdui/components/icon.js';
 
@@ -159,7 +159,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
             <div className="cps-name-block">
                 <div className="cps-char-name">{char.meta.name}</div>
                 <div className="cps-char-sub">
-                    {[`${t('compactPrint.lv')} ${char.meta.level}`, `${displaySub} ${displayClass}`.trim()].filter(Boolean).join(' ')}
+                    {[`${t('compactPrint.lv')} ${char.meta.level}`, formatClassWithSubclass(displayClass, displaySub, lang)].filter(Boolean).join(' ')}
                     {(displaySpecies || displayBg) && (
                         <span className="cps-char-sub2">{' · '}{[displaySpecies, displayBg].filter(Boolean).join(' ')}</span>
                     )}

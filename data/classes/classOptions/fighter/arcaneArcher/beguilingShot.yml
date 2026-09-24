@@ -12,7 +12,10 @@ description: When you hit a creature with a weapon attack using a bow, choose on
 mechanic:
   pattern: save
   trigger:
-    text: When you hit a creature with a weapon attack using a bow
+    event: hit_with_attack
+    attackFilter:
+      classification: ranged
+      type: weapon
   save:
     ability: wis
     dc: $(attributes.spellcasting.save)
@@ -27,4 +30,5 @@ mechanic:
   failure:
     - type: condition
       condition: charmed
-      text: Charmed by the chosen ally until the start of your next turn
+      end: end_of_your_next_turn
+      text: by the chosen ally

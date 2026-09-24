@@ -4,7 +4,7 @@ import { getIconInfo, getResourceRecovery } from '../../utils/cardUtils';
 import { AdvantageIndicator } from './AdvantageIndicator';
 import { DiceRoller } from './DiceRoller';
 import { useLocale } from '../../i18n';
-import { localizeSubclass, localizeInfoboxValue, localizeSenseOrMovement, evaluateText } from '../../utils/sheetUtils';
+import { localizeSubclass, formatClassWithSubclass, localizeInfoboxValue, localizeSenseOrMovement, evaluateText } from '../../utils/sheetUtils';
 
 import 'mdui/components/card.js';
 import 'mdui/components/chip.js';
@@ -155,7 +155,8 @@ export const CharacterSheet = memo(React.forwardRef(({ char, onNavigate, classNa
     const displaySpecies = (char.meta?.species && localize(char.meta.species.toLowerCase(), 'name', char.meta.species)) || char.meta?.species;
     const displayBg = (char.meta?.background && localize(char.meta.background.toLowerCase(), 'name', char.meta.background)) || char.meta?.background;
 
-    const classLevelStr = [`${t('characterSheet.level')} ${char.meta?.level || 1}`, `${displaySub} ${displayClass}`.trim()].filter(Boolean).join(' ');
+    const classStr = formatClassWithSubclass(displayClass, displaySub, lang);
+    const classLevelStr = [`${t('characterSheet.level')} ${char.meta?.level || 1}`, classStr].filter(Boolean).join(' ');
     const speciesBgStr = [displaySpecies, displayBg].filter(Boolean).join(' ');
 
     return (

@@ -33,7 +33,6 @@ mechanic:
   failure:
     - type: condition
       condition: frightened
-      end:
-        text: ends when target breaks line of sight
+      end: break_line_of_sight
     - type: text
       text: must drop whatever it is holding and flee

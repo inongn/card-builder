@@ -28,6 +28,55 @@ export function setMechanicFormatterEsTranslations(translations) {
   fallbackTranslations = translations || {};
 }
 
+function getActiveTranslations(translations) {
+  return (translations && (translations.dataTranslations || translations)) || fallbackTranslations;
+}
+
+/**
+ * Look up a Spanish translation for a raw English `text:` value.
+ * Priority:
+ *  1. Inline `textEs` on the node (for backwards compat with any remaining inline overrides)
+ *  2. `translations.$mechanic.texts[englishText]` — the external flat map
+ *  3. `cleanEnglishPhrasesEs(englishText)` — fuzzy auto-translation fallback
+ */
+function lookupMechanicText(englishText, translations, evalStr) {
+  if (!englishText) return '';
+  const activeTrans = getActiveTranslations(translations);
+  const mechanicTexts = activeTrans?.["$mechanic"]?.texts || {};
+  const rawKey = String(englishText).trim();
+  if (mechanicTexts[rawKey]) return mechanicTexts[rawKey];
+  if (mechanicTexts[englishText]) return mechanicTexts[englishText];
+
+  const resolved = evalStr ? evalStr(englishText).trim() : rawKey;
+  if (mechanicTexts[resolved]) return mechanicTexts[resolved];
+
+  // If englishText was already evaluated (e.g. contains "+3" instead of "$(formatBonus(...))"),
+  // find the template key whose evaluation matches the resolved text
+  if (evalStr) {
+    for (const [key, val] of Object.entries(mechanicTexts)) {
+      if (key.includes('$')) {
+        try {
+          if (evalStr(key).trim() === resolved) {
+            return val;
+          }
+        } catch (e) {
+          // ignore evaluation errors for keys with unmatched variables
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+function lookupMechanicLabel(englishLabel, translations, evalStr) {
+  if (!englishLabel) return '';
+  const activeTrans = getActiveTranslations(translations);
+  const mechanicLabels = activeTrans?.["$mechanic"]?.labels || {};
+  const resolved = evalStr ? evalStr(englishLabel) : String(englishLabel);
+  return mechanicLabels[resolved] || mechanicLabels[String(englishLabel).trim()] || null;
+}
+
 const STAT_NAMES_ES = {
   speed: 'velocidad',
   ac: 'CA',
@@ -118,6 +167,11 @@ const TRIGGER_EVENT_PHRASES_ES = {
   land_crit: { subject: null, phrase: 'consigues un impacto crítico' },
   drop_enemy_zero: { subject: null, phrase: 'reduces a un enemigo a 0 Puntos de Golpe' },
   cast_spell: { subject: null, phrase: 'lanzas un conjuro' },
+  long_rest: { subject: null, phrase: 'terminas un Descanso Largo' },
+  short_rest: { subject: null, phrase: 'terminas un Descanso Corto' },
+  fall: { subject: null, phrase: 'caes' },
+  activate_rage: { subject: null, phrase: 'activas tu Furia' },
+  drop_to_zero: { subject: null, phrase: 'eres reducido a 0 Puntos de Golpe sin morir en el acto' },
   on_cast: { subject: null, phrase: 'el área es creada' },
   enter_area: { subject: null, phrase: 'una criatura entra en el área' },
   start_turn: { subject: null, phrase: 'una criatura empieza su turno allí' },
@@ -140,6 +194,8 @@ export function formatDistanceEs(distStr) {
   if (/^touch$/i.test(str) || /^toque$/i.test(str)) return 'alcance de Toque';
   if (/^self$/i.test(str) || /^personal$/i.test(str)) return 'alcance Personal';
   return str
+    .replace(/\bmiles\b/gi, 'millas')
+    .replace(/\bmile\b/gi, 'milla')
     .replace(/\bfeet\b/gi, 'pies')
     .replace(/\bfoot\b/gi, 'pie');
 }
@@ -152,6 +208,7 @@ export function formatDamageTypeEs(typeVal, evalStr) {
       const s = evalStr(t);
       if (!s || s === 'damage') return '';
       const lower = s.toLowerCase();
+      if (lower === 'same type' || lower === 'same') return 'del mismo tipo';
       return DAMAGE_TYPES_ES[lower] || lower;
     })
     .filter(Boolean);
@@ -176,6 +233,45 @@ export function formatFilterTextEs(filterVal, evalStr, plural = false) {
       }
       if (lower === 'self or creature' || lower === 'creature or self') {
         return 'criatura (o tú mismo)';
+      }
+      if (lower === 'large or smaller creature other than you') {
+        return 'criatura Grande o más pequeña que no seas tú';
+      }
+      if (lower === 'large or smaller creature') {
+        return 'criatura Grande o más pequeña';
+      }
+      if (lower === 'creature no more than one size larger than you') {
+        return 'criatura como máximo una categoría de tamaño mayor que tú';
+      }
+      if (lower === 'bloodied creatures' || lower === 'bloodied creature') {
+        return plural ? 'criaturas Heridas' : 'criatura Herida';
+      }
+      if (lower === 'target of attack') {
+        return 'objetivo del ataque';
+      }
+      if (lower === 'creature of your choice in the area') {
+        return 'criatura que elijas en el área';
+      }
+      if (lower === 'creature grappled by you') {
+        return 'criatura que tengas agarrada';
+      }
+      if (lower === 'willing creature') {
+        return 'criatura voluntaria';
+      }
+      if (lower === 'undead creature') {
+        return plural ? 'criaturas Muertas Vivientes' : 'criatura Muerta Viviente';
+      }
+      if (lower === 'steeldefender') {
+        return 'Defensor de Acero';
+      }
+      if (lower === 'reanimatedcompanion') {
+        return 'Compañero Reanimado';
+      }
+      if (lower === 'primalcompanion') {
+        return 'Compañero Primigenio';
+      }
+      if (lower === 'allies') {
+        return 'aliados';
       }
       const dict = {
         creature: plural ? 'criaturas' : 'criatura',
@@ -319,19 +415,27 @@ function cleanEnglishPhrasesEs(text) {
     .replace(/\b,\s*and\b/gi, ', y')
     .replace(/\band\b/gi, 'y')
     .replace(/\bor\s+(?:realizar|take)\b/gi, 'ni realizar')
+    .replace(/\btarget can't knowingly tell a lie\b/gi, 'el objetivo no puede decir una mentira deliberadamente')
+    .replace(/\bthe target can't knowingly tell a lie\b/gi, 'el objetivo no puede decir una mentira deliberadamente')
+    .replace(/\bsame type\b/gi, 'del mismo tipo')
+    .replace(/\bchoose one of the following additional effects:?\b/gi, 'elige uno de los siguientes efectos adicionales:')
+    .replace(/\bchoose one of the following:?\b/gi, 'elige una de las siguientes opciones:')
+    .replace(/\bla mitad de daño\b/gi, 'la mitad del daño')
     .replace(/\b,\s*or\b/gi, ', o')
     .replace(/\bor\b/gi, 'o');
 }
 
 // ─── Upcast Label derivation en Español ─────────────────────────────────────
 
-function deriveUpcastLabelEs(upcastSpec, mechanicObj, activity, evalStr) {
+function deriveUpcastLabelEs(upcastSpec, mechanicObj, activity, evalStr, translations) {
   if (!upcastSpec) return '';
   if (upcastSpec.display?.label) {
+    const customLabel = lookupMechanicLabel(upcastSpec.display.label, translations, evalStr);
+    if (customLabel) return customLabel;
     let lbl = upcastSpec.display.label;
     lbl = lbl.replace(/\+1 hour duration/gi, '+1 hora de duración');
     lbl = lbl.replace(/duration/gi, 'duración');
-    return lbl;
+    return cleanEnglishPhrasesEs(lbl);
   }
 
   const mods = upcastSpec.modifications;
@@ -404,10 +508,18 @@ function deriveUpcastLabelEs(upcastSpec, mechanicObj, activity, evalStr) {
 
 // ─── Format Trigger en Español ──────────────────────────────────────────────
 
-export function formatTriggerEs(trigger, evalStr) {
+export function formatTriggerEs(trigger, evalStr, translations = null) {
   if (!trigger) return '';
-  if (typeof trigger === 'string') return cleanEnglishPhrasesEs(evalStr(trigger));
-  if (trigger.text) return cleanEnglishPhrasesEs(evalStr(trigger.text));
+  if (typeof trigger === 'string') {
+    const rawVal = evalStr(trigger);
+    const trans = lookupMechanicText(trigger, translations, evalStr) || lookupMechanicText(rawVal, translations, evalStr);
+    return trans ? evalStr(trans) : cleanEnglishPhrasesEs(rawVal);
+  }
+  if (trigger.text) {
+    const rawVal = evalStr(trigger.text);
+    const trans = lookupMechanicText(trigger.text, translations, evalStr) || lookupMechanicText(rawVal, translations, evalStr);
+    return trans ? evalStr(trans) : cleanEnglishPhrasesEs(rawVal);
+  }
 
   if (trigger.event) {
     const rawEvents = Array.isArray(trigger.event) ? trigger.event : [trigger.event];
@@ -419,7 +531,58 @@ export function formatTriggerEs(trigger, evalStr) {
         phrases.push(e.replace(/_/g, ' '));
         continue;
       }
-      phrases.push(entry.phrase);
+      let phrase = entry.phrase;
+      if (trigger.attackFilter) {
+        const { classification, type } = trigger.attackFilter;
+        const classEs = classification === 'ranged' ? 'a distancia' : classification === 'melee' ? 'cuerpo a cuerpo' : classification === 'finesse' ? 'sutil' : classification;
+        const typeEs = type === 'weapon' ? 'de arma' : type === 'spell' ? 'de conjuro' : type;
+
+        let qualifierEs = '';
+        if (typeEs && classEs) qualifierEs = `de ${type === 'weapon' ? 'arma' : 'conjuro'} ${classEs}`;
+        else if (classEs) qualifierEs = classEs;
+        else if (typeEs) qualifierEs = typeEs;
+
+        if (qualifierEs) {
+          if (phrase.includes('impactas a una criatura con un ataque')) {
+            phrase = phrase.replace('impactas a una criatura con un ataque', `impactas a una criatura con un ataque ${qualifierEs}`);
+          } else if (phrase.includes('fallas con un ataque') || phrase.includes('fallas un ataque')) {
+            phrase = phrase.replace(/fallas (con )?un ataque/, `fallas con un ataque ${qualifierEs}`);
+          } else if (phrase.includes('haces un ataque')) {
+            phrase = phrase.replace('haces un ataque', `haces un ataque ${qualifierEs}`);
+          }
+        }
+      }
+      if (trigger.spellFilter && e === 'cast_spell') {
+        const { school, name } = trigger.spellFilter;
+        if (name) {
+          const nameMap = { divineSmite: 'Castigo divino' };
+          const transName = nameMap[name] || name;
+          phrase = `lanzas ${transName}`;
+        } else if (school) {
+          const schoolMap = {
+            abjuration: 'Abjuración', conjuration: 'Conjuración', divination: 'Adivinación',
+            enchantment: 'Encantamiento', evocation: 'Evocación', illusion: 'Ilusión',
+            necromancy: 'Nigromancia', transmutation: 'Transmutación'
+          };
+          const schools = Array.isArray(school) ? school : [school];
+          const transSchools = schools.map(s => schoolMap[s.toLowerCase()] || capitalize(s)).join(' o ');
+          phrase = `lanzas un conjuro de ${transSchools}`;
+        }
+      }
+      if (trigger.saveFilter && (e === 'fail_save' || e === 'make_save')) {
+        const { ability } = trigger.saveFilter;
+        if (ability) {
+          const abilityNames = {
+            str: 'Fuerza', dex: 'Destreza', con: 'Constitución',
+            int: 'Inteligencia', wis: 'Sabiduría', cha: 'Carisma'
+          };
+          const abilities = Array.isArray(ability) ? ability : [ability];
+          const formatted = abilities.map(a => abilityNames[String(a).toLowerCase()] || capitalize(a));
+          const joinedAb = formatted.length === 1 ? formatted[0] : `${formatted.slice(0, -1).join(', ')} o ${formatted[formatted.length - 1]}`;
+          phrase = phrase.replace('tirada de salvación', `tirada de salvación de ${joinedAb}`);
+        }
+      }
+      phrases.push(phrase);
     }
 
     if (phrases.length === 0) return '';
@@ -460,7 +623,11 @@ export function formatRepeatEs(repeat, pattern, evalStr) {
 
 export function formatTargetTextEs(targetObj, formattedRange, evalStr, isAttack = false, activity = null) {
   if (!targetObj) return '';
-  if (targetObj.text) return `, ${cleanEnglishPhrasesEs(evalStr(targetObj.text))}`;
+  if (targetObj.text) {
+    const rawVal = evalStr(targetObj.text);
+    const trans = lookupMechanicText(targetObj.text, null, evalStr) || lookupMechanicText(rawVal, null, evalStr);
+    return `, ${trans ? evalStr(trans) : cleanEnglishPhrasesEs(rawVal)}`;
+  }
   const cleanRange = formattedRange.replace(/^(alcance|range|reach)\s*(de\s*)?/i, '').trim();
 
   const filterSingular = formatFilterTextEs(targetObj.filter, evalStr, false);
@@ -473,14 +640,16 @@ export function formatTargetTextEs(targetObj, formattedRange, evalStr, isAttack 
     const size = evalStr(targetObj.aoe.size || '');
     const aoePhrase = formatAoePhraseEs(rawShape, size);
 
+    const isFeminineShape = ['sphere', 'line', 'emanation'].includes(rawShape);
+    const centeredWord = isFeminineShape ? 'centrada' : 'centrado';
     let rangePart = '';
     const lowerRange = cleanRange.toLowerCase();
     if (targetObj.inherit === 'trigger' || targetObj.inherit === 'prev_step') {
-      rangePart = ' centrada en el objetivo';
+      rangePart = ` ${centeredWord} en el objetivo`;
     } else if (lowerRange === 'personal' || lowerRange === 'self' || rawShape === 'emanation') {
-      rangePart = rawShape === 'line' ? ' que se origina en ti' : ' centrada en ti';
+      rangePart = rawShape === 'line' ? ' que se origina en ti' : ` ${centeredWord} en ti`;
     } else if (cleanRange) {
-      rangePart = ` centrada en un punto a ${cleanRange}`;
+      rangePart = ` ${centeredWord} en un punto a ${cleanRange}`;
     }
     return `, cada ${filterSingular} en ${aoePhrase}${rangePart}`;
   }
@@ -535,9 +704,21 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
 
   // ── Text payload ─────────────────────────────────────────────────────────────
   if (type === 'text') {
+    if (payload.textEs) {
+      const raw = evalStr(payload.textEs);
+      let res = raw.charAt(0).toLowerCase() + raw.slice(1);
+      return res.replace(/\.$/, '');
+    }
     const raw = evalStr(payload.text || '');
-    let res = raw.charAt(0).toLowerCase() + raw.slice(1);
-    return cleanEnglishPhrasesEs(res).replace(/\.$/, '');
+    const externalEs = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+    let res;
+    if (externalEs) {
+      res = evalStr(externalEs);
+    } else {
+      res = cleanEnglishPhrasesEs(raw);
+    }
+    res = res.charAt(0).toLowerCase() + res.slice(1);
+    return res.replace(/\.$/, '');
   }
 
   // ── Damage payload ──────────────────────────────────────────────────────────
@@ -545,9 +726,10 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     const dDice = formatDiceObj(payload.dice, payload.min, evalStr);
     const dType = formatDamageTypeEs(payload.damageType, evalStr);
     const typeStr = dType ? ` ${dType}` : '';
-    if (payload.text) {
-      const txt = evalStr(payload.text).trim();
-      let transTxt = cleanEnglishPhrasesEs(txt);
+    if (payload.textEs || payload.text) {
+      const txt = evalStr(payload.textEs || payload.text).trim();
+      const trans = !payload.textEs ? lookupMechanicText(payload.text, ctx?.translations, evalStr) : null;
+      let transTxt = payload.textEs ? txt : (trans ? evalStr(trans) : cleanEnglishPhrasesEs(txt));
       if (dDice && !transTxt.includes(dDice)) {
         return `${dDice} ${transTxt}`.trim();
       }
@@ -594,18 +776,36 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
           end_of_its_next_turn: ' hasta el final de su siguiente turno',
           end_of_your_next_turn: ' hasta el final de tu siguiente turno',
           end_of_next_turn: ' hasta el final del siguiente turno',
+          break_line_of_sight: ' (repite la tirada de salvación si el objetivo rompe la línea de visión)',
+          '1_minute': ' durante 1 minuto',
         };
         endText = endMap[payload.end] ?? ` (${cleanEnglishPhrasesEs(evalStr(payload.end))})`;
       } else if (payload.end?.text) {
-        endText = ` (${cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
+        const transEnd = lookupMechanicText(payload.end.text, ctx?.translations, evalStr);
+        endText = ` (${transEnd ? evalStr(transEnd) : cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
       }
     }
-    return `${condBase}${endText}`;
+    let locText = '';
+    if (payload.location) {
+      const transLoc = lookupMechanicText(payload.location, ctx?.translations, evalStr);
+      const locResolved = transLoc ? evalStr(transLoc) : cleanEnglishPhrasesEs(evalStr(payload.location));
+      locText = `, desterrado a ${locResolved}`;
+    }
+    let extraText = '';
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      const extraResolved = trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+      extraText = ` ${extraResolved}`;
+    }
+    return `${condBase}${locText}${extraText}${endText}`;
   }
 
   // ── Roll modifier payload ───────────────────────────────────────────────────
   if (type === 'rollModifier') {
-    if (payload.text) return cleanEnglishPhrasesEs(evalStr(payload.text));
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+    }
     const modType = payload.modifierType || 'advantage';
     const rawRolls = Array.isArray(payload.targetRolls)
       ? payload.targetRolls
@@ -634,6 +834,7 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     if (payload.end) {
       if (typeof payload.end === 'string') {
         const endMap = {
+          end_of_next_turn: ' hasta el final del siguiente turno',
           end_of_your_next_turn: ' hasta el final de tu siguiente turno',
           end_of_its_next_turn: ' hasta el final de su siguiente turno',
           start_of_your_next_turn: ' hasta el inicio de tu siguiente turno',
@@ -641,7 +842,8 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
         };
         endStr = endMap[payload.end] ?? ` (${cleanEnglishPhrasesEs(evalStr(payload.end))})`;
       } else if (payload.end?.text) {
-        endStr = ` (${cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
+        const transEnd = lookupMechanicText(payload.end.text, ctx?.translations, evalStr);
+        endStr = ` (${transEnd ? evalStr(transEnd) : cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
       }
     }
 
@@ -663,9 +865,11 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
           : `tiene Ventaja en tiradas de salvación de ${abilJoin}${endStr}`;
       }
       if (payload.saveFilter?.text) {
+        const transFilter = lookupMechanicText(payload.saveFilter.text, ctx?.translations, evalStr);
+        const filterStr = transFilter ? evalStr(transFilter) : cleanEnglishPhrasesEs(evalStr(payload.saveFilter.text));
         return isRecipientSelf
-          ? `tienes Ventaja en tiradas de salvación ${cleanEnglishPhrasesEs(evalStr(payload.saveFilter.text))}${endStr}`
-          : `tiene Ventaja en tiradas de salvación ${cleanEnglishPhrasesEs(evalStr(payload.saveFilter.text))}${endStr}`;
+          ? `tienes Ventaja en tiradas de salvación ${filterStr}${endStr}`
+          : `tiene Ventaja en tiradas de salvación ${filterStr}${endStr}`;
       }
       const rollsStr = rawRolls.map(r => rollNamesEs[evalStr(r)] || evalStr(r)).join(' o ');
       if (isRecipientSelf) {
@@ -707,12 +911,19 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
       const rollsStr = rawRolls.map(r => rollNamesEs[evalStr(r)] || evalStr(r)).join(' o ');
       return `resta ${formulaStr} de su siguiente ${rollsStr}${endStr}`;
     }
-    return cleanEnglishPhrasesEs(evalStr(payload.text || ''));
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+    }
+    return '';
   }
 
   // ── Movement payload ────────────────────────────────────────────────────────
   if (type === 'movement') {
-    if (payload.text) return cleanEnglishPhrasesEs(evalStr(payload.text));
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+    }
     const dir = payload.direction || 'push';
     const distStr = payload.distance ? `${evalStr(payload.distance)} pies` : '5 pies';
     if (payload.movementType === 'forced') {
@@ -740,6 +951,7 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     if (payload.end) {
       if (typeof payload.end === 'string') {
         const endMap = {
+          end_of_next_turn: ' hasta el final del siguiente turno',
           end_of_your_next_turn: ' hasta el final de tu siguiente turno',
           end_of_its_next_turn: ' hasta el final de su siguiente turno',
           start_of_your_next_turn: ' hasta el inicio de tu siguiente turno',
@@ -747,13 +959,20 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
         };
         endStr = endMap[payload.end] ?? ` (${cleanEnglishPhrasesEs(evalStr(payload.end))})`;
       } else if (payload.end.text) {
-        endStr = ` (${cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
+        const transEnd = lookupMechanicText(payload.end.text, ctx?.translations, evalStr);
+        endStr = ` (${transEnd ? evalStr(transEnd) : cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
       }
     }
 
+    const formatSuffix = () => {
+      if (!payload.text) return '';
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return ` ${trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text))}`;
+    };
+
     if (rawStat === 'flyspeed') {
       const hoverStr = payload.hover ? ' (levitar)' : '';
-      const suffix = payload.text ? ` ${cleanEnglishPhrasesEs(evalStr(payload.text))}` : '';
+      const suffix = formatSuffix();
       return `gana una Velocidad de Vuelo de ${rawVal} pies${hoverStr}${suffix}${endStr}`;
     }
     if (['swimspeed', 'climbspeed', 'burrowspeed'].includes(rawStat)) {
@@ -763,7 +982,7 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
         burrowspeed: 'Velocidad de Excavación'
       };
       const name = nameMap[rawStat];
-      const suffix = payload.text ? ` ${cleanEnglishPhrasesEs(evalStr(payload.text))}` : '';
+      const suffix = formatSuffix();
       return `gana una ${name} de ${rawVal} pies${suffix}${endStr}`;
     }
     if (['darkvision', 'blindsight', 'truesight', 'tremorsense'].includes(rawStat)) {
@@ -774,7 +993,7 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
         tremorsense: 'Sentido de la Vibración'
       };
       const name = senseMap[rawStat];
-      const suffix = payload.text ? ` ${cleanEnglishPhrasesEs(evalStr(payload.text))}` : '';
+      const suffix = formatSuffix();
       return `gana ${name} con un alcance de ${rawVal} pies${suffix}${endStr}`;
     }
 
@@ -783,6 +1002,9 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     }
     if (payload.operation === 'subtract' || isNeg) {
       return `su ${statName} se reduce en ${absVal}${speedSuffix}${endStr}`;
+    }
+    if (rawStat === 'speed') {
+      return `gana un bonificador de +${absVal} pies a su ${statName}${endStr}`;
     }
     return `gana un bonificador de +${absVal} a su ${statName}${speedSuffix}${endStr}`;
   }
@@ -817,17 +1039,23 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     if (payload.end) {
       if (typeof payload.end === 'string') {
         const endMap = {
+          end_of_next_turn: ' hasta el final del siguiente turno',
           end_of_your_next_turn: ' hasta el final de tu siguiente turno',
           end_of_its_next_turn: ' hasta el final de su siguiente turno',
           start_of_your_next_turn: ' hasta el inicio de tu siguiente turno',
         };
         endStr = endMap[payload.end] ?? ` (${cleanEnglishPhrasesEs(evalStr(payload.end))})`;
       } else if (payload.end.text) {
-        endStr = ` (${cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
+        const transEnd = lookupMechanicText(payload.end.text, ctx?.translations, evalStr);
+        endStr = ` (${transEnd ? evalStr(transEnd) : cleanEnglishPhrasesEs(evalStr(payload.end.text))})`;
       }
     }
 
-    if (parts.length === 0) return payload.text ? cleanEnglishPhrasesEs(evalStr(payload.text)) : '';
+    if (parts.length === 0) {
+      if (!payload.text) return '';
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+    }
     const joined = parts.join(' y ');
     return `gana ${label} ${joined}${endStr}`;
   }
@@ -858,7 +1086,11 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     if (valStr) {
       return `reduce el daño${typeStr} recibido en ${valStr}`;
     }
-    return payload.text ? cleanEnglishPhrasesEs(evalStr(payload.text)) : '';
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+    }
+    return '';
   }
 
   // ── Teleport payload ─────────────────────────────────────────────────────────
@@ -866,7 +1098,11 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     const rawDist = String(evalStr(payload.distance || '30')).trim();
     const cleanDist = formatDistanceEs(rawDist);
     const dist = /pies$/i.test(cleanDist) ? cleanDist : `${cleanDist} pies`;
-    const custom = payload.text ? ` ${cleanEnglishPhrasesEs(evalStr(payload.text)).trim()}` : ' a un espacio desocupado que puedas ver';
+    let custom = ' a un espacio desocupado que puedas ver';
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      custom = ` ${(trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text))).trim()}`;
+    }
     if (payload.target === 'target') {
       return `el objetivo es teletransportado hasta ${dist}${custom}`;
     }
@@ -894,7 +1130,10 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
 
   // ── Action payload ──────────────────────────────────────────────────────────
   if (type === 'action') {
-    if (payload.text) return cleanEnglishPhrasesEs(evalStr(payload.text));
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+    }
     if (payload.actionType === 'attack') return 'realiza un ataque adicional con arma';
     if (payload.actionType === 'general') return 'realiza una acción adicional, excepto la acción de Magia';
     return `realiza una acción`;
@@ -914,15 +1153,29 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
 
   // ── Choice payload ──────────────────────────────────────────────────────────
   if (type === 'choice') {
-    const preamble = payload.text ? cleanEnglishPhrasesEs(evalStr(payload.text)) : 'Elige una de las siguientes opciones:';
+    const rawPreamble = payload.textEs
+      ? payload.textEs
+      : (payload.text
+        ? (lookupMechanicText(payload.text, ctx?.translations, evalStr) || cleanEnglishPhrasesEs(evalStr(payload.text)))
+        : 'Elige una de las siguientes opciones:');
+    const preamble = evalStr(rawPreamble);
     const opts = Array.isArray(payload.options) ? payload.options : [];
     const optionLines = opts.map(opt => {
-      const optName = opt.name ? `**${evalStr(opt.name)}**: ` : '';
-      const optBody = opt.text
-        ? cleanEnglishPhrasesEs(evalStr(opt.text))
-        : opt.payloads
-          ? formatPayloadListEs(opt.payloads, evalStr, formatDiceObj)
-          : '';
+      const transOptName = opt.name
+        ? (lookupMechanicLabel(opt.name, ctx?.translations, evalStr)
+          || lookupMechanicText(opt.name, ctx?.translations, evalStr)
+          || evalStr(opt.name))
+        : '';
+      const optName = transOptName ? `**${evalStr(transOptName)}**: ` : '';
+      const optBody = opt.textEs
+        ? evalStr(opt.textEs)
+        : (opt.text
+          ? (lookupMechanicText(opt.text, ctx?.translations, evalStr)
+            ? evalStr(lookupMechanicText(opt.text, ctx?.translations, evalStr))
+            : cleanEnglishPhrasesEs(evalStr(opt.text)))
+          : opt.payloads
+            ? formatPayloadListEs(opt.payloads, evalStr, formatDiceObj, ctx)
+            : '');
       return `> ${optName}${optBody}`;
     }).join('\n\n');
     return `${preamble}\n\n${optionLines}`;
@@ -1144,17 +1397,23 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
   let result = clauseParts[0];
   for (let i = 1; i < clauseParts.length; i++) {
     const part = clauseParts[i];
-    result = result.replace(/\.$/, '');
-    if (part.includes('\n\n') || part.startsWith('Elige ') || part.startsWith('y ')) {
-      result = `${result} ${part}`;
-    } else if (i === clauseParts.length - 1) {
-      if (/^y\s+/i.test(part)) {
-        result = `${result}, ${part}`;
-      } else {
-        result = `${result} y ${part}`;
-      }
+    const isChoiceOrHeader = part.includes('\n\n>') || part.startsWith('>') || /^(elige|un|una|el|la|cada)\b/i.test(part.trim());
+    if (isChoiceOrHeader) {
+      if (!/[.!?]$/.test(result.trim())) result = `${result.trim()}.`;
+      result = `${result} ${capitalize(part.trim())}`;
     } else {
-      result = `${result}, ${part}`;
+      result = result.replace(/\.$/, '');
+      if (part.includes('\n\n') || part.startsWith('Elige ') || part.startsWith('y ')) {
+        result = `${result} ${part}`;
+      } else if (i === clauseParts.length - 1) {
+        if (/^y\s+/i.test(part)) {
+          result = `${result}, ${part}`;
+        } else {
+          result = `${result} y ${part}`;
+        }
+      } else {
+        result = `${result}, ${part}`;
+      }
     }
   }
 
@@ -1225,7 +1484,7 @@ function isPluralSubjectEs(subject) {
 function isDamageBodyEs(str) {
   if (!str) return false;
   const s = str.trim().toLowerCase();
-  return /(\d+d[a-z0-9$()._+-]+|\$\([^)]+\)|\d+)\s+de\s+daño/i.test(s) || /daño\s+[a-z/]+/i.test(s);
+  return /^(\d+d[a-z0-9$()._+-]+|\$\([^)]+\)|\d+)\s+de\s+daño/i.test(s) || /^daño\s+[a-z/]+/i.test(s);
 }
 
 function conjugateToThirdPersonEs(body) {
@@ -1272,6 +1531,7 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
   if (!block) return '';
 
   const activeTranslations = translations || fallbackTranslations;
+  const mechanicTexts = activeTranslations?.["$mechanic"]?.texts || {};
   const activityId = activity?.id || '';
   const transEntry = activeTranslations?.[activityId] || (activity?.name ? activeTranslations?.[activity.name] : null);
   const localizedSummary = scope?.summary || transEntry?.summary || activity?.summaryEs || activity?.summary || '';
@@ -1346,8 +1606,11 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
   const pattern = block.pattern;
   const rawRange = evalStr(block.target?.range || activity?.range || '').trim();
   const formattedRange = formatDistanceEs(rawRange);
-  const text = block.text ? cleanEnglishPhrasesEs(evalStr(block.text).trim()) : '';
-  const triggerStr = formatTriggerEs(block.trigger, evalStr);
+  const rawTextTrans = block.textEs || lookupMechanicText(block.text, activeTranslations, evalStr);
+  const text = rawTextTrans
+    ? evalStr(rawTextTrans).trim()
+    : (block.text ? cleanEnglishPhrasesEs(evalStr(block.text).trim()) : '');
+  const triggerStr = formatTriggerEs(block.trigger, evalStr, activeTranslations);
   let mainBody = '';
 
   // ── 1. ATTACK ──────────────────────────────────────────────────────────────
@@ -1367,10 +1630,10 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
 
     let hitText = '';
     if (block.hit) {
-      const hitCtx = { pattern: 'attack', role: 'hit', targetObj: block.target };
+      const hitCtx = { pattern: 'attack', role: 'hit', targetObj: block.target, translations: activeTranslations };
       let formattedHit = formatPayloadListEs(block.hit, evalStr, formatDiceObj, hitCtx);
       if (block.hitOrMiss) {
-        const formattedHitOrMiss = formatPayloadListEs(block.hitOrMiss, evalStr, formatDiceObj, { pattern: 'attack', role: 'hitOrMiss', targetObj: block.target });
+        const formattedHitOrMiss = formatPayloadListEs(block.hitOrMiss, evalStr, formatDiceObj, { pattern: 'attack', role: 'hitOrMiss', targetObj: block.target, translations: activeTranslations });
         if (formattedHitOrMiss) formattedHit = `${formattedHit}, y ${formattedHitOrMiss}`;
       }
       if (formattedHit) hitText = ` _Impacto:_ ${formattedHit}.`;
@@ -1385,28 +1648,32 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
 
       if (isStructuredOutcome) {
         const parts = [];
-        if (block.miss.halfDamage) parts.push('la mitad de daño');
+        if (block.miss.halfDamage) parts.push('la mitad del daño');
         if (block.miss.payloads) {
-          const pStr = formatPayloadListEs(block.miss.payloads, evalStr, formatDiceObj, { pattern: 'attack', role: 'miss', targetObj: block.target });
+          const pStr = formatPayloadListEs(block.miss.payloads, evalStr, formatDiceObj, { pattern: 'attack', role: 'miss', targetObj: block.target, translations: activeTranslations });
           if (pStr) parts.push(pStr);
         }
-        if (block.miss.text) parts.push(cleanEnglishPhrasesEs(evalStr(block.miss.text)));
+        if (block.miss.text) {
+          const mTrans = lookupMechanicText(block.miss.text, activeTranslations, evalStr);
+          parts.push(mTrans ? evalStr(mTrans) : cleanEnglishPhrasesEs(evalStr(block.miss.text)));
+        }
         if (parts.length > 0) {
           missText = ` _Fallo:_ ${capitalize(parts.join(', '))}.`;
         }
       } else {
-        const formattedMiss = formatPayloadListEs(block.miss, evalStr, formatDiceObj, { pattern: 'attack', role: 'miss', targetObj: block.target });
+        const formattedMiss = formatPayloadListEs(block.miss, evalStr, formatDiceObj, { pattern: 'attack', role: 'miss', targetObj: block.target, translations: activeTranslations });
         if (formattedMiss) missText = ` _Fallo:_ ${capitalize(formattedMiss)}.`;
       }
     }
 
     let critText = '';
     if (block.crit) {
-      const formattedCrit = formatPayloadListEs(block.crit, evalStr, formatDiceObj, { pattern: 'attack', role: 'crit', targetObj: block.target });
+      const formattedCrit = formatPayloadListEs(block.crit, evalStr, formatDiceObj, { pattern: 'attack', role: 'crit', targetObj: block.target, translations: activeTranslations });
       if (formattedCrit) critText = ` _Impacto Crítico:_ ${capitalize(formattedCrit)}.`;
     }
 
-    mainBody = `_Tirada de Ataque ${classif}:_ ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${missText}${critText}${text ? ` ${text}` : ''}`;
+    const trailingText = text ? ` ${capitalize(text.replace(/\.$/, ''))}.` : '';
+    mainBody = `_Tirada de Ataque ${classif}:_ ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${missText}${critText}${trailingText}`;
   }
 
   // ── 2. SAVE ────────────────────────────────────────────────────────────────
@@ -1416,7 +1683,7 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
     const dcVal = evalStr(block.save.dc || '$(attributes.spellcasting.save)');
     const targetDesc = formatTargetTextEs(block.target, formattedRange, evalStr, false, activity);
 
-    const saveCtx = { pattern: 'save', targetObj: block.target, saveDc: dcVal };
+    const saveCtx = { pattern: 'save', targetObj: block.target, saveDc: dcVal, translations: activeTranslations };
 
     let alwaysText = '';
     if (block.failureOrSuccess) {
@@ -1439,12 +1706,15 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
 
       if (isStructuredOutcome) {
         const parts = [];
-        if (block.success.halfDamage) parts.push('la mitad de daño');
+        if (block.success.halfDamage) parts.push('la mitad del daño');
         if (block.success.payloads) {
           const pStr = formatPayloadListEs(block.success.payloads, evalStr, formatDiceObj, { ...saveCtx, role: 'success' });
           if (pStr) parts.push(pStr);
         }
-        if (block.success.text) parts.push(cleanEnglishPhrasesEs(evalStr(block.success.text)));
+        if (block.success.text) {
+          const sTrans = lookupMechanicText(block.success.text, activeTranslations, evalStr);
+          parts.push(sTrans ? evalStr(sTrans) : cleanEnglishPhrasesEs(evalStr(block.success.text)));
+        }
         if (parts.length > 0) {
           successText = ` _Éxito:_ ${capitalize(parts.join(', '))}.`;
         }
@@ -1454,7 +1724,8 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
       }
     }
 
-    mainBody = `_Tirada de Salvación de ${fullAbility}:_ CD ${dcVal}${targetDesc}.${alwaysText}${failText}${successText}${text ? ` ${text}` : ''}`.replace(/\.\./g, '.');
+    const trailingText = text ? ` ${capitalize(text.replace(/\.$/, ''))}.` : '';
+    mainBody = `_Tirada de Salvación de ${fullAbility}:_ CD ${dcVal}${targetDesc}.${alwaysText}${failText}${successText}${trailingText}`.replace(/\.\./g, '.');
   }
 
   // ── 3. HEALING ─────────────────────────────────────────────────────────────
@@ -1476,7 +1747,7 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
     if (block.payloads) {
       const pArr = Array.isArray(block.payloads) ? block.payloads : [block.payloads];
       const pTexts = pArr.map(p => {
-        let t = formatPayloadEs(p, evalStr, formatDiceObj, { pattern: 'healing', targetObj: block.target });
+        let t = formatPayloadEs(p, evalStr, formatDiceObj, { pattern: 'healing', targetObj: block.target, translations: activeTranslations });
         if (p.type === 'conditionCleanse') {
           t = `puedes ${t}`;
         }
@@ -1492,11 +1763,11 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
     if (text) mainBody += ` ${capitalize(text.replace(/\.$/, ''))}.`;
   }
 
-  // ── 4. AUTOMATIC ───────────────────────────────────────────────────────────
-  else if (pattern === 'automatic') {
+  // ── 4. AUTOMATIC & TEXT ───────────────────────────────────────────────────
+  else if (pattern === 'automatic' || pattern === 'text') {
     const payloadObj = block.payloads;
     const fromPayloads = !!payloadObj && !text;
-    const payloadText = payloadObj ? formatPayloadListEs(payloadObj, evalStr, formatDiceObj, { pattern: 'automatic', targetObj: block.target }) : '';
+    const payloadText = payloadObj ? formatPayloadListEs(payloadObj, evalStr, formatDiceObj, { pattern: 'automatic', targetObj: block.target, translations: activeTranslations }) : '';
 
     let rawBody = '';
     if (payloadText && text) {
@@ -1517,10 +1788,12 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
       const rawShape = (evalStr(block.target.aoe.shape || 'sphere')).toLowerCase();
       const size = evalStr(block.target.aoe.size || '');
       const aoePhrase = formatAoePhraseEs(rawShape, size);
+      const isFeminineShape = ['sphere', 'line', 'emanation'].includes(rawShape);
+      const centeredWord = isFeminineShape ? 'centrada' : 'centrado';
       const rawRangeVal = evalStr(block.target?.range || activity?.range || '').trim();
       const cleanRangeVal = formatDistanceEs(rawRangeVal).replace(/^(alcance|reach|range)\s*(de\s*)?/i, '');
       const rangePart = cleanRangeVal && !/^personal$/i.test(cleanRangeVal) && !/^self$/i.test(cleanRangeVal)
-        ? ` centrada en un punto a ${cleanRangeVal}`
+        ? ` ${centeredWord} en un punto a ${cleanRangeVal}`
         : '';
       bodyStr = `${capitalize(aoePhrase)}${rangePart} ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
 
@@ -1567,7 +1840,7 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
         } else {
           bodyStr = `${subject} recibe ${lowerBody}`;
         }
-      } else if (isSelf) {
+      } else if (isSelf || /^(hasta|cuando|mientras|si\b|una vez|al inicio|al final|en cada|durante|para la duración)\b/i.test(lowerBody)) {
         bodyStr = capitalize(lowerBody);
       } else {
         bodyStr = `${subject} ${lowerBody}`;
@@ -1583,7 +1856,11 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
       const isNarrative = isSummaryRef ||
         /^(otorgas|creas|lanzas|tocas|realizas|imbuyes|haces|eliges|manifiestas|fijas|señalas|purificas|invocas|te teletransportas|puedes|reparas|restauras|transformas|detectas|percibes|adivinas|comprendes|aprendes|despiertas|proteges|bendices|maldices|sientes|cuando|mientras|si|una vez|al inicio|al final|en cada|durante|hasta que|a menos que|para la duración|el objetivo|cada objetivo|los objetivos|tú|tus|su|sus|una criatura|un objeto|esta criatura)\b/i.test(lowerBody);
 
-      if (isNarrative || isSelf) {
+      if (block.textEs) {
+        bodyStr = evalStr(block.textEs).trim();
+      } else if (block.text && mechanicTexts[block.text]) {
+        bodyStr = evalStr(mechanicTexts[block.text]).trim();
+      } else if (isNarrative || isSelf) {
         bodyStr = cleanEnglishPhrasesEs(rawTrimmed);
       } else {
         const conjugated = conjugateToThirdPersonEs(cleanEnglishPhrasesEs(lowerBody));
@@ -1617,11 +1894,13 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
     const cleanRange = evalStr(block.target?.range || activity?.range || '').trim();
     const aoePhrase = formatAoePhraseEs(rawShape, size);
 
+    const isFeminineShape = ['sphere', 'line', 'emanation'].includes(rawShape);
+    const centeredWord = isFeminineShape ? 'centrada' : 'centrado';
     let locationPhrase = '';
     if (rawShape === 'emanation' || /^self$/i.test(cleanRange) || /^personal$/i.test(cleanRange)) {
-      locationPhrase = rawShape === 'line' ? 'que se origina en ti' : 'centrada en ti';
+      locationPhrase = rawShape === 'line' ? 'que se origina en ti' : `${centeredWord} en ti`;
     } else if (cleanRange) {
-      locationPhrase = `centrada en un punto a ${formatDistanceEs(cleanRange).replace(/^(alcance|reach|range)\s*(de\s*)?/i, '')}`;
+      locationPhrase = `${centeredWord} en un punto a ${formatDistanceEs(cleanRange).replace(/^(alcance|reach|range)\s*(de\s*)?/i, '')}`;
     }
 
     let auraText = text.trim();
@@ -1809,7 +2088,7 @@ export function formatActivityMechanicEs(activity, characterData, customTranslat
 
   const evalStrForLabel = s => evaluator.evaluate(s, scope);
   const upcastSuffix = showUpcastLabel
-    ? ` _Lanzamiento Superior:_ ${deriveUpcastLabelEs(upcastSpec, effectiveMechanic, activity, evalStrForLabel)}.`
+    ? ` _Lanzamiento Superior:_ ${deriveUpcastLabelEs(upcastSpec, effectiveMechanic, activity, evalStrForLabel, translations)}.`
     : '';
 
   const fullSuffix = `${durSuffix}${ritualSuffix}${upcastSuffix}${extraSuffix}`;
@@ -1820,20 +2099,26 @@ export function formatActivityMechanicEs(activity, characterData, customTranslat
     const blocks = Array.isArray(effectiveBlocks) ? effectiveBlocks : [];
 
     if (effectiveMechanic.mode === 'choice') {
-      const topTrigger = effectiveMechanic.trigger ? formatTriggerEs(effectiveMechanic.trigger, evalStr) : '';
+      const topTrigger = effectiveMechanic.trigger ? formatTriggerEs(effectiveMechanic.trigger, evalStr, translations) : '';
       const triggerPart = topTrigger ? ` _Desencadenante:_ ${topTrigger}. _Efecto:_` : '';
 
       const hasAuraBlock0 = blocks[0]?.pattern === 'aura';
       const auraPreamble = hasAuraBlock0 ? formatBlockEs(blocks[0], activity, evaluator, scope, 0, translations) : '';
       const choiceBlocks = hasAuraBlock0 ? blocks.slice(1) : blocks;
 
-      const preamble = effectiveMechanic.text
-        ? cleanEnglishPhrasesEs(evalStr(String(effectiveMechanic.text)).trim())
+      const rawPreamble = effectiveMechanic.text
+        ? (lookupMechanicText(effectiveMechanic.text, translations, evalStr) || cleanEnglishPhrasesEs(evalStr(String(effectiveMechanic.text)).trim()))
         : (hasAuraBlock0 ? '' : 'Elige una de las siguientes opciones:');
+      const preamble = evalStr(rawPreamble);
 
       const choiceLines = choiceBlocks
         .map(b => {
-          const title = b.name ? `**${b.name}**: ` : '';
+          const transTitle = b.name
+            ? (lookupMechanicLabel(b.name, translations, evalStr)
+              || lookupMechanicText(b.name, translations, evalStr)
+              || cleanEnglishPhrasesEs(b.name))
+            : '';
+          const title = transTitle ? `**${transTitle}**: ` : '';
           const content = formatBlockEs(b, activity, evaluator, scope, 0, translations);
           return `> ${title}${content}`;
         })
@@ -1848,11 +2133,52 @@ export function formatActivityMechanicEs(activity, characterData, customTranslat
     }
 
     // succession
+    const isNamedSuccession = blocks.length > 1 && (Boolean(blocks[0]?.name) || blocks.filter(b => b.name).length >= 2);
+    if (isNamedSuccession) {
+      const topTrigger = effectiveMechanic.trigger ? formatTriggerEs(effectiveMechanic.trigger, evalStr, translations) : '';
+      const triggerPart = topTrigger ? ` _Desencadenante:_ ${topTrigger}. _Respuesta:_` : '';
+
+      const isBlock0Named = Boolean(blocks[0]?.name);
+      let rawPreamble = effectiveMechanic.text
+        ? (lookupMechanicText(effectiveMechanic.text, translations, evalStr) || cleanEnglishPhrasesEs(evalStr(String(effectiveMechanic.text)).trim()))
+        : '';
+      let preamble = rawPreamble ? evalStr(rawPreamble) : '';
+      let successionBlocks = blocks;
+
+      if (!isBlock0Named) {
+        const block0Content = formatBlockEs(blocks[0], activity, evaluator, scope, 0, translations);
+        preamble = preamble ? `${block0Content} ${preamble}` : block0Content;
+        successionBlocks = blocks.slice(1);
+      }
+
+      const successionLines = successionBlocks
+        .map((b, idx) => {
+          const transTitle = b.name
+            ? (lookupMechanicLabel(b.name, translations, evalStr)
+              || lookupMechanicText(b.name, translations, evalStr)
+              || cleanEnglishPhrasesEs(b.name))
+            : '';
+          const title = transTitle ? `**${transTitle}**: ` : '';
+          const content = formatBlockEs(b, activity, evaluator, scope, isBlock0Named ? idx : idx + 1, translations);
+          return `> ${title}${content}`;
+        })
+        .filter(Boolean)
+        .join('\n\n');
+
+      const preamblePart = preamble ? ` ${preamble}` : '';
+      return `**${name}.**${triggerPart}${preamblePart}${fullSuffix}\n\n${successionLines}`;
+    }
+
     const contentParts = blocks
       .map((b, idx) => {
         const content = formatBlockEs(b, activity, evaluator, scope, idx, translations);
         if (!content) return '';
-        const title = b.name && idx > 0 ? `**${b.name}.** ` : '';
+        const transTitle = b.name
+          ? (lookupMechanicLabel(b.name, translations, evalStr)
+            || lookupMechanicText(b.name, translations, evalStr)
+            || cleanEnglishPhrasesEs(b.name))
+          : '';
+        const title = transTitle && idx > 0 ? `**${transTitle}.** ` : '';
         return `${title}${content}`;
       })
       .filter(Boolean);

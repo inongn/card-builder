@@ -44,5 +44,15 @@ children:
     operation: push
     value:
       pattern: automatic
-      text: Each chosen ally has Advantage on D20 Tests until the start of your next turn
+      name: Team Tactics
+      target:
+        inherit: prev_step
+      payloads:
+        - type: rollModifier
+          modifierType: advantage
+          targetRolls:
+            - attack
+            - check
+            - save
+          end: start_of_your_next_turn
     condition: $(meta.level >= 7)

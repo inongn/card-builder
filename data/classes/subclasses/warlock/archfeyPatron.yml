@@ -121,7 +121,6 @@ children:
       pattern: automatic
       trigger:
         event: take_damage
-        text: When you take damage
       target:
         type: self
       payloads:
