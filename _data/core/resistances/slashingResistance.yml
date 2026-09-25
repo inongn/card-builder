@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - damageResistance
-operation: push
-value: Slashing Damage
-target: attributes.resistances
-id: slashingResistance
-name: Slashing Resistance

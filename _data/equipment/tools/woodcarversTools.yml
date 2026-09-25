@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Woodcarver's Tools
-target: attributes.tools
-id: woodcarversTools
-name: Woodcarver's Tools

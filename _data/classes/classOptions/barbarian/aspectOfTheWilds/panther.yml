@@ -1,7 +1,0 @@
-name: Panther Aspect
-summary: "Gain stalking stealth and pouncing strikes inspired by the panther spirit."
-tags: [aspectOfTheWilds]
-type: Effect
-target: attributes.movement.climb
-operation: set
-value: $(attributes.movement.walk)

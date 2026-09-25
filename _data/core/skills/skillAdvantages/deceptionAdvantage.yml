@@ -1,6 +1,0 @@
-type: Effect
-target: skills.deception.adv
-operation: set
-value: true
-id: deceptionAdvantage
-name: Deception Advantage

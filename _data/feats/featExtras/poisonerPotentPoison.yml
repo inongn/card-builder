@@ -1,5 +1,0 @@
-name: Potent Poison
-type: Extra
-target: poisonDamage
-description: This damage ignores resistance to Poison damage.
-id: poisonerPotentPoison

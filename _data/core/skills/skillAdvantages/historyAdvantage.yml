@@ -1,6 +1,0 @@
-type: Effect
-target: skills.history.adv
-operation: set
-value: true
-id: historyAdvantage
-name: History Advantage

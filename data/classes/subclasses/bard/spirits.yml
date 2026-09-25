@@ -91,7 +91,7 @@ children:
               modifierType: advantage
               targetRolls: [attack, check, save]
               end: end_of_your_next_turn
-              text: Advantage on D20 Tests until the start of your next turn
+              text: has Advantage on D20 Tests until the start of your next turn
         - pattern: healing
           name: Wayfarer
           target:
@@ -158,14 +158,14 @@ children:
     type: Effect
     name: Power from Beyond (Damage)
     target: activities[tags=damageSpell NOT cantrip].mechanic.hit.dice.bonus
-    operation: push
+    operation: add
     value: $(stats.cha.mod)
     condition: $(meta.level >= 6)
   - id: powerFromBeyondDamageSave
     type: Effect
     name: Power from Beyond (Damage)
     target: activities[tags=damageSpell NOT cantrip].mechanic.failure.dice.bonus
-    operation: push
+    operation: add
     value: $(stats.cha.mod)
     condition: $(meta.level >= 6)
 

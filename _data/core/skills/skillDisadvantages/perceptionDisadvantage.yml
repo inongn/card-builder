@@ -1,6 +1,0 @@
-type: Effect
-target: skills.perception.dis
-operation: set
-value: true
-id: perceptionDisadvantage
-name: Perception Disadvantage

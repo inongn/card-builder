@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Prone
-target: attributes.advantages
-id: proneAdvantage
-name: Prone Advantage

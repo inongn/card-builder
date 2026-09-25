@@ -1,6 +1,0 @@
-type: Effect
-target: skills.intimidation.dis
-operation: set
-value: true
-id: intimidationDisadvantage
-name: Intimidation Disadvantage

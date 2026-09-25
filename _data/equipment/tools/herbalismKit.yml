@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Herbalism Kit
-target: attributes.tools
-id: herbalismKit
-name: Herbalism Kit

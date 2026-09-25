@@ -156,7 +156,7 @@ children:
         type: self
       payloads:
         type: movement
-        movementType: normal
+        movementType: allow
         distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
         provokesOpportunityAttacks: false
     condition: $(meta.level >= 5)

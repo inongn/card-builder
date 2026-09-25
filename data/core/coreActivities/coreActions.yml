@@ -1,0 +1,7 @@
+id: coreActions
+name: Core Actions
+type: Activity
+duration: instantaneous
+time: action
+range: self
+description: _Dash, Dodge, Disengage, Help, Hide, Utilize, Influence, Search, Study._  

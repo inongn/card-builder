@@ -150,7 +150,7 @@ children:
     operation: push
     value:
       type: movement
-      movementType: normal
+      movementType: allow
       distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
     condition: $(meta.level >= 7)
   - id: level8feat

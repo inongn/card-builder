@@ -90,6 +90,9 @@ children:
     condition: $(meta.level >= 2)
     mechanic:
       pattern: automatic
+      trigger:
+        event:
+          - make_check
       target:
         type: self
       payloads:
@@ -98,7 +101,6 @@ children:
         dice:
           count: 1
           sides: 10
-        targetRolls: abilityCheck
       reliable: true
   - id: fighterSubclass
     name: Fighter Subclass
@@ -121,7 +123,7 @@ children:
         type: self
       payloads:
         type: movement
-        movementType: normal
+        movementType: allow
         distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
         provokesOpportunityAttacks: false
     condition: $(meta.level >= 5)

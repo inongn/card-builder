@@ -4120,7 +4120,6 @@ mdui-list-item.card-vertical-item::part(container) {
 .other-characters-list,
 .activity-sheet-list,
 .play-content-aside {
-  contain: content;
   -webkit-overflow-scrolling: touch;
 }
 

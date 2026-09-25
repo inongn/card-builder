@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Weaver's Tools
-target: attributes.tools
-id: weaversTools
-name: Weaver's Tools

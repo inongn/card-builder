@@ -1,20 +1,13 @@
 tags:
   - fightingStyle
-type: Activity
-subtype: Fighting Style Feature
-time: bonus action
-range: self
-duration: instantaneous
+type: Folder
 id: twoWeaponFighting
 name: Two-Weapon Fighting
-summary: Make an additional attack with a Light weapon.
-description: When you take the Attack action on your turn and attack with a Light weapon, you can make one attack with a different Light weapon as a Bonus Action.
-mechanic:
-  pattern: automatic
-  target:
-    type: self
-  payloads:
-    - type: action
-      actionType: attack
-      count: 1
-      text: make one attack with a different Light weapon
+summary: When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack.
+children:
+  - id: twoWeaponFightingOffHand
+    type: Effect
+    name: Two-Weapon Fighting (Off-Hand)
+    target: activities[id=offHandAttack].mechanic.payloads.attackFilter.abilityModifier
+    operation: set
+    value: true

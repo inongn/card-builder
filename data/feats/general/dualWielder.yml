@@ -10,7 +10,8 @@ children:
     operation: add
     value: 1
   - type: Effect
-    target: activities[tags=weaponAttack].extra["with a Light weapon"]
-    operation: replace
-    value: "with a weapon"
-id: dualWielder
+    name: Dual Wielder (Off-Hand Attack)
+    target: activities[id=offHandAttack].mechanic.payloads.attackFilter.classification
+    operation: set
+    value: null
+      

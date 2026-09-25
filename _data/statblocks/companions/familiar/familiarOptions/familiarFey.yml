@@ -1,9 +1,0 @@
-id: familiarFey
-type: Feature
-name: Fey
-tags: [familiarOption]
-children:
-  - type: Effect
-    target: meta.familiarType
-    operation: set
-    value: Fey

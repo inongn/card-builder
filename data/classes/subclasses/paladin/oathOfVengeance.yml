@@ -34,8 +34,9 @@ children:
         text: you have Advantage on attack rolls against the target for the duration
   - id: relentlessAvenger
     type: Effect
-    target: activities[id=opportunityAttack].mechanic
+    target: activities[id=opportunityAttack].mechanic.payloads
     operation: push
     value: 
-      text: On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks.
+      type: text
+      text: Take an additional weapon attack. On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks
     condition: $(meta.level >= 7)

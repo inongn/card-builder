@@ -1,5 +1,0 @@
-name: Concentration Breaker
-type: Extra
-target: weaponAttack or attackSpell
-description: On a hit, the target has Disadvantage on any saving throw it makes to maintain Concentration.
-id: mageSlayerConcentrationBreaker

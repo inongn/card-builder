@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - damageResistance
-operation: push
-value: Poison Damage
-target: attributes.resistances
-id: poisonResistance
-name: Poison Resistance

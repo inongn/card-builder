@@ -61,7 +61,6 @@ children:
         event:
           - make_check
           - make_save
-        text: When you make an ability check or a saving throw
       target:
         type: self
       payloads:
@@ -70,10 +69,6 @@ children:
           dice:
             count: 1
             sides: 10
-          targetRolls:
-            - check
-            - save
-          text: add 1d10 to your roll (you can do so after seeing the roll but before any of the roll's effects occur)
     condition: $(meta.level >= 6)
   - id: darkOnesOwnLuck
     type: Resource

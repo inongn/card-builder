@@ -6,6 +6,9 @@ tags:
   - originFeat
 type: Folder
 children:
+  - id: unarmedReference
+    type: Reference
+    target: unarmed
   - id: damageRerolls
     type: Effect
     target: activities[id=unarmed].mechanic.hit

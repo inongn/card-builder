@@ -239,7 +239,8 @@ function computeWarlockUpcastSteps(activity, characterData) {
   const isWarlock = characterData?.resources?.some(r => r.id === 'pactMagicSpellSlot');
   if (!isWarlock) return 0;
 
-  const resourceId = activity?.resource || '';
+  const rawResource = activity?.resource || '';
+  const resourceId = Array.isArray(rawResource) ? rawResource[0] : (typeof rawResource === 'string' ? rawResource : '');
   const baseMatch = resourceId.match(/^level(\d+)SpellSlot$/);
   if (!baseMatch) return 0;
   const baseLevel = parseInt(baseMatch[1], 10);
@@ -403,7 +404,16 @@ export function formatTrigger(trigger, evalStr) {
 }
 
 function joinOr(arr) {
+  if (arr.length === 0) return '';
   if (arr.length === 1) return arr[0];
+  if (arr.length === 2) {
+    const match1 = arr[0].match(/^([a-z]+)\s+(.+)$/i);
+    const match2 = arr[1].match(/^([a-z]+)\s+(.+)$/i);
+    if (match1 && match2 && match1[1].toLowerCase() === match2[1].toLowerCase()) {
+      return `${arr[0]} or ${match2[2]}`;
+    }
+    return `${arr[0]} or ${arr[1]}`;
+  }
   return `${arr.slice(0, -1).join(', ')}, or ${arr[arr.length - 1]}`;
 }
 
@@ -599,7 +609,7 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
     const modType = payload.modifierType || 'advantage';
     const rawRolls = Array.isArray(payload.targetRolls)
       ? payload.targetRolls
-      : [payload.targetRolls || 'roll'];
+      : (payload.targetRolls ? [payload.targetRolls] : []);
     const rollNames = {
       attack: 'attack roll',
       check: 'ability check',
@@ -608,15 +618,17 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
       savingThrow: 'saving throw',
       dmg: 'damage roll',
       trigger: 'triggering roll',
+      roll: 'roll',
     };
     const rollNamesPlural = {
-      attack: 'attacks',
+      attack: 'attack rolls',
       check: 'ability checks',
       abilityCheck: 'ability checks',
       save: 'saving throws',
       savingThrow: 'saving throws',
       dmg: 'damage rolls',
       trigger: 'triggering rolls',
+      roll: 'rolls',
     };
 
     let endStr = '';
@@ -632,6 +644,18 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
       }
     }
 
+    const isTargetSelf = ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self');
+    const hasTrigger = !!(ctx?.trigger || ctx?.activity?.mechanic?.trigger);
+    const targetPronoun = isTargetSelf ? 'you' : 'the target';
+    const possessivePronoun = isTargetSelf ? 'your' : 'its';
+
+    const formatRollList = (rolls) => {
+      const list = rolls.map(r => rollNamesPlural[evalStr(r)] || evalStr(r));
+      if (list.length === 1) return list[0];
+      if (list.length === 2) return `${list[0]} or ${list[1]}`;
+      return `${list.slice(0, -1).join(', ')}, or ${list[list.length - 1]}`;
+    };
+
     if (modType === 'advantage') {
       if (payload.saveFilter?.ability) {
         const rawAbils = Array.isArray(payload.saveFilter.ability) ? payload.saveFilter.ability : [payload.saveFilter.ability];
@@ -645,39 +669,65 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
       if (payload.saveFilter?.text) {
         return `has Advantage on saving throws ${evalStr(payload.saveFilter.text)}${endStr}`;
       }
-      const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
-      return `has Advantage on its next ${rollsStr}${endStr}`;
+      if (rawRolls.length === 0 || (rawRolls.length === 1 && rawRolls[0] === 'roll' && !payload.targetRolls)) {
+        return `has Advantage on the roll${endStr}`;
+      }
+      if (rawRolls.length > 1) {
+        return `has Advantage on ${formatRollList(rawRolls)}${endStr}`;
+      }
+      const rollLabel = rollNames[evalStr(rawRolls[0])] || evalStr(rawRolls[0]);
+      const targetRollDesc = hasTrigger ? `the ${rollLabel}` : `${possessivePronoun} next ${rollLabel}`;
+      return `has Advantage on ${targetRollDesc}${endStr}`;
     }
+
     if (modType === 'disadvantage') {
-      const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
-      return `has Disadvantage on its next ${rollsStr}${endStr}`;
+      if (rawRolls.length === 0 || (rawRolls.length === 1 && rawRolls[0] === 'roll' && !payload.targetRolls)) {
+        return `has Disadvantage on the roll${endStr}`;
+      }
+      if (rawRolls.length > 1) {
+        return `has Disadvantage on ${formatRollList(rawRolls)}${endStr}`;
+      }
+      const rollLabel = rollNames[evalStr(rawRolls[0])] || evalStr(rawRolls[0]);
+      const targetRollDesc = hasTrigger ? `the ${rollLabel}` : `${possessivePronoun} next ${rollLabel}`;
+      return `has Disadvantage on ${targetRollDesc}${endStr}`;
     }
+
     if (modType === 'reroll') {
+      if (rawRolls.length === 0 || (rawRolls.length === 1 && rawRolls[0] === 'roll' && !payload.targetRolls)) {
+        return `rerolls the roll${endStr}`;
+      }
       const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
       return `rerolls the ${rollsStr}${endStr}`;
     }
-    const isTargetSelf = ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self');
-    const targetPronoun = isTargetSelf ? 'you' : 'the target';
+
     if (modType === 'attacksAgainstAdvantage') return `attack rolls against ${targetPronoun} have Advantage${endStr}`;
     if (modType === 'attacksAgainstDisadvantage') return `attack rolls against ${targetPronoun} have Disadvantage${endStr}`;
 
     const formulaStr = formatDiceObj(payload.dice || payload.formula, undefined, evalStr);
     if (modType === 'add') {
-      if (rawRolls.length > 1) {
-        const rollsStr = rawRolls.map(r => rollNamesPlural[evalStr(r)] || evalStr(r)).join(' and ');
-        return `adds ${formulaStr} to ${rollsStr}${endStr}`;
+      if (rawRolls.length === 0 || (rawRolls.length === 1 && rawRolls[0] === 'roll' && !payload.targetRolls)) {
+        return `adds ${formulaStr} to the roll${endStr}`;
       }
-      const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
-      return `adds ${formulaStr} to its next ${rollsStr}${endStr}`;
+      if (rawRolls.length > 1) {
+        return `adds ${formulaStr} to ${formatRollList(rawRolls)}${endStr}`;
+      }
+      const rollLabel = rollNames[evalStr(rawRolls[0])] || evalStr(rawRolls[0]);
+      const targetRollDesc = hasTrigger ? `the ${rollLabel}` : `${possessivePronoun} next ${rollLabel}`;
+      return `adds ${formulaStr} to ${targetRollDesc}${endStr}`;
     }
+
     if (modType === 'subtract') {
-      if (rawRolls.length > 1) {
-        const rollsStr = rawRolls.map(r => rollNamesPlural[evalStr(r)] || evalStr(r)).join(' and ');
-        return `subtracts ${formulaStr} from ${rollsStr}${endStr}`;
+      if (rawRolls.length === 0 || (rawRolls.length === 1 && rawRolls[0] === 'roll' && !payload.targetRolls)) {
+        return `subtracts ${formulaStr} from the roll${endStr}`;
       }
-      const rollsStr = rawRolls.map(r => rollNames[evalStr(r)] || evalStr(r)).join(' or ');
-      return `subtracts ${formulaStr} from its next ${rollsStr}${endStr}`;
+      if (rawRolls.length > 1) {
+        return `subtracts ${formulaStr} from ${formatRollList(rawRolls)}${endStr}`;
+      }
+      const rollLabel = rollNames[evalStr(rawRolls[0])] || evalStr(rawRolls[0]);
+      const targetRollDesc = hasTrigger ? `the ${rollLabel}` : `${possessivePronoun} next ${rollLabel}`;
+      return `subtracts ${formulaStr} from ${targetRollDesc}${endStr}`;
     }
+
     return evalStr(payload.text || '');
   }
 
@@ -844,7 +894,42 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
   // ── Action payload ──────────────────────────────────────────────────────────
   if (type === 'action') {
     if (payload.text) return evalStr(payload.text);
-    if (payload.actionType === 'attack') return 'take an additional weapon attack';
+    if (payload.actionType === 'offHandAttack') {
+      return 'take an Off-Hand Attack';
+    }
+    if (payload.actionType === 'attack') {
+      const attackFilter = payload.attackFilter;
+      if (attackFilter && attackFilter.classification === 'light') {
+        const charData = ctx?.characterData || ctx?.evaluator?.context;
+        const allActivities = charData?.activities || [];
+        const matching = allActivities.filter(a => a.id !== 'offHandAttack' && a.tags?.includes('light'));
+        const weaponNames = [...new Set(matching.map(a => `_${a.name || a.id}_`))];
+        let weaponList = '';
+        const fallback = 'a Light weapon';
+
+        if (weaponNames.length === 0) {
+          weaponList = fallback;
+        } else if (weaponNames.length === 1) {
+          weaponList = `a ${weaponNames[0]}`;
+        } else if (weaponNames.length === 2) {
+          weaponList = `a ${weaponNames[0]} or ${weaponNames[1]}`;
+        } else {
+          weaponList = `a ${weaponNames.slice(0, -1).join(', ')}, or ${weaponNames[weaponNames.length - 1]}`;
+        }
+
+        let baseStr = `make one attack with ${weaponList}`;
+        if (attackFilter.abilityModifier === false) {
+          baseStr += '. You do not add your ability modifier to the damage';
+        }
+        return baseStr;
+      }
+
+      let baseStr = 'take an additional weapon attack';
+      if (attackFilter?.abilityModifier === false) {
+        baseStr += '. You do not add your ability modifier to the damage';
+      }
+      return baseStr;
+    }
     if (payload.actionType === 'general') return 'take one additional action, except the Magic action';
     return `take ${payload.actionType ? `a ${payload.actionType}` : 'an action'}`;
   }
@@ -1006,7 +1091,8 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
             const selfFmtd = fmtd.replace(/^has\b/i, 'have').replace(/^adds\b/i, 'add').replace(/^subtracts\b/i, 'subtract').replace(/^rerolls\b/i, 'reroll');
             targetPredicates.push(selfFmtd);
           } else {
-            targetPredicates.push(fmtd);
+            const thirdFmtd = fmtd.replace(/^have\b/i, 'has').replace(/^add\b/i, 'adds').replace(/^subtract\b/i, 'subtracts').replace(/^reroll\b/i, 'rerolls').replace(/^apply\b/i, 'applies');
+            targetPredicates.push(thirdFmtd);
           }
         } else {
           otherParts.push(fmtd);
@@ -1072,10 +1158,21 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       joinedPredicates = `${targetPredicates.slice(0, -1).join(', ')}, and ${targetPredicates[targetPredicates.length - 1]}`;
     }
 
+    const isBaseSet = /^\s*base\s+/i.test(joinedPredicates);
     if (damageStr) {
-      clauseParts.push(`${targetSubject} ${joinedPredicates}`);
+      if (isBaseSet) {
+        const possessive = isTargetSelf ? 'your' : (isMultiSave ? "each target's" : "the target's");
+        clauseParts.push(`${possessive} ${joinedPredicates}`);
+      } else {
+        clauseParts.push(`${targetSubject} ${joinedPredicates}`);
+      }
     } else {
-      clauseParts.push(`${targetSubjectCap} ${joinedPredicates}`);
+      if (isBaseSet) {
+        const possessiveCap = isTargetSelf ? 'Your' : (isMultiSave ? "Each target's" : "The target's");
+        clauseParts.push(`${possessiveCap} ${joinedPredicates}`);
+      } else {
+        clauseParts.push(`${targetSubjectCap} ${joinedPredicates}`);
+      }
     }
   }
 
@@ -1201,7 +1298,7 @@ function isPluralSubject(subject) {
 function isDamageBody(str) {
   if (!str) return false;
   const s = str.trim().toLowerCase();
-  return /^(\d+d[a-z0-9$()._+-]+|\$\([^)]+\)|\d+)\s+([a-z/,\s]+)?damage\b/i.test(s) || /^[a-z/]+\s+damage\b/i.test(s);
+  return /^(\$\([^)]+\)\s*d[\w$()._+\-]+|\d+d[\w$()._+\-\s]+?|\$\([^)]+\)|\d+)\s+([a-z/,\s]+)?damage\b/i.test(s) || /^[a-z/]+\s+damage\b/i.test(s);
 }
 
 /**
@@ -1224,6 +1321,7 @@ function classifyBodyText(body, fromPayloads) {
   // Already-subject forms:
   if (
     lower.startsWith('you ') || lower.startsWith('you\'') ||
+    lower.startsWith('your ') ||
     lower.startsWith('the target') ||
     lower.startsWith('target ') ||
     lower.startsWith('target\'s ') ||
@@ -1301,6 +1399,13 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     description: activity?.description || '',
     ...(activity?.variables || {}),
     ...(scope || {}),
+  };
+
+  const baseCtx = {
+    evaluator,
+    activity,
+    characterData: evaluator?.context,
+    trigger: block.trigger || activity?.mechanic?.trigger
   };
 
   // Expression evaluator — resolves $(…) tokens and simple string aliases
@@ -1384,13 +1489,15 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
 
     let hitText = '';
     if (block.hit) {
-      const hitCtx = { pattern: 'attack', role: 'hit', targetObj: block.target };
-      let formattedHit = formatPayloadList(block.hit, evalStr, formatDiceObj, hitCtx);
-      if (block.hitOrMiss) {
-        const formattedHitOrMiss = formatPayloadList(block.hitOrMiss, evalStr, formatDiceObj, { pattern: 'attack', role: 'hitOrMiss', targetObj: block.target });
-        if (formattedHitOrMiss) formattedHit = `${formattedHit}, and ${formattedHitOrMiss}`;
-      }
+      const hitCtx = { ...baseCtx, pattern: 'attack', role: 'hit', targetObj: block.target };
+      const formattedHit = formatPayloadList(block.hit, evalStr, formatDiceObj, hitCtx);
       if (formattedHit) hitText = ` _Hit:_ ${formattedHit}.`;
+    }
+
+    let hitOrMissText = '';
+    if (block.hitOrMiss) {
+      const formattedHitOrMiss = formatPayloadList(block.hitOrMiss, evalStr, formatDiceObj, { ...baseCtx, pattern: 'attack', role: 'hitOrMiss', targetObj: block.target });
+      if (formattedHitOrMiss) hitOrMissText = ` _Hit or Miss:_ ${capitalize(formattedHitOrMiss)}.`;
     }
 
     let missText = '';
@@ -1404,7 +1511,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
         const parts = [];
         if (block.miss.halfDamage) parts.push('half damage');
         if (block.miss.payloads) {
-          const pStr = formatPayloadList(block.miss.payloads, evalStr, formatDiceObj, { pattern: 'attack', role: 'miss', targetObj: block.target });
+          const pStr = formatPayloadList(block.miss.payloads, evalStr, formatDiceObj, { ...baseCtx, pattern: 'attack', role: 'miss', targetObj: block.target });
           if (pStr) parts.push(pStr);
         }
         if (block.miss.text) parts.push(evalStr(block.miss.text));
@@ -1412,18 +1519,18 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
           missText = ` _Miss:_ ${capitalize(parts.join(', '))}.`;
         }
       } else {
-        const formattedMiss = formatPayloadList(block.miss, evalStr, formatDiceObj, { pattern: 'attack', role: 'miss', targetObj: block.target });
+        const formattedMiss = formatPayloadList(block.miss, evalStr, formatDiceObj, { ...baseCtx, pattern: 'attack', role: 'miss', targetObj: block.target });
         if (formattedMiss) missText = ` _Miss:_ ${capitalize(formattedMiss)}.`;
       }
     }
 
     let critText = '';
     if (block.crit) {
-      const formattedCrit = formatPayloadList(block.crit, evalStr, formatDiceObj, { pattern: 'attack', role: 'crit', targetObj: block.target });
+      const formattedCrit = formatPayloadList(block.crit, evalStr, formatDiceObj, { ...baseCtx, pattern: 'attack', role: 'crit', targetObj: block.target });
       if (formattedCrit) critText = ` _Critical Hit:_ ${capitalize(formattedCrit)}.`;
     }
 
-    mainBody = `_${classif} Attack Roll:_ ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${missText}${critText}${text ? ` ${text}` : ''}`;
+    mainBody = `_${classif} Attack Roll:_ ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${hitOrMissText}${missText}${critText}${text ? ` ${text}` : ''}`;
   }
 
   // ── 2. SAVE ────────────────────────────────────────────────────────────────
@@ -1433,7 +1540,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     const dcVal = evalStr(block.save.dc || '$(attributes.spellcasting.save)');
     const targetDesc = formatTargetText(block.target, formattedRange, evalStr, false, activity);
 
-    const saveCtx = { pattern: 'save', targetObj: block.target, saveDc: dcVal };
+    const saveCtx = { ...baseCtx, pattern: 'save', targetObj: block.target, saveDc: dcVal };
 
     let alwaysText = '';
     if (block.failureOrSuccess) {
@@ -1495,7 +1602,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     if (block.payloads) {
       const pArr = Array.isArray(block.payloads) ? block.payloads : [block.payloads];
       const pTexts = pArr.map(p => {
-        let t = formatPayload(p, evalStr, formatDiceObj, { pattern: 'healing', targetObj: block.target });
+        let t = formatPayload(p, evalStr, formatDiceObj, { ...baseCtx, pattern: 'healing', targetObj: block.target });
         if (p.type === 'conditionCleanse') {
           t = `you can ${t}`;
         }
@@ -1514,7 +1621,7 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
   else if (pattern === 'automatic') {
     const payloadObj = block.payloads;
     const fromPayloads = !!payloadObj && !text;
-    const payloadText = payloadObj ? formatPayloadList(payloadObj, evalStr, formatDiceObj, { pattern: 'automatic', targetObj: block.target }) : '';
+    const payloadText = payloadObj ? formatPayloadList(payloadObj, evalStr, formatDiceObj, { ...baseCtx, pattern: 'automatic', targetObj: block.target }) : '';
 
     // Build the raw body — payloads first, then any narrative text addendum
     let rawBody = '';
@@ -1553,6 +1660,8 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
         bodyStr = rawBody;
       } else if (isDamageBody(rawBody)) {
         bodyStr = `The target takes ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
+      } else if (lower.startsWith('base ')) {
+        bodyStr = `The target's ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
       } else {
         const verbThirdPerson = conjugateToThirdPerson(rawBody);
         if (/^target's\s+/i.test(verbThirdPerson)) {
@@ -1564,13 +1673,18 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
       }
 
     } else if (block.target?.inherit === 'prev_step') {
-      bodyStr = rawBody;
+      if (isDamageBody(rawBody)) {
+        bodyStr = `The target takes ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
+      } else {
+        bodyStr = rawBody;
+      }
 
     } else if (classification === 'STRUCTURED') {
       // ── Typed payloads only — build a full subject-verb sentence
       const lowerBody = rawBody.charAt(0).toLowerCase() + rawBody.slice(1);
-      if (lowerBody.toLowerCase().startsWith('base ac')) {
-        bodyStr = `${subject}'s ${lowerBody}`;
+      if (lowerBody.toLowerCase().startsWith('base ')) {
+        const possessiveSubject = isSelf ? 'Your' : ((subject.endsWith("'s") || subject.endsWith("'")) ? subject : `${subject}'s`);
+        bodyStr = `${possessiveSubject} ${lowerBody}`;
       } else if (isDamageBody(rawBody)) {
         if (isSelf) {
           bodyStr = `${subject} deal ${lowerBody}`;
@@ -1604,7 +1718,8 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
       let resolved = rawBody;
       if (!isSelf && subject && /^(the\s+)?target('s)?\b/i.test(rawBody)) {
         const isPossessive = /^(the\s+)?target's\b/i.test(rawBody);
-        const repSubject = isPossessive ? `${subject}'s` : subject;
+        const possessiveRep = (subject.endsWith("'s") || subject.endsWith("'")) ? subject : `${subject}'s`;
+        const repSubject = isPossessive ? possessiveRep : subject;
         resolved = rawBody.replace(/^(the\s+)?target('s)?\b/i, repSubject);
       }
       bodyStr = resolved;
@@ -1702,7 +1817,25 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
 
   if (triggerStr) {
     const cleanBody = resultBody.replace(/\.$/, '');
-    return `_Trigger:_ ${triggerStr}. _Response:_ ${cleanBody}.`;
+    const isReaction = (activity?.time || '').toLowerCase().includes('reaction');
+
+    if (isReaction) {
+      return `_Trigger:_ ${triggerStr}. _Response:_ ${cleanBody}.`;
+    }
+
+    const cleanTrig = triggerStr.replace(/[.,:;]+$/, '').trim();
+    const capTrig = cleanTrig.charAt(0).toUpperCase() + cleanTrig.slice(1);
+    const trimmedBody = resultBody.trim();
+
+    if (/^_[A-Z][a-z]+ Saving Throw:_/i.test(trimmedBody) || /^Choose one/i.test(trimmedBody) || /^[0-9]/.test(trimmedBody)) {
+      return `_Condition:_ ${capTrig}. ${trimmedBody}`;
+    }
+
+    let lowerBody = trimmedBody;
+    if (/^[A-Z][a-z]/.test(trimmedBody) && !/^(I|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/.test(trimmedBody)) {
+      lowerBody = trimmedBody.charAt(0).toLowerCase() + trimmedBody.slice(1);
+    }
+    return `${capTrig}, ${lowerBody}`;
   }
 
   return resultBody;
@@ -1717,7 +1850,8 @@ export function formatActivityMechanic(activity, characterData) {
   if (!activity) return '';
   const evaluator = new ExpressionEvaluator(characterData || {});
   const scope = activity.variables || {};
-  const name = activity.name || activity.id || '';
+  const rawName = activity.name || activity.id || '';
+  const name = evaluator ? evaluator.evaluate(rawName, scope) : rawName;
   const mechanic = activity.mechanic;
 
   const formatExtras = () => {
@@ -1768,7 +1902,8 @@ export function formatActivityMechanic(activity, characterData) {
   const extraSuffix = formatExtras();
 
   if (!mechanic) {
-    const fallbackText = (activity.description || activity.summary || '').split('\n')[0].trim();
+    const rawText = (activity.description || activity.summary || '').split('\n')[0].trim();
+    const fallbackText = evaluator ? evaluator.evaluate(rawText, scope) : rawText;
     return `**${name}.** ${fallbackText}${durSuffix}${ritualSuffix}${extraSuffix}`;
   }
 
@@ -1792,7 +1927,8 @@ export function formatActivityMechanic(activity, characterData) {
   }
 
   // Non-Warlock: show _Upcast:_ label when spell level < character's max slot level.
-  const resourceId = activity.resource || '';
+  const rawResource = activity.resource || '';
+  const resourceId = Array.isArray(rawResource) ? rawResource[0] : (typeof rawResource === 'string' ? rawResource : '');
   const baseMatch = resourceId.match(/^level(\d+)SpellSlot$/);
   const baseLevel = baseMatch ? parseInt(baseMatch[1], 10) : 0;
   const maxSlotLevel = computeMaxSlotLevel(characterData);
@@ -1813,9 +1949,17 @@ export function formatActivityMechanic(activity, characterData) {
     const blocks = Array.isArray(effectiveBlocks) ? effectiveBlocks : [];
 
     if (effectiveMechanic.mode === 'choice') {
+      const isReaction = (activity?.time || '').toLowerCase().includes('reaction');
       const evalStr = s => evaluator.evaluate(s, scope);
       const topTrigger = effectiveMechanic.trigger ? formatTrigger(effectiveMechanic.trigger, evalStr) : '';
-      const triggerPart = topTrigger ? ` _Trigger:_ ${topTrigger}. _Response:_` : '';
+      let triggerPart = '';
+      if (topTrigger) {
+        if (isReaction) {
+          triggerPart = ` _Trigger:_ ${topTrigger}. _Response:_`;
+        } else {
+          triggerPart = ` _Condition:_ ${topTrigger}.`;
+        }
+      }
 
       const hasAuraBlock0 = blocks[0]?.pattern === 'aura';
       const auraPreamble = hasAuraBlock0 ? formatBlock(blocks[0], activity, evaluator, scope) : '';

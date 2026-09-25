@@ -95,9 +95,9 @@ children:
   - id: guidedPrecision
     type: Effect
     name: Guided Precision
-    target: activities[id=faerieFire].mechanic.payloads
+    target: activities[id=faerieFire].mechanic.failure
     operation: push
     value:
       type: text
-      text: add $(Math.max(1, stats.int.mod)) to one damage roll when hitting a creature affected by Faerie Fire; taking damage can't cause you to lose Concentration on Faerie Fire
+      text: add $(Math.max(1, stats.int.mod)) to one damage roll when hitting a creature affected; taking damage can't cause you to lose Concentration
     condition: $(meta.level >= 5)

@@ -1,5 +1,0 @@
-type: Extra
-target: unarmed
-name: Fast Wrestler
-description: You don't have to spend extra movement to move a creature Grappled by you if the creature is your size or smaller.
-id: grapplerFastWrestler

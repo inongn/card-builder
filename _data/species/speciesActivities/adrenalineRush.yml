@@ -1,9 +1,0 @@
-id: adrenalineRush
-type: Activity
-duration: instantaneous
-name: Adrenaline Rush
-time: bonus action
-range: self
-resource: adrenalineRush
-description: |
-  You take the Dash action. When you do so, you gain $(attributes.prof) Temporary Hit Points.

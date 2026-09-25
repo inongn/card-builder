@@ -1,7 +1,0 @@
-type: Effect
-target: skills.arcana.proficiency
-operation: set
-condition: $(skills.arcana.proficiency < 0.5)
-value: 0.5
-id: arcanaHalfProficiency
-name: Arcana Half Proficiency

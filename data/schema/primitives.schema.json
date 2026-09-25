@@ -137,12 +137,13 @@
       "type": "object",
       "properties": {
         "classification": {
-          "type": "string"
+          "type": ["string", "null"]
         },
         "type": {
           "type": "string"
         },
-        "bonus": { "$ref": "#/$defs/NumberOrExpression" }
+        "bonus": { "$ref": "#/$defs/NumberOrExpression" },
+        "abilityModifier": { "type": "boolean" }
       },
       "additionalProperties": false
     },
@@ -470,7 +471,7 @@
         "type": { "type": "string", "const": "action" },
         "actionType": {
           "type": "string",
-          "enum": ["attack", "castSpell", "takeAction", "general"]
+          "enum": ["attack", "castSpell", "takeAction", "offHandAttack", "general"]
         },
         "attackFilter": { "$ref": "#/$defs/AttackSpec" },
         "spellFilter": {

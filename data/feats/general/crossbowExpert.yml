@@ -12,6 +12,11 @@ children:
     operation: add
     value: 1
   - type: Effect
-    target: activities[tags=weaponAttack and tags=crossbow].extra["You do not add your Ability Modifier to the attack's damage roll"].description
-    operation: replace
-    value: ""
+    name: Dual Wielding (Off-Hand)
+    target: activities[id=offHandAttack].mechanic.payloads.attackFilter.abilityModifier
+    operation: set
+    value: true
+  - name: Firing in Melee
+    type: Trait
+    description: Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with a crossbow.
+    id: crossbowExpertFiringInMelee

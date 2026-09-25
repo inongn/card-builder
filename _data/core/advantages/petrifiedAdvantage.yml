@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Petrified
-target: attributes.advantages
-id: petrifiedAdvantage
-name: Petrified Advantage

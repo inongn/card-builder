@@ -1,7 +1,0 @@
-type: Effect
-target: skills.sleight_of_hand.proficiency
-operation: set
-condition: $(skills.sleight_of_hand.proficiency < 0.5)
-value: 0.5
-id: sleightOfHandHalfProficiency
-name: Sleight Of Hand Half Proficiency

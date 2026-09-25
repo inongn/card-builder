@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Tinker's Tools
-target: attributes.tools
-id: tinkersTools
-name: Tinker's Tools

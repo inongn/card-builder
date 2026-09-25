@@ -981,14 +981,17 @@ export class CharacterBuilder {
             const isFinalStage = i === numStages - 1;
             const properties = byStage.get(stage.name) || [];
 
-            // Sort by operation priority first ('set'/'softSet' before 'add'/'push'/etc.) then by explicitly defined priority
+            // Sort by priority first (higher priority runs earlier), then by operation ('set'/'softSet' before 'add'/'push'/etc.)
             properties.sort((a, b) => {
+                if ((b.priority || 0) !== (a.priority || 0)) {
+                    return (b.priority || 0) - (a.priority || 0);
+                }
                 const isASet = (a.type === 'Effect' && (a.operation === 'set' || a.operation === 'softSet')) || a.type !== 'Effect';
                 const isBSet = (b.type === 'Effect' && (b.operation === 'set' || b.operation === 'softSet')) || b.type !== 'Effect';
                 if (isASet !== isBSet) {
                     return isASet ? -1 : 1;
                 }
-                return (a.priority || 0) - (b.priority || 0);
+                return 0;
             });
 
             const evaluator = new ExpressionEvaluator(this.characterData);
@@ -1416,13 +1419,16 @@ export class CharacterBuilder {
                             if (targetObj[part] !== undefined) {
                                 if (Array.isArray(targetObj[part])) nextNodes.push(...targetObj[part]);
                                 else nextNodes.push(targetObj[part]);
+                            } else if (part === 'damage') {
+                                ['hit', 'failure', 'payloads'].forEach(key => {
+                                    if (targetObj[key] !== undefined) {
+                                        const items = Array.isArray(targetObj[key]) ? targetObj[key] : [targetObj[key]];
+                                        items.forEach(it => {
+                                            if (it && (it.type === 'damage' || it.dice)) nextNodes.push(it);
+                                        });
+                                    }
+                                });
                             }
-                            payloadKeys.forEach(key => {
-                                if (key !== part && targetObj[key] !== undefined) {
-                                    if (Array.isArray(targetObj[key])) nextNodes.push(...targetObj[key]);
-                                    else nextNodes.push(targetObj[key]);
-                                }
-                            });
                             if (Array.isArray(targetObj.blocks)) {
                                 targetObj.blocks.forEach(b => collectPayloads(b));
                             }
@@ -1451,6 +1457,27 @@ export class CharacterBuilder {
                 if (nextNodes.length === 0 && createMissing) {
                     for (const node of currentNodes) {
                         if (node && typeof node === 'object' && !Array.isArray(node)) {
+                            if (node.pattern === 'save' && (part === 'hit' || part === 'attack' || part === 'miss' || part === 'crit' || part === 'hitOrMiss' || part === 'healing')) {
+                                continue;
+                            }
+                            if (node.pattern === 'attack' && (part === 'save' || part === 'failure' || part === 'success' || part === 'failureOrSuccess' || part === 'healing')) {
+                                continue;
+                            }
+                            if ((node.pattern === 'healing' || node.pattern === 'automatic' || node.pattern === 'aura') && (part === 'hit' || part === 'attack' || part === 'save' || part === 'failure')) {
+                                continue;
+                            }
+                            if ((node.pattern === 'automatic' || node.pattern === 'aura') && part === 'healing') {
+                                continue;
+                            }
+                            if (node.mode && Array.isArray(node.blocks) && (part === 'hit' || part === 'failure' || part === 'save' || part === 'attack' || part === 'healing' || part === 'payloads')) {
+                                continue;
+                            }
+                            if (node.type && node.type !== 'damage' && node.type !== 'healing' && node.type !== 'rollModifier' && part === 'dice') {
+                                continue;
+                            }
+                            if (node.type && node.type !== 'damage' && part === 'damageType') {
+                                continue;
+                            }
                             node[part] = {};
                             nextNodes.push(node[part]);
                         }
@@ -1467,16 +1494,57 @@ export class CharacterBuilder {
             if (Array.isArray(node)) {
                 node.forEach(item => {
                     if (item && typeof item === 'object') {
+                        if (finalKey === 'damageType' && item.type && item.type !== 'damage') return;
                         results.push({ parent: item, key: finalKey });
                     }
                 });
             } else if (node && typeof node === 'object') {
                 if (node.mode && Array.isArray(node.blocks)) {
-                    node.blocks.forEach(block => {
-                        results.push({ parent: block, key: finalKey });
-                    });
+                    if (finalKey === 'blocks' || finalKey === 'mode') {
+                        results.push({ parent: node, key: finalKey });
+                    } else {
+                        node.blocks.forEach(block => {
+                            if (!block || typeof block !== 'object') return;
+                            if (block[finalKey] !== undefined) {
+                                results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'attack' || finalKey === 'hit' || finalKey === 'crit' || finalKey === 'miss' || finalKey === 'hitOrMiss') {
+                                if (block.pattern === 'attack') results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'save' || finalKey === 'failure' || finalKey === 'success' || finalKey === 'failureOrSuccess') {
+                                if (block.pattern === 'save') results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'healing') {
+                                if (block.pattern === 'healing') results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'payloads') {
+                                if (block.pattern === 'automatic' || block.pattern === 'healing') results.push({ parent: block, key: finalKey });
+                            }
+                        });
+                        const containerKeys = ['trigger', 'text', 'upcast', 'downcast'];
+                        if (containerKeys.includes(finalKey)) {
+                            results.push({ parent: node, key: finalKey });
+                        }
+                    }
+                } else if (node.pattern) {
+                    if (node[finalKey] !== undefined) {
+                        results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'attack' || finalKey === 'hit' || finalKey === 'crit' || finalKey === 'miss' || finalKey === 'hitOrMiss') {
+                        if (node.pattern === 'attack') results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'save' || finalKey === 'failure' || finalKey === 'success' || finalKey === 'failureOrSuccess') {
+                        if (node.pattern === 'save') results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'healing') {
+                        if (node.pattern === 'healing') results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'payloads') {
+                        if (node.pattern === 'automatic' || node.pattern === 'healing') results.push({ parent: node, key: finalKey });
+                    } else {
+                        results.push({ parent: node, key: finalKey });
+                    }
+                } else {
+                    if (finalKey === 'damageType' && node.type && node.type !== 'damage') {
+                        // Skip non-damage payloads for damageType
+                    } else if (finalKey === 'dice' && node.type && node.type !== 'damage' && node.type !== 'healing' && node.type !== 'rollModifier') {
+                        // Skip payloads that don't support dice
+                    } else {
+                        results.push({ parent: node, key: finalKey });
+                    }
                 }
-                results.push({ parent: node, key: finalKey });
             }
         }
         return results;
@@ -1500,7 +1568,8 @@ export class CharacterBuilder {
             // If we are setting an object into an existing object, merge the keys
             // individually to avoid wiping out properties that were pinned by 
             // more specific sub-path effects.
-            if (value && typeof value === 'object' && !Array.isArray(value) &&
+            const isMechanicReset = resolved.key === 'mechanic' || (value && value.mode && oldValue && !oldValue.mode);
+            if (!isMechanicReset && value && typeof value === 'object' && !Array.isArray(value) &&
                 oldValue && typeof oldValue === 'object' && !Array.isArray(oldValue)) {
 
                 for (const k in value) {
@@ -1513,7 +1582,11 @@ export class CharacterBuilder {
                 }
             } else {
                 // 3. Fallback to standard replacement
-                resolved.parent[resolved.key] = value;
+                if (value === null || value === undefined) {
+                    delete resolved.parent[resolved.key];
+                } else {
+                    resolved.parent[resolved.key] = value;
+                }
                 this.fieldPriorities.set(path, priority);
 
                 // If we've set a bulk object, record priorities for its known keys
@@ -1819,8 +1892,9 @@ export class CharacterBuilder {
         // This resolves local.treeVars but keeps $(characterVars) "LIVE" for final evaluation passes.
         const dynamicValue = evaluator.bakeVariables(value, scope);
 
-        if (operation === 'set' && !substring) {
-            this.setFieldWithPriority(evaluatedTarget, dynamicValue, priority, evaluator);
+        if ((operation === 'set' || operation === 'remove' || operation === 'delete') && !substring) {
+            const val = (operation === 'remove' || operation === 'delete') ? null : dynamicValue;
+            this.setFieldWithPriority(evaluatedTarget, val, priority, evaluator);
             return;
         }
 

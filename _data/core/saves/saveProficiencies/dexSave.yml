@@ -1,6 +1,0 @@
-type: Effect
-target: saves.dexterity.proficiency
-operation: set
-value: 1
-id: dexSave
-name: Dexterity Saving Throw Proficiency
