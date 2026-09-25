@@ -136,21 +136,28 @@ export const collectRenderableNodes = (node, char, path = [], logicalPath = [], 
 };
 
 export const categorizeNode = (item) => {
+    if (!item) return null;
+    const node = item.node || item;
+    const type = item.type || node.type;
+
     let searchText = '';
-    if (item.type === 'Slot') {
-        const target = item.node.target;
+    if (type === 'Slot') {
+        const target = node.target;
         searchText = Array.isArray(target) ? target.join(' ').toLowerCase() : String(target || '').toLowerCase();
-        searchText += ' ' + (item.node.name || '').toLowerCase() + ' ' + (item.node.id || '').toLowerCase();
+        searchText += ' ' + (node.name || '').toLowerCase() + ' ' + (node.id || '').toLowerCase();
     } else {
-        searchText = (item.node.name || '').toLowerCase() + ' ' + (item.node.id || '').toLowerCase();
-        if (item.node.tags) {
-            searchText += ' ' + (Array.isArray(item.node.tags) ? item.node.tags.join(' ') : String(item.node.tags)).toLowerCase();
+        searchText = (node.name || '').toLowerCase() + ' ' + (node.id || '').toLowerCase();
+        if (node.tags) {
+            searchText += ' ' + (Array.isArray(node.tags) ? node.tags.join(' ') : String(node.tags)).toLowerCase();
         }
-        if (item.node.resource) {
-            searchText += ' ' + String(item.node.resource).toLowerCase();
+        if (node.target) {
+            searchText += ' ' + (Array.isArray(node.target) ? node.target.join(' ') : String(node.target)).toLowerCase();
         }
-        if (item.node.type) {
-            searchText += ' ' + String(item.node.type).toLowerCase();
+        if (node.resource) {
+            searchText += ' ' + String(node.resource).toLowerCase();
+        }
+        if (node.type) {
+            searchText += ' ' + String(node.type).toLowerCase();
         }
     }
 
@@ -560,7 +567,10 @@ export const isValidHardcodedOption = (node, categoryKey) => {
     if (!node) return false;
 
     const nodeType = (node.type || '').toLowerCase();
-    if (nodeType === 'slot' || nodeType === 'input' || nodeType === 'resource' || nodeType === 'attribute' || nodeType === 'effect') {
+    if (nodeType === 'slot' || nodeType === 'input' || nodeType === 'resource' || nodeType === 'attribute') {
+        return false;
+    }
+    if (nodeType === 'effect' && !['skills', 'expertise', 'tools', 'saves'].includes(categoryKey)) {
         return false;
     }
 
@@ -633,8 +643,9 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
         if (!node) return;
         if (!isNodeConditionMet(node, char)) return;
 
-        // Skip traversing into children of filled slots as those are part of an already selected property
-        if (node.type === 'Slot' && node.filled) {
+        // Skip traversing into children of slots belonging to the current step,
+        // because their selections are user choices in this step, not hardcoded granted features
+        if (node.type === 'Slot' && node.filled && categorizeNode(node) === stepKey) {
             return;
         }
 

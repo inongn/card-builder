@@ -1100,7 +1100,7 @@ export const BuilderScreen = ({
         if (displaySlotItem.type === 'MergedCategory') {
             const stepKey = displaySlotItem.step || displaySlotItem.category;
             const hardcodedNodes = getMergedCategoryHardcodedNodes(propertyTree, characterData, stepKey);
-            return aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty, hardcodedNodes);
+            return aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty, hardcodedNodes, characterData);
         }
 
         const node = displaySlotItem.type === 'Slot' ? displaySlotItem.node : displaySlotItem.items[0].node;
@@ -1228,10 +1228,10 @@ export const BuilderScreen = ({
         }
 
         return [...resolvedOpts].sort((a, b) => (a.displayName || a.name || '').localeCompare(b.displayName || b.name || ''));
-    }, [displaySlotItem, handleGetSlotOptions, onGetProperty]);
+    }, [displaySlotItem, handleGetSlotOptions, onGetProperty, propertyTree, characterData]);
 
     const handleOptionSelect = (option) => {
-        if (!displaySlotItem) return;
+        if (!displaySlotItem || option.isHardcoded) return;
 
         if (displaySlotItem.type === 'MergedCategory') {
             const currentChoiceIds = displaySlotItem.items.map(i => i.node.filled?.id).filter(Boolean);
