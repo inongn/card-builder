@@ -652,6 +652,11 @@ export default function App() {
                         onOpenImport={() => handleOpenImport('play')}
                         onOpenExport={handleOpenExport}
                         onLoadSampleCharacters={handleLoadSampleCharacters}
+                        toggleTheme={toggleTheme}
+                        isDarkMode={isDarkMode}
+                        onToggleDebug={() => setIsDebugOpen(prev => !prev)}
+                        sampleCharactersEnabled={sampleCharactersEnabled}
+                        onToggleSampleCharacters={handleToggleSampleCharacters}
                     />
                 )}
                 {activeTab === 'builder' && (

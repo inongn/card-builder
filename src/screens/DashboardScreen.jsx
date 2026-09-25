@@ -1,7 +1,20 @@
 import React, { useEffect } from 'react';
 import { getAssetUrl } from '../data/artworkData';
 
-export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpenSaved, handleDeleteSaved, onOpenImport, onOpenExport, onLoadSampleCharacters }) => {
+export const DashboardScreen = ({
+    savedCharacters,
+    handleNewCharacter,
+    handleOpenSaved,
+    _handleDeleteSaved,
+    onOpenImport,
+    _onOpenExport,
+    onLoadSampleCharacters,
+    toggleTheme,
+    isDarkMode,
+    onToggleDebug,
+    sampleCharactersEnabled,
+    onToggleSampleCharacters
+}) => {
     useEffect(() => {
         const savedScroll = sessionStorage.getItem('dashboard_scroll_position');
         if (savedScroll) {
@@ -92,28 +105,39 @@ export const DashboardScreen = ({ savedCharacters, handleNewCharacter, handleOpe
             <mdui-top-app-bar variant="small" scroll-behavior="hide">
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
                 <mdui-top-app-bar-title>Aspida</mdui-top-app-bar-title>
-                {onOpenImport && (
-                    <>
-                        <mdui-button
-                            variant="outlined"
-                            icon="file_download"
-                            onClick={onOpenImport}
-                            className="mobile-hidden"
-                            style={{ marginRight: '8px' }}
-                        >
-                            Import Recipe
-                        </mdui-button>
-                        <mdui-button-icon
-                            icon="file_download"
-                            onClick={onOpenImport}
-                            className="desktop-hidden"
-                            title="Import Recipe"
-                        ></mdui-button-icon>
-                    </>
-                )}
-                <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">
+                <mdui-button
+                    variant="filled"
+                    icon="add"
+                    onClick={handleNewCharacter}
+                    className="mobile-hidden"
+                    style={{ marginRight: '4px' }}
+                >
                     New Character
                 </mdui-button>
+                <mdui-dropdown placement="bottom-end">
+                    <mdui-button-icon slot="trigger" icon="more_vert" title="More options"></mdui-button-icon>
+                    <mdui-menu>
+                        {onOpenImport && (
+                            <mdui-menu-item icon="file_download" onClick={onOpenImport}>
+                                Import Recipe
+                            </mdui-menu-item>
+                        )}
+                        <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
+                            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                        </mdui-menu-item>
+                        <mdui-menu-item icon="bug_report" onClick={onToggleDebug}>
+                            Debug
+                        </mdui-menu-item>
+                        {onToggleSampleCharacters && (
+                            <mdui-menu-item
+                                icon={sampleCharactersEnabled ? 'group_remove' : 'group_add'}
+                                onClick={onToggleSampleCharacters}
+                            >
+                                {sampleCharactersEnabled ? 'Unload Sample Characters' : 'Load Sample Characters'}
+                            </mdui-menu-item>
+                        )}
+                    </mdui-menu>
+                </mdui-dropdown>
             </mdui-top-app-bar>
 
             <div>
