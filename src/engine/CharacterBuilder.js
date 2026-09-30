@@ -293,7 +293,7 @@ export class CharacterBuilder {
     /**
      * Fill a slot with a property from the library
      */
-    fillSlot(slotPath, propertyId) {
+    fillSlot(slotPath, propertyId, shouldRebuild = true) {
         const property = this.library.getProperty(propertyId);
         if (!property) return;
 
@@ -333,13 +333,15 @@ export class CharacterBuilder {
 
         slot.children = this.processChildren(items, slot.variables || {}, property?.id || null);
 
-        this.rebuild();
+        if (shouldRebuild) {
+            this.rebuild();
+        }
     }
 
     /**
      * Clear a filled slot
      */
-    clearSlot(slotPath) {
+    clearSlot(slotPath, shouldRebuild = true) {
         let current = this.propertyTree;
         for (let i = 0; i < slotPath.length - 1; i++) {
             current = current.children[slotPath[i]];
@@ -350,7 +352,9 @@ export class CharacterBuilder {
         slot.filled = null;
         slot.children = []; // Clear children when clearing the slot
 
-        this.rebuild();
+        if (shouldRebuild) {
+            this.rebuild();
+        }
     }
 
     /**

@@ -2,6 +2,7 @@ import React from 'react';
 import PropertySelectionTree from '../components/PropertySelectionTree';
 import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
+import { hasAutoPickSetup, computeAutoPickChoices, computeAutoPickAbilities } from '../utils/autoPickUtils.js';
 import { formatActivityMechanic } from '../utils/mechanicFormatter';
 import { getSpeciesArtwork, getClassArtwork, getSubclassArtwork, getBackgroundArtwork, getAssetUrl } from '../data/artworkData.js';
 import ReactMarkdown from 'react-markdown';
@@ -896,15 +897,14 @@ export const BuilderScreen = ({
     handleUpdateInput,
     handleFillSlot,
     handleClearSlot,
+    handleBatchFillSlots,
     handleGetSlotOptions,
     onNavigate,
     onGetProperty,
     onSave,
     builderSource,
     isNewCharacterCreation,
-    setIsNewCharacterCreation,
-    onOpenExport,
-    onOpenImport
+    setIsNewCharacterCreation
 }) => {
     const isMobile = window.innerWidth <= 890;
 
@@ -1259,7 +1259,7 @@ export const BuilderScreen = ({
                 }
             });
 
-            const slotAllowedMap = getSlotAllowedMap(displaySlotItem.items, categoryOptionsMap, handleGetSlotOptions);
+            const slotAllowedMap = getSlotAllowedMap(displaySlotItem.items, categoryOptionsMap, handleGetSlotOptions, characterData);
 
             if (option.isSelected) {
                 const newChoiceIds = currentChoiceIds.filter(id => id !== option.id);
@@ -1499,6 +1499,73 @@ export const BuilderScreen = ({
         return () => window.removeEventListener('keydown', handleKeyDown, true);
     }, [isCurrentSelectionFilled, isComplete, handleNextOrSaveClick]);
 
+    const isAutoPickEligible = React.useMemo(() => {
+        if (!displaySlotItem) return false;
+        return hasAutoPickSetup(displaySlotItem, characterData, options);
+    }, [displaySlotItem, characterData, options]);
+
+    const hasSelectedClass = Boolean(characterData?.meta?.class);
+
+    const handleAutoPick = React.useCallback(() => {
+        if (!displaySlotItem || !hasSelectedClass) return;
+
+        if (displaySlotItem.type === 'Abilities') {
+            const { allocated, origin, asi } = computeAutoPickAbilities(characterData);
+            const statsList = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+            statsList.forEach(stat => {
+                if (abilityNodesMap.allocated?.[stat]?.path) {
+                    handleUpdateInput(abilityNodesMap.allocated[stat].path, allocated[stat]);
+                }
+                if (abilityNodesMap.origin?.[stat]?.path) {
+                    handleUpdateInput(abilityNodesMap.origin[stat].path, origin[stat]);
+                }
+                if (abilityNodesMap.asi?.[stat]?.path) {
+                    handleUpdateInput(abilityNodesMap.asi[stat].path, asi[stat]);
+                }
+            });
+            return;
+        }
+
+        const poolStep = displaySlotItem.step || (displaySlotItem.category === 'abilities' ? 'stats' : null);
+        const fills = computeAutoPickChoices({
+            poolStep,
+            displaySlotItem,
+            options,
+            characterData,
+            handleGetSlotOptions,
+            onGetProperty
+        });
+
+        if (fills && fills.length > 0) {
+            if (handleBatchFillSlots) {
+                handleBatchFillSlots(fills);
+            } else {
+                fills.forEach(({ path, propertyId }) => {
+                    if (propertyId) {
+                        handleFillSlot(path, propertyId);
+                    } else {
+                        handleClearSlot(path);
+                    }
+                });
+            }
+        }
+    }, [displaySlotItem, hasSelectedClass, characterData, abilityNodesMap, handleUpdateInput, options, handleGetSlotOptions, onGetProperty, handleBatchFillSlots, handleFillSlot, handleClearSlot]);
+
+    const renderAutoPickButton = () => {
+        if (isMobile || !isAutoPickEligible) return null;
+        return (
+            <mdui-button
+                variant="outlined"
+                size="small"
+                icon="auto_awesome"
+                onClick={handleAutoPick}
+                title="Auto-pick recommended choices"
+            >
+                Auto-Pick
+            </mdui-button>
+        );
+    };
+
     const renderNextOrSaveButton = () => {
         if (isMobile) return null;
         return (
@@ -1538,23 +1605,16 @@ export const BuilderScreen = ({
         ? <mdui-button-icon icon="arrow_back" onClick={() => setSelectedSlotItem(null)}></mdui-button-icon>
         : <mdui-button-icon icon="arrow_back" onClick={() => onNavigate(builderSource)}></mdui-button-icon>;
 
-    const topAppBarRightAction = (onOpenExport || onOpenImport) ? (
-        <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-            {onOpenImport && (
-                <mdui-button-icon
-                    icon="file_download"
-                    title="Import Recipe Code"
-                    onClick={onOpenImport}
-                ></mdui-button-icon>
-            )}
-            {onOpenExport && (
-                <mdui-button-icon
-                    icon="share"
-                    title="Export Recipe Code"
-                    onClick={onOpenExport}
-                ></mdui-button-icon>
-            )}
-        </div>
+    const topAppBarRightAction = isAutoPickEligible ? (
+        <mdui-button
+            variant="text"
+            size="small"
+            icon="auto_awesome"
+            onClick={handleAutoPick}
+            title="Auto-pick recommended choices"
+        >
+            Auto-Pick
+        </mdui-button>
     ) : null;
 
     const renderAbilitiesPane = () => {
@@ -1579,7 +1639,10 @@ export const BuilderScreen = ({
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
                         <span className="options-pane-title">Ability Scores</span>
-                        {renderNextOrSaveButton()}
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            {renderAutoPickButton()}
+                            {renderNextOrSaveButton()}
+                        </div>
                     </div>
                 </div>
 
@@ -1811,7 +1874,10 @@ export const BuilderScreen = ({
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
                         <span className="options-pane-title">{slotName}</span>
-                        {renderNextOrSaveButton()}
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            {renderAutoPickButton()}
+                            {renderNextOrSaveButton()}
+                        </div>
                     </div>
                 </div>
 

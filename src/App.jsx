@@ -316,6 +316,19 @@ export default function App() {
         setTimeout(syncState, 0);
     }, [syncState]);
 
+    const handleBatchFillSlots = useCallback((fills) => {
+        if (!fills || fills.length === 0) return;
+        fills.forEach(({ path, propertyId }) => {
+            if (propertyId) {
+                builderRef.current.fillSlot(path, propertyId, false);
+            } else {
+                builderRef.current.clearSlot(path, false);
+            }
+        });
+        builderRef.current.rebuild();
+        setTimeout(syncState, 0);
+    }, [syncState]);
+
     const handleUpdateInput = useCallback((path, value) => {
         builderRef.current.updateInput(path, value);
         debouncedSyncState();
@@ -669,6 +682,7 @@ export default function App() {
                             handleUpdateInput={handleUpdateInput}
                             handleFillSlot={handleFillSlot}
                             handleClearSlot={handleClearSlot}
+                            handleBatchFillSlots={handleBatchFillSlots}
                             handleGetSlotOptions={handleGetSlotOptions}
                             onGetProperty={handleGetProperty}
                             onNavigate={handleNavigate}
@@ -676,8 +690,6 @@ export default function App() {
                             builderSource={builderSource}
                             isNewCharacterCreation={isNewCharacterCreation}
                             setIsNewCharacterCreation={setIsNewCharacterCreation}
-                            onOpenExport={() => handleOpenExport()}
-                            onOpenImport={() => handleOpenImport('builder')}
                         />
                     </Suspense>
                 )}

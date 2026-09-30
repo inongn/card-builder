@@ -452,20 +452,61 @@ export const matchesSlotTagExpression = (opt, slotNode) => {
     const optTags = new Set((opt.tags || []).map(t => String(t).toLowerCase()));
     if (opt.id) optTags.add(String(opt.id).toLowerCase());
 
-    const expr = (Array.isArray(tagSource) ? tagSource.join(' OR ') : String(tagSource)).toLowerCase();
+    const expr = (Array.isArray(tagSource) ? tagSource.join(' OR ') : String(tagSource))
+        .replace(/\(/g, ' ( ')
+        .replace(/\)/g, ' ) ')
+        .replace(/,/g, ' OR ')
+        .trim();
 
-    const orGroups = expr.split(/\s+or\s+/);
-    return orGroups.some(group => {
-        const andTokens = group.split(/\s+and\s+/).map(t => t.trim().replace(/^\(|\)$/g, ''));
-        return andTokens.every(token => {
-            if (!token) return true;
-            if (token.startsWith('not ')) {
-                const notToken = token.slice(4).trim();
-                return !optTags.has(notToken);
+    const tokens = expr.split(/\s+/).filter(Boolean);
+    let pos = 0;
+
+    const parseOr = () => {
+        let val = parseAnd();
+        while (pos < tokens.length && tokens[pos].toUpperCase() === 'OR') {
+            pos++;
+            const right = parseAnd();
+            val = val || right;
+        }
+        return val;
+    };
+
+    const parseAnd = () => {
+        let val = parseNot();
+        while (pos < tokens.length) {
+            const tok = tokens[pos].toUpperCase();
+            if (tok === 'OR' || tok === ')') break;
+            if (tok === 'AND') {
+                pos++;
             }
-            return optTags.has(token);
-        });
-    });
+            const right = parseNot();
+            val = val && right;
+        }
+        return val;
+    };
+
+    const parseNot = () => {
+        if (pos < tokens.length && tokens[pos].toUpperCase() === 'NOT') {
+            pos++;
+            return !parseNot();
+        }
+        return parseAtom();
+    };
+
+    const parseAtom = () => {
+        if (pos >= tokens.length) return false;
+        const tok = tokens[pos];
+        if (tok === '(') {
+            pos++;
+            const val = parseOr();
+            if (pos < tokens.length && tokens[pos] === ')') pos++;
+            return val;
+        }
+        pos++;
+        return optTags.has(tok.toLowerCase());
+    };
+
+    return parseOr();
 };
 
 export const getSlotAllowedMap = (slotItems, allCategoryOptionsMap, handleGetSlotOptions, char) => {
@@ -494,73 +535,77 @@ export const getSlotAllowedMap = (slotItems, allCategoryOptionsMap, handleGetSlo
     return slotAllowedMap;
 };
 
-export const canMatchChoicesToSlots = (choiceIds, slotItems, slotAllowedMap) => {
-    if (choiceIds.length > slotItems.length) return false;
-    if (choiceIds.length === 0) return true;
-
-    const visitedSlots = new Array(slotItems.length).fill(false);
-
-    const tryMatch = (choiceIndex) => {
-        if (choiceIndex >= choiceIds.length) return true;
-        const choiceId = choiceIds[choiceIndex];
-
-        for (let s = 0; s < slotItems.length; s++) {
-            if (!visitedSlots[s]) {
-                const allowed = slotAllowedMap.get(slotItems[s]);
-                if (allowed && allowed.has(choiceId)) {
-                    visitedSlots[s] = true;
-                    if (tryMatch(choiceIndex + 1)) return true;
-                    visitedSlots[s] = false;
-                }
-            }
-        }
-        return false;
-    };
-
-    return tryMatch(0);
-};
-
 export const findMatchingForChoices = (choiceIds, slotItems, slotAllowedMap) => {
+    if (!choiceIds || !slotItems) return null;
     if (choiceIds.length > slotItems.length) return null;
+    if (choiceIds.length === 0) return new Map();
 
-    const slotIndices = slotItems.map((_, i) => i);
-    slotIndices.sort((a, b) => {
-        const sizeA = slotAllowedMap.get(slotItems[a])?.size || 0;
-        const sizeB = slotAllowedMap.get(slotItems[b])?.size || 0;
-        return sizeA - sizeB;
-    });
+    const numChoices = choiceIds.length;
+    const numSlots = slotItems.length;
 
-    const assignment = new Array(choiceIds.length).fill(-1);
-    const usedSlots = new Array(slotItems.length).fill(false);
-
-    const backtrack = (idx) => {
-        if (idx >= choiceIds.length) return true;
-        const choiceId = choiceIds[idx];
-
-        for (const s of slotIndices) {
-            if (!usedSlots[s]) {
-                const allowed = slotAllowedMap.get(slotItems[s]);
-                if (allowed && allowed.has(choiceId)) {
-                    usedSlots[s] = true;
-                    assignment[idx] = s;
-                    if (backtrack(idx + 1)) return true;
-                    usedSlots[s] = false;
-                    assignment[idx] = -1;
+    // Build adjacency list: choice index -> array of slot indices
+    const adj = new Array(numChoices);
+    for (let c = 0; c < numChoices; c++) {
+        const cId = choiceIds[c];
+        const allowedSlots = [];
+        for (let s = 0; s < numSlots; s++) {
+            const allowed = slotAllowedMap.get(slotItems[s]);
+            if (allowed && allowed.has(cId)) {
+                // If this slot currently holds this choice, prioritize it to preserve existing assignments
+                if (slotItems[s].node?.filled?.id === cId) {
+                    allowedSlots.unshift(s);
+                } else {
+                    allowedSlots.push(s);
                 }
             }
         }
-        return false;
-    };
-
-    if (backtrack(0)) {
-        const result = new Map();
-        choiceIds.forEach((cId, i) => {
-            result.set(cId, slotItems[assignment[i]]);
-        });
-        return result;
+        if (allowedSlots.length === 0) return null;
+        adj[c] = allowedSlots;
     }
 
-    return null;
+    // Sort choice indices by degree (most constrained choices first)
+    const choiceOrder = Array.from({ length: numChoices }, (_, i) => i)
+        .sort((a, b) => adj[a].length - adj[b].length);
+
+    // matchSlot[s] = choice index currently assigned to slot s (-1 if unassigned)
+    const matchSlot = new Array(numSlots).fill(-1);
+
+    function dfs(c, visited) {
+        for (const s of adj[c]) {
+            if (!visited[s]) {
+                visited[s] = true;
+                if (matchSlot[s] === -1 || dfs(matchSlot[s], visited)) {
+                    matchSlot[s] = c;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    const visited = new Array(numSlots);
+    for (const c of choiceOrder) {
+        visited.fill(false);
+        if (!dfs(c, visited)) {
+            return null;
+        }
+    }
+
+    const result = new Map();
+    for (let s = 0; s < numSlots; s++) {
+        const c = matchSlot[s];
+        if (c !== -1) {
+            result.set(choiceIds[c], slotItems[s]);
+        }
+    }
+    return result;
+};
+
+export const canMatchChoicesToSlots = (choiceIds, slotItems, slotAllowedMap) => {
+    if (!choiceIds || !slotItems) return false;
+    if (choiceIds.length > slotItems.length) return false;
+    if (choiceIds.length === 0) return true;
+    return findMatchingForChoices(choiceIds, slotItems, slotAllowedMap) !== null;
 };
 
 export const isValidHardcodedOption = (node, categoryKey) => {
