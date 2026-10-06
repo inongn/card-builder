@@ -10,3 +10,15 @@ children:
     value: true
   - type: Reference
     target: masteryProperties
+    id: pactOfTheBladeMastery
+  - id: pactOfTheBladeSpellcastingRoll
+    type: Effect
+    target: activities[tags=weaponAttack].mechanic.attack.bonus
+    operation: set
+    value:  $(attributes.spellcasting.attack)
+  - id: pactOfTheBladeSpellcastingDamage
+    type: Effect
+    target: activities[tags=weaponAttack].mechanic.hit.dice.bonus
+    operation: set
+    value:  $(attributes.spellcasting.attack)
+  - 
