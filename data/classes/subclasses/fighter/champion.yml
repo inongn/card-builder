@@ -18,6 +18,6 @@ children:
   - id: additionalFightingStyle
     name: Additional Fighting Style
     type: Slot
-    target: fightingStyle
+    target: fightingStyle OR arcaneWarrior
     condition: $(meta.level >= 7)
     quantity: 1

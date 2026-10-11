@@ -329,13 +329,13 @@ export const sortCategoryOptions = (opts, onGetProperty) => {
 
     const isFeat = resolvedOpts.some(opt => {
         const tags = opt.tags || [];
-        return tags.some(t => t.includes('feat') || t === 'fightingStyle');
+        return tags.some(t => t.includes('feat') || t === 'fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior';
     });
 
     if (isFeat) {
         const getFeatCategory = (opt) => {
             const tags = opt.tags || [];
-            if (tags.includes('fightingStyle')) return 0;
+            if (tags.includes('fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior') return 0;
             if (tags.includes('feat')) return 1;
             return 99;
         };

@@ -1,0 +1,13 @@
+id: arcaneWarrior
+name: Arcane Warrior
+summary: "Learn two wizard cantrips of your choice."
+type: Folder
+tags:
+  - fightingStyle
+condition: $(meta.class == 'Fighter' || meta.class == 'fighter')
+children:
+  - type: Slot
+    name: Arcane Warrior Cantrips
+    id: arcaneWarriorCantrips
+    target: cantrip AND wizard
+    quantity: 2

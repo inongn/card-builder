@@ -32,7 +32,7 @@ children:
   - id: fightingStyle
     name: Fighting Style
     type: Slot
-    target: fightingStyle
+    target: fightingStyle OR arcaneWarrior
   - id: secondWind
     name: Second Wind
     type: Activity

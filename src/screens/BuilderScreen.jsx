@@ -1941,7 +1941,7 @@ export const BuilderScreen = ({
 
                             const isFeatList = options.some(opt => {
                                 const tags = opt.tags || [];
-                                return tags.some(t => t.includes('Feat') || t === 'feat');
+                                return tags.some(t => t.includes('Feat') || t === 'feat') || tags.includes('fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior';
                             });
 
                             const isClassOptionList = options.some(opt => {
@@ -2014,7 +2014,7 @@ export const BuilderScreen = ({
                             } else if (isFeatList) {
                                 const getFeatCategory = (opt) => {
                                     const tags = opt.tags || [];
-                                    if (tags.includes('fightingStyle')) return "Fighting Styles";
+                                    if (tags.includes('fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior') return "Fighting Styles";
                                     if (tags.includes('feat')) return "Feats";
                                     return null;
                                 };
