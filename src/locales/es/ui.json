@@ -56,7 +56,7 @@
   "activitySheet": {
     "coreActions": "Acciones Básicas",
     "actions": "Acciones",
-    "bonusActions": "Acciones Adicionales",
+    "bonusActions": "Acciones Bonus",
     "reactions": "Reacciones",
     "specialActions": "Acciones Especiales",
     "otherActions": "Otras Acciones"
