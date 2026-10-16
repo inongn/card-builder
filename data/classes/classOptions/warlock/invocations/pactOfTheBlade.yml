@@ -17,5 +17,5 @@ children:
     type: Effect
     target: activities[tags=weaponAttack NOT unarmed].mechanic.hit.dice.bonus
     operation: set
-    value:  $(attributes.spellcasting.attack)
+    value:  $(attributes.spellcasting.bonus)
   - 

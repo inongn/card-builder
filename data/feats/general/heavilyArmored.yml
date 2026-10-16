@@ -5,7 +5,8 @@ tags:
   - feat
   - generalFeat
 type: Folder
-condition: $(attributes.proficiencies.includes('mediumArmor'))
+prerequisite: Medium Armor Training
+prerequisiteCondition: $(attributes.proficiencies.mediumArmor)
 children:
   - name: Ability Score Increase
     type: Effect

@@ -272,11 +272,31 @@ export class CharacterBuilder {
      * Create empty character data structure
      */
     createEmptyCharacter() {
+        const proficiencies = {
+            heavyArmor: false,
+            mediumArmor: false,
+            lightArmor: false,
+            shields: false,
+            martialWeapons: false,
+            simpleWeapons: false,
+            finesseWeapons: false,
+            lightWeapons: false
+        };
+        Object.defineProperty(proficiencies, 'includes', {
+            value: function(key) {
+                if (key === 'shieldTraining') return !!this.shields;
+                return !!this[key];
+            },
+            enumerable: false,
+            writable: true,
+            configurable: true
+        });
+
         return {
             meta: {},
             stats: {},
             attributes: {
-                proficiencies: []
+                proficiencies
             },
             skills: {},
             saves: {},
@@ -293,18 +313,92 @@ export class CharacterBuilder {
     /**
      * Fill a slot with a property from the library
      */
+    /**
+     * Resiliently resolve a node in propertyTree using numeric path, logicalPath, or both.
+     */
+    _resolveNode(nodePath, logicalPath = null, expectedType = null) {
+        if (nodePath && typeof nodePath === 'object' && !Array.isArray(nodePath)) {
+            if (nodePath.logicalPath) logicalPath = nodePath.logicalPath;
+            if (nodePath.path) nodePath = nodePath.path;
+        }
+
+        if (Array.isArray(nodePath) && nodePath.length > 0 && typeof nodePath[0] === 'object') {
+            logicalPath = nodePath;
+            nodePath = null;
+        }
+
+        // Try numeric path first if provided
+        if (Array.isArray(nodePath) && nodePath.length > 0 && typeof nodePath[0] === 'number') {
+            let current = this.propertyTree;
+            let valid = true;
+            for (let i = 0; i < nodePath.length; i++) {
+                const idx = nodePath[i];
+                if (!current || !current.children || idx < 0 || idx >= current.children.length) {
+                    valid = false;
+                    break;
+                }
+                current = current.children[idx];
+            }
+            if (valid && current && (!expectedType || current.type === expectedType)) {
+                // If logicalPath was also provided, check if the numeric destination actually matches the target logical step
+                if (logicalPath && Array.isArray(logicalPath) && logicalPath.length > 0) {
+                    const lastStep = logicalPath[logicalPath.length - 1];
+                    const matchId = (current.id === lastStep.id || current.name === lastStep.id);
+                    const matchIndex = (lastStep.slotIndex === undefined || current.slotIndex === lastStep.slotIndex);
+                    if (matchId && matchIndex) {
+                        return current;
+                    }
+                } else {
+                    return current;
+                }
+            }
+        }
+
+        // If numeric path failed, mismatched, or wasn't provided, try logicalPath
+        if (logicalPath && Array.isArray(logicalPath) && logicalPath.length > 0) {
+            let current = this.propertyTree;
+            let steps = logicalPath;
+            // If the first step matches root, slice it off
+            if (steps.length > 0 && (steps[0].id === current.id || steps[0].id === current.name)) {
+                steps = steps.slice(1);
+            }
+            let found = true;
+            for (let i = 0; i < steps.length; i++) {
+                const step = steps[i];
+                if (!current || !current.children) {
+                    found = false;
+                    break;
+                }
+                const child = current.children.find(c => {
+                    const matchId = (c.id === step.id || c.name === step.id);
+                    if (step.slotIndex !== undefined) {
+                        return matchId && c.slotIndex === step.slotIndex;
+                    }
+                    return matchId;
+                });
+                if (!child) {
+                    found = false;
+                    break;
+                }
+                current = child;
+            }
+            if (found && current && (!expectedType || current.type === expectedType)) {
+                return current;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Fill a slot with a property
+     */
     fillSlot(slotPath, propertyId, shouldRebuild = true) {
         const property = this.library.getProperty(propertyId);
         if (!property) return;
 
-        // Navigate to slot in tree
-        let current = this.propertyTree;
-        for (let i = 0; i < slotPath.length - 1; i++) {
-            current = current.children[slotPath[i]];
-        }
-
-        const slotIndex = slotPath[slotPath.length - 1];
-        const slot = current.children[slotIndex];
+        const slot = this._resolveNode(slotPath, null, 'Slot');
+        if (!slot) return;
 
         // Fill the slot - store filled property info
         const evaluator = new ExpressionEvaluator(this.characterData);
@@ -342,13 +436,9 @@ export class CharacterBuilder {
      * Clear a filled slot
      */
     clearSlot(slotPath, shouldRebuild = true) {
-        let current = this.propertyTree;
-        for (let i = 0; i < slotPath.length - 1; i++) {
-            current = current.children[slotPath[i]];
-        }
+        const slot = this._resolveNode(slotPath, null, 'Slot');
+        if (!slot) return;
 
-        const slotIndex = slotPath[slotPath.length - 1];
-        const slot = current.children[slotIndex];
         slot.filled = null;
         slot.children = []; // Clear children when clearing the slot
 
@@ -361,13 +451,9 @@ export class CharacterBuilder {
      * Update an input value
      */
     updateInput(inputPath, value) {
-        // Navigate to the input in the active tree to update its value persisted there
-        let current = this.propertyTree;
-        for (let i = 0; i < inputPath.length - 1; i++) {
-            current = current.children[inputPath[i]];
-        }
-        const inputIndex = inputPath[inputPath.length - 1];
-        const input = current.children[inputIndex];
+        const input = this._resolveNode(inputPath, null, 'Input');
+        if (!input) return;
+
         input.value = value;
 
         // IMMEDIATE UPDATE: Update characterData context so expressions use the NEW value
@@ -1095,6 +1181,21 @@ export class CharacterBuilder {
                 }
 
                 this.characterData.transformations[formId] = trans;
+            }
+        }
+
+        if (this.characterData?.attributes?.proficiencies && typeof this.characterData.attributes.proficiencies === 'object') {
+            const profs = this.characterData.attributes.proficiencies;
+            if (!profs.includes) {
+                Object.defineProperty(profs, 'includes', {
+                    value: function(key) {
+                        if (key === 'shieldTraining') return !!this.shields;
+                        return !!this[key];
+                    },
+                    enumerable: false,
+                    writable: true,
+                    configurable: true
+                });
             }
         }
     }

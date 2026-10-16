@@ -226,7 +226,7 @@ export function computeAutoPickChoices({
             if (usedIds.has(prefId)) continue;
 
             const optEntry = categoryOptionsMap.get(prefId);
-            if (!optEntry || optEntry.option?.isHardcoded) continue;
+            if (!optEntry || optEntry.option?.isHardcoded || optEntry.option?.isDisabled) continue;
 
             // Check if adding this choice still yields a valid bipartite matching
             const testChoices = [...candidateChoices, prefId];
@@ -241,7 +241,7 @@ export function computeAutoPickChoices({
         if (candidateChoices.length < slotItems.length) {
             for (const opt of options) {
                 if (candidateChoices.length >= slotItems.length) break;
-                if (usedIds.has(opt.id) || opt.isHardcoded) continue;
+                if (usedIds.has(opt.id) || opt.isHardcoded || opt.isDisabled) continue;
 
                 const testChoices = [...candidateChoices, opt.id];
                 const testMatch = findMatchingForChoices(testChoices, slotItems, slotAllowedMap);
@@ -270,6 +270,7 @@ export function computeAutoPickChoices({
             if (matchedChoiceId !== currentFilledId) {
                 fills.push({
                     path: slotItem.path,
+                    logicalPath: slotItem.logicalPath,
                     propertyId: matchedChoiceId
                 });
             }
@@ -292,7 +293,7 @@ export function computeAutoPickChoices({
         }
 
         const slotOpts = handleGetSlotOptions ? handleGetSlotOptions(slotItem.node) : options;
-        const validOpts = (slotOpts || []).filter(o => !o.isHardcoded);
+        const validOpts = (slotOpts || []).filter(o => !o.isHardcoded && !o.isDisabled);
         const validMap = new Map(validOpts.map(o => [o.id, o]));
 
         const prefList = getPreferencesForStep(preset, poolStep, slotItem);

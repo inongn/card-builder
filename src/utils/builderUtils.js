@@ -153,9 +153,6 @@ export const categorizeNode = (item) => {
         if (node.target) {
             searchText += ' ' + (Array.isArray(node.target) ? node.target.join(' ') : String(node.target)).toLowerCase();
         }
-        if (node.resource) {
-            searchText += ' ' + String(node.resource).toLowerCase();
-        }
         if (node.type) {
             searchText += ' ' + String(node.type).toLowerCase();
         }
@@ -289,6 +286,24 @@ export const getMergedCategorySlotItems = (tree, char, categoryKey) => {
     return renderableNodes.filter(item => item.type === 'Slot' && categorizeNode(item) === categoryKey);
 };
 
+export const isSpell = (node) => {
+    if (!node) return false;
+    const tags = Array.isArray(node.tags) ? node.tags : (node.tags ? [node.tags] : []);
+    return tags.some(t => {
+        const lower = String(t).toLowerCase();
+        return lower === 'cantrip' || lower === 'spell' || /^level\d+spell$/i.test(lower) || lower.endsWith('spell');
+    });
+};
+
+export const getSpellLevel = (opt) => {
+    const tags = opt?.tags || [];
+    if (tags.includes('cantrip')) return 0;
+    for (let i = 1; i <= 9; i++) {
+        if (tags.includes(`level${i}Spell`)) return i;
+    }
+    return 99;
+};
+
 export const sortCategoryOptions = (opts, onGetProperty) => {
     const resolvedOpts = opts.map(opt => {
         if (!opt.description && onGetProperty) {
@@ -304,22 +319,10 @@ export const sortCategoryOptions = (opts, onGetProperty) => {
         return opt;
     });
 
-    const isSpell = resolvedOpts.some(opt => {
-        const tags = opt.tags || [];
-        return tags.some(t => t.includes('Spell') || t === 'cantrip') || opt.resource?.toLowerCase().includes('spell');
-    });
+    const isSpellList = resolvedOpts.some(isSpell);
 
-    if (isSpell) {
-        const getSpellLevel = (opt) => {
-            const tags = opt.tags || [];
-            if (tags.includes('cantrip')) return 0;
-            if (tags.includes('level1Spell')) return 1;
-            if (tags.includes('level2Spell')) return 2;
-            if (tags.includes('level3Spell')) return 3;
-            if (tags.includes('level4Spell')) return 4;
-            return 99;
-        };
-        return [...resolvedOpts].sort((a, b) => {
+    if (isSpellList) {
+        return [...resolvedOpts].filter(isSpell).sort((a, b) => {
             const lvlA = getSpellLevel(a);
             const lvlB = getSpellLevel(b);
             if (lvlA !== lvlB) return lvlA - lvlB;
@@ -569,12 +572,37 @@ export const findMatchingForChoices = (choiceIds, slotItems, slotAllowedMap) => 
 
     // matchSlot[s] = choice index currently assigned to slot s (-1 if unassigned)
     const matchSlot = new Array(numSlots).fill(-1);
+    const assignedChoices = new Set();
+
+    // Pre-match existing assignments where possible to prevent unnecessary slot shuffling
+    for (let c = 0; c < numChoices; c++) {
+        const cId = choiceIds[c];
+        for (let s = 0; s < numSlots; s++) {
+            if (matchSlot[s] === -1 && slotItems[s].node?.filled?.id === cId) {
+                const allowed = slotAllowedMap.get(slotItems[s]);
+                if (allowed && allowed.has(cId)) {
+                    matchSlot[s] = c;
+                    assignedChoices.add(c);
+                    break;
+                }
+            }
+        }
+    }
 
     function dfs(c, visited) {
+        // Pass 1: Try an unassigned slot first without displacing anyone
+        for (const s of adj[c]) {
+            if (!visited[s] && matchSlot[s] === -1) {
+                visited[s] = true;
+                matchSlot[s] = c;
+                return true;
+            }
+        }
+        // Pass 2: If all allowed slots are occupied, try augmenting paths (displacements)
         for (const s of adj[c]) {
             if (!visited[s]) {
                 visited[s] = true;
-                if (matchSlot[s] === -1 || dfs(matchSlot[s], visited)) {
+                if (dfs(matchSlot[s], visited)) {
                     matchSlot[s] = c;
                     return true;
                 }
@@ -585,6 +613,7 @@ export const findMatchingForChoices = (choiceIds, slotItems, slotAllowedMap) => 
 
     const visited = new Array(numSlots);
     for (const c of choiceOrder) {
+        if (assignedChoices.has(c)) continue;
         visited.fill(false);
         if (!dfs(c, visited)) {
             return null;
@@ -629,12 +658,7 @@ export const isValidHardcodedOption = (node, categoryKey) => {
     }
 
     if (categoryKey === 'spellcasting') {
-        const isSpellTag = tags.has('cantrip') || tags.has('level1spell') || tags.has('level2spell') ||
-            tags.has('level3spell') || tags.has('level4spell') || tags.has('level5spell') ||
-            tags.has('level6spell') || tags.has('level7spell') || tags.has('level8spell') ||
-            tags.has('level9spell') || tags.has('spell');
-        const isActivitySpell = nodeType === 'activity' && (tags.size === 0 || isSpellTag || (node.resource && String(node.resource).toLowerCase().includes('spell')));
-        return isSpellTag || isActivitySpell;
+        return isSpell(node);
     }
 
     if (categoryKey === 'skills') {

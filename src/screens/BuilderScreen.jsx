@@ -1,6 +1,6 @@
 import React from 'react';
 import PropertySelectionTree from '../components/PropertySelectionTree';
-import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
+import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem, isSpell, getSpellLevel } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
 import { hasAutoPickSetup, computeAutoPickChoices, computeAutoPickAbilities } from '../utils/autoPickUtils.js';
 import { formatActivityMechanic } from '../utils/mechanicFormatter';
@@ -161,9 +161,9 @@ const getOptionChips = (option, onGetProperty, characterData) => {
     const tags = fullOpt.tags || [];
     const vars = fullOpt.variables || {};
 
-    const isSpell = tags.some(t => t.includes('Spell') || t === 'cantrip') || fullOpt.resource?.toLowerCase().includes('spell');
+    const isSpellCard = isSpell(fullOpt);
 
-    if (isSpell) {
+    if (isSpellCard) {
         // School
         const schools = ['abjuration', 'conjuration', 'divination', 'enchantment', 'evocation', 'illusion', 'necromancy', 'transmutation'];
         const school = tags.find(t => schools.includes(t.toLowerCase()));
@@ -696,7 +696,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
             onClick={handleCardClick}
             className="card-vertical-item"
         >
-            <div slot="custom" className={`card-vertical option-card-vertical ${isSelected ? 'selected' : ''}`}>
+            <div slot="custom" className={`card-vertical option-card-vertical ${isSelected ? 'selected' : ''} ${disabled ? 'disabled' : ''}`}>
                 {artworkUrl ? (
                     <div className="card-vertical__media" style={{ backgroundImage: `url(${artworkUrl})` }}>
                         <div className="card-vertical__media-overlay" />
@@ -712,6 +712,11 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                             {labels.length > 0 && (
                                 <div className="card-vertical__subhead">
                                     {labels.join(' • ')}
+                                </div>
+                            )}
+                            {disabled && option.disabledReason && (
+                                <div className="card-vertical__disabled-reason">
+                                    {option.disabledReason}
                                 </div>
                             )}
                             {evaluatedSummary && (
@@ -732,6 +737,11 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                         {labels.length > 0 && (
                             <div className="card-vertical__subhead">
                                 {labels.join(' • ')}
+                            </div>
+                        )}
+                        {disabled && option.disabledReason && (
+                            <div className="card-vertical__disabled-reason">
+                                {option.disabledReason}
                             </div>
                         )}
                         {evaluatedSummary && (
@@ -1100,7 +1110,11 @@ export const BuilderScreen = ({
         if (displaySlotItem.type === 'MergedCategory') {
             const stepKey = displaySlotItem.step || displaySlotItem.category;
             const hardcodedNodes = getMergedCategoryHardcodedNodes(propertyTree, characterData, stepKey);
-            return aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty, hardcodedNodes, characterData);
+            const aggregated = aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty, hardcodedNodes, characterData);
+            if (stepKey === 'spellcasting') {
+                return aggregated.filter(isSpell);
+            }
+            return aggregated;
         }
 
         const node = displaySlotItem.type === 'Slot' ? displaySlotItem.node : displaySlotItem.items[0].node;
@@ -1136,22 +1150,10 @@ export const BuilderScreen = ({
             return opt;
         });
 
-        const isSpell = resolvedOpts.some(opt => {
-            const tags = opt.tags || [];
-            return tags.some(t => t.includes('Spell') || t === 'cantrip') || opt.resource?.toLowerCase().includes('spell');
-        });
+        const isSpellList = resolvedOpts.some(isSpell);
 
-        if (isSpell) {
-            const getSpellLevel = (opt) => {
-                const tags = opt.tags || [];
-                if (tags.includes('cantrip')) return 0;
-                if (tags.includes('level1Spell')) return 1;
-                if (tags.includes('level2Spell')) return 2;
-                if (tags.includes('level3Spell')) return 3;
-                if (tags.includes('level4Spell')) return 4;
-                return 99;
-            };
-            return [...resolvedOpts].sort((a, b) => {
+        if (isSpellList) {
+            return [...resolvedOpts].filter(isSpell).sort((a, b) => {
                 const lvlA = getSpellLevel(a);
                 const lvlB = getSpellLevel(b);
                 if (lvlA !== lvlB) return lvlA - lvlB;
@@ -1265,8 +1267,9 @@ export const BuilderScreen = ({
                 const newChoiceIds = currentChoiceIds.filter(id => id !== option.id);
                 const matching = findMatchingForChoices(newChoiceIds, displaySlotItem.items, slotAllowedMap);
 
+                const fills = [];
                 displaySlotItem.items.forEach(slotItem => {
-                    const filledId = slotItem.node.filled?.id;
+                    const filledId = slotItem.node.filled?.id || null;
                     let matchedChoiceId = null;
                     if (matching) {
                         for (const [cId, targetSlot] of matching.entries()) {
@@ -1276,33 +1279,36 @@ export const BuilderScreen = ({
                             }
                         }
                     }
-                    if (filledId && filledId !== matchedChoiceId) {
-                        handleClearSlot(slotItem.path);
+                    if (filledId !== matchedChoiceId) {
+                        fills.push({
+                            path: slotItem.path,
+                            logicalPath: slotItem.logicalPath,
+                            propertyId: matchedChoiceId
+                        });
                     }
                 });
 
-                if (matching) {
-                    displaySlotItem.items.forEach(slotItem => {
-                        const filledId = slotItem.node.filled?.id;
-                        let matchedChoiceId = null;
-                        for (const [cId, targetSlot] of matching.entries()) {
-                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
-                                matchedChoiceId = cId;
-                                break;
+                if (fills.length > 0) {
+                    if (handleBatchFillSlots) {
+                        handleBatchFillSlots(fills);
+                    } else {
+                        fills.forEach(({ path, logicalPath, propertyId }) => {
+                            if (propertyId) {
+                                handleFillSlot(path, propertyId, logicalPath);
+                            } else {
+                                handleClearSlot(path, logicalPath);
                             }
-                        }
-                        if (matchedChoiceId && filledId !== matchedChoiceId) {
-                            handleFillSlot(slotItem.path, matchedChoiceId);
-                        }
-                    });
+                        });
+                    }
                 }
             } else if (!option.isDisabled) {
                 const newChoiceIds = [...currentChoiceIds, option.id];
                 const matching = findMatchingForChoices(newChoiceIds, displaySlotItem.items, slotAllowedMap);
 
                 if (matching) {
+                    const fills = [];
                     displaySlotItem.items.forEach(slotItem => {
-                        const filledId = slotItem.node.filled?.id;
+                        const filledId = slotItem.node.filled?.id || null;
                         let matchedChoiceId = null;
                         for (const [cId, targetSlot] of matching.entries()) {
                             if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
@@ -1310,46 +1316,50 @@ export const BuilderScreen = ({
                                 break;
                             }
                         }
-                        if (filledId && filledId !== matchedChoiceId) {
-                            handleClearSlot(slotItem.path);
+                        if (filledId !== matchedChoiceId) {
+                            fills.push({
+                                path: slotItem.path,
+                                logicalPath: slotItem.logicalPath,
+                                propertyId: matchedChoiceId
+                            });
                         }
                     });
 
-                    displaySlotItem.items.forEach(slotItem => {
-                        const filledId = slotItem.node.filled?.id;
-                        let matchedChoiceId = null;
-                        for (const [cId, targetSlot] of matching.entries()) {
-                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
-                                matchedChoiceId = cId;
-                                break;
-                            }
+                    if (fills.length > 0) {
+                        if (handleBatchFillSlots) {
+                            handleBatchFillSlots(fills);
+                        } else {
+                            fills.forEach(({ path, logicalPath, propertyId }) => {
+                                if (propertyId) {
+                                    handleFillSlot(path, propertyId, logicalPath);
+                                } else {
+                                    handleClearSlot(path, logicalPath);
+                                }
+                            });
                         }
-                        if (matchedChoiceId && filledId !== matchedChoiceId) {
-                            handleFillSlot(slotItem.path, matchedChoiceId);
-                        }
-                    });
+                    }
                 }
             }
             return;
         }
 
         if (displaySlotItem.type === 'Slot') {
-            const { node, path } = displaySlotItem;
+            const { node, path, logicalPath } = displaySlotItem;
             if (node.filled?.id === option.id) {
-                handleClearSlot(path);
+                handleClearSlot(path, logicalPath);
             } else {
-                handleFillSlot(path, option.id);
+                handleFillSlot(path, option.id, logicalPath);
             }
         } else if (displaySlotItem.type === 'Group') {
             const { items } = displaySlotItem;
             const filledSlot = items.find(item => item.node.filled?.id === option.id);
 
             if (filledSlot) {
-                handleClearSlot(filledSlot.path);
+                handleClearSlot(filledSlot.path, filledSlot.logicalPath);
             } else {
                 const unfilledSlot = items.find(item => !item.node.filled);
                 if (unfilledSlot) {
-                    handleFillSlot(unfilledSlot.path, option.id);
+                    handleFillSlot(unfilledSlot.path, option.id, unfilledSlot.logicalPath);
                 }
             }
         }
@@ -1932,10 +1942,7 @@ export const BuilderScreen = ({
                                 return null;
                             };
 
-                            const isSpellList = options.some(opt => {
-                                const tags = opt.tags || [];
-                                return tags.some(t => t.includes('Spell') || t === 'cantrip') || opt.resource?.toLowerCase().includes('spell');
-                            });
+                            const isSpellList = options.some(isSpell);
 
                             const hasEquipment = options.some(opt => getEquipmentCategory(opt) !== null);
 
@@ -1952,22 +1959,13 @@ export const BuilderScreen = ({
 
 
                             if (isSpellList) {
-                                const getSpellLevel = (opt) => {
-                                    const tags = opt.tags || [];
-                                    if (tags.includes('cantrip')) return 0;
-                                    if (tags.includes('level1Spell')) return 1;
-                                    if (tags.includes('level2Spell')) return 2;
-                                    if (tags.includes('level3Spell')) return 3;
-                                    if (tags.includes('level4Spell')) return 4;
-                                    return 99;
-                                };
-
-                                const uniqueLevels = new Set(options.map(opt => getSpellLevel(opt)));
+                                const spellOptions = options.filter(isSpell);
+                                const uniqueLevels = new Set(spellOptions.map(opt => getSpellLevel(opt)));
                                 const showHeaders = uniqueLevels.size > 1;
 
                                 let currentLvl = -1;
                                 const rendered = [];
-                                options.forEach(option => {
+                                spellOptions.forEach(option => {
                                     const lvl = getSpellLevel(option);
                                     if (lvl !== currentLvl) {
                                         currentLvl = lvl;
@@ -1976,7 +1974,12 @@ export const BuilderScreen = ({
                                             1: "1st Level Spells",
                                             2: "2nd Level Spells",
                                             3: "3rd Level Spells",
-                                            4: "4th Level Spells"
+                                            4: "4th Level Spells",
+                                            5: "5th Level Spells",
+                                            6: "6th Level Spells",
+                                            7: "7th Level Spells",
+                                            8: "8th Level Spells",
+                                            9: "9th Level Spells"
                                         };
                                         if (showHeaders) {
                                             rendered.push(
