@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['database-v2']
+    branches: ['multilang']
   workflow_dispatch:
 
 permissions:
