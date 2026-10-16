@@ -162,12 +162,16 @@ function deriveUpcastLabel(upcastSpec, mechanicObj, activity, evalStr) {
       continue;
     }
 
-    // AOE size scaling → "+N ft. Shape radius/length"
+    // AOE size scaling → "+N ft. Shape radius/length/size"
     if (path.endsWith('target.aoe.size') || path === 'target.aoe.size') {
-      const shape = capitalize(String(mechanicObj?.target?.aoe?.shape || 'sphere'));
+      const shapePath = path.replace(/\.size$/, '.shape');
+      const resolvedShape = resolveUpcastPath(mechanicObj, shapePath) || mechanicObj?.target?.aoe?.shape || 'sphere';
+      const shape = capitalize(evalStr ? evalStr(String(resolvedShape)) : String(resolvedShape));
       const isLine = shape.toLowerCase() === 'line';
       const isWall = shape.toLowerCase() === 'wall';
-      const suffix = (isLine || isWall) ? 'length' : 'radius';
+      const isCube = shape.toLowerCase() === 'cube';
+      const isSquare = shape.toLowerCase() === 'square';
+      const suffix = (isLine || isWall) ? 'length' : ((isCube || isSquare) ? 'size' : 'radius');
       fragments.push(`${prefix} ft. ${shape} ${suffix}`);
       continue;
     }
@@ -1646,12 +1650,20 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
       const size = evalStr(block.target.aoe.size || '');
       const isLine = shape.toLowerCase() === 'line';
       const isWall = shape.toLowerCase() === 'wall';
-      const sizePhrase = (isLine || isWall) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
+      const isCube = shape.toLowerCase() === 'cube';
+      const isSquare = shape.toLowerCase() === 'square';
+      const sizePhrase = (isLine || isWall || isCube || isSquare) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
       const rawRangeVal = evalStr(block.target?.range || activity?.range || '').trim();
       const rangePart = rawRangeVal && !/^self$/i.test(rawRangeVal)
         ? ` centered on a point within ${rawRangeVal}`
         : '';
-      bodyStr = `A ${sizePhrase}${rangePart} ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
+      const lower = rawBody.toLowerCase().trim();
+      const areaSubjectVerbs = ['sheds ', 'fills ', 'emanates ', 'spreads '];
+      if (areaSubjectVerbs.some(v => lower.startsWith(v))) {
+        bodyStr = `A ${sizePhrase}${rangePart} ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
+      } else {
+        bodyStr = `Within a ${sizePhrase}${rangePart}, ${rawBody.charAt(0).toLowerCase() + rawBody.slice(1)}`;
+      }
 
     } else if (block.target?.inherit === 'trigger') {
       // ── Reaction targeting an attacker/triggering creature (handled separately)
@@ -1756,8 +1768,10 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     const cleanRange = evalStr(block.target?.range || activity?.range || '').trim();
     const isLine = shape.toLowerCase() === 'line';
     const isWall = shape.toLowerCase() === 'wall';
+    const isCube = shape.toLowerCase() === 'cube';
+    const isSquare = shape.toLowerCase() === 'square';
     const isEmanation = shape.toLowerCase() === 'emanation';
-    const sizePhrase = (isLine || isWall) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
+    const sizePhrase = (isLine || isWall || isCube || isSquare) ? `${size}-foot ${shape}` : `${size}-foot-radius ${shape}`;
 
     let locationPhrase = '';
     if (isEmanation || /^self$/i.test(cleanRange)) {

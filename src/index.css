@@ -3586,7 +3586,7 @@ mdui-list-item.card-vertical-item::part(container) {
   justify-content: center;
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 3px 4px;
+  padding: 2px 2px;
   background: white;
 }
 

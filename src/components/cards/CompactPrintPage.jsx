@@ -176,7 +176,6 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                 <div className="cps-hp-box">
                     <div className="cps-stat-label">HP</div>
                     <div className="cps-stat-value">{char.attributes.hp}</div>
-                    <div className="cps-stat-sub">d{char.attributes.hitDie}{char.stats.con.mod >= 0 ? `+${char.stats.con.mod}` : char.stats.con.mod}</div>
                 </div>
                 <div className="cps-hp-input-box">
                     <div className="cps-stat-label">Current</div>
@@ -203,7 +202,12 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                                         <mdui-icon name={info?.icon || 'circle'} class="icon-small" style={{ color: `var(--color-${info?.color})` }} />
                                     </div>
                                     <div className="cps-content cps-line">
-                                        <strong>{res.name || res.id}</strong>
+                                        <strong>
+                                            {res.name || res.id}
+                                            {res.id === 'hitDice' && (
+                                                ` (d${char.attributes?.hitDie}${char.stats?.con?.mod >= 0 ? `+${char.stats.con.mod}` : char.stats?.con?.mod})`
+                                            )}
+                                        </strong>
                                         <div className="cps-resource-right">
                                             <span className="cps-resource-qty">{q}</span>
                                             <span className="cps-resource-recovery">{getResourceRecovery(res)}</span>

@@ -43,7 +43,7 @@ children:
     name: Sneak Attack
     mechanic:
       trigger:
-        event: hit_with_attack
+        text: when you hit with an attack with Advantage
       pattern: automatic
       target:
         inherit: trigger

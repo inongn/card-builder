@@ -96,6 +96,12 @@
         "pattern": { "type": "string", "const": "aura" },
         "trigger": { "$ref": "primitives.schema.json#/$defs/Trigger" },
         "target": { "$ref": "primitives.schema.json#/$defs/TargetSpec" },
+        "scaling": { "$ref": "primitives.schema.json#/$defs/ScalingEntry" },
+        "text": { "type": "string" },
+        "reliable": { "type": "boolean" },
+        "upcast": { "$ref": "primitives.schema.json#/$defs/UpcastSpec" },
+        "downcast": { "$ref": "primitives.schema.json#/$defs/DowncastSpec" },
+        "repeat": { "$ref": "primitives.schema.json#/$defs/RepeatSpec" },
         "move": {
           "type": "object",
           "properties": {
@@ -104,7 +110,6 @@
           },
           "additionalProperties": false
         },
-        "text": { "type": "string" },
         "obscured": { "type": "boolean" },
         "difficultTerrain": { "type": "boolean" },
         "payloads": { "$ref": "primitives.schema.json#/$defs/PayloadList" }
