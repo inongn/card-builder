@@ -2264,18 +2264,33 @@ export class CharacterBuilder {
         }).map(prop => {
             let isDisabled = prop.isDisabled || false;
             let disabledReason = prop.disabledReason || null;
+            let requirementText = null;
+            let isRequirementMet = true;
 
-            if (prop.prerequisiteCondition && !slot.ignoreCondition) {
-                const isMet = evaluator.evaluate(prop.prerequisiteCondition);
-                if (!isMet) {
-                    isDisabled = true;
-                    disabledReason = prop.prerequisite ? `Requires ${prop.prerequisite}` : 'Prerequisites not met';
+            if (prop.prerequisite || prop.prerequisiteCondition) {
+                const rawPrereq = prop.prerequisite ? String(prop.prerequisite).trim() : null;
+                if (rawPrereq) {
+                    requirementText = /^(requires|prerequisite:?)/i.test(rawPrereq)
+                        ? rawPrereq
+                        : `Requires ${rawPrereq}`;
+                } else {
+                    requirementText = 'Prerequisites required';
+                }
+
+                if (prop.prerequisiteCondition && !slot.ignoreCondition) {
+                    isRequirementMet = Boolean(evaluator.evaluate(prop.prerequisiteCondition));
+                    if (!isRequirementMet) {
+                        isDisabled = true;
+                        disabledReason = requirementText;
+                    }
                 }
             }
 
             return {
                 ...prop,
                 displayName: evaluator.evaluate(prop.name),
+                requirementText,
+                isRequirementMet,
                 ...(isDisabled ? { isDisabled, disabledReason } : {})
             };
         });

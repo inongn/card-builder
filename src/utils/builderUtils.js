@@ -708,7 +708,20 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
     const hardcodedNodes = [];
     const seenIds = new Set();
 
-    const traverse = (node, path = []) => {
+    const getSourceFromAncestors = (ancestors) => {
+        for (let i = ancestors.length - 1; i >= 0; i--) {
+            const a = ancestors[i];
+            if (a.type === 'Slot' && a.filled?.name) {
+                return a.filled.displayName || a.filled.name;
+            }
+            if (a.id !== 'base' && a.name && a.type !== 'Folder') {
+                return a.displayName || a.name;
+            }
+        }
+        return null;
+    };
+
+    const traverse = (node, path = [], ancestors = []) => {
         if (!node) return;
         if (!isNodeConditionMet(node, char)) return;
 
@@ -724,13 +737,18 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
                 const nodeCategory = categorizeNode({ type: node.type, node });
                 if (nodeCategory === stepKey) {
                     seenIds.add(nodeId);
-                    hardcodedNodes.push(node);
+                    const sourceName = node.source || getSourceFromAncestors(ancestors);
+                    hardcodedNodes.push({
+                        ...node,
+                        source: sourceName,
+                        sourceText: sourceName ? `From ${sourceName}` : 'Referenced'
+                    });
                 }
             }
         }
 
         if (node.children && Array.isArray(node.children)) {
-            node.children.forEach((child, index) => traverse(child, [...path, index]));
+            node.children.forEach((child, index) => traverse(child, [...path, index], [...ancestors, node]));
         }
     };
 
@@ -743,6 +761,13 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
     const optMap = new Map();
     const hardcodedOptionIds = new Set();
+    const evaluator = char ? new ExpressionEvaluator(char) : null;
+
+    const formatReqText = (prereq) => {
+        if (!prereq) return null;
+        const raw = String(prereq).trim();
+        return /^(requires|prerequisite:?)/i.test(raw) ? raw : `Requires ${raw}`;
+    };
 
     (slotItems || []).forEach(slotItem => {
         const slotNode = slotItem.node;
@@ -772,9 +797,25 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
             if (!isNodeConditionMet(fullOpt, char)) return;
 
+            let requirementText = opt.requirementText;
+            let isRequirementMet = opt.isRequirementMet;
+            if (requirementText === undefined && (fullOpt.prerequisite || fullOpt.prerequisiteCondition)) {
+                requirementText = formatReqText(fullOpt.prerequisite) || 'Prerequisites required';
+                if (fullOpt.prerequisiteCondition && evaluator) {
+                    isRequirementMet = Boolean(evaluator.evaluate(fullOpt.prerequisiteCondition));
+                } else {
+                    isRequirementMet = true;
+                }
+            }
+
             if (!optMap.has(opt.id)) {
                 optMap.set(opt.id, {
-                    option: { ...fullOpt, displayName: fullOpt.displayName || fullOpt.name },
+                    option: {
+                        ...fullOpt,
+                        displayName: fullOpt.displayName || fullOpt.name,
+                        requirementText,
+                        isRequirementMet
+                    },
                     candidateSlotItems: [],
                     filledSlotItem: null,
                     isHardcoded: false
@@ -808,9 +849,17 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
         if (!isNodeConditionMet(fullOpt, char)) return;
 
+        const source = hNode.source || fullOpt.source;
+        const sourceText = hNode.sourceText || fullOpt.sourceText || (source ? `From ${source}` : 'Referenced');
+
         if (!optMap.has(hId)) {
             optMap.set(hId, {
-                option: { ...fullOpt, displayName: fullOpt.displayName || fullOpt.name },
+                option: {
+                    ...fullOpt,
+                    displayName: fullOpt.displayName || fullOpt.name,
+                    source,
+                    sourceText
+                },
                 candidateSlotItems: [],
                 filledSlotItem: null,
                 isHardcoded: true
@@ -818,7 +867,13 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
         } else {
             const entry = optMap.get(hId);
             entry.isHardcoded = true;
-            entry.option = { ...entry.option, ...fullOpt, displayName: fullOpt.displayName || fullOpt.name || entry.option.displayName || entry.option.name };
+            entry.option = {
+                ...entry.option,
+                ...fullOpt,
+                displayName: fullOpt.displayName || fullOpt.name || entry.option.displayName || entry.option.name,
+                source: source || entry.option.source,
+                sourceText: sourceText || entry.option.sourceText
+            };
         }
     });
 
@@ -834,6 +889,9 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
                 isSelected: true,
                 isDisabled: true,
                 isHardcoded: true,
+                source: entry.option.source,
+                sourceText: entry.option.sourceText || (entry.option.source ? `From ${entry.option.source}` : 'Referenced'),
+                disabledReason: entry.option.sourceText || (entry.option.source ? `From ${entry.option.source}` : 'Referenced'),
                 filledSlotPath: null,
                 candidateSlotItems: entry.candidateSlotItems
             };
@@ -841,13 +899,17 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
         const isSelected = !!entry.filledSlotItem;
         const testChoices = isSelected ? currentChoiceIds : [...currentChoiceIds, entry.option.id];
-        const isDisabled = !!entry.option.isDisabled || (!isSelected && !canMatchChoicesToSlots(testChoices, slotItems || [], slotAllowedMap));
+        const isNotSlotMatchable = !isSelected && !canMatchChoicesToSlots(testChoices, slotItems || [], slotAllowedMap);
+        const isDisabled = !!entry.option.isDisabled || isNotSlotMatchable;
 
         return {
             ...entry.option,
             isSelected,
             isDisabled,
             isHardcoded: false,
+            requirementText: entry.option.requirementText,
+            isRequirementMet: entry.option.isRequirementMet,
+            disabledReason: entry.option.disabledReason || (entry.option.requirementText && !entry.option.isRequirementMet ? entry.option.requirementText : null),
             filledSlotPath: entry.filledSlotItem ? entry.filledSlotItem.path : null,
             candidateSlotItems: entry.candidateSlotItems
         };

@@ -688,6 +688,43 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         return match ? match[0].trim() : clean;
     }, [fullOpt, characterData]);
 
+    const renderRequirementOrSource = () => {
+        if (option.isHardcoded && (option.sourceText || option.source)) {
+            return (
+                <div className="card-vertical__source-text">
+                    {option.sourceText || `From ${option.source}`}
+                </div>
+            );
+        }
+
+        if (option.requirementText) {
+            if (option.isRequirementMet) {
+                return (
+                    <div className="card-vertical__requirement card-vertical__requirement--met">
+                        <mdui-icon name="check" class="requirement-check-icon" style={{ fontSize: '1rem', lineHeight: '1', flexShrink: 0 }}></mdui-icon>
+                        <span>{option.requirementText}</span>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="card-vertical__disabled-reason card-vertical__requirement card-vertical__requirement--unmet">
+                        <span>{option.requirementText}</span>
+                    </div>
+                );
+            }
+        }
+
+        if (disabled && option.disabledReason) {
+            return (
+                <div className="card-vertical__disabled-reason">
+                    {option.disabledReason}
+                </div>
+            );
+        }
+
+        return null;
+    };
+
     return (
         <mdui-list-item
             active={isSelected ? 'active' : ''}
@@ -714,11 +751,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                                     {labels.join(' • ')}
                                 </div>
                             )}
-                            {disabled && option.disabledReason && (
-                                <div className="card-vertical__disabled-reason">
-                                    {option.disabledReason}
-                                </div>
-                            )}
+                            {renderRequirementOrSource()}
                             {evaluatedSummary && (
                                 <div className="card-vertical__body">
                                     <OptionSummary text={evaluatedSummary} />
@@ -739,11 +772,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                                 {labels.join(' • ')}
                             </div>
                         )}
-                        {disabled && option.disabledReason && (
-                            <div className="card-vertical__disabled-reason">
-                                {option.disabledReason}
-                            </div>
-                        )}
+                        {renderRequirementOrSource()}
                         {evaluatedSummary && (
                             <div className="card-vertical__body">
                                 <OptionSummary text={evaluatedSummary} />
@@ -1137,17 +1166,37 @@ export const BuilderScreen = ({
 
         // Resolve missing descriptions using onGetProperty
         const resolvedOpts = opts.map(opt => {
+            let fullOpt = opt;
             if (!opt.description && onGetProperty) {
                 const full = onGetProperty(opt.id);
                 if (full) {
-                    return {
+                    fullOpt = {
                         ...opt,
                         ...full,
                         displayName: opt.displayName || opt.name || full.displayName || full.name
                     };
                 }
             }
-            return opt;
+            let requirementText = fullOpt.requirementText;
+            let isRequirementMet = fullOpt.isRequirementMet;
+            if (requirementText === undefined && (fullOpt.prerequisite || fullOpt.prerequisiteCondition)) {
+                const rawPrereq = fullOpt.prerequisite ? String(fullOpt.prerequisite).trim() : null;
+                requirementText = rawPrereq
+                    ? (/^(requires|prerequisite:?)/i.test(rawPrereq) ? rawPrereq : `Requires ${rawPrereq}`)
+                    : 'Prerequisites required';
+                if (fullOpt.prerequisiteCondition) {
+                    const ev = characterData ? new ExpressionEvaluator(characterData) : null;
+                    isRequirementMet = ev ? Boolean(ev.evaluate(fullOpt.prerequisiteCondition)) : true;
+                } else {
+                    isRequirementMet = true;
+                }
+            }
+            return {
+                ...fullOpt,
+                requirementText,
+                isRequirementMet,
+                disabledReason: fullOpt.disabledReason || (requirementText && !isRequirementMet ? requirementText : null)
+            };
         });
 
         const isSpellList = resolvedOpts.some(isSpell);

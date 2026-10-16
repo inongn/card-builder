@@ -2790,6 +2790,58 @@ mdui-list-item[active] {
   margin-top: 4px;
 }
 
+.card-vertical__requirement {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-vertical__requirement--unmet {
+  color: rgb(var(--mdui-color-error, 244 67 54));
+}
+
+.card-vertical__media-details .card-vertical__requirement--unmet {
+  color: #fca5a5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.card-vertical__requirement--met {
+  color: rgb(22 163 74);
+}
+
+.mdui-theme-dark .card-vertical__requirement--met {
+  color: rgb(74 222 128);
+}
+
+.card-vertical__media-details .card-vertical__requirement--met {
+  color: #86efac;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.card-vertical__source-text {
+  color: rgb(var(--mdui-color-primary));
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-vertical__media-details .card-vertical__source-text {
+  color: #93c5fd;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.requirement-check-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
 .card-vertical__media {
   aspect-ratio: 5 / 3;
   width: 100%;
