@@ -7,7 +7,9 @@
     "otherCharacters": "Otros Personajes",
     "noCharacters": "No se encontraron personajes.",
     "createFirst": "Crea tu primer personaje",
-    "loadSamples": "Cargar personajes de ejemplo"
+    "loadSamples": "Cargar personajes de ejemplo",
+    "hideSampleCharacters": "Ocultar personajes de ejemplo",
+    "showSampleCharacters": "Mostrar personajes de ejemplo"
   },
   "play": {
     "editCharacter": "Editar Personaje",
@@ -78,9 +80,9 @@
     "savingThrows": "Tiradas de Salvación",
     "info": "Info",
     "traits": "Rasgos",
-    "initiative": "Iniciativa",
-    "armor": "Armadura",
-    "speed": "Velocidad",
+    "initiative": "INI",
+    "armor": "AC",
+    "speed": "VEL",
     "lv": "Nv."
   },
   "categories": {
@@ -97,6 +99,7 @@
     "switchTo": "English"
   },
   "builder": {
+    "autopick": "Auto",
     "origin": "Origen",
     "class": "Clase",
     "abilities": "Características",
@@ -155,7 +158,10 @@
     "classOptionElementalAffinity": "Opciones de Afinidad Elemental",
     "classOptionMetamagic": "Opciones de Metamagia",
     "classOptionEldritchInvocation": "Opciones de Invocación Sobrenatural",
+    "requires": "Requiere",
+    "prerequisitesRequired": "Requisitos previos requeridos",
     "classOptionVestige": "Opciones de Vestigio",
+    "classOptionPsionicDiscipline": "Disciplinas Psiónicas",
     "steps": {
       "name": "Nombre",
       "species": "Especie",

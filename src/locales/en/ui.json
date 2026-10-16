@@ -7,7 +7,9 @@
     "otherCharacters": "Other Characters",
     "noCharacters": "No characters found.",
     "createFirst": "Create your first character",
-    "loadSamples": "Load sample characters"
+    "loadSamples": "Load sample characters",
+    "hideSampleCharacters": "Hide sample characters",
+    "showSampleCharacters": "Show sample characters"
   },
   "play": {
     "editCharacter": "Edit Character",
@@ -97,6 +99,7 @@
     "switchTo": "Español"
   },
   "builder": {
+    "autopick": "Auto-Pick",
     "origin": "Origin",
     "class": "Class",
     "abilities": "Abilities",
@@ -155,7 +158,10 @@
     "classOptionElementalAffinity": "Elemental Affinity Options",
     "classOptionMetamagic": "Metamagic Options",
     "classOptionEldritchInvocation": "Eldritch Invocation Options",
+    "requires": "Requires",
+    "prerequisitesRequired": "Prerequisites required",
     "classOptionVestige": "Vestige Options",
+    "classOptionPsionicDiscipline": "Psionic Disciplines",
     "steps": {
       "name": "Name",
       "species": "Species",

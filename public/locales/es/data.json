@@ -718,7 +718,7 @@
     "summary": "Alzas a un sirviente muerto viviente a partir de un cadáver o un montón de huesos."
   },
   "arcana": {
-    "name": "Conocimiento Arcano"
+    "name": "Arcano"
   },
   "arcanaAdvantage": {
     "name": "Ventaja en Conocimiento arcano"
@@ -1528,7 +1528,7 @@
     "summary": "Proteges un área con munición que se alza para golpear a los enemigos que se acercan."
   },
   "coreActions": {
-    "name": "Core Actions"
+    "name": "Acciones Básicas"
   },
   "cosmicOmen": {
     "name": "Presagio Cósmico"
@@ -2769,7 +2769,7 @@
     "summary": "Recordar información sobre acontecimientos, personas, naciones y culturas de carácter histórico."
   },
   "hitDice": {
-    "name": "Dados de Golpe"
+    "name": "Dados Golpe"
   },
   "holdPerson": {
     "name": "Inmovilizar persona",
@@ -3091,13 +3091,13 @@
     "name": "Nivel"
   },
   "level1SpellSlot": {
-    "name": "Espacio de Conjuro Nv. 1"
+    "name": "Espacio Conjuro"
   },
   "level2SpellSlot": {
-    "name": "Espacio de Conjuro Nv. 2"
+    "name": "Espacio Conjuro"
   },
   "level3SpellSlot": {
-    "name": "Espacio de Conjuro Nv. 3"
+    "name": "Espacio Conjuro"
   },
   "level4feat": {
     "name": "Dote Nivel 4"
@@ -3106,7 +3106,7 @@
     "name": "Dote Nivel 4"
   },
   "level4SpellSlot": {
-    "name": "Espacio de Conjuro Nv. 4"
+    "name": "Espacio Conjuro"
   },
   "level6feat": {
     "name": "Dote Nivel 6"
@@ -3635,7 +3635,7 @@
     "summary": "Añade un Dado de Energía Psiónica a una prueba de característica de Estudio."
   },
   "offHandAttack": {
-    "name": "Off-Hand Attack"
+    "name": "Ataque de Segunda Mano"
   },
   "oneThirdCaster": {
     "name": "Un Tercio Lanzador"

@@ -62,6 +62,16 @@ function sortResources(resources = []) {
     return [...other, ...spellSlots];
 }
 
+const getHitDieSuffix = (char, res, resKey) => {
+    const isHitDice = res?.id === 'hitDice' || resKey === 'hitDice' || res?.name === 'Hit Dice' || res?.name === 'Dados de Golpe';
+    if (!isHitDice || !char?.attributes?.hitDie) return '';
+    const rawDie = String(char.attributes.hitDie);
+    const die = rawDie.startsWith('d') ? rawDie : `d${rawDie}`;
+    const conMod = char.stats?.con?.mod;
+    const modStr = conMod !== undefined ? (conMod >= 0 ? `+${conMod}` : `${conMod}`) : '';
+    return ` (${die}${modStr})`;
+};
+
 // ── Compact activity-style item ───────────────────────────────────────────────
 
 const CompactSheetItem = memo(({ activity, char }) => {
@@ -220,9 +230,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                                     <div className="cps-content cps-line">
                                         <strong>
                                             {resDisplayName}
-                                            {res.id === 'hitDice' && (
-                                                ` (d${char.attributes?.hitDie}${char.stats?.con?.mod >= 0 ? `+${char.stats.con.mod}` : char.stats?.con?.mod})`
-                                            )}
+                                            {getHitDieSuffix(char, res, resKey)}
                                         </strong>
                                         <div className="cps-resource-right">
                                             <span className="cps-resource-qty">{q}</span>
@@ -349,7 +357,10 @@ const CompactRightColumn = memo(({ char }) => {
                                         <mdui-icon name={info?.icon || 'circle'} class="icon-small" style={{ color: `var(--color-${info?.color})` }} />
                                     </div>
                                     <div className="cps-content cps-line">
-                                        <strong>{resDisplayName}</strong>
+                                        <strong>
+                                            {resDisplayName}
+                                            {getHitDieSuffix(char, res, resKey)}
+                                        </strong>
                                         <div className="cps-resource-right">
                                             <span className="cps-resource-qty">{q}</span>
                                             <span className="cps-resource-recovery">{getResourceRecovery(res, lang)}</span>
@@ -434,7 +445,10 @@ const CompactActivityRightColumn = memo(({ char, activitySlotRef, groupedActivit
                                         <mdui-icon name={info?.icon || 'circle'} class="icon-small" style={{ color: `var(--color-${info?.color})` }} />
                                     </div>
                                     <div className="cps-content cps-line">
-                                        <strong>{resDisplayName}</strong>
+                                        <strong>
+                                            {resDisplayName}
+                                            {getHitDieSuffix(char, res, resKey)}
+                                        </strong>
                                         <div className="cps-resource-right">
                                             <span className="cps-resource-qty">{q}</span>
                                             <span className="cps-resource-recovery">{getResourceRecovery(res, lang)}</span>

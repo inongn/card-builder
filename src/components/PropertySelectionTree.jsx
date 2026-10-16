@@ -149,6 +149,11 @@ export default function PropertySelectionTree({
             });
         };
 
+        const groupNode = groupItems[0]?.node;
+        const localizedGroupName = groupNode?.id
+            ? localize(groupNode.id, 'name', groupName)
+            : (groupNode?.name ? localize(groupNode.name.toLowerCase(), 'name', groupName) : groupName);
+
         return (
             <mdui-list-item
                 key={pathStr}
@@ -162,7 +167,7 @@ export default function PropertySelectionTree({
                     variant="text"
                     slot="end-icon"
                 ></mdui-button-icon>
-                {groupName}
+                {localizedGroupName}
                 <span slot="description">
                     {filledCount > 0 ? filledValues.join(', ') : `${t('builder.selectOption', 'Select...')} (${totalCount})`}
                 </span>

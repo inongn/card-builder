@@ -397,7 +397,7 @@ children:
 
 
   - type: Reference
-    reference: [weaponProperties, extraProperties, coreActions, opportunityAttack, offHandAttack]
+    reference: [weaponProperties, extraProperties, opportunityAttack, offHandAttack]
 
   - type: Resource
     id: hitDice

@@ -4,6 +4,7 @@ import { ActivityCard } from '../components/cards/ActivityCard';
 import { ActivitySheet, groupActivities, sortByResource } from '../components/cards/ActivitySheet';
 import { StatblockCard } from '../components/cards/StatblockCard';
 import { CompactPrintPage, CompactActivityPrintPage } from '../components/cards/CompactPrintPage';
+import { useLocale } from '../i18n';
 import 'mdui/components/button.js';
 import 'mdui/components/tooltip.js';
 
@@ -21,10 +22,53 @@ const sortActivitiesByCategory = (activities = []) => {
 };
 
 export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
+    const { lang } = useLocale();
     const containerRef = useRef(null);
     const activitySlotRef = useRef(null);
     const overflowSlotRefs = useRef([]);
     const [scale, setScale] = useState(1);
+
+    // Track font loading so bin-packing only measures after condensed fonts (Google Sans Flex) are ready
+    const [fontsReady, setFontsReady] = useState(() => {
+        if (typeof document === 'undefined' || !document.fonts) return true;
+        return document.fonts.status === 'loaded' && document.fonts.check('12px "Google Sans Flex"');
+    });
+    const [fontVersion, setFontVersion] = useState(0);
+
+    useEffect(() => {
+        let active = true;
+        if (!document.fonts) {
+            setFontsReady(true);
+            return;
+        }
+
+        const markReady = () => {
+            if (!active) return;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    if (active) {
+                        setFontsReady(true);
+                        setFontVersion(v => v + 1);
+                    }
+                });
+            });
+        };
+
+        if (document.fonts.load) {
+            document.fonts.load('0.75rem "Google Sans Flex"').catch(() => {});
+        }
+
+        document.fonts.ready.then(markReady).catch(markReady);
+        document.fonts.addEventListener('loadingdone', markReady);
+
+        const fallbackTimer = setTimeout(markReady, 1000);
+
+        return () => {
+            active = false;
+            clearTimeout(fallbackTimer);
+            document.fonts.removeEventListener('loadingdone', markReady);
+        };
+    }, []);
 
     // Compact sheet toggle (for non-activity-sheet mode)
     const [useCompactSheet, setUseCompactSheet] = useState(() =>
@@ -55,8 +99,8 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
     const [activitySlots, setActivitySlots] = useState(null);
     const [deferredActs, setDeferredActs] = useState([]);
 
-    // Scale the print preview to fit the screen width.
-    useEffect(() => {
+    // Scale the print preview to fit the screen width synchronously before paint
+    useLayoutEffect(() => {
         const updateScale = () => {
             if (!containerRef.current) return;
             const containerWidth = containerRef.current.clientWidth;
@@ -74,22 +118,20 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
     const leftColRef = useRef(null);
     const [col1Placement, setCol1Placement] = useState({ resources: true, traits: true });
 
-    // Reset col1Placement on character change
-    const prevCharIdRef = useRef('');
+    // Track character, lang, mode, font readiness, & placement key to reset measurement on change during render
     const currentCharId = char?.id || char?.meta?.name || 'char';
-    if (prevCharIdRef.current !== currentCharId) {
-        prevCharIdRef.current = currentCharId;
-        if (!col1Placement.resources || !col1Placement.traits) {
-            setCol1Placement({ resources: true, traits: true });
-        }
-    }
-
-    // Track character, mode, & placement key to reset measurement on change during render
     const prevKeyRef = useRef('');
-    const currentKey = `${currentCharId}-${useActivitySheet}-${useCompactActivityLayout}-${col1Placement.resources}-${col1Placement.traits}`;
+    const currentKey = `${currentCharId}-${lang}-${useActivitySheet}-${useCompactActivityLayout}-${fontVersion}-${col1Placement.resources}-${col1Placement.traits}`;
+
     if (prevKeyRef.current !== currentKey) {
+        const isPlacementOnlyChange = prevKeyRef.current.startsWith(
+            `${currentCharId}-${lang}-${useActivitySheet}-${useCompactActivityLayout}-${fontVersion}-`
+        );
         prevKeyRef.current = currentKey;
         overflowSlotRefs.current = [];
+        if (!isPlacementOnlyChange && (!col1Placement.resources || !col1Placement.traits)) {
+            setCol1Placement({ resources: true, traits: true });
+        }
         if (activitySlots !== null) {
             setActivitySlots(null);
             setDeferredActs([]);
@@ -98,7 +140,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
 
     // Measure overflowing activities and optimize category packing
     useLayoutEffect(() => {
-        if (!useActivitySheet || !char) return;
+        if (!fontsReady || !useActivitySheet || !char) return;
 
         // First check if Column 1 overflows in compact activity mode
         if (useCompactActivityLayout && leftColRef.current) {
@@ -149,9 +191,11 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         }
 
         let overflowIdx = -1;
+        const effectiveScale = scale || 1;
         for (let i = 0; i < items.length; i++) {
             const itemRect = items[i].getBoundingClientRect();
-            if (itemRect.bottom > slotRect.bottom + 2 || itemRect.right > slotRect.right + 2) {
+            const overflowY = (itemRect.bottom - slotRect.bottom) / effectiveScale;
+            if (overflowY > 2) {
                 overflowIdx = i;
                 break;
             }
@@ -216,7 +260,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                 return newSlots;
             });
         }
-    }, [char, useActivitySheet, useCompactActivityLayout, col1Placement, activitySlots, deferredActs]);
+    }, [char, useActivitySheet, useCompactActivityLayout, col1Placement, activitySlots, deferredActs, fontsReady, fontVersion, scale]);
 
     if (!char) return null;
 

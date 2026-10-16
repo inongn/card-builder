@@ -708,14 +708,20 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
     const hardcodedNodes = [];
     const seenIds = new Set();
 
-    const getSourceFromAncestors = (ancestors) => {
+    const getSourceInfoFromAncestors = (ancestors) => {
         for (let i = ancestors.length - 1; i >= 0; i--) {
             const a = ancestors[i];
             if (a.type === 'Slot' && a.filled?.name) {
-                return a.filled.displayName || a.filled.name;
+                return {
+                    source: a.filled.displayName || a.filled.name,
+                    sourceId: a.filled.id
+                };
             }
             if (a.id !== 'base' && a.name && a.type !== 'Folder') {
-                return a.displayName || a.name;
+                return {
+                    source: a.displayName || a.name,
+                    sourceId: a.id
+                };
             }
         }
         return null;
@@ -737,10 +743,13 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
                 const nodeCategory = categorizeNode({ type: node.type, node });
                 if (nodeCategory === stepKey) {
                     seenIds.add(nodeId);
-                    const sourceName = node.source || getSourceFromAncestors(ancestors);
+                    const sourceInfo = getSourceInfoFromAncestors(ancestors);
+                    const sourceName = node.source || sourceInfo?.source;
+                    const sourceId = node.sourceId || sourceInfo?.sourceId;
                     hardcodedNodes.push({
                         ...node,
                         source: sourceName,
+                        sourceId,
                         sourceText: sourceName ? `From ${sourceName}` : 'Referenced'
                     });
                 }
@@ -850,6 +859,7 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
         if (!isNodeConditionMet(fullOpt, char)) return;
 
         const source = hNode.source || fullOpt.source;
+        const sourceId = hNode.sourceId || fullOpt.sourceId;
         const sourceText = hNode.sourceText || fullOpt.sourceText || (source ? `From ${source}` : 'Referenced');
 
         if (!optMap.has(hId)) {
@@ -858,6 +868,7 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
                     ...fullOpt,
                     displayName: fullOpt.displayName || fullOpt.name,
                     source,
+                    sourceId,
                     sourceText
                 },
                 candidateSlotItems: [],
@@ -872,6 +883,7 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
                 ...fullOpt,
                 displayName: fullOpt.displayName || fullOpt.name || entry.option.displayName || entry.option.name,
                 source: source || entry.option.source,
+                sourceId: sourceId || entry.option.sourceId,
                 sourceText: sourceText || entry.option.sourceText
             };
         }
@@ -890,6 +902,7 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
                 isDisabled: true,
                 isHardcoded: true,
                 source: entry.option.source,
+                sourceId: entry.option.sourceId,
                 sourceText: entry.option.sourceText || (entry.option.source ? `From ${entry.option.source}` : 'Referenced'),
                 disabledReason: entry.option.sourceText || (entry.option.source ? `From ${entry.option.source}` : 'Referenced'),
                 filledSlotPath: null,

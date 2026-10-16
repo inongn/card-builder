@@ -1147,7 +1147,15 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
         const charData = ctx?.characterData || ctx?.evaluator?.context;
         const allActivities = charData?.activities || [];
         const matching = allActivities.filter(a => a.id !== 'offHandAttack' && a.tags?.includes('light'));
-        const weaponNames = [...new Set(matching.map(a => `_${a.name || a.id}_`))];
+        const activeTrans = getActiveTranslations(ctx?.translations);
+        const getWeaponName = (a) => {
+          const transEntry = (a.id && activeTrans?.[a.id])
+            || (a.name && activeTrans?.[a.name])
+            || (a.id && activeTrans?.[a.id.toLowerCase()]);
+          const name = transEntry?.name || a.displayName || a.name || a.id;
+          return `_${name}_`;
+        };
+        const weaponNames = [...new Set(matching.map(getWeaponName))];
         let weaponList = '';
         if (weaponNames.length === 0) weaponList = 'un arma Ligera';
         else if (weaponNames.length === 1) weaponList = weaponNames[0];
@@ -1699,11 +1707,11 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
     let critText = '';
     if (block.crit) {
       const formattedCrit = formatPayloadListEs(block.crit, evalStr, formatDiceObj, { ...baseCtx, pattern: 'attack', role: 'crit', targetObj: block.target });
-      if (formattedCrit) critText = ` _Impacto Crítico:_ ${capitalize(formattedCrit)}.`;
+      if (formattedCrit) critText = `_Crítico:_ ${capitalize(formattedCrit)}.`;
     }
 
     const trailingText = text ? ` ${capitalize(text.replace(/\.$/, ''))}.` : '';
-    mainBody = `_Tirada de Ataque ${classif}:_ ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${hitOrMissText}${missText}${critText}${trailingText}`;
+    mainBody = `_Ataque ${classif}:_ ${bonusStr}, ${rangeOutput.replace(/\.+$/, '')}${targetDesc}.${hitText}${hitOrMissText}${missText}${critText}${trailingText}`;
   }
 
   // ── 2. SAVE ────────────────────────────────────────────────────────────────
@@ -1755,7 +1763,7 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
     }
 
     const trailingText = text ? ` ${capitalize(text.replace(/\.$/, ''))}.` : '';
-    mainBody = `_Tirada de Salvación de ${fullAbility}:_ CD ${dcVal}${targetDesc}.${alwaysText}${failText}${successText}${trailingText}`.replace(/\.\./g, '.');
+    mainBody = `_Salvada de ${fullAbility}:_ CD ${dcVal}${targetDesc}.${alwaysText}${failText}${successText}${trailingText}`.replace(/\.\./g, '.');
   }
 
   // ── 3. HEALING ─────────────────────────────────────────────────────────────

@@ -148,7 +148,7 @@ export const DashboardScreen = ({
                                 icon={sampleCharactersEnabled ? 'group_remove' : 'group_add'}
                                 onClick={onToggleSampleCharacters}
                             >
-                                {sampleCharactersEnabled ? 'Unload Sample Characters' : 'Load Sample Characters'}
+                                {sampleCharactersEnabled ? t('dashboard.hideSampleCharacters') : t('dashboard.showSampleCharacters')}
                             </mdui-menu-item>
                         )}
                     </mdui-menu>

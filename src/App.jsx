@@ -191,7 +191,7 @@ export default function App() {
                 colorCache.current.set(url, cachedStorage);
                 return Promise.resolve(cachedStorage);
             }
-        } catch (e) {}
+        } catch (e) { }
 
         return new Promise((resolve) => {
             const img = new Image();
@@ -201,7 +201,7 @@ export default function App() {
                     .then(color => {
                         if (color) {
                             colorCache.current.set(url, color);
-                            try { localStorage.setItem(`extracted_color_${url}`, color); } catch (e) {}
+                            try { localStorage.setItem(`extracted_color_${url}`, color); } catch (e) { }
                         }
                         resolve(color);
                     })

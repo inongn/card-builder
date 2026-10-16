@@ -310,7 +310,7 @@ function main() {
   if (fs.existsSync(ES_DATA_PATH)) {
     try {
       existingEsData = JSON.parse(fs.readFileSync(ES_DATA_PATH, 'utf8'));
-    } catch (e) {}
+    } catch (e) { }
   }
   const esData = {};
 

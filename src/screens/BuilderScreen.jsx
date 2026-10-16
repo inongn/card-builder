@@ -731,25 +731,59 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
 
     const renderRequirementOrSource = () => {
         if (option.isHardcoded && (option.sourceText || option.source)) {
+            const sourceName = (option.sourceId && localize(option.sourceId, 'name', option.source))
+                || (option.source && localize(option.source.toLowerCase(), 'name', option.source))
+                || option.source;
+
+            let text;
+            if (sourceName) {
+                text = lang === 'es' ? `De ${sourceName}` : `From ${sourceName}`;
+            } else {
+                text = lang === 'es' ? 'Referenciado' : (option.sourceText || 'Referenced');
+            }
+
             return (
                 <div className="card-vertical__source-text">
-                    {option.sourceText || `From ${option.source}`}
+                    {text}
                 </div>
             );
         }
 
+        const formatRequirementString = (rawText) => {
+            if (!rawText) return rawText;
+            if (lang !== 'es') return rawText;
+            if (rawText.toLowerCase() === 'prerequisites required') {
+                return t('builder.prerequisitesRequired', 'Requisitos previos requeridos');
+            }
+            const match = rawText.match(/^(?:Requires|Prerequisite:?)\s*(.*)$/i);
+            if (match) {
+                const rawTarget = match[1].trim();
+                const targetId = rawTarget.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => index === 0 ? letter.toLowerCase() : letter.toUpperCase()).replace(/[\s-]+/g, '');
+                let localizedTarget = localize(targetId, 'name', null);
+                if (!localizedTarget && targetId === 'pactOfTheBlade') {
+                    localizedTarget = localize('pactOfTheBladeFolder', 'name', null);
+                }
+                if (!localizedTarget && targetId === 'pactOfTheChain') {
+                    localizedTarget = localize('pactOfTheChainFolder', 'name', null);
+                }
+                return `${t('builder.requires', 'Requiere')} ${localizedTarget || rawTarget}`;
+            }
+            return rawText;
+        };
+
         if (option.requirementText) {
+            const reqText = formatRequirementString(option.requirementText);
             if (option.isRequirementMet) {
                 return (
                     <div className="card-vertical__requirement card-vertical__requirement--met">
                         <mdui-icon name="check" class="requirement-check-icon" style={{ fontSize: '1rem', lineHeight: '1', flexShrink: 0 }}></mdui-icon>
-                        <span>{option.requirementText}</span>
+                        <span>{reqText}</span>
                     </div>
                 );
             } else {
                 return (
                     <div className="card-vertical__disabled-reason card-vertical__requirement card-vertical__requirement--unmet">
-                        <span>{option.requirementText}</span>
+                        <span>{reqText}</span>
                     </div>
                 );
             }
@@ -758,7 +792,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
         if (disabled && option.disabledReason) {
             return (
                 <div className="card-vertical__disabled-reason">
-                    {option.disabledReason}
+                    {formatRequirementString(option.disabledReason)}
                 </div>
             );
         }
@@ -1676,7 +1710,7 @@ export const BuilderScreen = ({
                 onClick={handleAutoPick}
                 title="Auto-pick recommended choices"
             >
-                Auto-Pick
+                {t('builder.autopick')}
             </mdui-button>
         );
     };
@@ -1698,7 +1732,10 @@ export const BuilderScreen = ({
     let topAppBarTitle = "Aspida";
     if (isMobileOverlayActive && displaySlotItem) {
         if (displaySlotItem.type === 'Group') {
-            topAppBarTitle = displaySlotItem.id;
+            const firstNode = displaySlotItem.items?.[0]?.node;
+            topAppBarTitle = firstNode?.id
+                ? localize(firstNode.id, 'name', displaySlotItem.id)
+                : (firstNode?.name ? localize(firstNode.name.toLowerCase(), 'name', displaySlotItem.id) : displaySlotItem.id);
         } else if (displaySlotItem.type === 'MergedCategory') {
             const stepKey = displaySlotItem.step || displaySlotItem.category;
             topAppBarTitle = t(`builder.steps.${stepKey}`, displaySlotItem.title || STEP_DEFINITIONS[stepKey]?.title || CATEGORIES[displaySlotItem.category]?.title || displaySlotItem.category);
@@ -1730,7 +1767,7 @@ export const BuilderScreen = ({
             onClick={handleAutoPick}
             title="Auto-pick recommended choices"
         >
-            Auto-Pick
+            {t('builder.autopick')}
         </mdui-button>
     ) : null;
 
@@ -1989,7 +2026,10 @@ export const BuilderScreen = ({
             const allyKey = displaySlotItem.allyType || displaySlotItem.step;
             slotName = t(`builder.steps.${allyKey}`, displaySlotItem.title || STEP_DEFINITIONS[allyKey]?.title || displaySlotItem.title);
         } else if (isGroup) {
-            slotName = displaySlotItem.id;
+            const firstNode = displaySlotItem.items?.[0]?.node;
+            slotName = firstNode?.id
+                ? localize(firstNode.id, 'name', displaySlotItem.id)
+                : (firstNode?.name ? localize(firstNode.name.toLowerCase(), 'name', displaySlotItem.id) : displaySlotItem.id);
         } else {
             slotName = displaySlotItem.node?.id
                 ? localize(displaySlotItem.node.id, 'name', displaySlotItem.node?.displayName || displaySlotItem.node?.name || displaySlotItem.title)
@@ -2073,7 +2113,7 @@ export const BuilderScreen = ({
 
                             const isClassOptionList = options.some(opt => {
                                 const tags = opt.tags || [];
-                                return tags.includes('circleLand') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity') || tags.includes('metamagic') || tags.includes('vestigeType') || tags.includes('eldritchInvocation');
+                                return tags.includes('circleLand') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity') || tags.includes('metamagic') || tags.includes('vestigeType') || tags.includes('eldritchInvocation') || tags.includes('psionicDiscipline');
                             });
 
 
@@ -2196,6 +2236,7 @@ export const BuilderScreen = ({
                                     if (tags.includes('metamagic')) return t('builder.classOptionMetamagic', 'Metamagic Options');
                                     if (tags.includes('eldritchInvocation')) return t('builder.classOptionEldritchInvocation', 'Eldritch Invocation Options');
                                     if (tags.includes('vestigeType')) return t('builder.classOptionVestige', 'Vestige Options');
+                                    if (tags.includes('psionicDiscipline')) return t('builder.classOptionPsionicDiscipline', 'Psionic Disciplines');
                                     return null;
                                 };
 
