@@ -21,13 +21,11 @@ children:
     id: slow
     name: Slow
   - type: Effect
-    target: activities[tags=weaponAttack AND tags=nick ].mechanic.hit
+    target: activities[tags=weaponAttack AND tags=nick ].mechanic.hitOrMiss
     operation: push
     value:
       type: action
-      actionType: attack
-      attackFilter:
-        classification: light
+      actionType: offHandAttack
     id: nick
     name: Nick
   - type: Effect
@@ -79,7 +77,7 @@ children:
     operation: push
     value:
       type: rollModifier
-      modifierType: advantage
+      modifierType: attacksAgainstAdvantage
       targetRolls: attack
       recipient: self
       against: target

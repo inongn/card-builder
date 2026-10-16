@@ -20,7 +20,7 @@ mechanic:
         type: self
       payloads:
         - type: text
-          text: "reduce incoming attack damage by 2d$(attributes.psiDice) + $(stats.int.mod) (minimum 2)"
+          text: "reduce incoming attack damage by 2d$(attributes.psiDice)+$(stats.int.mod)"
     - pattern: save
       save:
         ability: wis

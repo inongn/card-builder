@@ -1,9 +1,0 @@
-tags:
-- fightingStyle
-type: Effect
-target: attributes.ranged.bonus
-operation: add
-value: 2
-id: archery
-summary: "Gain a +2 bonus to attack rolls made with ranged weapons."
-name: Archery

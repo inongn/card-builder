@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Grappled
-target: attributes.advantages
-id: grappledAdvantage
-name: Grappled Advantage

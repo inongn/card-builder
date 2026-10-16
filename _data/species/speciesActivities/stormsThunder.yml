@@ -1,8 +1,0 @@
-id: stormsThunder
-type: Activity
-duration: instantaneous
-name: Storm's Thunder
-time: reaction
-range: 60 feet
-resource: giantAncestry
-description: When you take damage from a creature within range, deal 1d8 Thunder damage to that creature.

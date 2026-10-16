@@ -6,4 +6,4 @@ operation: add
 value: 2
 id: thrownWeaponFighting
 summary: "Draw thrown weapons instantly and deal extra damage with them."
-name: Thrown Weapon Fighting
+name: Thrown Weapon Fighter

@@ -1,9 +1,0 @@
-id: healingHands
-type: Activity
-name: Healing Hands
-time: action
-range: touch
-duration: Instantaneous
-resource: limited
-description: |
-  You touch a creature and roll $(attributes.prof)d4. The creature regains Hit Points equal to the total rolled.

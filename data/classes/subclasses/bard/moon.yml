@@ -6,9 +6,12 @@ tags:
   - bardSubclass
 children:
   - id: inspiredEclipse
-    type: Trait
-    name: Inspired Eclipse
-    description: You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell.
+    type: Effect
+    target: activities[id=bardicInspiration].mechanic.payloads
+    operation: push
+    value: 
+      type: text
+      text: You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell.
     condition: $(meta.level >= 3)
   - id: lunarVitality
     type: Activity

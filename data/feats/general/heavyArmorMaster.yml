@@ -4,7 +4,8 @@ name: Heavy Armor Master
 tags:
   - feat
   - generalFeat
-condition: $(attributes.proficiencies.includes('heavyArmor'))
+prerequisite: Heavy Armor Training
+prerequisiteCondition: $(attributes.proficiencies.heavyArmor)
 type: Folder
 children:
   - name: Ability Score Increase

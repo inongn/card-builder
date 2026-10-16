@@ -1,5 +1,0 @@
-name: Puncture
-type: Extra
-target: weaponAttack AND piercingDamage
-description: On a hit, you can reroll one of the attack's damage dice, and you must use the new roll.
-id: piercerPuncture

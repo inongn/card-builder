@@ -1,6 +1,0 @@
-type: Effect
-target: saves.constitution.adv
-operation: set
-value: true
-id: conAdvantage
-name: Con Advantage

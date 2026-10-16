@@ -1,6 +1,0 @@
-type: Reference
-id: warden
-summary: "Gain martial weapon training and medium armor defense."
-name: Warden
-tags: [primalOrder]
-target: [martialWeaponProficiency, mediumArmorTraining]

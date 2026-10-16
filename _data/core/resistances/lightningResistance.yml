@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - damageResistance
-operation: push
-value: Lightning Damage
-target: attributes.resistances
-id: lightningResistance
-name: Lightning Resistance

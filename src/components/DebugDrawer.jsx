@@ -196,43 +196,54 @@ export default function DebugDrawer({
         return () => drawer.removeEventListener('close', handleCloseEvent);
     }, [onClose]);
 
-    // Generate debug content strings
+    // Safety cleanup: If DebugDrawer unmounts, restore layout-main padding
+    useEffect(() => {
+        return () => {
+            const main = document.querySelector('mdui-layout-main');
+            if (main) {
+                main.style.paddingRight = '';
+            }
+        };
+    }, []);
+
+    // Generate debug content strings (only computed when open)
     const charYaml = useMemo(() => {
-        if (!characterData) return '# No character data loaded';
+        if (!open || !characterData) return '# No character data loaded';
         try {
             return jsyaml.dump(characterData, { indent: 2, lineWidth: -1 });
         } catch (e) {
             return `# Error stringifying character: ${e.message}`;
         }
-    }, [characterData]);
+    }, [open, characterData]);
 
     const recipeYaml = useMemo(() => {
-        if (!builder) return '# No builder initialized';
+        if (!open || !builder) return '# No builder initialized';
+        void characterData; // Ensure recipe updates when character changes in sync
         try {
             return jsyaml.dump(builder.getRecipe(), { indent: 2, lineWidth: -1 });
         } catch (e) {
             return `# Error stringifying recipe: ${e.message}`;
         }
-    }, [builder, characterData]); // Update when character changes, since recipe updates in sync
+    }, [open, builder, characterData]);
 
     const treeYaml = useMemo(() => {
-        if (!propertyTree) return '# No property tree available';
+        if (!open || !propertyTree) return '# No property tree available';
         try {
             return jsyaml.dump(propertyTree, { indent: 2, lineWidth: -1 });
         } catch (e) {
             return `# Error stringifying property tree: ${e.message}`;
         }
-    }, [propertyTree]);
+    }, [open, propertyTree]);
 
     // Developer stats metrics
     const stats = useMemo(() => {
-        if (!library) return null;
+        if (!open || !library) return null;
         return {
             propertiesCount: library.properties.size,
             rawFilesCount: library.rawStore.size,
             keys: Array.from(library.rawStore.keys()).sort()
         };
-    }, [library]);
+    }, [open, library]);
 
     // Handle Clearing All Saved Characters
     const handleClearAllCharacters = () => {

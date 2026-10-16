@@ -42,6 +42,7 @@ children:
     operation: set
     value: 
       mode: choice
+      blocks: []
       text: "You teleport up to 30 feet to an unoccupied space you can see. Then, you can choose one of the following options:"
 
   - id: stepsOfTheFeyOptions
@@ -80,7 +81,7 @@ children:
   - id: stepsOfTheFeyLevel6Options
     type: Effect
     name: Steps of the Fey Level 6 Options
-    target: activities[id=mistyStep].mechanic.blocks
+    target: activities[id=mistyStep].mechanic
     operation: push
     value:
       - pattern: automatic

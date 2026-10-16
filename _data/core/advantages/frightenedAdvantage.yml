@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Frightened
-target: attributes.advantages
-id: frightenedAdvantage
-name: Frightened Advantage

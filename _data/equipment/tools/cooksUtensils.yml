@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Cook's Utensils
-target: attributes.tools
-id: cooksUtensils
-name: Cook's Utensils

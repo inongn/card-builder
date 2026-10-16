@@ -4,7 +4,8 @@ name: Medium Armor Master
 tags:
   - feat
   - generalFeat
-condition: "$(attributes.proficiencies.includes('mediumArmor'))"
+prerequisite: Medium Armor Training
+prerequisiteCondition: $(attributes.proficiencies.mediumArmor)
 type: Folder
 children:
   - name: Ability Score Increase

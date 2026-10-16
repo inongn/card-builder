@@ -10,12 +10,15 @@ export const DashboardScreen = ({
     savedCharacters,
     handleNewCharacter,
     handleOpenSaved,
-    handleDeleteSaved,
+    _handleDeleteSaved,
     onOpenImport,
-    onOpenExport,
+    _onOpenExport,
     onLoadSampleCharacters,
     toggleTheme,
-    isDarkMode
+    isDarkMode,
+    onToggleDebug,
+    sampleCharactersEnabled,
+    onToggleSampleCharacters
 }) => {
     const { t, localize, lang, toggleLang } = useLocale();
 
@@ -114,34 +117,42 @@ export const DashboardScreen = ({
             <mdui-top-app-bar variant="small" scroll-behavior="hide">
                 <mdui-button-icon icon="shield_moon"></mdui-button-icon>
                 <mdui-top-app-bar-title>{t('dashboard.appTitle')}</mdui-top-app-bar-title>
-
-                {/* Settings Panel Dropdown */}
+                <mdui-button
+                    variant="filled"
+                    icon="add"
+                    onClick={handleNewCharacter}
+                    className="mobile-hidden"
+                    style={{ marginRight: '4px' }}
+                >
+                    {t('dashboard.newCharacter')}
+                </mdui-button>
                 <mdui-dropdown placement="bottom-end">
-                    <mdui-button-icon
-                        slot="trigger"
-                        icon="more_vert"
-                        style={{ marginRight: '8px' }}
-                    ></mdui-button-icon>
+                    <mdui-button-icon slot="trigger" icon="more_vert" title="More options"></mdui-button-icon>
                     <mdui-menu>
                         {onOpenImport && (
                             <mdui-menu-item icon="file_download" onClick={onOpenImport}>
                                 {t('dashboard.importRecipe')}
                             </mdui-menu-item>
                         )}
-                        {toggleTheme && (
-                            <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
-                                {isDarkMode ? t('play.lightMode') : t('play.darkMode')}
-                            </mdui-menu-item>
-                        )}
+                        <mdui-menu-item icon={isDarkMode ? 'light_mode' : 'dark_mode'} onClick={toggleTheme}>
+                            {isDarkMode ? t('play.lightMode') : t('play.darkMode')}
+                        </mdui-menu-item>
                         <mdui-menu-item icon="language" onClick={toggleLang}>
                             {t('language.switchTo')}
                         </mdui-menu-item>
+                        <mdui-menu-item icon="bug_report" onClick={onToggleDebug}>
+                            Debug
+                        </mdui-menu-item>
+                        {onToggleSampleCharacters && (
+                            <mdui-menu-item
+                                icon={sampleCharactersEnabled ? 'group_remove' : 'group_add'}
+                                onClick={onToggleSampleCharacters}
+                            >
+                                {sampleCharactersEnabled ? 'Unload Sample Characters' : 'Load Sample Characters'}
+                            </mdui-menu-item>
+                        )}
                     </mdui-menu>
                 </mdui-dropdown>
-
-                <mdui-button variant="filled" icon="add" onClick={handleNewCharacter} className="mobile-hidden">
-                    {t('dashboard.newCharacter')}
-                </mdui-button>
             </mdui-top-app-bar>
 
             <div>

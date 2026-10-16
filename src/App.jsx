@@ -304,16 +304,32 @@ export default function App() {
         }
     }, [library, builder, syncState]);
 
-    const handleFillSlot = useCallback((path, propertyId) => {
-        builderRef.current.fillSlot(path, propertyId);
+    const handleFillSlot = useCallback((path, propertyId, logicalPath) => {
+        const slotTarget = logicalPath ? { path, logicalPath } : path;
+        builderRef.current.fillSlot(slotTarget, propertyId);
         // Defer sync by one tick so mdui web component dropdown-close animations
         // can complete before React unmounts/remounts select elements, preventing
         // null-reference errors in onDropdownClose / onValueChange.
         setTimeout(syncState, 0);
     }, [syncState]);
 
-    const handleClearSlot = useCallback((path) => {
-        builderRef.current.clearSlot(path);
+    const handleClearSlot = useCallback((path, logicalPath) => {
+        const slotTarget = logicalPath ? { path, logicalPath } : path;
+        builderRef.current.clearSlot(slotTarget);
+        setTimeout(syncState, 0);
+    }, [syncState]);
+
+    const handleBatchFillSlots = useCallback((fills) => {
+        if (!fills || fills.length === 0) return;
+        fills.forEach(({ path, logicalPath, propertyId }) => {
+            const slotTarget = logicalPath ? { path, logicalPath } : path;
+            if (propertyId) {
+                builderRef.current.fillSlot(slotTarget, propertyId, false);
+            } else {
+                builderRef.current.clearSlot(slotTarget, false);
+            }
+        });
+        builderRef.current.rebuild();
         setTimeout(syncState, 0);
     }, [syncState]);
 
@@ -520,6 +536,14 @@ export default function App() {
     }, [library, builder]);
 
     const [isDebugOpen, setIsDebugOpen] = useState(false);
+    const [hasOpenedDebug, setHasOpenedDebug] = useState(false);
+
+    useEffect(() => {
+        if (isDebugOpen) {
+            setHasOpenedDebug(true);
+        }
+    }, [isDebugOpen]);
+
     const [exportDialog, setExportDialog] = useState({ open: false, character: null, recipe: null });
     const [importDialog, setImportDialog] = useState({ open: false, target: 'play' });
 
@@ -601,7 +625,7 @@ export default function App() {
     return (
         <mdui-layout className="app-container">
             <Suspense fallback={null}>
-                {isDebugOpen && (
+                {hasOpenedDebug && (
                     <DebugDrawer
                         open={isDebugOpen}
                         onClose={() => setIsDebugOpen(false)}
@@ -651,6 +675,9 @@ export default function App() {
                         onLoadSampleCharacters={handleLoadSampleCharacters}
                         toggleTheme={toggleTheme}
                         isDarkMode={isDarkMode}
+                        onToggleDebug={() => setIsDebugOpen(prev => !prev)}
+                        sampleCharactersEnabled={sampleCharactersEnabled}
+                        onToggleSampleCharacters={handleToggleSampleCharacters}
                     />
                 )}
                 {activeTab === 'builder' && (
@@ -663,6 +690,7 @@ export default function App() {
                             handleUpdateInput={handleUpdateInput}
                             handleFillSlot={handleFillSlot}
                             handleClearSlot={handleClearSlot}
+                            handleBatchFillSlots={handleBatchFillSlots}
                             handleGetSlotOptions={handleGetSlotOptions}
                             onGetProperty={handleGetProperty}
                             onNavigate={handleNavigate}
@@ -670,8 +698,6 @@ export default function App() {
                             builderSource={builderSource}
                             isNewCharacterCreation={isNewCharacterCreation}
                             setIsNewCharacterCreation={setIsNewCharacterCreation}
-                            onOpenExport={() => handleOpenExport()}
-                            onOpenImport={() => handleOpenImport('builder')}
                         />
                     </Suspense>
                 )}

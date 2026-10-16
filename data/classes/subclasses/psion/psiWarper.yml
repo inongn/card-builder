@@ -32,7 +32,7 @@ children:
     target: activities[id=telekineticPropel].mechanic.failure
     operation: push
     value:
-      pattern: automatic
+      type: text
       text: "instead of pushing it, you can teleport it to an unoccupied horizontal space you can see within 30 feet of you."
     condition: $(meta.level >= 3)
   - id: teleporterCombat

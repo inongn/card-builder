@@ -1,6 +1,0 @@
-type: Effect
-operation: set
-value: true
-target: attributes.proficiencies.heavyArmor
-id: heavyArmorTraining
-name: Heavy Armor Training

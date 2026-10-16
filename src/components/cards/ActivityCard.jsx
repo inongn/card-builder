@@ -161,7 +161,10 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
         }
 
         // 1. Spells check
-        const isSpell = tags.some(t => String(t).includes('Spell') || String(t) === 'cantrip') || (activity.resource && String(activity.resource).toLowerCase().includes('spell'));
+        const isSpell = tags.some(t => {
+            const lower = String(t).toLowerCase();
+            return lower === 'cantrip' || lower === 'spell' || /^level\d+spell$/i.test(lower) || lower.endsWith('spell');
+        });
 
         if (isSpell) {
             const schools = ['abjuration', 'conjuration', 'divination', 'enchantment', 'evocation', 'illusion', 'necromancy', 'transmutation'];
@@ -181,7 +184,8 @@ export const ActivityCard = memo(({ activity, variant = 'collapsible', char }) =
                 const match = levelTag.match(/\d+/);
                 if (match) levelNum = match[0];
             } else if (activity.resource) {
-                const match = String(activity.resource).match(/\d+/);
+                const resStr = Array.isArray(activity.resource) ? activity.resource.join(' ') : String(activity.resource);
+                const match = resStr.match(/\d+/);
                 if (match) levelNum = match[0];
             }
 

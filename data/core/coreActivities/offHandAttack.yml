@@ -1,0 +1,17 @@
+id: offHandAttack
+name: Off-Hand Attack
+type: Activity
+duration: instantaneous
+time: bonus action
+range: self
+mechanic:
+  pattern: automatic
+  target:
+    type: self
+  payloads:
+    - type: action
+      actionType: attack
+      attackFilter:
+        classification: light
+        abilityModifier: false
+condition: $(activities.some(a => a.tags?.includes('light')))

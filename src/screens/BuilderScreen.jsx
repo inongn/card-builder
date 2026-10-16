@@ -1,7 +1,8 @@
 import React from 'react';
 import PropertySelectionTree from '../components/PropertySelectionTree';
-import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem } from '../utils/builderUtils.js';
+import { getAvailableCategories, isBuilderComplete, getCategoryStats, collectRenderableNodes, categorizeNode, STEP_DEFINITIONS, getCategoryForStep, MERGED_CATEGORIES, aggregateCategoryOptions, getMergedCategoryHardcodedNodes, findOptimalSlotForOption, findMatchingForChoices, getSlotAllowedMap, CATEGORIES, getItemUniqueId, isSameSlotItem, isSpell, getSpellLevel } from '../utils/builderUtils.js';
 import { ExpressionEvaluator } from '../engine/RpgEngine';
+import { hasAutoPickSetup, computeAutoPickChoices, computeAutoPickAbilities } from '../utils/autoPickUtils.js';
 import { formatActivityMechanic } from '../utils/mechanicFormatter';
 import { useLocale } from '../i18n';
 import { getSpeciesArtwork, getClassArtwork, getSubclassArtwork, getBackgroundArtwork, getAssetUrl } from '../data/artworkData.js';
@@ -174,9 +175,9 @@ const getOptionChips = (option, onGetProperty, characterData, t = (k, def) => de
     const tags = fullOpt.tags || [];
     const vars = fullOpt.variables || {};
 
-    const isSpell = tags.some(t => t.includes('Spell') || t === 'cantrip') || fullOpt.resource?.toLowerCase().includes('spell');
+    const isSpellCard = isSpell(fullOpt);
 
-    if (isSpell) {
+    if (isSpellCard) {
         // School
         const schools = ['abjuration', 'conjuration', 'divination', 'enchantment', 'evocation', 'illusion', 'necromancy', 'transmutation'];
         const school = tags.find(t => schools.includes(t.toLowerCase()));
@@ -728,6 +729,43 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
 
     const displayName = localize(option.id, 'name', option.displayName || option.name);
 
+    const renderRequirementOrSource = () => {
+        if (option.isHardcoded && (option.sourceText || option.source)) {
+            return (
+                <div className="card-vertical__source-text">
+                    {option.sourceText || `From ${option.source}`}
+                </div>
+            );
+        }
+
+        if (option.requirementText) {
+            if (option.isRequirementMet) {
+                return (
+                    <div className="card-vertical__requirement card-vertical__requirement--met">
+                        <mdui-icon name="check" class="requirement-check-icon" style={{ fontSize: '1rem', lineHeight: '1', flexShrink: 0 }}></mdui-icon>
+                        <span>{option.requirementText}</span>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="card-vertical__disabled-reason card-vertical__requirement card-vertical__requirement--unmet">
+                        <span>{option.requirementText}</span>
+                    </div>
+                );
+            }
+        }
+
+        if (disabled && option.disabledReason) {
+            return (
+                <div className="card-vertical__disabled-reason">
+                    {option.disabledReason}
+                </div>
+            );
+        }
+
+        return null;
+    };
+
     return (
         <mdui-list-item
             active={isSelected ? 'active' : ''}
@@ -736,7 +774,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
             onClick={handleCardClick}
             className="card-vertical-item"
         >
-            <div slot="custom" className={`card-vertical option-card-vertical ${isSelected ? 'selected' : ''}`}>
+            <div slot="custom" className={`card-vertical option-card-vertical ${isSelected ? 'selected' : ''} ${disabled ? 'disabled' : ''}`}>
                 {artworkUrl ? (
                     <div className="card-vertical__media" style={{ backgroundImage: `url(${artworkUrl})` }}>
                         <div className="card-vertical__media-overlay" />
@@ -754,6 +792,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                                     {labels.join(' • ')}
                                 </div>
                             )}
+                            {renderRequirementOrSource()}
                             {evaluatedSummary && (
                                 <div className="card-vertical__body">
                                     <OptionSummary text={evaluatedSummary} />
@@ -774,6 +813,7 @@ const OptionCard = React.memo(function OptionCard({ option, isSelected, disabled
                                 {labels.join(' • ')}
                             </div>
                         )}
+                        {renderRequirementOrSource()}
                         {evaluatedSummary && (
                             <div className="card-vertical__body">
                                 <OptionSummary text={evaluatedSummary} />
@@ -944,15 +984,14 @@ export const BuilderScreen = ({
     handleUpdateInput,
     handleFillSlot,
     handleClearSlot,
+    handleBatchFillSlots,
     handleGetSlotOptions,
     onNavigate,
     onGetProperty,
     onSave,
     builderSource,
     isNewCharacterCreation,
-    setIsNewCharacterCreation,
-    onOpenExport,
-    onOpenImport
+    setIsNewCharacterCreation
 }) => {
     const { t, localize, lang } = useLocale();
     const isMobile = window.innerWidth <= 890;
@@ -1156,7 +1195,11 @@ export const BuilderScreen = ({
         if (displaySlotItem.type === 'MergedCategory') {
             const stepKey = displaySlotItem.step || displaySlotItem.category;
             const hardcodedNodes = getMergedCategoryHardcodedNodes(propertyTree, characterData, stepKey);
-            return aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty, hardcodedNodes);
+            const aggregated = aggregateCategoryOptions(displaySlotItem.items, handleGetSlotOptions, onGetProperty, hardcodedNodes, characterData);
+            if (stepKey === 'spellcasting') {
+                return aggregated.filter(isSpell);
+            }
+            return aggregated;
         }
 
         const node = displaySlotItem.type === 'Slot' ? displaySlotItem.node : displaySlotItem.items[0].node;
@@ -1179,35 +1222,43 @@ export const BuilderScreen = ({
 
         // Resolve missing descriptions using onGetProperty
         const resolvedOpts = opts.map(opt => {
+            let fullOpt = opt;
             if (!opt.description && onGetProperty) {
                 const full = onGetProperty(opt.id);
                 if (full) {
-                    return {
+                    fullOpt = {
                         ...opt,
                         ...full,
                         displayName: opt.displayName || opt.name || full.displayName || full.name
                     };
                 }
             }
-            return opt;
-        });
-
-        const isSpell = resolvedOpts.some(opt => {
-            const tags = opt.tags || [];
-            return tags.some(t => t.includes('Spell') || t === 'cantrip') || opt.resource?.toLowerCase().includes('spell');
-        });
-
-        if (isSpell) {
-            const getSpellLevel = (opt) => {
-                const tags = opt.tags || [];
-                if (tags.includes('cantrip')) return 0;
-                if (tags.includes('level1Spell')) return 1;
-                if (tags.includes('level2Spell')) return 2;
-                if (tags.includes('level3Spell')) return 3;
-                if (tags.includes('level4Spell')) return 4;
-                return 99;
+            let requirementText = fullOpt.requirementText;
+            let isRequirementMet = fullOpt.isRequirementMet;
+            if (requirementText === undefined && (fullOpt.prerequisite || fullOpt.prerequisiteCondition)) {
+                const rawPrereq = fullOpt.prerequisite ? String(fullOpt.prerequisite).trim() : null;
+                requirementText = rawPrereq
+                    ? (/^(requires|prerequisite:?)/i.test(rawPrereq) ? rawPrereq : `Requires ${rawPrereq}`)
+                    : 'Prerequisites required';
+                if (fullOpt.prerequisiteCondition) {
+                    const ev = characterData ? new ExpressionEvaluator(characterData) : null;
+                    isRequirementMet = ev ? Boolean(ev.evaluate(fullOpt.prerequisiteCondition)) : true;
+                } else {
+                    isRequirementMet = true;
+                }
+            }
+            return {
+                ...fullOpt,
+                requirementText,
+                isRequirementMet,
+                disabledReason: fullOpt.disabledReason || (requirementText && !isRequirementMet ? requirementText : null)
             };
-            return [...resolvedOpts].sort((a, b) => {
+        });
+
+        const isSpellList = resolvedOpts.some(isSpell);
+
+        if (isSpellList) {
+            return [...resolvedOpts].filter(isSpell).sort((a, b) => {
                 const lvlA = getSpellLevel(a);
                 const lvlB = getSpellLevel(b);
                 if (lvlA !== lvlB) return lvlA - lvlB;
@@ -1284,10 +1335,10 @@ export const BuilderScreen = ({
         }
 
         return [...resolvedOpts].sort((a, b) => (a.displayName || a.name || '').localeCompare(b.displayName || b.name || ''));
-    }, [displaySlotItem, handleGetSlotOptions, onGetProperty]);
+    }, [displaySlotItem, handleGetSlotOptions, onGetProperty, propertyTree, characterData]);
 
     const handleOptionSelect = (option) => {
-        if (!displaySlotItem) return;
+        if (!displaySlotItem || option.isHardcoded) return;
 
         if (displaySlotItem.type === 'MergedCategory') {
             const currentChoiceIds = displaySlotItem.items.map(i => i.node.filled?.id).filter(Boolean);
@@ -1315,14 +1366,15 @@ export const BuilderScreen = ({
                 }
             });
 
-            const slotAllowedMap = getSlotAllowedMap(displaySlotItem.items, categoryOptionsMap, handleGetSlotOptions);
+            const slotAllowedMap = getSlotAllowedMap(displaySlotItem.items, categoryOptionsMap, handleGetSlotOptions, characterData);
 
             if (option.isSelected) {
                 const newChoiceIds = currentChoiceIds.filter(id => id !== option.id);
                 const matching = findMatchingForChoices(newChoiceIds, displaySlotItem.items, slotAllowedMap);
 
+                const fills = [];
                 displaySlotItem.items.forEach(slotItem => {
-                    const filledId = slotItem.node.filled?.id;
+                    const filledId = slotItem.node.filled?.id || null;
                     let matchedChoiceId = null;
                     if (matching) {
                         for (const [cId, targetSlot] of matching.entries()) {
@@ -1332,33 +1384,36 @@ export const BuilderScreen = ({
                             }
                         }
                     }
-                    if (filledId && filledId !== matchedChoiceId) {
-                        handleClearSlot(slotItem.path);
+                    if (filledId !== matchedChoiceId) {
+                        fills.push({
+                            path: slotItem.path,
+                            logicalPath: slotItem.logicalPath,
+                            propertyId: matchedChoiceId
+                        });
                     }
                 });
 
-                if (matching) {
-                    displaySlotItem.items.forEach(slotItem => {
-                        const filledId = slotItem.node.filled?.id;
-                        let matchedChoiceId = null;
-                        for (const [cId, targetSlot] of matching.entries()) {
-                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
-                                matchedChoiceId = cId;
-                                break;
+                if (fills.length > 0) {
+                    if (handleBatchFillSlots) {
+                        handleBatchFillSlots(fills);
+                    } else {
+                        fills.forEach(({ path, logicalPath, propertyId }) => {
+                            if (propertyId) {
+                                handleFillSlot(path, propertyId, logicalPath);
+                            } else {
+                                handleClearSlot(path, logicalPath);
                             }
-                        }
-                        if (matchedChoiceId && filledId !== matchedChoiceId) {
-                            handleFillSlot(slotItem.path, matchedChoiceId);
-                        }
-                    });
+                        });
+                    }
                 }
             } else if (!option.isDisabled) {
                 const newChoiceIds = [...currentChoiceIds, option.id];
                 const matching = findMatchingForChoices(newChoiceIds, displaySlotItem.items, slotAllowedMap);
 
                 if (matching) {
+                    const fills = [];
                     displaySlotItem.items.forEach(slotItem => {
-                        const filledId = slotItem.node.filled?.id;
+                        const filledId = slotItem.node.filled?.id || null;
                         let matchedChoiceId = null;
                         for (const [cId, targetSlot] of matching.entries()) {
                             if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
@@ -1366,46 +1421,50 @@ export const BuilderScreen = ({
                                 break;
                             }
                         }
-                        if (filledId && filledId !== matchedChoiceId) {
-                            handleClearSlot(slotItem.path);
+                        if (filledId !== matchedChoiceId) {
+                            fills.push({
+                                path: slotItem.path,
+                                logicalPath: slotItem.logicalPath,
+                                propertyId: matchedChoiceId
+                            });
                         }
                     });
 
-                    displaySlotItem.items.forEach(slotItem => {
-                        const filledId = slotItem.node.filled?.id;
-                        let matchedChoiceId = null;
-                        for (const [cId, targetSlot] of matching.entries()) {
-                            if (JSON.stringify(targetSlot.logicalPath) === JSON.stringify(slotItem.logicalPath)) {
-                                matchedChoiceId = cId;
-                                break;
-                            }
+                    if (fills.length > 0) {
+                        if (handleBatchFillSlots) {
+                            handleBatchFillSlots(fills);
+                        } else {
+                            fills.forEach(({ path, logicalPath, propertyId }) => {
+                                if (propertyId) {
+                                    handleFillSlot(path, propertyId, logicalPath);
+                                } else {
+                                    handleClearSlot(path, logicalPath);
+                                }
+                            });
                         }
-                        if (matchedChoiceId && filledId !== matchedChoiceId) {
-                            handleFillSlot(slotItem.path, matchedChoiceId);
-                        }
-                    });
+                    }
                 }
             }
             return;
         }
 
         if (displaySlotItem.type === 'Slot') {
-            const { node, path } = displaySlotItem;
+            const { node, path, logicalPath } = displaySlotItem;
             if (node.filled?.id === option.id) {
-                handleClearSlot(path);
+                handleClearSlot(path, logicalPath);
             } else {
-                handleFillSlot(path, option.id);
+                handleFillSlot(path, option.id, logicalPath);
             }
         } else if (displaySlotItem.type === 'Group') {
             const { items } = displaySlotItem;
             const filledSlot = items.find(item => item.node.filled?.id === option.id);
 
             if (filledSlot) {
-                handleClearSlot(filledSlot.path);
+                handleClearSlot(filledSlot.path, filledSlot.logicalPath);
             } else {
                 const unfilledSlot = items.find(item => !item.node.filled);
                 if (unfilledSlot) {
-                    handleFillSlot(unfilledSlot.path, option.id);
+                    handleFillSlot(unfilledSlot.path, option.id, unfilledSlot.logicalPath);
                 }
             }
         }
@@ -1555,6 +1614,73 @@ export const BuilderScreen = ({
         return () => window.removeEventListener('keydown', handleKeyDown, true);
     }, [isCurrentSelectionFilled, isComplete, handleNextOrSaveClick]);
 
+    const isAutoPickEligible = React.useMemo(() => {
+        if (!displaySlotItem) return false;
+        return hasAutoPickSetup(displaySlotItem, characterData, options);
+    }, [displaySlotItem, characterData, options]);
+
+    const hasSelectedClass = Boolean(characterData?.meta?.class);
+
+    const handleAutoPick = React.useCallback(() => {
+        if (!displaySlotItem || !hasSelectedClass) return;
+
+        if (displaySlotItem.type === 'Abilities') {
+            const { allocated, origin, asi } = computeAutoPickAbilities(characterData);
+            const statsList = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+            statsList.forEach(stat => {
+                if (abilityNodesMap.allocated?.[stat]?.path) {
+                    handleUpdateInput(abilityNodesMap.allocated[stat].path, allocated[stat]);
+                }
+                if (abilityNodesMap.origin?.[stat]?.path) {
+                    handleUpdateInput(abilityNodesMap.origin[stat].path, origin[stat]);
+                }
+                if (abilityNodesMap.asi?.[stat]?.path) {
+                    handleUpdateInput(abilityNodesMap.asi[stat].path, asi[stat]);
+                }
+            });
+            return;
+        }
+
+        const poolStep = displaySlotItem.step || (displaySlotItem.category === 'abilities' ? 'stats' : null);
+        const fills = computeAutoPickChoices({
+            poolStep,
+            displaySlotItem,
+            options,
+            characterData,
+            handleGetSlotOptions,
+            onGetProperty
+        });
+
+        if (fills && fills.length > 0) {
+            if (handleBatchFillSlots) {
+                handleBatchFillSlots(fills);
+            } else {
+                fills.forEach(({ path, propertyId }) => {
+                    if (propertyId) {
+                        handleFillSlot(path, propertyId);
+                    } else {
+                        handleClearSlot(path);
+                    }
+                });
+            }
+        }
+    }, [displaySlotItem, hasSelectedClass, characterData, abilityNodesMap, handleUpdateInput, options, handleGetSlotOptions, onGetProperty, handleBatchFillSlots, handleFillSlot, handleClearSlot]);
+
+    const renderAutoPickButton = () => {
+        if (isMobile || !isAutoPickEligible) return null;
+        return (
+            <mdui-button
+                variant="outlined"
+                size="small"
+                icon="auto_awesome"
+                onClick={handleAutoPick}
+                title="Auto-pick recommended choices"
+            >
+                Auto-Pick
+            </mdui-button>
+        );
+    };
+
     const renderNextOrSaveButton = () => {
         if (isMobile) return null;
         return (
@@ -1596,23 +1722,16 @@ export const BuilderScreen = ({
         ? <mdui-button-icon icon="arrow_back" onClick={() => setSelectedSlotItem(null)}></mdui-button-icon>
         : <mdui-button-icon icon="arrow_back" onClick={() => onNavigate(builderSource)}></mdui-button-icon>;
 
-    const topAppBarRightAction = (onOpenExport || onOpenImport) ? (
-        <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-            {onOpenImport && (
-                <mdui-button-icon
-                    icon="file_download"
-                    title="Import Recipe Code"
-                    onClick={onOpenImport}
-                ></mdui-button-icon>
-            )}
-            {onOpenExport && (
-                <mdui-button-icon
-                    icon="share"
-                    title="Export Recipe Code"
-                    onClick={onOpenExport}
-                ></mdui-button-icon>
-            )}
-        </div>
+    const topAppBarRightAction = isAutoPickEligible ? (
+        <mdui-button
+            variant="text"
+            size="small"
+            icon="auto_awesome"
+            onClick={handleAutoPick}
+            title="Auto-pick recommended choices"
+        >
+            Auto-Pick
+        </mdui-button>
     ) : null;
 
     const renderAbilitiesPane = () => {
@@ -1637,7 +1756,10 @@ export const BuilderScreen = ({
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
                         <span className="options-pane-title">{t('builder.steps.stats', t('builder.scores', 'Ability Scores'))}</span>
-                        {renderNextOrSaveButton()}
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            {renderAutoPickButton()}
+                            {renderNextOrSaveButton()}
+                        </div>
                     </div>
                 </div>
 
@@ -1882,7 +2004,10 @@ export const BuilderScreen = ({
                 <div className="options-pane-header">
                     <div className="options-pane-title-group">
                         <span className="options-pane-title">{slotName}</span>
-                        {renderNextOrSaveButton()}
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            {renderAutoPickButton()}
+                            {renderNextOrSaveButton()}
+                        </div>
                     </div>
                 </div>
 
@@ -1937,16 +2062,13 @@ export const BuilderScreen = ({
                                 return null;
                             };
 
-                            const isSpellList = options.some(opt => {
-                                const tags = opt.tags || [];
-                                return tags.some(t => t.includes('Spell') || t === 'cantrip') || opt.resource?.toLowerCase().includes('spell');
-                            });
+                            const isSpellList = options.some(isSpell);
 
                             const hasEquipment = options.some(opt => getEquipmentCategory(opt) !== null);
 
                             const isFeatList = options.some(opt => {
                                 const tags = opt.tags || [];
-                                return tags.some(t => t.includes('Feat') || t === 'feat');
+                                return tags.some(t => t.includes('Feat') || t === 'feat') || tags.includes('fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior';
                             });
 
                             const isClassOptionList = options.some(opt => {
@@ -1957,22 +2079,13 @@ export const BuilderScreen = ({
 
 
                             if (isSpellList) {
-                                const getSpellLevel = (opt) => {
-                                    const tags = opt.tags || [];
-                                    if (tags.includes('cantrip')) return 0;
-                                    if (tags.includes('level1Spell')) return 1;
-                                    if (tags.includes('level2Spell')) return 2;
-                                    if (tags.includes('level3Spell')) return 3;
-                                    if (tags.includes('level4Spell')) return 4;
-                                    return 99;
-                                };
-
-                                const uniqueLevels = new Set(options.map(opt => getSpellLevel(opt)));
+                                const spellOptions = options.filter(isSpell);
+                                const uniqueLevels = new Set(spellOptions.map(opt => getSpellLevel(opt)));
                                 const showHeaders = uniqueLevels.size > 1;
 
                                 let currentLvl = -1;
                                 const rendered = [];
-                                options.forEach(option => {
+                                spellOptions.forEach(option => {
                                     const lvl = getSpellLevel(option);
                                     if (lvl !== currentLvl) {
                                         currentLvl = lvl;
@@ -1981,7 +2094,12 @@ export const BuilderScreen = ({
                                             1: t('builder.spellsLevel1', '1st Level Spells'),
                                             2: t('builder.spellsLevel2', '2nd Level Spells'),
                                             3: t('builder.spellsLevel3', '3rd Level Spells'),
-                                            4: t('builder.spellsLevel4', '4th Level Spells')
+                                            4: t('builder.spellsLevel4', '4th Level Spells'),
+                                            5: t('builder.spellsLevel5', '5th Level Spells'),
+                                            6: t('builder.spellsLevel6', '6th Level Spells'),
+                                            7: t('builder.spellsLevel7', '7th Level Spells'),
+                                            8: t('builder.spellsLevel8', '8th Level Spells'),
+                                            9: t('builder.spellsLevel9', '9th Level Spells')
                                         };
                                         if (showHeaders) {
                                             rendered.push(
@@ -2019,7 +2137,7 @@ export const BuilderScreen = ({
                             } else if (isFeatList) {
                                 const getFeatCategory = (opt) => {
                                     const tags = opt.tags || [];
-                                    if (tags.includes('fightingStyle')) return t('builder.fightingStyles', 'Fighting Styles');
+                                    if (tags.includes('fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior') return t('builder.fightingStyles', 'Fighting Styles');
                                     if (tags.includes('feat')) return t('builder.steps.feats', 'Feats');
                                     return null;
                                 };

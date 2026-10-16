@@ -1,6 +1,0 @@
-type: Effect
-target: skills.stealth.adv
-operation: set
-value: true
-id: stealthAdvantage
-name: Stealth Advantage

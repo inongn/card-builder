@@ -1,6 +1,0 @@
-type: Effect
-operation: set
-value: true
-target: attributes.proficiencies.finesseWeapons
-id: finesseWeaponProficiency
-name: Finesse Weapon Proficiency

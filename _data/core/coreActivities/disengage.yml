@@ -1,8 +1,0 @@
-id: disengage
-name: Disengage
-type: Activity
-time: action
-range: self
-duration: instantaneous
-description: |
-  Your movement doesn't provoke Opportunity Attacks for the rest of the current turn.

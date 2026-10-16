@@ -38,22 +38,15 @@ children:
     duration: 10 minutes
     resource: rage
     mechanic:
-      mode: succession
-      blocks:
-        - pattern: automatic
-          name: Damage Resistance
-          target:
-            type: self
-          payloads:
-            - type: defense
-              defense: resistance
-              damageTypes: [bludgeoning, piercing, slashing]
-        - pattern: text
-          name: Rage Damage
-          text: "add $(formatBonus(attributes.rageDamage)) to Strength-based attack damage"
-        - pattern: text
-          name: Strength Advantage
-          text: "gain Advantage on Strength checks and Strength saving throws"
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: defense
+          defense: resistance
+          damageTypes: [bludgeoning, piercing, slashing]
+        - text: "add $(formatBonus(attributes.rageDamage)) to Strength-based attack damage"
+        - text: "gain Advantage on Strength checks and Strength saving throws"
   - id: rage
     type: Form
     name: Rage
@@ -115,11 +108,10 @@ children:
   - id: primalKnowledge
     type: Effect
     name: Primal Knowledge
-    target: activities[id=rage].mechanic.blocks
+    target: activities[id=rage].mechanic.payloads
     operation: push
     value:
-      pattern: automatic
-      name: Primal Knowledge
+      type: text
       text: "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength"
     condition: $(meta.level >= 3)
   - id: primalKnowledgeAcr
@@ -154,13 +146,12 @@ children:
     condition: $(meta.level >= 7)
   - id: instinctivePounce
     type: Effect
-    name: Instinctive Pounce
-    target: activities[id=rage].mechanic.blocks
+    target: activities[id=rage].mechanic.payloads
     operation: push
     value:
-      pattern: automatic
-      name: Instinctive Pounce
-      text: "as part of the Bonus Action you take to enter your Rage, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet"
+      type: movement
+      movementType: allow
+      distance: $(Math.floor(attributes.movement.walk / 2 / 5) * 5)
     condition: $(meta.level >= 7)
   - id: level8feat
     name: Level 8 Feat

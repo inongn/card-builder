@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-target: attributes.immunities
-value: Exhaustion
-id: exhaustionImmunity
-name: Exhaustion Immunity

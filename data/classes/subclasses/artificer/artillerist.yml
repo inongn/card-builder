@@ -106,10 +106,20 @@ children:
         type: multiple
         range: $(range)
   - type: Effect
-    target: activities[(tags=artificer AND tags=damageSpell) OR thunderwave OR shatter OR scorchingRay].mechanic.damage.extraDice
+    target: activities[(tags=artificer AND tags=damageSpell) OR id=thunderwave OR id=shatter OR id=scorchingRay].mechanic.hit
     operation: push
     value:
-      count: 1
-      sides: 8
-      bonus: 0
+      type: damage
+      dice:
+        count: 1
+        sides: 8
+    condition: $(meta.level >= 5)
+  - type: Effect
+    target: activities[(tags=artificer AND tags=damageSpell) OR id=thunderwave OR id=shatter OR id=scorchingRay].mechanic.failure
+    operation: push
+    value:
+      type: damage
+      dice:
+        count: 1
+        sides: 8
     condition: $(meta.level >= 5)

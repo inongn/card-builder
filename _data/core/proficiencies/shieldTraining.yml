@@ -1,6 +1,0 @@
-type: Effect
-operation: set
-value: true
-target: attributes.proficiencies.shields
-id: shieldTraining
-name: Shield Training

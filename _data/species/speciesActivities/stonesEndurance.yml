@@ -1,8 +1,0 @@
-id: stonesEndurance
-type: Activity
-duration: instantaneous
-name: Stone's Endurance
-time: reaction
-range: self
-resource: giantAncestry
-description: When you take damage, reduce it by 1d12$(formatBonus(stats.con.mod)).

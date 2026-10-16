@@ -9,8 +9,6 @@ tags:
   - sorcerer
   - wizard
   - saveSpell
-  - damageSpell
-  - fireDamage
 time: action
 range: 60 feet
 duration: concentration, up to 1 hour

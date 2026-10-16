@@ -43,3 +43,14 @@ children:
     target: attributes.senses.darkvision
     operation: set
     value: 60
+  - type: Effect
+    target: activities[tags=unarmed].mechanic.hit.dice
+    operation: set
+    value:
+      count: 1
+      sides: 4
+      bonus: $(attributes.melee.bonus)
+  - type: Effect
+    target: activities[tags=unarmed].mechanic.hit.damageType
+    operation: set
+    value: slashing

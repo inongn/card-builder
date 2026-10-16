@@ -87,4 +87,4 @@ children:
           sides: 10
           bonus: $(Math.max(1, stats.wis.mod))
         type: hitPoints
-      text: "once per turn on weapon attack hit while transformed and Bloodied"
+        text: "once per turn on weapon attack hit while transformed and Bloodied"

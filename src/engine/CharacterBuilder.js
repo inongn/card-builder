@@ -272,11 +272,31 @@ export class CharacterBuilder {
      * Create empty character data structure
      */
     createEmptyCharacter() {
+        const proficiencies = {
+            heavyArmor: false,
+            mediumArmor: false,
+            lightArmor: false,
+            shields: false,
+            martialWeapons: false,
+            simpleWeapons: false,
+            finesseWeapons: false,
+            lightWeapons: false
+        };
+        Object.defineProperty(proficiencies, 'includes', {
+            value: function(key) {
+                if (key === 'shieldTraining') return !!this.shields;
+                return !!this[key];
+            },
+            enumerable: false,
+            writable: true,
+            configurable: true
+        });
+
         return {
             meta: {},
             stats: {},
             attributes: {
-                proficiencies: []
+                proficiencies
             },
             skills: {},
             saves: {},
@@ -293,18 +313,92 @@ export class CharacterBuilder {
     /**
      * Fill a slot with a property from the library
      */
-    fillSlot(slotPath, propertyId) {
+    /**
+     * Resiliently resolve a node in propertyTree using numeric path, logicalPath, or both.
+     */
+    _resolveNode(nodePath, logicalPath = null, expectedType = null) {
+        if (nodePath && typeof nodePath === 'object' && !Array.isArray(nodePath)) {
+            if (nodePath.logicalPath) logicalPath = nodePath.logicalPath;
+            if (nodePath.path) nodePath = nodePath.path;
+        }
+
+        if (Array.isArray(nodePath) && nodePath.length > 0 && typeof nodePath[0] === 'object') {
+            logicalPath = nodePath;
+            nodePath = null;
+        }
+
+        // Try numeric path first if provided
+        if (Array.isArray(nodePath) && nodePath.length > 0 && typeof nodePath[0] === 'number') {
+            let current = this.propertyTree;
+            let valid = true;
+            for (let i = 0; i < nodePath.length; i++) {
+                const idx = nodePath[i];
+                if (!current || !current.children || idx < 0 || idx >= current.children.length) {
+                    valid = false;
+                    break;
+                }
+                current = current.children[idx];
+            }
+            if (valid && current && (!expectedType || current.type === expectedType)) {
+                // If logicalPath was also provided, check if the numeric destination actually matches the target logical step
+                if (logicalPath && Array.isArray(logicalPath) && logicalPath.length > 0) {
+                    const lastStep = logicalPath[logicalPath.length - 1];
+                    const matchId = (current.id === lastStep.id || current.name === lastStep.id);
+                    const matchIndex = (lastStep.slotIndex === undefined || current.slotIndex === lastStep.slotIndex);
+                    if (matchId && matchIndex) {
+                        return current;
+                    }
+                } else {
+                    return current;
+                }
+            }
+        }
+
+        // If numeric path failed, mismatched, or wasn't provided, try logicalPath
+        if (logicalPath && Array.isArray(logicalPath) && logicalPath.length > 0) {
+            let current = this.propertyTree;
+            let steps = logicalPath;
+            // If the first step matches root, slice it off
+            if (steps.length > 0 && (steps[0].id === current.id || steps[0].id === current.name)) {
+                steps = steps.slice(1);
+            }
+            let found = true;
+            for (let i = 0; i < steps.length; i++) {
+                const step = steps[i];
+                if (!current || !current.children) {
+                    found = false;
+                    break;
+                }
+                const child = current.children.find(c => {
+                    const matchId = (c.id === step.id || c.name === step.id);
+                    if (step.slotIndex !== undefined) {
+                        return matchId && c.slotIndex === step.slotIndex;
+                    }
+                    return matchId;
+                });
+                if (!child) {
+                    found = false;
+                    break;
+                }
+                current = child;
+            }
+            if (found && current && (!expectedType || current.type === expectedType)) {
+                return current;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Fill a slot with a property
+     */
+    fillSlot(slotPath, propertyId, shouldRebuild = true) {
         const property = this.library.getProperty(propertyId);
         if (!property) return;
 
-        // Navigate to slot in tree
-        let current = this.propertyTree;
-        for (let i = 0; i < slotPath.length - 1; i++) {
-            current = current.children[slotPath[i]];
-        }
-
-        const slotIndex = slotPath[slotPath.length - 1];
-        const slot = current.children[slotIndex];
+        const slot = this._resolveNode(slotPath, null, 'Slot');
+        if (!slot) return;
 
         // Fill the slot - store filled property info
         const evaluator = new ExpressionEvaluator(this.characterData);
@@ -333,37 +427,33 @@ export class CharacterBuilder {
 
         slot.children = this.processChildren(items, slot.variables || {}, property?.id || null);
 
-        this.rebuild();
+        if (shouldRebuild) {
+            this.rebuild();
+        }
     }
 
     /**
      * Clear a filled slot
      */
-    clearSlot(slotPath) {
-        let current = this.propertyTree;
-        for (let i = 0; i < slotPath.length - 1; i++) {
-            current = current.children[slotPath[i]];
-        }
+    clearSlot(slotPath, shouldRebuild = true) {
+        const slot = this._resolveNode(slotPath, null, 'Slot');
+        if (!slot) return;
 
-        const slotIndex = slotPath[slotPath.length - 1];
-        const slot = current.children[slotIndex];
         slot.filled = null;
         slot.children = []; // Clear children when clearing the slot
 
-        this.rebuild();
+        if (shouldRebuild) {
+            this.rebuild();
+        }
     }
 
     /**
      * Update an input value
      */
     updateInput(inputPath, value) {
-        // Navigate to the input in the active tree to update its value persisted there
-        let current = this.propertyTree;
-        for (let i = 0; i < inputPath.length - 1; i++) {
-            current = current.children[inputPath[i]];
-        }
-        const inputIndex = inputPath[inputPath.length - 1];
-        const input = current.children[inputIndex];
+        const input = this._resolveNode(inputPath, null, 'Input');
+        if (!input) return;
+
         input.value = value;
 
         // IMMEDIATE UPDATE: Update characterData context so expressions use the NEW value
@@ -1011,14 +1101,17 @@ export class CharacterBuilder {
             const isFinalStage = i === numStages - 1;
             const properties = byStage.get(stage.name) || [];
 
-            // Sort by operation priority first ('set'/'softSet' before 'add'/'push'/etc.) then by explicitly defined priority
+            // Sort by priority first (higher priority runs earlier), then by operation ('set'/'softSet' before 'add'/'push'/etc.)
             properties.sort((a, b) => {
+                if ((b.priority || 0) !== (a.priority || 0)) {
+                    return (b.priority || 0) - (a.priority || 0);
+                }
                 const isASet = (a.type === 'Effect' && (a.operation === 'set' || a.operation === 'softSet')) || a.type !== 'Effect';
                 const isBSet = (b.type === 'Effect' && (b.operation === 'set' || b.operation === 'softSet')) || b.type !== 'Effect';
                 if (isASet !== isBSet) {
                     return isASet ? -1 : 1;
                 }
-                return (a.priority || 0) - (b.priority || 0);
+                return 0;
             });
 
             const evaluator = new ExpressionEvaluator(this.characterData);
@@ -1118,6 +1211,21 @@ export class CharacterBuilder {
                 }
 
                 this.characterData.transformations[formId] = trans;
+            }
+        }
+
+        if (this.characterData?.attributes?.proficiencies && typeof this.characterData.attributes.proficiencies === 'object') {
+            const profs = this.characterData.attributes.proficiencies;
+            if (!profs.includes) {
+                Object.defineProperty(profs, 'includes', {
+                    value: function(key) {
+                        if (key === 'shieldTraining') return !!this.shields;
+                        return !!this[key];
+                    },
+                    enumerable: false,
+                    writable: true,
+                    configurable: true
+                });
             }
         }
     }
@@ -1446,13 +1554,16 @@ export class CharacterBuilder {
                             if (targetObj[part] !== undefined) {
                                 if (Array.isArray(targetObj[part])) nextNodes.push(...targetObj[part]);
                                 else nextNodes.push(targetObj[part]);
+                            } else if (part === 'damage') {
+                                ['hit', 'failure', 'payloads'].forEach(key => {
+                                    if (targetObj[key] !== undefined) {
+                                        const items = Array.isArray(targetObj[key]) ? targetObj[key] : [targetObj[key]];
+                                        items.forEach(it => {
+                                            if (it && (it.type === 'damage' || it.dice)) nextNodes.push(it);
+                                        });
+                                    }
+                                });
                             }
-                            payloadKeys.forEach(key => {
-                                if (key !== part && targetObj[key] !== undefined) {
-                                    if (Array.isArray(targetObj[key])) nextNodes.push(...targetObj[key]);
-                                    else nextNodes.push(targetObj[key]);
-                                }
-                            });
                             if (Array.isArray(targetObj.blocks)) {
                                 targetObj.blocks.forEach(b => collectPayloads(b));
                             }
@@ -1481,6 +1592,27 @@ export class CharacterBuilder {
                 if (nextNodes.length === 0 && createMissing) {
                     for (const node of currentNodes) {
                         if (node && typeof node === 'object' && !Array.isArray(node)) {
+                            if (node.pattern === 'save' && (part === 'hit' || part === 'attack' || part === 'miss' || part === 'crit' || part === 'hitOrMiss' || part === 'healing')) {
+                                continue;
+                            }
+                            if (node.pattern === 'attack' && (part === 'save' || part === 'failure' || part === 'success' || part === 'failureOrSuccess' || part === 'healing')) {
+                                continue;
+                            }
+                            if ((node.pattern === 'healing' || node.pattern === 'automatic' || node.pattern === 'aura') && (part === 'hit' || part === 'attack' || part === 'save' || part === 'failure')) {
+                                continue;
+                            }
+                            if ((node.pattern === 'automatic' || node.pattern === 'aura') && part === 'healing') {
+                                continue;
+                            }
+                            if (node.mode && Array.isArray(node.blocks) && (part === 'hit' || part === 'failure' || part === 'save' || part === 'attack' || part === 'healing' || part === 'payloads')) {
+                                continue;
+                            }
+                            if (node.type && node.type !== 'damage' && node.type !== 'healing' && node.type !== 'rollModifier' && part === 'dice') {
+                                continue;
+                            }
+                            if (node.type && node.type !== 'damage' && part === 'damageType') {
+                                continue;
+                            }
                             node[part] = {};
                             nextNodes.push(node[part]);
                         }
@@ -1497,16 +1629,57 @@ export class CharacterBuilder {
             if (Array.isArray(node)) {
                 node.forEach(item => {
                     if (item && typeof item === 'object') {
+                        if (finalKey === 'damageType' && item.type && item.type !== 'damage') return;
                         results.push({ parent: item, key: finalKey });
                     }
                 });
             } else if (node && typeof node === 'object') {
                 if (node.mode && Array.isArray(node.blocks)) {
-                    node.blocks.forEach(block => {
-                        results.push({ parent: block, key: finalKey });
-                    });
+                    if (finalKey === 'blocks' || finalKey === 'mode') {
+                        results.push({ parent: node, key: finalKey });
+                    } else {
+                        node.blocks.forEach(block => {
+                            if (!block || typeof block !== 'object') return;
+                            if (block[finalKey] !== undefined) {
+                                results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'attack' || finalKey === 'hit' || finalKey === 'crit' || finalKey === 'miss' || finalKey === 'hitOrMiss') {
+                                if (block.pattern === 'attack') results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'save' || finalKey === 'failure' || finalKey === 'success' || finalKey === 'failureOrSuccess') {
+                                if (block.pattern === 'save') results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'healing') {
+                                if (block.pattern === 'healing') results.push({ parent: block, key: finalKey });
+                            } else if (finalKey === 'payloads') {
+                                if (block.pattern === 'automatic' || block.pattern === 'healing') results.push({ parent: block, key: finalKey });
+                            }
+                        });
+                        const containerKeys = ['trigger', 'text', 'upcast', 'downcast'];
+                        if (containerKeys.includes(finalKey)) {
+                            results.push({ parent: node, key: finalKey });
+                        }
+                    }
+                } else if (node.pattern) {
+                    if (node[finalKey] !== undefined) {
+                        results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'attack' || finalKey === 'hit' || finalKey === 'crit' || finalKey === 'miss' || finalKey === 'hitOrMiss') {
+                        if (node.pattern === 'attack') results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'save' || finalKey === 'failure' || finalKey === 'success' || finalKey === 'failureOrSuccess') {
+                        if (node.pattern === 'save') results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'healing') {
+                        if (node.pattern === 'healing') results.push({ parent: node, key: finalKey });
+                    } else if (finalKey === 'payloads') {
+                        if (node.pattern === 'automatic' || node.pattern === 'healing') results.push({ parent: node, key: finalKey });
+                    } else {
+                        results.push({ parent: node, key: finalKey });
+                    }
+                } else {
+                    if (finalKey === 'damageType' && node.type && node.type !== 'damage') {
+                        // Skip non-damage payloads for damageType
+                    } else if (finalKey === 'dice' && node.type && node.type !== 'damage' && node.type !== 'healing' && node.type !== 'rollModifier') {
+                        // Skip payloads that don't support dice
+                    } else {
+                        results.push({ parent: node, key: finalKey });
+                    }
                 }
-                results.push({ parent: node, key: finalKey });
             }
         }
         return results;
@@ -1530,7 +1703,8 @@ export class CharacterBuilder {
             // If we are setting an object into an existing object, merge the keys
             // individually to avoid wiping out properties that were pinned by 
             // more specific sub-path effects.
-            if (value && typeof value === 'object' && !Array.isArray(value) &&
+            const isMechanicReset = resolved.key === 'mechanic' || (value && value.mode && oldValue && !oldValue.mode);
+            if (!isMechanicReset && value && typeof value === 'object' && !Array.isArray(value) &&
                 oldValue && typeof oldValue === 'object' && !Array.isArray(oldValue)) {
 
                 for (const k in value) {
@@ -1543,7 +1717,11 @@ export class CharacterBuilder {
                 }
             } else {
                 // 3. Fallback to standard replacement
-                resolved.parent[resolved.key] = value;
+                if (value === null || value === undefined) {
+                    delete resolved.parent[resolved.key];
+                } else {
+                    resolved.parent[resolved.key] = value;
+                }
                 this.fieldPriorities.set(path, priority);
 
                 // If we've set a bulk object, record priorities for its known keys
@@ -1849,8 +2027,9 @@ export class CharacterBuilder {
         // This resolves local.treeVars but keeps $(characterVars) "LIVE" for final evaluation passes.
         const dynamicValue = evaluator.bakeVariables(value, scope);
 
-        if (operation === 'set' && !substring) {
-            this.setFieldWithPriority(evaluatedTarget, dynamicValue, priority, evaluator);
+        if ((operation === 'set' || operation === 'remove' || operation === 'delete') && !substring) {
+            const val = (operation === 'remove' || operation === 'delete') ? null : dynamicValue;
+            this.setFieldWithPriority(evaluatedTarget, val, priority, evaluator);
             return;
         }
 
@@ -2115,18 +2294,33 @@ export class CharacterBuilder {
         }).map(prop => {
             let isDisabled = prop.isDisabled || false;
             let disabledReason = prop.disabledReason || null;
+            let requirementText = null;
+            let isRequirementMet = true;
 
-            if (prop.prerequisiteCondition && !slot.ignoreCondition) {
-                const isMet = evaluator.evaluate(prop.prerequisiteCondition);
-                if (!isMet) {
-                    isDisabled = true;
-                    disabledReason = prop.prerequisite ? `Requires ${prop.prerequisite}` : 'Prerequisites not met';
+            if (prop.prerequisite || prop.prerequisiteCondition) {
+                const rawPrereq = prop.prerequisite ? String(prop.prerequisite).trim() : null;
+                if (rawPrereq) {
+                    requirementText = /^(requires|prerequisite:?)/i.test(rawPrereq)
+                        ? rawPrereq
+                        : `Requires ${rawPrereq}`;
+                } else {
+                    requirementText = 'Prerequisites required';
+                }
+
+                if (prop.prerequisiteCondition && !slot.ignoreCondition) {
+                    isRequirementMet = Boolean(evaluator.evaluate(prop.prerequisiteCondition));
+                    if (!isRequirementMet) {
+                        isDisabled = true;
+                        disabledReason = requirementText;
+                    }
                 }
             }
 
             return {
                 ...prop,
                 displayName: evaluator.evaluate(prop.name),
+                requirementText,
+                isRequirementMet,
                 ...(isDisabled ? { isDisabled, disabledReason } : {})
             };
         });

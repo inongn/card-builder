@@ -48,7 +48,7 @@ children:
         type: self
       payloads:
         - type: text
-          text: reduce the damage by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))
+          text: gain a 1d$(attributes.psiDice) to your AC until the start of your next turn.
     condition: $(meta.level >= 3)
   - id: foresightPropel
     type: Effect
@@ -65,13 +65,13 @@ children:
     range: self
     duration: Instantaneous
     resource: psionicEnergyDice
-    description: When you fail a Constitution saving throw to maintain Concentration, add 1d$(attributes.psiDice) to the roll, potentially turning a fail into a success. The Psionic Energy is expended only if the check succeeds.
+    description: When you or another creature within range fails a saving throw, add 1d$(attributes.psiDice) to the roll, potentially turning a fail into a success. The Psionic Energy is expended only if the check succeeds.
     mechanic:
       pattern: automatic
       trigger:
         event: fail_save
         saveFilter:
-          ability: con
+          range: 30
       target:
         type: self
       payloads:

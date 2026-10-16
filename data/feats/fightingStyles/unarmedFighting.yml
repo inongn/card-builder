@@ -11,7 +11,7 @@ children:
     time: free action
     duration: instantaneous
     target: unarmed
-    name: Unarmed Fighting
+    name: Unarmed Fighter
     description: At the start of each of your turns, you can deal 1d4 Bludgeoning damage to one creature grappled by you.
     mechanic:
       pattern: automatic
@@ -35,4 +35,4 @@ children:
       sides: '$(attributes.shieldEquipped == true ? 6 : 8)'
       bonus: $(attributes.melee.bonus)
 id: unarmedFighting
-name: Unarmed Fighting
+name: Unarmed Fighter

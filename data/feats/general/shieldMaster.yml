@@ -4,7 +4,8 @@ name: Shield Master
 tags:
   - feat
   - generalFeat
-condition: $(attributes.proficiencies.includes("shieldTraining"))
+prerequisite: Shield Training
+prerequisiteCondition: $(attributes.proficiencies.shields)
 type: Folder
 children:
   - name: Ability Score Increase

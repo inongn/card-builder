@@ -136,21 +136,25 @@ export const collectRenderableNodes = (node, char, path = [], logicalPath = [], 
 };
 
 export const categorizeNode = (item) => {
+    if (!item) return null;
+    const node = item.node || item;
+    const type = item.type || node.type;
+
     let searchText = '';
-    if (item.type === 'Slot') {
-        const target = item.node.target;
+    if (type === 'Slot') {
+        const target = node.target;
         searchText = Array.isArray(target) ? target.join(' ').toLowerCase() : String(target || '').toLowerCase();
-        searchText += ' ' + (item.node.name || '').toLowerCase() + ' ' + (item.node.id || '').toLowerCase();
+        searchText += ' ' + (node.name || '').toLowerCase() + ' ' + (node.id || '').toLowerCase();
     } else {
-        searchText = (item.node.name || '').toLowerCase() + ' ' + (item.node.id || '').toLowerCase();
-        if (item.node.tags) {
-            searchText += ' ' + (Array.isArray(item.node.tags) ? item.node.tags.join(' ') : String(item.node.tags)).toLowerCase();
+        searchText = (node.name || '').toLowerCase() + ' ' + (node.id || '').toLowerCase();
+        if (node.tags) {
+            searchText += ' ' + (Array.isArray(node.tags) ? node.tags.join(' ') : String(node.tags)).toLowerCase();
         }
-        if (item.node.resource) {
-            searchText += ' ' + String(item.node.resource).toLowerCase();
+        if (node.target) {
+            searchText += ' ' + (Array.isArray(node.target) ? node.target.join(' ') : String(node.target)).toLowerCase();
         }
-        if (item.node.type) {
-            searchText += ' ' + String(item.node.type).toLowerCase();
+        if (node.type) {
+            searchText += ' ' + String(node.type).toLowerCase();
         }
     }
 
@@ -282,6 +286,24 @@ export const getMergedCategorySlotItems = (tree, char, categoryKey) => {
     return renderableNodes.filter(item => item.type === 'Slot' && categorizeNode(item) === categoryKey);
 };
 
+export const isSpell = (node) => {
+    if (!node) return false;
+    const tags = Array.isArray(node.tags) ? node.tags : (node.tags ? [node.tags] : []);
+    return tags.some(t => {
+        const lower = String(t).toLowerCase();
+        return lower === 'cantrip' || lower === 'spell' || /^level\d+spell$/i.test(lower) || lower.endsWith('spell');
+    });
+};
+
+export const getSpellLevel = (opt) => {
+    const tags = opt?.tags || [];
+    if (tags.includes('cantrip')) return 0;
+    for (let i = 1; i <= 9; i++) {
+        if (tags.includes(`level${i}Spell`)) return i;
+    }
+    return 99;
+};
+
 export const sortCategoryOptions = (opts, onGetProperty) => {
     const resolvedOpts = opts.map(opt => {
         if (!opt.description && onGetProperty) {
@@ -297,22 +319,10 @@ export const sortCategoryOptions = (opts, onGetProperty) => {
         return opt;
     });
 
-    const isSpell = resolvedOpts.some(opt => {
-        const tags = opt.tags || [];
-        return tags.some(t => t.includes('Spell') || t === 'cantrip') || opt.resource?.toLowerCase().includes('spell');
-    });
+    const isSpellList = resolvedOpts.some(isSpell);
 
-    if (isSpell) {
-        const getSpellLevel = (opt) => {
-            const tags = opt.tags || [];
-            if (tags.includes('cantrip')) return 0;
-            if (tags.includes('level1Spell')) return 1;
-            if (tags.includes('level2Spell')) return 2;
-            if (tags.includes('level3Spell')) return 3;
-            if (tags.includes('level4Spell')) return 4;
-            return 99;
-        };
-        return [...resolvedOpts].sort((a, b) => {
+    if (isSpellList) {
+        return [...resolvedOpts].filter(isSpell).sort((a, b) => {
             const lvlA = getSpellLevel(a);
             const lvlB = getSpellLevel(b);
             if (lvlA !== lvlB) return lvlA - lvlB;
@@ -322,13 +332,13 @@ export const sortCategoryOptions = (opts, onGetProperty) => {
 
     const isFeat = resolvedOpts.some(opt => {
         const tags = opt.tags || [];
-        return tags.some(t => t.includes('feat') || t === 'fightingStyle');
+        return tags.some(t => t.includes('feat') || t === 'fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior';
     });
 
     if (isFeat) {
         const getFeatCategory = (opt) => {
             const tags = opt.tags || [];
-            if (tags.includes('fightingStyle')) return 0;
+            if (tags.includes('fightingStyle') || opt.id === 'blessedWarrior' || opt.id === 'druidicWarrior' || opt.id === 'arcaneWarrior') return 0;
             if (tags.includes('feat')) return 1;
             return 99;
         };
@@ -445,20 +455,61 @@ export const matchesSlotTagExpression = (opt, slotNode) => {
     const optTags = new Set((opt.tags || []).map(t => String(t).toLowerCase()));
     if (opt.id) optTags.add(String(opt.id).toLowerCase());
 
-    const expr = (Array.isArray(tagSource) ? tagSource.join(' OR ') : String(tagSource)).toLowerCase();
+    const expr = (Array.isArray(tagSource) ? tagSource.join(' OR ') : String(tagSource))
+        .replace(/\(/g, ' ( ')
+        .replace(/\)/g, ' ) ')
+        .replace(/,/g, ' OR ')
+        .trim();
 
-    const orGroups = expr.split(/\s+or\s+/);
-    return orGroups.some(group => {
-        const andTokens = group.split(/\s+and\s+/).map(t => t.trim().replace(/^\(|\)$/g, ''));
-        return andTokens.every(token => {
-            if (!token) return true;
-            if (token.startsWith('not ')) {
-                const notToken = token.slice(4).trim();
-                return !optTags.has(notToken);
+    const tokens = expr.split(/\s+/).filter(Boolean);
+    let pos = 0;
+
+    const parseOr = () => {
+        let val = parseAnd();
+        while (pos < tokens.length && tokens[pos].toUpperCase() === 'OR') {
+            pos++;
+            const right = parseAnd();
+            val = val || right;
+        }
+        return val;
+    };
+
+    const parseAnd = () => {
+        let val = parseNot();
+        while (pos < tokens.length) {
+            const tok = tokens[pos].toUpperCase();
+            if (tok === 'OR' || tok === ')') break;
+            if (tok === 'AND') {
+                pos++;
             }
-            return optTags.has(token);
-        });
-    });
+            const right = parseNot();
+            val = val && right;
+        }
+        return val;
+    };
+
+    const parseNot = () => {
+        if (pos < tokens.length && tokens[pos].toUpperCase() === 'NOT') {
+            pos++;
+            return !parseNot();
+        }
+        return parseAtom();
+    };
+
+    const parseAtom = () => {
+        if (pos >= tokens.length) return false;
+        const tok = tokens[pos];
+        if (tok === '(') {
+            pos++;
+            const val = parseOr();
+            if (pos < tokens.length && tokens[pos] === ')') pos++;
+            return val;
+        }
+        pos++;
+        return optTags.has(tok.toLowerCase());
+    };
+
+    return parseOr();
 };
 
 export const getSlotAllowedMap = (slotItems, allCategoryOptionsMap, handleGetSlotOptions, char) => {
@@ -487,80 +538,113 @@ export const getSlotAllowedMap = (slotItems, allCategoryOptionsMap, handleGetSlo
     return slotAllowedMap;
 };
 
-export const canMatchChoicesToSlots = (choiceIds, slotItems, slotAllowedMap) => {
-    if (choiceIds.length > slotItems.length) return false;
-    if (choiceIds.length === 0) return true;
-
-    const visitedSlots = new Array(slotItems.length).fill(false);
-
-    const tryMatch = (choiceIndex) => {
-        if (choiceIndex >= choiceIds.length) return true;
-        const choiceId = choiceIds[choiceIndex];
-
-        for (let s = 0; s < slotItems.length; s++) {
-            if (!visitedSlots[s]) {
-                const allowed = slotAllowedMap.get(slotItems[s]);
-                if (allowed && allowed.has(choiceId)) {
-                    visitedSlots[s] = true;
-                    if (tryMatch(choiceIndex + 1)) return true;
-                    visitedSlots[s] = false;
-                }
-            }
-        }
-        return false;
-    };
-
-    return tryMatch(0);
-};
-
 export const findMatchingForChoices = (choiceIds, slotItems, slotAllowedMap) => {
+    if (!choiceIds || !slotItems) return null;
     if (choiceIds.length > slotItems.length) return null;
+    if (choiceIds.length === 0) return new Map();
 
-    const slotIndices = slotItems.map((_, i) => i);
-    slotIndices.sort((a, b) => {
-        const sizeA = slotAllowedMap.get(slotItems[a])?.size || 0;
-        const sizeB = slotAllowedMap.get(slotItems[b])?.size || 0;
-        return sizeA - sizeB;
-    });
+    const numChoices = choiceIds.length;
+    const numSlots = slotItems.length;
 
-    const assignment = new Array(choiceIds.length).fill(-1);
-    const usedSlots = new Array(slotItems.length).fill(false);
-
-    const backtrack = (idx) => {
-        if (idx >= choiceIds.length) return true;
-        const choiceId = choiceIds[idx];
-
-        for (const s of slotIndices) {
-            if (!usedSlots[s]) {
-                const allowed = slotAllowedMap.get(slotItems[s]);
-                if (allowed && allowed.has(choiceId)) {
-                    usedSlots[s] = true;
-                    assignment[idx] = s;
-                    if (backtrack(idx + 1)) return true;
-                    usedSlots[s] = false;
-                    assignment[idx] = -1;
+    // Build adjacency list: choice index -> array of slot indices
+    const adj = new Array(numChoices);
+    for (let c = 0; c < numChoices; c++) {
+        const cId = choiceIds[c];
+        const allowedSlots = [];
+        for (let s = 0; s < numSlots; s++) {
+            const allowed = slotAllowedMap.get(slotItems[s]);
+            if (allowed && allowed.has(cId)) {
+                // If this slot currently holds this choice, prioritize it to preserve existing assignments
+                if (slotItems[s].node?.filled?.id === cId) {
+                    allowedSlots.unshift(s);
+                } else {
+                    allowedSlots.push(s);
                 }
             }
         }
-        return false;
-    };
-
-    if (backtrack(0)) {
-        const result = new Map();
-        choiceIds.forEach((cId, i) => {
-            result.set(cId, slotItems[assignment[i]]);
-        });
-        return result;
+        if (allowedSlots.length === 0) return null;
+        adj[c] = allowedSlots;
     }
 
-    return null;
+    // Sort choice indices by degree (most constrained choices first)
+    const choiceOrder = Array.from({ length: numChoices }, (_, i) => i)
+        .sort((a, b) => adj[a].length - adj[b].length);
+
+    // matchSlot[s] = choice index currently assigned to slot s (-1 if unassigned)
+    const matchSlot = new Array(numSlots).fill(-1);
+    const assignedChoices = new Set();
+
+    // Pre-match existing assignments where possible to prevent unnecessary slot shuffling
+    for (let c = 0; c < numChoices; c++) {
+        const cId = choiceIds[c];
+        for (let s = 0; s < numSlots; s++) {
+            if (matchSlot[s] === -1 && slotItems[s].node?.filled?.id === cId) {
+                const allowed = slotAllowedMap.get(slotItems[s]);
+                if (allowed && allowed.has(cId)) {
+                    matchSlot[s] = c;
+                    assignedChoices.add(c);
+                    break;
+                }
+            }
+        }
+    }
+
+    function dfs(c, visited) {
+        // Pass 1: Try an unassigned slot first without displacing anyone
+        for (const s of adj[c]) {
+            if (!visited[s] && matchSlot[s] === -1) {
+                visited[s] = true;
+                matchSlot[s] = c;
+                return true;
+            }
+        }
+        // Pass 2: If all allowed slots are occupied, try augmenting paths (displacements)
+        for (const s of adj[c]) {
+            if (!visited[s]) {
+                visited[s] = true;
+                if (dfs(matchSlot[s], visited)) {
+                    matchSlot[s] = c;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    const visited = new Array(numSlots);
+    for (const c of choiceOrder) {
+        if (assignedChoices.has(c)) continue;
+        visited.fill(false);
+        if (!dfs(c, visited)) {
+            return null;
+        }
+    }
+
+    const result = new Map();
+    for (let s = 0; s < numSlots; s++) {
+        const c = matchSlot[s];
+        if (c !== -1) {
+            result.set(choiceIds[c], slotItems[s]);
+        }
+    }
+    return result;
+};
+
+export const canMatchChoicesToSlots = (choiceIds, slotItems, slotAllowedMap) => {
+    if (!choiceIds || !slotItems) return false;
+    if (choiceIds.length > slotItems.length) return false;
+    if (choiceIds.length === 0) return true;
+    return findMatchingForChoices(choiceIds, slotItems, slotAllowedMap) !== null;
 };
 
 export const isValidHardcodedOption = (node, categoryKey) => {
     if (!node) return false;
 
     const nodeType = (node.type || '').toLowerCase();
-    if (nodeType === 'slot' || nodeType === 'input' || nodeType === 'resource' || nodeType === 'attribute' || nodeType === 'effect') {
+    if (nodeType === 'slot' || nodeType === 'input' || nodeType === 'resource' || nodeType === 'attribute') {
+        return false;
+    }
+    if (nodeType === 'effect' && !['skills', 'expertise', 'tools', 'saves'].includes(categoryKey)) {
         return false;
     }
 
@@ -574,12 +658,7 @@ export const isValidHardcodedOption = (node, categoryKey) => {
     }
 
     if (categoryKey === 'spellcasting') {
-        const isSpellTag = tags.has('cantrip') || tags.has('level1spell') || tags.has('level2spell') ||
-            tags.has('level3spell') || tags.has('level4spell') || tags.has('level5spell') ||
-            tags.has('level6spell') || tags.has('level7spell') || tags.has('level8spell') ||
-            tags.has('level9spell') || tags.has('spell');
-        const isActivitySpell = nodeType === 'activity' && (tags.size === 0 || isSpellTag || (node.resource && String(node.resource).toLowerCase().includes('spell')));
-        return isSpellTag || isActivitySpell;
+        return isSpell(node);
     }
 
     if (categoryKey === 'skills') {
@@ -629,12 +708,26 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
     const hardcodedNodes = [];
     const seenIds = new Set();
 
-    const traverse = (node, path = []) => {
+    const getSourceFromAncestors = (ancestors) => {
+        for (let i = ancestors.length - 1; i >= 0; i--) {
+            const a = ancestors[i];
+            if (a.type === 'Slot' && a.filled?.name) {
+                return a.filled.displayName || a.filled.name;
+            }
+            if (a.id !== 'base' && a.name && a.type !== 'Folder') {
+                return a.displayName || a.name;
+            }
+        }
+        return null;
+    };
+
+    const traverse = (node, path = [], ancestors = []) => {
         if (!node) return;
         if (!isNodeConditionMet(node, char)) return;
 
-        // Skip traversing into children of filled slots as those are part of an already selected property
-        if (node.type === 'Slot' && node.filled) {
+        // Skip traversing into children of slots belonging to the current step,
+        // because their selections are user choices in this step, not hardcoded granted features
+        if (node.type === 'Slot' && node.filled && categorizeNode(node) === stepKey) {
             return;
         }
 
@@ -644,13 +737,18 @@ export const getMergedCategoryHardcodedNodes = (tree, char, stepKey) => {
                 const nodeCategory = categorizeNode({ type: node.type, node });
                 if (nodeCategory === stepKey) {
                     seenIds.add(nodeId);
-                    hardcodedNodes.push(node);
+                    const sourceName = node.source || getSourceFromAncestors(ancestors);
+                    hardcodedNodes.push({
+                        ...node,
+                        source: sourceName,
+                        sourceText: sourceName ? `From ${sourceName}` : 'Referenced'
+                    });
                 }
             }
         }
 
         if (node.children && Array.isArray(node.children)) {
-            node.children.forEach((child, index) => traverse(child, [...path, index]));
+            node.children.forEach((child, index) => traverse(child, [...path, index], [...ancestors, node]));
         }
     };
 
@@ -663,6 +761,13 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
     const optMap = new Map();
     const hardcodedOptionIds = new Set();
+    const evaluator = char ? new ExpressionEvaluator(char) : null;
+
+    const formatReqText = (prereq) => {
+        if (!prereq) return null;
+        const raw = String(prereq).trim();
+        return /^(requires|prerequisite:?)/i.test(raw) ? raw : `Requires ${raw}`;
+    };
 
     (slotItems || []).forEach(slotItem => {
         const slotNode = slotItem.node;
@@ -692,9 +797,25 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
             if (!isNodeConditionMet(fullOpt, char)) return;
 
+            let requirementText = opt.requirementText;
+            let isRequirementMet = opt.isRequirementMet;
+            if (requirementText === undefined && (fullOpt.prerequisite || fullOpt.prerequisiteCondition)) {
+                requirementText = formatReqText(fullOpt.prerequisite) || 'Prerequisites required';
+                if (fullOpt.prerequisiteCondition && evaluator) {
+                    isRequirementMet = Boolean(evaluator.evaluate(fullOpt.prerequisiteCondition));
+                } else {
+                    isRequirementMet = true;
+                }
+            }
+
             if (!optMap.has(opt.id)) {
                 optMap.set(opt.id, {
-                    option: { ...fullOpt, displayName: fullOpt.displayName || fullOpt.name },
+                    option: {
+                        ...fullOpt,
+                        displayName: fullOpt.displayName || fullOpt.name,
+                        requirementText,
+                        isRequirementMet
+                    },
                     candidateSlotItems: [],
                     filledSlotItem: null,
                     isHardcoded: false
@@ -728,9 +849,17 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
         if (!isNodeConditionMet(fullOpt, char)) return;
 
+        const source = hNode.source || fullOpt.source;
+        const sourceText = hNode.sourceText || fullOpt.sourceText || (source ? `From ${source}` : 'Referenced');
+
         if (!optMap.has(hId)) {
             optMap.set(hId, {
-                option: { ...fullOpt, displayName: fullOpt.displayName || fullOpt.name },
+                option: {
+                    ...fullOpt,
+                    displayName: fullOpt.displayName || fullOpt.name,
+                    source,
+                    sourceText
+                },
                 candidateSlotItems: [],
                 filledSlotItem: null,
                 isHardcoded: true
@@ -738,7 +867,13 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
         } else {
             const entry = optMap.get(hId);
             entry.isHardcoded = true;
-            entry.option = { ...entry.option, ...fullOpt, displayName: fullOpt.displayName || fullOpt.name || entry.option.displayName || entry.option.name };
+            entry.option = {
+                ...entry.option,
+                ...fullOpt,
+                displayName: fullOpt.displayName || fullOpt.name || entry.option.displayName || entry.option.name,
+                source: source || entry.option.source,
+                sourceText: sourceText || entry.option.sourceText
+            };
         }
     });
 
@@ -754,6 +889,9 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
                 isSelected: true,
                 isDisabled: true,
                 isHardcoded: true,
+                source: entry.option.source,
+                sourceText: entry.option.sourceText || (entry.option.source ? `From ${entry.option.source}` : 'Referenced'),
+                disabledReason: entry.option.sourceText || (entry.option.source ? `From ${entry.option.source}` : 'Referenced'),
                 filledSlotPath: null,
                 candidateSlotItems: entry.candidateSlotItems
             };
@@ -761,13 +899,17 @@ export const aggregateCategoryOptions = (slotItems = [], handleGetSlotOptions, o
 
         const isSelected = !!entry.filledSlotItem;
         const testChoices = isSelected ? currentChoiceIds : [...currentChoiceIds, entry.option.id];
-        const isDisabled = !!entry.option.isDisabled || (!isSelected && !canMatchChoicesToSlots(testChoices, slotItems || [], slotAllowedMap));
+        const isNotSlotMatchable = !isSelected && !canMatchChoicesToSlots(testChoices, slotItems || [], slotAllowedMap);
+        const isDisabled = !!entry.option.isDisabled || isNotSlotMatchable;
 
         return {
             ...entry.option,
             isSelected,
             isDisabled,
             isHardcoded: false,
+            requirementText: entry.option.requirementText,
+            isRequirementMet: entry.option.isRequirementMet,
+            disabledReason: entry.option.disabledReason || (entry.option.requirementText && !entry.option.isRequirementMet ? entry.option.requirementText : null),
             filledSlotPath: entry.filledSlotItem ? entry.filledSlotItem.path : null,
             candidateSlotItems: entry.candidateSlotItems
         };

@@ -1,8 +1,0 @@
-type: Effect
-tags:
-  - tool
-operation: push
-value: Musical Instrument
-target: attributes.tools
-id: musicalInstrument
-name: Musical Instrument

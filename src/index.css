@@ -2773,6 +2773,75 @@ mdui-list-item[active] {
   background-color: rgb(var(--mdui-color-surface-container-low));
 }
 
+.card-vertical.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.card-vertical.disabled:hover {
+  border-color: rgb(var(--mdui-color-outline-variant));
+  box-shadow: none;
+}
+
+.card-vertical__disabled-reason {
+  color: rgb(var(--mdui-color-error, 244 67 54));
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.card-vertical__requirement {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-vertical__requirement--unmet {
+  color: rgb(var(--mdui-color-error, 244 67 54));
+}
+
+.card-vertical__media-details .card-vertical__requirement--unmet {
+  color: #fca5a5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.card-vertical__requirement--met {
+  color: rgb(22 163 74);
+}
+
+.mdui-theme-dark .card-vertical__requirement--met {
+  color: rgb(74 222 128);
+}
+
+.card-vertical__media-details .card-vertical__requirement--met {
+  color: #86efac;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.card-vertical__source-text {
+  color: rgb(var(--mdui-color-primary));
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-vertical__media-details .card-vertical__source-text {
+  color: #93c5fd;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.requirement-check-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
 .card-vertical__media {
   aspect-ratio: 5 / 3;
   width: 100%;
@@ -3517,7 +3586,7 @@ mdui-list-item.card-vertical-item::part(container) {
   justify-content: center;
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 3px 4px;
+  padding: 2px 2px;
   background: white;
 }
 
@@ -4120,7 +4189,6 @@ mdui-list-item.card-vertical-item::part(container) {
 .other-characters-list,
 .activity-sheet-list,
 .play-content-aside {
-  contain: content;
   -webkit-overflow-scrolling: touch;
 }
 

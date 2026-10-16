@@ -2,6 +2,9 @@ id: druidicWarrior
 name: Druidic Warrior
 summary: "Learn two druid cantrips of your choice."
 type: Folder
+tags:
+  - fightingStyle
+condition: $(meta.class == 'Ranger' || meta.class == 'ranger')
 children:
   - type: Slot
     name: Druidic Warrior Cantrips

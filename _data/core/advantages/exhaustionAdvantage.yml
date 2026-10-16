@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-value: Exhaustion
-target: attributes.advantages
-id: exhaustionAdvantage
-name: Exhaustion Advantage

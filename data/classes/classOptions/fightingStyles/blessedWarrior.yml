@@ -2,6 +2,9 @@ id: blessedWarrior
 name: Blessed Warrior
 summary: "Learn two cleric cantrips of your choice."
 type: Folder
+tags:
+  - fightingStyle
+condition: $(meta.class == 'Paladin' || meta.class == 'paladin')
 children:
   - type: Slot
     name: Blessed Warrior Cantrips

@@ -26,8 +26,8 @@ mechanic:
       shape: sphere
       size: 20
     range: $(range)
+  text: fog
   obscured: true
-  text: heavily obscured fog
   upcast:
     resourceStep: 1
     modifications:

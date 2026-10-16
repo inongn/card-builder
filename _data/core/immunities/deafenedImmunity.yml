@@ -1,6 +1,0 @@
-type: Effect
-operation: push
-target: attributes.immunities
-value: Deafened
-id: deafenedImmunity
-name: Deafened Immunity

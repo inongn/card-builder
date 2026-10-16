@@ -1,6 +1,0 @@
-type: Effect
-operation: set
-value: true
-target: attributes.proficiencies.martialWeapons
-id: martialWeaponProficiency
-name: Martial Weapon Proficiency
