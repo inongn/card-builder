@@ -283,6 +283,24 @@ const TRANSLATIONS = {
   nimble: {
     name: 'Agilidad de Mediano',
     summary: 'Puedes moverte a través del espacio de cualquier criatura de tamaño superior al tuyo'
+  },
+  arcaneWarrior: {
+    name: 'Guerrero Arcano',
+    summary: 'Aprendes dos trucos de mago a tu elección.'
+  },
+  crossbowExpertFiringInMelee: {
+    name: 'Disparar en Cuerpo a Cuerpo',
+    description: 'Estar a 5 pies o menos de un enemigo no te impone Desventaja en las tiradas de ataque con una ballesta.'
+  },
+  powerFromBeyondDamageSave: {
+    name: 'Poder del Más Allá (Daño)'
+  },
+  trance: {
+    name: 'Trance',
+    description: 'No necesitas dormir y la magia no puede dormirte. Puedes terminar un Descanso Largo en 4 horas si pasas esas horas en una meditación similar a un trance, durante la cual conservas la consciencia.'
+  },
+  twoWeaponFightingOffHand: {
+    name: 'Luchador con Dos Armas (Mano Secundaria)'
   }
 };
 

@@ -6,7 +6,6 @@
       "$(summary)": "$(summary)",
       "60-foot Sphere sheds Bright Light and Dim Light for an additional 60 feet, dispelling darkness spells of level 3 or lower": "60-foot Sphere sheds Bright Light and Dim Light for an additional 60 feet, dispelling darkness spells of level 3 or lower",
       "A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.": "A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.",
-      "Advantage on D20 Tests until the start of your next turn": "Advantage on D20 Tests until the start of your next turn",
       "Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again": "Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again",
       "As a Bonus Action, move the illusion up to 30 feet to a space within 120 feet of you.$(meta.level >= 6 ? ' You can teleport to swap places with it.' : '')": "As a Bonus Action, move the illusion up to 30 feet to a space within 120 feet of you.$(meta.level >= 6 ? ' You can teleport to swap places with it.' : '')",
       "Celestials, Elementals, Fey, Fiends or Undead cannot enter the circle and have disadvantage on attack rolls against targets within the circle. Targets within the circle can't be possessed by or gain the Charmed or Frightened condition from the creature.": "Celestials, Elementals, Fey, Fiends or Undead cannot enter the circle and have disadvantage on attack rolls against targets within the circle. Targets within the circle can't be possessed by or gain the Charmed or Frightened condition from the creature.",
@@ -32,12 +31,13 @@
       "Speed is doubled, gains Advantage on Dex saves, and gets an additional action on each turn": "Speed is doubled, gains Advantage on Dex saves, and gets an additional action on each turn",
       "Speed is halved": "Speed is halved",
       "Speed is halved, has -2 to Dex saves, and can't use reactions or take both action and Bonus Action on a turn": "Speed is halved, has -2 to Dex saves, and can't use reactions or take both action and Bonus Action on a turn",
+      "Take an additional weapon attack. On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks": "Take an additional weapon attack. On a hit, you can reduce the creature's Speed to 0 until the end of the current turn, then move up to half your Speed as part of the same Reaction without provoking Opportunity Attacks",
       "Target creature with 0 Hit Points becomes Stable.": "Target creature with 0 Hit Points becomes Stable.",
       "Target willing creature can add 1d4 to one saving throw of its choice before the spell ends.": "Target willing creature can add 1d4 to one saving throw of its choice before the spell ends.",
       "Ten berries appear in your hand; a creature can use a Bonus Action to eat a berry to restore 1 Hit Point.": "Ten berries appear in your hand; a creature can use a Bonus Action to eat a berry to restore 1 Hit Point.",
+      "The area becomes Difficult Terrain until the end of your next turn": "The area becomes Difficult Terrain until the end of your next turn",
       "The target and all other creatures within 10 feet of it take 2d6 Force damage.": "The target and all other creatures within 10 feet of it take 2d6 Force damage.",
       "Unarmed Strikes can deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage, and when you deal one of these damage types, the target is subject to the following saving throw": "Unarmed Strikes can deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage, and when you deal one of these damage types, the target is subject to the following saving throw",
-      "as part of the Bonus Action you take to enter your Rage, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet": "as part of the Bonus Action you take to enter your Rage, you can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet",
       "Until the end of your next turn, the target emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition": "Until the end of your next turn, the target emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition",
       "When a creature within 120 feet succeeds on a save against Charmed or Frightened": "When a creature within 120 feet succeeds on a save against Charmed or Frightened",
       "When a creature you can see makes an attack roll": "When a creature you can see makes an attack roll",
@@ -55,6 +55,7 @@
       "Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target:": "Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target:",
       "You can cast one of your Psion cantrips with a casting time of an Action as part of this Bonus Action.": "You can cast one of your Psion cantrips with a casting time of an Action as part of this Bonus Action.",
       "You can cast spells as though you were in the illusion's space, but you must use your own senses": "You can cast spells as though you were in the illusion's space, but you must use your own senses",
+      "You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell.": "You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell.",
       "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength": "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength",
       "You create a visual illusion of yourself in an unoccupied space you can see within range.": "You create a visual illusion of yourself in an unoccupied space you can see within range.",
       "You do one of the following:": "You do one of the following:",
@@ -67,7 +68,7 @@
       "a flickering flame appears in your hand, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. You can take the following Action while the flame persists": "a flickering flame appears in your hand, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. You can take the following Action while the flame persists",
       "a harmless demiplane": "a harmless demiplane",
       "a harmless demiplane (or its home plane if native there)": "a harmless demiplane (or its home plane if native there)",
-      "add $(Math.max(1, stats.int.mod)) to one damage roll when hitting a creature affected by Faerie Fire; taking damage can't cause you to lose Concentration on Faerie Fire": "add $(Math.max(1, stats.int.mod)) to one damage roll when hitting a creature affected by Faerie Fire; taking damage can't cause you to lose Concentration on Faerie Fire",
+      "add $(Math.max(1, stats.int.mod)) to one damage roll when hitting a creature affected; taking damage can't cause you to lose Concentration": "add $(Math.max(1, stats.int.mod)) to one damage roll when hitting a creature affected; taking damage can't cause you to lose Concentration",
       "add $(attributes.prof) to AC against melee attacks until the start of your next turn": "add $(attributes.prof) to AC against melee attacks until the start of your next turn",
       "add $(formatBonus(attributes.rageDamage)) to Strength-based attack damage": "add $(formatBonus(attributes.rageDamage)) to Strength-based attack damage",
       "add 1d$(attributes.bardicDie) to Initiative": "add 1d$(attributes.bardicDie) to Initiative",
@@ -78,7 +79,6 @@
       "add 1d$(attributes.superiorityDie) to a Dexterity (Stealth) check or Initiative roll": "add 1d$(attributes.superiorityDie) to a Dexterity (Stealth) check or Initiative roll",
       "add 1d$(attributes.superiorityDie) to a History, Insight, or Investigation check": "add 1d$(attributes.superiorityDie) to a History, Insight, or Investigation check",
       "add 1d$(attributes.superiorityDie) to the attack roll, potentially causing the attack to hit": "add 1d$(attributes.superiorityDie) to the attack roll, potentially causing the attack to hit",
-      "add 1d10 to your roll (you can do so after seeing the roll but before any of the roll's effects occur)": "add 1d10 to your roll (you can do so after seeing the roll but before any of the roll's effects occur)",
       "add 1d4 to all attack rolls and saving throws": "add 1d4 to all attack rolls and saving throws",
       "add a $(Math.max(1, stats.int.mod)) bonus to Concentration saving throws": "add a $(Math.max(1, stats.int.mod)) bonus to Concentration saving throws",
       "allies gain Advantage on Wisdom saves and death saves, and regain maximum HP from any healing": "allies gain Advantage on Wisdom saves and death saves, and regain maximum HP from any healing",
@@ -143,6 +143,7 @@
       "fey spirits": "fey spirits",
       "fire": "fire",
       "fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it": "fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it",
+      "fog": "fog",
       "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit": "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit",
       "freezing rain and sleet": "freezing rain and sleet",
       "gain $(meta.level * 2) Temporary Hit Points": "gain $(meta.level * 2) Temporary Hit Points",
@@ -154,6 +155,8 @@
       "gain Resistance to Psychic damage, and add 1d$(attributes.psiDice) to Intelligence, Wisdom, and Charisma saving throws": "gain Resistance to Psychic damage, and add 1d$(attributes.psiDice) to Intelligence, Wisdom, and Charisma saving throws",
       "gain Resistance to every damage type except Force, Necrotic, Psychic, and Radiant while Raging": "gain Resistance to every damage type except Force, Necrotic, Psychic, and Radiant while Raging",
       "gain a +5 bonus to your AC until the start of your next turn, including against the triggering attack, and take no damage from Magic Missile": "gain a +5 bonus to your AC until the start of your next turn, including against the triggering attack, and take no damage from Magic Missile",
+      "gain a 1d$(attributes.psiDice) to your AC until the start of your next turn.": "gain a 1d$(attributes.psiDice) to your AC until the start of your next turn.",
+      "gain a 1d8 bonus to the attack's damage roll": "gain a 1d8 bonus to the attack's damage roll",
       "gain a Fly Speed of $(attributes.movement.walk * 2) feet until the end of the current turn": "gain a Fly Speed of $(attributes.movement.walk * 2) feet until the end of the current turn",
       "gain a Fly Speed of $(attributes.movement.walk) feet, and once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Radiant damage": "gain a Fly Speed of $(attributes.movement.walk) feet, and once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Radiant damage",
       "gain immunity to the Frightened condition; if Frightened when you transform, the condition immediately ends for you": "gain immunity to the Frightened condition; if Frightened when you transform, the condition immediately ends for you",
@@ -170,6 +173,7 @@
       "grant it Resistance against that damage": "grant it Resistance against that damage",
       "halve the attack's damage against you (round down)": "halve the attack's damage against you (round down)",
       "halve the attack's damage, and if the attack was a Critical Hit, its Critical Hit effects are canceled": "halve the attack's damage, and if the attack was a Critical Hit, its Critical Hit effects are canceled",
+      "has Advantage on D20 Tests until the start of your next turn": "has Advantage on D20 Tests until the start of your next turn",
       "has Disadvantage on attack rolls against targets other than you until the end of your next turn": "has Disadvantage on attack rolls against targets other than you until the end of your next turn",
       "has Disadvantage on attack rolls against targets other than you until the start of your next turn": "has Disadvantage on attack rolls against targets other than you until the start of your next turn",
       "has Disadvantage on attack rolls against you": "has Disadvantage on attack rolls against you",
@@ -179,7 +183,6 @@
       "have Advantage on one D20 Test before you roll. Once you do so, you must cast a Sorcerer spell with a spell slot or finish a Long Rest before you can use this feature again. If you do cast a Sorcerer spell with a spell slot before you finish a Long Rest, you automatically roll on the Wild Magic Surge table.": "have Advantage on one D20 Test before you roll. Once you do so, you must cast a Sorcerer spell with a spell slot or finish a Long Rest before you can use this feature again. If you do cast a Sorcerer spell with a spell slot before you finish a Long Rest, you automatically roll on the Wild Magic Surge table.",
       "have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll": "have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll",
       "healing energy": "healing energy",
-      "heavily obscured fog": "heavily obscured fog",
       "if it is Huge or smaller": "if it is Huge or smaller",
       "if you roll an 8 on a d8 for this spell, you can roll another d8 and add it to the damage": "if you roll an 8 on a d8 for this spell, you can roll another d8 and add it to the damage",
       "if you roll the same number on two or more d8s, the energy leaps to a different target within 30 feet": "if you roll the same number on two or more d8s, the energy leaps to a different target within 30 feet",
@@ -199,7 +202,6 @@
       "make a new attack roll against a creature within 60 feet of the original target": "make a new attack roll against a creature within 60 feet of the original target",
       "make one Unarmed Strike": "make one Unarmed Strike",
       "make one Unarmed Strike as part of this action": "make one Unarmed Strike as part of this action",
-      "make one attack with a different Light weapon": "make one attack with a different Light weapon",
       "move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks": "move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks",
       "moved 5 feet toward or away from you": "moved 5 feet toward or away from you",
       "must drop whatever it is holding and flee": "must drop whatever it is holding and flee",
@@ -209,7 +211,6 @@
       "on each of your subsequent turns, you can take a Bonus Action to deal 1d12 Lightning damage to the target automatically": "on each of your subsequent turns, you can take a Bonus Action to deal 1d12 Lightning damage to the target automatically",
       "on each of your turns, you can use a Bonus Action to designate a direction for targets to move": "on each of your turns, you can use a Bonus Action to designate a direction for targets to move",
       "once per active Rage, if you fail a saving throw, you can reroll it with a $(formatBonus(attributes.rageDamage)) bonus": "once per active Rage, if you fail a saving throw, you can reroll it with a $(formatBonus(attributes.rageDamage)) bonus",
-      "once per turn on weapon attack hit while transformed and Bloodied": "once per turn on weapon attack hit while transformed and Bloodied",
       "once per turn when you hit a creature with a Strength-based attack roll while Raging": "once per turn when you hit a creature with a Strength-based attack roll while Raging",
       "once per turn, if the target is missing any Hit Points, deal extra 1d4 Necrotic damage": "once per turn, if the target is missing any Hit Points, deal extra 1d4 Necrotic damage",
       "one ally within 30 feet can also move up to half their Speed using their Reaction": "one ally within 30 feet can also move up to half their Speed using their Reaction",
@@ -225,8 +226,7 @@
       "protective spirits": "protective spirits",
       "rate of descent slows to 60 feet per round and taking no fall damage on landing": "rate of descent slows to 60 feet per round and taking no fall damage on landing",
       "reduce any fall damage you take by $(meta.level * 5)": "reduce any fall damage you take by $(meta.level * 5)",
-      "reduce incoming attack damage by 2d$(attributes.psiDice) + $(stats.int.mod) (minimum 2)": "reduce incoming attack damage by 2d$(attributes.psiDice) + $(stats.int.mod) (minimum 2)",
-      "reduce the damage by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))": "reduce the damage by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))",
+      "reduce incoming attack damage by 2d$(attributes.psiDice)+$(stats.int.mod)": "reduce incoming attack damage by 2d$(attributes.psiDice)+$(stats.int.mod)",
       "reduce the damage by 1d10+$(stats.dex.mod + meta.level)": "reduce the damage by 1d10+$(stats.dex.mod + meta.level)",
       "reduce the damage taken by $(attributes.rageDamage)d6": "reduce the damage taken by $(attributes.rageDamage)d6",
       "reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))": "reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))",
@@ -239,6 +239,7 @@
       "roll 1d$(attributes.psiDice) and record it: damage from your weapon attacks, Psion spells, and Psion features ignores Resistance to Psychic damage, and once per turn when dealing Psychic damage, you can replace one damage die with the recorded number": "roll 1d$(attributes.psiDice) and record it: damage from your weapon attacks, Psion spells, and Psion features ignores Resistance to Psychic damage, and once per turn when dealing Psychic damage, you can replace one damage die with the recorded number",
       "roll 1d20; if you roll a 20, roll on the Wild Magic Surge table": "roll 1d20; if you roll a 20, roll on the Wild Magic Surge table",
       "roll the Bardic Inspiration die to channel a random spirit": "roll the Bardic Inspiration die to channel a random spirit",
+      "shadows and silence": "shadows and silence",
       "shed Bright Light in a 10-foot radius and Dim Light for 10 feet; at the end of each turn, each creature within 10 feet takes $(attributes.prof) Radiant damage, and once per turn deal $(attributes.prof) extra Radiant damage": "shed Bright Light in a 10-foot radius and Dim Light for 10 feet; at the end of each turn, each creature within 10 feet takes $(attributes.prof) Radiant damage, and once per turn deal $(attributes.prof) extra Radiant damage",
       "silvery pale light": "silvery pale light",
       "slick grease": "slick grease",
@@ -286,7 +287,6 @@
       "teleport to an unoccupied space within 5 feet of that enemy and make one melee attack against it": "teleport to an unoccupied space within 5 feet of that enemy and make one melee attack against it",
       "teleport up to 30 feet to an unoccupied space you can see": "teleport up to 30 feet to an unoccupied space you can see",
       "teleport yourself and one willing creature within 5 feet to any destination within range": "teleport yourself and one willing creature within 5 feet to any destination within range",
-      "the area becomes Difficult Terrain until the end of your next turn": "the area becomes Difficult Terrain until the end of your next turn",
       "the attacker must either choose a new target or lose the attack or spell": "the attacker must either choose a new target or lose the attack or spell",
       "the curse ends early when you or an ally hits the target, dealing an extra $(meta.level) Necrotic or Radiant damage.": "the curse ends early when you or an ally hits the target, dealing an extra $(meta.level) Necrotic or Radiant damage.",
       "the damage of its weapon attacks is halved until the start of your next turn": "the damage of its weapon attacks is halved until the start of your next turn",
@@ -351,6 +351,7 @@
       "when spell ends, target becomes hostile": "when spell ends, target becomes hostile",
       "when the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take 2d$(attributes.bardicDie) Necrotic damage": "when the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take 2d$(attributes.bardicDie) Necrotic damage",
       "when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell": "when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell",
+      "when you hit with an attack with Advantage": "when you hit with an attack with Advantage",
       "when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored": "when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored",
       "when you take the Influence action": "when you take the Influence action",
       "when you take the Search action": "when you take the Search action",
@@ -361,12 +362,13 @@
       "while Raging, your allies have Advantage on attack rolls against any enemy of yours within 5 feet of you": "while Raging, your allies have Advantage on attack rolls against any enemy of yours within 5 feet of you",
       "while active, cast Command as a Bonus Action without expending a spell slot": "while active, cast Command as a Bonus Action without expending a spell slot",
       "while entirely in Darkness, you are Invisible to creatures that rely on Darkvision to see you": "while entirely in Darkness, you are Invisible to creatures that rely on Darkvision to see you",
+      "while in the aura": "while in the aura",
       "while it has these temporary hit points, its Speed increases by 10 feet": "while it has these temporary hit points, its Speed increases by 10 feet",
       "while on or touching a stone surface": "while on or touching a stone surface",
       "while you have these temp hit points, a creature that hits you with a melee attack takes 5 Cold damage": "while you have these temp hit points, a creature that hits you with a melee attack takes 5 Cold damage",
       "you always know the target's location for the duration": "you always know the target's location for the duration",
       "you and allies inside the Cube gain a +$(Math.max(1, stats.wis.mod)) bonus to Constitution saving throws": "you and allies inside the Cube gain a +$(Math.max(1, stats.wis.mod)) bonus to Constitution saving throws",
-      "you and your allies gain +10 bonus to Dexterity (Stealth) checks and can't be tracked except by magical means": "you and your allies gain +10 bonus to Dexterity (Stealth) checks and can't be tracked except by magical means",
+      "you and each creature you choose gain a +10 bonus to Dexterity (Stealth) checks and leave no tracks": "you and each creature you choose gain a +10 bonus to Dexterity (Stealth) checks and leave no tracks",
       "you can choose a willing creature to use its Reaction to move up to half its Speed without provoking Opportunity Attacks from the target": "you can choose a willing creature to use its Reaction to move up to half its Speed without provoking Opportunity Attacks from the target",
       "you can expend one Hit Point Die to increase the damage by 1d10": "you can expend one Hit Point Die to increase the damage by 1d10",
       "you can expend up to two Hit Point Dice to regain Hit Points equal to the roll plus $(attributes.spellcasting.bonus)": "you can expend up to two Hit Point Dice to regain Hit Points equal to the roll plus $(attributes.spellcasting.bonus)",
@@ -426,7 +428,6 @@
       "Chalice": "Chalice",
       "Damage": "Damage",
       "Damage Bonus": "Damage Bonus",
-      "Damage Resistance": "Damage Resistance",
       "Dao's Crush": "Dao's Crush",
       "Darkening Shot": "Darkening Shot",
       "Demonic Lash": "Demonic Lash",
@@ -454,20 +455,17 @@
       "Heavenly Wings": "Heavenly Wings",
       "Hurl Flame": "Hurl Flame",
       "Inner Radiance": "Inner Radiance",
-      "Instinctive Pounce": "Instinctive Pounce",
       "Intoxicant": "Intoxicant",
       "Marid's Surge": "Marid's Surge",
       "Maze of Azzatar": "Maze of Azzatar",
       "Move": "Move",
       "Necrotic Shroud": "Necrotic Shroud",
       "Poison (Cost: 1d6)": "Poison (Cost: 1d6)",
-      "Primal Knowledge": "Primal Knowledge",
       "Protect": "Protect",
       "Purify": "Purify",
       "Push": "Push",
       "Redirect Attack": "Redirect Attack",
       "Refreshing Step": "Refreshing Step",
-      "Rage Damage": "Rage Damage",
       "Reject": "Reject",
       "Renegade": "Renegade",
       "Sedative": "Sedative",
@@ -478,7 +476,6 @@
       "Slime Pits' Haze": "Slime Pits' Haze",
       "Slowing Toxin": "Slowing Toxin",
       "Strike": "Strike",
-      "Strength Advantage": "Strength Advantage",
       "Taunting Step": "Taunting Step",
       "Team Tactics": "Team Tactics",
       "Telekinetic Bolt": "Telekinetic Bolt",
@@ -731,8 +728,15 @@
   "arcaneWard": {
     "name": "Arcane Ward"
   },
+  "arcaneWarrior": {
+    "name": "Arcane Warrior",
+    "summary": "Learn two wizard cantrips of your choice."
+  },
+  "arcaneWarriorCantrips": {
+    "name": "Arcane Warrior Cantrips"
+  },
   "archery": {
-    "name": "Archery",
+    "name": "Archer",
     "summary": "Gain a +2 bonus to attack rolls made with ranged weapons."
   },
   "archfeyPatron": {
@@ -1465,6 +1469,9 @@
     "name": "Cordon Of Arrows",
     "summary": "You ward an area with ammunition that rises to strike approaching foes."
   },
+  "coreActions": {
+    "name": "Core Actions"
+  },
   "cosmicOmen": {
     "name": "Cosmic Omen"
   },
@@ -1494,6 +1501,10 @@
   "crossbowExpert": {
     "name": "Crossbow Expert",
     "summary": "Ignore loading properties and shoot crossbows in close melee without penalty."
+  },
+  "crossbowExpertFiringInMelee": {
+    "name": "Firing in Melee",
+    "description": "Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with a crossbow."
   },
   "crownOfMadness": {
     "name": "Crown Of Madness",
@@ -1604,7 +1615,7 @@
     "summary": "Tell a convincing lie, or wear a disguise convincingly."
   },
   "defense": {
-    "name": "Defense",
+    "name": "Defender",
     "summary": "Gain a +1 bonus to Armor Class while wearing armor."
   },
   "defensiveDuelist": {
@@ -2502,7 +2513,7 @@
     "name": "Greatsword"
   },
   "greatWeaponFighting": {
-    "name": "Great Weapon Fighting",
+    "name": "Great Weapon Fighter",
     "summary": "Treat any 1 or 2 on a damage die as a 3 when wielding two-handed weapons."
   },
   "greatWeaponMaster": {
@@ -2832,10 +2843,6 @@
     "name": "Insight",
     "summary": "Discern a person's mood and intentions."
   },
-  "inspiredEclipse": {
-    "name": "Inspired Eclipse",
-    "description": "You can gain the Invisible condition and teleport up to 30 feet to an unoccupied space you can see. The invisibility lasts until the start of your next turn or until you attack, deal damage, or cast a spell."
-  },
   "inspiringLeader": {
     "name": "Inspiring Leader",
     "summary": "Inspire companions with speeches to grant temporary hit points."
@@ -2866,7 +2873,7 @@
     "summary": "You shield a willing creature's mind, granting Psychic Resistance and mental save Advantage."
   },
   "interception": {
-    "name": "Interception",
+    "name": "Interceptor",
     "summary": "Use your reaction to reduce incoming damage to a nearby ally."
   },
   "intimidation": {
@@ -3559,6 +3566,9 @@
     "name": "Observant Mind",
     "summary": "Add a Psionic Energy Die to a Study ability check."
   },
+  "offHandAttack": {
+    "name": "Off-Hand Attack"
+  },
   "oneThirdCaster": {
     "name": "One Third Caster"
   },
@@ -3911,6 +3921,9 @@
   "powerFromBeyondDamage": {
     "name": "Power from Beyond (Damage)"
   },
+  "powerFromBeyondDamageSave": {
+    "name": "Power from Beyond (Damage)"
+  },
   "powerFromBeyondHealing": {
     "name": "Power from Beyond (Healing)"
   },
@@ -3971,7 +3984,7 @@
     "name": "Prone Immunity"
   },
   "protection": {
-    "name": "Protection",
+    "name": "Protector",
     "summary": "Use your reaction to impose disadvantage on attacks against nearby allies."
   },
   "protectionFromEnergy": {
@@ -4964,7 +4977,7 @@
     "summary": "You create a thorny whip to strike and pull a target closer."
   },
   "thrownWeaponFighting": {
-    "name": "Thrown Weapon Fighting",
+    "name": "Thrown Weapon Fighter",
     "summary": "Draw thrown weapons instantly and deal extra damage with them."
   },
   "thunderclap": {
@@ -5078,8 +5091,11 @@
     "name": "Twinned Spell"
   },
   "twoWeaponFighting": {
-    "name": "Two-Weapon Fighting",
-    "summary": "Make an additional attack with a Light weapon."
+    "name": "Two-Weapon Fighter",
+    "summary": "When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack."
+  },
+  "twoWeaponFightingOffHand": {
+    "name": "Two-Weapon Fighter (Off-Hand)"
   },
   "umbralSightInvisibility": {
     "name": "Umbral Sight"
@@ -5088,11 +5104,11 @@
     "name": "Unarmed Strike"
   },
   "unarmedFighting": {
-    "name": "Unarmed Fighting",
+    "name": "Unarmed Fighter",
     "summary": "Enhance unarmed strike damage and deal extra damage to grappled targets."
   },
   "unarmedFightingUnarmedFighting": {
-    "name": "Unarmed Fighting"
+    "name": "Unarmed Fighter"
   },
   "unarmored": {
     "name": "Unarmored"
@@ -5262,9 +5278,6 @@
   "wayfarer": {
     "name": "Wayfarer",
     "description": "Raised on city streets, you survived hardship through resourcefulness, grit, and hope."
-  },
-  "weaponAttack": {
-    "name": "$(local.name)"
   },
   "weaponMaster": {
     "name": "Weapon Master",
