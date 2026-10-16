@@ -35,6 +35,20 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
     });
     const [fontVersion, setFontVersion] = useState(0);
 
+    // Set document.title to character name so browser print / PDF export defaults to this filename
+    useEffect(() => {
+        if (typeof document === 'undefined') return;
+        const charName = char?.meta?.name?.trim() || char?.name?.trim();
+        if (!charName) return;
+
+        const previousTitle = document.title;
+        document.title = charName;
+
+        return () => {
+            document.title = previousTitle;
+        };
+    }, [char?.meta?.name, char?.name]);
+
     useEffect(() => {
         let active = true;
         if (!document.fonts) {

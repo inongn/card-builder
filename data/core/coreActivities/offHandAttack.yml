@@ -5,6 +5,8 @@ duration: instantaneous
 time: bonus action
 range: self
 mechanic:
+  trigger: 
+    event: make_attack
   pattern: automatic
   target:
     type: self
