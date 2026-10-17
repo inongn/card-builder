@@ -71,11 +71,14 @@ children:
     resource: wildShape
     condition: $(meta.level >= 2)
     mechanic:
-      pattern: automatic
+      pattern: healing
+      healing:
+        dice:
+          bonus: $(meta.level)
+        type: tempHitPoints
       target:
         type: self
       payloads:
-        - text: "gain $(meta.level * 2) Temporary Hit Points"
         - text: "transform into a Beast form whose stat block replaces your physical stats"
         - text: "retain your personality, memories, and ability to speak, but you can't cast spells"
   - id: druidSubclass
@@ -102,3 +105,11 @@ children:
     quantity: 1
     target: feat
     condition: $(meta.level >= 8)
+  - id: primalStrikeWildShape
+    type: Effect
+    target: statblocks[tags=wildShapeTemplate].actions
+    operation: push
+    condition: $(meta.level >= 5)
+    value:
+      name: Multiattack
+      description: The beast makes two Bestial Strike attacks.

@@ -26,6 +26,16 @@ children:
     value: $(meta.level * 3)
     condition: $(meta.level >= 3)
   - type: Effect
+    target: statblocks[tags=wildShapeTemplate].
+    operation: push
+    value: moonDruid
+    condition: $(meta.level >= 3)
+  - type: Effect
+    target: statblocks[tags=wildShapeTemplate].ac
+    operation: set
+    value: $(13 + stats.wis.mod)
+    condition: $(meta.level >= 3)
+  - type: Effect
     target: statblocks[tags=wildShapeTemplate].traits
     operation: push
     value: 
@@ -34,14 +44,11 @@ children:
       - name: Increased Toughness
         description: You can add $(stats.wis.mod) to your Constitution saving throws.
     condition: $(meta.level >= 6)
-  - type: Reference
-    target:
-      - improvedCircleFormsToughness
-    condition: $(meta.level >= 6)
   - id: primalStrikeWildShape
     type: Effect
-    target: statblocks[tags=wildShapeTemplate].actions
+    target: statblocks[tags=wildShapeTemplate].bonusActions
     operation: push
     value:
-      name: Multiattack
-      description: The beast makes two Bestial Strike attacks.
+      name: Bonus Attack
+      description: The beast makes a Bestial Strike attack.
+    condition: $(meta.level >= 3)
