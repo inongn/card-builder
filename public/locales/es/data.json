@@ -3723,7 +3723,7 @@
     "summary": "Obtén un movimiento rápido y agilidad aérea inspirados en el espíritu del búho."
   },
   "pactMagicSpellSlot": {
-    "name": "Espacio de Conjuro Nv. $(Math.min(5, Math.ceil(meta.level / 2)))"
+    "name": "Espacio Conjuro"
   },
   "pactOfTheBladeFolder": {
     "name": "Pacto del filo",

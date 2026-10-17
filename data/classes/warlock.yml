@@ -26,7 +26,7 @@ children:
       - chaCaster
   - type: Resource
     id: pactMagicSpellSlot
-    name: Lv. $(Math.min(5, Math.ceil(meta.level / 2))) Spell Slot
+    name: Pact Magic Spell Slot
     quantity: '$(meta.level >= 17 ? 4 : meta.level >= 11 ? 3 : meta.level >= 2 ? 2 : 1)'
     sr: all
   - type: Slot

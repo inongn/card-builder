@@ -2154,7 +2154,7 @@ export function formatActivityMechanicEs(activity, characterData, customTranslat
 
   const evalStrForLabel = s => evaluator.evaluate(s, scope);
   const upcastSuffix = showUpcastLabel
-    ? ` _Lanzamiento Superior:_ ${deriveUpcastLabelEs(upcastSpec, effectiveMechanic, activity, evalStrForLabel, translations)}.`
+    ? ` _Superior:_ ${deriveUpcastLabelEs(upcastSpec, effectiveMechanic, activity, evalStrForLabel, translations)}.`
     : '';
 
   const fullSuffix = `${durSuffix}${ritualSuffix}${upcastSuffix}${extraSuffix}`;

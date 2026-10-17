@@ -1,0 +1,880 @@
+/* ==========================================================================
+   PRINT STYLESHEET
+   Everything that styles the print screen and printed output lives here.
+
+   1. Design tokens
+   2. Visibility helpers
+   3. Page sheets & wrappers (preview + print)
+   4. Card pages (card grid, legacy card overrides, statblocks)
+   5. Shared print primitives (headings, rows, text)
+   6. Activity-sheet slots
+   7. Compact sheet            (cps-*)
+   8. Ultra-compact portrait   (ucp-*)
+   9. Global @media print rules
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+  /* Page geometry (US Letter) */
+  --print-page-margin: 0.25in;
+  --print-landscape-w: 11in;
+  --print-landscape-h: 8.5in;
+  --print-portrait-w: 8.5in;
+  --print-portrait-h: 11in;
+
+  /* Ink & paper */
+  --print-paper: #fff;
+  --print-ink: #111;
+  --print-ink-emphasis: #444;
+  --print-ink-muted: #555;
+  --print-ink-subtle: #777;
+
+  /* Rules & borders */
+  --print-rule: #ccc;
+  --print-rule-soft: #e8e8e8;
+  --print-rule-strong: #999;
+
+  /* Typography */
+  --print-font: 'Google Sans Flex', sans-serif;
+  --print-font-width: "wdth" 60;
+  --print-fs-label: 0.58rem;
+  --print-fs-body: 0.78rem;
+  --print-fs-heading: 0.7rem;
+  --print-fs-stat: 0.95rem;
+  --print-fs-title: 1.05rem;
+  --print-fs-card: 0.8rem;
+  --print-fs-card-lg: 0.9rem;
+  --print-lh-tight: 1.25;
+  --print-lh-body: 1.3;
+  --print-tracking-label: 0.04em;
+  --print-tracking-heading: 0.06em;
+
+  /* Spacing */
+  --print-gap-1: 2px;
+  --print-gap-2: var(--space-1);
+  --print-gap-3: 6px;
+  --print-row-pad: 1px 4px;
+  --print-slot-pad: 8px 10px;
+
+  /* Shape & icons */
+  --print-radius: 6px;
+  --print-radius-card: 12px;
+  --print-icon-size: 12px;
+  --print-icon-size-sm: 10px;
+  --print-preview-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==========================================================================
+   2. VISIBILITY HELPERS
+   ========================================================================== */
+
+.show-on-print {
+  display: none !important;
+  /* intentional: hidden outside print */
+}
+
+.print-mode .show-on-print {
+  display: flex !important;
+}
+
+.print-mode .hide-on-print {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   3. PAGE SHEETS & WRAPPERS
+   A wrapper reserves the page's aspect ratio in the preview; the page inside
+   is absolutely positioned at full size and scaled via an inline transform.
+   In print, both collapse to exact page dimensions.
+   ========================================================================== */
+
+/* Orientation → page dimensions */
+.print-mode .print-page-wrapper,
+.print-mode .print-page,
+.print-mode .cps-page {
+  --page-w: var(--print-landscape-w);
+  --page-h: var(--print-landscape-h);
+  --page-ratio: 11 / 8.5;
+}
+
+.print-mode .ucp-page-wrapper,
+.print-mode .ucp-page {
+  --page-w: var(--print-portrait-w);
+  --page-h: var(--print-portrait-h);
+  --page-ratio: 8.5 / 11;
+}
+
+.print-mode :is(.print-page-wrapper, .ucp-page-wrapper) {
+  width: 100%;
+  max-width: var(--page-w);
+  margin: 0 auto var(--space-5) auto;
+  aspect-ratio: var(--page-ratio);
+  position: relative;
+}
+
+.print-mode :is(.print-page, .cps-page, .ucp-page) {
+  width: var(--page-w);
+  height: var(--page-h);
+  padding: var(--print-page-margin);
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  background: var(--print-paper);
+  box-shadow: var(--print-preview-shadow);
+}
+
+@media print {
+  .print-mode :is(.print-page-wrapper, .ucp-page-wrapper) {
+    width: var(--page-w) !important;
+    height: var(--page-h) !important;
+    max-width: none !important;
+    margin: 0 !important;
+    aspect-ratio: auto !important;
+    background: var(--print-paper) !important;
+    break-after: page;
+  }
+
+  .print-mode :is(.print-page-wrapper, .ucp-page-wrapper):last-child {
+    break-after: auto;
+  }
+
+  .print-mode :is(.print-page, .cps-page, .ucp-page) {
+    position: relative !important;
+    transform: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: var(--print-paper) !important;
+    overflow: hidden !important;
+  }
+}
+
+
+/* ==========================================================================
+   4. CARD PAGES
+   Grid of cards (character sheet, activity cards, statblocks). Card
+   components get flattened into plain bordered boxes on paper.
+   ========================================================================== */
+
+.print-mode .print-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.print-mode .main-card-print-slot {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.print-mode .action-card-print-slot {
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.print-mode .main-card {
+  padding: var(--gap-md);
+}
+
+.print-mode .main-card-column {
+  grid-column: span 3;
+}
+
+.print-mode .card-container,
+.print-mode .main-card,
+.print-mode mdui-card {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  background: var(--print-paper) !important;
+  color: black !important;
+  border: 1px solid var(--print-rule) !important;
+  box-shadow: none !important;
+  border-radius: var(--print-radius-card) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+/* Static cards and the main card are square-cornered on paper */
+.print-mode .static-card,
+.print-mode .main-card {
+  border-style: solid !important;
+  border-radius: 0 !important;
+}
+
+.print-mode .inner-card {
+  height: min-content !important;
+}
+
+.print-mode .card-header {
+  flex-shrink: 0 !important;
+  display: grid !important;
+  text-align: left !important;
+}
+
+.print-mode .card-content {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.print-mode .card-description,
+.print-mode .card-content {
+  font-size: var(--print-fs-body);
+  font-family: var(--print-font) !important;
+  font-variation-settings: var(--print-font-width) !important;
+}
+
+.print-mode .card-description-paragraph:last-child {
+  margin-bottom: 0 !important;
+}
+
+.print-mode .card-grid {
+  flex-shrink: 0 !important;
+  margin: var(--print-gap-2) 0 !important;
+}
+
+.print-mode .grid-value-chip {
+  background-color: var(--print-paper) !important;
+  color: black !important;
+  font-size: var(--mdui-typescale-label-medium-size, 0.8rem) !important;
+}
+
+.print-mode .icon-accent,
+.print-mode mdui-icon[style*="var(--color-accent)"] {
+  color: var(--print-ink-subtle) !important;
+}
+
+.print-mode .card-description.extra,
+.print-mode .text-secondary {
+  color: var(--print-ink-emphasis);
+}
+
+/* Subtitle row shown only on paper */
+.print-mode .print-subtitle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: var(--gap-sm);
+}
+
+/* Character-sheet card: play-only widgets are replaced by static values */
+.print-mode .stat-box-row,
+.print-mode .resource-dots {
+  display: none !important;
+}
+
+.print-mode .saves-list {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-rows: none !important;
+  grid-auto-flow: row !important;
+}
+
+.print-mode .resource-qty {
+  display: inline-block !important;
+  font-weight: 700;
+  font-size: var(--print-fs-card-lg);
+  color: var(--print-ink) !important;
+  text-align: center;
+  min-width: 18px;
+  flex-shrink: 0;
+}
+
+.print-mode .resource-recovery {
+  display: inline-block;
+  font-weight: 700;
+  font-size: var(--print-fs-card);
+  color: var(--print-ink-muted) !important;
+  text-align: center;
+  min-width: 40px;
+  flex-shrink: 0;
+}
+
+.print-mode .trait-list-item {
+  font-size: var(--print-fs-card) !important;
+  line-height: var(--print-lh-body) !important;
+  color: var(--print-ink) !important;
+}
+
+
+/* ==========================================================================
+   5. SHARED PRINT PRIMITIVES
+   One definition for each repeated visual element, shared by the activity
+   sheet (activity-*) and compact sheet (cps-*) so they match side by side.
+   ========================================================================== */
+
+/* Section heading: small caps label with a hairline underneath */
+.print-mode .cps-heading,
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .title-primary {
+  font-size: var(--print-fs-heading) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: var(--print-tracking-heading) !important;
+  color: var(--print-ink-muted) !important;
+  margin-bottom: 1px !important;
+  padding: 0 0 1px !important;
+  border-bottom: 1px solid var(--print-rule) !important;
+}
+
+.print-mode .cps-heading {
+  margin-top: var(--print-gap-2) !important;
+}
+
+/* Item / row: plain line separated by a hairline, no card chrome */
+.print-mode .cps-item,
+.print-mode .cps-skill-row,
+.print-mode .cps-save-row,
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-item {
+  border-bottom: 1px solid var(--print-rule-soft) !important;
+}
+
+.print-mode .cps-item:last-child,
+.print-mode .cps-skill-row:last-child,
+.print-mode .cps-save-row:last-child,
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-item:last-child {
+  border-bottom: none !important;
+}
+
+/* Body text */
+.print-mode .cps-content,
+.print-mode .cps-skill-row,
+.print-mode .cps-save-row,
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-content {
+  font-family: var(--print-font) !important;
+  font-variation-settings: var(--print-font-width) !important;
+  font-size: var(--print-fs-body);
+  line-height: var(--print-lh-body);
+  color: var(--print-ink);
+}
+
+/* Inline emphasis inside item text */
+.print-mode .cps-line strong,
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-line strong {
+  font-weight: 700;
+  color: var(--print-ink) !important;
+}
+
+.print-mode .cps-line em,
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-line em {
+  font-style: italic;
+  color: var(--print-ink-emphasis) !important;
+}
+
+/* Resource / activity icons: small, keep their colour */
+.print-mode .cps-icon mdui-icon,
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-icon mdui-icon {
+  font-size: var(--print-icon-size) !important;
+}
+
+/* Resource quantity & recovery badges */
+.print-mode :is(.cps-resource-qty, .cps-resource-recovery) {
+  display: inline-block;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: var(--print-fs-body);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.print-mode .cps-resource-qty {
+  min-width: 12px;
+  color: var(--print-ink);
+}
+
+.print-mode .cps-resource-recovery {
+  min-width: 18px;
+  color: var(--print-ink-muted);
+}
+
+
+/* ==========================================================================
+   6. ACTIVITY-SHEET SLOTS
+   Containers that hold <ActivitySheet printMode>. `.cps-activity-slot` is
+   used by the compact and ultra-compact sheets (measured for spillover).
+   ========================================================================== */
+
+/* Half-page frame (also used by the compact sheet's left panel) */
+.print-mode :is(.activity-sheet-print-slot, .compact-charsheet-print-slot) {
+  grid-row: 1 / span 1;
+  height: 100% !important;
+  overflow: hidden !important;
+  /* never scroll — clip at the page edge */
+  border: 1px solid var(--print-rule) !important;
+  border-radius: 0 !important;
+  padding: var(--print-slot-pad) !important;
+  background: var(--print-paper) !important;
+  color: black !important;
+  box-sizing: border-box !important;
+}
+
+.print-mode .cps-activity-slot {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--print-gap-3) !important;
+}
+
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .aside-card-group {
+  margin-bottom: 0 !important;
+}
+
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-item {
+  display: block;
+  padding: var(--print-row-pad) !important;
+  margin-bottom: 0 !important;
+  gap: var(--print-gap-3) !important;
+  background: transparent !important;
+  border: none;
+  border-radius: 0 !important;
+  transition: none !important;
+  /* no web hover transition */
+}
+
+/* No hover highlight on paper */
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-item:hover {
+  background: transparent !important;
+  border-color: transparent;
+  border-bottom-color: var(--print-rule-soft);
+}
+
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) .activity-sheet-icon {
+  margin-top: 0 !important;
+  margin-right: var(--print-gap-3) !important;
+  line-height: 0.9 !important;
+}
+
+/* Neutralise accent-coloured text only — icon colours are left alone */
+.print-mode :is(.activity-sheet-print-slot, .cps-activity-slot) :is(.activity-sheet-content, .activity-sheet-line, .activity-sheet-line span, .activity-sheet-line p) {
+  color: var(--print-ink) !important;
+}
+
+/* Two-column page layout: card slot | activity slot */
+.print-mode .print-grid.activity-sheet-2x1-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows: 1fr !important;
+  gap: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.print-mode .activity-sheet-2x1-grid .main-card-print-slot {
+  grid-column: 1 / span 1 !important;
+  grid-row: 1 / span 1 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+
+/* ==========================================================================
+   7. COMPACT SHEET  (cps-*)
+   Dense two-column character sheet: 1fr identity/stats | 2fr activities.
+   ========================================================================== */
+
+.print-mode .cps-page {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.2in;
+  align-items: start;
+  color: var(--print-ink);
+  break-inside: avoid;
+}
+
+/* Columns */
+.print-mode :is(.cps-left-col, .cps-right-col) {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.print-mode .cps-right-col {
+  border-left: 1px solid var(--print-rule-soft);
+  padding-left: 0.15in;
+}
+
+/* Left half-page panel on activity-sheet pages */
+.print-mode .compact-charsheet-print-slot {
+  grid-column: 1;
+}
+
+.print-mode .cps-two-col-panel {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.1in;
+  height: 100%;
+  overflow: hidden;
+  align-items: start;
+}
+
+.print-mode .cps-two-col-panel .cps-right-col {
+  padding-left: 0.1in;
+}
+
+/* Identity */
+.print-mode .cps-name-block {
+  margin-bottom: var(--print-gap-2);
+}
+
+.print-mode .cps-char-name {
+  font-size: var(--print-fs-title);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--print-ink);
+}
+
+.print-mode .cps-char-sub {
+  font-size: var(--print-fs-body);
+  color: var(--print-ink-muted);
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.print-mode .cps-char-sub2 {
+  color: var(--print-ink-subtle);
+}
+
+/* Combat & HP boxes */
+.print-mode .cps-combat-row,
+.print-mode .cps-hp-row {
+  display: grid;
+  gap: var(--print-gap-2);
+  margin-bottom: var(--print-gap-1);
+}
+
+.print-mode .cps-combat-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.print-mode .cps-hp-row {
+  grid-template-columns: auto 1fr 1fr;
+}
+
+.print-mode :is(.cps-stat-box, .cps-hp-box, .cps-hp-input-box) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--print-rule);
+  border-radius: var(--print-radius);
+  background: var(--print-paper);
+}
+
+.print-mode .cps-stat-box {
+  justify-content: center;
+  padding: 1px var(--print-gap-1);
+}
+
+.print-mode .cps-hp-box {
+  justify-content: center;
+  padding: 3px var(--print-gap-3);
+}
+
+.print-mode .cps-hp-input-box {
+  justify-content: flex-start;
+  padding: var(--print-gap-1) var(--print-gap-2);
+}
+
+.print-mode .cps-stat-label {
+  font-size: var(--print-fs-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--print-tracking-label);
+  color: var(--print-ink-subtle);
+  line-height: 1.1;
+}
+
+.print-mode .cps-stat-value {
+  font-size: var(--print-fs-stat);
+  font-weight: 700;
+  color: var(--print-ink);
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: var(--print-gap-1);
+}
+
+.print-mode .cps-hp-blank {
+  width: 100%;
+  height: 20px;
+  border-bottom: 1px solid var(--print-rule-strong);
+  margin-bottom: var(--print-gap-1);
+}
+
+/* Skill & save lists */
+.print-mode :is(.cps-skill-list, .cps-saves-list, .cps-sheet-list) {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--print-gap-1);
+}
+
+.print-mode :is(.cps-skill-row, .cps-save-row) {
+  display: grid;
+  align-items: center;
+  gap: var(--print-gap-2);
+  padding: 1px var(--print-gap-1);
+  line-height: var(--print-lh-tight);
+}
+
+.print-mode .cps-skill-row {
+  grid-template-columns: 18px 8px 14px 1fr;
+}
+
+.print-mode .cps-save-row {
+  grid-template-columns: 10px 15px 1fr;
+}
+
+.print-mode .cps-skill-stat {
+  color: var(--print-ink-subtle);
+  font-size: var(--print-fs-label);
+  font-weight: 600;
+  letter-spacing: var(--print-tracking-label);
+}
+
+.print-mode .cps-skill-bonus {
+  font-weight: 700;
+  color: var(--print-ink);
+  text-align: right;
+}
+
+.print-mode .cps-skill-name {
+  display: flex;
+  align-items: center;
+  gap: var(--print-gap-1);
+}
+
+.print-mode .cps-skill-name .adv-dis-indicator {
+  height: var(--space-3);
+}
+
+.print-mode .cps-prof-icon {
+  font-size: var(--print-icon-size-sm) !important;
+  color: var(--print-ink-muted);
+}
+
+/* Item rows (activities / resources / traits / info) */
+.print-mode .cps-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  padding: var(--print-row-pad);
+  background: transparent;
+  transition: none;
+}
+
+.print-mode .cps-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.print-mode .cps-content {
+  flex: 1;
+}
+
+.print-mode .cps-line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--print-gap-2);
+  flex-wrap: wrap;
+}
+
+.print-mode .cps-line p {
+  margin: 0;
+}
+
+.print-mode .cps-extra {
+  margin-left: 10px;
+  margin-top: 1px;
+  font-size: var(--print-fs-body);
+  color: var(--print-ink-emphasis);
+  font-style: italic;
+}
+
+/* Resource item: name left, quantity + recovery right */
+.print-mode .cps-resource-item .cps-content {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--print-gap-3);
+  width: 100%;
+}
+
+.print-mode .cps-resource-right {
+  margin-left: auto;
+  display: flex;
+  align-items: baseline;
+  gap: var(--print-gap-1);
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   8. ULTRA-COMPACT PORTRAIT  (ucp-*)
+   Portrait page: compact-sheet sidebar + two activity-sheet columns.
+   Pages and wrappers share the orientation rules in section 3.
+   ========================================================================== */
+
+.print-mode .ucp-page {
+  display: flex;
+  flex-direction: column;
+  color: var(--print-ink);
+  line-height: 1.2;
+}
+
+.ucp-body {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1.5fr;
+  gap: var(--space-2);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ucp-body-overflow {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ucp-col {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Activity columns (and overflow-page columns) stack their slot */
+.ucp-col-2,
+.ucp-col-3,
+.ucp-body-overflow .ucp-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Statblock pages: 2×2 grid in portrait */
+.print-mode .print-grid.ucp-statblock-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+
+
+/* ==========================================================================
+   9. GLOBAL @media print
+   ========================================================================== */
+
+/* Suppress interactive play styling in print output */
+@media print {
+  .dice-roller {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    color: inherit !important;
+    box-shadow: none !important;
+  }
+
+  .dice-roller .dice-icon {
+    display: none !important;
+  }
+
+  .hp-input {
+    border-bottom: none !important;
+    background: none !important;
+  }
+
+  .resource-dot-interactive {
+    cursor: default !important;
+  }
+}
+
+@media print {
+  @page {
+    size: letter landscape;
+    margin: 0;
+  }
+
+  html,
+  body,
+  mdui-layout,
+  .app-main-layout,
+  .main-content {
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: var(--print-paper) !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* App chrome */
+  mdui-navigation-rail,
+  mdui-navigation-drawer,
+  mdui-top-app-bar,
+  .header-nav,
+  mdui-fab,
+  .hide-on-print {
+    display: none !important;
+  }
+
+  .show-on-print {
+    display: block !important;
+  }
+
+  .print-screen {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    transform: none !important;
+    border: none !important;
+    background: none !important;
+    overflow: visible !important;
+  }
+
+  .print-content {
+    scale: 1;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

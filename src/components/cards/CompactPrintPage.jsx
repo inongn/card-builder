@@ -129,7 +129,7 @@ const SectionHeading = ({ label }) => (
 
 // ── Left column: Name, Combat, HP, Resources?, Skills, Saves, Info, Traits? ─
 
-const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showTraits = false }) => {
+export const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showTraits = false, showIdentity = true }) => {
     const { t, localize, lang } = useLocale();
     const sortedResources = showResources ? sortResources(char.resources || []) : [];
 
@@ -165,6 +165,7 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
 
     return (
         <div className="cps-left-col" ref={leftColRef}>
+            {showIdentity && (<>
             {/* Name / subtitle */}
             <div className="cps-name-block">
                 <div className="cps-char-name">{char.meta.name}</div>
@@ -211,6 +212,8 @@ const CompactLeftColumn = memo(({ char, leftColRef, showResources = false, showT
                     <div className="cps-hp-blank" />
                 </div>
             </div>
+
+            </>)}
 
             {/* Resources (rendered in Col 1 if space permits) */}
             {showResources && sortedResources.length > 0 && (

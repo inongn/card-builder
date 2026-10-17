@@ -3655,7 +3655,7 @@
     "summary": "Gain swift movement and aerial agility inspired by the owl spirit."
   },
   "pactMagicSpellSlot": {
-    "name": "Lv. $(Math.min(5, Math.ceil(meta.level / 2))) Spell Slot"
+    "name": "Pact Magic Spell Slot"
   },
   "pactOfTheBladeFolder": {
     "name": "Pact of the Blade",
