@@ -76,7 +76,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         };
 
         if (document.fonts.load) {
-            document.fonts.load('0.75rem "Google Sans Flex"').catch(() => { });
+            document.fonts.load('0.75rem "Google Sans Flex"').catch(() => {});
         }
 
         document.fonts.ready.then(markReady).catch(markReady);
