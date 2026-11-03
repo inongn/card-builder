@@ -9,7 +9,6 @@ children:
     category: wildShape
     classification: Monstrosity
     ac: $(13 + stats.wis.mod)
-    hp: $(4 * meta.level)
     movement:
       walk: 40
       climb: 40
@@ -39,7 +38,6 @@ children:
     category: wildShape
     classification: Monstrosity
     ac: $(13 + stats.wis.mod)
-    hp: $(4 * meta.level)
     movement:
       walk: 40
       swim: 40
@@ -69,7 +67,6 @@ children:
     category: wildShape
     classification: Monstrosity
     ac: $(13 + stats.wis.mod)
-    hp: $(4 * meta.level)
     movement:
       walk: 40
       fly: "$(meta.level >= 10 ? 40 : 0)"

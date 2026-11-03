@@ -1,14 +1,13 @@
 type: Statblock
 name: Aerial Swooper Beast
 id: aerialLunarBeastSwooper
-summary: Eagles and raptors with keen sight and grappling talons.
+summary: Eagles and raptors with keen sight, evasive flight, and grappling talons.
 tags: [lunarWildShape, classOption]
 repeatable: true
 size: "$(meta.level >= 12 ? 'Large' : 'Medium')"
 category: wildShape
 classification: Beast
 ac: "$(10 + Math.floor((19 + Math.floor(meta.level / 3) - 10) / 2))"
-hp: "$(((meta.level >= 18 ? 13 : meta.level >= 15 ? 11 : meta.level >= 12 ? 9 : meta.level >= 9 ? 7 : meta.level >= 6 ? 5 : 3)) * (4 + Math.floor((11 + Math.floor(meta.level / 3) - 10) / 2)))"
 movement:
   walk: 10
   fly: 60
@@ -20,11 +19,11 @@ stats:
   wis: "$(stats.wis.score)"
   cha: "$(stats.cha.score)"
 traits:
+  - name: Flyby
+    description: "You don't provoke opportunity attacks when flying out of an enemy's reach."
   - name: Keen Sight
     description: "You have advantage on Wisdom (Perception) checks that rely on sight."
 actions:
-  - name: Multiattack
-    description: "You make two attacks: one with your Beak and one with your Talons."
   - name: Beak
     description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((19 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 12 ? 2 : 1)d4$(formatBonus(Math.floor((19 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3))) Piercing damage."
   - name: Talons

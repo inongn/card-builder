@@ -76,7 +76,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         };
 
         if (document.fonts.load) {
-            document.fonts.load('0.75rem "Google Sans Flex"').catch(() => {});
+            document.fonts.load('0.75rem "Google Sans Flex"').catch(() => { });
         }
 
         document.fonts.ready.then(markReady).catch(markReady);
@@ -375,7 +375,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                     ))}
                     {ucpStatChunks.map((chunk, idx) => (
                         <div key={`sb-${idx}`} className="ucp-page-wrapper">
-                            <UltraCompactStatblockPage statblocks={chunk} style={ucpStyle} />
+                            <UltraCompactStatblockPage statblocks={chunk} style={ucpStyle} char={char} />
                         </div>
                     ))}
                 </div>
@@ -493,7 +493,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                                 <div className="print-grid">
                                     {chunk.map((card, cardIdx) => (
                                         <div key={cardIdx} className="action-card-print-slot">
-                                            <StatblockCard statblock={card} variant="static" />
+                                            <StatblockCard statblock={card} variant="static" char={char} />
                                         </div>
                                     ))}
                                 </div>
@@ -544,7 +544,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                                 {page1Cards.map((card, idx) => (
                                     <div key={idx} className="action-card-print-slot">
                                         {card._isStatblock
-                                            ? <StatblockCard statblock={card} variant="static" />
+                                            ? <StatblockCard statblock={card} variant="static" char={char} />
                                             : <ActivityCard activity={card} variant="static" char={char} />
                                         }
                                     </div>
@@ -561,7 +561,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
                                 {chunk.map((card, cardIdx) => (
                                     <div key={cardIdx} className="action-card-print-slot">
                                         {card._isStatblock
-                                            ? <StatblockCard statblock={card} variant="static" />
+                                            ? <StatblockCard statblock={card} variant="static" char={char} />
                                             : <ActivityCard activity={card} variant="static" char={char} />
                                         }
                                     </div>

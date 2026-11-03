@@ -3287,6 +3287,10 @@
     "name": "Lunar Beast (Gripper)",
     "summary": "Terrestrial simian beast form representing apes and baboons with Multiattack, accurate fist strikes, ranged rock throwing, and weapon use."
   },
+  "lunarBeastInfiltrator": {
+    "name": "Infiltrator Beast",
+    "summary": "Mice, cats, and stealthy insects that slip through tiny spaces and evade attacks."
+  },
   "lunarBeastMauler": {
     "name": "Lunar Beast (Mauler)",
     "summary": "Terrestrial beast form representing bears and badgers with +1 Constitution and a vicious Multiattack combining bite and claw strikes."

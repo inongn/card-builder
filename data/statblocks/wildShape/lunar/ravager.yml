@@ -8,7 +8,6 @@ size: "$(meta.level >= 12 ? 'Large' : 'Medium')"
 category: wildShape
 classification: Beast
 ac: "$(11 + Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2))"
-hp: "$(((meta.level >= 18 ? 13 : meta.level >= 15 ? 11 : meta.level >= 12 ? 9 : meta.level >= 9 ? 7 : meta.level >= 6 ? 5 : 3)) * (4 + Math.floor((15 + Math.floor(meta.level / 3) - 10) / 2)))"
 movement:
   walk: 10
   fly: 60

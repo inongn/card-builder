@@ -8,7 +8,6 @@ children:
     category: wildShape
     classification: Beast
     ac: $(10 + stats.wis.mod)
-    hp: $(4 * meta.level)
     movement:
       walk: 40
       climb: 40
@@ -35,7 +34,6 @@ children:
     category: wildShape
     classification: Beast
     ac: $(10 + stats.wis.mod)
-    hp: $(4 * meta.level)    
     movement:
       walk: 20
       swim: 40
@@ -63,7 +61,6 @@ children:
     category: wildShape
     classification: Beast
     ac: $(8 + stats.wis.mod)
-    hp: $(4 * meta.level)
     movement:
       walk: 20
       fly: 50

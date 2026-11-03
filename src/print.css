@@ -795,6 +795,61 @@
   height: auto;
 }
 
+/* Statblock card auto-fit and print styling */
+.print-mode .statblock-card .statblock-content-wrapper {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.print-mode .statblock-card .auto-fit-container {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.print-mode .statblock-card .auto-fit-inner {
+  display: block !important;
+  height: auto !important;
+  width: 100% !important;
+  line-height: 1.25 !important;
+}
+
+.print-mode .statblock-card .auto-fit-inner,
+.print-mode .statblock-card .auto-fit-inner *,
+.print-mode .statblock-card .auto-fit-inner .card-content,
+.print-mode .statblock-card .auto-fit-inner .card-description {
+  font-size: inherit !important;
+}
+
+.print-mode .statblock-card .auto-fit-inner .card-content {
+  display: block !important;
+  flex: none !important;
+  min-height: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+.print-mode .statblock-card .statblock-section-header {
+  font-size: 0.85em !important;
+  margin-top: 3px !important;
+  margin-bottom: 2px !important;
+}
+
+.print-mode .statblock-card mdui-divider {
+  margin: 2px 0 !important;
+}
+
+.print-mode .auto-fit-inner .card-description {
+  font-size: inherit !important;
+}
+
+
 
 /* ==========================================================================
    9. GLOBAL @media print

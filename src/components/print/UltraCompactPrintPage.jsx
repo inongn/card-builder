@@ -39,12 +39,12 @@ export const UltraCompactPrintPage = memo(({ char, style, col2Ref, col3Ref, col2
 });
 
 // Portrait statblock page (2×3 grid)
-export const UltraCompactStatblockPage = memo(({ statblocks, style }) => (
+export const UltraCompactStatblockPage = memo(({ statblocks, style, char }) => (
     <div className="ucp-page" style={style}>
         <div className="print-grid ucp-statblock-grid">
             {statblocks.map((card, i) => (
                 <div key={i} className="action-card-print-slot">
-                    <StatblockCard statblock={card} variant="static" />
+                    <StatblockCard statblock={card} variant="static" char={char} />
                 </div>
             ))}
         </div>

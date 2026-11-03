@@ -612,7 +612,7 @@
   },
   "aerialLunarBeastSwooper": {
     "name": "Aerial Swooper Beast",
-    "summary": "Eagles and raptors with keen sight and grappling talons."
+    "summary": "Eagles and raptors with keen sight, evasive flight, and grappling talons."
   },
   "agonizingBlast": {
     "name": "Agonizing Blast",
@@ -3218,6 +3218,10 @@
   "lunarBeastGripper": {
     "name": "Gripper Beast",
     "summary": "Apes and baboons with multiattack fist strikes and grappling."
+  },
+  "lunarBeastInfiltrator": {
+    "name": "Infiltrator Beast",
+    "summary": "Mice, cats, and stealthy insects that slip through tiny spaces and evade attacks."
   },
   "lunarBeastMauler": {
     "name": "Mauler Beast",

@@ -99,7 +99,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
 
             if (hasTag('primalcompanion') || hasTag('steed') || hasTag('familiar')) {
                 groups.companions.push(sb);
-            } else if (hasTag('titanFormTemplate') || hasTag('wildShapeTemplate')) {
+            } else if (hasTag('titanFormTemplate') || hasTag('wildShapeTemplate') || hasTag('lunarWildShape')) {
                 groups.wildshapes.push(sb);
             } else {
                 groups.summons.push(sb);
@@ -199,7 +199,7 @@ export const PlayScreen = ({ characterData, onNavigate, toggleTheme, isDarkMode,
                                         <div className="title-primary">{label}</div>
                                         <mdui-collapse accordion>
                                             {allies.map((item, i) => (
-                                                <StatblockCard key={`${item.id || 'statblock'}-${i}`} statblock={item} />
+                                                <StatblockCard key={`${item.id || 'statblock'}-${i}`} statblock={item} char={characterData} />
                                             ))}
                                         </mdui-collapse>
                                     </div>

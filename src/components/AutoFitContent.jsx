@@ -52,6 +52,10 @@ export const AutoFitContent = ({ children, maxFontSize = 1, minFontSize = 0.45, 
 
         fit();
 
+        if (typeof document !== 'undefined' && document.fonts?.ready) {
+            document.fonts.ready.then(() => fit());
+        }
+
         return () => {
             resizeObserver.disconnect();
             cancelAnimationFrame(frameId);

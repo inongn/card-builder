@@ -8,7 +8,6 @@ size: "$(meta.level >= 15 ? 'Gargantuan' : meta.level >= 9 ? 'Huge' : meta.level
 category: wildShape
 classification: Beast
 ac: "$(12 + Math.floor((9 + Math.floor(meta.level / 3) - 10) / 2))"
-hp: "$(((meta.level >= 18 ? 13 : meta.level >= 15 ? 11 : meta.level >= 12 ? 9 : meta.level >= 9 ? 7 : meta.level >= 6 ? 5 : 3)) * (6 + Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2)))"
 movement:
   walk: 0
   swim: 60
@@ -23,7 +22,7 @@ senses:
   blindsight: "$(meta.level >= 9 ? 120 : 60)"
 traits:
   - name: Aquatic Nature
-    description: "You can breathe air and water. You have blindsight to a distance of $(meta.level >= 9 ? '120' : '60') ft."
+    description: "You can breathe air and water."
   - name: Charge
     description: "If you move at least 20 feet straight toward a target and then hit it with a Slam attack on the same turn, the target takes an extra $(meta.level >= 6 ? 2 : 1)d8 Bludgeoning damage. If the target is a creature, it must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be pushed 10 feet from you."
 actions:

@@ -21,6 +21,6 @@ children:
         - thunder
   - id: primalStrikeWildShape
     type: Effect
-    target: statblocks[wildShapeTemplate].actions["damage"]
+    target: statblocks[lunarWildShape OR wildShapeTemplate].actions["damage"]
     operation: replace
     value: damage plus 1d8 Cold, Fire, Lightning or Thunder damage
