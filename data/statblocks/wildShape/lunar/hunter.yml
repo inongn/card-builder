@@ -1,0 +1,27 @@
+type: Statblock
+name: Aerial Hunter Beast
+id: aerialLunarBeastHunter
+summary: Mantises and predatory flyers with multiattack bite and claws.
+tags: [lunarWildShape, classOption]
+repeatable: true
+size: "$(meta.level >= 12 ? 'Large' : 'Medium')"
+category: wildShape
+classification: Beast
+ac: "$(10 + Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2))"
+movement:
+  walk: 20
+  fly: 40
+stats:
+  str: "$(17 + Math.floor(meta.level / 3))"
+  dex: "$(16 + Math.floor(meta.level / 3))"
+  con: "$(11 + Math.floor(meta.level / 3))"
+  int: "$(stats.int.score)"
+  wis: "$(stats.wis.score)"
+  cha: "$(stats.cha.score)"
+actions:
+  - name: Multiattack
+    description: "You make three attacks: one with your Bite and two with your Claws."
+  - name: Bite
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 12 ? 2 : 1)d6$(formatBonus(Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3))) Piercing damage."
+  - name: Claw
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 12 ? 2 : 1)d4$(formatBonus(Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3))) Slashing damage, and the target is grappled (escape DC $(attributes.spellcasting.save)). You have two claws, each of which can grapple only one target."
