@@ -193,11 +193,55 @@ export const AUTO_PICK_PRESETS = {
         ],
         classOptions: {
             primalOrder: ['magician', 'warden'],
-            elementalFury: ['primalStrike', 'potentSpellcasting']
+            elementalFury: ['primalStrike', 'potentSpellcasting'],
+            lunarWildShape: [
+                'lunarBeastMauler',
+                'lunarBeastTackler',
+                'lunarBeastPouncer',
+                'lunarBeastCharger',
+                'aerialLunarBeastSwooper',
+                'aquaticLunarBeastCruiser',
+                'lunarBeastConstrictor',
+                'lunarBeastWebber',
+                'aquaticLunarBeastRampager',
+                'aerialLunarBeastHunter',
+                'lunarBeastDevourer',
+                'lunarBeastGripper',
+                'aerialLunarBeastRavager',
+                'aquaticLunarBeastGrasper',
+                'lunarBeastPincher',
+                'lunarBeastTrampler',
+                'aerialLunarBeastStinger',
+                'lunarBeastEnvenomer',
+                'aerialLunarBeastBarger'
+            ]
         },
         subclasses: {
             circleOfTheMoon: {
-                classOptions: { primalOrder: ['warden'] },
+                classOptions: {
+                    primalOrder: ['warden'],
+                    lunarWildShape: [
+                        'lunarBeastMauler',
+                        'lunarBeastTackler',
+                        'lunarBeastPouncer',
+                        'lunarBeastCharger',
+                        'aerialLunarBeastSwooper',
+                        'aquaticLunarBeastCruiser',
+                        'lunarBeastConstrictor',
+                        'lunarBeastWebber',
+                        'aquaticLunarBeastRampager',
+                        'aerialLunarBeastHunter',
+                        'lunarBeastDevourer',
+                        'lunarBeastGripper',
+                        'aerialLunarBeastRavager',
+                        'aquaticLunarBeastGrasper',
+                        'lunarBeastPincher',
+                        'lunarBeastTrampler',
+                        'aerialLunarBeastStinger',
+                        'lunarBeastEnvenomer',
+                        'aerialLunarBeastBarger'
+                    ]
+                },
                 equipment: { armament: ['scimitar', 'quarterstaff', 'shieldEquipment'] },
                 feats: ['warCaster', 'durable', 'sentinel', 'tough']
             },

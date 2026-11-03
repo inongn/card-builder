@@ -38,7 +38,7 @@ export const UltraCompactPrintPage = memo(({ char, style, col2Ref, col3Ref, col2
     );
 });
 
-// Portrait statblock page (2×2 grid)
+// Portrait statblock page (2×3 grid)
 export const UltraCompactStatblockPage = memo(({ statblocks, style }) => (
     <div className="ucp-page" style={style}>
         <div className="print-grid ucp-statblock-grid">

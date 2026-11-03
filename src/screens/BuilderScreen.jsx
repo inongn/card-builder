@@ -2113,7 +2113,7 @@ export const BuilderScreen = ({
 
                             const isClassOptionList = options.some(opt => {
                                 const tags = opt.tags || [];
-                                return tags.includes('circleLand') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity') || tags.includes('metamagic') || tags.includes('vestigeType') || tags.includes('eldritchInvocation') || tags.includes('psionicDiscipline');
+                                return tags.includes('circleLand') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity') || tags.includes('metamagic') || tags.includes('vestigeType') || tags.includes('eldritchInvocation') || tags.includes('psionicDiscipline') || tags.includes('lunarWildShape');
                             });
 
 
@@ -2228,6 +2228,7 @@ export const BuilderScreen = ({
                                 const getClassOptionCategory = (opt) => {
                                     const tags = opt.tags || [];
                                     if (tags.includes('primalOrder')) return t('builder.classOptionPrimalOrder', 'Primal Order Options');
+                                    if (tags.includes('lunarWildShape')) return t('builder.classOptionLunarWildShape', 'Lunar Wild Shape Options');
                                     if (tags.includes('elementalFury')) return t('builder.classOptionElementalFury', 'Elemental Fury Options');
                                     if (tags.includes('circleLand')) return t('builder.classOptionLandTypes', 'Land Types');
                                     if (tags.includes('blessedStrikes')) return t('builder.classOptionBlessedStrikes', 'Blessed Strikes Options');

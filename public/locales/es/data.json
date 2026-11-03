@@ -146,7 +146,6 @@
       "fog": "fog",
       "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit": "durante la duración, tus ataques con armas infligen 1d4 de daño radiante adicional al impactar",
       "freezing rain and sleet": "lluvia helada y aguanieve",
-      "gain $(meta.level * 2) Temporary Hit Points": "ganas $(meta.level * 2) Puntos de Golpe Temporales",
       "gain Advantage on Strength checks and Strength saving throws": "ganas Ventaja en pruebas de Fuerza y tiradas de salvación de Fuerza",
       "gain Advantage on Strength checks, your size becomes Large, and your Speed increases by 10 feet": "ganas Ventaja en pruebas de Fuerza, tu tamaño pasa a ser Grande y tu Velocidad aumenta en 10 pies",
       "gain Advantage on Strength-based attack rolls until the start of your next turn": "ganas Ventaja en tiradas de ataque basadas en Fuerza hasta el inicio de tu siguiente turno",
@@ -393,6 +392,7 @@
       "your jump distance is doubled for the turn": "tu distancia de salto se duplica durante el turno",
       "your reach increases by 5 feet, your Speed increases by 5 feet, and when you cast a spell that has a range of Touch and a casting time of an Action, its range becomes 10 feet.": "tu alcance aumenta en 5 pies, tu Velocidad aumenta en 5 pies y cuando lances un conjuro que tenga un alcance de Toque y un tiempo de lanzamiento de una Acción, su alcance pasa a ser de 10 pies.",
       "your speed increases by 10 feet, you gain Advantage on Acrobatics checks, and whenever you attack with a weapon with which you have proficiency, you can do so with a $(formatBonus(attributes.spellcasting.attack)) attack roll and a $(formatBonus(attributes.spellcasting.bonus)) damage bonus.": "tu velocidad aumenta en 10 pies, ganas Ventaja en pruebas de Acrobacias y siempre que ataques con un arma con la que seas competente, puedes hacerlo con una tirada de ataque de $(formatBonus(attributes.spellcasting.attack)) y un bonificador de daño de $(formatBonus(attributes.spellcasting.bonus)).",
+      "gain $(meta.level * 2) Temporary Hit Points": "ganas $(meta.level * 2) Puntos de Golpe Temporales",
       "a 15-foot-radius Cube of revitalizing energy appears centered on a point within 120 feet. You can take a Bonus Action to move the area up to 30 feet.": "aparece un cubo de 15 pies de radio de energía revitalizante centrado en un punto a 120 pies. Puedes realizar una Acción Adicional para mover el área hasta 30 pies.",
       "a 15-foot-radius Emanation of magical darkness fills the area for 1 minute; creatures in the area have a -5 penalty to Wisdom (Perception) checks": "una emanación de 15 pies de radio de oscuridad mágica llena el área durante 1 minuto; las criaturas en el área tienen un penalizador de -5 a las tiradas de Sabiduría (Percepción)",
       "add $(Math.max(1, stats.int.mod)) to one damage roll when hitting a creature affected by Faerie Fire; taking damage can't cause you to lose Concentration on Faerie Fire": "añade $(Math.max(1, stats.int.mod)) a una tirada de daño al impactar a una criatura afectada por Fuego Feérico; recibir daño no puede hacerte perder la Concentración en Fuego Feérico",
@@ -650,6 +650,26 @@
   "adventurersAtlas": {
     "name": "Atlas del Aventurero"
   },
+  "aerialLunarBeastBarger": {
+    "name": "Aerial Lunar Beast (Barger)",
+    "summary": "Aerial armored beetle form with heavy natural armor (+4 AC), massive Strength and Constitution (+5), and a crushing bash attack."
+  },
+  "aerialLunarBeastHunter": {
+    "name": "Aerial Lunar Beast (Hunter)",
+    "summary": "Aerial mantis form with 20 ft. walking speed, +5 Strength, and a 3-attack Multiattack combining bite and dual grappling claws."
+  },
+  "aerialLunarBeastRavager": {
+    "name": "Aerial Lunar Beast (Ravager)",
+    "summary": "Aerial monstrous bat and pterosaur form with +1 AC, +4 Constitution, Echolocation blindsight 120 ft., Blood Frenzy, and tearing bites."
+  },
+  "aerialLunarBeastStinger": {
+    "name": "Aerial Lunar Beast (Stinger)",
+    "summary": "Aerial giant wasp form with +1 Dexterity and a lethal venomous stinger dealing escalating poison damage on a failed save."
+  },
+  "aerialLunarBeastSwooper": {
+    "name": "Aerial Lunar Beast (Swooper)",
+    "summary": "Aerial raptor form representing giant eagles and hawks with Keen Sight, +3 Dexterity, and Multiattack combining beak and grappling talons."
+  },
   "agonizingBlast": {
     "name": "Descarga agónica",
     "summary": "Suma tu modificador por Carisma a las tiradas de daño del conjuro de Descarga sobrenatural."
@@ -717,8 +737,20 @@
     "name": "Animar a los muertos",
     "summary": "Alzas a un sirviente muerto viviente a partir de un cadáver o un montón de huesos."
   },
+  "aquaticLunarBeastCruiser": {
+    "name": "Aquatic Lunar Beast (Cruiser)",
+    "summary": "Aquatic beast form representing dolphins and whales with +2 Strength, +2 Constitution, and slamming charges that push enemies back 10 feet."
+  },
+  "aquaticLunarBeastGrasper": {
+    "name": "Aquatic Lunar Beast (Grasper)",
+    "summary": "Aquatic cephalopod form representing octopi and squid with 10 ft. walking speed, +3 Dexterity, an obscuring Ink Cloud, and long-range grappling tentacles."
+  },
+  "aquaticLunarBeastRampager": {
+    "name": "Aquatic Lunar Beast (Rampager)",
+    "summary": "Predatory aquatic beast form representing sharks and barracudas with Blood Frenzy advantage against wounded targets and tearing bites."
+  },
   "arcana": {
-    "name": "Arcano"
+    "name": "Conocimiento Arcano"
   },
   "arcanaAdvantage": {
     "name": "Ventaja en Conocimiento arcano"
@@ -2769,7 +2801,7 @@
     "summary": "Recordar información sobre acontecimientos, personas, naciones y culturas de carácter histórico."
   },
   "hitDice": {
-    "name": "Dados Golpe"
+    "name": "Dados de Golpe"
   },
   "holdPerson": {
     "name": "Inmovilizar persona",
@@ -3235,8 +3267,55 @@
   "luckyAdvantage": {
     "name": "Suerte"
   },
+  "lunarBeastCharger": {
+    "name": "Lunar Beast (Charger)",
+    "summary": "Terrestrial beast form representing elk, rhinos, and boars with +10 ft. speed, a powerful gore strike, and charge attacks that knock targets prone."
+  },
+  "lunarBeastConstrictor": {
+    "name": "Lunar Beast (Constrictor)",
+    "summary": "Terrestrial beast form representing serpents and worms with +1 AC, +2 Strength, bite attacks, and crushing coils that grapple and restrain prey."
+  },
+  "lunarBeastDevourer": {
+    "name": "Lunar Beast (Devourer)",
+    "summary": "Terrestrial beast form representing giant toads and predatory reptiles with +1 on bite attacks, grappling jaws, and the ability to swallow prey whole."
+  },
+  "lunarBeastEnvenomer": {
+    "name": "Lunar Beast (Envenomer)",
+    "summary": "Terrestrial venomous beast form representing vipers and venomous lizards with deadly bites that deal escalating poison damage."
+  },
+  "lunarBeastGripper": {
+    "name": "Lunar Beast (Gripper)",
+    "summary": "Terrestrial simian beast form representing apes and baboons with Multiattack, accurate fist strikes, ranged rock throwing, and weapon use."
+  },
+  "lunarBeastMauler": {
+    "name": "Lunar Beast (Mauler)",
+    "summary": "Terrestrial beast form representing bears and badgers with +1 Constitution and a vicious Multiattack combining bite and claw strikes."
+  },
+  "lunarBeastPincher": {
+    "name": "Lunar Beast (Pincher)",
+    "summary": "Terrestrial armored beast form representing crabs and giant insects with +2 AC and twin grappling pincer attacks."
+  },
+  "lunarBeastPouncer": {
+    "name": "Lunar Beast (Pouncer)",
+    "summary": "Terrestrial feline beast form representing lions and tigers with +1 Strength, +1 on attacks, and Pounce that knocks foes prone for bonus bite attacks."
+  },
+  "lunarBeastTackler": {
+    "name": "Lunar Beast (Tackler)",
+    "summary": "Terrestrial canine beast form representing wolves with +2 Strength, Pack Tactics advantage, and tackling bites that pull enemies to the ground."
+  },
+  "lunarBeastTrampler": {
+    "name": "Lunar Beast (Trampler)",
+    "summary": "Terrestrial heavyweight beast form representing horses and elephants with +10 ft. speed, massive Constitution (+3), and crushing hooves that trample prone enemies."
+  },
+  "lunarBeastWebber": {
+    "name": "Lunar Beast (Webber)",
+    "summary": "Terrestrial arachnid beast form representing giant spiders with Web Walk ceiling climbing, Dexterity-based venomous bites, and restraining webbing."
+  },
   "lunarVitality": {
     "name": "Vitalidad Lunar"
+  },
+  "lunarWildShape": {
+    "name": "Lunar Wild Shape"
   },
   "lungingAttack": {
     "name": "Ataque en Embestida",

@@ -554,7 +554,20 @@ const CHARACTERS = [
         species: 'Aasimar', background: 'guide',
         speciesId: 'aasimar', classId: 'druid', subcId: 'circleOfTheMoon',
         str: 2, dex: 2, con: 4, int: 1, wis: 9, cha: 0,
-        prefs: { druidSubclass: ['circleOfTheMoon'], savingThrowProficiency: ['conSave'] }
+        prefs: {
+            druidSubclass: ['circleOfTheMoon'],
+            savingThrowProficiency: ['conSave'],
+            lunarWildShape: [
+                'lunarBeastMauler',
+                'lunarBeastTackler',
+                'lunarBeastPouncer',
+                'lunarBeastCharger',
+                'aerialLunarBeastSwooper',
+                'aquaticLunarBeastCruiser',
+                'lunarBeastConstrictor',
+                'lunarBeastWebber'
+            ]
+        }
     },
     {
         id: 'sample_druid_sea',

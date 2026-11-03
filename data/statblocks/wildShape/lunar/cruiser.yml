@@ -1,0 +1,31 @@
+type: Statblock
+name: Aquatic Cruiser Beast
+id: aquaticLunarBeastCruiser
+summary: Dolphins and whales with charging rams that push foes back.
+tags: [lunarWildShape, classOption]
+repeatable: true
+size: "$(meta.level >= 15 ? 'Gargantuan' : meta.level >= 9 ? 'Huge' : meta.level >= 6 ? 'Large' : 'Medium')"
+category: wildShape
+classification: Beast
+ac: "$(12 + Math.floor((9 + Math.floor(meta.level / 3) - 10) / 2))"
+hp: "$(((meta.level >= 18 ? 13 : meta.level >= 15 ? 11 : meta.level >= 12 ? 9 : meta.level >= 9 ? 7 : meta.level >= 6 ? 5 : 3)) * (6 + Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2)))"
+movement:
+  walk: 0
+  swim: 60
+stats:
+  str: "$(17 + Math.floor(meta.level / 3))"
+  dex: "$(9 + Math.floor(meta.level / 3))"
+  con: "$(16 + Math.floor(meta.level / 3))"
+  int: "$(stats.int.score)"
+  wis: "$(stats.wis.score)"
+  cha: "$(stats.cha.score)"
+senses:
+  blindsight: "$(meta.level >= 9 ? 120 : 60)"
+traits:
+  - name: Aquatic Nature
+    description: "You can breathe air and water. You have blindsight to a distance of $(meta.level >= 9 ? '120' : '60') ft."
+  - name: Charge
+    description: "If you move at least 20 feet straight toward a target and then hit it with a Slam attack on the same turn, the target takes an extra $(meta.level >= 6 ? 2 : 1)d8 Bludgeoning damage. If the target is a creature, it must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be pushed 10 feet from you."
+actions:
+  - name: Slam
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3) + (meta.level >= 15 ? 4 : meta.level >= 9 ? 2 : 0))) Bludgeoning damage."

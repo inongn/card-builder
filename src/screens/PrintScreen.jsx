@@ -337,7 +337,7 @@ export const PrintScreen = ({ char, onNavigate, useActivitySheet }) => {
         for (let i = 2; i < ucpSlots.length; i += 2) ucpPairs.push([ucpSlots[i], ucpSlots[i + 1]]);
         const ucpStatblocks = (char.statblocks || []).map(sb => ({ ...sb, _isStatblock: true }));
         const ucpStatChunks = [];
-        for (let i = 0; i < ucpStatblocks.length; i += 4) ucpStatChunks.push(ucpStatblocks.slice(i, i + 4));
+        for (let i = 0; i < ucpStatblocks.length; i += 6) ucpStatChunks.push(ucpStatblocks.slice(i, i + 6));
         // Portrait page is 8.5in (816px) wide
         const ucpScale = scale < 1 ? Math.min(1, scale * 1056 / 816) : 1;
         const ucpStyle = ucpScale < 1 ? { transform: `scale(${ucpScale})` } : undefined;

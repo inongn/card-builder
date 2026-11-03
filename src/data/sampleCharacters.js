@@ -12,7 +12,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Grak Ironbone',
         class: 'Barbarian',
         sub: 'Ancestral Guardian',
-        subId: 'ancestralGuardian',
         species: 'Human',
         background: 'Soldier',
         level: 8,
@@ -341,7 +340,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Elara Grieve',
         class: 'Barbarian',
         sub: 'Lament',
-        subId: 'lament',
         species: 'Leonin',
         background: 'Hermit',
         level: 8,
@@ -646,7 +644,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Riven Steel',
         class: 'Barbarian',
         sub: 'Berserker',
-        subId: 'berserker',
         species: 'Human',
         background: 'Soldier',
         level: 8,
@@ -973,7 +970,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Vael Pathstride',
         class: 'Barbarian',
         sub: 'Wild Heart',
-        subId: 'wildHeart',
         species: 'Satyr',
         background: 'Guide',
         level: 8,
@@ -1303,7 +1299,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'aspectOfTheWilds'
                                 }
                         ],
-                        propertyId: 'owl'
+                        propertyId: 'aerialLunarBeastBarger'
                 },
                 {
                         path: [
@@ -1336,7 +1332,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Soren Deeproot',
         class: 'Barbarian',
         sub: 'World Tree',
-        subId: 'worldTree',
         species: 'Elf',
         background: 'Hermit',
         level: 8,
@@ -1663,7 +1658,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Kaelin Emberbound',
         class: 'Barbarian',
         sub: 'Zealot',
-        subId: 'zealot',
         species: 'Dragonborn',
         background: 'Acolyte',
         level: 8,
@@ -2023,7 +2017,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Lyra Lunaris',
         class: 'Bard',
         sub: 'Moon',
-        subId: 'moon',
         species: 'Elf',
         background: 'Hermit',
         level: 8,
@@ -2434,7 +2427,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'compulsion'
+                        propertyId: 'charmPerson'
                 },
                 {
                         path: [
@@ -2446,7 +2439,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'charmPerson'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -2458,7 +2451,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'silence'
                 },
                 {
                         path: [
@@ -2470,7 +2463,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'silence'
+                        propertyId: 'mirrorImage'
                 },
                 {
                         path: [
@@ -2482,7 +2475,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'mirrorImage'
+                        propertyId: 'compulsion'
                 },
                 {
                         path: [
@@ -2592,7 +2585,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Sable Haunt',
         class: 'Bard',
         sub: 'Spirits',
-        subId: 'spirits',
         species: 'Goliath',
         background: 'Charlatan',
         level: 8,
@@ -3140,7 +3132,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Morgan Cadence',
         class: 'Bard',
         sub: 'Dance',
-        subId: 'dance',
         species: 'Human',
         background: 'Entertainer',
         level: 8,
@@ -3653,7 +3644,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Sylvan Whisper',
         class: 'Bard',
         sub: 'Glamour',
-        subId: 'glamour',
         species: 'Elf',
         background: 'Noble',
         level: 8,
@@ -4199,7 +4189,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Perrin Quill',
         class: 'Bard',
         sub: 'Lore',
-        subId: 'lore',
         species: 'Human',
         background: 'Sage',
         level: 8,
@@ -4737,7 +4726,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'stealthProficiency'
+                        propertyId: 'acrobaticsProficiency'
                 },
                 {
                         path: [
@@ -4752,7 +4741,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'acrobaticsProficiency'
+                        propertyId: 'stealthProficiency'
                 },
                 {
                         path: [
@@ -4858,7 +4847,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Darin Harmon',
         class: 'Bard',
         sub: 'Valor',
-        subId: 'valor',
         species: 'Dragonborn',
         background: 'Soldier',
         level: 8,
@@ -5355,7 +5343,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Soren Elegy',
         class: 'Cleric',
         sub: 'Grave',
-        subId: 'graveDomain',
         species: 'Elf',
         background: 'Acolyte',
         level: 8,
@@ -5935,7 +5922,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Aryn Codex',
         class: 'Cleric',
         sub: 'Knowledge',
-        subId: 'knowledgeDomain',
         species: 'Orc',
         background: 'Sage',
         level: 8,
@@ -6565,7 +6551,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Meryn Haven',
         class: 'Cleric',
         sub: 'Life',
-        subId: 'lifeDomain',
         species: 'Human',
         background: 'Acolyte',
         level: 8,
@@ -7152,7 +7137,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'lunarBeastCharger'
                 },
                 {
                         path: [
@@ -7174,7 +7159,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Valen Dawn',
         class: 'Cleric',
         sub: 'Light',
-        subId: 'lightDomain',
         species: 'Elf',
         background: 'Acolyte',
         level: 8,
@@ -7731,7 +7715,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'lunarBeastConstrictor'
                 },
                 {
                         path: [
@@ -7767,7 +7751,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Nyx Veil',
         class: 'Cleric',
         sub: 'Trickery',
-        subId: 'trickeryDomain',
         species: 'Halfling',
         background: 'Charlatan',
         level: 8,
@@ -8317,7 +8300,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'aquaticLunarBeastCruiser'
                 },
                 {
                         path: [
@@ -8353,7 +8336,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Dael Ironheart',
         class: 'Cleric',
         sub: 'War',
-        subId: 'warDomain',
         species: 'Tiefling',
         background: 'Soldier',
         level: 8,
@@ -8781,7 +8763,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'prayerOfHealing'
+                        propertyId: 'lesserRestoration'
                 },
                 {
                         path: [
@@ -8793,7 +8775,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'lesserRestoration'
+                        propertyId: 'aid'
                 },
                 {
                         path: [
@@ -8805,7 +8787,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'aid'
+                        propertyId: 'prayerOfHealing'
                 },
                 {
                         path: [
@@ -8849,7 +8831,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'blessedStrikes'
                                 }
                         ],
-                        propertyId: 'divineStrike'
+                        propertyId: 'lunarBeastDevourer'
                 },
                 {
                         path: [
@@ -8871,7 +8853,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Fern Keeper',
         class: 'Druid',
         sub: 'Preservation',
-        subId: 'circleOfPreservation',
         species: 'Gnome',
         background: 'Hermit',
         level: 8,
@@ -9439,7 +9420,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Boulder Stonehide',
         class: 'Druid',
         sub: 'Titan',
-        subId: 'circleOfTheTitan',
         species: 'Triton',
         background: 'Guide',
         level: 8,
@@ -10021,7 +10001,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Wren Hollow',
         class: 'Druid',
         sub: 'Land',
-        subId: 'circleOfTheLand',
         species: 'Gnome',
         background: 'Hermit',
         level: 8,
@@ -10566,7 +10545,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'lunarBeastEnvenomer'
                 },
                 {
                         path: [
@@ -10588,7 +10567,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Arden Wilds',
         class: 'Druid',
         sub: 'Moon',
-        subId: 'moon',
         species: 'Aasimar',
         background: 'Guide',
         level: 8,
@@ -11138,6 +11116,126 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'lunarBeastMauler'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'lunarBeastTackler'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'lunarBeastPouncer'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 3
+                                }
+                        ],
+                        propertyId: 'aerialLunarBeastSwooper'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 4
+                                }
+                        ],
+                        propertyId: 'lunarBeastWebber'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 5
+                                }
+                        ],
+                        propertyId: 'lunarBeastCharger'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'aquaticLunarBeastCruiser'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'druidSubclass'
+                                },
+                                {
+                                        id: 'lunarWildShape',
+                                        slotIndex: 7
+                                }
+                        ],
+                        propertyId: 'lunarBeastConstrictor'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'level4feat'
                                 }
                         ],
@@ -11152,7 +11250,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'aquaticLunarBeastGrasper'
                 },
                 {
                         path: [
@@ -11174,7 +11272,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Coral Tides',
         class: 'Druid',
         sub: 'Sea',
-        subId: 'circleOfTheSea',
         species: 'Triton',
         background: 'Sailor',
         level: 8,
@@ -11694,7 +11791,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'lunarBeastGripper'
                 },
                 {
                         path: [
@@ -11716,7 +11813,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Aster Starlight',
         class: 'Druid',
         sub: 'Stars',
-        subId: 'circleOfTheStars',
         species: 'Elf',
         background: 'Sage',
         level: 8,
@@ -12316,7 +12412,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'elementalFury'
                                 }
                         ],
-                        propertyId: 'potentSpellcasting'
+                        propertyId: 'aerialLunarBeastHunter'
                 },
                 {
                         path: [
@@ -12338,7 +12434,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Lorn Bowcraft',
         class: 'Fighter',
         sub: 'Arcane Archer',
-        subId: 'arcaneArcher',
         species: 'Elf',
         background: 'Sage',
         level: 8,
@@ -12795,7 +12890,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Valdris Banner',
         class: 'Fighter',
         sub: 'Banneret',
-        subId: 'banneret',
         species: 'Human',
         background: 'Noble',
         level: 8,
@@ -13237,7 +13331,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Kaelin Gale',
         class: 'Fighter',
         sub: 'Battle Master',
-        subId: 'battleMaster',
         species: 'Dragonborn',
         background: 'Soldier',
         level: 8,
@@ -13536,7 +13629,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'ambush'
+                        propertyId: 'lunarBeastPincher'
                 },
                 {
                         path: [
@@ -13551,7 +13644,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'baitAndSwitch'
+                        propertyId: 'aquaticLunarBeastRampager'
                 },
                 {
                         path: [
@@ -13566,7 +13659,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'commandersStrike'
+                        propertyId: 'aerialLunarBeastRavager'
                 },
                 {
                         path: [
@@ -13581,7 +13674,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'commandingPresence'
+                        propertyId: 'aerialLunarBeastStinger'
                 },
                 {
                         path: [
@@ -13596,7 +13689,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'disarmingAttack'
+                        propertyId: 'lunarBeastTrampler'
                 },
                 {
                         path: [
@@ -13668,7 +13761,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Bryn Vanguard',
         class: 'Fighter',
         sub: 'Champion',
-        subId: 'champion',
         species: 'Human',
         background: 'Soldier',
         level: 8,
@@ -14021,7 +14113,43 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'additionalFightingStyle'
                                 }
                         ],
-                        propertyId: 'interception'
+                        propertyId: 'arcaneWarrior'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'additionalFightingStyle'
+                                },
+                                {
+                                        id: 'arcaneWarriorCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'chillTouch'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fighterSubclass'
+                                },
+                                {
+                                        id: 'additionalFightingStyle'
+                                },
+                                {
+                                        id: 'arcaneWarriorCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'dancingLights'
                 },
                 {
                         path: [
@@ -14065,7 +14193,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Valen Weave',
         class: 'Fighter',
         sub: 'Eldritch Knight',
-        subId: 'eldritchKnight',
         species: 'Human',
         background: 'Sage',
         level: 8,
@@ -14244,6 +14371,9 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'eldritchKnightSpells',
                                         slotIndex: 2
+                                },
+                                {
+                                        id: 'findFamiliar'
                                 },
                                 {
                                         id: 'familiarName'
@@ -14511,6 +14641,9 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 },
                                 {
+                                        id: 'findFamiliar'
+                                },
+                                {
                                         id: 'familiarType'
                                 }
                         ],
@@ -14527,6 +14660,9 @@ export const SAMPLE_CHARACTERS = [
                                 {
                                         id: 'eldritchKnightSpells',
                                         slotIndex: 2
+                                },
+                                {
+                                        id: 'findFamiliar'
                                 },
                                 {
                                         id: 'familiarEnvironment'
@@ -14635,7 +14771,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Callen Mindpulse',
         class: 'Fighter',
         sub: 'Psi Warrior',
-        subId: 'psiWarrior',
         species: 'Human',
         background: 'Sage',
         level: 8,
@@ -15032,7 +15167,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Yuen Arcane',
         class: 'Monk',
         sub: 'Mystic Arts',
-        subId: 'mysticArts',
         species: 'Human',
         background: 'Sage',
         level: 8,
@@ -15560,7 +15694,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Cobra Strike',
         class: 'Monk',
         sub: 'Venom',
-        subId: 'venom',
         species: 'Human',
         background: 'Criminal',
         level: 8,
@@ -15879,7 +16012,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Shuran Breeze',
         class: 'Monk',
         sub: 'Elements',
-        subId: 'elements',
         species: 'Orc',
         background: 'Hermit',
         level: 8,
@@ -16189,7 +16321,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Tae Meridian',
         class: 'Monk',
         sub: 'Mercy',
-        subId: 'mercy',
         species: 'Human',
         background: 'Acolyte',
         level: 8,
@@ -16551,7 +16682,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Jiao Starlight',
         class: 'Monk',
         sub: 'Open Hand',
-        subId: 'openHand',
         species: 'Human',
         background: 'Hermit',
         level: 8,
@@ -16869,7 +16999,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Shade Umbra',
         class: 'Monk',
         sub: 'Shadow',
-        subId: 'shadows',
         species: 'Elf',
         background: 'Criminal',
         level: 8,
@@ -17187,7 +17316,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Lorin Aegis',
         class: 'Paladin',
         sub: 'Devotion',
-        subId: 'oathOfDevotion',
         species: 'Human',
         background: 'Acolyte',
         level: 8,
@@ -17611,7 +17739,37 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'protection'
+                        propertyId: 'blessedWarrior'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fightingStyle'
+                                },
+                                {
+                                        id: 'blessedWarriorCantrips',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'mending'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'fightingStyle'
+                                },
+                                {
+                                        id: 'blessedWarriorCantrips',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'resistance'
                 },
                 {
                         path: [
@@ -17669,7 +17827,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Aureli Crest',
         class: 'Paladin',
         sub: 'Glory',
-        subId: 'oathOfGlory',
         species: 'Tiefling',
         background: 'Noble',
         level: 8,
@@ -18068,10 +18225,22 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
+                                        id: 'paladinSpells',
+                                        slotIndex: 6
+                                }
+                        ],
+                        propertyId: 'command'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'thrownWeaponFighting'
+                        propertyId: 'interception'
                 },
                 {
                         path: [
@@ -18129,7 +18298,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Elyn Verdant',
         class: 'Paladin',
         sub: 'Ancients',
-        subId: 'oathOfTheAncients',
         species: 'Elf',
         background: 'Guide',
         level: 8,
@@ -18553,7 +18721,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'twoWeaponFighting'
+                        propertyId: 'protection'
                 },
                 {
                         path: [
@@ -18611,7 +18779,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Sable Nemesis',
         class: 'Paladin',
         sub: 'Vengeance',
-        subId: 'oathOfVengeance',
         species: 'Dragonborn',
         background: 'Criminal',
         level: 8,
@@ -18980,7 +19147,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'unarmedFighting'
+                        propertyId: 'thrownWeaponFighting'
                 },
                 {
                         path: [
@@ -19038,7 +19205,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Sariel Dao',
         class: 'Paladin',
         sub: 'Noble Genies',
-        subId: 'oathOfGenies',
         species: 'Dragonborn',
         background: 'Noble',
         level: 8,
@@ -19453,37 +19619,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'blessedWarrior'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fightingStyle'
-                                },
-                                {
-                                        id: 'blessedWarriorCantrips',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'guidance'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fightingStyle'
-                                },
-                                {
-                                        id: 'blessedWarriorCantrips',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'lightSpell'
+                        propertyId: 'twoWeaponFighting'
                 },
                 {
                         path: [
@@ -19541,7 +19677,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Malakor Fallen',
         class: 'Paladin',
         sub: 'Oathbreaker',
-        subId: 'oathbreaker',
         species: 'Tiefling',
         background: 'Soldier',
         level: 8,
@@ -19911,7 +20046,7 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'fightingStyle'
                                 }
                         ],
-                        propertyId: 'archery'
+                        propertyId: 'unarmedFighting'
                 },
                 {
                         path: [
@@ -20014,7 +20149,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Rowan Strider',
         class: 'Ranger',
         sub: 'Beast Master',
-        subId: 'beastMaster',
         species: 'Human',
         background: 'Guide',
         level: 8,
@@ -20448,47 +20582,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'fightingStyle'
-                                }
-                        ],
-                        propertyId: 'druidicWarrior'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fightingStyle'
-                                },
-                                {
-                                        id: 'druidicWarriorCantrips',
-                                        slotIndex: 0
-                                }
-                        ],
-                        propertyId: 'guidance'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'fightingStyle'
-                                },
-                                {
-                                        id: 'druidicWarriorCantrips',
-                                        slotIndex: 1
-                                }
-                        ],
-                        propertyId: 'mending'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rangerSubclass'
                                 }
                         ],
@@ -20539,7 +20632,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Lirien Horizon',
         class: 'Ranger',
         sub: 'Fey Wanderer',
-        subId: 'feyWanderer',
         species: 'Elf',
         background: 'Wayfarer',
         level: 8,
@@ -20926,17 +21018,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'fightingStyle'
-                                }
-                        ],
-                        propertyId: 'archery'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rangerSubclass'
                                 }
                         ],
@@ -21029,7 +21110,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Miren Obscura',
         class: 'Ranger',
         sub: 'Gloom Stalker',
-        subId: 'gloomStalker',
         species: 'Dwarf',
         background: 'Criminal',
         level: 8,
@@ -21394,17 +21474,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'fightingStyle'
-                                }
-                        ],
-                        propertyId: 'archery'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rangerSubclass'
                                 }
                         ],
@@ -21455,7 +21524,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Rien Boulder',
         class: 'Ranger',
         sub: 'Hunter',
-        subId: 'hunter',
         species: 'Human',
         background: 'Soldier',
         level: 8,
@@ -21842,17 +21910,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'fightingStyle'
-                                }
-                        ],
-                        propertyId: 'archery'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rangerSubclass'
                                 }
                         ],
@@ -21917,7 +21974,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Boreal Frost',
         class: 'Ranger',
         sub: 'Winter Walker',
-        subId: 'winterWalker',
         species: 'Goliath',
         background: 'Guide',
         level: 8,
@@ -22326,17 +22382,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'fightingStyle'
-                                }
-                        ],
-                        propertyId: 'archery'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rangerSubclass'
                                 }
                         ],
@@ -22373,7 +22418,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Thorn Briar',
         class: 'Ranger',
         sub: 'Hollow Warden',
-        subId: 'hollowWarden',
         species: 'Dragonborn',
         background: 'Hermit',
         level: 8,
@@ -22740,17 +22784,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'fightingStyle'
-                                }
-                        ],
-                        propertyId: 'archery'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'rangerSubclass'
                                 }
                         ],
@@ -22787,7 +22820,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Gris Trick',
         class: 'Rogue',
         sub: 'Arcane Trickster',
-        subId: 'arcaneTrickster',
         species: 'Orc',
         background: 'Charlatan',
         level: 8,
@@ -23363,7 +23395,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Vex Mirage',
         class: 'Rogue',
         sub: 'Assassin',
-        subId: 'assassin',
         species: 'Dragonborn',
         background: 'Criminal',
         level: 8,
@@ -23740,7 +23771,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Kael Psi',
         class: 'Rogue',
         sub: 'Soulknife',
-        subId: 'soulknife',
         species: 'Aasimar',
         background: 'Wayfarer',
         level: 8,
@@ -24106,7 +24136,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Darin Swift',
         class: 'Rogue',
         sub: 'Thief',
-        subId: 'thief',
         species: 'Human',
         background: 'Criminal',
         level: 8,
@@ -24494,7 +24523,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Vael Shroud',
         class: 'Rogue',
         sub: 'Phantom',
-        subId: 'phantom',
         species: 'Human',
         background: 'Hermit',
         level: 8,
@@ -24898,7 +24926,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Reth Scourge',
         class: 'Rogue',
         sub: 'Scion',
-        subId: 'scion',
         species: 'Orc',
         background: 'Criminal',
         level: 8,
@@ -25280,7 +25307,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Qal Mind',
         class: 'Sorcerer',
         sub: 'Aberrant',
-        subId: 'aberrant',
         species: 'Dragonborn',
         background: 'Sage',
         level: 8,
@@ -25852,7 +25878,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Keth Meridian',
         class: 'Sorcerer',
         sub: 'Clockwork',
-        subId: 'clockwork',
         species: 'Dwarf',
         background: 'Artisan',
         level: 8,
@@ -26059,6 +26084,51 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'background'
                                 },
                                 {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'deceptionProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'insightProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
                                         id: 'artisansTools'
                                 }
                         ],
@@ -26082,7 +26152,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'arcanaProficiency'
+                        propertyId: 'intimidationProficiency'
                 },
                 {
                         path: [
@@ -26094,7 +26164,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'deceptionProficiency'
+                        propertyId: 'religionProficiency'
                 },
                 {
                         path: [
@@ -26366,7 +26436,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Sylis Flame',
         class: 'Sorcerer',
         sub: 'Draconic',
-        subId: 'draconic',
         species: 'Human',
         background: 'Noble',
         level: 8,
@@ -26964,7 +27033,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Blythe Flux',
         class: 'Sorcerer',
         sub: 'Wild Magic',
-        subId: 'wildMagic',
         species: 'Human',
         background: 'Charlatan',
         level: 8,
@@ -27545,7 +27613,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Vesper Shadow',
         class: 'Sorcerer',
         sub: 'Shadow',
-        subId: 'shadows',
         species: 'Human',
         background: 'Criminal',
         level: 8,
@@ -28072,7 +28139,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Azazel Rift',
         class: 'Sorcerer',
         sub: 'Demonic',
-        subId: 'demonic',
         species: 'Tiefling',
         background: 'Hermit',
         level: 8,
@@ -28588,7 +28654,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Mire Fey',
         class: 'Warlock',
         sub: 'Archfey',
-        subId: 'archfeyPatron',
         species: 'Elf',
         background: 'Wayfarer',
         level: 8,
@@ -29177,7 +29242,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Luce Sol',
         class: 'Warlock',
         sub: 'Celestial',
-        subId: 'celestialPatron',
         species: 'Dwarf',
         background: 'Acolyte',
         level: 8,
@@ -29807,7 +29871,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Bael Cinder',
         class: 'Warlock',
         sub: 'Fiend',
-        subId: 'fiendPatron',
         species: 'Tiefling',
         background: 'Criminal',
         level: 8,
@@ -30337,7 +30400,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Zell Void',
         class: 'Warlock',
         sub: 'Great Old One',
-        subId: 'greatOldOnePatron',
         species: 'Human',
         background: 'Hermit',
         level: 8,
@@ -30877,7 +30939,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Morbius Dread',
         class: 'Warlock',
         sub: 'Undead',
-        subId: 'undeadPatron',
         species: 'Human',
         background: 'Sage',
         level: 8,
@@ -31424,7 +31485,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Elysia Relic',
         class: 'Warlock',
         sub: 'Vestige',
-        subId: 'vestigePatron',
         species: 'Tiefling',
         background: 'Acolyte',
         level: 8,
@@ -32001,7 +32061,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Alyn Ward',
         class: 'Wizard',
         sub: 'Abjurer',
-        subId: 'abjurer',
         species: 'Dwarf',
         background: 'Sage',
         level: 8,
@@ -32522,7 +32581,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Oren Sight',
         class: 'Wizard',
         sub: 'Diviner',
-        subId: 'diviner',
         species: 'Tiefling',
         background: 'Sage',
         level: 8,
@@ -33069,7 +33127,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Blair Spark',
         class: 'Wizard',
         sub: 'Evoker',
-        subId: 'evoker',
         species: 'Elf',
         background: 'Sage',
         level: 8,
@@ -33627,7 +33684,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Fhan Shimmer',
         class: 'Wizard',
         sub: 'Illusionist',
-        subId: 'illusionist',
         species: 'Gnome',
         background: 'Charlatan',
         level: 8,
@@ -34175,7 +34231,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Eldrin Blade',
         class: 'Wizard',
         sub: 'Bladesinger',
-        subId: 'bladesinger',
         species: 'Elf',
         background: 'Noble',
         level: 8,
@@ -34744,7 +34799,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Mortis Grave',
         class: 'Wizard',
         sub: 'Necromancer',
-        subId: 'necromancer',
         species: 'Human',
         background: 'Sage',
         level: 8,
@@ -34910,6 +34964,22 @@ export const SAMPLE_CHARACTERS = [
                         path: [
                                 {
                                         id: 'asi_cha'
+                                }
+                        ]
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'wizardSubclass'
+                                },
+                                {
+                                        id: 'findFamiliar'
+                                },
+                                {
+                                        id: 'familiarName'
                                 }
                         ]
                 }
@@ -35265,28 +35335,6 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'class'
                                 },
                                 {
-                                        id: 'level4feat'
-                                }
-                        ],
-                        propertyId: 'abilityScoreImprovement'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
-                                        id: 'level8feat'
-                                }
-                        ],
-                        propertyId: 'abilityScoreImprovement2'
-                },
-                {
-                        path: [
-                                {
-                                        id: 'class'
-                                },
-                                {
                                         id: 'wizardSubclass'
                                 },
                                 {
@@ -35313,7 +35361,29 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'familiarEnvironment'
                                 }
                         ],
-                        propertyId: 'familiarAir'
+                        propertyId: 'familiarLand'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level4feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'class'
+                                },
+                                {
+                                        id: 'level8feat'
+                                }
+                        ],
+                        propertyId: 'abilityScoreImprovement2'
                 }
         ]
 }
@@ -35324,7 +35394,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Xylar Fleshweaver',
         class: 'Psion',
         sub: 'Metamorph',
-        subId: 'metamorph',
         species: 'Goliath',
         background: 'Hermit',
         level: 8,
@@ -35826,7 +35895,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Zephyr Rift',
         class: 'Psion',
         sub: 'Psi Warper',
-        subId: 'psiWarper',
         species: 'Elf',
         background: 'Wayfarer',
         level: 8,
@@ -36339,7 +36407,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Kael Mindforce',
         class: 'Psion',
         sub: 'Psykinetic',
-        subId: 'psykinetic',
         species: 'Human',
         background: 'Soldier',
         level: 8,
@@ -36852,7 +36919,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Varian Chrono',
         class: 'Psion',
         sub: 'Seer',
-        subId: 'seer',
         species: 'Elf',
         background: 'Sage',
         level: 8,
@@ -37196,7 +37262,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'confusion'
+                        propertyId: 'mageArmor'
                 },
                 {
                         path: [
@@ -37208,7 +37274,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'mageArmor'
+                        propertyId: 'mindSpike'
                 },
                 {
                         path: [
@@ -37220,7 +37286,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'mindSpike'
+                        propertyId: 'dissonantWhispers'
                 },
                 {
                         path: [
@@ -37232,7 +37298,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 3
                                 }
                         ],
-                        propertyId: 'dissonantWhispers'
+                        propertyId: 'detectThoughts'
                 },
                 {
                         path: [
@@ -37244,7 +37310,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 4
                                 }
                         ],
-                        propertyId: 'detectThoughts'
+                        propertyId: 'levitate'
                 },
                 {
                         path: [
@@ -37256,7 +37322,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 5
                                 }
                         ],
-                        propertyId: 'levitate'
+                        propertyId: 'shatter'
                 },
                 {
                         path: [
@@ -37268,7 +37334,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 6
                                 }
                         ],
-                        propertyId: 'shatter'
+                        propertyId: 'holdPerson'
                 },
                 {
                         path: [
@@ -37280,7 +37346,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 7
                                 }
                         ],
-                        propertyId: 'holdPerson'
+                        propertyId: 'invisibility'
                 },
                 {
                         path: [
@@ -37292,7 +37358,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'invisibility'
+                        propertyId: 'fly'
                 },
                 {
                         path: [
@@ -37304,7 +37370,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -37316,7 +37382,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -37328,7 +37394,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'dimensionDoor'
+                        propertyId: 'confusion'
                 },
                 {
                         path: [
@@ -37422,7 +37488,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Lyra Astral',
         class: 'Psion',
         sub: 'Shaper',
-        subId: 'shaper',
         species: 'Gnome',
         background: 'Hermit',
         level: 8,
@@ -37974,7 +38039,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Mindra Vane',
         class: 'Psion',
         sub: 'Telepath',
-        subId: 'telepath',
         species: 'Tiefling',
         background: 'Charlatan',
         level: 8,
@@ -38333,7 +38397,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 2
                                 }
                         ],
-                        propertyId: 'dimensionDoor'
+                        propertyId: 'freedomOfMovement'
                 },
                 {
                         path: [
@@ -38405,7 +38469,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 8
                                 }
                         ],
-                        propertyId: 'freedomOfMovement'
+                        propertyId: 'invisibility'
                 },
                 {
                         path: [
@@ -38417,7 +38481,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 9
                                 }
                         ],
-                        propertyId: 'invisibility'
+                        propertyId: 'fly'
                 },
                 {
                         path: [
@@ -38429,7 +38493,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 10
                                 }
                         ],
-                        propertyId: 'fly'
+                        propertyId: 'hypnoticPattern'
                 },
                 {
                         path: [
@@ -38441,7 +38505,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 11
                                 }
                         ],
-                        propertyId: 'hypnoticPattern'
+                        propertyId: 'dimensionDoor'
                 },
                 {
                         path: [
@@ -38535,7 +38599,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Vyla Brewer',
         class: 'Artificer',
         sub: 'Alchemist',
-        subId: 'alchemist',
         species: 'Gnome',
         background: 'Artisan',
         level: 8,
@@ -38762,6 +38825,51 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'background'
                                 },
                                 {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'acrobaticsProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'animalHandlingProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
                                         id: 'artisansTools'
                                 }
                         ],
@@ -38785,7 +38893,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'arcanaProficiency'
+                        propertyId: 'historyProficiency'
                 },
                 {
                         path: [
@@ -38797,7 +38905,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'historyProficiency'
+                        propertyId: 'medicineProficiency'
                 },
                 {
                         path: [
@@ -39010,7 +39118,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Brem Cog',
         class: 'Artificer',
         sub: 'Artillerist',
-        subId: 'artillerist',
         species: 'Gnome',
         background: 'Artisan',
         level: 8,
@@ -39247,6 +39354,51 @@ export const SAMPLE_CHARACTERS = [
                                         id: 'background'
                                 },
                                 {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 0
+                                }
+                        ],
+                        propertyId: 'acrobaticsProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 1
+                                }
+                        ],
+                        propertyId: 'animalHandlingProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
+                                        id: 'skilled'
+                                },
+                                {
+                                        id: 'skilledSkillProficiency',
+                                        slotIndex: 2
+                                }
+                        ],
+                        propertyId: 'arcanaProficiency'
+                },
+                {
+                        path: [
+                                {
+                                        id: 'background'
+                                },
+                                {
                                         id: 'artisansTools'
                                 }
                         ],
@@ -39270,7 +39422,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 0
                                 }
                         ],
-                        propertyId: 'arcanaProficiency'
+                        propertyId: 'historyProficiency'
                 },
                 {
                         path: [
@@ -39282,7 +39434,7 @@ export const SAMPLE_CHARACTERS = [
                                         slotIndex: 1
                                 }
                         ],
-                        propertyId: 'historyProficiency'
+                        propertyId: 'medicineProficiency'
                 },
                 {
                         path: [
@@ -39495,7 +39647,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Navi Tracker',
         class: 'Artificer',
         sub: 'Cartographer',
-        subId: 'cartographer',
         species: 'Human',
         background: 'Guide',
         level: 8,
@@ -40001,7 +40152,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Kael Bulwark',
         class: 'Artificer',
         sub: 'Armorer',
-        subId: 'armorer',
         species: 'Dwarf',
         background: 'Soldier',
         level: 8,
@@ -40455,7 +40605,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Frankie Stitch',
         class: 'Artificer',
         sub: 'Reanimator',
-        subId: 'reanimator',
         species: 'Human',
         background: 'Hermit',
         level: 8,
@@ -40931,7 +41080,6 @@ export const SAMPLE_CHARACTERS = [
         name: 'Vorn Ironclad',
         class: 'Artificer',
         sub: 'Battle Smith',
-        subId: 'battleSmith',
         species: 'Human',
         background: 'Soldier',
         level: 8,

@@ -146,7 +146,6 @@
       "fog": "fog",
       "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit": "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit",
       "freezing rain and sleet": "freezing rain and sleet",
-      "gain $(meta.level * 2) Temporary Hit Points": "gain $(meta.level * 2) Temporary Hit Points",
       "gain Advantage on Strength checks and Strength saving throws": "gain Advantage on Strength checks and Strength saving throws",
       "gain Advantage on Strength checks, your size becomes Large, and your Speed increases by 10 feet": "gain Advantage on Strength checks, your size becomes Large, and your Speed increases by 10 feet",
       "gain Advantage on Strength-based attack rolls until the start of your next turn": "gain Advantage on Strength-based attack rolls until the start of your next turn",
@@ -595,6 +594,26 @@
   "adventurersAtlas": {
     "name": "Adventurer's Atlas"
   },
+  "aerialLunarBeastBarger": {
+    "name": "Aerial Barger Beast",
+    "summary": "Armored beetles and heavy flyers with crushing bash attacks."
+  },
+  "aerialLunarBeastHunter": {
+    "name": "Aerial Hunter Beast",
+    "summary": "Mantises and predatory flyers with multiattack bite and claws."
+  },
+  "aerialLunarBeastRavager": {
+    "name": "Aerial Ravager Beast",
+    "summary": "Giant bats and pterosaurs with blindsight and frenzied bites."
+  },
+  "aerialLunarBeastStinger": {
+    "name": "Aerial Stinger Beast",
+    "summary": "Giant wasps and hornets with lethal venomous stingers."
+  },
+  "aerialLunarBeastSwooper": {
+    "name": "Aerial Swooper Beast",
+    "summary": "Eagles and raptors with keen sight and grappling talons."
+  },
   "agonizingBlast": {
     "name": "Agonizing Blast",
     "summary": "Add your Charisma modifier to the damage of your Eldritch Blast."
@@ -661,6 +680,18 @@
   "animateDead": {
     "name": "Animate Dead",
     "summary": "You raise an undead servant from a corpse or pile of bones."
+  },
+  "aquaticLunarBeastCruiser": {
+    "name": "Aquatic Cruiser Beast",
+    "summary": "Dolphins and whales with charging rams that push foes back."
+  },
+  "aquaticLunarBeastGrasper": {
+    "name": "Aquatic Grasper Beast",
+    "summary": "Octopuses and squids with reach and grasping tentacles."
+  },
+  "aquaticLunarBeastRampager": {
+    "name": "Aquatic Rampager Beast",
+    "summary": "Sharks and barracudas with blood frenzy against wounded prey."
   },
   "arcana": {
     "name": "Arcana"
@@ -3168,8 +3199,55 @@
   "luckyAdvantage": {
     "name": "Luck"
   },
+  "lunarBeastCharger": {
+    "name": "Charger Beast",
+    "summary": "Elks, boars, and rhinos with charging strikes that knock targets prone."
+  },
+  "lunarBeastConstrictor": {
+    "name": "Constrictor Beast",
+    "summary": "Snakes and serpents that constrict, grapple, and restrain prey."
+  },
+  "lunarBeastDevourer": {
+    "name": "Devourer Beast",
+    "summary": "Giant toads and reptiles that grapple and swallow prey whole."
+  },
+  "lunarBeastEnvenomer": {
+    "name": "Envenomer Beast",
+    "summary": "Vipers and venomous snakes delivering deadly poison bites."
+  },
+  "lunarBeastGripper": {
+    "name": "Gripper Beast",
+    "summary": "Apes and baboons with multiattack fist strikes and grappling."
+  },
+  "lunarBeastMauler": {
+    "name": "Mauler Beast",
+    "summary": "Bears and badgers with ferocious bite and claw multiattacks."
+  },
+  "lunarBeastPincher": {
+    "name": "Pincher Beast",
+    "summary": "Crabs and scorpions with armored shells and grappling pincers."
+  },
+  "lunarBeastPouncer": {
+    "name": "Pouncer Beast",
+    "summary": "Lions and tigers that pounce onto prey to knock them prone."
+  },
+  "lunarBeastTackler": {
+    "name": "Tackler Beast",
+    "summary": "Wolves and canines with Pack Tactics and tackling bites."
+  },
+  "lunarBeastTrampler": {
+    "name": "Trampler Beast",
+    "summary": "Horses and elephants that trample prone enemies underfoot."
+  },
+  "lunarBeastWebber": {
+    "name": "Webber Beast",
+    "summary": "Giant spiders with web-walking, venomous bites, and webs."
+  },
   "lunarVitality": {
     "name": "Lunar Vitality"
+  },
+  "lunarWildShape": {
+    "name": "Lunar Wild Shape"
   },
   "lungingAttack": {
     "name": "Lunging Attack",

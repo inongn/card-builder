@@ -1,0 +1,31 @@
+type: Statblock
+name: Devourer Beast
+id: lunarBeastDevourer
+summary: Giant toads and reptiles that grapple and swallow prey whole.
+tags: [lunarWildShape, classOption]
+repeatable: true
+size: "$(meta.level >= 12 ? 'Huge' : meta.level >= 6 ? 'Large' : 'Medium')"
+category: wildShape
+classification: Beast
+ac: "$(12 + Math.floor((15 + Math.floor(meta.level / 6) - 10) / 2))"
+hp: "$(((meta.level >= 18 ? 13 : meta.level >= 15 ? 11 : meta.level >= 12 ? 9 : meta.level >= 9 ? 7 : meta.level >= 6 ? 5 : 3)) * (6 + Math.floor((14 + Math.floor(meta.level / 3) - 10) / 2)))"
+movement:
+  walk: 30
+  swim: 30
+stats:
+  str: "$(14 + Math.floor(meta.level / 3))"
+  dex: "$(15 + Math.floor(meta.level / 6))"
+  con: "$(14 + Math.floor(meta.level / 3))"
+  int: "$(stats.int.score)"
+  wis: "$(stats.wis.score)"
+  cha: "$(stats.cha.score)"
+senses:
+  darkvision: 60
+traits:
+  - name: Keen Sense
+    description: "You have advantage on Wisdom (Perception) checks that rely on hearing, sight, or smell (your choice)."
+actions:
+  - name: Devouring Bite
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((14 + Math.floor(meta.level / 3) - 10) / 2) + 1)) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((14 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3) + (meta.level >= 12 ? 2 : 0))) Piercing damage, and the target is grappled (escape DC $(attributes.spellcasting.save)). Until this grapple ends, the target is restrained, and you can't bite another target."
+  - name: Swallow
+    description: "You make one bite attack against a creature smaller than you that you are grappling. If the attack hits, the target is swallowed and the grapple ends. The swallowed target is Blinded and Restrained, it has total cover against attacks and other effects outside you, and it takes 3d6 Acid damage at the start of each of your turns. You can have only one target swallowed at a time. If you are reduced to 0 hit points, a swallowed creature is no longer Restrained and is moved to the nearest unoccupied space from you, but it is Prone."

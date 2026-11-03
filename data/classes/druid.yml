@@ -53,6 +53,7 @@ children:
     name: Channel Nature
     quantity: $(progression(0,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4))
     condition: $(meta.level >= 2)
+    sr: 1
   - id: wildCompanion
     type: Reference
     target: findFamiliar
@@ -61,7 +62,7 @@ children:
     type: Reference
     target:
       - wildShapeTemplate
-    condition: $(meta.level >= 2)
+    condition: $(meta.level >= 2 && meta.subId != 'circleOfTheMoon')
   - id: wildShapeActivity
     type: Activity
     name: Wild Shape

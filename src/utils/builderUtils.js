@@ -19,7 +19,7 @@ export const STEP_DEFINITIONS = {
     level: { title: 'Level', category: 'class', terms: ['level'] },
     class: { title: 'Class', category: 'class', terms: ['class'] },
     subclass: { title: 'Subclass', category: 'class', terms: ['subclass'] },
-    classOptions: { title: 'Class Options', category: 'class', terms: ['vestigeType', 'classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'landtype', 'armormodel','blessedstrikes', 'huntersPrey', 'defensiveTactics', 'affinity', 'dreadallegianceo', 'aspectOfTheWilds'] },
+    classOptions: { title: 'Class Options', category: 'class', terms: ['vestigetype', 'classoption', 'invocation', 'order', 'fury', 'metamagic', 'maneuver', 'landtype', 'armormodel', 'blessedstrikes', 'huntersprey', 'defensivetactics', 'affinity', 'dreadallegianceo', 'aspectofthewilds', 'lunarwildshape', 'lunar'] },
     feats: { title: 'Feats', category: 'class', terms: ['feat', 'epicboon', 'fightingstyle'] },
 
     // Abilities
@@ -81,7 +81,7 @@ export const MATCHING_ORDER = [
     'skills',
     'expertise',
     'stats',
-      'equipment',
+    'equipment',
 
 ];
 
@@ -352,7 +352,7 @@ export const sortCategoryOptions = (opts, onGetProperty) => {
 
     const isClassOption = resolvedOpts.some(opt => {
         const tags = opt.tags || [];
-        return tags.includes('landType') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity') || tags.includes('metamagic') || tags.includes('eldritchInvocation') || tags.includes('vestigeType');
+        return tags.includes('landType') || tags.includes('elementalFury') || tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity') || tags.includes('metamagic') || tags.includes('eldritchInvocation') || tags.includes('vestigeType') || tags.includes('lunarWildShape');
     });
 
     if (isClassOption) {
@@ -360,7 +360,7 @@ export const sortCategoryOptions = (opts, onGetProperty) => {
             const tags = opt.tags || [];
             if (tags.includes('primalOrder') || tags.includes('divineOrder') || tags.includes('metamagic') || tags.includes('eldritchInvocation')) return 1;
             if (tags.includes('elementalFury') || tags.includes('blessedStrikes') || tags.includes('elementalAffinity')) return 2;
-            if (tags.includes('circleLand') || tags.includes('vestigeType')) return 3;
+            if (tags.includes('circleLand') || tags.includes('vestigeType') || tags.includes('lunarWildShape')) return 3;
             return 3;
         };
         return [...resolvedOpts].sort((a, b) => {
