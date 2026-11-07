@@ -1,27 +1,30 @@
 type: Statblock
-name: Aerial Hunter Beast
-id: aerialLunarBeastHunter
-summary: Mantises and predatory flyers with multiattack bite and claws.
+name: Pack Hunter
+id: wildShapePackHunter
+summary: Wolves, hyenas, and pack hounds that knock prey down.
 tags: [lunarWildShape, classOption]
 repeatable: true
-size: "$(meta.level >= 12 ? 'Large' : 'Medium')"
+size: "$(meta.level >= 6 ? 'Large' : 'Medium')"
 category: wildShape
 classification: Beast
-ac: "$(10 + Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2))"
+ac: "$(13 + Math.floor((stats.wis.score - 10) / 2))"
 movement:
-  walk: 20
-  fly: 40
+  walk: 40
 stats:
-  str: "$(17 + Math.floor(meta.level / 3))"
-  dex: "$(16 + Math.floor(meta.level / 3))"
-  con: "$(11 + Math.floor(meta.level / 3))"
+  str: "$(14 + Math.floor(meta.level / 3))"
+  dex: "$(15 + Math.floor(meta.level / 3))"
+  con: "$(14 + Math.floor(meta.level / 3))"
   int: "$(stats.int.score)"
   wis: "$(stats.wis.score)"
   cha: "$(stats.cha.score)"
+senses:
+  darkvision: 60
+traits:
+  - name: Pack Tactics
+    description: "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't incapacitated."
 actions:
-  - name: Multiattack
-    description: "You make three attacks: one with your Bite and two with your Claws."
-  - name: Bite
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 12 ? 2 : 1)d6$(formatBonus(Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3))) Piercing damage."
-  - name: Claw
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 12 ? 2 : 1)d4$(formatBonus(Math.floor((17 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3))) Slashing damage, and the target is grappled (escape DC $(attributes.spellcasting.save)). You have two claws, each of which can grapple only one target."
+  - name: Bestial Strike
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage. If the target is a creature, it must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be knocked prone."
+bonusActions:
+  - name: Rampage
+    description: "Immediately after dealing damage to a creature that is Bloodied, you can move up to half your Speed and make one Bestial Strike."

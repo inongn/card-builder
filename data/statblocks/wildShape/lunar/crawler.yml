@@ -1,0 +1,32 @@
+type: Statblock
+name: Insectoid Crawler
+id: wildShapeInsectoidCrawler
+summary: Giant spiders and scorpions with venomous strikes.
+tags: [lunarWildShape, classOption]
+repeatable: true
+size: "$(meta.level >= 6 ? 'Large' : 'Medium')"
+category: wildShape
+classification: Beast
+ac: "$(13 + Math.floor((stats.wis.score - 10) / 2))"
+movement:
+  walk: 30
+  climb: 30
+stats:
+  str: "$(12 + Math.floor(meta.level / 3))"
+  dex: "$(16 + Math.floor(meta.level / 3))"
+  con: "$(14 + Math.floor(meta.level / 3))"
+  int: "$(stats.int.score)"
+  wis: "$(stats.wis.score)"
+  cha: "$(stats.cha.score)"
+senses:
+  blindsight: 30
+  darkvision: 60
+traits:
+  - name: Spider Climb
+    description: "You can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+actions:
+  - name: Bestial Strike
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d6$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage, and the target must make a DC $(attributes.spellcasting.save) Constitution saving throw, taking $(meta.level >= 6 ? 3 : 2)d6 Poison damage on a failed save, or half as much on a successful one."
+bonusActions:
+  - name: Web (Recharge 5-6)
+    description: "One creature within 30 feet makes a DC $(attributes.spellcasting.save) Dexterity Saving Throw. _Failure:_ The target has the Restrained condition until the web is destroyed (AC 10; HP 5; vulnerability to Fire damage; immunity to Bludgeoning, Poison, and Psychic damage)."

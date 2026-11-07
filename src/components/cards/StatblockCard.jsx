@@ -93,6 +93,10 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                             }
                         }
 
+                        if (statblock.saveBonus && statblock.saveBonus[statKey] !== undefined) {
+                            save += Number(statblock.saveBonus[statKey]) || 0;
+                        }
+
                         const modStr = formatBonus(mod);
                         const saveStr = formatBonus(save);
                         const formattedDisplay = `${numScore} (${modStr}/${saveStr})`;

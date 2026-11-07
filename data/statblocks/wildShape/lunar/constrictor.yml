@@ -1,30 +1,31 @@
 type: Statblock
-name: Constrictor Beast
-id: lunarBeastConstrictor
-summary: Snakes and serpents that constrict, grapple, and restrain prey.
+name: Amphibious Constrictor
+id: wildShapeAmphibiousConstrictor
+summary: Crocodiles, constrictors, and giant toads that grapple and crush.
 tags: [lunarWildShape, classOption]
 repeatable: true
-size: "$(meta.level >= 12 ? 'Huge' : meta.level >= 6 ? 'Large' : 'Medium')"
+size: "$(meta.level >= 6 ? 'Large' : 'Medium')"
 category: wildShape
 classification: Beast
-ac: "$(13 + Math.floor((15 + Math.floor(meta.level / 6) - 10) / 2))"
+ac: "$(13 + Math.floor((stats.wis.score - 10) / 2))"
 movement:
   walk: 30
-  climb: 30
+  swim: 30
 stats:
   str: "$(16 + Math.floor(meta.level / 3))"
-  dex: "$(15 + Math.floor(meta.level / 6))"
+  dex: "$(12 + Math.floor(meta.level / 3))"
   con: "$(14 + Math.floor(meta.level / 3))"
   int: "$(stats.int.score)"
   wis: "$(stats.wis.score)"
   cha: "$(stats.cha.score)"
 senses:
-  darkvision: 60
+  blindsight: 10
 traits:
-  - name: Keen Sense
-    description: "You have advantage on Wisdom (Perception) checks that rely on hearing, sight, or smell (your choice)."
+  - name: Amphibious
+    description: "You can breathe air and water."
 actions:
-  - name: Bite
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3) + (meta.level >= 12 ? 2 : 0))) Piercing damage."
-  - name: Constrict
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d10$(formatBonus(Math.floor((16 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3) + (meta.level >= 12 ? 2 : 0))) Bludgeoning damage, and the target is grappled (escape DC $(attributes.spellcasting.save)). Until the grapple ends, the target is restrained, and you can't constrict another target."
+  - name: Bestial Strike
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d10$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage, and the target is grappled (escape DC $(attributes.spellcasting.save)). Until the grapple ends, the target is restrained."
+bonusActions:
+  - name: Engulf
+    description: "One creature you have grappled takes $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Bludgeoning damage."

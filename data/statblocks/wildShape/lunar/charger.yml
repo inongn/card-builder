@@ -1,27 +1,25 @@
 type: Statblock
-name: Charger Beast
-id: lunarBeastCharger
-summary: Elks, boars, and rhinos with charging strikes that knock targets prone.
+name: Trampling Charger
+id: wildShapeTramplingCharger
+summary: Boars and rhinos that impale and trample foes.
 tags: [lunarWildShape, classOption]
 repeatable: true
-size: "$(meta.level >= 12 ? 'Huge' : meta.level >= 6 ? 'Large' : 'Medium')"
+size: "$(meta.level >= 6 ? 'Large' : 'Medium')"
 category: wildShape
 classification: Beast
-ac: "$(12 + Math.floor((15 + Math.floor(meta.level / 6) - 10) / 2))"
+ac: "$(12 + Math.floor((stats.wis.score - 10) / 2))"
 movement:
   walk: 50
 stats:
-  str: "$(14 + Math.floor(meta.level / 3))"
-  dex: "$(15 + Math.floor(meta.level / 6))"
-  con: "$(14 + Math.floor(meta.level / 3))"
+  str: "$(17 + Math.floor(meta.level / 3))"
+  dex: "$(12 + Math.floor(meta.level / 3))"
+  con: "$(16 + Math.floor(meta.level / 3))"
   int: "$(stats.int.score)"
   wis: "$(stats.wis.score)"
   cha: "$(stats.cha.score)"
-traits:
-  - name: Keen Sense
-    description: "You have advantage on Wisdom (Perception) checks that rely on hearing, sight, or smell (your choice)."
-  - name: Charge
-    description: "If you move at least 20 feet straight toward a target and then hit it with a Gore attack on the same turn, the target takes an extra $(meta.level >= 6 ? 2 : 1)d10 damage of the same type as your Gore attack. If the target is a creature, it must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be knocked prone."
 actions:
-  - name: Gore
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 15 ? 3 : 2) + Math.floor((14 + Math.floor(meta.level / 3) - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d10$(formatBonus(Math.floor((14 + Math.floor(meta.level / 3) - 10) / 2) + Math.floor(meta.level / 3) + (meta.level >= 12 ? 2 : 0))) Bludgeoning, Piercing, or Slashing damage."
+  - name: Bestial Strike
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d10$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage. If you moved at least 20 feet straight toward the target immediately before the hit, it takes an extra $(meta.level >= 6 ? 2 : 1)d10 damage and must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be knocked prone."
+bonusActions:
+  - name: Trample
+    description: "Force one Prone creature within 5 feet to make a DC $(attributes.spellcasting.save) Dexterity saving throw. _Failure:_ 2d10$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Bludgeoning damage. _Success:_ Half damage."
