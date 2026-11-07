@@ -3719,40 +3719,40 @@
     "description": "Strong, driven warriors endowed with Gruumsh's endurance, unyielding grit, and darkvision."
   },
   "otherworldlyFamiliarAirCelestial": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarAirFey": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarAirFiend": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarAirUndead": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarLandCelestial": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarLandFey": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarLandFiend": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarLandUndead": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarWaterCelestial": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarWaterFey": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarWaterFiend": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyFamiliarWaterUndead": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
   },
   "otherworldlyGlamourSkill": {
     "name": "Otherworldly Glamour Skill"

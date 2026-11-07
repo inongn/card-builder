@@ -77,7 +77,8 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
         reactions = []
     } = statblock;
 
-    const displayName = localize(statblock.id, 'name', name);
+    const rawDisplayName = localize(statblock.id, 'name', name);
+    const displayName = evaluateText(rawDisplayName, char || statblock);
     const displaySize = isEs ? (SIZES_ES[size?.toLowerCase()] || size) : size;
     const displayClassif = isEs ? (CREATURE_TYPES_ES[classification?.toLowerCase()] || classification) : classification;
 
@@ -156,11 +157,11 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                                     {isPlayMode ? (
                                         <span>
                                             {numScore} (
-                                            <DiceRoller formula={modStr} label={`${name} ${stat.toUpperCase()} check`} interactive={true} showIcon={false}>
+                                            <DiceRoller formula={modStr} label={`${displayName} ${stat.toUpperCase()} check`} interactive={true} showIcon={false}>
                                                 {modStr}
                                             </DiceRoller>
                                             /
-                                            <DiceRoller formula={saveStr} label={`${name} ${stat.toUpperCase()} save`} interactive={true} showIcon={false}>
+                                            <DiceRoller formula={saveStr} label={`${displayName} ${stat.toUpperCase()} save`} interactive={true} showIcon={false}>
                                                 {saveStr}
                                             </DiceRoller>
                                             )
@@ -176,7 +177,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                     return (
                         <div key={stat} className="statblock-stat-item">
                             <strong>{stat.toUpperCase()}</strong>
-                            <div>{processDiceInChildren(String(value), isPlayMode, `${name} ${stat.toUpperCase()}`)}</div>
+                            <div>{processDiceInChildren(String(value), isPlayMode, `${displayName} ${stat.toUpperCase()}`)}</div>
                         </div>
                     );
                 })}
@@ -212,7 +213,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                 </div>
                 {!isWildShape && hp && (
                     <div>
-                        <strong>{t('statblock.hitPoints')}</strong> {processDiceInChildren(String(hp || ''), isPlayMode, `${name} HP`)}
+                        <strong>{t('statblock.hitPoints')}</strong> {processDiceInChildren(String(hp || ''), isPlayMode, `${displayName} HP`)}
                     </div>
                 )}
                 {renderMovement()}

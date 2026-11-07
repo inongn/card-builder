@@ -459,10 +459,14 @@ export class CharacterBuilder {
         // IMMEDIATE UPDATE: Update characterData context so expressions use the NEW value
         if (input.type === 'Input') {
             // Use id for meta key (e.g., species, background)
-            const key = (input.id || input.name || '').replace(/^ui\./i, '').toLowerCase();
+            const rawKey = (input.id || input.name || '').replace(/^ui\./i, '');
+            const key = rawKey.toLowerCase();
             if (key) {
                 if (!this.characterData.meta) this.characterData.meta = {};
                 this.characterData.meta[key] = value;
+                if (rawKey && rawKey !== key) {
+                    this.characterData.meta[rawKey] = value;
+                }
             }
         }
 
@@ -943,10 +947,14 @@ export class CharacterBuilder {
                 current.value = inputData.value;
 
                 // Seed CharacterData meta using id
-                const key = (current.id || current.name || '').replace(/^ui\./i, '').toLowerCase();
+                const rawKey = (current.id || current.name || '').replace(/^ui\./i, '');
+                const key = rawKey.toLowerCase();
                 if (key) {
                     if (!this.characterData.meta) this.characterData.meta = {};
                     this.characterData.meta[key] = inputData.value;
+                    if (rawKey && rawKey !== key) {
+                        this.characterData.meta[rawKey] = inputData.value;
+                    }
                 }
             }
         });
@@ -1801,10 +1809,15 @@ export class CharacterBuilder {
 
             case 'Input':
                 // Use id for input key (e.g., 'species', 'background')
-                const inputKey = (prop.id || '').replace(/^ui\./i, '').toLowerCase();
+                const rawInputKey = (prop.id || '').replace(/^ui\./i, '');
+                const inputKey = rawInputKey.toLowerCase();
                 if (inputKey) {
                     const val = (prop.value !== undefined && prop.value !== null) ? prop.value : prop.default;
-                    this.characterData.meta[inputKey] = evaluator.evaluate(val);
+                    const evaluatedVal = evaluator.evaluate(val);
+                    this.characterData.meta[inputKey] = evaluatedVal;
+                    if (rawInputKey && rawInputKey !== inputKey) {
+                        this.characterData.meta[rawInputKey] = evaluatedVal;
+                    }
                 }
                 break;
 
@@ -1967,7 +1980,7 @@ export class CharacterBuilder {
                     const statblockObj = {
                         ...statblockClone,
                         id: evaluator.bakeVariables(prop.id, scope),
-                        name: prop.name,
+                        name: evaluator.evaluate(prop.name, scope),
                         tags: evaluator.bakeVariables(prop.tags, scope),
                         variables: { ...scope, ...(prop.variables || {}) }
                     };

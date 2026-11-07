@@ -1,5 +1,5 @@
 type: Statblock
-name: "$(meta.familiarname ? meta.familiarname : 'Otherworldly Familiar')"
+name: "$(meta.familiarname || meta.familiarName || 'Otherworldly Familiar')"
 tags: [familiar]
 id: otherworldlyFamiliarAirFiend
 size: Tiny

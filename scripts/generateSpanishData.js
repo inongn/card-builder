@@ -368,6 +368,20 @@ const TRANSLATIONS = {
   wildShapeBeastOfTheSea: { name: 'Bestia Marina' },
   wildShapeBeastOfTheSky: { name: 'Bestia Celeste' },
 
+  // Familiars
+  otherworldlyFamiliarAirCelestial: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarAirFey: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarAirFiend: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarAirUndead: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarLandCelestial: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarLandFey: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarLandFiend: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarLandUndead: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarWaterCelestial: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarWaterFey: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarWaterFiend: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+  otherworldlyFamiliarWaterUndead: { name: "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')" },
+
   // Statblock Actions
   beastsStrike: { name: "Ataque de la Bestia" },
   otherworldlyScratch: { name: "Arañazo de Ultratumba" },

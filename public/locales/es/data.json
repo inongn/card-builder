@@ -3789,40 +3789,40 @@
     "description": "Guerreros fuertes y decididos dotados de la resistencia de Gruumsh, coraje inquebrantable y visión en la oscuridad."
   },
   "otherworldlyFamiliarAirCelestial": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarAirFey": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarAirFiend": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarAirUndead": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarLandCelestial": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarLandFey": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarLandFiend": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarLandUndead": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarWaterCelestial": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarWaterFey": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarWaterFiend": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyFamiliarWaterUndead": {
-    "name": "$(meta.familiarname ? meta.familiarname : 'Familiar de Otro Mundo')"
+    "name": "$(meta.familiarname || meta.familiarName || 'Familiar de Otro Mundo')"
   },
   "otherworldlyGlamourSkill": {
     "name": "Competencia en Habilidad de Glamour de Otro Mundo"
