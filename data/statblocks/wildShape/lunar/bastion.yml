@@ -24,5 +24,23 @@ traits:
   - name: Siege Monster
     description: "You deal double damage to objects and structures."
 actions:
-  - name: Bestial Strike
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))), reach 10 ft. _Hit:_ $(meta.level >= 6 ? 2 : 1)d10$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Bludgeoning damage, and if the target is a creature of your size or smaller, it has the Prone condition."
+  - id: bestialStrike
+    name: Bestial Strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: "$((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))"
+      target:
+        type: single
+        range: reach 10 feet
+      hit:
+        - type: damage
+          dice:
+            count: "$(meta.level >= 6 ? 2 : 1)"
+            sides: 10
+            bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+          damageType: bludgeoning
+        - type: condition
+          condition: prone

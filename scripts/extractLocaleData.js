@@ -58,6 +58,17 @@ function extractTranslatable(node, result = {}) {
         node.children.forEach(child => extractTranslatable(child, result));
     }
 
+    // Process statblock actions, bonusActions, reactions
+    for (const sec of ['actions', 'bonusActions', 'reactions']) {
+        if (Array.isArray(node[sec])) {
+            node[sec].forEach(item => {
+                if (item && typeof item === 'object') {
+                    extractTranslatable(item, result);
+                }
+            });
+        }
+    }
+
     // Process extra entries (name + description)
     if (node.extra) {
         const extras = Array.isArray(node.extra) ? node.extra : [node.extra];
@@ -144,7 +155,7 @@ function inspectMechanic(mechanic, textsSet, labelsSet) {
 
 function scanActivityMechanics(node, textsSet, labelsSet) {
     if (!node || typeof node !== 'object') return;
-    if (node.type === 'Activity' && node.mechanic) {
+    if (node.mechanic) {
         inspectMechanic(node.mechanic, textsSet, labelsSet);
     }
     if (node.type === 'Effect' && node.target && String(node.target).includes('mechanic') && node.value) {

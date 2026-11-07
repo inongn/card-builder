@@ -1,12 +1,13 @@
 type: Statblock
 name: Psionic Spirit (Crystal Entity)
-tags: [summon]
+tags:
+  - summon
 id: astralEntityCrystal
 size: Medium
 category: summon
 classification: Aberration
-ac: "$(11 + (local.maxLevel || 3) + 2)"
-hp: "$(40 + 10 * ((local.maxLevel || 3) - 3))"
+ac: $(11 + (local.maxLevel || 3) + 2)
+hp: $(40 + 10 * ((local.maxLevel || 3) - 3))
 movement:
   walk: 30
 stats:
@@ -16,15 +17,52 @@ stats:
   int: 16
   wis: 12
   cha: 10
-immunities: [Psychic]
+immunities:
+  - Psychic
 senses:
   darkvision: 60
-languages: "Deep Speech, Telepathy 60 ft."
+languages: Deep Speech, Telepathy 60 ft.
 actions:
-  - name: Multiattack
-    description: "The spirit makes $(Math.floor((local.maxLevel || 3) / 2)) Crystal Strike attacks."
-  - name: Crystal Strike
-    description: "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d10$(formatBonus(3 + (local.maxLevel || 3))) Piercing damage."
+  - id: multiattack
+    name: Multiattack
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: action
+          text: make $(Math.floor((local.maxLevel || 3) / 2)) Crystal Strike attacks
+  - id: crystalStrike
+    name: Crystal Strike
+    tags:
+      - strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        - type: damage
+          dice:
+            count: 1
+            sides: 10
+            bonus: $(3 + (local.maxLevel || 3))
+          damageType: piercing
 reactions:
-  - name: Shard Swarm
-    description: "_Trigger:_ The spirit is hit by a melee attack roll. _Response:_ The spirit halves the damage (round down) it takes from that attack. The spirit can then teleport to an unoccupied space it can see within 30 feet of itself."
+  - id: shardSwarm
+    name: Shard Swarm
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: be_hit
+        text: The spirit is hit by a melee attack roll
+      payloads:
+        - type: damageReduction
+          halve: true
+          text: the spirit halves the damage (round down) it takes from that attack
+        - type: teleport
+          distance: 30

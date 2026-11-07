@@ -24,8 +24,41 @@ traits:
   - name: Amphibious
     description: "You can breathe air and water."
 actions:
-  - name: Bestial Strike
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))), reach 5 ft. _Hit:_ $(meta.level >= 6 ? 2 : 1)d10$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage, and the target has the Grappled condition (escape DC $(attributes.spellcasting.save)). Until the grapple ends, the target has the Restrained condition."
+  - id: bestialStrike
+    name: Bestial Strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: "$((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))"
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        - type: damage
+          dice:
+            count: "$(meta.level >= 6 ? 2 : 1)"
+            sides: 10
+            bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+          damageType: piercing
+        - type: condition
+          condition:
+            - grappled
+            - restrained
+          end: action_check
 bonusActions:
-  - name: Engulf
-    description: "One creature you have grappled takes $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Bludgeoning damage."
+  - id: engulf
+    name: Engulf
+    mechanic:
+      pattern: automatic
+      target:
+        type: single
+        filter: creature you have grappled
+      payloads:
+        - type: damage
+          dice:
+            count: "$(meta.level >= 6 ? 2 : 1)"
+            sides: 8
+            bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+          damageType: bludgeoning

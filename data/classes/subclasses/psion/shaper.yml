@@ -68,13 +68,15 @@ children:
     value: $(meta.level * 2)
   - id: empoweredServitorPsionicStrike
     type: Effect
-    target: statblocks[tags=summon].traits
+    target: statblocks[tags=summon].actions[tags=strike].mechanic.hit
     operation: push
     condition: $(meta.level >= 6)
     value:
-      name: Psionic Strike
-      description: The summon's attacks deal an extra $(Math.max(1, stats.int.mod)) Psychic damage.
-  - id: empoweredServitorPsionicStrike
+      type: damage
+      dice:
+        bonus: $(Math.max(1, stats.int.mod))
+      damageType: psychic
+  - id: empoweredServitorHarmonicConduit
     type: Effect
     target: statblocks[tags=summon].traits
     operation: push

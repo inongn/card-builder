@@ -3,6 +3,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { ExpressionEvaluator } from '../src/engine/ExpressionEvaluator.js';
+import { formatStatblockEntry, statblockEntryLabel } from '../src/utils/statblockFormatter.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -44,23 +45,23 @@ const aquatic = [];
 const aerial = [];
 
 for (const sb of statblocks) {
-    const n = sb.data.name.toLowerCase();
-    if (n.startsWith('aquatic')) aquatic.push(sb);
-    else if (n.startsWith('aerial')) aerial.push(sb);
+    const m = sb.data.movement || {};
+    if (m.fly) aerial.push(sb);
+    else if (m.swim && (m.swim > (m.walk || 0))) aquatic.push(sb);
     else terrestrial.push(sb);
 }
 
 // Helper to format movement
 function formatMovement(movement, evaluator) {
-    if (!movement) return '30 ft.';
+    if (!movement) return '30 feet';
     if (typeof movement === 'string') return evaluator.evaluate(movement);
     const parts = [];
-    if (movement.walk !== undefined) parts.push(`walk ${evaluator.evaluate(String(movement.walk))} ft.`);
-    if (movement.swim) parts.push(`swim ${evaluator.evaluate(String(movement.swim))} ft.`);
-    if (movement.fly) parts.push(`fly ${evaluator.evaluate(String(movement.fly))} ft.`);
-    if (movement.climb) parts.push(`climb ${evaluator.evaluate(String(movement.climb))} ft.`);
-    if (movement.burrow) parts.push(`burrow ${evaluator.evaluate(String(movement.burrow))} ft.`);
-    return parts.join(', ') || '30 ft.';
+    if (movement.walk !== undefined) parts.push(`walk ${evaluator.evaluate(String(movement.walk))} feet`);
+    if (movement.swim) parts.push(`swim ${evaluator.evaluate(String(movement.swim))} feet`);
+    if (movement.fly) parts.push(`fly ${evaluator.evaluate(String(movement.fly))} feet`);
+    if (movement.climb) parts.push(`climb ${evaluator.evaluate(String(movement.climb))} feet`);
+    if (movement.burrow) parts.push(`burrow ${evaluator.evaluate(String(movement.burrow))} feet`);
+    return parts.join(', ') || '30 feet';
 }
 
 // Helper to format senses
@@ -68,9 +69,9 @@ function formatSenses(senses, evaluator) {
     if (!senses) return 'Normal';
     if (typeof senses === 'string') return evaluator.evaluate(senses);
     const parts = [];
-    if (senses.darkvision) parts.push(`Darkvision ${evaluator.evaluate(String(senses.darkvision))} ft.`);
-    if (senses.blindsight) parts.push(`Blindsight ${evaluator.evaluate(String(senses.blindsight))} ft.`);
-    if (senses.tremorsense) parts.push(`Tremorsense ${evaluator.evaluate(String(senses.tremorsense))} ft.`);
+    if (senses.darkvision) parts.push(`Darkvision ${evaluator.evaluate(String(senses.darkvision))} feet`);
+    if (senses.blindsight) parts.push(`Blindsight ${evaluator.evaluate(String(senses.blindsight))} feet`);
+    if (senses.tremorsense) parts.push(`Tremorsense ${evaluator.evaluate(String(senses.tremorsense))} feet`);
     return parts.join(', ') || 'Normal';
 }
 
@@ -81,7 +82,7 @@ function getMod(score) {
 
 let md = `# Circle of the Moon — Lunar Wild Shape Reference
 
-This document provides authoritative reference cards and scaling progressions for all **20 Lunar Wild Shape templates** available to Circle of the Moon Druids, translated from the *5e Wild Shape Templates Guide* and prefabricated statblocks.
+This document provides authoritative reference cards and scaling progressions for all **12 Lunar Wild Shape templates** available to Circle of the Moon Druids, translated from the *5e Wild Shape Templates Guide* and prefabricated statblocks.
 
 ---
 
@@ -116,7 +117,7 @@ for (const sb of statblocks) {
     const ac = ev.evaluate(d.ac);
     const move = formatMovement(d.movement, ev);
     const senses = formatSenses(d.senses, ev);
-    const cat = d.name.startsWith('Aquatic') ? 'Aquatic' : d.name.startsWith('Aerial') ? 'Aerial' : 'Terrestrial';
+    const cat = d.movement?.fly ? 'Aerial' : (d.movement?.swim && d.movement.swim > (d.movement.walk || 0)) ? 'Aquatic' : 'Terrestrial';
     md += `| **${d.name}** | ${cat} | ${size} | ${move} | ${senses} | **${ac}** | ${d.summary} |\n`;
 }
 
@@ -161,9 +162,16 @@ function renderSection(title, list) {
 
         // Actions
         if (d.actions && d.actions.length > 0) {
+            const sortedActions = [...d.actions].sort((a, b) => {
+                const aIsMulti = a.id === 'multiattack' || a.name?.toLowerCase() === 'multiattack';
+                const bIsMulti = b.id === 'multiattack' || b.name?.toLowerCase() === 'multiattack';
+                if (aIsMulti && !bIsMulti) return -1;
+                if (!aIsMulti && bIsMulti) return 1;
+                return 0;
+            });
             out += `#### Actions\n\n`;
-            for (const a of d.actions) {
-                out += `- **${a.name}**: ${ev3.evaluate(a.description)}\n`;
+            for (const a of sortedActions) {
+                out += `- **${statblockEntryLabel(a)}**: ${formatStatblockEntry(a, d, createCharContext(3), 'actions')}\n`;
             }
             out += `\n`;
         }
@@ -172,7 +180,7 @@ function renderSection(title, list) {
         if (d.bonusActions && d.bonusActions.length > 0) {
             out += `#### Bonus Actions\n\n`;
             for (const b of d.bonusActions) {
-                out += `- **${b.name}**: ${ev3.evaluate(b.description)}\n`;
+                out += `- **${statblockEntryLabel(b)}**: ${formatStatblockEntry(b, d, createCharContext(3), 'bonusActions')}\n`;
             }
             out += `\n`;
         }
@@ -181,7 +189,7 @@ function renderSection(title, list) {
         if (d.reactions && d.reactions.length > 0) {
             out += `#### Reactions\n\n`;
             for (const r of d.reactions) {
-                out += `- **${r.name}**: ${ev3.evaluate(r.description)}\n`;
+                out += `- **${statblockEntryLabel(r)}**: ${formatStatblockEntry(r, d, createCharContext(3), 'reactions')}\n`;
             }
             out += `\n`;
         }
@@ -193,7 +201,8 @@ function renderSection(title, list) {
 
         const levels = [3, 6, 9, 12, 15, 18];
         for (const lvl of levels) {
-            const evL = new ExpressionEvaluator(createCharContext(lvl));
+            const charCtx = createCharContext(lvl);
+            const evL = new ExpressionEvaluator(charCtx);
             const sz = evL.evaluate(d.size);
             const a = evL.evaluate(d.ac);
             const s = Number(evL.evaluate(d.stats.str));
@@ -204,12 +213,12 @@ function renderSection(title, list) {
             if (d.actions && d.actions.length > 0) {
                 // Pick the first non-multiattack action
                 const atk = d.actions.find(act => act.name !== 'Multiattack') || d.actions[0];
-                const renderedAtk = evL.evaluate(atk.description);
-                const matchHit = renderedAtk.match(/_Melee Attack Roll:_ ([^_]+) to hit[\s\S]*?_Hit:_ ([^.\n]+)/);
+                const renderedAtk = formatStatblockEntry(atk, d, charCtx, 'actions');
+                const matchHit = renderedAtk.match(/_Melee Attack Roll:_ ([^,]+),[^_]*_Hit:_ ([^.\n]+)/);
                 if (matchHit) {
-                    mainAtk = `**${atk.name}**: +${matchHit[1].trim().replace(/^\+/, '')} (${matchHit[2].trim()})`;
+                    mainAtk = `**${statblockEntryLabel(atk)}**: ${matchHit[1].trim()} (${matchHit[2].trim()})`;
                 } else {
-                    mainAtk = `**${atk.name}**: ${renderedAtk.replace(/_/g, '').slice(0, 45)}...`;
+                    mainAtk = `**${statblockEntryLabel(atk)}**: ${renderedAtk.replace(/_/g, '').slice(0, 45)}...`;
                 }
             }
             out += `| **${lvl}** | ${sz} | ${a} | ${s} (${getMod(s)}) | ${dx} (${getMod(dx)}) | ${c} (${getMod(c)}) | ${mainAtk} |\n`;

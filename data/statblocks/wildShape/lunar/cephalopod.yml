@@ -24,8 +24,41 @@ traits:
   - name: Water Breathing
     description: "You can breathe only underwater, but can hold your breath for 1 hour."
 actions:
-  - name: Bestial Strike
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))), reach 10 ft. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Bludgeoning damage, and if the target is a creature, it has the Grappled condition (escape DC $(attributes.spellcasting.save)) and the Restrained condition."
+  - id: bestialStrike
+    name: Bestial Strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: "$((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))"
+      target:
+        type: single
+        range: reach 10 feet
+      hit:
+        - type: damage
+          dice:
+            count: "$(meta.level >= 6 ? 2 : 1)"
+            sides: 8
+            bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+          damageType: bludgeoning
+        - type: condition
+          condition:
+            - grappled
+            - restrained
+          end: action_check
 reactions:
-  - name: Ink Cloud (1/Day)
-    description: "_Trigger:_ When you take damage while underwater. _Response:_ You release ink that fills a 10-foot Cube, and move up to your Swim Speed without provoking Opportunity Attacks, and the area is Heavily Obscured for 1 minute."
+  - id: inkCloud
+    name: Ink Cloud
+    limit: 1/Day
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: take_damage
+        text: You take damage while underwater
+      payloads:
+        - type: movement
+          provokesOpportunityAttacks: false
+          text: release ink that fills a 10-foot Cube, and move up to your Swim Speed without provoking Opportunity Attacks
+        - type: text
+          text: the area is Heavily Obscured for 1 minute

@@ -112,5 +112,12 @@ children:
     operation: push
     condition: $(meta.level >= 5)
     value:
+      id: multiattack
       name: Multiattack
-      description: The beast makes two Bestial Strike attacks.
+      mechanic:
+        pattern: automatic
+        target:
+          type: self
+        payloads:
+          - type: action
+            text: make two Bestial Strike attacks

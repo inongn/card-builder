@@ -25,12 +25,19 @@ children:
     condition: $(meta.level >= 3)
   - id: titanMultiattack
     type: Effect
-    target: statblocks[tags=titanFormTemplate].traits
+    target: statblocks[tags=titanFormTemplate].actions
     operation: push
     condition: $(meta.level >= 5)
     value:
+      id: multiattack
       name: Multiattack
-      description: You make two Rend attacks.
+      mechanic:
+        pattern: automatic
+        target:
+          type: self
+        payloads:
+          - type: action
+            text: make two Rend attacks
   - id: elementalRendEffect
     type: Effect
     target: statblocks[tags=titanFormTemplate].traits
@@ -41,9 +48,25 @@ children:
       description: Whenever you hit with your Titan Form's Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type.
   - id: shockWaveEffect
     type: Effect
-    target: statblocks[tags=titanFormTemplate].traits
+    target: statblocks[tags=titanFormTemplate].actions
     operation: push
     condition: $(meta.level >= 6)
     value:
+      id: shockWave
       name: Shock Wave
-      description: Once per turn, immediately after you move at least half your Speed, you can create a shock wave in a 10-foot Emanation originating from yourself. Each creature in the Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or have the Prone condition.
+      mechanic:
+        pattern: save
+        trigger:
+          text: Once per turn, immediately after you move at least half your Speed
+        save:
+          ability: con
+          dc: $(attributes.spellcasting.save)
+        target:
+          type: area
+          range: self
+          aoe:
+            shape: emanation
+            size: 10
+        failure:
+          type: condition
+          condition: prone

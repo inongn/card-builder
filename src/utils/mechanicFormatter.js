@@ -277,8 +277,10 @@ export function capitalize(str) {
 
 export function formatDistance(distStr) {
   if (!distStr) return '';
-  const str = String(distStr).trim();
+  let str = String(distStr).trim().replace(/\.+$/, '');
+  str = str.replace(/\bft\.?/gi, 'feet');
   if (/^5\s*feet$/i.test(str)) return 'reach 5 feet';
+  if (/^10\s*feet$/i.test(str)) return 'reach 10 feet';
   if (/^touch$/i.test(str)) return 'reach Touch';
   if (/^self$/i.test(str)) return 'range Self';
   return str.replace(/\bfoot\b/gi, 'feet');
@@ -648,7 +650,7 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
       }
     }
 
-    const isTargetSelf = ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self');
+    const isTargetSelf = !ctx?.targetObj?.aoe && (ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self'));
     const hasTrigger = !!(ctx?.trigger || ctx?.activity?.mechanic?.trigger);
     const targetPronoun = isTargetSelf ? 'you' : 'the target';
     const possessivePronoun = isTargetSelf ? 'your' : 'its';
@@ -992,7 +994,7 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
 
   const isSave = ctx?.pattern === 'save';
   const targetObj = ctx?.targetObj;
-  const isTargetSelf = targetObj?.type === 'self' || (typeof targetObj?.range === 'string' && targetObj?.range.toLowerCase() === 'self');
+  const isTargetSelf = !targetObj?.aoe && (targetObj?.type === 'self' || (typeof targetObj?.range === 'string' && targetObj?.range.toLowerCase() === 'self'));
   const isMultiSave = isSave && targetObj && (
     targetObj.aoe || targetObj.type === 'multiple' || targetObj.type === 'multi' ||
     (targetObj.count && parseInt(evalStr(targetObj.count), 10) > 1)
@@ -1238,6 +1240,7 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
  */
 function buildSubjectNounPhrase(targetObj, activityRange, evalStr) {
   if (!targetObj) return 'You';
+  if (targetObj.text) return capitalize(evalStr(targetObj.text));
 
   const type = (evalStr(targetObj.type || '') || '').toLowerCase();
   const cleanRange = evalStr(targetObj.range || activityRange || '').trim()
@@ -1478,7 +1481,10 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
 
   // ── 1. ATTACK ──────────────────────────────────────────────────────────────
   if (pattern === 'attack' && block.attack) {
-    const classif = capitalize(evalStr(block.attack.classification || 'melee'));
+    const rawClassif = evalStr(block.attack.classification || 'melee');
+    const classif = (rawClassif === 'melee_or_ranged' || rawClassif === 'melee or ranged')
+      ? 'Melee or Ranged'
+      : capitalize(rawClassif);
     const rawBonus = evaluator.evaluate(block.attack.bonus || '$(attributes.spellcasting.attack)', effectiveScope);
     const numBonus = typeof rawBonus === 'number' ? rawBonus : Number(rawBonus);
     const bonusStr = !isNaN(numBonus)

@@ -4,6 +4,7 @@
       "$(description)": "$(description)",
       "$(meta.level) extra damage during the first round of combat": "$(meta.level) de daño adicional durante el primer asalto del combate",
       "$(summary)": "$(summary)",
+      "2d10 Radiant damage per level of the spell slot expended": "2d10 de daño Radiante por cada nivel del espacio de conjuro gastado",
       "60-foot Sphere sheds Bright Light and Dim Light for an additional 60 feet, dispelling darkness spells of level 3 or lower": "una esfera de 60 pies emite Luz Brillante y Luz Tenue durante 60 pies adicionales, disipando conjuros de oscuridad de nivel 3 o inferior",
       "A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.": "un objetivo voluntario puede usar su Reacción para moverse hasta la mitad de su velocidad sin provocar Ataques de Oportunidad y añade 1d$(attributes.psiDice) a su CA hasta el inicio de tu siguiente turno",
       "Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again": "Ventaja en pruebas de Destreza (Sigilo) hasta que termines un Descanso Largo o uses este rasgo de nuevo",
@@ -19,14 +20,17 @@
       "Guided by a flash of magical insight, make one attack with the weapon used in the spell's casting using a $(formatBonus(attributes.spellcasting.attack)) attack roll. On a hit, deal your weapon's damage die $(formatBonus(attributes.spellcasting.bonus)) Radiant damage.": "guiado por un destello de perspicacia mágica, realiza un ataque con el arma usada en el lanzamiento del conjuro usando una tirada de ataque de $(formatBonus(attributes.spellcasting.attack)). Si impactas, inflige el dado de daño del arma $(formatBonus(attributes.spellcasting.bonus)) de daño radiante.",
       "If the target fails its saving throw, it does not know you are probing its mind.": "si el objetivo falla su tirada de salvación, no sabe que estás sondeando su mente",
       "If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage": "si al objetivo le falta alguno de sus Puntos de Golpe, recibe en su lugar 1d12 de daño necrótico",
+      "If you moved at least 20 feet straight toward the target immediately before the hit, it takes an extra $(meta.level >= 6 ? 2 : 1)d10 damage.": "si te moviste al menos 20 pies en línea recta hacia el objetivo inmediatamente antes del impacto, este sufre $(meta.level >= 6 ? 2 : 1)d10 de daño adicional",
       "If you reduce the damage to 0 with Deflect Attacks": "si reduces el daño a 0 con Desviar Ataques",
       "Imbue a Club or Quarterstaff you are holding. For the duration, you make attack rolls with it with a $(formatBonus(attributes.spellcasting.attack)) modifier and deal 1d8$(formatBonus(attributes.spellcasting.bonus)) Force damage.": "imbuyes un garrote o bastón que sostengas. Durante la duración, realizas tiradas de ataque con él con un modificador de $(formatBonus(attributes.spellcasting.attack)) e infliges 1d8$(formatBonus(attributes.spellcasting.bonus)) de daño de fuerza.",
       "Immediately after another creature you can see rolls the d20 for a D20 Test": "inmediatamente después de que otra criatura que puedas ver tire el d20 en una Prueba de D20",
+      "Immediately after you deal damage to a creature that is Bloodied": "Inmediatamente después de que causes daño a una criatura Ensangrentada",
       "Once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Necrotic damage": "una vez por turno cuando inflijas daño con un ataque o conjuro, infliges $(attributes.prof) de daño necrótico adicional",
       "Once per turn when you hit a creature and deal Necrotic damage while transformed, you can roll one additional damage die.": "una vez por turno cuando impactes a una criatura e inflijas daño necrótico mientras estés transformado, puedes tirar un dado de daño adicional",
       "Once per turn when you restore Hit Points to a creature with a spell": "una vez por turno cuando restaures Puntos de Golpe a una criatura con un conjuro",
       "Once per turn, deal an extra 1d6 Acid damage": "una vez por turno, infliges 1d6 de daño de ácido adicional",
       "Once per turn, immediately after you cast a Sorcerer spell with a spell slot": "una vez por turno, inmediatamente después de lanzar un conjuro de Hechicero usando un espacio de conjuro",
+      "Once per turn, immediately after you move at least half your Speed": "Una vez por turno, inmediatamente después de moverte al menos la mitad de tu Velocidad",
       "Psychic damage equal to the amount of damage reduced": "de daño psíquico igual a la cantidad de daño reducido",
       "Speed is doubled, gains Advantage on Dex saves, and gets an additional action on each turn": "la velocidad se duplica, gana Ventaja en salvaciones de Des y obtiene una acción adicional en cada turno",
       "Speed is halved": "la velocidad se reduce a la mitad",
@@ -36,6 +40,9 @@
       "Target willing creature can add 1d4 to one saving throw of its choice before the spell ends.": "la criatura voluntaria objetivo puede añadir 1d4 a una tirada de salvación de su elección antes de que termine el conjuro.",
       "Ten berries appear in your hand; a creature can use a Bonus Action to eat a berry to restore 1 Hit Point.": "aparecen diez bayas en tu mano; una criatura puede usar una Acción Adicional para comer una baya y recuperar 1 Punto de Golpe.",
       "The area becomes Difficult Terrain until the end of your next turn": "El área se convierte en Terreno Difícil hasta el final de tu siguiente turno",
+      "The attack roll has Advantage if the target doesn't have all its Hit Points.": "La tirada de ataque tiene Ventaja si el objetivo no tiene todos sus Puntos de Golpe.",
+      "The spirit is hit by a melee attack roll": "El espíritu es impactado por una tirada de ataque cuerpo a cuerpo",
+      "The spirit takes damage from a creature within 5 feet": "El espíritu recibe daño de una criatura a 5 pies de él",
       "The target and all other creatures within 10 feet of it take 2d6 Force damage.": "el objetivo y todas las demás criaturas a 10 pies de él reciben 2d6 de daño de fuerza.",
       "Unarmed Strikes can deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage, and when you deal one of these damage types, the target is subject to the following saving throw": "los Golpes Sin Armas pueden infligir daño de Ácido, Frío, Fuego, Relámpago o Trueno a tu elección, y cuando inflijas uno de estos tipos de daño, el objetivo queda sujeto a la siguiente tirada de salvación",
       "Until the end of your next turn, the target emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition": "hasta el final de tu siguiente turno, el objetivo emite Luz Tenue en un radio de 10 pies y no puede beneficiarse de la condición de Invisible",
@@ -59,12 +66,17 @@
       "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength": "puedes realizar pruebas de característica usando Acrobacias, Intimidación, Percepción, Sigilo o Supervivencia con Fuerza",
       "You create a visual illusion of yourself in an unoccupied space you can see within range.": "Creas una ilusión visual de ti mismo en un espacio desocupado que puedas ver dentro del alcance.",
       "You do one of the following:": "Haces una de las siguientes opciones:",
+      "You expend a level 1+ spell slot and can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks while emitting a cloud of healing pollen. When you move within 5 feet of another creature during this movement, you can restore a number of Hit Points equal to 2d6 per level of the spell slot expended (once per turn per creature).": "Gastas un espacio de conjuro de nivel 1 o superior y puedes moverte hasta $(Math.floor(attributes.movement.walk / 2 / 5) * 5) pies sin provocar Ataques de Oportunidad mientras emites una nube de polen curativo. Cuando te mueves a 5 pies de otra criatura durante este movimiento, puedes restaurarle una cantidad de Puntos de Golpe igual a 2d6 por cada nivel del espacio de conjuro gastado (una vez por turno por criatura).",
+      "You expend a level 1+ spell slot.": "Gastas un espacio de conjuro de nivel 1 o superior.",
       "You form a telepathic connection between your mind and the mind of another to communicate telepathically while within $(Math.max(1, stats.cha.mod)) miles": "formas una conexión telepática entre tu mente y la de otra persona para comunicaros telepáticamente mientras estéis a $(Math.max(1, stats.cha.mod)) millas",
       "You have the Invisible condition until the start of your next turn or until immediately after you attack or cast a spell": "sufres la condición de Invisible hasta el inicio de tu siguiente turno o hasta inmediatamente después de que ataques o lances un conjuro",
       "You imbue a piece of nonmagical ammunition with one of the following properties:": "Inbuyes una pieza de munición no mágica con una de las siguientes propiedades:",
+      "You moved at least 10 feet underground and emerged within 5 feet of a creature on this turn": "Te moviste al menos 10 pies bajo tierra y emergiste a 5 pies de una criatura en este turno",
+      "You take damage while underwater": "Recibes daño mientras estás bajo el agua",
       "You take on one of the following forms. This form sheds Bright Light in a 10-foot radius and Dim Light for an additional 10 feet.": "Adoptas una de las siguientes formas. Esta forma emite Luz Brillante en un radio de 10 pies y Luz Tenue durante 10 pies adicionales.",
       "Your Unarmed Strike reach is 5 feet greater than normal": "el alcance de tus Golpes Sin Armas es 5 pies mayor de lo normal",
       "a 60-foot-long vine grows from the ammunition, lasting 10 minutes": "una enredadera de 60 pies de largo crece de la munición, que dura 10 minutos",
+      "a creature the defender can see within 5 feet of it makes an attack roll targeting a different creature": "una criatura que el defensor pueda ver a 5 pies de él realiza una tirada de ataque contra una criatura diferente",
       "a flickering flame appears in your hand, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. You can take the following Action while the flame persists": "aparece una llama parpadeante en tu mano, emitiendo Luz Brillante en un radio de 10 pies y Luz Tenue durante 10 pies adicionales. Puedes realizar la siguiente Acción mientras la llama persista",
       "a harmless demiplane": "un semiplano inofensivo",
       "a harmless demiplane (or its home plane if native there)": "un semiplano inofensivo (o su plano natal si es nativo de allí)",
@@ -84,6 +96,7 @@
       "allies gain Advantage on Wisdom saves and death saves, and regain maximum HP from any healing": "los aliados ganan Ventaja en salvaciones de Sabiduría y salvaciones contra la muerte, y recuperan los PG máximos de cualquier curación",
       "allies gain Resistance to Necrotic damage, maximum Hit Points cannot be reduced, and living creatures at 0 Hit Points regain 1 Hit Point at the start of their turn": "los aliados ganan Resistencia al daño necrótico, sus Puntos de Golpe máximos no se pueden reducir y las criaturas vivas a 0 Puntos de Golpe recuperan 1 Punto de Golpe al inicio de su turno",
       "allies in aura can't become Diseased, gain Resistance to Poison damage, and gain Advantage on saving throws against the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, and Stunned conditions": "los aliados en el aura no pueden enfermar, ganan Resistencia al daño de veneno y ganan Ventaja en tiradas de salvación contra las condiciones de Cegado, Hechizado, Ensordecido, Asustado, Paralizado, Envenenado y Aturdido",
+      "along with your rider, to an unoccupied space of your choice": "junto con tu jinete, a un espacio desocupado de tu elección",
       "also command the beast to Dash, Disengage, Dodge, or Help as a Bonus Action; its attacks can deal Force damage instead of their normal type": "también puedes ordenar a la bestia Correr, Retirarse, Esquivar o Ayudar como Acción Adicional; sus ataques pueden infligir daño de fuerza en lugar de su tipo normal",
       "and choose one of the following:": "y elige una de las siguientes opciones:",
       "any attack you make deals an extra 2d8 damage (Acid, Cold, Fire, or Lightning) when you hit a creature in the Emanation, and enemies treat the area as Difficult Terrain": "cualquier ataque que realices inflige 2d8 de daño adicional (Ácido, Frío, Fuego o Relámpago) cuando impactes a una criatura en la Emanación, y los enemigos tratan el área como Terreno Difícil",
@@ -95,6 +108,7 @@
       "at the end of your turn, roll 1d6; on 4–6, you vanish into the Ethereal Plane until the start of your next turn": "al final de tu turno, tira 1d6; con un 4–6, te desvaneces en el Plano Etéreo hasta el inicio de tu siguiente turno",
       "attack rolls against you have Advantage until the start of your next turn": "las tiradas de ataque contra ti tienen Ventaja hasta el inicio de tu siguiente turno",
       "automatically succeed on saving throw against your spell and take no damage": "tiene éxito automáticamente en la tirada de salvación contra tu conjuro y no recibe daño",
+      "before the end of this turn": "antes del final de este turno",
       "by the chosen ally": "por el aliado elegido",
       "camouflaged spikes": "espinas camufladas",
       "can't make Opportunity Attacks until the start of its next turn": "no puede realizar Ataques de Oportunidad hasta el inicio de su siguiente turno",
@@ -130,7 +144,9 @@
       "double the range of a spell (or make a Touch spell's range 30 feet)": "duplicas el alcance de un conjuro (o haces que el alcance de un conjuro de Toque sea de 30 pies)",
       "drinker gains a Fly Speed of $(meta.level >= 15 ? 30 : meta.level >= 9 ? 20 : 10) feet": "quien lo bebe gana una Velocidad de Vuelo de $(meta.level >= 15 ? 30 : meta.level >= 9 ? 20 : 10) pies",
       "drinker rolls 1d4 and adds it to attack rolls and saving throws": "quien lo bebe tira 1d4 y lo añade a sus tiradas de ataque y de salvación",
+      "drop that creature": "soltar a esa criatura",
       "drop to 1 Hit Point instead": "caes a 1 Punto de Golpe en su lugar",
+      "each creature in a 5-foot Emanation originating from and including the target has its Speed reduced by 5 feet until the end of its next turn": "cada criatura en una Emanación de 5 pies originada en el objetivo e incluyéndolo ve su Velocidad reducida en 5 pies hasta el final de su siguiente turno",
       "each target can use its Reaction to move up to its Speed without provoking Opportunity Attacks": "cada objetivo puede usar su Reacción para moverse hasta su Velocidad sin provocar Ataques de Oportunidad",
       "each target has Charmed and Frightened conditions suppressed, or becomes indifferent to creatures you choose": "cada objetivo suprime las condiciones de Hechizado y Asustado, o se vuelve indiferente hacia las criaturas que elijas",
       "end the Frightened or Poisoned condition on the target": "termina la condición de Asustado o Envenenado sobre el objetivo",
@@ -143,7 +159,8 @@
       "fey spirits": "espíritus feéricos",
       "fire": "fuego",
       "fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it": "el fuego salta a otra criatura a 30 pies, infligiéndole 2d4 de daño de fuego",
-      "fog": "fog",
+      "fly up to half your Fly Speed without provoking Opportunity Attacks": "volar hasta la mitad de tu Velocidad de Vuelo sin provocar Ataques de Oportunidad",
+      "fog": "niebla",
       "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit": "durante la duración, tus ataques con armas infligen 1d4 de daño radiante adicional al impactar",
       "freezing rain and sleet": "lluvia helada y aguanieve",
       "gain Advantage on Strength checks and Strength saving throws": "ganas Ventaja en pruebas de Fuerza y tiradas de salvación de Fuerza",
@@ -183,6 +200,9 @@
       "have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll": "tienes Ventaja en tu siguiente tirada de ataque. Si impacta, añade 1d$(attributes.superiorityDie) a la tirada de daño del ataque",
       "healing energy": "energía curativa",
       "if it is Huge or smaller": "si es de tamaño Enorme o menor",
+      "if the beast moved at least 20 feet straight toward the target before the hit, the target takes an extra 1d6 damage of the same type, and the target has the Prone condition if it is Large or smaller": "si la bestia se movió al menos 20 pies en línea recta hacia el objetivo antes del impacto, el objetivo recibe 1d6 de daño adicional del mismo tipo, y el objetivo sufre la condición de Derribado si es de tamaño Grande o menor",
+      "if the target has the Poisoned condition, it has the Paralyzed condition until the end of its next turn": "si el objetivo sufre la condición de Envenenado, sufre la condición de Paralizado hasta el final de su siguiente turno",
+      "if you and the vestige are within 60 feet of each other, you both teleport, swapping places": "si tú y el vestigio están a 60 pies o menos uno del otro, ambos se teletransportan, intercambiando posiciones",
       "if you roll an 8 on a d8 for this spell, you can roll another d8 and add it to the damage": "si sacas un 8 en un d8 para este conjuro, puedes tirar otro d8 y añadirlo al daño",
       "if you roll the same number on two or more d8s, the energy leaps to a different target within 30 feet": "si sacas el mismo número en dos o más d8s, la energía salta a un objetivo diferente a 30 pies",
       "imbue one Melee weapon you are holding. Add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls made with it, and it can deal Radiant damage": "imbuyes un arma Cuerpo a Cuerpo que sostengas. Añade $(formatBonus(Math.max(1, stats.cha.mod))) a las tiradas de ataque hechas con ella, y puede infligir daño radiante",
@@ -194,14 +214,33 @@
       "instead of pushing it, you can teleport it to an unoccupied horizontal space you can see within 30 feet of you.": "en lugar de empujarlo, puedes teletransportarlo a un espacio horizontal desocupado que puedas ver a 30 pies de ti.",
       "is transported up to 30 feet to an unoccupied space": "es teletransportada hasta 30 pies a un espacio desocupado",
       "life-giving energy": "energía vivificante",
+      "magical darkness": "oscuridad mágica",
       "magical energy": "energía mágica",
+      "make $(Math.floor((local.maxLevel || 2) / 2)) Rend attacks": "realiza $(Math.floor((local.maxLevel || 2) / 2)) ataques de Desgarrar",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Crystal Strike attacks": "realiza $(Math.floor((local.maxLevel || 3) / 2)) ataques de Golpe Cristalino",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Deathly Touch attacks": "realiza $(Math.floor((local.maxLevel || 3) / 2)) ataques de Toque Mortal",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Ectoplasmic Splash attacks": "realiza $(Math.floor((local.maxLevel || 3) / 2)) ataques de Salpicadura Ectoplásmica",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Ephemeral Ray attacks": "realiza $(Math.floor((local.maxLevel || 3) / 2)) ataques de Rayo Efímero",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Fey Blade attacks": "realiza $(Math.floor((local.maxLevel || 3) / 2)) ataques de Espada Feérica",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Grave Bolt attacks": "realiza $(Math.floor((local.maxLevel || 3) / 2)) ataques de Descarga de la Tumba",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Rotting Claw attacks": "realiza $(Math.floor((local.maxLevel || 3) / 2)) ataques de Garra Putrefacta",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Claw attacks": "realiza $(Math.floor((local.maxLevel || 4) / 2)) ataques de Garra",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Eye Ray attacks": "realiza $(Math.floor((local.maxLevel || 4) / 2)) ataques de Rayo Ocular",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Psychic Slam attacks": "realiza $(Math.floor((local.maxLevel || 4) / 2)) ataques de Golpe Psíquico",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Slam attacks": "realiza $(Math.floor((local.maxLevel || 4) / 2)) ataques de Golpe",
       "make $(meta.level >= 10 ? 'three' : 'two') Unarmed Strikes": "realizas $(meta.level >= 10 ? 'tres' : 'dos') Golpes Sin Armas",
       "make a Dexterity (Sleight of Hand) check to pick a lock or disarm a trap with Thieves' Tools or to pick a pocket": "haces una prueba de Destreza (Juego de Manos) para forzar una cerradura o desarmar una trampa con Herramientas de Ladrón o robar bolsillos",
       "make a melee attack roll with a weapon or Unarmed Strike against the creature; if you hit, add 1d$(attributes.superiorityDie) to damage": "realizas una tirada de ataque cuerpo a cuerpo con un arma o un Golpe Sin Armas contra la criatura; si impactas, añades 1d$(attributes.superiorityDie) al daño",
       "make a new attack roll against a creature within 60 feet of the original target": "realizas una nueva tirada de ataque contra una criatura a 60 pies del objetivo original",
+      "make one Bestial Strike": "realiza un Ataque Bestial",
+      "make one Slam attack against that creature": "realiza un ataque de Golpe contra esa criatura",
       "make one Unarmed Strike": "realizas un Golpe Sin Armas",
       "make one Unarmed Strike as part of this action": "realiza un Ataque sin armas como parte de esta acción",
+      "make two Bestial Strike attacks": "realiza dos Ataques Bestiales",
+      "make two Bestial Strikes": "realiza dos Ataques Bestiales",
+      "make two Rend attacks": "realiza dos ataques de Desgarrar",
       "move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks": "te mueves hasta $(Math.floor(attributes.movement.walk / 2 / 5) * 5) pies sin provocar Ataques de Oportunidad",
+      "move up to half your Speed": "moverte hasta la mitad de tu Velocidad",
       "moved 5 feet toward or away from you": "movido 5 pies hacia ti o alejándose de ti",
       "must drop whatever it is holding and flee": "debe soltar lo que esté sosteniendo y huir",
       "nauseating gas": "gas nauseabundo",
@@ -229,6 +268,7 @@
       "reduce the damage by 1d10+$(stats.dex.mod + meta.level)": "reduces el daño en 1d10+$(stats.dex.mod + meta.level)",
       "reduce the damage taken by $(attributes.rageDamage)d6": "reduces el daño recibido en $(attributes.rageDamage)d6",
       "reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))": "reduces el daño recibido en 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))",
+      "release ink that fills a 10-foot Cube, and move up to your Swim Speed without provoking Opportunity Attacks": "liberar tinta que llena un Cubo de 10 pies y moverte hasta tu Velocidad de Nado sin provocar Ataques de Oportunidad",
       "reroll up to $(Math.max(1, stats.cha.mod)) damage dice for a spell": "vuelves a tirar hasta $(Math.max(1, stats.cha.mod)) dados de daño para un conjuro",
       "retain your personality, memories, and ability to speak, but you can't cast spells": "conservas tu personalidad, recuerdos y capacidad de hablar, pero no puedes lanzar conjuros",
       "returns a creature that died within the last minute to life with 1 Hit Point": "devuelve a la vida a una criatura fallecida en el último minuto con 1 Punto de Golpe",
@@ -238,7 +278,7 @@
       "roll 1d$(attributes.psiDice) and record it: damage from your weapon attacks, Psion spells, and Psion features ignores Resistance to Psychic damage, and once per turn when dealing Psychic damage, you can replace one damage die with the recorded number": "tiras 1d$(attributes.psiDice) y lo anotas: el daño de tus ataques con armas, conjuros de Psiónico y rasgos de Psiónico ignora la Resistencia al daño psíquico, y una vez por turno al infligir daño psíquico, puedes reemplazar un dado de daño con el número anotado",
       "roll 1d20; if you roll a 20, roll on the Wild Magic Surge table": "tiras 1d20; si sacas un 20, tiras en la tabla de Sobrecarga de Magia Salvaje",
       "roll the Bardic Inspiration die to channel a random spirit": "tira el dado de Inspiración Bárdica para canalizar un espíritu aleatorio",
-      "shadows and silence": "shadows and silence",
+      "shadows and silence": "sombras y silencio",
       "shed Bright Light in a 10-foot radius and Dim Light for 10 feet; at the end of each turn, each creature within 10 feet takes $(attributes.prof) Radiant damage, and once per turn deal $(attributes.prof) extra Radiant damage": "emites Luz Brillante en un radio de 10 pies y Luz Tenue durante 10 pies; al final de cada turno, cada criatura a 10 pies recibe $(attributes.prof) de daño radiante, y una vez por turno infliges $(attributes.prof) de daño radiante adicional",
       "silvery pale light": "luz plateada y pálida",
       "slick grease": "grasa resbaladiza",
@@ -263,6 +303,7 @@
       "take the Dash, Disengage, or Hide action": "realizas la acción de Correr, Desengancharse o Esconderse",
       "take the Disengage action and add 1d$(attributes.superiorityDie) to your AC until the start of your next turn": "realizas la acción de Desengancharse y añades 1d$(attributes.superiorityDie) a tu CA hasta el inicio de tu siguiente turno",
       "take the Disengage and Dash actions as part of this Bonus Action; while Raging, you can take a Bonus Action to take both actions again": "realizas las acciones de Desengancharse y Correr como parte de esta Acción Adicional; mientras estés en Furia, puedes realizar una Acción Adicional para realizar ambas acciones de nuevo",
+      "take the Disengage or Hide action": "realizar la acción de Retirada o Esconderse",
       "take the Utilize action, or take the Magic action to use a magic item that requires an action": "realizas la acción de Utilizar, o la acción Mágica para usar un objeto mágico que requiera una acción",
       "target can't take Reactions, and can take either an action or a Bonus Action on its turn, not both": "el objetivo no puede realizar Reacciones, y puede realizar una acción o una Acción Adicional en su turno, no ambas",
       "target gains Advantage on ability checks for a chosen attribute": "el objetivo gana Ventaja en pruebas de característica de un atributo elegido",
@@ -286,19 +327,24 @@
       "teleport to an unoccupied space within 5 feet of that enemy and make one melee attack against it": "te teletransportas a un espacio desocupado a 5 pies de ese enemigo y realizas un ataque cuerpo a cuerpo contra él",
       "teleport up to 30 feet to an unoccupied space you can see": "te teletransportas hasta 30 pies a un espacio desocupado que puedas ver",
       "teleport yourself and one willing creature within 5 feet to any destination within range": "te teletransportas a ti mismo y a una criatura voluntaria a 5 pies a cualquier destino dentro del alcance",
+      "the area is Heavily Obscured for 1 minute": "el área queda Fuertemente Oculta durante 1 minuto",
       "the attacker must either choose a new target or lose the attack or spell": "el atacante debe elegir un nuevo objetivo o perder el ataque o conjuro",
       "the curse ends early when you or an ally hits the target, dealing an extra $(meta.level) Necrotic or Radiant damage.": "la maldición termina antes cuando tú o un aliado impactáis al objetivo, infligiendo $(meta.level) de daño necrótico o radiante adicional.",
       "the damage of its weapon attacks is halved until the start of your next turn": "el daño de sus ataques con armas se reduce a la mitad hasta el inicio de tu siguiente turno",
+      "the defender, or one Construct or object it can see within 5 feet of it": "el defensor, o un Autómata u objeto que pueda ver a 5 pies de él",
       "the enemy": "el enemigo",
       "the first creature hit on each of your turns takes an extra 1d6+$(Math.floor(meta.level/2)) Necrotic or Radiant damage": "la primera criatura que golpees en cada uno de tus turnos recibe 1d6+$(Math.floor(meta.level/2)) de daño necrótico o radiante adicional",
       "the first time target drops to 0 Hit Points, it drops to 1 Hit Point instead, ending the spell": "la primera vez que el objetivo caiga a 0 Puntos de Golpe, cae a 1 Punto de Golpe en su lugar, terminando el conjuro",
       "the marked creature can't take the Disengage action": "la criatura marcada no puede realizar la acción de Retirarse",
       "the next attack roll against the target by an attacker other than you has Advantage before the start of your next turn": "la siguiente tirada de ataque contra el objetivo por un atacante que no seas tú tiene Ventaja antes del inicio de tu siguiente turno",
       "the next creature it hits (other than you) has Resistance to that attack's damage until the end of the target's next turn": "la siguiente criatura a la que golpee (que no seas tú) tiene Resistencia al daño de ese ataque hasta el final del siguiente turno del objetivo",
+      "the spirit halves the damage (round down) it takes from that attack": "el espíritu reduce a la mitad el daño (redondeando hacia abajo) que recibe de ese ataque",
       "the target adds 1d4 to any ability check using a chosen skill.": "el objetivo añade 1d4 a cualquier prueba de característica usando una habilidad elegida.",
       "the target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see": "el objetivo puede realizar inmediatamente una Reacción para teletransportarse hasta 30 pies a un espacio desocupado que pueda ver",
       "the target can't make Opportunity Attacks until the end of its next turn, and on its next turn it gets only a move, action, or Bonus Action": "el objetivo no puede realizar Ataques de Oportunidad hasta el final de su siguiente turno, y en su siguiente turno solo puede realizar un movimiento, una acción o una Acción Adicional",
+      "the target can't regain Hit Points until the start of the spirit's next turn": "el objetivo no puede recuperar Puntos de Golpe hasta el comienzo del siguiente turno del espíritu",
       "the target can't speak a deliberate lie": "el objetivo no puede decir una mentira deliberada",
+      "the target can't take Opportunity Attacks until the start of its next turn": "el objetivo no puede realizar Ataques de Oportunidad hasta el comienzo de su siguiente turno",
       "the target can't take an action or bonus action on its turn": "el objetivo no puede realizar una acción ni una acción adicional en su turno",
       "the target can't take reactions until the start of its next turn": "el objetivo no puede realizar reacciones hasta el inicio de su siguiente turno",
       "the target cannot make Opportunity Attacks until the start of its next turn": "el objetivo no puede realizar Ataques de Oportunidad hasta el inicio de su siguiente turno",
@@ -330,6 +376,7 @@
       "the target's Speed increases by 10 feet until the start of your next turn": "la velocidad del objetivo aumenta en 10 pies hasta el inicio de tu siguiente turno",
       "the target's Speed is halved until the start of your next turn": "la Velocidad del objetivo se reduce a la mitad hasta el inicio de tu siguiente turno",
       "the target's spell dissipates with no effect, wasting the action/reaction used (spell slot is not expended)": "el conjuro del objetivo se disipa sin efecto, desperdiciando la acción/reacción usada (el espacio de conjuro no se gasta)",
+      "the vestige places a curse on a creature you can see within 30 feet of the vestige for 1 minute; while cursed, the target has Disadvantage on attack rolls against you and the vestige": "el vestigio maldice a una criatura que puedas ver a 30 pies o menos del vestigio durante 1 minuto; mientras esté maldito, el objetivo tiene Desventaja en las tiradas de ataque contra ti y contra el vestigio",
       "three illusory duplicates appear. Each time a creature hits you with an attack roll, roll a d6 for each of your remaining duplicates. If any of the d6s rolls a 3 or higher, one of the duplicates is hit instead of you, and the duplicate is destroyed. The duplicates otherwise ignore all other damage and effects. The spell ends when all three duplicates are destroyed": "aparecen tres duplicados ilusorios. Cada vez que una criatura te impacte con una tirada de ataque, tira un d6 por cada uno de tus duplicados restantes. Si alguno saca un 3 o más, uno de los duplicados es impactado en tu lugar y queda destruido. De lo contrario, los duplicados ignoran todo daño y efectos. El conjuro termina cuando los tres duplicados son destruidos",
       "to an unoccupied space in Dim Light or Darkness": "a un espacio desocupado en Luz Tenue u Oscuridad",
       "to an unoccupied space within 5 feet of you": "a un espacio desocupado a 5 pies de ti",
@@ -350,6 +397,7 @@
       "when spell ends, target becomes hostile": "cuando el conjuro termina, el objetivo se vuelve hostil",
       "when the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take 2d$(attributes.bardicDie) Necrotic damage": "cuando termine la invisibilidad, cada criatura en una emanación de 5 pies de radio debe tener éxito en una tirada de salvación de Constitución CD $(attributes.spellcasting.save) o recibir 2d$(attributes.bardicDie) de daño necrótico",
       "when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell": "cuando lances un conjuro de Psiónico usando un espacio de conjuro, añade 1d$(attributes.psiDice) a una tirada de daño de ese conjuro",
+      "when you have a creature grappled": "cuando tienes a una criatura apresada",
       "when you hit with an attack with Advantage": "cuando impactas con un ataque con Ventaja",
       "when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored": "cuando recuperes Puntos de Golpe, los enemigos en el aura reciben daño necrótico igual a la mitad de los PG recuperados",
       "when you take the Influence action": "cuando realices la acción de Influenciar",
@@ -361,7 +409,7 @@
       "while Raging, your allies have Advantage on attack rolls against any enemy of yours within 5 feet of you": "mientras estés en Furia, tus aliados tienen Ventaja en tiradas de ataque contra cualquier enemigo tuyo a 5 pies de ti",
       "while active, cast Command as a Bonus Action without expending a spell slot": "mientras esté activo, lanzas Orden como Acción Adicional sin gastar un espacio de conjuro",
       "while entirely in Darkness, you are Invisible to creatures that rely on Darkvision to see you": "mientras estés completamente en Oscuridad, eres Invisible para las criaturas que dependen de la Visión en la Oscuridad para verte",
-      "while in the aura": "while in the aura",
+      "while in the aura": "mientras esté en el aura",
       "while it has these temporary hit points, its Speed increases by 10 feet": "mientras tenga estos puntos de golpe temporales, su Velocidad aumenta en 10 pies",
       "while on or touching a stone surface": "mientras esté sobre una superficie de piedra o en contacto con ella",
       "while you have these temp hit points, a creature that hits you with a melee attack takes 5 Cold damage": "mientras tengas estos puntos de golpe temporales, una criatura que te golpee con un ataque cuerpo a cuerpo recibe 5 de daño de frío",
@@ -650,26 +698,6 @@
   "adventurersAtlas": {
     "name": "Atlas del Aventurero"
   },
-  "aerialLunarBeastBarger": {
-    "name": "Aerial Lunar Beast (Barger)",
-    "summary": "Aerial armored beetle form with heavy natural armor (+4 AC), massive Strength and Constitution (+5), and a crushing bash attack."
-  },
-  "aerialLunarBeastHunter": {
-    "name": "Aerial Lunar Beast (Hunter)",
-    "summary": "Aerial mantis form with 20 ft. walking speed, +5 Strength, and a 3-attack Multiattack combining bite and dual grappling claws."
-  },
-  "aerialLunarBeastRavager": {
-    "name": "Aerial Lunar Beast (Ravager)",
-    "summary": "Aerial monstrous bat and pterosaur form with +1 AC, +4 Constitution, Echolocation blindsight 120 ft., Blood Frenzy, and tearing bites."
-  },
-  "aerialLunarBeastStinger": {
-    "name": "Aerial Lunar Beast (Stinger)",
-    "summary": "Aerial giant wasp form with +1 Dexterity and a lethal venomous stinger dealing escalating poison damage on a failed save."
-  },
-  "aerialLunarBeastSwooper": {
-    "name": "Aerial Lunar Beast (Swooper)",
-    "summary": "Aerial raptor form representing giant eagles and hawks with Keen Sight, +3 Dexterity, and Multiattack combining beak and grappling talons."
-  },
   "agonizingBlast": {
     "name": "Descarga agónica",
     "summary": "Suma tu modificador por Carisma a las tiradas de daño del conjuro de Descarga sobrenatural."
@@ -736,18 +764,6 @@
   "animateDead": {
     "name": "Animar a los muertos",
     "summary": "Alzas a un sirviente muerto viviente a partir de un cadáver o un montón de huesos."
-  },
-  "aquaticLunarBeastCruiser": {
-    "name": "Aquatic Lunar Beast (Cruiser)",
-    "summary": "Aquatic beast form representing dolphins and whales with +2 Strength, +2 Constitution, and slamming charges that push enemies back 10 feet."
-  },
-  "aquaticLunarBeastGrasper": {
-    "name": "Aquatic Lunar Beast (Grasper)",
-    "summary": "Aquatic cephalopod form representing octopi and squid with 10 ft. walking speed, +3 Dexterity, an obscuring Ink Cloud, and long-range grappling tentacles."
-  },
-  "aquaticLunarBeastRampager": {
-    "name": "Aquatic Lunar Beast (Rampager)",
-    "summary": "Predatory aquatic beast form representing sharks and barracudas with Blood Frenzy advantage against wounded targets and tearing bites."
   },
   "arcana": {
     "name": "Conocimiento Arcano"
@@ -820,7 +836,7 @@
     "summary": "Aprendes dos trucos de mago a tu elección."
   },
   "arcaneWarriorCantrips": {
-    "name": "Arcane Warrior Cantrips"
+    "name": "Trucos de Guerrero Arcano"
   },
   "archery": {
     "name": "Tiro con arco",
@@ -1068,6 +1084,9 @@
     "name": "Sentido bestial",
     "summary": "Tocas a una bestia dispuesta."
   },
+  "beastsStrike": {
+    "name": "Ataque de la Bestia"
+  },
   "beguilingMagic": {
     "name": "Magia Cautivadora"
   },
@@ -1079,7 +1098,7 @@
     "name": "Giro Cautivador"
   },
   "behemothTitanForm": {
-    "name": "Behemoth"
+    "name": "Bégimo"
   },
   "bendLuck": {
     "name": "Doblegar la Suerte"
@@ -1087,6 +1106,9 @@
   "berserker": {
     "name": "Senda del berserker",
     "description": "Los bárbaros que recorren la senda del berserker ponen su furia principalmente al servicio de la violencia. Su senda se asienta en una rabia sin cortapisas y estos bárbaros se embriagan del caos del combate."
+  },
+  "berserkLashing": {
+    "name": "Azote Enloquecido"
   },
   "bestialSpiritAir": {
     "name": "Espíritu Bestial (Aire)"
@@ -1096,6 +1118,9 @@
   },
   "bestialSpiritWater": {
     "name": "Espíritu Bestial (Agua)"
+  },
+  "bestialStrike": {
+    "name": "Ataque Bestial"
   },
   "bestowCurse": {
     "name": "Imponer maldición",
@@ -1396,6 +1421,9 @@
   "class": {
     "name": "Clase"
   },
+  "claw": {
+    "name": "Garra"
+  },
   "cleave": {
     "name": "Hender"
   },
@@ -1614,6 +1642,9 @@
   "crusherPush": {
     "name": "Empuje"
   },
+  "crystalStrike": {
+    "name": "Golpe Cristalino"
+  },
   "cunningAction": {
     "name": "Acción Astuta",
     "summary": "Realiza Carrera, Desengancharse o Esconderse como Acción Adicional"
@@ -1679,6 +1710,9 @@
   "deafenedImmunity": {
     "name": "Inmunidad al estado Ensordecido"
   },
+  "deathlyTouch": {
+    "name": "Toque Mortal"
+  },
   "deathSaveAdvantage": {
     "name": "Ventaja en Tirada de salvación contra muerte"
   },
@@ -1722,6 +1756,9 @@
   },
   "defensiveTactics": {
     "name": "Tácticas defensivas"
+  },
+  "deflectAttack": {
+    "name": "Desviar Ataque"
   },
   "deflectAttacks": {
     "name": "Desviar ataques"
@@ -1829,6 +1866,9 @@
   "divineOrder": {
     "name": "Orden divina"
   },
+  "divinePower": {
+    "name": "Poder Divino"
+  },
   "diviner": {
     "name": "Adivino",
     "description": "Atraviesa los velos del espacio y el tiempo como Adivino, dominando conjuros de discernimiento, previsión y verdad."
@@ -1921,6 +1961,9 @@
   "dreadfulStrikes": {
     "name": "Golpes Pavorosos"
   },
+  "dreadfulSwipe": {
+    "name": "Zarpazo Pavoroso"
+  },
   "dreadnaughtModel": {
     "name": "Acorazado",
     "summary": "Optimiza el modelo de armadura para defensa pesada, puntos de golpe temporales y golpes de trueno."
@@ -1969,6 +2012,9 @@
   },
   "dwarvenToughness": {
     "name": "Aguante enano"
+  },
+  "ectoplasmicSplash": {
+    "name": "Salpicadura Ectoplásmica"
   },
   "ectoplasmicTrail": {
     "name": "Rastro Ectoplásmico",
@@ -2093,12 +2139,18 @@
     "name": "Abundan Enemigos",
     "summary": "Entras en la mente de una criatura y la obligas a ver a todas las criaturas como enemigas."
   },
+  "energizingPollen": {
+    "name": "Polen Energizante"
+  },
   "energyMastery": {
     "name": "Maestría de Energía"
   },
   "enfeeblingShot": {
     "name": "Disparo Debilitador",
     "summary": "Inflige daño necrótico adicional y reduce a la mitad el daño de ataque con armas del objetivo."
+  },
+  "engulf": {
+    "name": "Envolver"
   },
   "enhanceAbility": {
     "name": "Potenciar característica",
@@ -2126,6 +2178,12 @@
   },
   "envenomWeapon": {
     "name": "Envenenar Arma"
+  },
+  "ephemeralRay": {
+    "name": "Rayo Efímero"
+  },
+  "eruptingBreach": {
+    "name": "Brecha Eruptiva"
   },
   "escapeTheHorde": {
     "name": "Escapar de la horda",
@@ -2191,6 +2249,9 @@
   },
   "extraProperties": {
     "name": "Propiedades Adicionales"
+  },
+  "eyeRay": {
+    "name": "Rayo Ocular"
   },
   "fabricate": {
     "name": "Fabricar",
@@ -2269,9 +2330,15 @@
     "name": "Ataque de Finta",
     "summary": "Fintas para ganar ventaja y daño adicional en tu próxima tirada de ataque."
   },
+  "fellGlare": {
+    "name": "Mirada Siniestra"
+  },
   "ferocity": {
     "name": "Ferocidad",
     "summary": "Potencia a tu defensor de acero con reflejos de combate feroces."
+  },
+  "feyBlade": {
+    "name": "Espada Feérica"
   },
   "feyMagicSpell": {
     "name": "Conjuro de Magia Feérica"
@@ -2284,6 +2351,9 @@
   },
   "feySpiritTricksy": {
     "name": "Espíritu Feérico (Tramposo)"
+  },
+  "feyStep": {
+    "name": "Paso Feérico"
   },
   "feyTouched": {
     "name": "Tocado por las Hadas",
@@ -2405,6 +2475,9 @@
   },
   "forceDemolisher": {
     "name": "Demoledor de Fuerza"
+  },
+  "forceEmpoweredRend": {
+    "name": "Desgarrón Potenciado por Fuerza"
   },
   "forceImmunity": {
     "name": "Inmunidad al daño de fuerza"
@@ -2579,6 +2652,9 @@
     "name": "Enredadera Agarradora",
     "summary": "Conjuras una enredadera que brota y tira de los objetivos hacia ella."
   },
+  "graveBolt": {
+    "name": "Descarga de la Tumba"
+  },
   "graveDomain": {
     "name": "Dominio de la Tumba",
     "description": "Guarda el límite entre la vida y la muerte, recurriendo a energía transicional para sanar o castigar."
@@ -2696,6 +2772,9 @@
     "name": "Acelerar",
     "summary": "Potencias a un objetivo con velocidad extraordinaria y acciones adicionales."
   },
+  "hazardousSpew": {
+    "name": "Vómito Peligroso"
+  },
   "healer": {
     "name": "Sanador",
     "summary": "Usa útiles de sanador para restaurar puntos de golpe y estabilizar aliados moribundos."
@@ -2709,6 +2788,9 @@
   "healingRerolls": {
     "name": "Repeticiones Curativas",
     "description": "Puedes volver a tirar la curación una vez por turno."
+  },
+  "healingTouch": {
+    "name": "Toque Curativo"
   },
   "healingWord": {
     "name": "Palabra de curación",
@@ -2889,6 +2971,9 @@
     "name": "Ilusiones Mejoradas",
     "description": "Puedes lanzar conjuros de Ilusionismo sin componentes Verbales."
   },
+  "incandescentBreath": {
+    "name": "Aliento Incandescente"
+  },
   "incapacitatedAdvantage": {
     "name": "Ventaja en estado Incapacitado"
   },
@@ -2914,11 +2999,14 @@
   "initiativeSwap": {
     "name": "Intercambio de iniciativa"
   },
+  "inkCloud": {
+    "name": "Nube de Tinta"
+  },
   "innateSorcery": {
     "name": "Hechicería innata"
   },
   "insectoidTitanForm": {
-    "name": "Insectoide"
+    "name": "Titán Insectoide"
   },
   "insight": {
     "name": "Perspicacia"
@@ -3267,59 +3355,12 @@
   "luckyAdvantage": {
     "name": "Suerte"
   },
-  "lunarBeastCharger": {
-    "name": "Lunar Beast (Charger)",
-    "summary": "Terrestrial beast form representing elk, rhinos, and boars with +10 ft. speed, a powerful gore strike, and charge attacks that knock targets prone."
-  },
-  "lunarBeastConstrictor": {
-    "name": "Lunar Beast (Constrictor)",
-    "summary": "Terrestrial beast form representing serpents and worms with +1 AC, +2 Strength, bite attacks, and crushing coils that grapple and restrain prey."
-  },
-  "lunarBeastDevourer": {
-    "name": "Lunar Beast (Devourer)",
-    "summary": "Terrestrial beast form representing giant toads and predatory reptiles with +1 on bite attacks, grappling jaws, and the ability to swallow prey whole."
-  },
-  "lunarBeastEnvenomer": {
-    "name": "Lunar Beast (Envenomer)",
-    "summary": "Terrestrial venomous beast form representing vipers and venomous lizards with deadly bites that deal escalating poison damage."
-  },
-  "lunarBeastGripper": {
-    "name": "Lunar Beast (Gripper)",
-    "summary": "Terrestrial simian beast form representing apes and baboons with Multiattack, accurate fist strikes, ranged rock throwing, and weapon use."
-  },
-  "lunarBeastInfiltrator": {
-    "name": "Infiltrator Beast",
-    "summary": "Mice, cats, and stealthy insects that slip through tiny spaces and evade attacks."
-  },
-  "lunarBeastMauler": {
-    "name": "Lunar Beast (Mauler)",
-    "summary": "Terrestrial beast form representing bears and badgers with +1 Constitution and a vicious Multiattack combining bite and claw strikes."
-  },
-  "lunarBeastPincher": {
-    "name": "Lunar Beast (Pincher)",
-    "summary": "Terrestrial armored beast form representing crabs and giant insects with +2 AC and twin grappling pincer attacks."
-  },
-  "lunarBeastPouncer": {
-    "name": "Lunar Beast (Pouncer)",
-    "summary": "Terrestrial feline beast form representing lions and tigers with +1 Strength, +1 on attacks, and Pounce that knocks foes prone for bonus bite attacks."
-  },
-  "lunarBeastTackler": {
-    "name": "Lunar Beast (Tackler)",
-    "summary": "Terrestrial canine beast form representing wolves with +2 Strength, Pack Tactics advantage, and tackling bites that pull enemies to the ground."
-  },
-  "lunarBeastTrampler": {
-    "name": "Lunar Beast (Trampler)",
-    "summary": "Terrestrial heavyweight beast form representing horses and elephants with +10 ft. speed, massive Constitution (+3), and crushing hooves that trample prone enemies."
-  },
-  "lunarBeastWebber": {
-    "name": "Lunar Beast (Webber)",
-    "summary": "Terrestrial arachnid beast form representing giant spiders with Web Walk ceiling climbing, Dexterity-based venomous bites, and restraining webbing."
-  },
   "lunarVitality": {
     "name": "Vitalidad Lunar"
   },
   "lunarWildShape": {
-    "name": "Lunar Wild Shape"
+    "name": "Forma Salvaje Lunar",
+    "summary": "Transfórmate en poderosas formas de bestias lunares adaptadas para el combate salvaje"
   },
   "lungingAttack": {
     "name": "Ataque en Embestida",
@@ -3588,6 +3629,9 @@
     "name": "Combatiente Montado",
     "description": "Mientras estás montado, tienes Ventaja en las tiradas de ataque contra cualquier criatura no montada a 1,5 m de tu montura que sea al menos un tamaño más pequeña que la montura."
   },
+  "multiattack": {
+    "name": "Multiataque"
+  },
   "multiattackDefense": {
     "name": "Defensa contra ataques múltiples",
     "summary": "Los ataques de una criatura que te golpee tendrán desventaja durante el resto del turno.",
@@ -3672,6 +3716,9 @@
   },
   "nick": {
     "name": "Mellar"
+  },
+  "nimbleEscape": {
+    "name": "Escape Ágil"
   },
   "noble": {
     "name": "Noble",
@@ -3783,6 +3830,12 @@
   "otherworldlyLeap": {
     "name": "Salto sobrenatural",
     "summary": "Puedes lanzar salto sobre ti sin gastar un espacio de conjuro."
+  },
+  "otherworldlyScratch": {
+    "name": "Arañazo de Ultratumba"
+  },
+  "otherworldlySlam": {
+    "name": "Golpe de Ultratumba"
   },
   "otherworldlySteedCelestial": {
     "name": "Corcel Celestial"
@@ -4213,6 +4266,9 @@
   "psychicResistance": {
     "name": "Resistencia al daño psíquico"
   },
+  "psychicSlam": {
+    "name": "Golpe Psíquico"
+  },
   "psychicSpellsDamage": {
     "name": "Conjuros Psíquicos"
   },
@@ -4263,6 +4319,9 @@
   "rally": {
     "name": "Reagrupar",
     "summary": "Refuerza a un aliado con puntos de golpe temporales utilizando tu dado de maniobra."
+  },
+  "rampage": {
+    "name": "Frenesí"
   },
   "ranger": {
     "name": "Explorador",
@@ -4344,6 +4403,12 @@
     "name": "Levantar maldición",
     "summary": "A tu toque, todas las maldiciones que afectan a una criatura u objeto terminan."
   },
+  "rend": {
+    "name": "Desgarrar"
+  },
+  "repair": {
+    "name": "Reparar"
+  },
   "repellingBlast": {
     "name": "Descarga Ahuyentadora",
     "summary": "Empuja a un objetivo hasta 3 m de ti cuando aciertes con Descarga sobrenatural."
@@ -4409,6 +4474,9 @@
   "ropeTrick": {
     "name": "Truco de la cuerda",
     "summary": "Una cuerda se eleva en el aire, conduciendo a un espacio extradimensional oculto."
+  },
+  "rottingClaw": {
+    "name": "Garra Putrefacta"
   },
   "sacredFlame": {
     "name": "Llama sagrada",
@@ -4553,6 +4621,9 @@
     "name": "Formador",
     "description": "Manifiesta masa mental pura, ectoplasma y constructos psiónicos del Plano Astral para luchar junto a ti."
   },
+  "shardSwarm": {
+    "name": "Enjambre de Fragmentos"
+  },
   "sharpenedMind": {
     "name": "Mente Afilada",
     "summary": "Ignora la resistencia Psíquica y sustituye una tirada registrada de dado Psiónico en el daño una vez por turno."
@@ -4613,14 +4684,14 @@
     "summary": "Relámpagos saltan de tu mano para sacudir a un objetivo."
   },
   "shortbow": {
-    "name": "Arco corto"
+    "name": "Arco Corto"
   },
   "shortRest": {
     "name": "Descanso corto",
     "description": "Un Descanso Corto es un período de inactividad de 1 hora, durante el cual una criatura no realiza nada más agotador que leer, hablar, comer o hacer guardia. Para comenzar un Descanso Corto, debes tener al menos 1 Punto de Golpe.\n\n**Gastar Dados de Puntos de Golpe.** Puedes gastar uno o más de tus Dados de Puntos de Golpe para recuperar Puntos de Golpe. Por cada Dado de Golpe gastado de esta manera, recuperas 1d$(attributes.hitDie)$(formatBonus(stats.con.mod)) Puntos de Golpe. Puedes decidir gastar un Dado de Golpe adicional tras cada tirada."
   },
   "shortsword": {
-    "name": "Espada corta"
+    "name": "Espada Corta"
   },
   "sickle": {
     "name": "Hoz"
@@ -4662,6 +4733,9 @@
   "skulker": {
     "name": "Furtivo",
     "summary": "Mantente oculto en luz tenue y permanece encubierto cuando los ataques a distancia fallen."
+  },
+  "slam": {
+    "name": "Golpe"
   },
   "slasher": {
     "name": "Cuchillero",
@@ -5033,6 +5107,9 @@
     "name": "Ataque en Barrido",
     "summary": "Barres con tu arma para infligir daño a un segundo objetivo adyacente."
   },
+  "swoop": {
+    "name": "Abalanzarse"
+  },
   "tacticalAssessment": {
     "name": "Evaluación Táctica",
     "summary": "Añade un dado de maniobra a pruebas de Historia, Perspicacia o Investigación."
@@ -5199,6 +5276,9 @@
   "toxicTouch": {
     "name": "Toque Tóxico"
   },
+  "trample": {
+    "name": "Pisotear"
+  },
   "trance": {
     "name": "Trance",
     "description": "No necesitas dormir y la magia no puede dormirte. Puedes terminar un Descanso Largo en 4 horas si pasas esas horas en una meditación similar a un trance, durante la cual conservas la consciencia."
@@ -5329,6 +5409,9 @@
   "vestigePatron": {
     "name": "Patrón del Vestigio",
     "description": "Extrae poder de los vestigios fantasmales de un dios perdido, manifestando un compañero para canalizar magia divina."
+  },
+  "vestigesStrike": {
+    "name": "Ataque del Vestigio"
   },
   "vex": {
     "name": "Molestar"
@@ -5478,8 +5561,65 @@
   "wildShapeActivity": {
     "name": "Forma salvaje"
   },
+  "wildShapeAerialSnatcher": {
+    "name": "Bestia Atrapador Aéreo",
+    "summary": "Bestia voladora rapaz que arrebata criaturas y las deja caer desde lo alto"
+  },
+  "wildShapeAmbushProwler": {
+    "name": "Bestia Acechador de Emboscadas",
+    "summary": "Depredador sigiloso con daño aumentado al atacar desde el sigilo"
+  },
+  "wildShapeAmphibiousConstrictor": {
+    "name": "Bestia Constrictor Anfibio",
+    "summary": "Bestia anfibia que atrapa y constriñe a sus presas"
+  },
+  "wildShapeArmoredBastion": {
+    "name": "Bestia Bastión Blindado",
+    "summary": "Bestia acorazada con gran CA para absorber daño y proteger aliados"
+  },
+  "wildShapeBeastOfLand": {
+    "name": "Bestia Terrestre"
+  },
+  "wildShapeBeastOfTheSea": {
+    "name": "Bestia Marina"
+  },
+  "wildShapeBeastOfTheSky": {
+    "name": "Bestia Celeste"
+  },
+  "wildShapeCephalopod": {
+    "name": "Bestia Cefalópodo",
+    "summary": "Bestia con tentáculos para apresar enemigos y emitir nubes de tinta"
+  },
+  "wildShapeDepthApex": {
+    "name": "Bestia Ápice de las Profundidades",
+    "summary": "Bestia de gran tamaño para el combate en aguas profundas y sigilo acuático"
+  },
+  "wildShapeExcavator": {
+    "name": "Bestia Excavador Subterráneo",
+    "summary": "Bestia capaz de excavar túneles sólidos y emboscar desde abajo"
+  },
+  "wildShapeFlybyRaptor": {
+    "name": "Bestia Rapaz de Ataque al Vuelo",
+    "summary": "Bestia voladora veloz que ataca en picada sin provocar ataques de oportunidad"
+  },
+  "wildShapeHeavyMauler": {
+    "name": "Bestia Desgarrador Pesado",
+    "summary": "Bestia de fuerza bruta con golpes contundentes y multiataque"
+  },
+  "wildShapeInsectoidCrawler": {
+    "name": "Bestia Reptador Insectoide",
+    "summary": "Bestia trepadora venenosa con sentidos agudos para exploración subterránea"
+  },
+  "wildShapePackHunter": {
+    "name": "Bestia Cazador en Manada",
+    "summary": "Bestia ágil con ventaja al atacar junto a aliados"
+  },
   "wildShapeTemplate": {
     "name": "Plantillas de Forma salvaje"
+  },
+  "wildShapeTramplingCharger": {
+    "name": "Bestia Embestidor Arrollador",
+    "summary": "Bestia rápida que embiste para infligir daño adicional y derribar"
   },
   "windWall": {
     "name": "Muro de viento",

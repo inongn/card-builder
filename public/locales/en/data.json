@@ -4,6 +4,7 @@
       "$(description)": "$(description)",
       "$(meta.level) extra damage during the first round of combat": "$(meta.level) extra damage during the first round of combat",
       "$(summary)": "$(summary)",
+      "2d10 Radiant damage per level of the spell slot expended": "2d10 Radiant damage per level of the spell slot expended",
       "60-foot Sphere sheds Bright Light and Dim Light for an additional 60 feet, dispelling darkness spells of level 3 or lower": "60-foot Sphere sheds Bright Light and Dim Light for an additional 60 feet, dispelling darkness spells of level 3 or lower",
       "A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.": "A willing target can use its Reaction to move up to half its Speed without provoking Opportunity Attacks and gains 1d$(attributes.psiDice) to its AC until the start of your next turn.",
       "Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again": "Advantage on Dexterity (Stealth) checks until you finish a Long Rest or use this feature again",
@@ -19,14 +20,17 @@
       "Guided by a flash of magical insight, make one attack with the weapon used in the spell's casting using a $(formatBonus(attributes.spellcasting.attack)) attack roll. On a hit, deal your weapon's damage die $(formatBonus(attributes.spellcasting.bonus)) Radiant damage.": "Guided by a flash of magical insight, make one attack with the weapon used in the spell's casting using a $(formatBonus(attributes.spellcasting.attack)) attack roll. On a hit, deal your weapon's damage die $(formatBonus(attributes.spellcasting.bonus)) Radiant damage.",
       "If the target fails its saving throw, it does not know you are probing its mind.": "If the target fails its saving throw, it does not know you are probing its mind.",
       "If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage": "If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage",
+      "If you moved at least 20 feet straight toward the target immediately before the hit, it takes an extra $(meta.level >= 6 ? 2 : 1)d10 damage.": "If you moved at least 20 feet straight toward the target immediately before the hit, it takes an extra $(meta.level >= 6 ? 2 : 1)d10 damage.",
       "If you reduce the damage to 0 with Deflect Attacks": "If you reduce the damage to 0 with Deflect Attacks",
       "Imbue a Club or Quarterstaff you are holding. For the duration, you make attack rolls with it with a $(formatBonus(attributes.spellcasting.attack)) modifier and deal 1d8$(formatBonus(attributes.spellcasting.bonus)) Force damage.": "Imbue a Club or Quarterstaff you are holding. For the duration, you make attack rolls with it with a $(formatBonus(attributes.spellcasting.attack)) modifier and deal 1d8$(formatBonus(attributes.spellcasting.bonus)) Force damage.",
       "Immediately after another creature you can see rolls the d20 for a D20 Test": "Immediately after another creature you can see rolls the d20 for a D20 Test",
+      "Immediately after you deal damage to a creature that is Bloodied": "Immediately after you deal damage to a creature that is Bloodied",
       "Once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Necrotic damage": "Once per turn when dealing damage with an attack or spell, deal $(attributes.prof) extra Necrotic damage",
       "Once per turn when you hit a creature and deal Necrotic damage while transformed, you can roll one additional damage die.": "Once per turn when you hit a creature and deal Necrotic damage while transformed, you can roll one additional damage die.",
       "Once per turn when you restore Hit Points to a creature with a spell": "Once per turn when you restore Hit Points to a creature with a spell",
       "Once per turn, deal an extra 1d6 Acid damage": "Once per turn, deal an extra 1d6 Acid damage",
       "Once per turn, immediately after you cast a Sorcerer spell with a spell slot": "Once per turn, immediately after you cast a Sorcerer spell with a spell slot",
+      "Once per turn, immediately after you move at least half your Speed": "Once per turn, immediately after you move at least half your Speed",
       "Psychic damage equal to the amount of damage reduced": "Psychic damage equal to the amount of damage reduced",
       "Speed is doubled, gains Advantage on Dex saves, and gets an additional action on each turn": "Speed is doubled, gains Advantage on Dex saves, and gets an additional action on each turn",
       "Speed is halved": "Speed is halved",
@@ -36,6 +40,9 @@
       "Target willing creature can add 1d4 to one saving throw of its choice before the spell ends.": "Target willing creature can add 1d4 to one saving throw of its choice before the spell ends.",
       "Ten berries appear in your hand; a creature can use a Bonus Action to eat a berry to restore 1 Hit Point.": "Ten berries appear in your hand; a creature can use a Bonus Action to eat a berry to restore 1 Hit Point.",
       "The area becomes Difficult Terrain until the end of your next turn": "The area becomes Difficult Terrain until the end of your next turn",
+      "The attack roll has Advantage if the target doesn't have all its Hit Points.": "The attack roll has Advantage if the target doesn't have all its Hit Points.",
+      "The spirit is hit by a melee attack roll": "The spirit is hit by a melee attack roll",
+      "The spirit takes damage from a creature within 5 feet": "The spirit takes damage from a creature within 5 feet",
       "The target and all other creatures within 10 feet of it take 2d6 Force damage.": "The target and all other creatures within 10 feet of it take 2d6 Force damage.",
       "Unarmed Strikes can deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage, and when you deal one of these damage types, the target is subject to the following saving throw": "Unarmed Strikes can deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage, and when you deal one of these damage types, the target is subject to the following saving throw",
       "Until the end of your next turn, the target emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition": "Until the end of your next turn, the target emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition",
@@ -59,12 +66,17 @@
       "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength": "You can make ability checks using Acrobatics, Intimidation, Perception, Stealth, or Survival with Strength",
       "You create a visual illusion of yourself in an unoccupied space you can see within range.": "You create a visual illusion of yourself in an unoccupied space you can see within range.",
       "You do one of the following:": "You do one of the following:",
+      "You expend a level 1+ spell slot and can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks while emitting a cloud of healing pollen. When you move within 5 feet of another creature during this movement, you can restore a number of Hit Points equal to 2d6 per level of the spell slot expended (once per turn per creature).": "You expend a level 1+ spell slot and can move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks while emitting a cloud of healing pollen. When you move within 5 feet of another creature during this movement, you can restore a number of Hit Points equal to 2d6 per level of the spell slot expended (once per turn per creature).",
+      "You expend a level 1+ spell slot.": "You expend a level 1+ spell slot.",
       "You form a telepathic connection between your mind and the mind of another to communicate telepathically while within $(Math.max(1, stats.cha.mod)) miles": "You form a telepathic connection between your mind and the mind of another to communicate telepathically while within $(Math.max(1, stats.cha.mod)) miles",
       "You have the Invisible condition until the start of your next turn or until immediately after you attack or cast a spell": "You have the Invisible condition until the start of your next turn or until immediately after you attack or cast a spell",
       "You imbue a piece of nonmagical ammunition with one of the following properties:": "You imbue a piece of nonmagical ammunition with one of the following properties:",
+      "You moved at least 10 feet underground and emerged within 5 feet of a creature on this turn": "You moved at least 10 feet underground and emerged within 5 feet of a creature on this turn",
+      "You take damage while underwater": "You take damage while underwater",
       "You take on one of the following forms. This form sheds Bright Light in a 10-foot radius and Dim Light for an additional 10 feet.": "You take on one of the following forms. This form sheds Bright Light in a 10-foot radius and Dim Light for an additional 10 feet.",
       "Your Unarmed Strike reach is 5 feet greater than normal": "Your Unarmed Strike reach is 5 feet greater than normal",
       "a 60-foot-long vine grows from the ammunition, lasting 10 minutes": "a 60-foot-long vine grows from the ammunition, lasting 10 minutes",
+      "a creature the defender can see within 5 feet of it makes an attack roll targeting a different creature": "a creature the defender can see within 5 feet of it makes an attack roll targeting a different creature",
       "a flickering flame appears in your hand, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. You can take the following Action while the flame persists": "a flickering flame appears in your hand, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. You can take the following Action while the flame persists",
       "a harmless demiplane": "a harmless demiplane",
       "a harmless demiplane (or its home plane if native there)": "a harmless demiplane (or its home plane if native there)",
@@ -84,6 +96,7 @@
       "allies gain Advantage on Wisdom saves and death saves, and regain maximum HP from any healing": "allies gain Advantage on Wisdom saves and death saves, and regain maximum HP from any healing",
       "allies gain Resistance to Necrotic damage, maximum Hit Points cannot be reduced, and living creatures at 0 Hit Points regain 1 Hit Point at the start of their turn": "allies gain Resistance to Necrotic damage, maximum Hit Points cannot be reduced, and living creatures at 0 Hit Points regain 1 Hit Point at the start of their turn",
       "allies in aura can't become Diseased, gain Resistance to Poison damage, and gain Advantage on saving throws against the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, and Stunned conditions": "allies in aura can't become Diseased, gain Resistance to Poison damage, and gain Advantage on saving throws against the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, and Stunned conditions",
+      "along with your rider, to an unoccupied space of your choice": "along with your rider, to an unoccupied space of your choice",
       "also command the beast to Dash, Disengage, Dodge, or Help as a Bonus Action; its attacks can deal Force damage instead of their normal type": "also command the beast to Dash, Disengage, Dodge, or Help as a Bonus Action; its attacks can deal Force damage instead of their normal type",
       "and choose one of the following:": "and choose one of the following:",
       "any attack you make deals an extra 2d8 damage (Acid, Cold, Fire, or Lightning) when you hit a creature in the Emanation, and enemies treat the area as Difficult Terrain": "any attack you make deals an extra 2d8 damage (Acid, Cold, Fire, or Lightning) when you hit a creature in the Emanation, and enemies treat the area as Difficult Terrain",
@@ -95,6 +108,7 @@
       "at the end of your turn, roll 1d6; on 4–6, you vanish into the Ethereal Plane until the start of your next turn": "at the end of your turn, roll 1d6; on 4–6, you vanish into the Ethereal Plane until the start of your next turn",
       "attack rolls against you have Advantage until the start of your next turn": "attack rolls against you have Advantage until the start of your next turn",
       "automatically succeed on saving throw against your spell and take no damage": "automatically succeed on saving throw against your spell and take no damage",
+      "before the end of this turn": "before the end of this turn",
       "by the chosen ally": "by the chosen ally",
       "camouflaged spikes": "camouflaged spikes",
       "can't make Opportunity Attacks until the start of its next turn": "can't make Opportunity Attacks until the start of its next turn",
@@ -130,7 +144,9 @@
       "double the range of a spell (or make a Touch spell's range 30 feet)": "double the range of a spell (or make a Touch spell's range 30 feet)",
       "drinker gains a Fly Speed of $(meta.level >= 15 ? 30 : meta.level >= 9 ? 20 : 10) feet": "drinker gains a Fly Speed of $(meta.level >= 15 ? 30 : meta.level >= 9 ? 20 : 10) feet",
       "drinker rolls 1d4 and adds it to attack rolls and saving throws": "drinker rolls 1d4 and adds it to attack rolls and saving throws",
+      "drop that creature": "drop that creature",
       "drop to 1 Hit Point instead": "drop to 1 Hit Point instead",
+      "each creature in a 5-foot Emanation originating from and including the target has its Speed reduced by 5 feet until the end of its next turn": "each creature in a 5-foot Emanation originating from and including the target has its Speed reduced by 5 feet until the end of its next turn",
       "each target can use its Reaction to move up to its Speed without provoking Opportunity Attacks": "each target can use its Reaction to move up to its Speed without provoking Opportunity Attacks",
       "each target has Charmed and Frightened conditions suppressed, or becomes indifferent to creatures you choose": "each target has Charmed and Frightened conditions suppressed, or becomes indifferent to creatures you choose",
       "end the Frightened or Poisoned condition on the target": "end the Frightened or Poisoned condition on the target",
@@ -143,6 +159,7 @@
       "fey spirits": "fey spirits",
       "fire": "fire",
       "fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it": "fire jumps to another creature within 30 feet, dealing 2d4 Fire damage to it",
+      "fly up to half your Fly Speed without provoking Opportunity Attacks": "fly up to half your Fly Speed without provoking Opportunity Attacks",
       "fog": "fog",
       "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit": "for the duration, your weapon attacks deal an extra 1d4 Radiant damage on a hit",
       "freezing rain and sleet": "freezing rain and sleet",
@@ -183,6 +200,9 @@
       "have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll": "have Advantage on your next attack roll. If that attack hits, add 1d$(attributes.superiorityDie) to the attack's damage roll",
       "healing energy": "healing energy",
       "if it is Huge or smaller": "if it is Huge or smaller",
+      "if the beast moved at least 20 feet straight toward the target before the hit, the target takes an extra 1d6 damage of the same type, and the target has the Prone condition if it is Large or smaller": "if the beast moved at least 20 feet straight toward the target before the hit, the target takes an extra 1d6 damage of the same type, and the target has the Prone condition if it is Large or smaller",
+      "if the target has the Poisoned condition, it has the Paralyzed condition until the end of its next turn": "if the target has the Poisoned condition, it has the Paralyzed condition until the end of its next turn",
+      "if you and the vestige are within 60 feet of each other, you both teleport, swapping places": "if you and the vestige are within 60 feet of each other, you both teleport, swapping places",
       "if you roll an 8 on a d8 for this spell, you can roll another d8 and add it to the damage": "if you roll an 8 on a d8 for this spell, you can roll another d8 and add it to the damage",
       "if you roll the same number on two or more d8s, the energy leaps to a different target within 30 feet": "if you roll the same number on two or more d8s, the energy leaps to a different target within 30 feet",
       "imbue one Melee weapon you are holding. Add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls made with it, and it can deal Radiant damage": "imbue one Melee weapon you are holding. Add $(formatBonus(Math.max(1, stats.cha.mod))) to attack rolls made with it, and it can deal Radiant damage",
@@ -194,14 +214,33 @@
       "instead of pushing it, you can teleport it to an unoccupied horizontal space you can see within 30 feet of you.": "instead of pushing it, you can teleport it to an unoccupied horizontal space you can see within 30 feet of you.",
       "is transported up to 30 feet to an unoccupied space": "is transported up to 30 feet to an unoccupied space",
       "life-giving energy": "life-giving energy",
+      "magical darkness": "magical darkness",
       "magical energy": "magical energy",
+      "make $(Math.floor((local.maxLevel || 2) / 2)) Rend attacks": "make $(Math.floor((local.maxLevel || 2) / 2)) Rend attacks",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Crystal Strike attacks": "make $(Math.floor((local.maxLevel || 3) / 2)) Crystal Strike attacks",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Deathly Touch attacks": "make $(Math.floor((local.maxLevel || 3) / 2)) Deathly Touch attacks",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Ectoplasmic Splash attacks": "make $(Math.floor((local.maxLevel || 3) / 2)) Ectoplasmic Splash attacks",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Ephemeral Ray attacks": "make $(Math.floor((local.maxLevel || 3) / 2)) Ephemeral Ray attacks",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Fey Blade attacks": "make $(Math.floor((local.maxLevel || 3) / 2)) Fey Blade attacks",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Grave Bolt attacks": "make $(Math.floor((local.maxLevel || 3) / 2)) Grave Bolt attacks",
+      "make $(Math.floor((local.maxLevel || 3) / 2)) Rotting Claw attacks": "make $(Math.floor((local.maxLevel || 3) / 2)) Rotting Claw attacks",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Claw attacks": "make $(Math.floor((local.maxLevel || 4) / 2)) Claw attacks",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Eye Ray attacks": "make $(Math.floor((local.maxLevel || 4) / 2)) Eye Ray attacks",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Psychic Slam attacks": "make $(Math.floor((local.maxLevel || 4) / 2)) Psychic Slam attacks",
+      "make $(Math.floor((local.maxLevel || 4) / 2)) Slam attacks": "make $(Math.floor((local.maxLevel || 4) / 2)) Slam attacks",
       "make $(meta.level >= 10 ? 'three' : 'two') Unarmed Strikes": "make $(meta.level >= 10 ? 'three' : 'two') Unarmed Strikes",
       "make a Dexterity (Sleight of Hand) check to pick a lock or disarm a trap with Thieves' Tools or to pick a pocket": "make a Dexterity (Sleight of Hand) check to pick a lock or disarm a trap with Thieves' Tools or to pick a pocket",
       "make a melee attack roll with a weapon or Unarmed Strike against the creature; if you hit, add 1d$(attributes.superiorityDie) to damage": "make a melee attack roll with a weapon or Unarmed Strike against the creature; if you hit, add 1d$(attributes.superiorityDie) to damage",
       "make a new attack roll against a creature within 60 feet of the original target": "make a new attack roll against a creature within 60 feet of the original target",
+      "make one Bestial Strike": "make one Bestial Strike",
+      "make one Slam attack against that creature": "make one Slam attack against that creature",
       "make one Unarmed Strike": "make one Unarmed Strike",
       "make one Unarmed Strike as part of this action": "make one Unarmed Strike as part of this action",
+      "make two Bestial Strike attacks": "make two Bestial Strike attacks",
+      "make two Bestial Strikes": "make two Bestial Strikes",
+      "make two Rend attacks": "make two Rend attacks",
       "move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks": "move up to $(Math.floor(attributes.movement.walk / 2 / 5) * 5) feet without provoking Opportunity Attacks",
+      "move up to half your Speed": "move up to half your Speed",
       "moved 5 feet toward or away from you": "moved 5 feet toward or away from you",
       "must drop whatever it is holding and flee": "must drop whatever it is holding and flee",
       "nauseating gas": "nauseating gas",
@@ -229,6 +268,7 @@
       "reduce the damage by 1d10+$(stats.dex.mod + meta.level)": "reduce the damage by 1d10+$(stats.dex.mod + meta.level)",
       "reduce the damage taken by $(attributes.rageDamage)d6": "reduce the damage taken by $(attributes.rageDamage)d6",
       "reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))": "reduce the damage taken by 1d$(attributes.psiDice)$(formatBonus(stats.int.mod))",
+      "release ink that fills a 10-foot Cube, and move up to your Swim Speed without provoking Opportunity Attacks": "release ink that fills a 10-foot Cube, and move up to your Swim Speed without provoking Opportunity Attacks",
       "reroll up to $(Math.max(1, stats.cha.mod)) damage dice for a spell": "reroll up to $(Math.max(1, stats.cha.mod)) damage dice for a spell",
       "retain your personality, memories, and ability to speak, but you can't cast spells": "retain your personality, memories, and ability to speak, but you can't cast spells",
       "returns a creature that died within the last minute to life with 1 Hit Point": "returns a creature that died within the last minute to life with 1 Hit Point",
@@ -263,6 +303,7 @@
       "take the Dash, Disengage, or Hide action": "take the Dash, Disengage, or Hide action",
       "take the Disengage action and add 1d$(attributes.superiorityDie) to your AC until the start of your next turn": "take the Disengage action and add 1d$(attributes.superiorityDie) to your AC until the start of your next turn",
       "take the Disengage and Dash actions as part of this Bonus Action; while Raging, you can take a Bonus Action to take both actions again": "take the Disengage and Dash actions as part of this Bonus Action; while Raging, you can take a Bonus Action to take both actions again",
+      "take the Disengage or Hide action": "take the Disengage or Hide action",
       "take the Utilize action, or take the Magic action to use a magic item that requires an action": "take the Utilize action, or take the Magic action to use a magic item that requires an action",
       "target can't take Reactions, and can take either an action or a Bonus Action on its turn, not both": "target can't take Reactions, and can take either an action or a Bonus Action on its turn, not both",
       "target gains Advantage on ability checks for a chosen attribute": "target gains Advantage on ability checks for a chosen attribute",
@@ -286,19 +327,24 @@
       "teleport to an unoccupied space within 5 feet of that enemy and make one melee attack against it": "teleport to an unoccupied space within 5 feet of that enemy and make one melee attack against it",
       "teleport up to 30 feet to an unoccupied space you can see": "teleport up to 30 feet to an unoccupied space you can see",
       "teleport yourself and one willing creature within 5 feet to any destination within range": "teleport yourself and one willing creature within 5 feet to any destination within range",
+      "the area is Heavily Obscured for 1 minute": "the area is Heavily Obscured for 1 minute",
       "the attacker must either choose a new target or lose the attack or spell": "the attacker must either choose a new target or lose the attack or spell",
       "the curse ends early when you or an ally hits the target, dealing an extra $(meta.level) Necrotic or Radiant damage.": "the curse ends early when you or an ally hits the target, dealing an extra $(meta.level) Necrotic or Radiant damage.",
       "the damage of its weapon attacks is halved until the start of your next turn": "the damage of its weapon attacks is halved until the start of your next turn",
+      "the defender, or one Construct or object it can see within 5 feet of it": "the defender, or one Construct or object it can see within 5 feet of it",
       "the enemy": "the enemy",
       "the first creature hit on each of your turns takes an extra 1d6+$(Math.floor(meta.level/2)) Necrotic or Radiant damage": "the first creature hit on each of your turns takes an extra 1d6+$(Math.floor(meta.level/2)) Necrotic or Radiant damage",
       "the first time target drops to 0 Hit Points, it drops to 1 Hit Point instead, ending the spell": "the first time target drops to 0 Hit Points, it drops to 1 Hit Point instead, ending the spell",
       "the marked creature can't take the Disengage action": "the marked creature can't take the Disengage action",
       "the next attack roll against the target by an attacker other than you has Advantage before the start of your next turn": "the next attack roll against the target by an attacker other than you has Advantage before the start of your next turn",
       "the next creature it hits (other than you) has Resistance to that attack's damage until the end of the target's next turn": "the next creature it hits (other than you) has Resistance to that attack's damage until the end of the target's next turn",
+      "the spirit halves the damage (round down) it takes from that attack": "the spirit halves the damage (round down) it takes from that attack",
       "the target adds 1d4 to any ability check using a chosen skill.": "the target adds 1d4 to any ability check using a chosen skill.",
       "the target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see": "the target can immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see",
       "the target can't make Opportunity Attacks until the end of its next turn, and on its next turn it gets only a move, action, or Bonus Action": "the target can't make Opportunity Attacks until the end of its next turn, and on its next turn it gets only a move, action, or Bonus Action",
+      "the target can't regain Hit Points until the start of the spirit's next turn": "the target can't regain Hit Points until the start of the spirit's next turn",
       "the target can't speak a deliberate lie": "the target can't speak a deliberate lie",
+      "the target can't take Opportunity Attacks until the start of its next turn": "the target can't take Opportunity Attacks until the start of its next turn",
       "the target can't take an action or bonus action on its turn": "the target can't take an action or bonus action on its turn",
       "the target can't take reactions until the start of its next turn": "the target can't take reactions until the start of its next turn",
       "the target cannot make Opportunity Attacks until the start of its next turn": "the target cannot make Opportunity Attacks until the start of its next turn",
@@ -330,6 +376,7 @@
       "the target's Speed increases by 10 feet until the start of your next turn": "the target's Speed increases by 10 feet until the start of your next turn",
       "the target's Speed is halved until the start of your next turn": "the target's Speed is halved until the start of your next turn",
       "the target's spell dissipates with no effect, wasting the action/reaction used (spell slot is not expended)": "the target's spell dissipates with no effect, wasting the action/reaction used (spell slot is not expended)",
+      "the vestige places a curse on a creature you can see within 30 feet of the vestige for 1 minute; while cursed, the target has Disadvantage on attack rolls against you and the vestige": "the vestige places a curse on a creature you can see within 30 feet of the vestige for 1 minute; while cursed, the target has Disadvantage on attack rolls against you and the vestige",
       "three illusory duplicates appear. Each time a creature hits you with an attack roll, roll a d6 for each of your remaining duplicates. If any of the d6s rolls a 3 or higher, one of the duplicates is hit instead of you, and the duplicate is destroyed. The duplicates otherwise ignore all other damage and effects. The spell ends when all three duplicates are destroyed": "three illusory duplicates appear. Each time a creature hits you with an attack roll, roll a d6 for each of your remaining duplicates. If any of the d6s rolls a 3 or higher, one of the duplicates is hit instead of you, and the duplicate is destroyed. The duplicates otherwise ignore all other damage and effects. The spell ends when all three duplicates are destroyed",
       "to an unoccupied space in Dim Light or Darkness": "to an unoccupied space in Dim Light or Darkness",
       "to an unoccupied space within 5 feet of you": "to an unoccupied space within 5 feet of you",
@@ -350,6 +397,7 @@
       "when spell ends, target becomes hostile": "when spell ends, target becomes hostile",
       "when the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take 2d$(attributes.bardicDie) Necrotic damage": "when the invisibility ends, each creature in a 5-foot Emanation must succeed on a DC $(attributes.spellcasting.save) Constitution saving throw or take 2d$(attributes.bardicDie) Necrotic damage",
       "when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell": "when you cast a Psion spell using a spell slot, add 1d$(attributes.psiDice) to one damage roll of that spell",
+      "when you have a creature grappled": "when you have a creature grappled",
       "when you hit with an attack with Advantage": "when you hit with an attack with Advantage",
       "when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored": "when you regain Hit Points, foes in aura take Necrotic damage equal to half the HP restored",
       "when you take the Influence action": "when you take the Influence action",
@@ -594,26 +642,6 @@
   "adventurersAtlas": {
     "name": "Adventurer's Atlas"
   },
-  "aerialLunarBeastBarger": {
-    "name": "Aerial Barger Beast",
-    "summary": "Armored beetles and heavy flyers with crushing bash attacks."
-  },
-  "aerialLunarBeastHunter": {
-    "name": "Aerial Hunter Beast",
-    "summary": "Mantises and predatory flyers with multiattack bite and claws."
-  },
-  "aerialLunarBeastRavager": {
-    "name": "Aerial Ravager Beast",
-    "summary": "Giant bats and pterosaurs with blindsight and frenzied bites."
-  },
-  "aerialLunarBeastStinger": {
-    "name": "Aerial Stinger Beast",
-    "summary": "Giant wasps and hornets with lethal venomous stingers."
-  },
-  "aerialLunarBeastSwooper": {
-    "name": "Aerial Swooper Beast",
-    "summary": "Eagles and raptors with keen sight, evasive flight, and grappling talons."
-  },
   "agonizingBlast": {
     "name": "Agonizing Blast",
     "summary": "Add your Charisma modifier to the damage of your Eldritch Blast."
@@ -680,18 +708,6 @@
   "animateDead": {
     "name": "Animate Dead",
     "summary": "You raise an undead servant from a corpse or pile of bones."
-  },
-  "aquaticLunarBeastCruiser": {
-    "name": "Aquatic Cruiser Beast",
-    "summary": "Dolphins and whales with charging rams that push foes back."
-  },
-  "aquaticLunarBeastGrasper": {
-    "name": "Aquatic Grasper Beast",
-    "summary": "Octopuses and squids with reach and grasping tentacles."
-  },
-  "aquaticLunarBeastRampager": {
-    "name": "Aquatic Rampager Beast",
-    "summary": "Sharks and barracudas with blood frenzy against wounded prey."
   },
   "arcana": {
     "name": "Arcana"
@@ -1011,6 +1027,9 @@
     "name": "Beast Sense",
     "summary": "You touch a willing Beast."
   },
+  "beastsStrike": {
+    "name": "Beast's Strike"
+  },
   "beguilingMagic": {
     "name": "Beguiling Magic"
   },
@@ -1031,6 +1050,9 @@
     "name": "Path of the Berserker",
     "description": "Direct your Rage toward violence, thrilling in untrammeled fury and the chaos of battle."
   },
+  "berserkLashing": {
+    "name": "Berserk Lashing"
+  },
   "bestialSpiritAir": {
     "name": "Bestial Spirit (Air)"
   },
@@ -1039,6 +1061,9 @@
   },
   "bestialSpiritWater": {
     "name": "Bestial Spirit (Water)"
+  },
+  "bestialStrike": {
+    "name": "Bestial Strike"
   },
   "bestowCurse": {
     "name": "Bestow Curse",
@@ -1337,6 +1362,9 @@
   "class": {
     "name": "Class"
   },
+  "claw": {
+    "name": "Claw"
+  },
   "cleave": {
     "name": "Cleave"
   },
@@ -1555,6 +1583,9 @@
   "crusherPush": {
     "name": "Push"
   },
+  "crystalStrike": {
+    "name": "Crystal Strike"
+  },
   "cunningAction": {
     "name": "Cunning Action"
   },
@@ -1618,6 +1649,9 @@
   "deafenedImmunity": {
     "name": "Deafened Immunity"
   },
+  "deathlyTouch": {
+    "name": "Deathly Touch"
+  },
   "deathSaveAdvantage": {
     "name": "Death Saves"
   },
@@ -1661,6 +1695,9 @@
   },
   "defensiveTactics": {
     "name": "Defensive Tactics"
+  },
+  "deflectAttack": {
+    "name": "Deflect Attack"
   },
   "deflectAttacks": {
     "name": "Deflect Attacks"
@@ -1767,6 +1804,9 @@
   "divineOrder": {
     "name": "Divine Order"
   },
+  "divinePower": {
+    "name": "Divine Power"
+  },
   "diviner": {
     "name": "Diviner",
     "description": "Part the veils of space and time as a Diviner, mastering spells of discernment, foresight, and truth."
@@ -1858,6 +1898,9 @@
   "dreadfulStrikes": {
     "name": "Dreadful Strikes"
   },
+  "dreadfulSwipe": {
+    "name": "Dreadful Swipe"
+  },
   "dreadnaughtModel": {
     "name": "Dreadnaught",
     "summary": "Optimize armor model for heavy defense, temporary hit points, and thunder strikes."
@@ -1906,6 +1949,9 @@
   },
   "dwarvenToughness": {
     "name": "Dwarven Toughness"
+  },
+  "ectoplasmicSplash": {
+    "name": "Ectoplasmic Splash"
   },
   "ectoplasmicTrail": {
     "name": "Ectoplasmic Trail",
@@ -2029,12 +2075,18 @@
     "name": "Enemies Abound",
     "summary": "You reach into a creature's mind and force it to see all creatures as foes."
   },
+  "energizingPollen": {
+    "name": "Energizing Pollen"
+  },
   "energyMastery": {
     "name": "Energy Mastery"
   },
   "enfeeblingShot": {
     "name": "Enfeebling Shot",
     "summary": "Deal extra necrotic damage and halve the target's weapon attack damage."
+  },
+  "engulf": {
+    "name": "Engulf"
   },
   "enhanceAbility": {
     "name": "Enhance Ability",
@@ -2062,6 +2114,12 @@
   },
   "envenomWeapon": {
     "name": "Envenom Weapon"
+  },
+  "ephemeralRay": {
+    "name": "Ephemeral Ray"
+  },
+  "eruptingBreach": {
+    "name": "Erupting Breach"
   },
   "escapeTheHorde": {
     "name": "Escape the Horde",
@@ -2127,6 +2185,9 @@
   },
   "extraProperties": {
     "name": "Extra Properties"
+  },
+  "eyeRay": {
+    "name": "Eye Ray"
   },
   "fabricate": {
     "name": "Fabricate",
@@ -2205,9 +2266,15 @@
     "name": "Feinting Attack",
     "summary": "Feint to gain advantage and extra damage on your next attack roll."
   },
+  "fellGlare": {
+    "name": "Fell Glare"
+  },
   "ferocity": {
     "name": "Ferocity",
     "summary": "Empower your steel defender with ferocious combat reflexes."
+  },
+  "feyBlade": {
+    "name": "Fey Blade"
   },
   "feyMagicSpell": {
     "name": "Fey Magic Spell"
@@ -2220,6 +2287,9 @@
   },
   "feySpiritTricksy": {
     "name": "Fey Spirit (Tricksy)"
+  },
+  "feyStep": {
+    "name": "Fey Step"
   },
   "feyTouched": {
     "name": "Fey Touched",
@@ -2341,6 +2411,9 @@
   },
   "forceDemolisher": {
     "name": "Force Demolisher"
+  },
+  "forceEmpoweredRend": {
+    "name": "Force-Empowered Rend"
   },
   "forceImmunity": {
     "name": "Force Immunity"
@@ -2515,6 +2588,9 @@
     "name": "Grasping Vine",
     "summary": "You conjure a vine that sprouts and pulls targets toward it."
   },
+  "graveBolt": {
+    "name": "Grave Bolt"
+  },
   "graveDomain": {
     "name": "Grave Domain",
     "description": "Guard the boundary between life and death, drawing upon transitional energy to heal or smite."
@@ -2632,6 +2708,9 @@
     "name": "Haste",
     "summary": "You empower a target with extraordinary speed and extra actions."
   },
+  "hazardousSpew": {
+    "name": "Hazardous Spew"
+  },
   "healer": {
     "name": "Healer",
     "summary": "Use healer kits to restore hit points and stabilize dying allies."
@@ -2645,6 +2724,9 @@
   "healingRerolls": {
     "name": "Healing Rerolls",
     "description": "You can reroll healing once per turn."
+  },
+  "healingTouch": {
+    "name": "Healing Touch"
   },
   "healingWord": {
     "name": "Healing Word",
@@ -2824,6 +2906,9 @@
     "name": "Improved Illusions",
     "description": "You can cast Illusion spells without Verbal components."
   },
+  "incandescentBreath": {
+    "name": "Incandescent Breath"
+  },
   "incapacitatedAdvantage": {
     "name": "Incapacitated Advantage"
   },
@@ -2847,6 +2932,9 @@
   },
   "initiativeSwap": {
     "name": "Initiative Swap"
+  },
+  "inkCloud": {
+    "name": "Ink Cloud"
   },
   "innateSorcery": {
     "name": "Innate Sorcery"
@@ -3199,54 +3287,6 @@
   "luckyAdvantage": {
     "name": "Luck"
   },
-  "lunarBeastCharger": {
-    "name": "Charger Beast",
-    "summary": "Elks, boars, and rhinos with charging strikes that knock targets prone."
-  },
-  "lunarBeastConstrictor": {
-    "name": "Constrictor Beast",
-    "summary": "Snakes and serpents that constrict, grapple, and restrain prey."
-  },
-  "lunarBeastDevourer": {
-    "name": "Devourer Beast",
-    "summary": "Giant toads and reptiles that grapple and swallow prey whole."
-  },
-  "lunarBeastEnvenomer": {
-    "name": "Envenomer Beast",
-    "summary": "Vipers and venomous snakes delivering deadly poison bites."
-  },
-  "lunarBeastGripper": {
-    "name": "Gripper Beast",
-    "summary": "Apes and baboons with multiattack fist strikes and grappling."
-  },
-  "lunarBeastInfiltrator": {
-    "name": "Infiltrator Beast",
-    "summary": "Mice, cats, and stealthy insects that slip through tiny spaces and evade attacks."
-  },
-  "lunarBeastMauler": {
-    "name": "Mauler Beast",
-    "summary": "Bears and badgers with ferocious bite and claw multiattacks."
-  },
-  "lunarBeastPincher": {
-    "name": "Pincher Beast",
-    "summary": "Crabs and scorpions with armored shells and grappling pincers."
-  },
-  "lunarBeastPouncer": {
-    "name": "Pouncer Beast",
-    "summary": "Lions and tigers that pounce onto prey to knock them prone."
-  },
-  "lunarBeastTackler": {
-    "name": "Tackler Beast",
-    "summary": "Wolves and canines with Pack Tactics and tackling bites."
-  },
-  "lunarBeastTrampler": {
-    "name": "Trampler Beast",
-    "summary": "Horses and elephants that trample prone enemies underfoot."
-  },
-  "lunarBeastWebber": {
-    "name": "Webber Beast",
-    "summary": "Giant spiders with web-walking, venomous bites, and webs."
-  },
   "lunarVitality": {
     "name": "Lunar Vitality"
   },
@@ -3519,6 +3559,9 @@
     "name": "Mounted Combatant",
     "description": "While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount."
   },
+  "multiattack": {
+    "name": "Multiattack"
+  },
   "multiattackDefense": {
     "name": "Multiattack Defense",
     "summary": "Attacks from a creature hit you with have Disadvantage for the rest of the turn.",
@@ -3603,6 +3646,9 @@
   },
   "nick": {
     "name": "Nick"
+  },
+  "nimbleEscape": {
+    "name": "Nimble Escape"
   },
   "noble": {
     "name": "Noble",
@@ -3714,6 +3760,12 @@
   "otherworldlyLeap": {
     "name": "Otherworldly Leap",
     "summary": "Cast Jump on yourself at will without expending spell slots."
+  },
+  "otherworldlyScratch": {
+    "name": "Otherworldly Scratch"
+  },
+  "otherworldlySlam": {
+    "name": "Otherworldly Slam"
   },
   "otherworldlySteedCelestial": {
     "name": "Celestial Steed"
@@ -4144,6 +4196,9 @@
   "psychicResistance": {
     "name": "Psychic Resistance"
   },
+  "psychicSlam": {
+    "name": "Psychic Slam"
+  },
   "psychicSpellsDamage": {
     "name": "Psychic Spells"
   },
@@ -4193,6 +4248,9 @@
   "rally": {
     "name": "Rally",
     "summary": "Bolster an ally with temporary hit points using your maneuver die."
+  },
+  "rampage": {
+    "name": "Rampage"
   },
   "ranger": {
     "name": "Ranger",
@@ -4273,6 +4331,12 @@
     "name": "Remove Curse",
     "summary": "At your touch, all curses affecting a creature or object end."
   },
+  "rend": {
+    "name": "Rend"
+  },
+  "repair": {
+    "name": "Repair"
+  },
   "repellingBlast": {
     "name": "Repelling Blast",
     "summary": "Push a target up to 10 feet away when hitting with Eldritch Blast."
@@ -4338,6 +4402,9 @@
   "ropeTrick": {
     "name": "Rope Trick",
     "summary": "A rope rises into the air, leading to a hidden extradimensional space."
+  },
+  "rottingClaw": {
+    "name": "Rotting Claw"
   },
   "sacredFlame": {
     "name": "Sacred Flame",
@@ -4481,6 +4548,9 @@
     "name": "Shaper",
     "description": "Manifest raw mental mass, ectoplasm, and psionic constructs from the Astral Plane to fight alongside you."
   },
+  "shardSwarm": {
+    "name": "Shard Swarm"
+  },
   "sharpenedMind": {
     "name": "Sharpened Mind",
     "summary": "Ignore Psychic resistance and substitute a recorded Psionic die roll on damage once per turn."
@@ -4589,6 +4659,9 @@
   "skulker": {
     "name": "Skulker",
     "summary": "Stay hidden in dim light and remain concealed when ranged attacks miss."
+  },
+  "slam": {
+    "name": "Slam"
   },
   "slasher": {
     "name": "Slasher",
@@ -4958,6 +5031,9 @@
     "name": "Sweeping Attack",
     "summary": "Sweep your weapon to deal damage to a second nearby target."
   },
+  "swoop": {
+    "name": "Swoop"
+  },
   "tacticalAssessment": {
     "name": "Tactical Assessment",
     "summary": "Add a maneuver die to History, Insight, or Investigation checks."
@@ -5124,6 +5200,9 @@
   "toxicTouch": {
     "name": "Toxic Touch"
   },
+  "trample": {
+    "name": "Trample"
+  },
   "trance": {
     "name": "Trance",
     "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
@@ -5254,6 +5333,9 @@
   "vestigePatron": {
     "name": "Vestige Patron",
     "description": "Draw power from a ghostly vestige of a lost god, manifesting a companion to channel divine magic."
+  },
+  "vestigesStrike": {
+    "name": "Vestige's Strike"
   },
   "vex": {
     "name": "Vex"
@@ -5402,8 +5484,65 @@
   "wildShapeActivity": {
     "name": "Wild Shape"
   },
+  "wildShapeAerialSnatcher": {
+    "name": "Aerial Snatcher Beast",
+    "summary": "Giant eagles and vultures that seize foes in their talons, then swoop away and drop them."
+  },
+  "wildShapeAmbushProwler": {
+    "name": "Ambush Prowler Beast",
+    "summary": "Panthers, tigers, and lions that climb, pounce from stealth, and slip away after striking."
+  },
+  "wildShapeAmphibiousConstrictor": {
+    "name": "Amphibious Constrictor Beast",
+    "summary": "Crocodiles, constrictor snakes, and giant toads that grapple, restrain, and crush their prey."
+  },
+  "wildShapeArmoredBastion": {
+    "name": "Armored Bastion Beast",
+    "summary": "Ankylosaurs, armadillos, and turtles with heavy armor and sturdy saves that bash foes to the ground."
+  },
+  "wildShapeBeastOfLand": {
+    "name": "Beast of Land"
+  },
+  "wildShapeBeastOfTheSea": {
+    "name": "Beast of the Sea"
+  },
+  "wildShapeBeastOfTheSky": {
+    "name": "Beast of the Sky"
+  },
+  "wildShapeCephalopod": {
+    "name": "Cephalopod Beast",
+    "summary": "Octopuses and squids that grapple and restrain foes with long arms, then escape in a cloud of ink."
+  },
+  "wildShapeDepthApex": {
+    "name": "Depth Apex Beast",
+    "summary": "Sharks, barracudas, and orcas that swim fast and sense prey, striking wounded foes with advantage."
+  },
+  "wildShapeExcavator": {
+    "name": "Subterranean Excavator Beast",
+    "summary": "Giant badgers and moles that tunnel underground and burst out to ambush and topple foes."
+  },
+  "wildShapeFlybyRaptor": {
+    "name": "Flyby Raptor Beast",
+    "summary": "Owls, bats, and pteranodons that fly swiftly, strike with keen senses, and dodge away from danger."
+  },
+  "wildShapeHeavyMauler": {
+    "name": "Heavy Mauler Beast",
+    "summary": "Bears, apes, and gorillas that climb and tear into foes with two powerful strikes."
+  },
+  "wildShapeInsectoidCrawler": {
+    "name": "Insectoid Crawler Beast",
+    "summary": "Giant spiders, scorpions, centipedes that climb, strike with poison, and restrain with webs or pollen."
+  },
+  "wildShapePackHunter": {
+    "name": "Pack Hunter Beast",
+    "summary": "Wolves, hyenas, and jackals that fight alongside allies, bite foes down, and press the attack."
+  },
   "wildShapeTemplate": {
     "name": "Wild Shape Templates"
+  },
+  "wildShapeTramplingCharger": {
+    "name": "Trampling Charger Beast",
+    "summary": "Boars, rhinos, and elk that gore with a running charge, knock foes down, and trample them."
   },
   "windWall": {
     "name": "Wind Wall",

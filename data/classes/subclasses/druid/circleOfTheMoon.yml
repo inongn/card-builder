@@ -31,75 +31,11 @@ children:
     operation: set
     value: $(meta.level * 3)
     condition: $(meta.level >= 3)
-  - id: lunarRadianceBPS
+  # Structured beast forms: only Bludgeoning/Piercing/Slashing hit payloads change to Radiant
+  # (e.g. the Crawler's Poison payload is untouched).
+  - id: lunarRadianceStrike
     type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing, or Slashing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceBPSNoOxford
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing or Slashing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceBSP
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Slashing or Piercing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadiancePiercing
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Piercing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceSlashing
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Slashing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceBludgeoning
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceBPS
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing, or Slashing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceBPSNoOxford
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing or Slashing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceBSP
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Slashing or Piercing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadiancePiercing
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Piercing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceSlashing
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Slashing damage"]
-    operation: replace
-    value: Radiant damage
-    condition: $(meta.level >= 6)
-  - id: lunarRadianceBludgeoning
-    type: Effect
-    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning damage"]
-    operation: replace
-    value: Radiant damage
+    target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions[id=bestialStrike].mechanic.hit[damageType=bludgeoning OR damageType=piercing OR damageType=slashing].damageType
+    operation: set
+    value: radiant
     condition: $(meta.level >= 6)

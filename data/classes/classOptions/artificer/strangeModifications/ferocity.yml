@@ -6,6 +6,6 @@ tags:
   - strangeModifications
 children:
   - type: Effect
-    target: statblocks[reanimatedCompanion].actions[dreadfulSwipe].description["1d4"]
-    operation: replace
-    value: "1d6"
+    target: statblocks[reanimatedCompanion].actions[id=dreadfulSwipe].mechanic.hit.dice.sides
+    operation: set
+    value: 6

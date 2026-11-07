@@ -1,12 +1,13 @@
 type: Statblock
 name: Bestial Spirit (Land)
-tags: [summon]
+tags:
+  - summon
 id: bestialSpiritLand
 size: Medium
 category: summon
 classification: Beast
-ac: "$(11 + (local.maxLevel || 2))"
-hp: "$(20 + 10 * ((local.maxLevel || 2) - 2))"
+ac: $(11 + (local.maxLevel || 2))
+hp: $(20 + 10 * ((local.maxLevel || 2) - 2))
 movement:
   walk: 30
   climb: 30
@@ -21,9 +22,34 @@ senses:
   darkvision: 60
 traits:
   - name: Pack Tactics
-    description: "The spirit has Advantage on Wisdom (Perception) checks that rely on smell when it is within 30 feet of another creature that it can see."
+    description: The spirit has Advantage on Wisdom (Perception) checks that rely on smell when it is within 30 feet of another creature that it can see.
 actions:
-  - name: Multiattack
-    description: "The spirit makes $(Math.floor((local.maxLevel || 2) / 2)) Rend attacks."
-  - name: Rend
-    description: "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(4 + (local.maxLevel || 2))) Piercing damage."
+  - id: multiattack
+    name: Multiattack
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: action
+          text: make $(Math.floor((local.maxLevel || 2) / 2)) Rend attacks
+  - id: rend
+    name: Rend
+    tags:
+      - strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        - type: damage
+          dice:
+            count: 1
+            sides: 8
+            bonus: $(4 + (local.maxLevel || 2))
+          damageType: piercing

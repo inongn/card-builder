@@ -1,12 +1,13 @@
 type: Statblock
 name: Aberrant Spirit (Beholderkin)
-tags: [summon]
+tags:
+  - summon
 id: aberrantSpiritBeholderkin
 size: Medium
 category: summon
 classification: Aberration
-ac: "$(11 + (local.maxLevel || 4))"
-hp: "$(40 + 10 * ((local.maxLevel || 4) - 4))"
+ac: $(11 + (local.maxLevel || 4))
+hp: $(40 + 10 * ((local.maxLevel || 4) - 4))
 movement:
   walk: 30
   fly: 30
@@ -20,7 +21,32 @@ stats:
 senses:
   darkvision: 60
 actions:
-  - name: Multiattack
-    description: "The spirit makes $(Math.floor((local.maxLevel || 4) / 2)) Eye Ray attacks."
-  - name: Eye Ray
-    description: "_Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, range 150 ft. _Hit:_ 1d8$(formatBonus(3 + (local.maxLevel || 4))) Psychic damage."
+  - id: multiattack
+    name: Multiattack
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: action
+          text: make $(Math.floor((local.maxLevel || 4) / 2)) Eye Ray attacks
+  - id: eyeRay
+    name: Eye Ray
+    tags:
+      - strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: ranged
+        type: spell
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: range 150 feet
+      hit:
+        - type: damage
+          dice:
+            count: 1
+            sides: 8
+            bonus: $(3 + (local.maxLevel || 4))
+          damageType: psychic

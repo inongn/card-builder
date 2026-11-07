@@ -24,5 +24,31 @@ traits:
   - name: Water Breathing
     description: "You can breathe only underwater."
 actions:
-  - name: Bestial Strike
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))), reach 5 ft. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage. The attack roll has Advantage if the target doesn't have all its Hit Points."
+  - id: multiattack
+    name: Multiattack
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: action
+          text: make two Bestial Strikes
+  - id: bestialStrike
+    name: Bestial Strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: "$((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))"
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        - type: damage
+          dice:
+            count: "$(meta.level >= 6 ? 2 : 1)"
+            sides: 8
+            bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+          damageType: piercing
+      text: "The attack roll has Advantage if the target doesn't have all its Hit Points."

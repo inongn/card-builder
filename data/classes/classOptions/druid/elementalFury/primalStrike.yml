@@ -21,6 +21,15 @@ children:
         - thunder
   - id: primalStrikeWildShape
     type: Effect
-    target: statblocks[lunarWildShape OR wildShapeTemplate].actions["damage"]
-    operation: replace
-    value: damage plus 1d8 Cold, Fire, Lightning or Thunder damage
+    target: statblocks[tags=wildShapeTemplate OR tags=lunarWildShape].actions[id=bestialStrike].mechanic.hit
+    operation: push
+    value:
+      type: damage
+      dice:
+        count: 1
+        sides: 8
+      damageType:
+        - cold
+        - fire
+        - lightning
+        - thunder

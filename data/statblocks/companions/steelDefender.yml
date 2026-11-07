@@ -25,13 +25,47 @@ traits:
   - name: Steel Bond
     description: "Add $(attributes.prof) to any ability check or saving throw the Steel Defender makes."
 actions:
-  - name: Force-Empowered Rend
-    id: forceEmpoweredRend
-    description: "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(2 + stats.int.mod)) Force damage."
-  - name: Repair (3/Day)
-    id: repair
-    description: "The defender, or one Construct or object it can see within 5 feet of it, regains $(2 + stats.int.mod)d8 Hit Points."
+  - id: forceEmpoweredRend
+    name: Force-Empowered Rend
+    tags: [strike]
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        type: damage
+        dice:
+          count: 1
+          sides: 8
+          bonus: $(2 + stats.int.mod)
+        damageType: force
+  - id: repair
+    name: Repair
+    limit: 3/Day
+    mechanic:
+      pattern: healing
+      target:
+        text: the defender, or one Construct or object it can see within 5 feet of it
+      healing:
+        dice:
+          count: $(2 + stats.int.mod)
+          sides: 8
+        type: hitPoints
 reactions:
-  - name: Deflect Attack
-    id: deflectAttack
-    description: "_Trigger:_ A creature the defender can see within 5 feet of it makes an attack roll targeting a different creature. _Response:_ The triggering creature makes the attack roll with Disadvantage."
+  - id: deflectAttack
+    name: Deflect Attack
+    mechanic:
+      pattern: automatic
+      trigger:
+        event: custom
+        text: a creature the defender can see within 5 feet of it makes an attack roll targeting a different creature
+      target:
+        inherit: trigger
+      payloads:
+        type: rollModifier
+        targetRolls: attack
+        modifierType: disadvantage

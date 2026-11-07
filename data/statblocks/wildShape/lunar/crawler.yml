@@ -25,8 +25,42 @@ traits:
   - name: Spider Climb
     description: "You can climb difficult surfaces, including along ceilings, without needing to make an ability check."
 actions:
-  - name: Bestial Strike
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))), reach 5 ft. _Hit:_ $(meta.level >= 6 ? 2 : 1)d6$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage plus 1d6 Poison damage."
+  - id: bestialStrike
+    name: Bestial Strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: "$((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))"
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        - type: damage
+          dice:
+            count: "$(meta.level >= 6 ? 2 : 1)"
+            sides: 6
+            bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+          damageType: piercing
+        - type: damage
+          dice:
+            count: 1
+            sides: 6
+          damageType: poison
 bonusActions:
-  - name: Hazardous Spew (Recharge 5-6)
-    description: "_Dexterity Saving Throw:_ DC $(attributes.spellcasting.save), one creature within 30 feet. _Failure:_ The target has the Restrained condition until the start of your next turn."
+  - id: hazardousSpew
+    name: Hazardous Spew
+    recharge: 5-6
+    mechanic:
+      pattern: save
+      save:
+        ability: dex
+        dc: "$(attributes.spellcasting.save)"
+      target:
+        type: single
+        range: 30 feet
+      failure:
+        type: condition
+        condition: restrained
+        end: end_of_your_next_turn

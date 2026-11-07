@@ -50,9 +50,11 @@ children:
       resource: limited
   - id: undeadThrallsDamageEffect
     type: Effect
-    target: statblocks[classification=Undead].traits
+    target: statblocks[classification=Undead].actions[tags=strike].mechanic.hit
     operation: push
     condition: $(meta.level >= 6)
     value:
-      name: Withering Strike
-      description: Whenever the undead hits a creature with an attack roll, it deals an extra $(Math.max(1, stats.int.mod)) Necrotic damage.
+      type: damage
+      dice:
+        bonus: $(Math.max(1, stats.int.mod))
+      damageType: necrotic

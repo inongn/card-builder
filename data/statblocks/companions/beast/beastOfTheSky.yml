@@ -27,5 +27,21 @@ traits:
   - name: Primal Bond
     description: "Add $(attributes.prof) to any ability check or saving throw the beast makes."
 actions:
-  - name: Beast's Strike
-    description: "_Melee Attack Roll:_ $(attributes.spellcasting.attack) to hit, reach 5 ft. _Hit:_ 1d4 + $(3 + stats.wis.mod) Slashing damage."
+  - id: beastsStrike
+    name: Beast's Strike
+    tags: [attack, strike]
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        type: damage
+        dice:
+          count: 1
+          sides: 4
+          bonus: $(3 + stats.wis.mod)
+        damageType: slashing

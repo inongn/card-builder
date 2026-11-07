@@ -189,11 +189,16 @@ export function capitalize(str) {
 
 export function formatDistanceEs(distStr) {
   if (!distStr) return '';
-  const str = String(distStr).trim();
-  if (/^5\s*(feet|foot)$/i.test(str)) return 'alcance de 5 pies';
+  let str = String(distStr).trim().replace(/\.+$/, '');
+  str = str.replace(/\bft\.?/gi, 'pies');
+  if (/^5\s*(feet|foot|pies)$/i.test(str)) return 'alcance de 5 pies';
+  if (/^10\s*(feet|foot|pies)$/i.test(str)) return 'alcance de 10 pies';
   if (/^touch$/i.test(str) || /^toque$/i.test(str)) return 'alcance de Toque';
   if (/^self$/i.test(str) || /^personal$/i.test(str)) return 'alcance Personal';
   return str
+    .replace(/\breach\s*/gi, 'alcance de ')
+    .replace(/\brange\s*/gi, 'alcance de ')
+    .replace(/\bor\b/gi, 'o')
     .replace(/\bmiles\b/gi, 'millas')
     .replace(/\bmile\b/gi, 'milla')
     .replace(/\bfeet\b/gi, 'pies')
@@ -230,6 +235,9 @@ export function formatFilterTextEs(filterVal, evalStr, plural = false) {
       const lower = evalS.toLowerCase();
       if (lower === 'creatures of your choice' || lower === 'creature of your choice') {
         return plural ? 'criaturas que elijas' : 'criatura que elijas';
+      }
+      if (lower === 'prone creature' || lower === 'prone creatures') {
+        return plural ? 'criaturas Derribadas' : 'criatura Derribada';
       }
       if (lower === 'self or creature' || lower === 'creature or self') {
         return 'criatura (o tú mismo)';
@@ -324,6 +332,91 @@ function formatAoePhraseEs(shapeKey, size) {
 function cleanEnglishPhrasesEs(text) {
   if (!text || typeof text !== 'string') return text || '';
   return text
+    // Multiattack patterns
+    .replace(/\bMake (\d+|one|two|three) (.*?) attacks?\b/gi, (match, count, atk) => {
+      const c = count === 'one' ? 'un' : count === 'two' ? 'dos' : count === 'three' ? 'tres' : count;
+      const dict = {
+        'rotting claw': 'Garra Podrida',
+        'eye ray': 'Rayo Ocular',
+        'psychic slam': 'Golpe Psiónico',
+        'claw': 'Garra',
+        'crystal strike': 'Golpe de Cristal',
+        'ectoplasmic splash': 'Salpicadura Ectoplásmica',
+        'ephemeral ray': 'Rayo Efímero',
+        'rend': 'Desgarrar',
+        'slam': 'Golpe',
+        'fey blade': 'Espada Feérica',
+        'deathly touch': 'Toque Mortal',
+        'grave bolt': 'Proyectil Funesto',
+        'bestial strike': 'Golpe Bestial',
+        'bestial strikes': 'Golpes Bestiales'
+      };
+      const translatedAtk = dict[atk.trim().toLowerCase()] || atk.trim();
+      return `Realiza ${c} ataques de ${translatedAtk}`;
+    })
+    .replace(/\bMake two Bestial Strikes\b/gi, 'Realiza dos Golpes Bestiales')
+    .replace(/\bmake one Bestial Strike\b/gi, 'realiza un Golpe Bestial')
+    .replace(/\bmake one (.*?) attack against that creature\b/gi, (m, atk) => {
+      const dict = { 'slam': 'Golpe' };
+      return `realiza un ataque de ${dict[atk.trim().toLowerCase()] || atk} contra esa criatura`;
+    })
+    // Condition checks & riders
+    .replace(/\bif the target has the (\w+) condition, it has the (\w+) condition\b/gi, (m, c1, c2) => {
+      const cDict = { poisoned: 'Envenenado', paralyzed: 'Paralizado', prone: 'Derribado' };
+      return `si el objetivo sufre la condición de ${cDict[c1.toLowerCase()] || c1}, sufre la condición de ${cDict[c2.toLowerCase()] || c2}`;
+    })
+    .replace(/\bthe target has the (\w+) condition\b/gi, (m, c) => {
+      const cDict = { prone: 'Derribado', grappled: 'Agarrado', restrained: 'Apresado', frightened: 'Asustado' };
+      return `el objetivo sufre la condición de ${cDict[c.toLowerCase()] || c}`;
+    })
+    .replace(/\bhas the (\w+) condition\b/gi, (m, c) => {
+      const cDict = { prone: 'Derribado', grappled: 'Agarrado', restrained: 'Apresado', frightened: 'Asustado' };
+      return `sufre la condición de ${cDict[c.toLowerCase()] || c}`;
+    })
+    // Attack roll advantage & restrictions
+    .replace(/\bthe attack roll has advantage if the target doesn't have all its hit points\b/gi, 'la tirada de ataque tiene Ventaja si el objetivo no tiene todos sus Puntos de Golpe')
+    .replace(/\bthe attack roll has advantage\b/gi, 'la tirada de ataque tiene Ventaja')
+    .replace(/\bhas disadvantage on attack rolls\b/gi, 'tiene Desventaja en las tiradas de ataque')
+    .replace(/\bhas advantage on attack rolls\b/gi, 'tiene Ventaja en las tiradas de ataque')
+    .replace(/\bthe target can't take Opportunity Attacks\b/gi, 'el objetivo no puede realizar Ataques de Oportunidad')
+    .replace(/\bcan't take Opportunity Attacks\b/gi, 'no puede realizar Ataques de Oportunidad')
+    .replace(/\buntil the start of the spirit's next turn\b/gi, 'hasta el inicio del siguiente turno del espíritu')
+    .replace(/\bbefore the end of this turn\b/gi, 'antes del final de este turno')
+    // Charge & movement
+    .replace(/\bif the beast moved at least (\d+) pies straight toward el objetivo before the hit\b/gi, 'si la bestia se movió al menos $1 pies en línea recta hacia el objetivo antes del impacto')
+    .replace(/\bif the beast moved at least (\d+) feet straight toward the target before the hit\b/gi, 'si la bestia se movió al menos $1 pies en línea recta hacia el objetivo antes del impacto')
+    .replace(/\bif you moved at least (\d+) pies straight toward el objetivo immediately before the hit\b/gi, 'si te moviste al menos $1 pies en línea recta hacia el objetivo inmediatamente antes del impacto')
+    .replace(/\bif you moved at least (\d+) feet straight toward the target immediately before the hit\b/gi, 'si te moviste al menos $1 pies en línea recta hacia el objetivo inmediatamente antes del impacto')
+    .replace(/\bthe target takes an extra (\d+d\d+) damage of the del mismo tipo\b/gi, 'el objetivo recibe $1 de daño adicional del mismo tipo')
+    .replace(/\bthe target takes an extra (\d+d\d+) damage of the same type\b/gi, 'el objetivo recibe $1 de daño adicional del mismo tipo')
+    .replace(/\bit takes an extra (.*?) damage\b/gi, 'recibe $1 de daño adicional')
+    .replace(/\bif it is a Large or smaller creature\b/gi, 'si es una criatura Grande o menor')
+    .replace(/\bif it is Large o smaller\b/gi, 'si es de tamaño Grande o menor')
+    .replace(/\bif it is Large or smaller\b/gi, 'si es de tamaño Grande o menor')
+    // Triggers and special actions
+    .replace(/\bYou take damage while underwater\b/gi, 'Recibes daño mientras estás bajo el agua')
+    .replace(/\bThe spirit takes damage from a creature within (\d+) pies\b/gi, 'El espíritu recibe daño de una criatura a $1 pies de él')
+    .replace(/\ba creature the defender can see within (\d+) pies of it makes an attack roll targeting a different creature\b/gi, 'una criatura que el defensor pueda ver a $1 pies de él realiza una tirada de ataque contra una criatura distinta')
+    .replace(/\bThe defender, or one Construct or object it can see within (\d+) (?:feet|pies) of it\b/gi, 'El defensor, o un Autómata u objeto que pueda ver a $1 pies de él')
+    .replace(/\bRelease ink that fills a (\d+)-(?:foot|pie) Cube, and move up to your Swim (?:Speed|velocidad) without provoking Opportunity Attacks\b/gi, 'Libera tinta que llena un cubo de $1 pies y te mueves hasta tu velocidad de nado sin provocar Ataques de Oportunidad')
+    .replace(/\brelease ink that fills a (\d+)-(?:foot|pie) Cube, and move up to your Swim (?:Speed|velocidad) without provoking Opportunity Attacks\b/gi, 'libera tinta que llena un cubo de $1 pies y te mueves hasta tu velocidad de nado sin provocar Ataques de Oportunidad')
+    .replace(/\bthe area is Heavily Obscured for (\d+) minute\b/gi, 'el área queda Fuertemente Oscurecida durante $1 minuto')
+    .replace(/\balong with your rider, to un espacio desocupado of your choice\b/gi, 'junto con tu jinete, a un espacio desocupado que elijas')
+    .replace(/\balong with your rider, to an unoccupied space of your choice\b/gi, 'junto con tu jinete, a un espacio desocupado que elijas')
+    .replace(/\bif you and the vestige are within (\d+) pies of each other, you both teleport, swapping places\b/gi, 'si tú y el vestigio estáis a $1 pies o menos el uno del otro, ambos os teletransportáis, intercambiando posiciones')
+    .replace(/\bif you y the vestige are within (\d+) pies of each other, you both teleport, swapping places\b/gi, 'si tú y el vestigio estáis a $1 pies o menos el uno del otro, ambos os teletransportáis, intercambiando posiciones')
+    .replace(/\bThe vestige places a curse on a creature you can see within (\d+) pies of the vestige for (\d+) minute; while cursed, el objetivo has Disadvantage on attack rolls against you y the vestige\b/gi, 'El vestigio maldice a una criatura que puedas ver a $1 pies de él durante $2 minuto; mientras esté maldecida, el objetivo tiene Desventaja en las tiradas de ataque contra ti y el vestigio')
+    .replace(/\bThe vestige places a curse on a creature you can see within (\d+) pies of the vestige for (\d+) minute; while cursed, the target has Disadvantage on attack rolls against you and the vestige\b/gi, 'El vestigio maldice a una criatura que puedas ver a $1 pies de él durante $2 minuto; mientras esté maldecida, el objetivo tiene Desventaja en las tiradas de ataque contra ti y el vestigio')
+    .replace(/\bUn creature you have grappled\b/gi, 'Una criatura que tengas agarrada')
+    .replace(/\ba creature you have grappled\b/gi, 'una criatura que tengas agarrada')
+    .replace(/\bWhen you have a creature grappled, fly up to half your Fly velocidad sin provocar Ataques de Oportunidad y drop that creature\b/gi, 'Cuando tengas a una criatura agarrada, vuela hasta la mitad de tu velocidad de vuelo sin provocar Ataques de Oportunidad y suelta a esa criatura')
+    .replace(/\bImmediately after you deal damage to a creature that is Bloodied, move up to half your velocidad y make one Bestial Strike\b/gi, 'Inmediatamente después de infligir daño a una criatura que esté Herida, muévete hasta la mitad de tu velocidad y realiza un Golpe Bestial')
+    .replace(/\bYou moved at least (\d+) pies underground y emerged within (\d+) pies of a creature on this turn\b/gi, 'Te moviste al menos $1 pies bajo tierra y emergiste a $2 pies de una criatura en este turno')
+    .replace(/\bTake the Disengage o Hide Acción\b/gi, 'Realiza la Acción de Desengancharse o Esconderse')
+    .replace(/\bTake the Disengage or Hide Action\b/gi, 'Realiza la Acción de Desengancharse o Esconderse')
+    .replace(/\bper level of the spell slot expended\b/gi, 'por nivel del espacio de conjuro gastado')
+    .replace(/\bYou expend a level 1\+ spell slot and can move up to (.*?) sin provocar Ataques de Oportunidad while emitting a cloud of healing pollen\. When you move within 5 pies of another creature during this movement, you can restore a number of Puntos de Golpe equal to (.*?) \(once per turn per creature\)\b/gi, 'Gastas un espacio de conjuro de nivel 1+ y puedes moverte hasta $1 sin provocar Ataques de Oportunidad mientras emites una nube de polen curativo. Cuando te muevas a 5 pies de otra criatura durante este movimiento, puedes restaurar una cantidad de Puntos de Golpe igual a $2 (una vez por turno por criatura)')
+    .replace(/\bYou expend a level 1\+ spell slot\b/gi, 'Gastas un espacio de conjuro de nivel 1+')
     .replace(/\bthe target gains no benefit from cover for this save\b/gi, 'el objetivo no obtiene ningún beneficio de la cobertura para esta salvación')
     .replace(/\bthe target cannot regain hit points\b/gi, 'el objetivo no puede recuperar Puntos de Golpe')
     .replace(/\bcannot regain hit points\b/gi, 'no puede recuperar Puntos de Golpe')
@@ -853,7 +946,7 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
       }
     }
 
-    const isTargetSelf = ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self');
+    const isTargetSelf = !ctx?.targetObj?.aoe && (ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self'));
     const hasTrigger = !!(ctx?.trigger || ctx?.activity?.mechanic?.trigger);
     const targetPronoun = isTargetSelf ? 'ti' : 'el objetivo';
     const possessivePronoun = isTargetSelf ? 'tu' : 'su';
@@ -1128,7 +1221,7 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     if (condStrs.length === 1) {
       return `termina ${listStr} sobre el objetivo`;
     }
-    return `termina ${count} condición sobre el objetivo: ${listStr}`;
+    return `terminar ${count} condición sobre el objetivo: ${listStr}`;
   }
 
   // ── Action payload ──────────────────────────────────────────────────────────
@@ -1223,7 +1316,7 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
 
   const isSave = ctx?.pattern === 'save';
   const targetObj = ctx?.targetObj;
-  const isTargetSelf = targetObj?.type === 'self' || (typeof targetObj?.range === 'string' && targetObj?.range.toLowerCase() === 'self');
+  const isTargetSelf = !targetObj?.aoe && (targetObj?.type === 'self' || (typeof targetObj?.range === 'string' && targetObj?.range.toLowerCase() === 'self'));
   const isMultiSave = isSave && targetObj && (
     targetObj.aoe || targetObj.type === 'multiple' || targetObj.type === 'multi' ||
     (targetObj.count && parseInt(evalStr(targetObj.count), 10) > 1)
@@ -1459,8 +1552,13 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
 
 // ─── Subject Noun Phrase & Conjugation en Español ───────────────────────────
 
-function buildSubjectNounPhraseEs(targetObj, activityRange, evalStr) {
+function buildSubjectNounPhraseEs(targetObj, activityRange, evalStr, translations = null) {
   if (!targetObj) return 'Tú';
+  if (targetObj.text) {
+    const rawVal = evalStr(targetObj.text);
+    const trans = lookupMechanicText(targetObj.text, translations, evalStr) || lookupMechanicText(rawVal, translations, evalStr) || cleanEnglishPhrasesEs(rawVal);
+    return capitalize(trans);
+  }
 
   const type = (evalStr(targetObj.type || '') || '').toLowerCase();
   const rawRange = evalStr(targetObj.range || activityRange || '').trim();
@@ -1652,7 +1750,9 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
   // ── 1. ATTACK ──────────────────────────────────────────────────────────────
   if (pattern === 'attack' && block.attack) {
     const rawClassif = (evalStr(block.attack.classification || 'melee')).toLowerCase();
-    const classif = rawClassif === 'ranged' ? 'A Distancia' : 'Cuerpo a Cuerpo';
+    const classif = (rawClassif === 'melee_or_ranged' || rawClassif === 'melee or ranged')
+      ? 'Cuerpo a Cuerpo o a Distancia'
+      : (rawClassif === 'ranged' ? 'A Distancia' : 'Cuerpo a Cuerpo');
     const rawBonus = evaluator.evaluate(block.attack.bonus || '$(attributes.spellcasting.attack)', effectiveScope);
     const numBonus = typeof rawBonus === 'number' ? rawBonus : Number(rawBonus);
     const bonusStr = !isNaN(numBonus)
@@ -1768,7 +1868,7 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
 
   // ── 3. HEALING ─────────────────────────────────────────────────────────────
   else if (pattern === 'healing' && block.healing) {
-    const subject = buildSubjectNounPhraseEs(block.target, activity?.range, evalStr);
+    const subject = buildSubjectNounPhraseEs(block.target, activity?.range, evalStr, baseCtx.translations);
     const diceStr = formatDiceObj(block.healing.dice, undefined, evalStr);
     const isTempHP = block.healing.type === 'tempHitPoints';
     const typeLabel = isTempHP ? 'Puntos de Golpe Temporales' : 'Puntos de Golpe';
@@ -2025,7 +2125,9 @@ export function formatActivityMechanicEs(activity, characterData, customTranslat
   const transEntry = translations?.[activityId] || (activity?.name ? translations?.[activity.name] : null);
   const localizedSummary = transEntry?.summary || activity?.summaryEs || activity?.summary || '';
   const localizedDescription = transEntry?.description || activity?.descriptionEs || activity?.description || '';
-  const localizedName = transEntry?.name || activity?.name || activityId;
+  const localizedName = activity?.name === '@@entry@@'
+    ? '@@entry@@'
+    : (transEntry?.name || activity?.name || activityId);
 
   const evaluator = new ExpressionEvaluator(characterData || {});
   const topScope = {

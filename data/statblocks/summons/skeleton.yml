@@ -1,6 +1,8 @@
 type: Statblock
 name: Skeleton
-tags: [summon, skeletonTemplate]
+tags:
+  - summon
+  - skeletonTemplate
 id: skeleton
 size: Medium
 category: summon
@@ -16,13 +18,53 @@ stats:
   int: 6
   wis: 8
   cha: 5
-vulnerabilities: [Bludgeoning]
-immunities: [Poison, Exhaustion, Poisoned]
+vulnerabilities:
+  - Bludgeoning
+immunities:
+  - Poison
+  - Exhaustion
+  - Poisoned
 senses:
   darkvision: 60
-languages: "understands the languages it knew in life but can't speak"
+languages: understands the languages it knew in life but can't speak
 actions:
-  - name: Shortsword
-    description: "_Melee Attack Roll:_ +4 to hit, reach 5 ft. _Hit:_ 1d6+2 Piercing damage."
-  - name: Shortbow
-    description: "_Ranged Attack Roll:_ +4 to hit, range 80/320 ft. _Hit:_ 1d6+2 Piercing damage."
+  - id: shortsword
+    name: Shortsword
+    tags:
+      - strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: 4
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        - type: damage
+          dice:
+            count: 1
+            sides: 6
+            bonus: 2
+          damageType: piercing
+  - id: shortbow
+    name: Shortbow
+    tags:
+      - strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: ranged
+        type: weapon
+        bonus: 4
+      target:
+        type: single
+        range: range 80/320 feet
+      hit:
+        - type: damage
+          dice:
+            count: 1
+            sides: 6
+            bonus: 2
+          damageType: piercing

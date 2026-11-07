@@ -1,12 +1,13 @@
 type: Statblock
 name: Undead Spirit (Skeletal)
-tags: [summon]
+tags:
+  - summon
 id: undeadSpiritSkeletal
 size: Medium
 category: summon
 classification: Undead
-ac: "$(11 + (local.maxLevel || 3))"
-hp: "$(20 + 10 * ((local.maxLevel || 3) - 3))"
+ac: $(11 + (local.maxLevel || 3))
+hp: $(20 + 10 * ((local.maxLevel || 3) - 3))
 movement:
   walk: 30
 stats:
@@ -16,11 +17,42 @@ stats:
   int: 4
   wis: 10
   cha: 9
-immunities: [Necrotic, Poison, Exhaustion, Frightened, Paralyzed, Poisoned]
+immunities:
+  - Necrotic
+  - Poison
+  - Exhaustion
+  - Frightened
+  - Paralyzed
+  - Poisoned
 senses:
   darkvision: 60
 actions:
-  - name: Multiattack
-    description: "The spirit makes $(Math.floor((local.maxLevel || 3) / 2)) Grave Bolt attacks."
-  - name: Grave Bolt
-    description: "_Ranged Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, range 150 ft. _Hit:_ 2d4$(formatBonus(3 + (local.maxLevel || 3))) Necrotic damage."
+  - id: multiattack
+    name: Multiattack
+    mechanic:
+      pattern: automatic
+      target:
+        type: self
+      payloads:
+        - type: action
+          text: make $(Math.floor((local.maxLevel || 3) / 2)) Grave Bolt attacks
+  - id: graveBolt
+    name: Grave Bolt
+    tags:
+      - strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: ranged
+        type: spell
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: range 150 feet
+      hit:
+        - type: damage
+          dice:
+            count: 2
+            sides: 4
+            bonus: $(3 + (local.maxLevel || 3))
+          damageType: necrotic

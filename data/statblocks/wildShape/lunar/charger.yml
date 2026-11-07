@@ -18,8 +18,45 @@ stats:
   wis: "$(stats.wis.score)"
   cha: "$(stats.cha.score)"
 actions:
-  - name: Bestial Strike
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))), reach 5 ft. _Hit:_ $(meta.level >= 6 ? 2 : 1)d10$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage, and if you moved at least 20 feet straight toward the target immediately before the hit, it takes an extra $(meta.level >= 6 ? 2 : 1)d10 damage and, if it is a creature of your size or smaller, it has the Prone condition."
+  - id: bestialStrike
+    name: Bestial Strike
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        type: weapon
+        bonus: "$((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))"
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        - type: damage
+          dice:
+            count: "$(meta.level >= 6 ? 2 : 1)"
+            sides: 10
+            bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+          damageType: piercing
+        - type: condition
+          condition: prone
+      text: "If you moved at least 20 feet straight toward the target immediately before the hit, it takes an extra $(meta.level >= 6 ? 2 : 1)d10 damage."
 bonusActions:
-  - name: Trample
-    description: "_Dexterity Saving Throw:_ DC $(attributes.spellcasting.save), one prone creature within 5 feet. _Failure:_ 2d10$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Bludgeoning damage. _Success:_ Half damage."
+  - id: trample
+    name: Trample
+    mechanic:
+      pattern: save
+      save:
+        ability: dex
+        dc: "$(attributes.spellcasting.save)"
+      target:
+        type: single
+        range: 5 feet
+        filter: prone creature
+      failure:
+        type: damage
+        dice:
+          count: 2
+          sides: 10
+          bonus: "$(Math.floor((stats.wis.score - 10) / 2))"
+        damageType: bludgeoning
+      success:
+        halfDamage: true

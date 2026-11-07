@@ -24,7 +24,35 @@ traits:
   - name: Life Bond
     description: When you regain Hit Points from a level 1+ spell, the steed regains the same number of Hit Points if you're within 30 feet of it.
 actions:
-  - name: Otherworldly Slam
-    description: "_Melee Attack Roll:_ $(formatBonus(attributes.spellcasting.attack)) to hit, reach 5 ft. _Hit:_ 1d8$(formatBonus(local.maxLevel || 2)) Radiant damage."
-  - name: Healing Touch (Recharges after a Long Rest)
-    description: "One creature within 30 feet of the steed regains a number of Hit Points equal to 2d8 + $(local.maxLevel || 2)."
+  - id: otherworldlySlam
+    name: Otherworldly Slam
+    tags: [attack, strike]
+    mechanic:
+      pattern: attack
+      attack:
+        classification: melee
+        bonus: $(attributes.spellcasting.attack)
+      target:
+        type: single
+        range: reach 5 feet
+      hit:
+        type: damage
+        dice:
+          count: 1
+          sides: 8
+          bonus: $(local.maxLevel || 2)
+        damageType: radiant
+  - id: healingTouch
+    name: Healing Touch
+    recharge: after a Long Rest
+    mechanic:
+      pattern: healing
+      target:
+        type: single
+        range: 30 feet
+      healing:
+        dice:
+          count: 2
+          sides: 8
+          bonus: $(local.maxLevel || 2)
+        type: hitPoints

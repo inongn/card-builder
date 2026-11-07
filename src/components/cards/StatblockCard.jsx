@@ -4,16 +4,60 @@ import remarkGfm from 'remark-gfm';
 import { renderGridValue } from '../../utils/cardUtils';
 import { processDiceInChildren, DiceRoller } from './DiceRoller';
 import { formatBonus } from '../../engine/helpers.js';
+import { formatStatblockEntry, statblockEntryLabel, STATBLOCK_TRAITS_ES } from '../../utils/statblockFormatter.js';
+import { evaluateText } from '../../utils/sheetUtils.js';
 import 'mdui/components/card.js';
 import 'mdui/components/collapse-item.js';
 import 'mdui/components/divider.js';
 import { AutoFitContent } from '../AutoFitContent';
 import { useLocale } from '../../i18n';
 
+const SIZES_ES = {
+    tiny: 'Diminuto',
+    small: 'Pequeño',
+    medium: 'Mediano',
+    large: 'Grande',
+    huge: 'Enorme',
+    gargantuan: 'Gargantuesco'
+};
+
+const CREATURE_TYPES_ES = {
+    aberration: 'Aberración',
+    beast: 'Bestia',
+    celestial: 'Celestial',
+    construct: 'Autómata',
+    dragon: 'Dragón',
+    elemental: 'Elemental',
+    fey: 'Feérico',
+    fiend: 'Inmunda',
+    giant: 'Gigante',
+    humanoid: 'Humanoide',
+    monstrosity: 'Monstruosidad',
+    ooze: 'Cieno',
+    plant: 'Planta',
+    undead: 'Muerto Viviente'
+};
+
+const MOVEMENT_NAMES_ES = {
+    walk: 'caminar',
+    swim: 'nadar',
+    fly: 'volar',
+    climb: 'escalar',
+    burrow: 'excavar'
+};
+
+const SENSES_ES = {
+    darkvision: 'visión en la oscuridad',
+    blindsight: 'visión a ciegas',
+    tremorsense: 'sentido de la vibración',
+    truesight: 'visión verdadera'
+};
+
 export const StatblockCard = memo(({ statblock, variant = 'collapsible', char }) => {
     if (!statblock) return null;
 
-    const { t } = useLocale();
+    const { t, lang, localize, formatMechanic } = useLocale();
+    const isEs = lang === 'es';
     const isPlayMode = variant !== 'static';
     const isWildShape = statblock.category === 'wildShape' || statblock.tags?.includes('lunarWildShape') || statblock.tags?.includes('wildShapeTemplate');
 
@@ -33,20 +77,24 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
         reactions = []
     } = statblock;
 
+    const displayName = localize(statblock.id, 'name', name);
+    const displaySize = isEs ? (SIZES_ES[size?.toLowerCase()] || size) : size;
+    const displayClassif = isEs ? (CREATURE_TYPES_ES[classification?.toLowerCase()] || classification) : classification;
+
     const markdownComponents = {
         p: ({ children }) => (
-            <span>{processDiceInChildren(children, isPlayMode, name)}</span>
+            <span>{processDiceInChildren(children, isPlayMode, displayName)}</span>
         ),
         span: ({ children }) => (
-            <span>{processDiceInChildren(children, isPlayMode, name)}</span>
+            <span>{processDiceInChildren(children, isPlayMode, displayName)}</span>
         )
     };
 
     const headerContent = (
         <div className="card-header" slot={variant === 'collapsible' ? 'header' : undefined}>
-            <span className="card-title">{name}</span>
+            <span className="card-title">{displayName}</span>
             <div className="card-meta">
-                <span className="text-secondary">{size} {classification}</span>
+                <span className="text-secondary">{displaySize} {displayClassif}</span>
             </div>
         </div>
     );
@@ -139,9 +187,13 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
     const renderMovement = () => {
         if (!movement) return null;
 
+        const unit = isEs ? 'pies' : 'feet';
         const activeMovements = Object.entries(movement)
             .filter(([_, speed]) => speed !== 0)
-            .map(([type, speed]) => `${type} ${speed} ft.`);
+            .map(([type, speed]) => {
+                const label = isEs ? (MOVEMENT_NAMES_ES[type] || type) : type;
+                return `${label} ${speed} ${unit}`;
+            });
 
         if (activeMovements.length === 0) return null;
 
@@ -169,9 +221,13 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                 {senses && (() => {
                     const sensesObj = { ...senses };
                     delete sensesObj.passivePerception;
+                    const unit = isEs ? 'pies' : 'feet';
                     const activeSenses = Object.entries(sensesObj)
                         .filter(([_, range]) => range !== 0)
-                        .map(([type, range]) => `${type} ${range} ft.`);
+                        .map(([type, range]) => {
+                            const label = isEs ? (SENSES_ES[type] || type) : type;
+                            return `${label} ${range} ${unit}`;
+                        });
 
                     if (activeSenses.length === 0) return null;
 
@@ -193,27 +249,42 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                             <span>{t('statblock.traits')}</span>
                             <mdui-divider></mdui-divider>
                         </div>
-                        {traits.map((trait, i) => (
-                            <div key={i}>
-                                <strong>{trait.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{trait.description}</ReactMarkdown>
-                            </div>
-                        ))}
+                        {traits.map((trait, i) => {
+                            const traitTrans = isEs ? (STATBLOCK_TRAITS_ES[trait.name] || (trait.id ? { name: localize(trait.id, 'name', trait.name), description: localize(trait.id, 'description', trait.description) } : null)) : null;
+                            const traitName = traitTrans?.name || trait.name;
+                            const rawDesc = traitTrans?.description || trait.description;
+                            const traitDesc = evaluateText(rawDesc, char || statblock);
+                            return (
+                                <div key={i}>
+                                    <strong>{traitName}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{traitDesc}</ReactMarkdown>
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
 
-                {actions.length > 0 && (
-                    <div>
-                        <div className="statblock-section-header">
-                            <span>{t('statblock.actions')}</span>
-                            <mdui-divider></mdui-divider>
-                        </div>
-                        {actions.map((action, i) => (
-                            <div key={i}>
-                                <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{action.description}</ReactMarkdown>
+                {actions.length > 0 && (() => {
+                    const sortedActions = [...actions].sort((a, b) => {
+                        const aIsMulti = a.id === 'multiattack' || a.name?.toLowerCase() === 'multiattack';
+                        const bIsMulti = b.id === 'multiattack' || b.name?.toLowerCase() === 'multiattack';
+                        if (aIsMulti && !bIsMulti) return -1;
+                        if (!aIsMulti && bIsMulti) return 1;
+                        return 0;
+                    });
+                    return (
+                        <div>
+                            <div className="statblock-section-header">
+                                <span>{t('statblock.actions')}</span>
+                                <mdui-divider></mdui-divider>
                             </div>
-                        ))}
-                    </div>
-                )}
+                            {sortedActions.map((action, i) => (
+                                <div key={i}>
+                                    <strong>{statblockEntryLabel(action, lang, localize)}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{formatStatblockEntry(action, statblock, char, 'actions', formatMechanic)}</ReactMarkdown>
+                                </div>
+                            ))}
+                        </div>
+                    );
+                })()}
 
                 {bonusActions.length > 0 && (
                     <div>
@@ -223,7 +294,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                         </div>
                         {bonusActions.map((action, i) => (
                             <div key={i}>
-                                <strong>{action.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{action.description}</ReactMarkdown>
+                                <strong>{statblockEntryLabel(action, lang, localize)}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{formatStatblockEntry(action, statblock, char, 'bonusActions', formatMechanic)}</ReactMarkdown>
                             </div>
                         ))}
                     </div>
@@ -237,7 +308,7 @@ export const StatblockCard = memo(({ statblock, variant = 'collapsible', char })
                         </div>
                         {reactions.map((reaction, i) => (
                             <div key={i}>
-                                <strong>{reaction.name}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{reaction.description}</ReactMarkdown>
+                                <strong>{statblockEntryLabel(reaction, lang, localize)}.</strong> <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{formatStatblockEntry(reaction, statblock, char, 'reactions', formatMechanic)}</ReactMarkdown>
                             </div>
                         ))}
                     </div>
