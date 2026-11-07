@@ -1,7 +1,7 @@
 type: Statblock
-name: Pack Hunter
+name: Pack Hunter Beast
 id: wildShapePackHunter
-summary: Wolves, hyenas, and pack hounds that knock prey down.
+summary: Wolves, hyenas, and jackals that fight alongside allies, bite foes down, and press the attack.
 tags: [lunarWildShape, classOption]
 repeatable: true
 size: "$(meta.level >= 6 ? 'Large' : 'Medium')"
@@ -21,10 +21,10 @@ senses:
   darkvision: 60
 traits:
   - name: Pack Tactics
-    description: "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't incapacitated."
+    description: "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature."
 actions:
   - name: Bestial Strike
-    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))) to hit, reach 5 ft., one target. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage. If the target is a creature, it must succeed on a DC $(attributes.spellcasting.save) Strength saving throw or be knocked prone."
+    description: "_Melee Attack Roll:_ $(formatBonus((meta.level >= 5 ? 3 : 2) + Math.floor((stats.wis.score - 10) / 2))), reach 5 ft. _Hit:_ $(meta.level >= 6 ? 2 : 1)d8$(formatBonus(Math.floor((stats.wis.score - 10) / 2))) Piercing damage, and if the target is a creature of your size or smaller, it has the Prone condition."
 bonusActions:
   - name: Rampage
-    description: "Immediately after dealing damage to a creature that is Bloodied, you can move up to half your Speed and make one Bestial Strike."
+    description: "Immediately after you deal damage to a creature that is Bloodied, you can move up to half your Speed and make one Bestial Strike."

@@ -31,94 +31,75 @@ children:
     operation: set
     value: $(meta.level * 3)
     condition: $(meta.level >= 3)
-  - id: moonCircleIncreasedToughness
-    type: Effect
-    target: attributes.increasedToughness
-    operation: set
-    value: $(stats.wis.mod)
-    condition: $(meta.level >= 6)
-  - id: moonCircleConSaveBonus
-    type: Effect
-    target: saves.constitution.bonus
-    operation: add
-    value: $(stats.wis.mod)
-    condition: $(meta.level >= 6)
   - id: lunarRadianceBPS
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing, or Slashing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceBPSNoOxford
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing or Slashing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceBSP
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Slashing or Piercing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadiancePiercing
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Piercing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceSlashing
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Slashing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceBludgeoning
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning damage"]
     operation: replace
-    value: Force damage
-    condition: $(meta.level >= 6)
-
-  - id: moonCircleConSaveBonus
-    type: Effect
-    target: saves.constitution.bonus
-    operation: add
-    value: $(stats.wis.mod)
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceBPS
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing, or Slashing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceBPSNoOxford
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Piercing or Slashing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceBSP
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning, Slashing or Piercing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadiancePiercing
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Piercing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceSlashing
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Slashing damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
   - id: lunarRadianceBludgeoning
     type: Effect
     target: statblocks[tags=lunarWildShape OR tags=wildShapeTemplate].actions["Bludgeoning damage"]
     operation: replace
-    value: Force damage
+    value: Radiant damage
     condition: $(meta.level >= 6)
