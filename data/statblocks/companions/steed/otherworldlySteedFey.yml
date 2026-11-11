@@ -50,4 +50,4 @@ actions:
       payloads:
         type: teleport
         distance: 60
-        text: along with your rider, to an unoccupied space of your choice
+        text: along with its rider, to an unoccupied space of your choice

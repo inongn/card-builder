@@ -477,7 +477,9 @@ export function formatTargetText(targetObj, formattedRange, evalStr, isAttack = 
     if (targetObj.inherit === 'trigger' || targetObj.inherit === 'prev_step') {
       rangePart = ' centered on the target';
     } else if (lowerRange === 'self' || isEmanation) {
-      rangePart = isLine ? ' originating from you' : ' centered on you';
+      const defaultSubject = activity?.subject || 'You';
+      const selfNoun = defaultSubject === 'You' ? 'you' : defaultSubject.toLowerCase();
+      rangePart = isLine ? ` originating from ${selfNoun}` : ` centered on ${selfNoun}`;
     } else if (cleanRange) {
       rangePart = ` centered on a point within ${cleanRange}`;
     }
@@ -651,9 +653,10 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
     }
 
     const isTargetSelf = !ctx?.targetObj?.aoe && (ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self'));
+    const isSubjectYou = !ctx?.activity?.subject || ctx.activity.subject === 'You';
     const hasTrigger = !!(ctx?.trigger || ctx?.activity?.mechanic?.trigger);
-    const targetPronoun = isTargetSelf ? 'you' : 'the target';
-    const possessivePronoun = isTargetSelf ? 'your' : 'its';
+    const targetPronoun = isTargetSelf ? (isSubjectYou ? 'you' : 'it') : 'the target';
+    const possessivePronoun = isTargetSelf ? (isSubjectYou ? 'your' : 'its') : 'its';
 
     const formatRollList = (rolls) => {
       const list = rolls.map(r => rollNamesPlural[evalStr(r)] || evalStr(r));
@@ -835,6 +838,7 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
 
   // ── Damage reduction payload ─────────────────────────────────────────────────
   if (type === 'damageReduction') {
+    if (payload.text) return evalStr(payload.text);
     let valStr = '';
     if (payload.dice) {
       valStr = formatDiceObj(payload.dice, undefined, evalStr);
@@ -859,17 +863,19 @@ export function formatPayload(payload, evalStr, formatDiceObj, ctx = {}) {
     if (valStr) {
       return `reduce ${typeStr}damage taken by ${valStr}`;
     }
-    return payload.text ? evalStr(payload.text) : '';
+    return '';
   }
 
   // ── Teleport payload ─────────────────────────────────────────────────────────
   if (type === 'teleport') {
-    if (payload.text && /^(you|the target)\b/i.test(payload.text.trim())) {
+    if (payload.text && /^(you|the target|the spirit|the steed|the defender|the familiar|the vestige|the beast|the companion)\b/i.test(payload.text.trim())) {
       return evalStr(payload.text).trim();
     }
+    const isSubjectYou = !ctx?.activity?.subject || ctx.activity.subject === 'You';
     const rawDist = String(evalStr(payload.distance || '30')).trim();
     const dist = /feet$/i.test(rawDist) ? rawDist : `${rawDist} feet`;
-    const custom = payload.text ? ` ${evalStr(payload.text).trim()}` : ' to an unoccupied space you can see';
+    const defaultSpace = isSubjectYou ? ' to an unoccupied space you can see' : ' to an unoccupied space it can see';
+    const custom = payload.text ? ` ${evalStr(payload.text).trim()}` : defaultSpace;
     if (payload.target === 'target') {
       return `the target is teleported up to ${dist}${custom}`;
     }
@@ -999,8 +1005,10 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
     targetObj.aoe || targetObj.type === 'multiple' || targetObj.type === 'multi' ||
     (targetObj.count && parseInt(evalStr(targetObj.count), 10) > 1)
   );
-  const targetSubject = isTargetSelf ? 'you' : (isMultiSave ? 'each target' : 'the target');
-  const targetSubjectCap = isTargetSelf ? 'You' : (isMultiSave ? 'Each target' : 'The target');
+  const defaultSubject = ctx?.activity?.subject || 'You';
+  const isSubjectYou = defaultSubject === 'You';
+  const targetSubject = isTargetSelf ? (isSubjectYou ? 'you' : defaultSubject.toLowerCase()) : (isMultiSave ? 'each target' : 'the target');
+  const targetSubjectCap = isTargetSelf ? defaultSubject : (isMultiSave ? 'Each target' : 'The target');
 
   // Merge contiguous forced-movement entries of the same direction to avoid
   // "pushed 5 feet away and pushed 5 feet away" when two payloads contribute.
@@ -1057,9 +1065,9 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       if (p.movementType === 'forced') {
         const dir = p.direction || 'push';
         const dist = p.distance ? `${evalStr(p.distance)} feet` : '5 feet';
-        if (dir === 'push') targetPredicates.push(isTargetSelf ? `are pushed up to ${dist} away` : `is pushed up to ${dist} away`);
-        else if (dir === 'pull') targetPredicates.push(isTargetSelf ? `are pulled up to ${dist} closer` : `is pulled up to ${dist} closer`);
-        else targetPredicates.push(isTargetSelf ? `are moved up to ${dist}` : `is moved up to ${dist}`);
+        if (dir === 'push') targetPredicates.push(isTargetSelf && isSubjectYou ? `are pushed up to ${dist} away` : `is pushed up to ${dist} away`);
+        else if (dir === 'pull') targetPredicates.push(isTargetSelf && isSubjectYou ? `are pulled up to ${dist} closer` : `is pulled up to ${dist} closer`);
+        else targetPredicates.push(isTargetSelf && isSubjectYou ? `are moved up to ${dist}` : `is moved up to ${dist}`);
       } else {
         const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
         if (fmtd) otherParts.push(fmtd);
@@ -1069,9 +1077,9 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^the /.test(fmtd)) {
-          targetPredicates.push(isTargetSelf ? `have ${fmtd}` : `has ${fmtd}`);
+          targetPredicates.push(isTargetSelf && isSubjectYou ? `have ${fmtd}` : `has ${fmtd}`);
         } else {
-          targetPredicates.push(isTargetSelf ? `are ${fmtd}` : `is ${fmtd}`);
+          targetPredicates.push(isTargetSelf && isSubjectYou ? `are ${fmtd}` : `is ${fmtd}`);
         }
       }
 
@@ -1079,13 +1087,13 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^(has|gains|base|have|gain)\b/i.test(fmtd)) {
-          if (isTargetSelf) {
+          if (isTargetSelf && isSubjectYou) {
             targetPredicates.push(fmtd.replace(/^has\b/i, 'have').replace(/^gains\b/i, 'gain'));
           } else {
             targetPredicates.push(fmtd.replace(/^have\b/i, 'has').replace(/^gain\b/i, 'gains'));
           }
         } else {
-          targetPredicates.push(isTargetSelf ? `have ${fmtd}` : `has ${fmtd}`);
+          targetPredicates.push(isTargetSelf && isSubjectYou ? `have ${fmtd}` : `has ${fmtd}`);
         }
       }
 
@@ -1093,7 +1101,7 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^(has|adds|subtracts|rerolls|have|add|subtract|reroll)\b/i.test(fmtd)) {
-          if (isTargetSelf) {
+          if (isTargetSelf && isSubjectYou) {
             const selfFmtd = fmtd.replace(/^has\b/i, 'have').replace(/^adds\b/i, 'add').replace(/^subtracts\b/i, 'subtract').replace(/^rerolls\b/i, 'reroll');
             targetPredicates.push(selfFmtd);
           } else {
@@ -1111,7 +1119,7 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
     } else if (ptype === 'defense') {
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
-        if (isTargetSelf) {
+        if (isTargetSelf && isSubjectYou) {
           targetPredicates.push(fmtd.replace(/^gain\b/i, 'gain'));
         } else {
           targetPredicates.push(fmtd.replace(/^gain\b/i, 'has'));
@@ -1121,9 +1129,9 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
     } else if (ptype === 'damageReduction') {
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
-        if (/^damage taken/i.test(fmtd)) {
+        if (/^damage taken/i.test(fmtd) || p.text) {
           otherParts.push(fmtd);
-        } else if (isTargetSelf) {
+        } else if (isTargetSelf && isSubjectYou) {
           targetPredicates.push(fmtd);
         } else {
           targetPredicates.push(fmtd.replace(/^reduce\b/i, 'reduces'));
@@ -1134,7 +1142,7 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
       const fmtd = formatPayload(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^the target is\b/i.test(fmtd)) {
-          targetPredicates.push(isTargetSelf ? fmtd.replace(/^the target is\b/i, 'are') : fmtd.replace(/^the target is\b/i, 'is'));
+          targetPredicates.push(isTargetSelf && isSubjectYou ? fmtd.replace(/^the target is\b/i, 'are') : fmtd.replace(/^the target is\b/i, 'is'));
         } else {
           otherParts.push(fmtd);
         }
@@ -1167,14 +1175,14 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
     const isBaseSet = /^\s*base\s+/i.test(joinedPredicates);
     if (damageStr) {
       if (isBaseSet) {
-        const possessive = isTargetSelf ? 'your' : (isMultiSave ? "each target's" : "the target's");
+        const possessive = isTargetSelf ? (isSubjectYou ? 'your' : `${targetSubject}'s`) : (isMultiSave ? "each target's" : "the target's");
         clauseParts.push(`${possessive} ${joinedPredicates}`);
       } else {
         clauseParts.push(`${targetSubject} ${joinedPredicates}`);
       }
     } else {
       if (isBaseSet) {
-        const possessiveCap = isTargetSelf ? 'Your' : (isMultiSave ? "Each target's" : "The target's");
+        const possessiveCap = isTargetSelf ? (isSubjectYou ? 'Your' : `${targetSubjectCap}'s`) : (isMultiSave ? "Each target's" : "The target's");
         clauseParts.push(`${possessiveCap} ${joinedPredicates}`);
       } else {
         clauseParts.push(`${targetSubjectCap} ${joinedPredicates}`);
@@ -1187,9 +1195,14 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
     let cleanedPart = part;
     if (targetPredicates.length > 0) {
       cleanedPart = cleanedPart.replace(/^(the\s+)?target\s+/i, '');
+      if (!isSubjectYou) {
+        cleanedPart = conjugateToThirdPerson(cleanedPart);
+      }
     } else if (damageStr || clauseParts.length > 0) {
       if (/^(the\s+)?target\s+/i.test(cleanedPart)) {
         cleanedPart = cleanedPart.replace(/^(the\s+)?target\s+/i, `${targetSubject} `);
+      } else if (!isSubjectYou && /^(teleport|move|gain|regain|take|make)\b/i.test(cleanedPart)) {
+        cleanedPart = conjugateToThirdPerson(cleanedPart);
       }
     } else {
       if (/^the\s+target\s+/i.test(cleanedPart)) {
@@ -1238,8 +1251,8 @@ export function formatPayloadList(payloadList, evalStr, formatDiceObj, ctx = {})
  * healing blocks. Returns a full noun phrase like:
  *   "You" / "One creature you touch" / "Up to 10 creatures within 30 feet"
  */
-function buildSubjectNounPhrase(targetObj, activityRange, evalStr) {
-  if (!targetObj) return 'You';
+function buildSubjectNounPhrase(targetObj, activityRange, evalStr, defaultSubject = 'You') {
+  if (!targetObj) return defaultSubject;
   if (targetObj.text) return capitalize(evalStr(targetObj.text));
 
   const type = (evalStr(targetObj.type || '') || '').toLowerCase();
@@ -1257,10 +1270,12 @@ function buildSubjectNounPhrase(targetObj, activityRange, evalStr) {
 
   const lowerRange = cleanRange.toLowerCase();
 
-  if (type === 'self' || lowerRange === 'self') return 'You';
+  if (type === 'self' || lowerRange === 'self') return defaultSubject;
 
   if (type === 'touch' || lowerRange === 'touch') {
-    return `One ${filter} you touch`;
+    return defaultSubject === 'You'
+      ? `One ${filter} you touch`
+      : `One ${filter} ${defaultSubject.toLowerCase()} touches`;
   }
 
   const countRaw = targetObj.count !== undefined ? evalStr(targetObj.count) : '';
@@ -1333,6 +1348,16 @@ function classifyBodyText(body, fromPayloads) {
     lower.startsWith('target ') ||
     lower.startsWith('target\'s ') ||
     lower.startsWith('the attacker') ||
+    lower.startsWith('the spirit') ||
+    lower.startsWith('the steed') ||
+    lower.startsWith('the defender') ||
+    lower.startsWith('the beast') ||
+    lower.startsWith('the vestige') ||
+    lower.startsWith('the familiar') ||
+    lower.startsWith('the companion') ||
+    lower.startsWith('the skeleton') ||
+    lower.startsWith('the zombie') ||
+    lower.startsWith('the creature') ||
     lower.startsWith('allies ') ||
     lower.startsWith('targets ') ||
     lower.startsWith('drinker ') ||
@@ -1595,7 +1620,8 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
 
   // ── 3. HEALING ─────────────────────────────────────────────────────────────
   else if (pattern === 'healing' && block.healing) {
-    const subject = buildSubjectNounPhrase(block.target, activity?.range, evalStr);
+    const defaultSubject = activity?.subject || 'You';
+    const subject = buildSubjectNounPhrase(block.target, activity?.range, evalStr, defaultSubject);
     const diceStr = formatDiceObj(block.healing.dice, undefined, evalStr);
     const isTempHP = block.healing.type === 'tempHitPoints';
     const typeLabel = isTempHP ? 'Temporary Hit Points' : 'Hit Points';
@@ -1614,7 +1640,8 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
       const pTexts = pArr.map(p => {
         let t = formatPayload(p, evalStr, formatDiceObj, { ...baseCtx, pattern: 'healing', targetObj: block.target });
         if (p.type === 'conditionCleanse') {
-          t = `you can ${t}`;
+          const cleanseLead = (activity?.subject && activity.subject !== 'You') ? `${activity.subject.toLowerCase()} can` : 'you can';
+          t = `${cleanseLead} ${t}`;
         }
         return t;
       }).filter(Boolean);
@@ -1644,7 +1671,8 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
     }
 
     const classification = classifyBodyText(rawBody, fromPayloads);
-    const subject = buildSubjectNounPhrase(block.target, activity?.range, evalStr);
+    const defaultSubject = activity?.subject || 'You';
+    const subject = buildSubjectNounPhrase(block.target, activity?.range, evalStr, defaultSubject);
     const isPlural = isPluralSubject(subject);
     const isSelf = subject === 'You';
 
@@ -1712,7 +1740,11 @@ export function formatBlock(block, activity, evaluator, scope, blockIndex = 0) {
           bodyStr = `${subject} takes ${lowerBody}`;
         }
       } else {
-        bodyStr = `${subject} ${lowerBody}`;
+        if (new RegExp(`^${subject}\\b`, 'i').test(rawBody.trim())) {
+          bodyStr = rawBody;
+        } else {
+          bodyStr = `${subject} ${lowerBody}`;
+        }
       }
 
     } else if (classification === 'INFINITIVE') {

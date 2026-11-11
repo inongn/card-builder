@@ -56,4 +56,4 @@ actions:
       failure:
         type: condition
         condition: frightened
-        end: end_of_your_next_turn
+        end: end_of_its_next_turn

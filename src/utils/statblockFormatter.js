@@ -210,6 +210,57 @@ export function statblockEntryLabel(entry, locale = 'en', translations = null) {
 }
 
 /**
+ * Resolves the natural-language third-person subject for a statblock creature.
+ * Player-transformed forms (Wild Shape, Titan Form) retain 'You' / 'Tú'.
+ * Summons and companions use their appropriate creature name and 3rd-person phrasing.
+ */
+export function getStatblockSubject(statblock, locale = 'en') {
+  if (!statblock) return locale === 'es' ? 'Tú' : 'You';
+  const id = statblock.id || '';
+  const tags = Array.isArray(statblock.tags) ? statblock.tags : (statblock.tags ? [statblock.tags] : []);
+  const cat = statblock.category || '';
+
+  if (cat === 'wildShape' || id === 'wildShapeTemplate' || id === 'titanForm') {
+    return locale === 'es' ? 'Tú' : 'You';
+  }
+
+  if (id === 'steelDefender' || tags.includes('steelDefender')) {
+    return locale === 'es' ? 'El defensor' : 'The defender';
+  }
+  if (tags.includes('steed') || id.startsWith('otherworldlySteed')) {
+    return locale === 'es' ? 'El corcel' : 'The steed';
+  }
+  if (tags.includes('familiar') || tags.includes('familiarOption') || id.startsWith('otherworldlyFamiliar') || id.startsWith('familiar')) {
+    return locale === 'es' ? 'El familiar' : 'The familiar';
+  }
+  if (tags.includes('vestige') || id.endsWith('Vestige')) {
+    return locale === 'es' ? 'El vestigio' : 'The vestige';
+  }
+  if (tags.includes('primalCompanion') || id.startsWith('beastOf')) {
+    return locale === 'es' ? 'La bestia' : 'The beast';
+  }
+  if (id === 'reanimatedCompanion') {
+    return locale === 'es' ? 'El compañero' : 'The companion';
+  }
+
+  if (cat === 'summon' || tags.includes('summon')) {
+    if (id === 'skeleton' || tags.includes('skeletonTemplate')) {
+      return locale === 'es' ? 'El esqueleto' : 'The skeleton';
+    }
+    if (id === 'zombie' || tags.includes('zombieTemplate')) {
+      return locale === 'es' ? 'El zombi' : 'The zombie';
+    }
+    return locale === 'es' ? 'El espíritu' : 'The spirit';
+  }
+
+  if (cat === 'companion' || tags.includes('companion')) {
+    return locale === 'es' ? 'El compañero' : 'The companion';
+  }
+
+  return locale === 'es' ? 'La criatura' : 'The creature';
+}
+
+/**
  * Returns the markdown body (no leading bold name) for a statblock entry.
  *
  * @param {object} entry        The action / bonus action / reaction entry.
@@ -227,6 +278,8 @@ export function formatStatblockEntry(entry, statblock, characterData, section = 
     name: NAME_PLACEHOLDER,
     time: SECTION_TIME[section] || 'action',
     range: entry.range || '',
+    subject: getStatblockSubject(statblock, 'en'),
+    subjectEs: getStatblockSubject(statblock, 'es'),
     variables: {
       ...(statblock?.variables || {}),
       ...(statblock?.variables?.['local.maxLevel'] !== undefined ? { maxLevel: statblock.variables['local.maxLevel'] } : {}),

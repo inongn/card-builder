@@ -333,6 +333,12 @@ function cleanEnglishPhrasesEs(text) {
   if (!text || typeof text !== 'string') return text || '';
   return text
     // Multiattack patterns
+    .replace(/\bmake (?:one|1) (.*?) attack against that creature\b/gi, (m, atk) => {
+      const dict = { 'slam': 'Golpe' };
+      return `realiza un ataque de ${dict[atk.trim().toLowerCase()] || atk} contra esa criatura`;
+    })
+    .replace(/\bMake two Bestial Strikes\b/gi, 'Realiza dos Golpes Bestiales')
+    .replace(/\bmake one Bestial Strike\b/gi, 'realiza un Golpe Bestial')
     .replace(/\bMake (\d+|one|two|three) (.*?) attacks?\b/gi, (match, count, atk) => {
       const c = count === 'one' ? 'un' : count === 'two' ? 'dos' : count === 'three' ? 'tres' : count;
       const dict = {
@@ -352,13 +358,8 @@ function cleanEnglishPhrasesEs(text) {
         'bestial strikes': 'Golpes Bestiales'
       };
       const translatedAtk = dict[atk.trim().toLowerCase()] || atk.trim();
-      return `Realiza ${c} ataques de ${translatedAtk}`;
-    })
-    .replace(/\bMake two Bestial Strikes\b/gi, 'Realiza dos Golpes Bestiales')
-    .replace(/\bmake one Bestial Strike\b/gi, 'realiza un Golpe Bestial')
-    .replace(/\bmake one (.*?) attack against that creature\b/gi, (m, atk) => {
-      const dict = { 'slam': 'Golpe' };
-      return `realiza un ataque de ${dict[atk.trim().toLowerCase()] || atk} contra esa criatura`;
+      const atkWord = (c === 'un' || c === '1') ? 'ataque' : 'ataques';
+      return `Realiza ${c} ${atkWord} de ${translatedAtk}`;
     })
     // Condition checks & riders
     .replace(/\bif the target has the (\w+) condition, it has the (\w+) condition\b/gi, (m, c1, c2) => {
@@ -395,12 +396,17 @@ function cleanEnglishPhrasesEs(text) {
     .replace(/\bif it is Large or smaller\b/gi, 'si es de tamaño Grande o menor')
     // Triggers and special actions
     .replace(/\bYou take damage while underwater\b/gi, 'Recibes daño mientras estás bajo el agua')
-    .replace(/\bThe spirit takes damage from a creature within (\d+) pies\b/gi, 'El espíritu recibe daño de una criatura a $1 pies de él')
-    .replace(/\ba creature the defender can see within (\d+) pies of it makes an attack roll targeting a different creature\b/gi, 'una criatura que el defensor pueda ver a $1 pies de él realiza una tirada de ataque contra una criatura distinta')
+    .replace(/\bThe spirit takes damage from a creature within (\d+) (?:feet|pies)\b/gi, 'El espíritu recibe daño de una criatura a $1 pies de él')
+    .replace(/\ba creature the defender can see within (\d+) (?:feet|pies) of it makes an attack roll targeting a different creature\b/gi, 'una criatura que el defensor pueda ver a $1 pies de él realiza una tirada de ataque contra una criatura distinta')
+    .replace(/\bThe spirit is hit by a melee attack roll\b/gi, 'El espíritu es impactado por una tirada de ataque cuerpo a cuerpo')
+    .replace(/\bthe spirit halves the damage \(round down\) it takes from that attack\b/gi, 'el espíritu reduce a la mitad el daño (redondeando hacia abajo) que recibe de ese ataque')
     .replace(/\bThe defender, or one Construct or object it can see within (\d+) (?:feet|pies) of it\b/gi, 'El defensor, o un Autómata u objeto que pueda ver a $1 pies de él')
     .replace(/\bRelease ink that fills a (\d+)-(?:foot|pie) Cube, and move up to your Swim (?:Speed|velocidad) without provoking Opportunity Attacks\b/gi, 'Libera tinta que llena un cubo de $1 pies y te mueves hasta tu velocidad de nado sin provocar Ataques de Oportunidad')
     .replace(/\brelease ink that fills a (\d+)-(?:foot|pie) Cube, and move up to your Swim (?:Speed|velocidad) without provoking Opportunity Attacks\b/gi, 'libera tinta que llena un cubo de $1 pies y te mueves hasta tu velocidad de nado sin provocar Ataques de Oportunidad')
     .replace(/\bthe area is Heavily Obscured for (\d+) minute\b/gi, 'el área queda Fuertemente Oscurecida durante $1 minuto')
+    .replace(/\bmagical darkness\b/gi, 'oscuridad mágica')
+    .replace(/\balong with its rider, to un espacio desocupado of your choice\b/gi, 'junto con su jinete, a un espacio desocupado que elijas')
+    .replace(/\balong with its rider, to an unoccupied space of your choice\b/gi, 'junto con su jinete, a un espacio desocupado que elijas')
     .replace(/\balong with your rider, to un espacio desocupado of your choice\b/gi, 'junto con tu jinete, a un espacio desocupado que elijas')
     .replace(/\balong with your rider, to an unoccupied space of your choice\b/gi, 'junto con tu jinete, a un espacio desocupado que elijas')
     .replace(/\bif you and the vestige are within (\d+) pies of each other, you both teleport, swapping places\b/gi, 'si tú y el vestigio estáis a $1 pies o menos el uno del otro, ambos os teletransportáis, intercambiando posiciones')
@@ -744,7 +750,9 @@ export function formatTargetTextEs(targetObj, formattedRange, evalStr, isAttack 
     if (targetObj.inherit === 'trigger' || targetObj.inherit === 'prev_step') {
       rangePart = ` ${centeredWord} en el objetivo`;
     } else if (lowerRange === 'personal' || lowerRange === 'self' || rawShape === 'emanation') {
-      rangePart = rawShape === 'line' ? ' que se origina en ti' : ` ${centeredWord} en ti`;
+      const defaultSubject = activity?.subjectEs || 'Tú';
+      const selfNoun = defaultSubject === 'Tú' ? 'ti' : defaultSubject.toLowerCase();
+      rangePart = rawShape === 'line' ? ` que se origina en ${selfNoun}` : ` ${centeredWord} en ${selfNoun}`;
     } else if (cleanRange) {
       rangePart = ` ${centeredWord} en un punto a ${cleanRange}`;
     }
@@ -946,10 +954,11 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
       }
     }
 
-    const isTargetSelf = !ctx?.targetObj?.aoe && (ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && ctx?.targetObj?.range.toLowerCase() === 'self'));
+    const isTargetSelf = !ctx?.targetObj?.aoe && (ctx?.targetObj?.type === 'self' || (typeof ctx?.targetObj?.range === 'string' && (ctx?.targetObj?.range.toLowerCase() === 'self' || ctx?.targetObj?.range.toLowerCase() === 'personal')));
+    const isSubjectYou = !ctx?.activity?.subjectEs || ctx.activity.subjectEs === 'Tú';
     const hasTrigger = !!(ctx?.trigger || ctx?.activity?.mechanic?.trigger);
-    const targetPronoun = isTargetSelf ? 'ti' : 'el objetivo';
-    const possessivePronoun = isTargetSelf ? 'tu' : 'su';
+    const targetPronoun = isTargetSelf ? (isSubjectYou ? 'ti' : (ctx.activity.subjectEs || '').toLowerCase()) : 'el objetivo';
+    const possessivePronoun = isTargetSelf ? (isSubjectYou ? 'tu' : 'su') : 'su';
 
     const formatRollList = (rolls) => {
       const list = rolls.map(r => rollNamesPluralEs[evalStr(r)] || evalStr(r));
@@ -1158,6 +1167,11 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
 
   // ── Damage reduction payload ─────────────────────────────────────────────────
   if (type === 'damageReduction') {
+    if (payload.textEs) return evalStr(payload.textEs);
+    if (payload.text) {
+      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
+      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
+    }
     let valStr = '';
     if (payload.dice) {
       valStr = formatDiceObj(payload.dice, undefined, evalStr);
@@ -1182,19 +1196,17 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     if (valStr) {
       return `reduce el daño${typeStr} recibido en ${valStr}`;
     }
-    if (payload.text) {
-      const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
-      return trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text));
-    }
     return '';
   }
 
   // ── Teleport payload ─────────────────────────────────────────────────────────
   if (type === 'teleport') {
+    const isSubjectYou = !ctx?.activity?.subjectEs || ctx.activity.subjectEs === 'Tú';
     const rawDist = String(evalStr(payload.distance || '30')).trim();
     const cleanDist = formatDistanceEs(rawDist);
     const dist = /pies$/i.test(cleanDist) ? cleanDist : `${cleanDist} pies`;
-    let custom = ' a un espacio desocupado que puedas ver';
+    const defaultSpace = isSubjectYou ? ' a un espacio desocupado que puedas ver' : ' a un espacio desocupado que pueda ver';
+    let custom = defaultSpace;
     if (payload.text) {
       const trans = lookupMechanicText(payload.text, ctx?.translations, evalStr);
       custom = ` ${(trans ? evalStr(trans) : cleanEnglishPhrasesEs(evalStr(payload.text))).trim()}`;
@@ -1202,7 +1214,7 @@ export function formatPayloadEs(payload, evalStr, formatDiceObj, ctx = {}) {
     if (payload.target === 'target') {
       return `el objetivo es teletransportado hasta ${dist}${custom}`;
     }
-    return `te teletransportas hasta ${dist}${custom}`;
+    return isSubjectYou ? `te teletransportas hasta ${dist}${custom}` : `se teletransporta hasta ${dist}${custom}`;
   }
 
   // ── Condition cleanse payload ────────────────────────────────────────────────
@@ -1321,8 +1333,10 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
     targetObj.aoe || targetObj.type === 'multiple' || targetObj.type === 'multi' ||
     (targetObj.count && parseInt(evalStr(targetObj.count), 10) > 1)
   );
-  const targetSubject = isTargetSelf ? 'tú' : (isMultiSave ? 'cada objetivo' : 'el objetivo');
-  const targetSubjectCap = isTargetSelf ? 'Tú' : (isMultiSave ? 'Cada objetivo' : 'El objetivo');
+  const defaultSubject = ctx?.activity?.subjectEs || 'Tú';
+  const isSubjectYou = defaultSubject === 'Tú';
+  const targetSubject = isTargetSelf ? (isSubjectYou ? 'tú' : defaultSubject.toLowerCase()) : (isMultiSave ? 'cada objetivo' : 'el objetivo');
+  const targetSubjectCap = isTargetSelf ? defaultSubject : (isMultiSave ? 'Cada objetivo' : 'El objetivo');
 
   // Merge contiguous forced movement
   const mergedList = [];
@@ -1377,9 +1391,9 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
       if (p.movementType === 'forced') {
         const dir = p.direction || 'push';
         const dist = p.distance ? `${evalStr(p.distance)} pies` : '5 pies';
-        if (dir === 'push') targetPredicates.push(isTargetSelf ? `eres empujado hasta ${dist} de distancia` : `es empujado hasta ${dist} de distancia`);
-        else if (dir === 'pull') targetPredicates.push(isTargetSelf ? `eres atraído hasta ${dist} más cerca` : `es atraído hasta ${dist} más cerca`);
-        else targetPredicates.push(isTargetSelf ? `eres movido hasta ${dist}` : `es movido hasta ${dist}`);
+        if (dir === 'push') targetPredicates.push(isTargetSelf && isSubjectYou ? `eres empujado hasta ${dist} de distancia` : `es empujado hasta ${dist} de distancia`);
+        else if (dir === 'pull') targetPredicates.push(isTargetSelf && isSubjectYou ? `eres atraído hasta ${dist} más cerca` : `es atraído hasta ${dist} más cerca`);
+        else targetPredicates.push(isTargetSelf && isSubjectYou ? `eres movido hasta ${dist}` : `es movido hasta ${dist}`);
       } else {
         const fmtd = formatPayloadEs(p, evalStr, formatDiceObj, ctx);
         if (fmtd) otherParts.push(fmtd);
@@ -1389,16 +1403,16 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
       const fmtd = formatPayloadEs(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^la condición/.test(fmtd)) {
-          targetPredicates.push(isTargetSelf ? `sufres ${fmtd}` : `sufre ${fmtd}`);
+          targetPredicates.push(isTargetSelf && isSubjectYou ? `sufres ${fmtd}` : `sufre ${fmtd}`);
         } else {
-          targetPredicates.push(isTargetSelf ? `quedas ${fmtd}` : `queda ${fmtd}`);
+          targetPredicates.push(isTargetSelf && isSubjectYou ? `quedas ${fmtd}` : `queda ${fmtd}`);
         }
       }
 
     } else if (ptype === 'statModifier') {
       const fmtd = formatPayloadEs(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
-        if (isTargetSelf) {
+        if (isTargetSelf && isSubjectYou) {
           targetPredicates.push(fmtd.replace(/^su\b/i, 'tu').replace(/^gana\b/i, 'ganas'));
         } else {
           targetPredicates.push(fmtd);
@@ -1409,7 +1423,7 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
       const fmtd = formatPayloadEs(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^(tiene|añade|resta|vuelve)\b/i.test(fmtd)) {
-          if (isTargetSelf) {
+          if (isTargetSelf && isSubjectYou) {
             targetPredicates.push(fmtd.replace(/^tiene\b/i, 'tienes').replace(/^añade\b/i, 'añades').replace(/^resta\b/i, 'restas').replace(/^vuelve\b/i, 'vuelves'));
           } else {
             targetPredicates.push(fmtd);
@@ -1425,7 +1439,7 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
     } else if (ptype === 'defense') {
       const fmtd = formatPayloadEs(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
-        targetPredicates.push(isTargetSelf ? fmtd.replace(/^gana\b/i, 'ganas') : fmtd);
+        targetPredicates.push(isTargetSelf && isSubjectYou ? fmtd.replace(/^gana\b/i, 'ganas') : fmtd);
       }
 
     } else if (ptype === 'damageReduction') {
@@ -1438,7 +1452,7 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
       const fmtd = formatPayloadEs(p, evalStr, formatDiceObj, ctx);
       if (fmtd) {
         if (/^el objetivo es\b/i.test(fmtd)) {
-          targetPredicates.push(isTargetSelf ? fmtd.replace(/^el objetivo es\b/i, 'eres') : fmtd.replace(/^el objetivo es\b/i, 'es'));
+          targetPredicates.push(isTargetSelf && isSubjectYou ? fmtd.replace(/^el objetivo es\b/i, 'eres') : fmtd.replace(/^el objetivo es\b/i, 'es'));
         } else {
           otherParts.push(fmtd);
         }
@@ -1498,9 +1512,14 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
     let cleanedPart = part;
     if (targetPredicates.length > 0) {
       cleanedPart = cleanedPart.replace(/^(el\s+)?objetivo\s+/i, '');
+      if (!isSubjectYou) {
+        cleanedPart = conjugateToThirdPersonEs(cleanedPart);
+      }
     } else if (damageStr || clauseParts.length > 0) {
       if (/^(el\s+)?objetivo\s+/i.test(cleanedPart)) {
         cleanedPart = cleanedPart.replace(/^(el\s+)?objetivo\s+/i, `${targetSubject} `);
+      } else if (!isSubjectYou && /^(te teletransportas|se teletransporta|te mueves|se mueve)\b/i.test(cleanedPart)) {
+        cleanedPart = conjugateToThirdPersonEs(cleanedPart);
       }
     } else {
       if (/^el\s+objetivo\s+/i.test(cleanedPart)) {
@@ -1552,8 +1571,8 @@ export function formatPayloadListEs(payloadList, evalStr, formatDiceObj, ctx = {
 
 // ─── Subject Noun Phrase & Conjugation en Español ───────────────────────────
 
-function buildSubjectNounPhraseEs(targetObj, activityRange, evalStr, translations = null) {
-  if (!targetObj) return 'Tú';
+function buildSubjectNounPhraseEs(targetObj, activityRange, evalStr, translations = null, defaultSubject = 'Tú') {
+  if (!targetObj) return defaultSubject;
   if (targetObj.text) {
     const rawVal = evalStr(targetObj.text);
     const trans = lookupMechanicText(targetObj.text, translations, evalStr) || lookupMechanicText(rawVal, translations, evalStr) || cleanEnglishPhrasesEs(rawVal);
@@ -1572,9 +1591,11 @@ function buildSubjectNounPhraseEs(targetObj, activityRange, evalStr, translation
   if (targetObj.inherit === 'prev_step') return '';
 
   const lowerRange = cleanRange.toLowerCase();
-  if (type === 'self' || lowerRange === 'self' || lowerRange === 'personal') return 'Tú';
+  if (type === 'self' || lowerRange === 'self' || lowerRange === 'personal') return defaultSubject;
   if (type === 'touch' || lowerRange === 'touch' || lowerRange === 'toque') {
-    return `${capitalize(art)} ${filterSingular} que toques`;
+    const isSubjectYou = defaultSubject === 'Tú';
+    const touchClause = isSubjectYou ? 'que toques' : `que ${defaultSubject.toLowerCase()} toque`;
+    return `${capitalize(art)} ${filterSingular} ${touchClause}`;
   }
 
   const countRaw = targetObj.count !== undefined ? evalStr(targetObj.count) : '';
@@ -1868,7 +1889,8 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
 
   // ── 3. HEALING ─────────────────────────────────────────────────────────────
   else if (pattern === 'healing' && block.healing) {
-    const subject = buildSubjectNounPhraseEs(block.target, activity?.range, evalStr, baseCtx.translations);
+    const defaultSubject = activity?.subjectEs || 'Tú';
+    const subject = buildSubjectNounPhraseEs(block.target, activity?.range, evalStr, baseCtx.translations, defaultSubject);
     const diceStr = formatDiceObj(block.healing.dice, undefined, evalStr);
     const isTempHP = block.healing.type === 'tempHitPoints';
     const typeLabel = isTempHP ? 'Puntos de Golpe Temporales' : 'Puntos de Golpe';
@@ -1887,7 +1909,9 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
       const pTexts = pArr.map(p => {
         let t = formatPayloadEs(p, evalStr, formatDiceObj, { ...baseCtx, pattern: 'healing', targetObj: block.target });
         if (p.type === 'conditionCleanse') {
-          t = `puedes ${t}`;
+          const isSubjectYou = defaultSubject === 'Tú';
+          const canVerb = isSubjectYou ? 'puedes' : `${defaultSubject.toLowerCase()} puede`;
+          t = `${canVerb} ${t}`;
         }
         return t;
       }).filter(Boolean);
@@ -1916,7 +1940,8 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
       rawBody = text;
     }
 
-    const subject = buildSubjectNounPhraseEs(block.target, activity?.range, evalStr);
+    const defaultSubject = activity?.subjectEs || 'Tú';
+    const subject = buildSubjectNounPhraseEs(block.target, activity?.range, evalStr, baseCtx.translations, defaultSubject);
     const isPlural = isPluralSubjectEs(subject);
     const isSelf = subject === 'Tú';
 
@@ -1991,7 +2016,11 @@ export function formatBlockEs(block, activity, evaluator, scope, blockIndex = 0,
       } else if (isSelf || /^(hasta|cuando|mientras|si\b|una vez|al inicio|al final|en cada|durante|para la duración)\b/i.test(lowerBody)) {
         bodyStr = capitalize(lowerBody);
       } else {
-        bodyStr = `${subject} ${lowerBody}`;
+        if (new RegExp(`^${subject}\\b`, 'i').test(rawBody.trim())) {
+          bodyStr = capitalize(rawBody.trim());
+        } else {
+          bodyStr = `${subject} ${lowerBody}`;
+        }
       }
 
     } else {
